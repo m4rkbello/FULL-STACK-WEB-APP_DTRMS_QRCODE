@@ -14,3 +14,5 @@ TECHSTACK
 -> composer create-project laravel/laravel backend_laravelPHP
 2.ADD CONTROLLER WITH API AUTOCOMPLETE CLASS(INDEX, CREATE, UPDATE, DELETE, SHOW)
 -> php artisan make:controller AuthController --api
+3. ADD MIGRATIONS
+->php artisan make:model student -mfsr 
