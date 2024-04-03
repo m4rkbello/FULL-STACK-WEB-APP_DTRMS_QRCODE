@@ -11,3 +11,4 @@ TECHSTACK
 
 
 1. CREATE BACKEND PROJECT USING LARAVEL 10
+-> composer create-project laravel/laravel backend_laravelPHP
