@@ -15,4 +15,12 @@ TECHSTACK
 2.ADD CONTROLLER WITH API AUTOCOMPLETE CLASS(INDEX, CREATE, UPDATE, DELETE, SHOW)
 -> php artisan make:controller AuthController --api
 3. ADD MIGRATIONS
-->php artisan make:model student -mfsr 
+->php artisan make:model student -mfsr
+4. ADD MIGRATIONS AND MODELS 
+->after adding in the fillable and in the model fields 
+-> php artisan migrate 
+5. view the routes for api 
+php artisan route:list --path=api
+6. ADD FRONTEND USING REACTJS AND VITE BUNDLER AND DAISYUI PLUGINS FRAMEWORK FOR TAILWINDCSS
+->npm create vite@latest frontend_reactJS -- --template react
+->npm i
