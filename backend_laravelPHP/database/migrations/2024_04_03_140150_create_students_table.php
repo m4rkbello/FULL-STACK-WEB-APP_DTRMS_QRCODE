@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('student_middlename', 255)->nullable();
             $table->string('student_lastname', 255);
             $table->string('student_suffix', 255)->nullable();
-            $table->string('student_email_address', 255)->unique();
+            $table->string('student_email', 191)->unique();
             $table->integer('student_age');
             $table->string('student_sex', 255);
             $table->date('student_birthdate');
@@ -28,7 +28,6 @@ return new class extends Migration
             $table->bigInteger('student_contact_no')->unique();
             $table->integer('student_year_level_id')->nullable();
             $table->integer('student_course_id')->nullable();
-            $table->string('student_ethnicity', 255)->nullable();
             $table->string('student_ethnicity', 255)->nullable();
             $table->string('student_religion', 255)->nullable();
             $table->string('student_nursery_school_name', 255)->nullable();
@@ -56,7 +55,6 @@ return new class extends Migration
             $table->string('student_mothername_occupation', 255)->nullable();
             $table->string('student_mothername_contact_no', 255)->nullable();
             $table->integer('status_id')->default(1);
-            $table->string('student_learning_reference_no', 255)->nullable();
             $table->timestamps();
         });
     }
