@@ -12,3 +12,5 @@ TECHSTACK
 
 1. CREATE BACKEND PROJECT USING LARAVEL 10
 -> composer create-project laravel/laravel backend_laravelPHP
+2.ADD CONTROLLER WITH API AUTOCOMPLETE CLASS(INDEX, CREATE, UPDATE, DELETE, SHOW)
+-> php artisan make:controller AuthController --api
