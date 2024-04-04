@@ -29,6 +29,16 @@ php artisan route:list --path=api
 8. INSTALL TAILWINDCSS USING VITE BUNDLER
 ->npm install -D tailwindcss postcss autoprefixer
 ->npx tailwindcss init -p
+--------------------------------------
+index.css removed the default
+--------------------------------------
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+--------------------------------------
+9. INSTALL DAISYUI AS A PLUGGIN
+-> npm i -D daisyui@latest
+
 
 
 
