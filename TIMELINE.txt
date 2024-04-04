@@ -26,3 +26,26 @@ php artisan route:list --path=api
 ->npm i
 7. install packages usable 
 -> npm i axios react-router-dom react-toastify react-icons redux react-redux redux-thunk react-hot-toast
+8. INSTALL TAILWINDCSS USING VITE BUNDLER
+->npm install -D tailwindcss postcss autoprefixer
+->npx tailwindcss init -p
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
