@@ -3,8 +3,9 @@ import './App.css'
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import Login from './components/Auth/admin/Login';
-import PersonalDetails from './components/Auth/client/PersonalDetails';
 import Register from './components/Auth/admin/Register';
+import ForgotPassword from './components/Auth/admin/ForgotPassword';
+import PersonalDetails from './components/Auth/client/PersonalDetails';
 
 
 
@@ -18,6 +19,7 @@ function App() {
     <>
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
+    <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/details" element={<PersonalDetails />} />
 
     </>
