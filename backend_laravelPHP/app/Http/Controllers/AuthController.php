@@ -15,7 +15,9 @@ class AuthController extends Controller
      */
     public function index()
     {
-        //
+        $data = User::all();
+        
+        return response($data, 200);
     }
 
     /**
