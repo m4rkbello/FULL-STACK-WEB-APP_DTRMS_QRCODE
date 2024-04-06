@@ -41,8 +41,10 @@ class AuthController extends Controller
             'user_contact_no' => $data['user_contact_no'],
             'user_password' => bcrypt($data['user_password'])
         ]);
-    
+
+
         $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
+    
         
         $response = [
             'success' => true,
@@ -56,23 +58,38 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        $data = $request->validate(
-            [
+        $data = $request->validate([
             'user_email' => 'required|string',
             'user_password' => 'required|string'
-            ]
-        );
+            ]);
 
-        $user = User::where('email', $data['user_email'])->first();
+        $user = User::where('user_email', $data['user_email'])->first();
+
+        
+        // $token = DB::table('personal_access_toklens')
+        // ->where('')
 
         if(!$user || !hash::check($data['user_password'], $user->user_password)){
             return response([
                 'success' => false,
                 'status' => '401',
                 'message' => 'email or password is incorrect!'
-
             ], 401);
-        };
+        }else{
+            return response([
+                'success' => true,
+                'message' => 'Login successful!',
+                'user' => [
+                    'user_firstname' => $user->user_firstname,
+                    'user_lastname' => $user->user_lastname,
+                    'user_email' => $user->user_email,
+                    'user_contact_no' => $user->user_contact_no,
+                    'user_password' => $user->user_password
+                ]
+            ]);
+        }
+
+
     }
     
 
