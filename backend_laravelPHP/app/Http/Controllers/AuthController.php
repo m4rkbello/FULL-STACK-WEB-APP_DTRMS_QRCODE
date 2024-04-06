@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function index()
     {
         $data = User::all();
-        
+
         return response($data, 200);
     }
 
@@ -51,6 +51,10 @@ class AuthController extends Controller
         ];
     
         return response($response, 200);
+    }
+
+    public function login(Request $request){
+        
     }
     
 
