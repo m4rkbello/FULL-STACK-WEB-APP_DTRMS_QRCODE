@@ -68,7 +68,9 @@ class AuthController extends Controller
 
         $token = DB::table('personal_access_tokens')
         ->where('tokenable_id','=',$user_token_id)
-        ->get();
+        ->first();
+
+        $token_data = $token->token;
 
         if(!$user || !hash::check($data['user_password'], $user->user_password)){
             return response([
@@ -80,6 +82,7 @@ class AuthController extends Controller
             return response([
                 'success' => true,
                 'message' => 'Login successful!',
+                'token' => $token_data,
                 'user' => [
                     'user_firstname' => $user->user_firstname,
                     'user_lastname' => $user->user_lastname,
@@ -87,7 +90,6 @@ class AuthController extends Controller
                     'user_contact_no' => $user->user_contact_no,
                     'user_password' => $user->user_password
                 ],
-                'token' => $token,
             ]);
         }
 
