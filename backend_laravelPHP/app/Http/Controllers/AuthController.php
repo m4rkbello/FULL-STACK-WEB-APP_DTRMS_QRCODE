@@ -50,7 +50,7 @@ class AuthController extends Controller
             'user' =>  $user,
             'token' => $token
         ];
-        
+
         \Log::info("DATA SA POST-REGISTER", $response);
         return response($response, 200);
     }
@@ -65,9 +65,14 @@ class AuthController extends Controller
 
         $user = User::where('email', $data['user_email'])->first();
 
-        if(!$user || !has)
+        if(!$user || !hash::check($data['user_password'], $user->user_password)){
+            return response([
+                'success' => false,
+                'status' => '401',
+                'message' => 'email or password is incorrect!'
 
-
+            ], 401);
+        };
     }
     
 
