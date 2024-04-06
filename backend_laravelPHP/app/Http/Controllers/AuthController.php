@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -17,9 +21,22 @@ class AuthController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function register(Request $request)
     {
         //
+        $data = $request->validate(
+            [
+                'user_firstname' => 'min:100|max:255|string|require|',
+                'user_lastname' => 'min:100|max:255|string|require|',
+                'user_email' => 'min:100|max:255|string|unique:users,email',
+                'user_contact_no' => 'min:100|max:255|string|require|',
+                'user_password' => 'min:100|max:255|string|require|'
+            ]
+            );
+
+        $user = User::create([
+            ''
+        ])
     }
 
     /**
