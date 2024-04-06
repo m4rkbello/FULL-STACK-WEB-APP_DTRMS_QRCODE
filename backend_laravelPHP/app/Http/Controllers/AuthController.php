@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -29,7 +30,7 @@ class AuthController extends Controller
             'user_firstname' => 'required|string',
             'user_lastname' => 'required|string',
             'user_email' => 'required|string|unique:users,user_email',
-            'user_contact_no' => 'required|string',
+            'user_contact_no' => 'required|string|max:12',
             'user_password' => 'required|string'
         ]);
     
@@ -49,12 +50,24 @@ class AuthController extends Controller
             'user' =>  $user,
             'token' => $token
         ];
-    
+        
+        \Log::info("DATA SA POST-REGISTER", $response);
         return response($response, 200);
     }
 
     public function login(Request $request){
-        
+        $data = $request->validate(
+            [
+            'user_email' => 'required|string',
+            'user_password' => 'required|string'
+            ]
+        );
+
+        $user = User::where('email', $data['user_email'])->first();
+
+        if(!$user || !has)
+
+
     }
     
 
