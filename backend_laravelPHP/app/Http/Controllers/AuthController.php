@@ -23,38 +23,34 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $data = $request->validate(
-                [
-                    'user_firstname' => 'min:100|max:255|string|require|',
-                    'user_lastname' => 'min:100|max:255|string|require|',
-                    'user_email' => 'min:100|max:255|string|unique:users,email',
-                    'user_contact_no' => 'min:100|max:255|string|require|',
-                    'user_password' => 'min:100|max:255|string|require|'
-                ]
-            );
-
-        $user = User::create(
-            [
-                'user_firstname' => $data['user_firstname'],
-                'user_lastname' => $data['user_lastname'],
-                'user_email' => $data['user_email'],
-                'user_contact_no' => $data['user_contact_no'],
-                'user_password' => bcrypt($data['user_password'])
-            ]
-        );
-
-
+        $data = $request->validate([
+            'user_firstname' => 'required|string',
+            'user_lastname' => 'required|string',
+            'user_email' => 'required|string|unique:users,user_email',
+            'user_contact_no' => 'required|string',
+            'user_password' => 'required|string'
+        ]);
+    
+        $user = User::create([
+            'user_firstname' => $data['user_firstname'],
+            'user_lastname' => $data['user_lastname'],
+            'user_email' => $data['user_email'],
+            'user_contact_no' => $data['user_contact_no'],
+            'user_password' => bcrypt($data['user_password'])
+        ]);
+    
         $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
-
+        
         $response = [
             'success' => true,
-            'status_response' => '200',
+            // 'status_response' => '200',
             'user' =>  $user,
             'token' => $token
         ];
-
+    
         return response($response, 200);
     }
+    
 
     /**
      * Display the specified resource.
