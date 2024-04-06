@@ -44,7 +44,16 @@ class AuthController extends Controller
         );
 
 
+        $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
 
+        $response = [
+            'success' => true,
+            'status_response' => '200',
+            'user' =>  $user,
+            'token' => $token
+        ];
+
+        return response($response, 200);
     }
 
     /**
