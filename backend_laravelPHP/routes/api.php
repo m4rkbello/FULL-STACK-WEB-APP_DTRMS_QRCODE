@@ -16,7 +16,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/',[AuthController::class, 'index']);
+Route::get('/users',[AuthController::class, 'index']);
 Route::post('/register',[AuthController::class, 'register']);
 
 
