@@ -65,7 +65,6 @@ class AuthController extends Controller
 
         $user = User::where('user_email', $data['user_email'])->first();
 
-        
         // $token = DB::table('personal_access_toklens')
         // ->where('')
 
