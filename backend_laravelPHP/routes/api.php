@@ -31,6 +31,8 @@ Route::put('/employee/{id}', [EmployeeController::class, 'update']);
 Route::put('/employee/deactivated/{id}', [EmployeeController::class, 'deactivate']);
 Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
 
+//ATTENDANCE
+
  
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
