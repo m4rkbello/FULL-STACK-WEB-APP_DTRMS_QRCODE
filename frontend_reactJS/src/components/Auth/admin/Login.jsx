@@ -9,7 +9,7 @@ const Login = () => {
       <h1 className="text-5xl font-bold text-black">Login now!</h1>
       <p className="py-6 text-black">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
     </div>
-    <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-amber-100 via-black to-black/80 to-black/20">
+    <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-amber-100 via-black to-black/50 to-black/50">
       <form className="card-body">
         <div className="form-control">
           <label className="label">
@@ -29,7 +29,7 @@ const Login = () => {
 
 
         <div className="form-control mt-6">
-        <button className="btn bg-gradient-to-r from-black to-black-100 hover:from-lime-500 hover:to-amber-100 text-amber-100 hover:text-black  text-2xl">Login</button>
+        <button className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-amber-100 text-amber-100 hover:text-black  text-2xl">Login</button>
       </div>
 
       </form>
