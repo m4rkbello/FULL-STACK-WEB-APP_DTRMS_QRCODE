@@ -5,9 +5,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
-import PersonalDetails from './components/Auth/client/PersonalDetails';
-
-
+import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 
 
 function App() {
