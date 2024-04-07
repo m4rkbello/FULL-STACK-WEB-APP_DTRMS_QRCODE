@@ -3,13 +3,13 @@ import React from 'react'
 const Login = () => {
   return (
     <div>
-    <div className="hero min-h-screen bg-amber-100 shadow-md">
+    <div className="hero min-h-screen bg-transparent shadow-md">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
-      <h1 className="text-5xl font-bold text-lime-500">Login now!</h1>
+      <h1 className="text-5xl font-bold text-black">Login now!</h1>
       <p className="py-6 text-black">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
     </div>
-    <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-lime-400 via-lime-500 to-lime-700/80 to-black/20">
+    <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-amber-100 via-black to-black/80 to-black/20">
       <form className="card-body">
         <div className="form-control">
           <label className="label">

@@ -68,23 +68,29 @@ function App() {
             <Route path="/admin/login" element={<Login />} />
             <Route path="/admin/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/details" element={<PersonalDetails />} />
-
             <Route path="/content" element={<Content />} />
+            <Route path="/details" element={<PersonalDetails />} />
           </Routes>
         
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-            <Link to="/admin/login">
-              <a>Login</a>
-            </Link>
+          <ul className="menu p-4 w-80 min-h-full bg-black text-amber-100">
             <li>
-              <Link to="/content">
-                Login
+            <Link to="/admin/login">
+                <a>Login Testing</a>
               </Link>
             </li>
+            <li>
+              <Link to="/content">
+                content test
+              </Link>
+            </li>
+            <li>
+            <Link to="/details">
+              details test
+            </Link>
+          </li>
           </ul>
         </div>
       </div>
