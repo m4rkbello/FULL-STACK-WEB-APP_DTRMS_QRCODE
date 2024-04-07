@@ -25,7 +25,8 @@ Route::post('/login',[AuthController::class, 'login']);
 //EMPLOYEE
 Route::get('/employees', [EmployeeController::class, 'index']);
 Route::post('/employee-registration', [EmployeeController::class, 'store']);
-Route::get('/employees/{id}', [EmployeeController::class, 'show']);
+Route::get('/employee/{id}', [EmployeeController::class, 'show']);
+Route::put('/employee/{id}', [EmployeeController::class, 'update']);
 
  
 
