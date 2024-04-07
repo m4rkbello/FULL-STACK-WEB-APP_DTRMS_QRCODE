@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('attendance_emp_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('attendance_employee_id')->constrained('employees');
             $table->string('attendance_note');
-            $table->dateTime('attendance_time_in')->nullable();
-            $table->dateTime('attendance_time_out')->nullable();
+            $table->dateTime('attendance_time_in');
+            $table->dateTime('attendance_time_out');
+            $table->integer('attendance_status')->default(1);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
