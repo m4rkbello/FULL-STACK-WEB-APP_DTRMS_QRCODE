@@ -54,7 +54,7 @@ class EmployeeController extends Controller
     
             return response($response_data, 201);
         } catch (ValidationException $e) {
-            // If validation fails, return the validation errors
+           
             return response()->json([
                 'success' => false,
                 'errors' => $e->errors(),
@@ -91,6 +91,35 @@ class EmployeeController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        try {
+            $data = $request->input('data');
+            
+            $employees = Employee::where('id', 'like', '%' . $data . '%')
+                ->orWhere('employee_fullname', 'like', '%' . $data . '%')
+                ->orWhere('employee_email', 'like', '%' . $data . '%')
+                ->get();
+    
+            if ($employees->isEmpty()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No employees found for the given search criteria.',
+                ], 404);
+            }
+    
+            return response()->json([
+                'success' => true,
+                'employees' => $employees,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to search employees. Please try again later.',
+            ], 500);
+        }
+    }
+    
     /**
      * Update the specified resource in storage.
      */
