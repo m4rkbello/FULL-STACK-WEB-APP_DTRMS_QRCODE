@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
@@ -69,10 +69,10 @@ function App() {
             <Route path="/admin/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/details" element={<PersonalDetails />} />
+
+            <Route path="/content" element={<Content />} />
           </Routes>
-          <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
-            Open drawer
-          </label>
+        
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -81,7 +81,7 @@ function App() {
               <a>Login</a>
             </Link>
             <li>
-              <Link to="/admin/content">
+              <Link to="/content">
                 Login
               </Link>
             </li>
