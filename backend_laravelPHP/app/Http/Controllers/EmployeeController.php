@@ -107,11 +107,19 @@ class EmployeeController extends Controller
         return response($employee, 201);
     }
 
+    public function deactivate(Request $request, string $id)
+    {
+        $employee = Employee::find($id);
+        $employee->update(['employee_status'=>0]);
+
+        return response($employee, 201);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        return Employee::destroy($id);
     }
 }
