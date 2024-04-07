@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('employee_contact_no');
             $table->string('employee_position');
             $table->string('employee_role');
-            $table->string('employee_department');
+            $table->integer('employee_department');
             $table->integer('employee_status')->default(1);
             $table->rememberToken();
             $table->timestamps();
