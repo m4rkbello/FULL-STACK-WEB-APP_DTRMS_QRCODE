@@ -13,7 +13,6 @@ function App() {
   return (
 
     <div className="flex flex-col h-screen">
-      {/* Navbar */}
       <div className="navbar bg-amber-100 px-4 py-2 md:px-8 md:py-4">
         <div className="flex-none">
           <button className="btn btn-square btn-ghost">
@@ -96,7 +95,6 @@ function App() {
       </div>
       <Footer />
     </div>
-
   );
 }
 
