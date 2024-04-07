@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +17,16 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+//AUTHENTICATION FOR ADMIN
 Route::get('/users',[AuthController::class, 'index']);
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
 
+//EMPLOYEE
+Route::get('/employees', [EmployeeController::class, 'index']);
+Route::post('/employee-registration', [EmployeeController::class, 'store']);
 
-
+ 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
