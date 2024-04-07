@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
 class EmployeeController extends Controller
@@ -70,7 +71,29 @@ class EmployeeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $employee = Employee::findOrFail($id);
+        
+            return response()->json([
+                'success' => true,
+                'employee' => $employee,
+            ], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Employee not found.',
+            ], 404);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch employee. Please try again later.',
+            ], 500);
+        }
     }
 
     /**
