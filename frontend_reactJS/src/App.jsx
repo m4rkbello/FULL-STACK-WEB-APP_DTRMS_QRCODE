@@ -6,6 +6,8 @@ import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
+import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
+
 
 function App() {
   return (
@@ -40,16 +42,16 @@ function App() {
               />
             </div>
           </div>
-          <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+          <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-amber-100 rounded-box w-52">
             <li>
-              <a className="justify-between">
-                Profile <span className="badge">New</span>
+              <a className="justify-between text-black">
+                Profile <span className="badge bg-black"><span className='text-white'>Open</span></span>
               </a>
             </li>
-            <li>
+            <li className='text-black'>
               <a>Settings</a>
             </li>
-            <li>
+            <li className='text-black'>
               <a>Logout</a>
             </li>
           </ul>
@@ -65,11 +67,12 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/content" element={<Content />} />
             <Route path="/details" element={<PersonalDetails />} />
+            <Route path="/register" element={<EmployeeRegister />} />
           </Routes>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 min-h-full bg-black text-amber-100">
+          <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-amber-100">
             <li>
               <Link to="/admin/login">
                 <a>Login Testing</a>

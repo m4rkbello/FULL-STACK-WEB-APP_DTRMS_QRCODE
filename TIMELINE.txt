@@ -38,7 +38,7 @@ index.css removed the default
 --------------------------------------
 9. INSTALL DAISYUI AS A PLUGGIN
 -> npm i -D daisyui@latest
-10.
+10. INSTALL SANCTUM 
 
 
 
