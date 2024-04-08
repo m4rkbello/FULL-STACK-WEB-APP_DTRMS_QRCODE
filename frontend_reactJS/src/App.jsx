@@ -7,7 +7,6 @@ import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails'
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
 
-
 function App() {
   return (
     <div className="flex flex-col h-screen">
