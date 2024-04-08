@@ -1,5 +1,4 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
@@ -7,15 +6,14 @@ import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
-import Sidebar from './components/layouts/Sidebar';
+
 
 function App() {
   return (
-
     <div className="flex flex-col h-screen">
       <div className="navbar bg-amber-100 px-4 py-2 md:px-8 md:py-4">
         <div className="flex-none">
-          <button className="btn btn-square btn-ghost">
+          <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -29,7 +27,7 @@ function App() {
                 d="M4 6h16M4 12h16M4 18h16"
               ></path>
             </svg>
-          </button>
+          </label>
         </div>
         <div className="flex-1">
           <a className="btn btn-ghost text-2xl text-black">DTRMS BY M4RKBELLO</a>
@@ -59,7 +57,6 @@ function App() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="drawer lg:drawer-open flex-1">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center px-4 py-8 md:px-8 md:py-12">
@@ -70,29 +67,29 @@ function App() {
             <Route path="/content" element={<Content />} />
             <Route path="/details" element={<PersonalDetails />} />
           </Routes>
-        
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 min-h-full bg-black text-amber-100">
             <li>
-            <Link to="/admin/login">
+              <Link to="/admin/login">
                 <a>Login Testing</a>
               </Link>
             </li>
             <li>
               <Link to="/content">
-                content test
+                <a>Content Test</a>
               </Link>
             </li>
             <li>
-            <Link to="/details">
-              details test
-            </Link>
-          </li>
+              <Link to="/details">
+                <a>Details Test</a>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
+
       <Footer />
     </div>
   );
