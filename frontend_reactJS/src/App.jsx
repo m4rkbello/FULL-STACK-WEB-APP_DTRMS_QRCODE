@@ -75,17 +75,17 @@ function App() {
           <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-amber-100">
             <li>
               <Link to="/admin/login">
-                <a>Login Testing</a>
+                Login Testing
               </Link>
             </li>
             <li>
               <Link to="/content">
-                <a>Content Test</a>
+                Content Test
               </Link>
             </li>
             <li>
               <Link to="/details">
-                <a>Details Test</a>
+                Details Test
               </Link>
             </li>
           </ul>
