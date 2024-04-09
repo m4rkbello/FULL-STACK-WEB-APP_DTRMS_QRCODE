@@ -1,4 +1,6 @@
 import MarkBelloApi from '../../../services/Api.jsx';
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
     FETCH_USERS_REQUEST,
@@ -104,11 +106,34 @@ export const registerUser = userData => async dispatch => {
             type: REGISTER_USER_SUCCESS,
             payload: registeredUser
         });
+
+            toast.success('Registration successful!', {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    
+        console.log('Registered user:', registeredUser)
+
     } catch (error) {
         dispatch({
             type: REGISTER_USER_FAILURE,
             payload: error.message
         });
+
+        toast.error('Registration Error!', {
+            position: 'top-right',
+            autoClose: 10000,
+            hideProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            });
     }
 };
 
