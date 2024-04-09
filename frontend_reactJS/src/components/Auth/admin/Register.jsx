@@ -14,9 +14,12 @@ const Register = ({registerUser}) => {
     const [localContactNo, setLocalContactNo] = useState("");
     const [localPassword, setLocalPassword] = useState("");
     const [localConfirmPassword, setLocalConfirmPassword] = useState("");
+    //FOR LOADING REQUEST!
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleRegisterUserRequestAndResponse = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
         try {
             await registerUser({
                 user_firstname: localFirstName,
@@ -29,7 +32,9 @@ const Register = ({registerUser}) => {
 
         } catch (error) {
             console.error('Registration error:', error);
-        }
+        }finally {
+            setIsLoading(false);
+          }
     };
     
 
@@ -86,6 +91,9 @@ const Register = ({registerUser}) => {
                             <div className="form-control mt-6">
                                 <button onClick={handleRegisterUserRequestAndResponse} className="btn btn-primary">Register</button>
                             </div>
+                            <center>
+                            <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
+                        </center>
                         </form>
                     </div>
                 </div>
