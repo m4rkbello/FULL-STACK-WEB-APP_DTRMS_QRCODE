@@ -27,7 +27,7 @@ php artisan route:list --path=api
 7. install packages usable 
 -> npm i axios react-router-dom react-toastify react-icons redux react-redux redux-thunk react-hot-toast
 8. INSTALL TAILWINDCSS USING VITE BUNDLER
-->npm install -D tailwindcss postcss autoprefixer
+->npm install -D tailwindcss postcss autopref
 ->npx tailwindcss init -p
 --------------------------------------
 index.css removed the default
@@ -41,6 +41,12 @@ index.css removed the default
 10. INSTALL LARAVEL-SANCTUM FOR AUTHENTICATION
 ->composer require laravel/sanctum
 ->php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+->kernel.php 
+->       'api' => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
 
 
 
