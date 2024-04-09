@@ -106,7 +106,6 @@ export const registerUser = userData => async dispatch => {
             type: REGISTER_USER_SUCCESS,
             payload: registeredUser
         });
-
             toast.success('Registration successful!', {
             position: 'top-right',
             autoClose: 3000,
