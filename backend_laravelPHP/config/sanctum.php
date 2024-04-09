@@ -76,8 +76,13 @@ return [
 
     'middleware' => [
         'authenticate_session' => Laravel\Sanctum\Http\Middleware\AuthenticateSession::class,
-        'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
         'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
+        'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
+        'add_qprid_header' => App\Http\Middleware\AddQpridHeader::class,
+        'start_session' => \Illuminate\Session\Middleware\StartSession::class,
+        'share_errors_from_session' => \App\Http\Middleware\ShareErrorsFromSession::class,
+        'throttle_requests' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'EnsureFrontendRequestsAreStateful' => Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
     ],
 
 ];
