@@ -99,7 +99,7 @@ export const registerUser = userData => async dispatch => {
     try {
         dispatch({ type: REGISTER_USER_REQUEST });
         // Perform async operation, e.g., send registration data to an API
-        const registeredUser = await MarkBelloApi.post('/register', userData);
+        const registeredUser = await MarkBelloApi.post('/api/register', userData);
         dispatch({
             type: REGISTER_USER_SUCCESS,
             payload: registeredUser
