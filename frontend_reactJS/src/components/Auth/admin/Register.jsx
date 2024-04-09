@@ -15,7 +15,7 @@ const Register = ({registerUser}) => {
     const [localPassword, setLocalPassword] = useState("");
     const [localConfirmPassword, setLocalConfirmPassword] = useState("");
 
-    const handleRegiserUserPost = async (event) => {
+    const handleRegisterUserRequestAndResponse = async (event) => {
         event.preventDefault();
         try {
             await registerUser({
@@ -84,7 +84,7 @@ const Register = ({registerUser}) => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button onClick={handleRegiserUserPost} className="btn btn-primary">Register</button>
+                                <button onClick={handleRegisterUserRequestAndResponse} className="btn btn-primary">Register</button>
                             </div>
                         </form>
                     </div>

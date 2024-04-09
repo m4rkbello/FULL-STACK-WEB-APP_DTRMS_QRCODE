@@ -48,6 +48,9 @@ index.css removed the default
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+10. INSTALL EMOJI FOR THE TOASTER 
+->npm i emoji-picker-react
+
 
 
 

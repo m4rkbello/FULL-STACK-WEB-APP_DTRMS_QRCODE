@@ -1,8 +1,34 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
+
+import { connect } from 'react-redux';
+import { useState } from 'react';
+import {loginUser} from '../../redux/actions/userAction';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-const Login = () => {
+
+const Login = ({loginUser}) => {
+  const [localEmail, setLocalEmail] = useState("");
+  const [localPassword, setLocalPassword] = useState("");
+
+  const handleLoginRequestAndResponse = async (event) => {
+    event.preventDefault();
+    try{
+      await loginUser({
+          user_email: localEmail,
+          user_password: localPassword,
+      });
+
+    }catch(error) {
+      window.alert("ERROR");
+    }
+  }
+
   return (
     <div>
+    <ToastContainer />
       <div className="hero min-h-screen bg-transparent shadow-md">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -15,19 +41,19 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text text-xl text-black">Email</span>
                 </label>
-                <input type="email" placeholder="email" className="input input-bordered bg-amber-100" required />
+                <input type="email" value={localEmail}  onChange={(e) => setLocalEmail(e.target.value)} placeholder="email" className="input input-bordered bg-amber-100" required />
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-xl text-black">Password</span>
                 </label>
-                <input type="password" placeholder="password" className="input input-bordered bg-amber-100" required />
+                <input type="password" placeholder="password" value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} className="input input-bordered bg-amber-100" required />
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover text-amber-100 text-xl">Forgot password?</a>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-amber-100 text-amber-100 hover:text-black  text-2xl">Login</button>
+                <button onClick={handleLoginRequestAndResponse} className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-amber-100 text-amber-100 hover:text-black  text-2xl">Login</button>
               </div>
 
             </form>
@@ -38,4 +64,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default connect(null, {loginUser})(Login);

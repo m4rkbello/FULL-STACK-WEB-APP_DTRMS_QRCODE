@@ -106,17 +106,22 @@ export const registerUser = userData => async dispatch => {
             type: REGISTER_USER_SUCCESS,
             payload: registeredUser
         });
-            toast.success('Registration successful!', {
+
+        toast.success('Registered successfully!🤗', {
             position: 'top-right',
-            autoClose: 3000,
+            autoClose: 10000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            });
-    
-        console.log('Registered user:', registeredUser)
+            style: {
+                background: 'white',
+                color: 'green',
+                fontSize: '15px'
+            }
+        });
+        
 
     } catch (error) {
         dispatch({
@@ -124,15 +129,20 @@ export const registerUser = userData => async dispatch => {
             payload: error.message
         });
 
-        toast.error('Registration Error!', {
+        toast.error('Registration Error! 🥺', {
             position: 'top-right',
             autoClose: 10000,
-            hideProgressBar: true,
+            hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: false,
             draggable: true,
             progress: undefined,
-            });
+            style: {
+                background:'black',
+                color: 'red',
+                fontSize: '15px'
+            }
+        });
     }
 };
 
@@ -140,15 +150,48 @@ export const loginUser = userData => async dispatch => {
     try {
         dispatch({ type: LOGIN_USER_REQUEST });
         // Perform async operation, e.g., send login data to an API
-        const loggedInUser = await MarkBelloApi.post('/login', userData);
+        const loggedInUser = await MarkBelloApi.post('/api/login', userData);
         dispatch({
             type: LOGIN_USER_SUCCESS,
             payload: loggedInUser
         });
+        
+        console.log("RESPONSE DATA SA LOGIN", loggedInUser);
+        toast.success('Registered successfully!🤗', {
+            position: 'top-right',
+            autoClose: 10000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            style: {
+                background: 'white',
+                color: 'green',
+                fontSize: '15px'
+            }
+        });
+
+
     } catch (error) {
         dispatch({
             type: LOGIN_USER_FAILURE,
             payload: error.message
         });
+
+        toast.error('Registration Error! 🥺', {
+            position: 'top-right',
+            autoClose: 10000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            style: {
+                background:'black',
+                color: 'red',
+                fontSize: '15px'
+            }
+            });
     }
 };

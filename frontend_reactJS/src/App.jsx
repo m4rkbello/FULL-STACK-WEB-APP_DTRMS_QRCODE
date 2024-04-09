@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+import { connect } from 'react-redux';
 import './App.css';
 import { Route, Routes, Link } from 'react-router-dom';
 import Login from './components/Auth/admin/Login';
@@ -97,4 +99,13 @@ function App() {
   );
 }
 
-export default App;
+// function mapStateToProps(){
+
+// }
+
+// const mapDispatchToProps = () => {
+
+// };
+
+
+export default connect(null, null)(App);
