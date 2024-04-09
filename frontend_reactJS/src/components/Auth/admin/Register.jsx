@@ -18,7 +18,6 @@ const Register = ({registerUser}) => {
         try {
             await registerUser({user_firstname: localFirstName, user_lastname: localLastName, user_email: localEmail, user_contact_no: localContactNo, user_password: localPassword, password_confirmation: localConfirmPassword
             });
-            // Redirect or show success message
         } catch (error) {
             console.error('Registration error:', error);
             alert('Registration failed. Please try again later.');
@@ -27,12 +26,12 @@ const Register = ({registerUser}) => {
 
     return (
         <div>
-            <div className="hero min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ...">
+            <div className="hero min-h-screen bg-transparent">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         {/* Your existing content */}
                     </div>
-                    <div className="card-0 w-full max-w-md shadow-2xl bg-base-100 md:flex">
+                    <div className="card-0 w-full max-w-md shadow-2xl bg-amber-100 md:flex">
                         <form className="card-body">
                             <span className="text-center text-3xl py-3 px-3">REGISTER</span>
                             <div className="form-control">
