@@ -72,6 +72,8 @@ class AuthController extends Controller
 
         $token_data = $token->token;
 
+        $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
+
         if(!$user || !hash::check($data['user_password'], $user->user_password)){
             return response([
                 'success' => false,
@@ -82,7 +84,8 @@ class AuthController extends Controller
             return response([
                 'success' => true,
                 'message' => 'Login successful!',
-                'token' => $token_data,
+                'personal_access_tokens' => $token_data,
+                'token' => $token,
                 'user' => [
                     'user_firstname' => $user->user_firstname,
                     'user_lastname' => $user->user_lastname,
