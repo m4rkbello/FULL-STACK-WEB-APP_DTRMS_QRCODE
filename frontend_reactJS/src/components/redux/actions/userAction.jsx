@@ -1,5 +1,5 @@
 import MarkBelloApi from '../../../services/Api.jsx';
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {
@@ -95,7 +95,6 @@ export const deleteUser = userId => async dispatch => {
     }
 };
 
-
 //MAG-REGISTER UG USER 
 export const registerUser = userData => async dispatch => {
     try {
@@ -107,7 +106,9 @@ export const registerUser = userData => async dispatch => {
             payload: registeredUser
         });
 
-        toast.success('Registered successfully!🤗', {
+        document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
+
+        toast.success('Registered successfully!🤭😇🤗', {
             position: 'top-right',
             autoClose: 10000,
             hideProgressBar: false,
@@ -121,7 +122,7 @@ export const registerUser = userData => async dispatch => {
                 fontSize: '15px'
             }
         });
-        
+
 
     } catch (error) {
         dispatch({
@@ -129,7 +130,7 @@ export const registerUser = userData => async dispatch => {
             payload: error.message
         });
 
-        toast.error('Registration Error! 🥺', {
+        toast.error('Fill-up correctly! 🥺⚠️👽', {
             position: 'top-right',
             autoClose: 10000,
             hideProgressBar: false,
@@ -138,7 +139,7 @@ export const registerUser = userData => async dispatch => {
             draggable: true,
             progress: undefined,
             style: {
-                background:'black',
+                background: 'black',
                 color: 'red',
                 fontSize: '15px'
             }
@@ -148,16 +149,30 @@ export const registerUser = userData => async dispatch => {
 
 export const loginUser = userData => async dispatch => {
     try {
-        dispatch({ type: LOGIN_USER_REQUEST });
-        // Perform async operation, e.g., send login data to an API
-        const loggedInUser = await MarkBelloApi.post('/api/login', userData);
+        setTimeout(() => {
+            dispatch({ type: LOGIN_USER_REQUEST });
+        }, 5000);
+
+        document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
+
+        const response = await MarkBelloApi.post('/api/login', userData);
+        const loggedInUser = response.data.token;
+
+        localStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInUser);
+        sessionStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInUser);
+
+
+        document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUser}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
+        document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUser}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
+        console.log("DATA", loggedInUser);
         dispatch({
             type: LOGIN_USER_SUCCESS,
             payload: loggedInUser
         });
+
         
         console.log("RESPONSE DATA SA LOGIN", loggedInUser);
-        toast.success('Registered successfully!🤗', {
+        toast.success('Login successfully!🤭😇🤗', {
             position: 'top-right',
             autoClose: 10000,
             hideProgressBar: false,
@@ -166,12 +181,11 @@ export const loginUser = userData => async dispatch => {
             draggable: true,
             progress: undefined,
             style: {
-                background: 'white',
+                background: '#fef3c7',
                 color: 'green',
-                fontSize: '15px'
+                fontSize: '17px'
             }
         });
-
 
     } catch (error) {
         dispatch({
@@ -179,7 +193,7 @@ export const loginUser = userData => async dispatch => {
             payload: error.message
         });
 
-        toast.error('Registration Error! 🥺', {
+        toast.error('User or Password is incorrect! 🥺⚠️👽', {
             position: 'top-right',
             autoClose: 10000,
             hideProgressBar: false,
@@ -188,10 +202,11 @@ export const loginUser = userData => async dispatch => {
             draggable: true,
             progress: undefined,
             style: {
-                background:'black',
+                background: 'black',
                 color: 'red',
-                fontSize: '15px'
+                fontSize: '15px',
+                fontWeight: 'Bold'
             }
-            });
+        });
     }
 };
