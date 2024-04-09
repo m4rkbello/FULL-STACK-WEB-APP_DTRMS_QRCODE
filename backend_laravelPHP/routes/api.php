@@ -24,20 +24,19 @@ Route::post('/login',[AuthController::class, 'login']);
 
 //EMPLOYEE
 Route::get('/employees', [EmployeeController::class, 'index']);
-Route::post('/employee-registration', [EmployeeController::class, 'store']);
 Route::get('/employee/{id}', [EmployeeController::class, 'show']);
 
 //ATTENDANCE
 
- //MIDDLEWARE FOR FRONTEND-BACKEND 
-Route::group(['middleware' => ['auth:sanctum']], function(){
-    //PROTECTED ACTIONS - DAPAT NAAY TOKEN BAGO MAKA ACCESS DIRI NA ROUTE
+//MIDDLEWARE FOR FRONTEND-BACKEND 
+
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::post('/employee-registration', [EmployeeController::class, 'store']);
     Route::post('/employee/search/', [EmployeeController::class, 'search']);
     Route::put('/employee/{id}', [EmployeeController::class, 'update']);
     Route::put('/employee/deactivated/{id}', [EmployeeController::class, 'deactivate']);
     Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
 });
-
 
 
 
