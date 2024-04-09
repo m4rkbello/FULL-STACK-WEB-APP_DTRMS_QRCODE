@@ -37,11 +37,16 @@ const EmployeeRegister = () => {
                         <input type="text" placeholder="contact number" className="input input-bordered bg-amber-100" required />
                     </div>
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-xl text-black">Password</span>
-                        </label>
-                        <input type="password" placeholder="password" className="input input-bordered bg-amber-100" required />
-                      
+    
+                    <label className="label">
+                    <span className="label-text text-xl text-black">Password</span>
+                  </label>
+                  <select className="custom-select input input-bordered bg-amber-100" required>
+                    <option value="" selected disabled className="text-black">-- Select Department --</option>
+                    <option value="1" className="text-black">HR Department</option>
+                    <option value="2" className="text-black">Accounting Department</option>
+                    <option value="3" className="text-black">Back Department</option>
+                  </select>
                     </div>
                     <div className="form-control">
                         <label className="label">
