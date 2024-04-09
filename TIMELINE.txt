@@ -38,7 +38,9 @@ index.css removed the default
 --------------------------------------
 9. INSTALL DAISYUI AS A PLUGGIN
 -> npm i -D daisyui@latest
-10. INSTALL SANCTUM 
+10. INSTALL LARAVEL-SANCTUM FOR AUTHENTICATION
+->composer require laravel/sanctum
+->php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
 
 
 

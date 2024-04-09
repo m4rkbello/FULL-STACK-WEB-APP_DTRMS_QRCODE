@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +26,27 @@ Route::post('/login',[AuthController::class, 'login']);
 Route::get('/employees', [EmployeeController::class, 'index']);
 Route::post('/employee-registration', [EmployeeController::class, 'store']);
 Route::get('/employee/{id}', [EmployeeController::class, 'show']);
-Route::post('/employee/search/', [EmployeeController::class, 'search']);
-Route::put('/employee/{id}', [EmployeeController::class, 'update']);
-Route::put('/employee/deactivated/{id}', [EmployeeController::class, 'deactivate']);
-Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
 
 //ATTENDANCE
 
- 
+ //MIDDLEWARE FOR FRONTEND-BACKEND 
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    //PROTECTED ACTIONS - DAPAT NAAY TOKEN BAGO MAKA ACCESS DIRI NA ROUTE
+    Route::post('/employee/search/', [EmployeeController::class, 'search']);
+    Route::put('/employee/{id}', [EmployeeController::class, 'update']);
+    Route::put('/employee/deactivated/{id}', [EmployeeController::class, 'deactivate']);
+    Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
+});
+
+
+
+
+
+
+
+
+
+
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
