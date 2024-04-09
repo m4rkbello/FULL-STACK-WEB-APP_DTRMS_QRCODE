@@ -39,24 +39,20 @@ const EmployeeRegister = () => {
                     <div className="form-control">
     
                     <label className="label">
-                    <span className="label-text text-xl text-black">Password</span>
+                    <span className="label-text text-xl text-black">Selet</span>
                   </label>
-                  <select className="custom-select input input-bordered bg-amber-100" required>
-                    <option value="" selected disabled className="text-black">-- Select Department --</option>
-                    <option value="1" className="text-black">HR Department</option>
-                    <option value="2" className="text-black">Accounting Department</option>
-                    <option value="3" className="text-black">Back Department</option>
-                  </select>
+                  <select defaultValue="1">
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
                     </div>
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-xl text-black">Confirm Password</span>
-                        </label>
-                        <input type="password" placeholder="confirm password" className="input input-bordered bg-amber-100" required />
-                        <label className="label">
-                            <a href="#" className="label-text-alt link link-hover text-amber-100 text-xl">Forgot password?</a>
-                        </label>
-                    </div>
+                    <select defaultValue="">
+                    <option value="0">Inactive</option>
+                    <option value="2">Active</option>
+                  </select>
+                      </div>
+                  
 
                     <div className="form-control mt-6">
                         <button className="btn bg-gradient-to-r from-black to-black-100 hover:from-lime-500 hover:to-amber-100 text-amber-100 hover:text-black  text-2xl">Login</button>
