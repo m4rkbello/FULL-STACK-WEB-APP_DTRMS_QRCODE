@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from '../../../components/redux/actions/userAction';
 import { Link } from 'react-router-dom';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = ({registerUser}) => {
     const [localFirstName, setLocalFirstName] = useState("");
@@ -16,18 +18,26 @@ const Register = ({registerUser}) => {
     const handleRegiserUserPost = async (event) => {
         event.preventDefault();
         try {
-            await registerUser({user_firstname: localFirstName, user_lastname: localLastName, user_email: localEmail, user_contact_no: localContactNo, user_password: localPassword, password_confirmation: localConfirmPassword
+            await registerUser({
+                user_firstname: localFirstName,
+                user_lastname: localLastName,
+                user_email: localEmail,
+                user_contact_no: localContactNo,
+                user_password: localPassword,
+                password_confirmation: localConfirmPassword
             });
+
         } catch (error) {
             console.error('Registration error:', error);
-            alert('Registration failed. Please try again later.');
         }
     };
+    
 
     return (
         <div>
+        <ToastContainer />
             <div className="hero min-h-screen bg-transparent">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="hero-content flex-col lg:flex-row-start">
                     <div className="text-center lg:text-left">
                         {/* Your existing content */}
                     </div>
