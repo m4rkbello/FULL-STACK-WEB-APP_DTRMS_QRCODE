@@ -1,64 +1,83 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
+import { useState } from 'react';
+import { connect } from 'react-redux';
+import { registerUser } from '../../../components/redux/actions/userAction';
+import { Link } from 'react-router-dom';
 
+const Register = ({registerUser}) => {
+    const [localFirstName, setLocalFirstName] = useState("");
+    const [localLastName, setLocalLastName] = useState("");
+    const [localEmail, setLocalEmail] = useState("");
+    const [localContactNo, setLocalContactNo] = useState("");
+    const [localPassword, setLocalPassword] = useState("");
+    const [localConfirmPassword, setLocalConfirmPassword] = useState("");
 
-const Register = () => {
+    const handleRegiserUserPost = async (event) => {
+        event.preventDefault();
+        try {
+            await registerUser({user_firstname: localFirstName, user_lastname: localLastName, user_email: localEmail, user_contact_no: localContactNo, user_password: localPassword, password_confirmation: localConfirmPassword
+            });
+            // Redirect or show success message
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert('Registration failed. Please try again later.');
+        }
+    };
+
     return (
         <div>
-            <div>
-                <div className="hero min-h-screen bg-amber-100 shadow-md">
-                    <div className="hero-content flex-col lg:flex-row-reverse">
-                        <div className="text-center lg:text-left">
-                            <h1 className="text-5xl font-bold text-lime-500">Registrer now!</h1>
-                            <p className="py-6 text-black">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <div className="hero min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ...">
+                <div className="hero-content flex-col lg:flex-row-reverse">
+                    <div className="text-center lg:text-left">
+                        {/* Your existing content */}
+                    </div>
+                    <div className="card-0 w-full max-w-md shadow-2xl bg-base-100 md:flex">
+                        <form className="card-body">
+                            <span className="text-center text-3xl py-3 px-3">REGISTER</span>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Firstname</span>
+                                </label>
+                                <input type="text" value={localFirstName} onChange={(e) => setLocalFirstName(e.target.value)} placeholder="name" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Lastname</span>
+                            </label>
+                            <input type="text" value={localLastName} onChange={(e) => setLocalLastName(e.target.value)} placeholder="name" className="input input-bordered" required />
                         </div>
-                        <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-lime-400 via-lime-500 to-lime-700/80 to-black/20">
-                            <form className="card-body">
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-xl text-black">Firstname</span>
-                                    </label>
-                                    <input type="text" placeholder="firstname" className="input input-bordered bg-amber-100" required />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-xl text-black">Lastname</span>
-                                    </label>
-                                    <input type="text" placeholder="lastname" className="input input-bordered bg-amber-100" required />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-xl text-black">Email</span>
-                                    </label>
-                                    <input type="email" placeholder="email" className="input input-bordered bg-amber-100" required />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-xl text-black">Contact</span>
-                                    </label>
-                                    <input type="text" placeholder="contact number" className="input input-bordered bg-amber-100" required />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-xl text-black">Password</span>
-                                    </label>
-                                    <input type="password" placeholder="password" className="input input-bordered bg-amber-100" required />
-                                  
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-xl text-black">Confirm Password</span>
-                                    </label>
-                                    <input type="password" placeholder="confirm password" className="input input-bordered bg-amber-100" required />
-                                    <label className="label">
-                                        <a href="#" className="label-text-alt link link-hover text-amber-100 text-xl">Forgot password?</a>
-                                    </label>
-                                </div>
-
-                                <div className="form-control mt-6">
-                                    <button className="btn bg-gradient-to-r from-black to-black-100 hover:from-lime-500 hover:to-amber-100 text-amber-100 hover:text-black  text-2xl">Login</button>
-                                </div>
-
-                            </form>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="email" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} placeholder="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Contact No.</span>
+                            </label>
+                            <input type="text" value={localContactNo} onChange={(e) => setLocalContactNo(e.target.value)} placeholder="email" className="input input-bordered" required />
                         </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <input type="text" value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} placeholder="password" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Confirm Password</span>
+                                </label>
+                                <input type="text" value={localConfirmPassword} onChange={(e) => setLocalConfirmPassword(e.target.value)} placeholder="confirm password" className="input input-bordered" required />
+                                <label className="label">
+                                    <Link to="/resetpassword" className="label-text-alt link link-hover">Forgot password?</Link>
+                                </label>
+                            </div>
+                            <div className="form-control mt-6">
+                                <button onClick={handleRegiserUserPost} className="btn btn-primary">Register</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -66,4 +85,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default connect(null, { registerUser })(Register);
