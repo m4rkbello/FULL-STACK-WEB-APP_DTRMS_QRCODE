@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
 import './App.css';
+import { useEffect } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
@@ -10,8 +12,18 @@ import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 
+import {fetchUsers} from './components/redux/actions/userAction' 
 
-function App() {
+
+function App({fetchUsers}) {
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
+
+
+
+
   return (
     <div className="flex flex-col h-screen">
       <div className="navbar bg-amber-100 px-4 py-2 md:px-8 md:py-4">
@@ -99,13 +111,18 @@ function App() {
   );
 }
 
-// function mapStateToProps(){
+const mapStateToProps = (state) => {
+  console.log("DATA SA MAPTOSTATETOPROPS", state);
+  return {
+    users: state.users
+  };
+};
 
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+  };
+};
 
-// const mapDispatchToProps = () => {
 
-// };
-
-
-export default connect(null, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
