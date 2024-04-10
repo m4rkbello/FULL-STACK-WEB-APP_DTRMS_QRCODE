@@ -157,14 +157,20 @@ export const loginUser = userData => async dispatch => {
 
         const response = await MarkBelloApi.post('/api/login', userData);
         const loggedInUser = response.data.token;
+        const loggedInUserId = response.data.user_id;
 
         localStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInUser);
         sessionStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInUser);
-
-
         document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUser}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
         document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUser}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
-        console.log("DATA", loggedInUser);
+        
+        localStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInUserId);
+        sessionStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInUserId);
+        document.cookie = `DTRMS_BY_M4RKBELLO_USER_ID=${loggedInUserId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
+        document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUserId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
+        
+        console.log("DATA RESPONSE SA LOGIN NAAY TOKEN", loggedInUser);
+        console.log("DATA RESPONSE SA LOGIN", loggedInUserId)
         dispatch({
             type: LOGIN_USER_SUCCESS,
             payload: loggedInUser
