@@ -1,8 +1,9 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-
 
 import { connect } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {loginUser} from '../../redux/actions/userAction';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +13,9 @@ const Login = ({loginUser}) => {
   const [localPassword, setLocalPassword] = useState("");
   //PARA SA LOADING REQUEST!
   const [isLoading, setIsLoading] = useState(false);
+
+  //redirect if successful login
+  const navigate = useNavigate();
 
   const handleLoginRequestAndResponse = async (event) => {
     event.preventDefault();
@@ -23,13 +27,17 @@ const Login = ({loginUser}) => {
           user_password: localPassword,
       });
 
+      setTimeout(() => {
+          window.location.reload();
+          navigate("/home");
+      }, 5000)
+
     }catch(error) {
       window.alert("ERROR");
     }finally {
       setIsLoading(false);
     }
   }
-
 
   return (
     <div>
