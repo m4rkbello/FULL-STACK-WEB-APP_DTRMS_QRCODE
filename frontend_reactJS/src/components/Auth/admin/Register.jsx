@@ -17,9 +17,19 @@ const Register = ({registerUser}) => {
     //FOR LOADING REQUEST!
     const [isLoading, setIsLoading] = useState(false);
 
+
+    
+
     const handleRegisterUserRequestAndResponse = async (event) => {
         event.preventDefault();
         setIsLoading(true);
+
+        if(localPassword !== localConfirmPassword){
+            console.error("PASSWORD DOESN'T MATCH!");
+            setIsLoading(false);
+            return;
+        }
+
         try {
             await registerUser({
                 user_firstname: localFirstName,
