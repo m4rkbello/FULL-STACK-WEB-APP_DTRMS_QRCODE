@@ -3,7 +3,7 @@
 import { connect } from 'react-redux';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
@@ -24,6 +24,8 @@ function App(props) {
   const [localStorageHasToken, setLocalStorageHasToken] = useState('');
   const [sessionStorageToken, setSessionStorageToken] = useState('');
   const [cookiesData, setCookiesData] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     //kuhaon ang data sa localStorage/Session Storage/Cookie 
@@ -48,6 +50,22 @@ function App(props) {
     props.fetchEmployees();
     props.fetchAttendances();
   }, []);
+
+  const destroyAuthentications = () => {
+      //para sa localStorage
+      localStorage.clear();
+      //para sa sessionStorage
+      sessionStorage.clear();
+      //para sa cookies
+      document.cookie.split(';').forEach((cookie) => {
+        document.cookie = cookie
+          .replace(/^ +/, '')
+          .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+      });
+        window.location.reload();
+        navigate("/http://localhost:5173/");
+  }
+  
 
 
 
@@ -95,7 +113,7 @@ function App(props) {
                 <li className='text-black'>
                   <a>Settings</a>
                 </li>
-                <li className='text-black'>
+                <li className='text-black' onClick={destroyAuthentications}>
                   <a>Logout</a>
                 </li>
               </ul>
