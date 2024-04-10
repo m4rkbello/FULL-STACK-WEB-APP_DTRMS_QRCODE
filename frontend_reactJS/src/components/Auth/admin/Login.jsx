@@ -29,7 +29,7 @@ const Login = ({loginUser}) => {
 
       setTimeout(() => {
           window.location.reload();
-          navigate("/home");
+          navigate("/http://localhost:5173/");
       }, 5000)
 
     }catch(error) {
