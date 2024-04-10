@@ -65,6 +65,7 @@ class AuthController extends Controller
 
         $user = User::where('user_email', $data['user_email'])->first();
         $user_token_id = $user->id;
+        $user_id = $user_token_id;
 
         $token = DB::table('personal_access_tokens')
         ->where('tokenable_id','=',$user_token_id)
@@ -85,6 +86,7 @@ class AuthController extends Controller
                 'success' => true,
                 'message' => 'Login successful!',
                 'personal_access_tokens' => $token_data,
+                'user_id' => $user_id,
                 'token' => $token,
                 'user' => [
                     'user_firstname' => $user->user_firstname,
