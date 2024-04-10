@@ -19,8 +19,8 @@ import { fetchAttendances } from './components/redux/actions/attendanceAction';
 
 function App(props) {
   //FOR AUTHENTICATION-PURPOSES
-  const [localStorageHasUserId, setLocalStorageHasUserId] = useState('');
-  const [sessionStorageHasUserId, setSessionStorageHasUserId] = useState('');
+  const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
+  const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
   const [localStorageHasToken, setLocalStorageHasToken] = useState('');
   const [sessionStorageToken, setSessionStorageToken] = useState('');
   const [cookiesData, setCookiesData] = useState('');
@@ -52,46 +52,86 @@ function App(props) {
   }, []);
 
   const destroyAuthentications = () => {
-      //para sa localStorage
-      localStorage.clear();
-      //para sa sessionStorage
-      sessionStorage.clear();
-      //para sa cookies
-      document.cookie.split(';').forEach((cookie) => {
-        document.cookie = cookie
-          .replace(/^ +/, '')
-          .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
-      });
-        window.location.reload();
-        navigate("/http://localhost:5173/");
+    //para sa localStorage
+    localStorage.clear();
+    //para sa sessionStorage
+    sessionStorage.clear();
+    //para sa cookies
+    document.cookie.split(';').forEach((cookie) => {
+      document.cookie = cookie
+        .replace(/^ +/, '')
+        .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+    });
+    window.location.reload();
+    navigate("/http://localhost:5173/");
   }
+
   
+  // const usersCollection = props && props.users && props.users.data;
+  
+  const usersCollection = props?.users; // Accessing users array from props
 
+//  console.log("data sa user", usersCollection);
 
+  
+  // console.log("ID CHOI", usersCollection);
+  function getUserAuthenticated(usersCollection) {
+    let item = [];
+  
+    // Check if usersCollection is defined and not null
+    if (usersCollection && usersCollection.length) {
+      for (let ez = 0; ez < usersCollection.length; ez++) {
+        if (usersCollection[ez].id == sessionStorageHasUserIdData && usersCollection[ez].id == localStorageHasUserIdData) {
+          item.push(usersCollection[ez]);
+        }
+      }
+    }
+  
+    return item;
+  }
+
+  const isAuthenticatedUser = getUserAuthenticated(usersCollection);
+  console.log("FINAL DATA", isAuthenticatedUser);
 
   return (
     <div className="flex flex-col h-screen">
       <div className="navbar bg-amber-100 px-4 py-2 md:px-8 md:py-4">
-        <div className="flex-none">
-          <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="inline-block w-5 h-5 stroke-current"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </label>
-        </div>
-        <div className="flex-1">
-          <a className="btn btn-ghost text-2xl text-black">DTRMS BY M4RKBELLO</a>
-        </div>
+        {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
+          <>
+            <div className="flex-none">
+              <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block w-5 h-5 stroke-current"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
+            </div>
+            <div className="flex-1">
+              <a className="btn btn-ghost text-2xl text-black">Welcome!
+              {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                <span className='text-2xl' key={index}>
+                  {user.user_email}
+                </span>
+              ))}
+              </a>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex-1">
+              <a className="btn btn-ghost text-2xl text-black">DTRMS BY M4RKBELLO</a>
+            </div>
+          </>
+        )}
 
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
@@ -164,26 +204,26 @@ function App(props) {
 
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
-          <div className="drawer-side">
-            <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-amber-100">
-              <li>
-                <Link to="/admin/login">
-                  Login Testing
-                </Link>
-              </li>
-              <li>
-                <Link to="/content">
-                  Content Test
-                </Link>
-              </li>
-              <li>
-                <Link to="/details">
-                  Details Test
-                </Link>
-              </li>
-            </ul>
-          </div>
+            <div className="drawer-side">
+              <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-amber-100">
+                <li>
+                  <Link to="/admin/login">
+                    Login Testing
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/content">
+                    Content Test
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/details">
+                    Details Test
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </>
         ) : (
           <>
@@ -201,7 +241,7 @@ const mapStateToProps = (state) => {
   console.log("DATA SA MAPTOSTATETOPROPS employees", state.employeeState);
   console.log("DATA SA MAPTOSTATETOPROPS attendances", state.attendanceState);
   return {
-    users: state.users,
+    users: state.userState.users.data,
     employees: state.employees,
     attendances: state.attendances
   };
