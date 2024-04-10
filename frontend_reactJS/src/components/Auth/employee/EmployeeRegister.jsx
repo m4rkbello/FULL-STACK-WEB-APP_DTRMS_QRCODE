@@ -16,7 +16,7 @@ const EmployeeRegister = () => {
                         <label className="label">
                             <span className="label-text text-xl text-black">Firstname</span>
                         </label>
-                        <input type="text" placeholder="firstname" className="shadow-2xl ... input input-bordered bg-amber-100" required />
+                        <input type="text" placeholder="firstname" className="shadow-2xl input input-bordered bg-amber-100 text-blak" required />
                     </div>
                     <div className="form-control">
                     <label className="label">
@@ -55,7 +55,7 @@ const EmployeeRegister = () => {
                   
 
                     <div className="form-control mt-6">
-                        <button className="btn bg-gradient-to-r from-black to-black-100 hover:from-lime-500 hover:to-amber-100 text-amber-100 hover:text-black  text-2xl">Login</button>
+                        <button className="btn bg-gradient-to-r from-black to-black-100 hover:from-lime-500 hover:to-amber-100 text-amber-100 hover:text-black  text-2xl">Submit</button>
                     </div>
 
                 </form>
