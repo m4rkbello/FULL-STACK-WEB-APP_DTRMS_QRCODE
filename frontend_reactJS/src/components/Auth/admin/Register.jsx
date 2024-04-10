@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from '../../../components/redux/actions/userAction';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,6 +18,10 @@ const Register = ({registerUser}) => {
     //FOR LOADING REQUEST!
     const [isLoading, setIsLoading] = useState(false);
 
+
+    
+  //redirect if successful login
+  const navigate = useNavigate();
 
     
 
@@ -40,6 +45,11 @@ const Register = ({registerUser}) => {
                 password_confirmation: localConfirmPassword
             });
 
+            setTimeout(() => {
+                window.location.reload();
+                navigate("/http://localhost:5173/admin/login");
+            }, 5000)
+
         } catch (error) {
             console.error('Registration error:', error);
         }finally {
@@ -47,7 +57,6 @@ const Register = ({registerUser}) => {
           }
     };
     
-
     return (
         <div>
         <ToastContainer />
