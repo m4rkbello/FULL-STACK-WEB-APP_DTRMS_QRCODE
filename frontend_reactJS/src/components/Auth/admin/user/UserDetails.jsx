@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import { fetchUsers } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
 
+import img from '../../../../assets/images/pic-removebg-preview.png'
+
 
 
 const UserDetails = (props) => {
