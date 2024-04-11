@@ -99,7 +99,6 @@ export const deleteUser = userId => async dispatch => {
 export const registerUser = userData => async dispatch => {
     try {
         dispatch({ type: REGISTER_USER_REQUEST });
-        // Perform async operation, e.g., send registration data to an API
         const registeredUser = await MarkBelloApi.post('/api/register', userData);
         dispatch({
             type: REGISTER_USER_SUCCESS,
@@ -122,7 +121,6 @@ export const registerUser = userData => async dispatch => {
                 fontSize: '15px'
             }
         });
-
 
     } catch (error) {
         dispatch({
@@ -176,7 +174,6 @@ export const loginUser = userData => async dispatch => {
             payload: loggedInUser
         });
 
-        
         console.log("RESPONSE DATA SA LOGIN", loggedInUser);
         toast.success('Login successfully!🤭😇🤗', {
             position: 'top-right',

@@ -47,7 +47,6 @@ const UserDetails = (props) => {
         }
       }
     }
-
     return item;
   }
 
@@ -60,10 +59,15 @@ const UserDetails = (props) => {
       {/**
       
     */}
+    <input type="">
+    
+    </input>
     <img
-      className="mask mask-circle mb-6"
-      src={img}
+    className="mask mask-circle mb-6"
+    src={img}
+    type="file"
     />
+    <input type="file" className="file-input file-input-bordered file-input-warning w-full max-w-xs" />
         <div className="hero-content flex-col lg:flex-row">
           <div className="flex">
         <div className="">
