@@ -2,24 +2,19 @@
 /* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 //redux-actions
 import { fetchUsers } from '../../../redux/actions/userAction';
-import { fetchEmployees } from '../../../redux/reducers/employeeReducer';
-import { fetchAttendances } from '../../../redux/reducers/attendanceReducer';
+import { fetchEmployees } from '../../../redux/actions/employeeAction';
 
-const UserDetails = ({
-  users,
-  fetchUsers,
-  fetchEmployees,
-  fetchAttendances,
-}) => {
+const UserDetails = (props) => {
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
+  const [cookiesData, setCookiesData] = useState('');
+  const [localStorageHasToken, setLocalStorageHasToken] = useState('');
+  const [sessionStorageToken, setSessionStorageToken] = useState('');
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     //kuhaon ang data sa localStorage/Session Storage/Cookie
@@ -27,20 +22,18 @@ const UserDetails = ({
     const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
     const localStorageHasTokenData = localStorage.getItem('DTRMS_BY_M4RKBELLO');
     const sessionStorageHasTokenData = sessionStorage.getItem('DTRMS_BY_M4RKBELLO');
-
-    const cookiesData = document.cookie;
+    const cookiesData101 = document.cookie;
 
     setLocalStorageHasUserId(localStorageHasUserId);
     setSessionStorageHasUserId(sessionStorageHasUserId);
+    setLocalStorageHasToken(localStorageHasTokenData);
+    setSessionStorageToken(sessionStorageHasTokenData);
+    setCookiesData(cookiesData101);
 
-    console.log('ID SA LOCALSTORAGE', localStorageHasUserId);
-    console.log('ID SA SESSION STORAGE', sessionStorageHasUserId);
-    console.log('ID SA COOKIE', cookiesData);
+    props.fetchUsers();
+    props.fetchEmployees();
 
-    fetchUsers();
-    fetchEmployees();
-    fetchAttendances();
-  }, [fetchUsers, fetchEmployees, fetchAttendances]);
+  }, []);
 
   function getUserAuthenticated(usersCollection) {
     let item = [];
@@ -133,7 +126,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => dispatch(fetchUsers()),
   fetchEmployees: () => dispatch(fetchEmployees()),
-  fetchAttendances: () => dispatch(fetchAttendances()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);
