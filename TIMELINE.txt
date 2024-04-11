@@ -50,7 +50,7 @@ index.css removed the default
 
 10. INSTALL EMOJI FOR THE TOASTER 
 ->npm i emoji-picker-react
-
+11. MAKE AN UPLOAD IMG
 
 
 
