@@ -36,7 +36,6 @@ function App(props) {
     const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
     const localStorageHasTokenData = localStorage.getItem('DTRMS_BY_M4RKBELLO');
     const sessionStorageHasTokenData = sessionStorage.getItem('DTRMS_BY_M4RKBELLO');
-
     const cookiesData = document.cookie;
 
     setLocalStorageHasUserId(localStorageHasUserId);
