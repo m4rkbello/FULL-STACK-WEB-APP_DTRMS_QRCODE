@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import { fetchUsers } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
 
+
+
 const UserDetails = (props) => {
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
@@ -20,7 +22,6 @@ const UserDetails = (props) => {
 
     setLocalStorageHasUserId(localStorageHasUserId);
     setSessionStorageHasUserId(sessionStorageHasUserId);
-
 
     props.fetchUsers();
     props.fetchEmployees();
@@ -52,28 +53,28 @@ const UserDetails = (props) => {
   console.log('FINAL DATA', isAuthenticatedUser);
 
   return (
-    <div className="hero min-h-screen bg-amber-100">
+    <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
       <div className="hero-content flex flex-col items-center">
-        <img
-          className="mask mask-circle mb-6"
-          src="https://daisyui.com/images/stock/photo-1567653418876-5bb0e566e1c2.jpg"
-        />
+      {/**
+      
+    */}
+    <img
+      className="mask mask-circle mb-6"
+      src={img}
+    />
         <div className="hero-content flex-col lg:flex-row">
           <div className="flex">
-            <div className="">
-              <img
-                src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                className="max-w-sm rounded-lg shadow-2xl"
-              />
-            </div>
+        <div className="">
+          <img
+            src={img}
+            className="max-w-sm rounded-lg shadow-2xl"
+          />
+        </div>
           </div>
+
           <div className="flex-1">
-            <h1 className="text-5xl font-bold">Box Office News!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>``
+          
+
             <div className="grid grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
@@ -82,11 +83,10 @@ const UserDetails = (props) => {
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
                     key={index}
-                    type="email"
-                    placeholder="email"
-                    className="input input-bordered"
+                    type="text"
+                    placeholder="text"
+                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                     defaultValue={user.user_firstname}
-                    required
                   />
                 ))}
               </div>
@@ -94,16 +94,49 @@ const UserDetails = (props) => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
+                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    placeholder="email"
+                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                    defaultValue={user.user_lastname}
+                  />
+                ))}
               </div>
+              <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  placeholder="email"
+                  className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                  defaultValue={user.user_email}
+                />
+              ))}
+            </div>
+            <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+              <input
+                key={index}
+                type="text"
+                placeholder="contact no"
+                className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                defaultValue={user.user_contact_no}
+                
+              />
+            ))}
+          </div>
             </div>
             <br />
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-primary p-5 m-2">Edit Details</button>
+            <button className="btn btn-primary p-5">Change Password</button>
           </div>
         </div>
       </div>
