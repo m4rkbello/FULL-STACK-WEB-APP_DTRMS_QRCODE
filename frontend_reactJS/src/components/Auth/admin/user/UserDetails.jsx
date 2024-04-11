@@ -11,29 +11,24 @@ const UserDetails = (props) => {
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
-  const [cookiesData, setCookiesData] = useState('');
-  const [localStorageHasToken, setLocalStorageHasToken] = useState('');
-  const [sessionStorageToken, setSessionStorageToken] = useState('');
 
 
   useEffect(() => {
     //kuhaon ang data sa localStorage/Session Storage/Cookie
     const localStorageHasUserId = localStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
     const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
-    const localStorageHasTokenData = localStorage.getItem('DTRMS_BY_M4RKBELLO');
-    const sessionStorageHasTokenData = sessionStorage.getItem('DTRMS_BY_M4RKBELLO');
-    const cookiesData101 = document.cookie;
 
     setLocalStorageHasUserId(localStorageHasUserId);
     setSessionStorageHasUserId(sessionStorageHasUserId);
-    setLocalStorageHasToken(localStorageHasTokenData);
-    setSessionStorageToken(sessionStorageHasTokenData);
-    setCookiesData(cookiesData101);
+
 
     props.fetchUsers();
     props.fetchEmployees();
 
   }, []);
+
+
+  const usersCollection = props?.users;
 
   function getUserAuthenticated(usersCollection) {
     let item = [];
@@ -53,7 +48,7 @@ const UserDetails = (props) => {
     return item;
   }
 
-  const isAuthenticatedUser = getUserAuthenticated(users);
+  const isAuthenticatedUser = getUserAuthenticated(usersCollection);
   console.log('FINAL DATA', isAuthenticatedUser);
 
   return (
@@ -78,23 +73,22 @@ const UserDetails = (props) => {
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
-            </p>
+            </p>``
             <div className="grid grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">Firstname</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <span className="text-2xl" key={index}>
-                    {user.user_email}
-                  </span>
+                  <input
+                    key={index}
+                    type="email"
+                    placeholder="email"
+                    className="input input-bordered"
+                    defaultValue={user.user_firstname}
+                    required
+                  />
                 ))}
-                <input
-                  type="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  required
-                />
               </div>
               <div className="form-control">
                 <label className="label">
