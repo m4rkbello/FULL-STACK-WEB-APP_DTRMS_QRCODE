@@ -118,19 +118,19 @@ function App(props) {
               </label>
             </div>
             <div className="flex-1">
-              <a className="btn btn-ghost text-2xl text-black">Welcome!
+              <span className="btn btn-ghost text-2xl text-black">Welcome!
               {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                 <span className='text-2xl' key={index}>
                   {user.user_email}
                 </span>
               ))}
-              </a>
+              </span>
             </div>
           </>
         ) : (
           <>
             <div className="flex-1">
-              <a className="btn btn-ghost text-2xl text-black">DTRMS BY M4RKBELLO</a>
+              <span className="btn btn-ghost text-2xl text-black">DTRMS BY M4RKBELLO</span>
             </div>
           </>
         )}
@@ -148,19 +148,19 @@ function App(props) {
               </div>
               <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-amber-100 rounded-box w-52">
                 <li>
-                  <a className="justify-between text-black">
+                  <span className="justify-between text-black">
                     Profile <span className="badge bg-black"><span className='text-white'>
                     <Link to="/admin/user/profile-details">
                     Open
                     </Link>
                     </span></span>
-                  </a>
+                  </span>
                 </li>
                 <li className='text-black'>
-                  <a>Settings</a>
+                  Settings
                 </li>
                 <li className='text-black' onClick={destroyAuthentications}>
-                  <a>Logout</a>
+                  Logout
                 </li>
               </ul>
             </div>
