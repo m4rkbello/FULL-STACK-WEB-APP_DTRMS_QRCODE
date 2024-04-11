@@ -8,6 +8,11 @@ import { fetchUsers } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
 
 import img from '../../../../assets/images/pic-removebg-preview.png'
+// import UploadImage from '../modal/UploadImage';
+import { FaUpload } from "react-icons/fa6";
+//modal 
+
+
 
 
 
@@ -54,34 +59,48 @@ const UserDetails = (props) => {
   console.log('FINAL DATA', isAuthenticatedUser);
 
   return (
+
+    
+
     <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
+    <dialog id="my_modal_3" className="modal">
+    <div className="modal-box">
+        <form method="dialog justify-center">
+        <input type="file" className="file-input bg-amber-100 w-full max-w-xs" />
+        <button className="btn btn-primary ml-5">Upload</button>
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+    </div>
+</dialog>
       <div className="hero-content flex flex-col items-center">
       {/**
       
     */}
-    <input type="">
-    
-    </input>
+
     <img
-    className="mask mask-circle mb-6"
+    className="mask mask-circle"
     src={img}
     type="file"
     />
-    <input type="file" className="file-input file-input-bordered file-input-warning w-full max-w-xs" />
+    <button className="btn  bg-transparent" onClick={()=>document.getElementById('my_modal_3').showModal()}><FaUpload height={30} width={30}/></button>
+   
         <div className="hero-content flex-col lg:flex-row">
           <div className="flex">
         <div className="">
-          <img
-            src={img}
-            className="max-w-sm rounded-lg shadow-2xl"
-          />
+        {/**
+        <img
+          src={img}
+          className="max-w-sm rounded-lg shadow-2xl"
+        />
+        
+          */}
         </div>
           </div>
 
           <div className="flex-1">
           
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-0">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Firstname</span>
