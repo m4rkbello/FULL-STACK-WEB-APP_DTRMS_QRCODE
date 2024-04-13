@@ -1,5 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
+import { connect } from 'react-redux';
 import { FaUpload } from "react-icons/fa6";
-
+// import img from '../../../../src/assets/images/pic-removebg-preview.png'
 
 const EmployeeRegister = () => {
     return (
@@ -16,32 +18,31 @@ const EmployeeRegister = () => {
                     </div>
                 </dialog>
                 <div className="hero-content flex flex-col items-center">
-                    {/**
-    
-    */}
+
                     <img
-                        className="mask mask-circle"
-                        src=""
+                        className="mask mask-circle shadow-inner"
+                        src="https://images.pexels.com/photos/9123448/pexels-photo-9123448.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         type="file"
+
+                        width="17%"
                     />
+
                     <button className="btn  bg-transparent" onClick={() => document.getElementById('my_modal_3').showModal()}><FaUpload height={30} width={30} /></button>
 
                     <div className="hero-content flex-col lg:flex-row">
                         <div className="flex">
                             <div className="">
                                 {/**
-      <img
-        src={img}
-        className="max-w-sm rounded-lg shadow-2xl"
-      />
-      
-        */}
+                                <img
+                                    src={img}
+                                    className="max-w-sm rounded-lg shadow-2xl"
+                                />
+                                */}
+
                             </div>
                         </div>
 
                         <div className="flex-1">
-
-
                             <div className="grid grid-cols-3 gap-6">
                                 <div className="form-control">
                                     <label className="label">
@@ -52,7 +53,7 @@ const EmployeeRegister = () => {
                                         type="text"
                                         placeholder="Etc.. Mark Bello"
                                         className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                        defaultValue
+                                        defaultValue=""
                                     />
 
                                 </div>
@@ -72,7 +73,7 @@ const EmployeeRegister = () => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Password</span>
+                                        <span className="label-text text-black text-2xl">Email</span>
                                     </label>
 
                                     <input
@@ -116,19 +117,18 @@ const EmployeeRegister = () => {
                                         defaultValue=""
                                     />
                                 </div>
-                                <div className="form-control ">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Status</span>
-                                    </label>
-                                    <select className="select select-warning w-full max-w-xs">
-                                        <option selected value="1">Pick a pizza</option>
-                                        <option>Active</option>
-                                        <option>Veggie</option>
-
-                                    </select>
-                                </div>
                             </div>
                             <br />
+                            <div className="form-control ">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Status</span>
+                                </label>
+                                <select className="select a, select-warning w-full max-w-xs">
+                                    <option selected value="1">Select Status</option>
+                                    <option>Active</option>
+                                    <option>Inactive</option>
+                                </select>
+                            </div>
                             <button className="btn btn-primary p-5 m-2">Save</button>
                         </div>
                     </div>
@@ -139,4 +139,4 @@ const EmployeeRegister = () => {
     )
 }
 
-export default EmployeeRegister;
+export default connect(null, null)(EmployeeRegister);
