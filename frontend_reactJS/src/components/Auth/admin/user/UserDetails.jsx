@@ -13,9 +13,6 @@ import { FaUpload } from "react-icons/fa6";
 //modal 
 
 
-
-
-
 const UserDetails = (props) => {
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
@@ -60,45 +57,45 @@ const UserDetails = (props) => {
 
   return (
 
-    
+
 
     <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
-    <dialog id="my_modal_3" className="modal">
-    <div className="modal-box">
-        <form method="dialog justify-center">
-        <input type="file" className="file-input bg-amber-100 w-full max-w-xs" />
-        <button className="btn btn-primary ml-5">Upload</button>
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box">
+          <form method="dialog justify-center">
+            <input type="file" className="file-input bg-amber-100 w-full max-w-xs" />
+            <button className="btn btn-primary ml-5">Upload</button>
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-        </form>
-    </div>
-</dialog>
+          </form>
+        </div>
+      </dialog>
       <div className="hero-content flex flex-col items-center">
-      {/**
+        {/**
       
     */}
 
-    <img
-    className="mask mask-circle"
-    src={img}
-    type="file"
-    />
-    <button className="btn  bg-transparent" onClick={()=>document.getElementById('my_modal_3').showModal()}><FaUpload height={30} width={30}/></button>
-   
+        <img
+          className="mask mask-circle"
+          src={img}
+          type="file"
+        />
+        <button className="btn  bg-transparent" onClick={() => document.getElementById('my_modal_3').showModal()}><FaUpload height={30} width={30} /></button>
+
         <div className="hero-content flex-col lg:flex-row">
           <div className="flex">
-        <div className="">
-        {/**
+            <div className="">
+              {/**
         <img
           src={img}
           className="max-w-sm rounded-lg shadow-2xl"
         />
         
           */}
-        </div>
+            </div>
           </div>
 
           <div className="flex-1">
-          
+
 
             <div className="grid grid-cols-2 gap-0">
               <div className="form-control">
@@ -130,34 +127,34 @@ const UserDetails = (props) => {
                 ))}
               </div>
               <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  placeholder="email"
-                  className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                  defaultValue={user.user_email}
-                />
-              ))}
-            </div>
-            <div className="form-control">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
-            {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-              <input
-                key={index}
-                type="text"
-                placeholder="contact no"
-                className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                defaultValue={user.user_contact_no}
-                
-              />
-            ))}
-          </div>
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    placeholder="email"
+                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                    defaultValue={user.user_email}
+                  />
+                ))}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    placeholder="contact no"
+                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                    defaultValue={user.user_contact_no}
+
+                  />
+                ))}
+              </div>
             </div>
             <br />
             <button className="btn btn-primary p-5 m-2">Edit Details</button>
