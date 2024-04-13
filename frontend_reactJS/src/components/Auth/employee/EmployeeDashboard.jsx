@@ -15,8 +15,6 @@ const EmployeeDashboard = (props) => {
 
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
-    console.log("DATA SA EMPLOYEES", employeesCollectionArrays);
-
 
     function getAllEmployees(employeesCollectionArrays) {
         let item = [];
@@ -33,8 +31,6 @@ const EmployeeDashboard = (props) => {
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
 
-    // console.log("DATA SA EMPLOYEE NA GI PUSH!", employeesList);
-
     return (
         <div className="hero max-w-full">
             <div className="hero min-h-screen bg-amber-100 rounded-lg">
@@ -47,10 +43,10 @@ const EmployeeDashboard = (props) => {
 
                     <div className="overflow-x-auto bg-transparent text-black">
                     {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                            <table className="table py-10 px-10 my-10 mx-10">
+                            <table className="table py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
                                 <thead className="text-black text-1xl">
-                                    <tr>
+                                    <tr className=''>
                                         <th>Avatar</th>
                                         <th>Fullname</th>
                                         <th>Email</th>
@@ -68,7 +64,7 @@ const EmployeeDashboard = (props) => {
                                             <td>
                                                 <div className="flex items-center gap-3">
                                                     <div className="avatar">
-                                                        <div className="mask mask-squircle w-12 h-12">
+                                                        <div className="mask mask-squircle w-12 h-12 shadow-2xl">
                                                             <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
                                                         </div>
                                                     </div>
@@ -94,6 +90,7 @@ const EmployeeDashboard = (props) => {
                                                 {item.employee_role}
                                             </td>
                                             <td>
+                                            
                                                 <button className="btn btn-primary p-5 m-2">
                                                     <Link to={`/employee/details/${item.id}`}>View</Link>
                                                 </button>
@@ -121,7 +118,6 @@ const EmployeeDashboard = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log("DATA SA MAPTOSTATETOPROPS e", state.employeeState);
     return {
         employeesData: state.employeeState,
     };
@@ -136,7 +132,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeDashboard);
 
 
