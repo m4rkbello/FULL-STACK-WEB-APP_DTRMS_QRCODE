@@ -41,10 +41,7 @@ const UserDetails = (props) => {
     // Check if usersCollection is defined and not null
     if (usersCollection && usersCollection.length) {
       for (let ez = 0; ez < usersCollection.length; ez++) {
-        if (
-          usersCollection[ez].id == sessionStorageHasUserIdData &&
-          usersCollection[ez].id == localStorageHasUserIdData
-        ) {
+        if (usersCollection[ez].id == sessionStorageHasUserIdData && usersCollection[ez].id == localStorageHasUserIdData){
           item.push(usersCollection[ez]);
         }
       }
