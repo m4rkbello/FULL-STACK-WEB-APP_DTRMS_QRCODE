@@ -90,7 +90,6 @@ const EmployeeDashboard = (props) => {
                                                 {item.employee_role}
                                             </td>
                                             <td>
-                                            
                                                 <button className="btn btn-primary p-5 m-2">
                                                     <Link to={`/employee/details/${item.id}`}>View</Link>
                                                 </button>
