@@ -90,8 +90,10 @@ const EmployeePersonalDetails = (props) => {
                                 key={index}
                                 type="text"
                                 placeholder="text"
-                                className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-amber"
+                                className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                                 defaultValue={item.employee_fullname}
+                                style={{ backgroundColor: 'transparent' }}
+                                
                      
                                 />
                                 ))}
@@ -108,54 +110,70 @@ const EmployeePersonalDetails = (props) => {
                                     placeholder="email"
                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                                     defaultValue={item.employee_email}
+                                    style={{ backgroundColor: 'transparent' }}
                                 />
                               ))}
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-black text-2xl">Email</span>
-                                </label>
-  
-                                <input
-                                    type="text"
-                                    placeholder="email"
-                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                    defaultValue=""
-                                />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
                                     <span className="label-text text-black text-2xl">Contact No.</span>
                                 </label>
+                              {employee && employee.map((item, index) => (
+                                  <input
+                                  key={index}
+                                  type="text"
+                                  placeholder="email"
+                                  className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                                  defaultValue={item.employee_contact_no}
+                                  style={{ backgroundColor: 'transparent' }}
+                                  />
+                                ))}
+                                </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Role</span>
+                                </label>
+                                {employee && employee.map((item, index) => (
                                 <input
-  
+                                key={index}
                                     type="text"
                                     placeholder="contact no"
                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                    defaultValue=""
+                                    defaultValue={item.employee_role}
+                                    style={{ backgroundColor: 'transparent' }}
                                 />
+                            ))}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-black text-2xl">Position</span>
                                 </label>
-                                <input
-                                    type="text"
-                                    placeholder="contact no"
-                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                    defaultValue=""
-                                />
+                                {employee && employee.map((item, index) => (
+                                    <input
+                                        key={index}
+                                        type="text"
+                                        placeholder="contact no"
+                                        className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                                        defaultValue={item.employee_position}
+                                        style={{ backgroundColor: 'transparent' }}
+                                    />
+
+                                ))}
                             </div>
                             <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-black text-2xl">Department</span>
-                                </label>
+                            <label className="label">
+                            <span className="label-text text-black text-2xl">Department</span>
+                            </label>
+                            {employee && employee.map((item, index) => (
                                 <input
+                                    key={index}
                                     type="text"
                                     placeholder="contact no"
                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                    defaultValue=""
+                                    defaultValue={item.employee_department}
+                                    style={{ backgroundColor: 'transparent' }}
                                 />
+                            ))}
                             </div>
                         </div>
                         <br />
@@ -163,11 +181,14 @@ const EmployeePersonalDetails = (props) => {
                             <label className="label">
                                 <span className="label-text text-black text-2xl">Status</span>
                             </label>
-                            <select className="select a, select-warning w-full max-w-xs" style={{ color: '#FFBF00' }}>
-                                <option selected value="1" style={{ color: '' }}>Select Status</option>
-                                <option>Active</option>
-                                <option>Inactive</option>
-                            </select>
+                            {employee && employee.map((item, index) => (
+                                <select key={index} className="select a, select-warning w-full max-w-xs" style={{ color: '#FFBF00' }} defaultValue={item.employee_status}>
+                                    <option disabled>Select Status</option>
+                                    <option value="Active" selected={item.employee_status === 'Active'}>Active</option>
+                                    <option value="Inactive" selected={item.employee_status === 'Inactive'}>Inactive</option>
+                                </select>
+                            ))}
+                            
                         </div>
                         <button className="btn btn-primary p-5 m-2">Save</button>
                     </div>
