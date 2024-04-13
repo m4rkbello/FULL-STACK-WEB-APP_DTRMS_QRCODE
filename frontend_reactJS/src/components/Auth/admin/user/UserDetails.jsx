@@ -72,8 +72,7 @@ const UserDetails = (props) => {
       <div className="hero-content flex flex-col items-center">
         {/**
       
-    */}
-
+      */}
         <img
           className="mask mask-circle"
           src={img}
