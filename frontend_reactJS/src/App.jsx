@@ -68,14 +68,9 @@ function App(props) {
     navigate("/http://localhost:5173/");
   }
 
-  
   // const usersCollection = props && props.users && props.users.data;
-  
   const usersCollection = props?.users; // Accessing users array from props
 
-//  console.log("data sa user", usersCollection);
-
-  
   // console.log("ID CHOI", usersCollection);
   function getUserAuthenticated(usersCollection) {
     let item = [];
