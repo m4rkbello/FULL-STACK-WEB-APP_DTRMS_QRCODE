@@ -3,7 +3,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
 import { FaUpload } from "react-icons/fa6";
-import { FaUserEdit, FaExpeditedssl, FaSave  } from "react-icons/fa";
+import { FaUserEdit, FaExpeditedssl, FaSave } from "react-icons/fa";
 
 // import img from '../../../../src/assets/images/pic-removebg-preview.png'
 import { useParams } from 'react-router-dom';
@@ -46,7 +46,7 @@ const EmployeePersonalDetails = (props) => {
             <dialog id="editEmployeeDetails" className="modal">
                 <div className=" modal-box w-11/12 max-w-5xl bg-amber-100">
                     <h3 className="font-bold text-3xl text-black">EDIT EMPLOYEE DETAILS</h3>
-       
+
                     <div className="modal-action">
                         <form method="dialog">
                             <div className="grid grid-cols-3 gap-6">
@@ -142,11 +142,24 @@ const EmployeePersonalDetails = (props) => {
                                         />
                                     ))}
                                 </div>
+                                <div className="form-control">
+                                <label className="label">
+                                <span className="label-text text-black text-2xl">Status</span>
+                            </label>
+                                {employee && employee.map((item, index) => (
+                                    <select key={index} className="select select-border shadow-2xl w-full max-w-xs bg-amber-100" defaultValue={item.employee_status}>
+                                        <option value="" disabled>Select Employee Status</option>
+                                        <option value="Active" selected={item.employee_status === 1}>Active</option>
+                                        <option value="Inactive" selected={item.employee_status === 0}>Inactive</option>
+                                    </select>
+                                ))}
+                                
+                                </div>
                             </div>
                             <br />
                             <FaSave style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
                             <button className="btn bg-transparent">
-                            Close
+                                Close
                             </button>
                         </form>
                     </div>
@@ -199,7 +212,8 @@ const EmployeePersonalDetails = (props) => {
                                                     placeholder="text"
                                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                                                     defaultValue={item.employee_fullname}
-                                                    style={{ backgroundColor: 'transparent' }}
+                                                    style={{ backgroundColor: 'transparent', color:"black", border: "none" }}
+                                                    disabled
 
 
                                                 />
@@ -217,7 +231,8 @@ const EmployeePersonalDetails = (props) => {
                                                     placeholder="email"
                                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                                                     defaultValue={item.employee_email}
-                                                    style={{ backgroundColor: 'transparent' }}
+                                                    style={{ backgroundColor: 'transparent', color:"black", border: "none" }}
+                                                    disabled
                                                 />
                                             ))}
                                         </div>
@@ -232,7 +247,8 @@ const EmployeePersonalDetails = (props) => {
                                                     placeholder="email"
                                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                                                     defaultValue={item.employee_contact_no}
-                                                    style={{ backgroundColor: 'transparent' }}
+                                                    style={{ backgroundColor: 'transparent', color:"black", border: "none" }}
+                                                    disabled
                                                 />
                                             ))}
                                         </div>
@@ -247,7 +263,8 @@ const EmployeePersonalDetails = (props) => {
                                                     placeholder="contact no"
                                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                                                     defaultValue={item.employee_role}
-                                                    style={{ backgroundColor: 'transparent' }}
+                                                    style={{ backgroundColor: 'transparent', color:"black", border: "none" }}
+                                                    disabled
                                                 />
                                             ))}
                                         </div>
@@ -262,7 +279,8 @@ const EmployeePersonalDetails = (props) => {
                                                     placeholder="contact no"
                                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                                                     defaultValue={item.employee_position}
-                                                    style={{ backgroundColor: 'transparent' }}
+                                                    style={{ backgroundColor: 'transparent', color:"black", border: "none" }}
+                                                    disabled
                                                 />
 
                                             ))}
@@ -278,10 +296,28 @@ const EmployeePersonalDetails = (props) => {
                                                     placeholder="contact no"
                                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                                                     defaultValue={item.employee_department}
-                                                    style={{ backgroundColor: 'transparent' }}
+                                                    style={{ backgroundColor: 'transparent', color:"black", border: "none" }}
+                                                    disabled
                                                 />
                                             ))}
                                         </div>
+                                        <center>
+                                        </center>
+                                        <div className="form-control">
+                                        <label className="label">
+                                        <span className="label-text text-black text-2xl">Status</span>
+                                    </label>
+                                    {employee && employee.map((item, index) => (
+                                        <select key={index} className="select select-border shadow-2xl text-2xl w-full max-w-xs" style={{ backgroundColor: 'transparent', color:"black" }} disabled>
+                                            <option value="Active" selected={item.employee_status === 1}>{item.employee_status === 1 ? 'Active' : 'Inactive'}</option>
+                                            <option value="Inactive" selected={item.employee_status === 0}>{item.employee_status === 0 ? 'Inactive' : 'Active'}</option>
+                                        </select>
+                                    ))}
+                                    
+                                    
+                                        
+                                        </div>
+
                                     </div>
                                     <br />
                                     <br />
