@@ -219,7 +219,7 @@ function App(props) {
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
               <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-amber-100">
               <li>
-              <Link to="/employee/dashboard" className='text-2xl'>
+              <Link to="/attendance" className='text-2xl'>
                 Attendance
               </Link>
             </li>
