@@ -1,27 +1,31 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
-import './App.css';
 import { useEffect, useState } from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
-import ForgotPassword from './components/Auth/admin/ForgotPassword';
-import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
+
+//LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
-import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 
 //ADMIN
 import UserDetails from './components/Auth/admin/user/UserDetails';
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
+import ForgotPassword from './components/Auth/admin/ForgotPassword';
 
-//redux-actions
+//EMPLOYEE
+import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
+import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
+import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
+
+//REDUX-DISPATCH ACTIONS
 import { fetchUsers } from './components/redux/actions/userAction';
 import { fetchEmployees } from './components/redux/actions/employeeAction';
 import { fetchAttendances } from './components/redux/actions/attendanceAction';
 
 function App(props) {
-  //FOR AUTHENTICATION-PURPOSES
+  //FOR AUTHENTICATION-PURPOSES GAMIT TOKEN UG ID SA USERS
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
   const [localStorageHasToken, setLocalStorageHasToken] = useState('');
@@ -88,7 +92,7 @@ function App(props) {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
-  console.log("FINAL DATA", isAuthenticatedUser);
+  // console.log("FINAL DATA", isAuthenticatedUser);
 
   return (
     <div className="flex flex-col h-screen">
@@ -192,7 +196,7 @@ function App(props) {
                   <Route path="/content" element={<Content />} />
                   <Route path="/register" element={<EmployeeRegister />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
-
+                  <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                   
                   </Routes>
                   </>
@@ -211,9 +215,14 @@ function App(props) {
             <div className="drawer-side">
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
               <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-amber-100">
+              <li>
+              <Link to="/employee/dashboard" className='text-2xl'>
+                Attendance
+              </Link>
+            </li>
                 <li>
-                  <Link to="/register" className='text-2xl'>
-                    Employee
+                  <Link to="/employee/dashboard" className='text-2xl'>
+                    Employees List
                   </Link>
                 </li>
                 <li>
@@ -231,6 +240,7 @@ function App(props) {
           </>
         ) : (
           <>
+
 
           </>
         )}
