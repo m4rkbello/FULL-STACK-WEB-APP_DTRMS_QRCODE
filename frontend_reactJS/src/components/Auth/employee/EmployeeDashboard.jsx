@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 
@@ -6,13 +7,7 @@ import { Link } from 'react-router-dom';
 import { fetchEmployees } from '../../redux/actions/employeeAction';
 import { useEffect } from 'react';
 
-
-
-
 const EmployeeDashboard = (props) => {
-    // const { employees } = props;
-
-
 
     useEffect(() => {
         props.fetchEmployees();
@@ -100,13 +95,13 @@ const EmployeeDashboard = (props) => {
                                             </td>
                                             <td>
                                                 <button className="btn btn-primary p-5 m-2">
-                                                    <Link to="/register">View</Link>
+                                                    <Link to={`/employee/details/${item.id}`}>View</Link>
                                                 </button>
 
                                                 <button className="btn btn-primary p-5 m-2">Remove</button>
 
                                             </td>
-                                        </tr>
+                                        </tr> 
                                     ))}
                                 </tbody>
 
