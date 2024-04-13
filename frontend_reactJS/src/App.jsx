@@ -18,6 +18,8 @@ import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
+import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
+
 
 //REDUX-DISPATCH ACTIONS
 import { fetchUsers } from './components/redux/actions/userAction';
@@ -194,9 +196,10 @@ function App(props) {
                 <Routes>
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/content" element={<Content />} />
-                  <Route path="/register" element={<EmployeeRegister />} />
+                  <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
+                  <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
                   
                   </Routes>
                   </>
