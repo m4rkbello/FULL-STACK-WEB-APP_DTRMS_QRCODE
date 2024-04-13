@@ -4,6 +4,7 @@
 import { connect } from 'react-redux';
 import { FaUpload } from "react-icons/fa6";
 import { FaUserEdit, FaExpeditedssl, FaSave } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
 
 // import img from '../../../../src/assets/images/pic-removebg-preview.png'
 import { useParams } from 'react-router-dom';
@@ -142,29 +143,50 @@ const EmployeePersonalDetails = (props) => {
                                         />
                                     ))}
                                 </div>
+                                <center>
+                                </center>
                                 <div className="form-control">
                                 <label className="label">
                                 <span className="label-text text-black text-2xl">Status</span>
                             </label>
-                                {employee && employee.map((item, index) => (
-                                    <select key={index} className="select select-border shadow-2xl w-full max-w-xs bg-amber-100" defaultValue={item.employee_status}>
-                                        <option value="" disabled>Select Employee Status</option>
-                                        <option value="Active" selected={item.employee_status === 1}>Active</option>
-                                        <option value="Inactive" selected={item.employee_status === 0}>Inactive</option>
-                                    </select>
-                                ))}
-                                
+                            {employee && employee.map((item, index) => (
+                                <select key={index} className="select select-border shadow-2xl text-2xl w-full max-w-xs" style={{ backgroundColor: 'black', color:"#fef3c6" }}>
+                                    <option value="Active" selected={item.employee_status === 1}>Active</option>
+                                    <option value="Inactive" selected={item.employee_status === 0}>Inactive</option>
+                                </select>
+                            ))}
                                 </div>
                             </div>
                             <br />
-                            <FaSave style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
-                            <button className="btn bg-transparent">
-                                Close
-                            </button>
+
+
+                         
+
+<div className="flex ...">
+  <div className="hidden ...">01</div>
+  <div><FaSave style={{ fontSize: "40px", color: "black", marginRight: "5px" }} /></div>
+  <div><button className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none"}} >
+  <IoMdCloseCircle style={{ fontSize: "40px", color: "black", marginRight: "5px" }}  />
+  </button></div>
+</div>
+                        
+                            
                         </form>
                     </div>
                 </div>
             </dialog>
+
+          
+
+<dialog id="uploadEmployeeProfile" className="modal">
+  <div className="modal-box bg-black">
+    <form method="dialog">
+    <input type="file" className="file-input  w-full max-w-md"  style={{ backgroundColor: '#fef3c6' }}/>
+      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+
+  </div>
+</dialog>
 
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
@@ -182,7 +204,8 @@ const EmployeePersonalDetails = (props) => {
                                 width="17%"
                             />
 
-                            <button className="btn  bg-transparent" onClick={() => document.getElementById('my_modal_3').showModal()}><FaUpload height={30} width={30} /></button>
+                            <FaUpload onClick={() => document.getElementById('uploadEmployeeProfile').showModal()} style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
+                       
 
                             <div className="hero-content flex-col lg:flex-row">
 
