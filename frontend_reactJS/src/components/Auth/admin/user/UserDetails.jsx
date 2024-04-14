@@ -10,7 +10,9 @@ import { fetchEmployees } from '../../../redux/actions/employeeAction';
 import img from '../../../../assets/images/pic-removebg-preview.png'
 // import UploadImage from '../modal/UploadImage';
 import { FaUpload } from "react-icons/fa6";
+import { fetchImages } from '../../../redux/actions/imageAction';
 //modal 
+
 
 
 const UserDetails = (props) => {
@@ -18,6 +20,7 @@ const UserDetails = (props) => {
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
 
+// console.log("IMAGES DATA", props)
 
   useEffect(() => {
     //kuhaon ang data sa localStorage/Session Storage/Cookie
@@ -29,6 +32,7 @@ const UserDetails = (props) => {
 
     props.fetchUsers();
     props.fetchEmployees();
+    props.fetchImages();
 
   }, []);
 
@@ -72,7 +76,7 @@ const UserDetails = (props) => {
       */}
         <img
           className="mask mask-circle"
-          src={img}
+          src="http://127.0.0.1:8000/images/1713095174.png"
           type="file"
         />
         <button className="btn  bg-transparent" onClick={() => document.getElementById('my_modal_3').showModal()}><FaUpload height={30} width={30} /></button>
@@ -166,11 +170,13 @@ const mapStateToProps = (state) => ({
   users: state.userState.users.data,
   employees: state.employees,
   attendances: state.attendances,
+  images: state.imageState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => dispatch(fetchUsers()),
   fetchEmployees: () => dispatch(fetchEmployees()),
+  fetchImages: () => dispatch(fetchImages()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);
