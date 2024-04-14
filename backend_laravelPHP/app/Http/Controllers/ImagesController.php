@@ -12,7 +12,9 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        // Implement logic to fetch and return a list of images
+        $data = Image::all();
+
+        return response($data, 201);
     }
 
     /**
