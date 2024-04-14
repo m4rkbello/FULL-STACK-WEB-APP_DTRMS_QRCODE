@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import MarkBelloAPI from '../../../services/Api.jsx';
 import {
     FETCH_IMAGES_REQUEST,
     FETCH_IMAGES_SUCCESS,
@@ -14,18 +16,25 @@ import {
   } from '../../redux/types/imageTypes.jsx';
   
   // Action creators for fetching images
-  export const fetchImages = () => {
-    return async (dispatch) => {
-      dispatch(fetchImagesRequest());
-      try {
-        const response = await fetch('/api/images');
-        const data = await response.json();
-        dispatch(fetchImagesSuccess(data));
-      } catch (error) {
-        dispatch(fetchImagesFailure(error.message));
-      }
-    };
-  };
+
+  export const fetchImages = () => async dispatch => {
+    try {
+        dispatch({ type: FETCH_IMAGES_REQUEST });
+        // Perform async operation, e.g., fetch data from an API
+        const users = await MarkBelloAPI.get('/api/images');
+        dispatch({
+            type: FETCH_IMAGES_SUCCESS,
+            payload: users
+        });
+    } catch (error) {
+        dispatch({
+            type: FETCH_IMAGES_FAILURE,
+            payload: error.message
+        });
+    }
+};
+
+
   
   const fetchImagesRequest = () => ({
     type: FETCH_IMAGES_REQUEST
