@@ -5,6 +5,8 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchEmployees } from '../../redux/actions/employeeAction';
+import { FaEye } from "react-icons/fa6";
+import { MdAutoDelete } from "react-icons/md";
 import { useEffect } from 'react';
 
 const EmployeeDashboard = (props) => {
@@ -89,14 +91,14 @@ const EmployeeDashboard = (props) => {
                                             <td>
                                                 {item.employee_role}
                                             </td>
-                                            <td>
-                                                <button className="btn btn-primary p-5 m-2">
-                                                    <Link to={`/employee/details/${item.id}`}>View</Link>
-                                                </button>
+                                            <td className="flex items-center space-x-2">
+                                            <Link to={`/employee/details/${item.id}`} className="text-black">
+                                                <FaEye style={{ fontSize: "25px", color: "black"}} />
+                                            </Link>
+                                            <MdAutoDelete style={{ fontSize: "25px", color: "black"}} />
+                                        </td>
+                                        
 
-                                                <button className="btn btn-primary p-5 m-2">Remove</button>
-
-                                            </td>
                                         </tr> 
                                     ))}
                                 </tbody>
