@@ -12,15 +12,23 @@ export const getTokenFromLocalStorage = () => {
   return localStorage.getItem('DTRMS_BY_M4RKBELLO');
 };
 
+export const getTokenFromSessionStorage = () => {
+  return sessionStorage.getItem('DTRMS_BY_M4RKBELLO');
+};
+
+
 console.log("STORE TOKEN", getTokenFromLocalStorage());
+
+console.log("STORE TOKEN", getTokenFromSessionStorage());
 
 Api.interceptors.request.use(
   (config) => {
     // Get the token from localStorage
-    const token = getTokenFromLocalStorage();
+    const token = getTokenFromSessionStorage();
+    const token2 = getTokenFromSessionStorage();
 
-    // Include the token in the request headers
-    if (token) {
+    //labayan niyang bearer token
+    if (token && token2) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
@@ -30,8 +38,6 @@ Api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-
 
 
 export default Api;
