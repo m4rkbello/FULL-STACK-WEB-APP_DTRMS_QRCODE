@@ -50,7 +50,10 @@ index.css removed the default
 
 10. INSTALL EMOJI FOR THE TOASTER 
 ->npm i emoji-picker-react
-11. MAKE AN UPLOAD IMG 
+11. MAKE AN UPLOAD IMG
+ ->working 
+ -> composer update
+ -> composer dump-autoload
 
 
 12. INSTALL GENERATE TABLE TO EXCEL 
