@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { FaUpload } from "react-icons/fa6";
 import { FaUserEdit, FaExpeditedssl, FaSave } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // import img from '../../../../src/assets/images/pic-removebg-preview.png'
 import { useParams } from 'react-router-dom';
@@ -17,16 +19,24 @@ import { updateEmployee } from '../../redux/actions/employeeAction';
 
 const EmployeePersonalDetails = (props) => {
     const { id } = useParams();
-
+    const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
-    }
-    
-    const handleCloseModal = () => {
+        const editEmployeeDetailsDialog = document.getElementById('editEmployeeDetails');
+        if (editEmployeeDetailsDialog) {
+          editEmployeeDetailsDialog.showModal();
+        }
+      };
+      
+      const handleCloseModal = () => {
         setIsModalOpen(false);
-    }
+        const editEmployeeDetailsDialog = document.getElementById('editEmployeeDetails');
+        if (editEmployeeDetailsDialog) {
+          editEmployeeDetailsDialog.close();
+        }
+      };
 
     const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
         employee_fullname: '',
@@ -45,10 +55,20 @@ const EmployeePersonalDetails = (props) => {
         });
     };
 
-    const handleSumbitEmployeeData = (event) => {
+
+    const handleSumbitEmployeeData = async (event) => {
         event.preventDefault();
-        props.updateEmployee(id, formDataEmployeeUpdate)
+        setIsLoading(true);
+    
+        try{
+            props.updateEmployee(id, formDataEmployeeUpdate);
+        } catch(error){
+            window.alert("ERROR");
+        } finally{
+            setIsLoading(false);
+        }
     }
+    
 
     useEffect(() => {
         props.fetchEmployees();
@@ -81,6 +101,7 @@ const EmployeePersonalDetails = (props) => {
 
     return (
         <div className="hero max-w-full">
+        <ToastContainer />
         {isModalOpen && (
             <dialog id="editEmployeeDetails" className="modal">
                 <div className=" modal-box w-11/12 max-w-5xl bg-amber-100">
@@ -201,18 +222,17 @@ const EmployeePersonalDetails = (props) => {
                                 </label>
                                 {employee && employee.map((item, index) => (
                                     <select
-                                    key={index}
-                                    name="employee_status"
-                                    className="select select-border shadow-2xl text-2xl w-full max-w-xs"
-                                    style={{ backgroundColor: 'black', color: "#fef3c6" }}
-                                    onChange={handleChangeUpdateData}
-                                    value={formDataEmployeeUpdate.employee_status}
-                                >
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                                
-                                ))}
+                                      key={index}
+                                      name="employee_status"
+                                      className="select select-border shadow-2xl text-2xl w-full max-w-xs"
+                                      style={{ backgroundColor: 'black', color: "#fef3c6" }}
+                                      onChange={handleChangeUpdateData}
+                                      value={item.employee_department}
+                                    >
+                                      <option value="1">Active</option>
+                                      <option value="0">Inactive</option>
+                                    </select>
+                                  ))}
                             </div>
                             
                             </div>
@@ -234,20 +254,27 @@ const EmployeePersonalDetails = (props) => {
                             </form>
                             
                     </div>
+                    <center>
+                    <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
+                  </center>
                 </div>
             </dialog>
             
         )}
 
-            <dialog id="uploadEmployeeProfile" className="modal">
-                <div className="modal-box bg-black">
-                    <form method="dialog">
-                        <input type="file" className="file-input  w-full max-w-md" style={{ backgroundColor: '#fef3c6' }} />
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                    </form>
+        {/**
+    
+        <dialog id="uploadEmployeeProfile" className="modal">
+            <div className="modal-box bg-black">
+                <form method="dialog">
+                    <input type="file" className="file-input  w-full max-w-md" style={{ backgroundColor: '#fef3c6' }} />
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
 
-                </div>
-            </dialog>
+            </div>
+        </dialog>
+        */}
+
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
                     <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
