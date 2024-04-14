@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
@@ -8,7 +9,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 
 // import img from '../../../../src/assets/images/pic-removebg-preview.png'
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 //DISPATCH-ACTION REDUX-CORE
 import { fetchEmployees } from '../../redux/actions/employeeAction';
@@ -19,8 +20,31 @@ import { updateEmployee } from '../../redux/actions/employeeAction';
 const EmployeePersonalDetails = (props) => {
     const { id } = useParams();
 
+    const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
+        employee_fullname: '',
+        employee_email: '',
+        employee_contact_no: '',
+        employee_role: '',
+        employee_position: '',
+        employee_department: '',
+        employee_status: ''
+    });
+
+    const handleChangeUpdateData = (ez) => {
+        setFormDataEmployeeUpdate({
+            ...formDataEmployeeUpdate, 
+            [ez.target.name]: ez.target.value,
+        });
+    };
+
+    const handleSumbitEmployeeData = (event) => {
+        event.preventDefault();
+        props.updateEmployee(id, formDataEmployeeUpdate)
+    }
+
     useEffect(() => {
         props.fetchEmployees();
+       
     }, []);
 
 
@@ -45,132 +69,149 @@ const EmployeePersonalDetails = (props) => {
     console.log("SPECIFIC EMPLOYEE", employee);
 
     console.log("EMPLOYEE ID SELECTED", id);
+
+
     return (
         <div className="hero max-w-full">
             <dialog id="editEmployeeDetails" className="modal">
                 <div className=" modal-box w-11/12 max-w-5xl bg-amber-100">
                     <h3 className="font-bold text-3xl text-black">EDIT EMPLOYEE DETAILS</h3>
                     <div className="modal-action">
-                        <form method="dialog">
+                        <form method="dialog" onSubmit={handleSumbitEmployeeData}>
                             <div className="grid grid-cols-3 gap-6">
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Fullname</span>
-                                    </label>
-                                    {employee && employee.map((item, index) => (
-                                        <input
-                                            key={index}
-                                            type="text"
-                                            placeholder="text"
-                                            className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                            defaultValue={item.employee_fullname}
-                                            style={{ backgroundColor: 'black' }}
-                                        />
-                                    ))}
+                           
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Fullname</span>
+                                </label>
+                                {employee && employee.map((item, index) => (
+                                    <input
+                                        key={index}
+                                        name="employee_fullname" //key para sa form data
+                                        onChange={handleChangeUpdateData}
+                                        type="text"
+                                        placeholder="text"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        defaultValue={item.employee_fullname}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                ))}
 
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Email</span>
-                                    </label>
-                                    {employee && employee.map((item, index) => (
-                                        <input
-                                            key={index}
-                                            type="text"
-                                            placeholder="email"
-                                            className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                            defaultValue={item.employee_email}
-                                            style={{ backgroundColor: 'black' }}
-                                        />
-                                    ))}
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Contact No.</span>
-                                    </label>
-                                    {employee && employee.map((item, index) => (
-                                        <input
-                                            key={index}
-                                            type="text"
-                                            placeholder="email"
-                                            className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                            defaultValue={item.employee_contact_no}
-                                            style={{ backgroundColor: 'black' }}
-                                        />
-                                    ))}
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Role</span>
-                                    </label>
-                                    {employee && employee.map((item, index) => (
-                                        <input
-                                            key={index}
-                                            type="text"
-                                            placeholder="contact no"
-                                            className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                            defaultValue={item.employee_role}
-                                            style={{ backgroundColor: 'black' }}
-                                        />
-                                    ))}
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Position</span>
-                                    </label>
-                                    {employee && employee.map((item, index) => (
-                                        <input
-                                            key={index}
-                                            type="text"
-                                            placeholder="contact no"
-                                            className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                            defaultValue={item.employee_position}
-                                            style={{ backgroundColor: 'black' }}
-                                        />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Email</span>
+                                </label>
+                                {employee && employee.map((item, index) => (
+                                    <input
+                                        key={index}
+                                        name="employee_email" //key para sa formData
+                                        onChange={handleChangeUpdateData}
+                                        type="text"
+                                        placeholder="email"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        defaultValue={item.employee_email}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                ))}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Contact No.</span>
+                                </label>
+                                {employee && employee.map((item, index) => (
+                                    <input
+                                        key={index}
+                                        type="text"
+                                        name="employee_contact_no"
+                                        onChange={handleChangeUpdateData}
+                                        placeholder="contact number"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        defaultValue={item.employee_contact_no}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                ))}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Role</span>
+                                </label>
+                                {employee && employee.map((item, index) => (
+                                    <input
+                                        key={index}
+                                        type="text"
+                                        name="employee_role"
+                                        onChange={handleChangeUpdateData}
+                                        placeholder="Role"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        defaultValue={item.employee_role}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                ))}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Position</span>
+                                </label>
+                                {employee && employee.map((item, index) => (
+                                    <input
+                                        key={index}
+                                        type="text"
+                                        name="employee_position"
+                                        onChange={handleChangeUpdateData}
+                                        placeholder="Position"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        defaultValue={item.employee_position}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
 
-                                    ))}
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Department</span>
-                                    </label>
-                                    {employee && employee.map((item, index) => (
-                                        <input
-                                            key={index}
-                                            type="text"
-                                            placeholder="contact no"
-                                            className="input input-bordered shadow-2xl text-2xl text-amber-100"
-                                            defaultValue={item.employee_department}
-                                            style={{ backgroundColor: 'black' }}
-                                        />
-                                    ))}
-                                </div>
-                                <center>
-                                </center>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Status</span>
-                                    </label>
-                                    {employee && employee.map((item, index) => (
-                                        <select key={index} className="select select-border shadow-2xl text-2xl w-full max-w-xs" style={{ backgroundColor: 'black', color: "#fef3c6" }}>
-                                            <option value="Active" selected={item.employee_status === 1}>Active</option>
-                                            <option value="Inactive" selected={item.employee_status === 0}>Inactive</option>
-                                        </select>
-                                    ))}
-                                </div>
+                                ))}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Department</span>
+                                </label>
+                                {employee && employee.map((item, index) => (
+                                    <input
+                                        key={index}
+                                        type="text"
+                                        name="employee_department"
+                                        onChange={handleChangeUpdateData}
+                                        placeholder="Enter a department"
+                                        className="input input-bordered shadow-2xl text-2xl text-amber-100"
+                                        defaultValue={item.employee_department}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                ))}
+                            </div>
+                            <center>
+                            </center>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Status</span>
+                                </label>
+                                {employee && employee.map((item, index) => (
+                                    <select key={index} name="employee_status" className="select select-border shadow-2xl text-2xl w-full max-w-xs" style={{ backgroundColor: 'black', color: "#fef3c6" }}>
+                                        <option value="Active" selected={item.employee_status === 1}>Active</option>
+                                        <option value="Inactive" selected={item.employee_status === 0}>Inactive</option>
+                                    </select>
+                                ))}
+                            </div>
+                            
                             </div>
                             <br />
                             <div className="flex ...">
-                                <div className="hidden ...">01</div>
-                                <div><FaSave style={{ fontSize: "40px", color: "black", marginRight: "5px" }} /></div>
-                                <div><button className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                    <IoMdCloseCircle style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
-                                </button></div>
+                            <div><FaSave typ style={{ fontSize: "40px", color: "black", marginRight: "5px" }} /></div>
+                            <div><button className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                            <IoMdCloseCircle style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
+                            </button></div>
                             </div>
-                        </form>
+                            </form>
+                            
                     </div>
                 </div>
             </dialog>
+
             <dialog id="uploadEmployeeProfile" className="modal">
                 <div className="modal-box bg-black">
                     <form method="dialog">
@@ -348,7 +389,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchEmployees: () => dispatch(fetchEmployees()),
-        updateEmployee: () => dispatch(updateEmployee()),
+        updateEmployee: (employeeId, updateEmployeeData) => dispatch(updateEmployee(employeeId, updateEmployeeData)),
 
     };
 };
