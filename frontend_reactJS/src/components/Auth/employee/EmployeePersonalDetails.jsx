@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { FaUpload } from "react-icons/fa6";
 import { FaUserEdit, FaExpeditedssl, FaSave } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -98,7 +99,6 @@ const EmployeePersonalDetails = (props) => {
 
     console.log("EMPLOYEE ID SELECTED", id);
 
-
     return (
         <div className="hero max-w-full">
         <ToastContainer />
@@ -106,6 +106,7 @@ const EmployeePersonalDetails = (props) => {
             <dialog id="editEmployeeDetails" className="modal">
                 <div className=" modal-box w-11/12 max-w-5xl bg-amber-100">
                     <h3 className="font-bold text-3xl text-black">EDIT EMPLOYEE DETAILS</h3>
+                   
                     <div className="modal-action">
                         <form method="dialog" onSubmit={handleSumbitEmployeeData}>
                             <div className="grid grid-cols-3 gap-6">
@@ -241,13 +242,13 @@ const EmployeePersonalDetails = (props) => {
                             <div className="flex ...">
                             <div>
                             <button type="submit" className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                            <FaSave style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
+                            <FaSave style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
                             </button>
                             </div>
 
                             <div>
                             <button onClick={handleCloseModal} className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                            <IoMdCloseCircle style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
+                            <IoMdCloseCircle style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
                             </button>
                             </div>
 
@@ -270,7 +271,7 @@ const EmployeePersonalDetails = (props) => {
         <div className="modal-box bg-black">
             <form method="dialog">
                 <input type="file" className="file-input  w-full max-w-md" style={{ backgroundColor: '#fef3c6' }} />
-                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" >✕</button>
             </form>
 
         </div>
@@ -287,7 +288,7 @@ const EmployeePersonalDetails = (props) => {
 
                                 width="17%"
                             />
-                            <FaUpload onClick={() => document.getElementById('uploadEmployeeProfile').showModal()} style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
+                            <FaUpload onClick={() => document.getElementById('uploadEmployeeProfile').showModal()} alt="Upload image" style={{ fontSize: "20px", color: "black" }} />
                             <div className="hero-content flex-col lg:flex-row">
                                 <div className="flex">
                                     <div className="">
@@ -416,7 +417,7 @@ const EmployeePersonalDetails = (props) => {
                                     <br />
                                     <div className=''>
                                     <button onClick={handleOpenModal}>
-                                    <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
+                                    <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
                                     </button>
                                     </div>
                                 </div>
