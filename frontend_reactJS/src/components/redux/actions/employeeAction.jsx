@@ -54,11 +54,11 @@ export const addEmployee = newEmployee => async dispatch => {
 };
 
 //MAG UPDATE UG EMPLOYEE GAMIT ID
-export const updateEmployee = (employeeId, updatedEmployeeData) => async dispatch => {
+export const updateEmployee = (employeeId, updateEmployeeData) => async dispatch => {
     try {
         dispatch({ type: UPDATE_EMPLOYEE_REQUEST });
         // Perform async operation, e.g., send updated data to an API
-        const updateEmployee = await MarkBelloApi.put(employeeId, updatedEmployeeData);
+        const updateEmployee = await MarkBelloApi.put(`/api/employee/${employeeId}`, updateEmployeeData);
         dispatch({
             type: UPDATE_EMPLOYEE_SUCCESS,
             payload: updateEmployee
