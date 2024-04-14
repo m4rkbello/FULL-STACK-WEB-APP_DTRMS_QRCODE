@@ -224,7 +224,7 @@ const EmployeePersonalDetails = (props) => {
                                 <select
                                     key={index}
                                     name="employee_status"
-                                    className="select select-border shadow-2xl text-2xl w-full max-w-xs"
+                                    className="select shadow-2xl text-2xl w-full max-w-xs"
                                     style={{ backgroundColor: 'black', color: "#fef3c6" }}
                                     onChange={handleChangeUpdateData}
                                   
@@ -265,16 +265,16 @@ const EmployeePersonalDetails = (props) => {
 
         {/**
     
-        <dialog id="uploadEmployeeProfile" className="modal">
-            <div className="modal-box bg-black">
-                <form method="dialog">
-                    <input type="file" className="file-input  w-full max-w-md" style={{ backgroundColor: '#fef3c6' }} />
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                </form>
+    */}
+    <dialog id="uploadEmployeeProfile" className="modal">
+        <div className="modal-box bg-black">
+            <form method="dialog">
+                <input type="file" className="file-input  w-full max-w-md" style={{ backgroundColor: '#fef3c6' }} />
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
 
-            </div>
+        </div>
         </dialog>
-        */}
 
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
@@ -405,7 +405,7 @@ const EmployeePersonalDetails = (props) => {
                                                 <span className="label-text text-black text-2xl">Status</span>
                                             </label>
                                             {employee && employee.map((item, index) => (
-                                                <select key={index} className="select select-border shadow-2xl text-2xl w-full max-w-xs" style={{ backgroundColor: 'transparent', color: "black" }} disabled>
+                                                <select key={index} className="select shadow-2xl text-2xl w-full max-w-xs" style={{ backgroundColor: 'transparent', color: "black", border:"" }} disabled>
                                                     <option value="Active" selected={item.employee_status === 1}>{item.employee_status === 1 ? 'Active' : 'Inactive'}</option>
                                                     <option value="Inactive" selected={item.employee_status === 0}>{item.employee_status === 0 ? 'Inactive' : 'Active'}</option>
                                                 </select>
@@ -426,9 +426,9 @@ const EmployeePersonalDetails = (props) => {
                 </>
             ) : (
                 <>
-                    <div className="text-4xl">
-                        NO DATA
-                    </div>
+                <center>
+                <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
+              </center>
                 </>
             )}
         </div>
