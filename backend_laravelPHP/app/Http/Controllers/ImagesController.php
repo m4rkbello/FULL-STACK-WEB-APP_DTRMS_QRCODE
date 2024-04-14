@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Images;
 use Illuminate\Http\Request;
+use App\Models\Image;
 
 class ImagesController extends Controller
 {
@@ -12,7 +12,7 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        //
+        // Implement logic to fetch and return a list of images
     }
 
     /**
@@ -20,7 +20,7 @@ class ImagesController extends Controller
      */
     public function create()
     {
-        //
+        // Return a view to create a new image
     }
 
     /**
@@ -28,38 +28,77 @@ class ImagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'img_name' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'img_status_id' => 'required',
+            'img_user_id' => 'required',
+            'img_emp_id' => 'required',
+        ]);
+    
+        // Use the correct field name here
+        $image = $request->file('img_name');
+    
+        // Check if a file was actually uploaded
+        if ($image) {
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('images'), $imageName);
+    
+            // Create a new instance of the Image model and set its attributes
+            $imageModel = new Image();
+            $imageModel->img_name = $imageName;
+            $imageModel->img_status_id = $request->input('img_status_id');
+            $imageModel->img_user_id = $request->input('img_user_id');
+            $imageModel->img_emp_id = $request->input('img_emp_id');
+            $imageModel->save();
+
+            // Get the full URL of the uploaded image
+            $url = asset('images/' . $imageName);
+
+            $image_data = Image::where('img_name', '=', $imageName)->first();
+    
+            return response()->json([
+                'message' => 'Image uploaded successfully',
+                 'image' => $url,
+                 'image_details' => $image_data,
+                ]);
+        } else {
+            // Handle the case where no file was uploaded
+            return response()->json(['message' => 'No image uploaded'], 400);
+        }
     }
+    
 
     /**
      * Display the specified resource.
      */
-    public function show(Images $images)
+    public function show(Image $image)
     {
-        //
+        // Display the details of the specified image
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Images $images)
+    public function edit(Image $image)
     {
-        //
+        // Return a view to edit the specified image
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Images $images)
+    public function update(Request $request, Image $image)
     {
-        //
+        // Implement validation for the incoming request data
+      
+        // Update the image record in the database
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Images $images)
+    public function destroy(Image $image)
     {
-        //
+        // Delete the specified image from storage and database
     }
 }
