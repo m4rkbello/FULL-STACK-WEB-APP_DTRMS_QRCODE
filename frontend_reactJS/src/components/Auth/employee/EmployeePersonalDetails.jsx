@@ -15,10 +15,18 @@ import { useEffect, useState } from 'react';
 import { fetchEmployees } from '../../redux/actions/employeeAction';
 import { updateEmployee } from '../../redux/actions/employeeAction';
 
-
-
 const EmployeePersonalDetails = (props) => {
     const { id } = useParams();
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    }
+    
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    }
 
     const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
         employee_fullname: '',
@@ -73,6 +81,7 @@ const EmployeePersonalDetails = (props) => {
 
     return (
         <div className="hero max-w-full">
+        {isModalOpen && (
             <dialog id="editEmployeeDetails" className="modal">
                 <div className=" modal-box w-11/12 max-w-5xl bg-amber-100">
                     <h3 className="font-bold text-3xl text-black">EDIT EMPLOYEE DETAILS</h3>
@@ -191,26 +200,44 @@ const EmployeePersonalDetails = (props) => {
                                     <span className="label-text text-black text-2xl">Status</span>
                                 </label>
                                 {employee && employee.map((item, index) => (
-                                    <select key={index} name="employee_status" className="select select-border shadow-2xl text-2xl w-full max-w-xs" style={{ backgroundColor: 'black', color: "#fef3c6" }}>
-                                        <option value="Active" selected={item.employee_status === 1}>Active</option>
-                                        <option value="Inactive" selected={item.employee_status === 0}>Inactive</option>
-                                    </select>
+                                    <select
+                                    key={index}
+                                    name="employee_status"
+                                    className="select select-border shadow-2xl text-2xl w-full max-w-xs"
+                                    style={{ backgroundColor: 'black', color: "#fef3c6" }}
+                                    onChange={handleChangeUpdateData}
+                                    value={formDataEmployeeUpdate.employee_status}
+                                >
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                                
                                 ))}
                             </div>
                             
                             </div>
                             <br />
                             <div className="flex ...">
-                            <div><FaSave typ style={{ fontSize: "40px", color: "black", marginRight: "5px" }} /></div>
-                            <div><button className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                            <div>
+                            <button type="submit" className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                            <FaSave style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
+                            </button>
+                            </div>
+
+                            <div>
+                            <button onClick={handleCloseModal} className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
                             <IoMdCloseCircle style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
-                            </button></div>
+                            </button>
+                            </div>
+
                             </div>
                             </form>
                             
                     </div>
                 </div>
             </dialog>
+            
+        )}
 
             <dialog id="uploadEmployeeProfile" className="modal">
                 <div className="modal-box bg-black">
@@ -360,7 +387,9 @@ const EmployeePersonalDetails = (props) => {
                                     <br />
                                     <br />
                                     <div className=''>
-                                        <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
+                                    <button onClick={handleOpenModal}>
+                                    <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "40px", color: "black", marginRight: "5px" }} />
+                                    </button>
                                     </div>
                                 </div>
                             </div>
