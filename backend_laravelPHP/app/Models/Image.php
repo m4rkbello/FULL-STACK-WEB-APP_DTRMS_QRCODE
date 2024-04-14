@@ -14,6 +14,7 @@ class Image extends Model
         'img_status_id',
         'img_user_id',
         'img_emp_id',
+        'img_url',
     ];
 
     public function employee(){
