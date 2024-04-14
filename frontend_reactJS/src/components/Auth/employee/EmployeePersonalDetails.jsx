@@ -217,23 +217,24 @@ const EmployeePersonalDetails = (props) => {
                             <center>
                             </center>
                             <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-black text-2xl">Status</span>
-                                </label>
-                                {employee && employee.map((item, index) => (
-                                    <select
-                                      key={index}
-                                      name="employee_status"
-                                      className="select select-border shadow-2xl text-2xl w-full max-w-xs"
-                                      style={{ backgroundColor: 'black', color: "#fef3c6" }}
-                                      onChange={handleChangeUpdateData}
-                                      value={item.employee_department}
-                                    >
-                                      <option value="1">Active</option>
-                                      <option value="0">Inactive</option>
-                                    </select>
-                                  ))}
-                            </div>
+                            <label className="label">
+                                <span className="label-text text-black text-2xl">Status</span>
+                            </label>
+                            {employee && employee.map((item, index) => (
+                                <select
+                                    key={index}
+                                    name="employee_status"
+                                    className="select select-border shadow-2xl text-2xl w-full max-w-xs"
+                                    style={{ backgroundColor: 'black', color: "#fef3c6" }}
+                                    onChange={handleChangeUpdateData}
+                                  
+                                >
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            ))}
+                        </div>
+                        
                             
                             </div>
                             <br />
