@@ -29,11 +29,11 @@ Route::get('/employee/{id}', [EmployeeController::class, 'show']);
 //ATTENDANCE
 
 //MIDDLEWARE FOR FRONTEND-BACKEND 
+Route::put('/employee/{id}', [EmployeeController::class, 'update']);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/employee-registration', [EmployeeController::class, 'store']);
     Route::post('/employee/search/', [EmployeeController::class, 'search']);
-    Route::put('/employee/{id}', [EmployeeController::class, 'update']);
     Route::put('/employee/deactivated/{id}', [EmployeeController::class, 'deactivate']);
     Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
 });
