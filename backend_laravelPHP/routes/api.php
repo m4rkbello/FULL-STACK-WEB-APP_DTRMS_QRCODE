@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ImagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,10 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::put('/employee/deactivated/{id}', [EmployeeController::class, 'deactivate']);
     Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
 });
+
+
+//UPLOAD PICTURE
+Route::post('/images', [ImagesController::class, 'store']);
 
 
 
