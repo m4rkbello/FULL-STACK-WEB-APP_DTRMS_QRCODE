@@ -169,17 +169,17 @@ function App(props) {
         ) : (
           <>
             <div>
-              <ul className="menu menu-horizontal px-1 text-amber-100 bg-black">
-                <li className='shadow-2xl'>
+              <ul className="menu menu-horizontal px-1 text-black bg-amber-100">
+                <li className='shadow-2xl text-2xl'>
                   <Link to="/qrc">Scan QR</Link>
                 </li>
-                <li className='shadow-2xl'>
+                <li className='shadow-2xl text-2xl'>
                   <Link to="/admin/login">Login</Link>
                 </li>
-                <li className='shadow-2xl'>
+                <li className='shadow-2xl text-2xl'>
                   <Link to="/admin/register">Register</Link>
                 </li>
-                <li className='shadow-2xl'>
+                <li className='shadow-2xl text-2xl'>
                 </li>
               </ul>
             </div>
