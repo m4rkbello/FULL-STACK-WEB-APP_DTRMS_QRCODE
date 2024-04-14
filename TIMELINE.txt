@@ -50,7 +50,14 @@ index.css removed the default
 
 10. INSTALL EMOJI FOR THE TOASTER 
 ->npm i emoji-picker-react
-11. MAKE AN UPLOAD IMG
+11. MAKE AN UPLOAD IMG 
+
+
+12. INSTALL GENERATE TABLE TO EXCEL 
+npm i react-html-table-to-excel (deprecated)
+
+13. INSTALL REACTJS-CHART-2
+npm i react-chartjs-2
 
 
 
