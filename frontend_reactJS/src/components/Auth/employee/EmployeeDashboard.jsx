@@ -47,8 +47,8 @@ const EmployeeDashboard = (props) => {
                     {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table className="table py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
-                                <thead className="text-black text-1xl">
-                                    <tr className=''>
+                                <thead className="overflow-x-auto text-black ">
+                                    <tr style={{ fontSize: "15px", color: "black"}}>
                                         <th>Avatar</th>
                                         <th>Fullname</th>
                                         <th>Email</th>
@@ -89,13 +89,14 @@ const EmployeeDashboard = (props) => {
                                                 {item.employee_position}
                                             </td>
                                             <td>
-                                                {item.employee_role}
+                                                {item.employee_status === 1 ? 'Active' : 'Inactive'}
+                                              
                                             </td>
-                                            <td className="flex items-center space-x-2">
-                                            <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                <FaEye style={{ fontSize: "25px", color: "black"}} />
+                                            <td className="flex items-center pr-2 ">
+                                            <Link to={`/employee/details/${item.id}`} className="text-black mx-2">
+                                                <FaEye style={{ fontSize: "20px", color: "black", padding: "0%"}} />
                                             </Link>
-                                            <MdAutoDelete style={{ fontSize: "25px", color: "black"}} />
+                                            <MdAutoDelete style={{ fontSize: "20px", color: "black"}} />
                                         </td>
                                         
 
