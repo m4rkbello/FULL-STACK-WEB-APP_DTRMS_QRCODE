@@ -41,7 +41,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 
 //UPLOAD PICTURE
-Route::post('/images', [ImagesController::class, 'store']);
+Route::get('/images', [ImagesController::class, 'index']);
+Route::post('/image', [ImagesController::class, 'store']);
 
 
 
