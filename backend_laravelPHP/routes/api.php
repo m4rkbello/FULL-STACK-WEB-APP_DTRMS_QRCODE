@@ -43,16 +43,3 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 //UPLOAD PICTURE
 Route::get('/images', [ImagesController::class, 'index']);
 Route::post('/image', [ImagesController::class, 'store']);
-
-
-
-
-
-
-
-
-
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
