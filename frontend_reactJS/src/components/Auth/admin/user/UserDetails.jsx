@@ -95,8 +95,6 @@ const UserDetails = (props) => {
           </div>
 
           <div className="flex-1">
-
-
             <div className="grid grid-cols-2 gap-0">
               <div className="form-control">
                 <label className="label">
