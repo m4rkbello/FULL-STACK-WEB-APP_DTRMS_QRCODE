@@ -264,9 +264,6 @@ const EmployeePersonalDetails = (props) => {
             
         )}
 
-        {/**
-    
-    */}
     <dialog id="uploadEmployeeProfile" className="modal">
         <div className="modal-box bg-black">
             <form method="dialog">
@@ -388,7 +385,7 @@ const EmployeePersonalDetails = (props) => {
                                                 <span className="label-text text-black text-2xl">Department</span>
                                             </label>
                                             {employee && employee.map((item, index) => (
-                                                <input
+                                                <input 
                                                     key={index}
                                                     type="text"
                                                     placeholder="contact no"
