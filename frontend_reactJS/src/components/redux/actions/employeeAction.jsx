@@ -3,6 +3,8 @@ import MarkBelloApi from '../../../services/Api.jsx';
 // import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 
 import {
     FETCH_EMPLOYEES_REQUEST,
@@ -19,8 +21,6 @@ import {
     DELETE_EMPLOYEE_FAILURE,
 } from '../types/employeeTypes.jsx';
 
-
-// const navigate = useNavigate();
 
 
 //MAG-FETCH UG EMPLOYEE
@@ -60,11 +60,12 @@ export const addEmployee = newEmployee => async dispatch => {
 };
 
 //MAG UPDATE UG EMPLOYEE GAMIT ID
-export const updateEmployee = (employeeId, updateEmployeeData) => async dispatch => {
+export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNavigator) => async dispatch => {
+   
     try {
         dispatch({ type: UPDATE_EMPLOYEE_REQUEST });
         // Perform async operation, e.g., send updated data to an API
-        // document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
+        document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
         const updateEmployeeResponse = await MarkBelloApi.put(`/api/employee/${employeeId}`, updateEmployeeData);
 
         if (!updateEmployeeResponse) {
@@ -99,15 +100,22 @@ export const updateEmployee = (employeeId, updateEmployeeData) => async dispatch
                     fontSize: '15px'
                 }
             });
-
+            
             setTimeout(() => {
                 window.location.reload();
-              }, 3000)
+                updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
+              })
 
+
+            // setTimeout(() => {
+            // })
+
+            
             dispatch({
                 type: UPDATE_EMPLOYEE_SUCCESS,
                 payload: updateEmployeeResponse
             });
+
         }
     } catch (error) {
         console.log("ERROR SA CATCH SA UPDATE EMPLOYEE", error);
