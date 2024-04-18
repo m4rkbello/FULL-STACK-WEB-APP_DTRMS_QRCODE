@@ -1,43 +1,36 @@
 /* eslint-disable react-refresh/only-export-components */
 import axios from 'axios';
 
-
 const Api = axios.create({
   baseURL: "http://127.0.0.1:8000/",
   withCredentials: true
 });
 
-
+// Function to get token from localStorage
 export const getTokenFromLocalStorage = () => {
   return localStorage.getItem('DTRMS_BY_M4RKBELLO');
 };
 
+// Function to get token from sessionStorage
 export const getTokenFromSessionStorage = () => {
   return sessionStorage.getItem('DTRMS_BY_M4RKBELLO');
 };
 
+// Function to set the bearer token in the request headers
+const setAuthorizationToken = (config) => {
+  const token = getTokenFromSessionStorage();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+};
 
-console.log("STORE TOKEN", getTokenFromLocalStorage());
-
-console.log("STORE TOKEN", getTokenFromSessionStorage());
-
+// Intercept all requests and attach the bearer token
 Api.interceptors.request.use(
-  (config) => {
-    // Get the token from localStorage
-    const token = getTokenFromSessionStorage();
-    const token2 = getTokenFromSessionStorage();
-
-    //labayan niyang bearer token
-    if (token && token2) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-  },
+  setAuthorizationToken,
   (error) => {
     return Promise.reject(error);
   }
 );
-
 
 export default Api;
