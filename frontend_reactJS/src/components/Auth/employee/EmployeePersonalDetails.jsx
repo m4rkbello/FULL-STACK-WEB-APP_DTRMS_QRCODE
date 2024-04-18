@@ -65,9 +65,7 @@ const EmployeePersonalDetails = (props) => {
             props.updateEmployee(id, formDataEmployeeUpdate);
         } catch(error){
             window.alert("ERROR");
-        } finally{
-            setIsLoading(false);
-        }
+        };
     }
     
 
