@@ -76,8 +76,9 @@ const UserDetails = (props) => {
       */}
         <img
           className="mask mask-circle"
-          src="http://127.0.0.1:8000/images/1713095174.png"
+          src="http://127.0.0.1:8000/images/1713457202.png"
           type="file"
+          style={{ backgroundColor: 'transparent', width: '30%', height: '50%' }}
         />
         <button className="btn  bg-transparent" onClick={() => document.getElementById('my_modal_3').showModal()}><FaUpload height={30} width={30} /></button>
 
