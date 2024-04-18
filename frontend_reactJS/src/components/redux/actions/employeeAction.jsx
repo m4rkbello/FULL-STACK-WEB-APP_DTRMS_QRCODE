@@ -64,7 +64,7 @@ export const updateEmployee = (employeeId, updateEmployeeData) => async dispatch
     try {
         dispatch({ type: UPDATE_EMPLOYEE_REQUEST });
         // Perform async operation, e.g., send updated data to an API
-        document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
+        // document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
         const updateEmployeeResponse = await MarkBelloApi.put(`/api/employee/${employeeId}`, updateEmployeeData);
 
         if (!updateEmployeeResponse) {
