@@ -285,9 +285,8 @@ const EmployeePersonalDetails = (props) => {
                         <div className="hero-content flex flex-col items-center">
                             <img
                                 className="mask mask-circle shadow-inner"
-                                src="https://images.pexels.com/photos/9123448/pexels-photo-9123448.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                src="http://127.0.0.1:8000/images/1713457582.jpg"
                                 type="file"
-
                                 width="17%"
                             />
                             <FaUpload onClick={() => document.getElementById('uploadEmployeeProfile').showModal()} alt="Upload image" style={{ fontSize: "20px", color: "black" }} />
