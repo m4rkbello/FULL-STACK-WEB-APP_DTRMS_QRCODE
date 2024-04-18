@@ -18,10 +18,17 @@ import { useEffect, useState } from 'react';
 import { fetchEmployees } from '../../redux/actions/employeeAction';
 import { updateEmployee } from '../../redux/actions/employeeAction';
 
+import { useNavigate } from 'react-router-dom';
+
+
+
 const EmployeePersonalDetails = (props) => {
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+ const updateEmployeeNavigator = useNavigate();
+
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
