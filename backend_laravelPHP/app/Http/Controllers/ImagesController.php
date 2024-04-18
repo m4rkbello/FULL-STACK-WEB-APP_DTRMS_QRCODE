@@ -38,7 +38,6 @@ class ImagesController extends Controller
             'img_url' => 'required',
         ]);
     
-        // Use the correct field name here
         $image = $request->file('img_name');
     
         // Check if a file was actually uploaded
@@ -46,6 +45,8 @@ class ImagesController extends Controller
             $imageName = time() . '.' . $image->extension();
             $image->move(public_path('images'), $imageName);
     
+            // Get the full URL of the uploaded image
+            
             // Create a new instance of the Image model and set its attributes
             $imageModel = new Image();
             $imageModel->img_name = $imageName;
@@ -54,13 +55,12 @@ class ImagesController extends Controller
             $imageModel->img_emp_id = $request->input('img_emp_id');
             $imageModel->img_url = $request->input('img_url');
             $imageModel->save();
-
-            // Get the full URL of the uploaded image
-            $url = asset('images/' . $imageName);
-           
+            
+            
             // $image_url = Image::create([
-            //     'img_url' => $url,
-            // ]);
+                //     'img_url' => $url,
+                // ]);
+                $url = asset('images/' . $imageName);
 
             $image_data = Image::where('img_name', '=', $imageName)->first();
 
