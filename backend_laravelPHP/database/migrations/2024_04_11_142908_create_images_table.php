@@ -17,9 +17,9 @@ return new class extends Migration
             $table->integer('img_status_id');
             $table->unsignedBigInteger('img_user_id'); // Use unsignedBigInteger for foreign keys
             $table->unsignedBigInteger('img_emp_id'); // Use unsignedBigInteger for foreign keys
+            $table->string('img_url')->nullable();
             $table->foreign('img_user_id')->references('id')->on('users');
             $table->foreign('img_emp_id')->references('id')->on('employees');
-            $table->string('img_url')->nullable();
             $table->timestamps();
         });
 
