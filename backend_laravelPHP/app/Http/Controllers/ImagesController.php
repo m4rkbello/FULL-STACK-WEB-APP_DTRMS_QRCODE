@@ -35,7 +35,7 @@ class ImagesController extends Controller
             'img_status_id' => 'required',
             'img_user_id' => 'required',
             'img_emp_id' => 'required',
-            'img_url' => 'required',
+            // 'img_url' => 'required',
         ]);
     
         $image = $request->file('img_name');
@@ -44,8 +44,6 @@ class ImagesController extends Controller
         if ($image) {
             $imageName = time() . '.' . $image->extension();
             $image->move(public_path('images'), $imageName);
-    
-            // Get the full URL of the uploaded image
             
             // Create a new instance of the Image model and set its attributes
             $imageModel = new Image();
