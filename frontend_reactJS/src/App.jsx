@@ -143,7 +143,7 @@ function App(props) {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    src="http://127.0.0.1:8000/images/1713457202.png" 
                   />
                 </div>
               </div>
