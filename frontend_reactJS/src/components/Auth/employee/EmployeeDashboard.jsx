@@ -35,9 +35,23 @@ const EmployeeDashboard = (props) => {
     const employeesList = getAllEmployees(employeesCollectionArrays);
 
     return (
+        
         <div className="hero max-w-full">
+<dialog id="addEmployeeModal" className="modal">
+  <div className="modal-box w-11/12 max-w-5xl">
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Click the button below to close</p>
+    <div className="modal-action">
+      <form method="dialog">
+        <h1>PADAYON</h1>
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
         <div className="hero bg-amber-100 rounded-lg">
         <IoIosPersonAdd
+        onClick={()=>document.getElementById('addEmployeeModal').showModal()}
         style={{ fontSize: "50px", color: "black", marginLeft: "95%", marginBottom: "70%" }}
         />
         <div className="bg-slate-300 ">
