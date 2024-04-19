@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { fetchEmployees } from '../../redux/actions/employeeAction';
 import { FaEye } from "react-icons/fa6";
 import { MdAutoDelete } from "react-icons/md";
+import { IoIosPersonAdd } from "react-icons/io";
 import { useEffect } from 'react';
 
 const EmployeeDashboard = (props) => {
@@ -35,10 +36,13 @@ const EmployeeDashboard = (props) => {
 
     return (
         <div className="hero max-w-full">
-            <div className="hero min-h-screen bg-amber-100 rounded-lg">
-                <div className="pt-0 pl-0 pr-0 pb-0 my-0 mx-0 px-0 py-0">
-                    <span className="text-4xl font-black text-black b">
-                        <center>
+        <div className="hero min-h-screen bg-amber-100 rounded-lg">
+        <IoIosPersonAdd
+        style={{ fontSize: "50px", color: "black", marginLeft: "95%", marginBottom: "70%" }}
+        />
+        <div className="pt-0 pl-0 pr-0 pb-0 my-0 mx-0 px-0 py-0">
+        <span className="text-4xl font-black text-black b">
+        <center>
                             EMPLOPYEE DASHBOARD
                         </center>
                     </span>
