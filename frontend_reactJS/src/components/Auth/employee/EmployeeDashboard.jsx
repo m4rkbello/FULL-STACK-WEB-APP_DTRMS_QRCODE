@@ -36,22 +36,22 @@ const EmployeeDashboard = (props) => {
 
     return (
         <div className="hero max-w-full">
-        <div className="hero min-h-screen bg-amber-100 rounded-lg">
+        <div className="hero bg-amber-100 rounded-lg">
         <IoIosPersonAdd
         style={{ fontSize: "50px", color: "black", marginLeft: "95%", marginBottom: "70%" }}
         />
-        <div className="pt-0 pl-0 pr-0 pb-0 my-0 mx-0 px-0 py-0">
-        <span className="text-4xl font-black text-black b">
+        <div className="bg-slate-300 ">
+        <span className="text-4xl font-black  text-black b">
         <center>
                             EMPLOPYEE DASHBOARD
                         </center>
                     </span>
 
-                    <div className="overflow-x-auto bg-transparent text-black">
+                    <div className="overflow-x-auto border-2 hover:border-t-4  bg-slate-400 text-black">
                     {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table className="table py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
-                                <thead className="overflow-x-auto text-black ">
+                                <thead className=" text-black ">
                                     <tr style={{ fontSize: "15px", color: "black"}}>
                                         <th>Avatar</th>
                                         <th>Fullname</th>
