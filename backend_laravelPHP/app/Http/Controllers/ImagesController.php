@@ -35,7 +35,6 @@ class ImagesController extends Controller
             'img_status_id' => 'required',
             'img_user_id' => 'required',
             'img_emp_id' => 'required',
-            // 'img_url' => 'required',
         ]);
     
         $image = $request->file('img_name');
