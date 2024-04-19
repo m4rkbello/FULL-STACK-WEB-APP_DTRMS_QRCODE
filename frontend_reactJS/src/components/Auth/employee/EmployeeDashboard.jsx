@@ -35,38 +35,38 @@ const EmployeeDashboard = (props) => {
     const employeesList = getAllEmployees(employeesCollectionArrays);
 
     return (
-        
+
         <div className="hero max-w-full">
-<dialog id="addEmployeeModal" className="modal">
-  <div className="modal-box w-11/12 max-w-5xl">
-    <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">Click the button below to close</p>
-    <div className="modal-action">
-      <form method="dialog">
-        <h1>PADAYON</h1>
-        <button className="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
-        <div className="hero bg-amber-100 rounded-lg">
-        <IoIosPersonAdd
-        onClick={()=>document.getElementById('addEmployeeModal').showModal()}
-        style={{ fontSize: "50px", color: "black", marginLeft: "95%", marginBottom: "70%" }}
-        />
-        <div className="bg-slate-300 ">
-        <span className="text-4xl font-black  text-black b">
-        <center>
+            <dialog id="addEmployeeModal" className="modal">
+                <div className="modal-box w-11/12 max-w-5xl">
+                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <p className="py-4">Click the button below to close</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            <h1>PADAYON</h1>
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+            <div className="hero bg-amber-100 rounded-lg">
+                <div className="bg-slate-300 ">
+                    <span className="text-4xl font-black  text-black">
+                        <center>
+                            <IoIosPersonAdd
+                                onClick={() => document.getElementById('addEmployeeModal').showModal()}
+                                style={{ fontSize: "50px", color: "black", marginLeft: "95%", marginBottom: "0%", marginTop: "0%" }}
+                            />
                             EMPLOPYEE DASHBOARD
                         </center>
                     </span>
 
                     <div className="overflow-x-auto border-2 hover:border-t-4  bg-slate-400 text-black">
-                    {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
+                        {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table className="table py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
                                 <thead className=" text-black ">
-                                    <tr style={{ fontSize: "15px", color: "black"}}>
+                                    <tr style={{ fontSize: "15px", color: "black" }}>
                                         <th>Avatar</th>
                                         <th>Fullname</th>
                                         <th>Email</th>
@@ -108,17 +108,17 @@ const EmployeeDashboard = (props) => {
                                             </td>
                                             <td>
                                                 {item.employee_status === 1 ? 'Active' : 'Inactive'}
-                                              
+
                                             </td>
                                             <td className="flex items-center pr-2 ">
-                                            <Link to={`/employee/details/${item.id}`} className="text-black mx-2">
-                                                <FaEye style={{ fontSize: "20px", color: "black", padding: "0%"}} />
-                                            </Link>
-                                            <MdAutoDelete style={{ fontSize: "20px", color: "black"}} />
-                                        </td>
-                                        
+                                                <Link to={`/employee/details/${item.id}`} className="text-black mx-2">
+                                                    <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
+                                                </Link>
+                                                <MdAutoDelete style={{ fontSize: "20px", color: "black" }} />
+                                            </td>
 
-                                        </tr> 
+
+                                        </tr>
                                     ))}
                                 </tbody>
 
