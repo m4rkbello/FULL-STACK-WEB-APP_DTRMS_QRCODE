@@ -26,9 +26,13 @@ class Employee extends Model
     }
 
     public function images(){
-        return $this->hasMany(Images::class, 'img_emp_id');
+        return $this->hasMany(Image::class, 'img_emp_id');
     }
 
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'employee_department');
+    }
     
 
 }
