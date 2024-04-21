@@ -62,6 +62,8 @@ npm i react-html-table-to-excel (deprecated)
 13. INSTALL REACTJS-CHART-2
 npm i react-chartjs-2
 
+14. CREATE TABLE FOR DEPARTMENT
+
 
 
 
