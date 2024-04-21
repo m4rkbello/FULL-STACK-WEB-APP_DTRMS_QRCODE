@@ -39,7 +39,7 @@ function App(props) {
   useEffect(() => {
     //kuhaon ang data sa localStorage/Session Storage/Cookie 
     const localStorageHasUserId = localStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
-    const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
+  const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
     const localStorageHasTokenData = localStorage.getItem('DTRMS_BY_M4RKBELLO');
     const sessionStorageHasTokenData = sessionStorage.getItem('DTRMS_BY_M4RKBELLO');
     const cookiesData = document.cookie;
@@ -50,9 +50,9 @@ function App(props) {
     setSessionStorageToken(sessionStorageHasTokenData);
     setCookiesData(cookiesData);
 
-    console.log("ID SA LOCALSTORAGE", localStorageHasUserId);
-    console.log("ID SA SESSION STORAGE", sessionStorageHasUserId);
-    console.log("ID SA COOKIE", cookiesData);
+    // console.log("ID SA LOCALSTORAGE", localStorageHasUserId);
+    // console.log("ID SA SESSION STORAGE", sessionStorageHasUserId);
+    // console.log("ID SA COOKIE", cookiesData);
 
     props.fetchUsers();
     props.fetchEmployees();
@@ -254,9 +254,9 @@ function App(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log("DATA SA MAPTOSTATETOPROPS users", state.userState);
-  console.log("DATA SA MAPTOSTATETOPROPS employees", state.employeeState);
-  console.log("DATA SA MAPTOSTATETOPROPS attendances", state.attendanceState);
+  // console.log("DATA SA MAPTOSTATETOPROPS users", state.userState);
+  // console.log("DATA SA MAPTOSTATETOPROPS employees", state.employeeState);
+  // console.log("DATA SA MAPTOSTATETOPROPS attendances", state.attendanceState);
   return {
     users: state.userState.users.data,
     employees: state.employees,
