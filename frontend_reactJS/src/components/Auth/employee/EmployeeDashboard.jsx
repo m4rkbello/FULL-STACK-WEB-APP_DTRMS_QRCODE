@@ -4,24 +4,28 @@
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchEmployees } from '../../redux/actions/employeeAction';
 import { FaEye } from "react-icons/fa6";
 import { MdAutoDelete } from "react-icons/md";
 import { IoIosPersonAdd } from "react-icons/io";
 import { useEffect } from 'react';
 
+//REDUX
+import {  fetchEmployees, addEmployee } from '../../redux/actions/employeeAction';
+import { fetchImages } from '../../redux/actions/imageAction';
+
+
 const EmployeeDashboard = (props) => {
+    console.log("DATA SA PROPS", props)
 
     useEffect(() => {
         props.fetchEmployees();
+        props.fetchImages();
     }, []);
-
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
 
     function getAllEmployees(employeesCollectionArrays) {
         let item = [];
-
         if (employeesCollectionArrays) {
             for (let ez = 0; ez < employeesCollectionArrays.length; ez++) {
 
@@ -29,19 +33,19 @@ const EmployeeDashboard = (props) => {
             }
         }
         return item;
-
     }
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
+
+    const handleAddNewEmploye = (newEmployee) => {
+        props.addEmployee(newEmployee);
+    }
 
     return (
 
         <div className="hero max-w-full">
             <dialog id="addEmployeeModal" className="modal ">
                 <div className="modal-box w-11/12 max-w-5xl bg-amber-100">
-                  
-                
-
                     <div className="modal-action">
                         <form method="dialog">
 
@@ -141,8 +145,10 @@ const EmployeeDashboard = (props) => {
 }
 
 const mapStateToProps = (state) => {
+
     return {
         employeesData: state.employeeState,
+        imagesData: state.images
     };
 };
 
@@ -150,6 +156,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
 
         fetchEmployees: () => dispatch(fetchEmployees()),
+        fetchImages: () => dispatch(fetchImages()),
+
+        addEmployee: (newEmployee) => dispatch(addEmployee(newEmployee))
 
     };
 };
