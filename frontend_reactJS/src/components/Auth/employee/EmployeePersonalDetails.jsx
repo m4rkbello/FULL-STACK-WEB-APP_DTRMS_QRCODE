@@ -101,7 +101,6 @@ const EmployeePersonalDetails = (props) => {
     const employee = employeeDetails(employeesCollectionArrays, id);
 
     console.log("SPECIFIC EMPLOYEE", employee);
-
     console.log("EMPLOYEE ID SELECTED", id);
 
     return (
