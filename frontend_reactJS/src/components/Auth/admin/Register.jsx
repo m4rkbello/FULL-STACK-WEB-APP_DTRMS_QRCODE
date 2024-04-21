@@ -63,7 +63,7 @@ const Register = ({registerUser}) => {
             <div className="hero min-h-screen bg-transparent">
                 <div className="hero-content flex-col lg:flex-row-start">
                     <div className="text-center lg:text-left">
-                        {/* Your existing content */}
+                        {/* Your existing content */} 
                     </div>
                     <div className="card-0 w-full max-w-md shadow-2xl bg-amber-100 md:flex">
                         <form className="card-body">
