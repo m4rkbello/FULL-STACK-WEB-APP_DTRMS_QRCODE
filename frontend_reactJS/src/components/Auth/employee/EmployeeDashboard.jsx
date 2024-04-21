@@ -71,11 +71,47 @@ const EmployeeDashboard = (props) => {
         <div className="hero max-w-full">
             <dialog id="addEmployeeModal" className="modal ">
                 <div className="modal-box w-11/12 max-w-5xl bg-amber-100">
+                <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
                     <div className="modal-action">
                         <form method="dialog">
+                        <div className="grid grid-cols-3 gap-6">
 
                         
-                         
+                        
+                        <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-black text-2xl">Fullname</span>
+                        </label>
+                            <input
+                                key=""
+                                name="employee_fullname" //key para sa form data
+                                onChange=""
+                                type="text"
+                                placeholder="text"
+                                className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                              
+                                style={{ backgroundColor: 'black' }}
+                            />
+                        </div>
+                        <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-black text-2xl">Fullname</span>
+                        </label>
+                            <input
+                                key=""
+                                name="employee_fullname" //key para sa form data
+                                onChange=""
+                                type="text"
+                                placeholder="text"
+                                className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                              
+                                style={{ backgroundColor: 'black' }}
+                            />
+                        </div>
+                        </div>
+                           
+                        <br />
+                        <button className="btn pr-5">Add</button>
                             <button className="btn">Close</button>
                         </form>
                     </div>
