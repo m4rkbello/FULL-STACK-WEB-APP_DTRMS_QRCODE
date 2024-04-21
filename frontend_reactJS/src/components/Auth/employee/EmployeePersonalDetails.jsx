@@ -4,19 +4,20 @@
 /* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
 import { FaUpload } from "react-icons/fa6";
-import { FaUserEdit, FaExpeditedssl, FaSave } from "react-icons/fa";
+import { FaUserEdit, FaExpeditedssl, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// import img from '../../../../src/assets/images/pic-removebg-preview.png'
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import {  Link  } from 'react-router-dom';
 
 //DISPATCH-ACTION REDUX-CORE
-import { fetchEmployees } from '../../redux/actions/employeeAction';
-import { updateEmployee } from '../../redux/actions/employeeAction';
+import { fetchEmployees, updateEmployee } from '../../redux/actions/employeeAction';
+import { fetchImages } from '../../redux/actions/imageAction';
+
 
 import { useNavigate } from 'react-router-dom';
 
@@ -78,6 +79,7 @@ const EmployeePersonalDetails = (props) => {
 
     useEffect(() => {
         props.fetchEmployees();
+        props.fetchImages();
        
     }, []);
 
@@ -102,6 +104,28 @@ const EmployeePersonalDetails = (props) => {
 
     console.log("SPECIFIC EMPLOYEE", employee);
     console.log("EMPLOYEE ID SELECTED", id);
+
+
+
+    const imageCollectionArrays = props.imagesData?.images?.data;
+    console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
+
+    const getEmployeeImage = (imageCollectionArrays, employee) => {
+        // Check if imageCollectionArrays is an array and not empty
+        if (Array.isArray(imageCollectionArrays) && imageCollectionArrays.length > 0) {
+            // Filter the array based on the condition
+            const employeeId = employee.length > 0 ? employee[0].id : null;
+            console.log("DATA SA employeesList", employee);
+            return imageCollectionArrays.filter(image => image.img_emp_id === employeeId);
+        } else {
+          
+            return [];
+        }
+    };
+
+    const filterImage = getEmployeeImage(imageCollectionArrays, employee);
+
+    console.log("FILTERED DATA", filterImage);
 
     return (
         <div className="hero max-w-full">
@@ -255,9 +279,10 @@ const EmployeePersonalDetails = (props) => {
                             <IoMdCloseCircle style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
                             </button>
                             </div>
-
+                            
                             </div>
                             </form>
+                    
                             
                     </div>
                     <center>
@@ -280,16 +305,27 @@ const EmployeePersonalDetails = (props) => {
 
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
-                    <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
+                <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
+              
+                <button style={{marginRight: "93%", marginBottom: "65%"}} >
+                <Link to="/employee/dashboard">
+                <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%"}} />
+                </Link>
+                </button>
+
+               
+               
                         <div className="hero-content flex flex-col items-center">
-                            <img
-                                className="mask mask-circle shadow-inner"
-                                src="http://127.0.0.1:8000/images/1713457582.jpg"
+                        {filterImage && filterImage.map((image, imageIndex) => (
+                            <img key={imageIndex}
+                            img src={image.img_url} alt={`Avatar ${image.img_name}`} 
                                 type="file"
-                                width="17%"
+                                className='rounded-full'
+                                width="15%"
                             />
+                        ))}
                             <FaUpload onClick={() => document.getElementById('uploadEmployeeProfile').showModal()} alt="Upload image" style={{ fontSize: "20px", color: "black" }} />
-                            <div className="hero-content flex-col lg:flex-row">
+                            <div className="hero-content flex-col lg:flex-row py-0 px-0">
                                 <div className="flex">
                                     <div className="">
                                         {/**
@@ -301,6 +337,7 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                 </div>
                                 <div className="flex-1">
+
                                     <div className="grid grid-cols-3 gap-6">
                                         <div className="form-control">
                                             <label className="label">
@@ -412,14 +449,10 @@ const EmployeePersonalDetails = (props) => {
                                                 </select>
                                             ))}
                                         </div>
-                                    </div>
-                                    <br />
-                                    <br />
-                                    <div className=''>
-                                    <button onClick={handleOpenModal}>
-                                    <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
-                                    </button>
-                                    </div>
+                                        </div>
+                                        <button onClick={handleOpenModal}>
+                                        <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "40px", color: "black", marginLeft: "-65%", marginBottom: "-100" }} />
+                                        </button>
                                 </div>
                             </div>
                         </div>
@@ -438,9 +471,9 @@ const EmployeePersonalDetails = (props) => {
 
 
 const mapStateToProps = (state) => {
-
     return {
         employeesData: state.employeeState,
+        imagesData: state.imageState
     };
 };
 
@@ -448,7 +481,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchEmployees: () => dispatch(fetchEmployees()),
         updateEmployee: (employeeId, updateEmployeeData) => dispatch(updateEmployee(employeeId, updateEmployeeData)),
-
+        fetchImages: () => dispatch(fetchImages())
     };
 };
 
