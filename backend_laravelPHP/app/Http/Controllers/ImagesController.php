@@ -50,14 +50,14 @@ class ImagesController extends Controller
             $imageModel->img_status_id = $request->input('img_status_id');
             $imageModel->img_user_id = $request->input('img_user_id');
             $imageModel->img_emp_id = $request->input('img_emp_id');
-            $imageModel->img_url = $request->input('img_url');
+            // $imageModel->img_url = $request->input('img_url');
             $imageModel->save();
             
-            
-            // $image_url = Image::create([
-                //     'img_url' => $url,
-                // ]);
-                $url = asset('images/' . $imageName);
+            $url = asset('images/' . $imageName);
+
+            $image_url = Image::create([
+                    'img_url' => $url,
+            ]);
 
             $image_data = Image::where('img_name', '=', $imageName)->first();
 
@@ -65,7 +65,7 @@ class ImagesController extends Controller
                 'message' => 'Image uploaded successfully',
                  'image' => $url,
                  'image_details' => $image_data,
-                //  'image_url' => $image_url,
+                 'image_url' => $image_url,
                 ]);
         } else {
             // Handle the case where no file was uploaded
