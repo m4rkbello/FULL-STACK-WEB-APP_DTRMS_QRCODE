@@ -50,20 +50,15 @@ const EmployeeDashboard = (props) => {
             // Filter the array based on the condition
             const employeeId = employeesList.length > 0 ? employeesList[0].id : null;
             console.log("DATA SA employeesList", employeesList);
-            return imageCollectionArrays.filter(image => image.img_emp_id === employeeId);
+            return imageCollectionArrays.filter(image => image.img_emp_id == employeeId);
         } else {
-            // Return an empty array if imageCollectionArrays is not valid
+          
             return [];
         }
     };
-    
 
-      console.log("DATA OF EMPLOYEE", employeesList);
-
-   
-    
     const filterImage = getEmployeeImage(imageCollectionArrays, employeesList);
-    console.log("IMAGE FILTERED", filterImage);
+    console.log("DATA PICTURE", filterImage);
 
     return (
 
