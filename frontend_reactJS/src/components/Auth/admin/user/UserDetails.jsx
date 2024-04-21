@@ -54,7 +54,7 @@ const UserDetails = (props) => {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
-  console.log('FINAL DATA', isAuthenticatedUser);
+  // console.log('FINAL DATA', isAuthenticatedUser);
 
   return (
 
