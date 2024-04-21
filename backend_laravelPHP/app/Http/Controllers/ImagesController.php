@@ -58,6 +58,8 @@ class ImagesController extends Controller
             $image_data = Image::where('img_name', '=', $imageName)->first();
 
             return response()->json([
+                'success' => true,
+                'status' => 201,
                 'message' => 'Image uploaded successfully',
                  'image' => $url,
                  'image_details' => $image_data,
