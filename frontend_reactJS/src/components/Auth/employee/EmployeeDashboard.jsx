@@ -41,6 +41,19 @@ const EmployeeDashboard = (props) => {
         props.addEmployee(newEmployee);
     }
 
+    const imageCollectionArrays = props.imagesData?.images?.data;
+    console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
+
+    const getEmployeeImage = imageCollectionArrays => {
+        const item = Array.isArray(imageCollectionArrays)
+          ? [...imageCollectionArrays]
+          : [];
+        return item;
+      };
+    
+    const filterImage = getEmployeeImage(imageCollectionArrays);
+    console.log("IMAGE FILTERED", filterImage);
+
     return (
 
         <div className="hero max-w-full">
@@ -91,9 +104,12 @@ const EmployeeDashboard = (props) => {
                                             <td className="md:table-cell">
                                                 <div className="flex items-center gap-3">
                                                     <div className="avatar">
+                                                    {filterImage && filterImage.map((item, index) => {
+
                                                         <div className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                            <img src="http://127.0.0.1:8000/images/1713457582.jpg" alt="Avatar Tailwind CSS Component" />
+                                                            <img src=""  alt="Avatar Tailwind CSS Component" />
                                                         </div>
+                                                    })}
                                                     </div>
                                                 </div>
                                             </td>
@@ -148,7 +164,7 @@ const mapStateToProps = (state) => {
 
     return {
         employeesData: state.employeeState,
-        imagesData: state.images
+        imagesData: state.imageState
     };
 };
 
@@ -157,7 +173,6 @@ const mapDispatchToProps = (dispatch) => {
 
         fetchEmployees: () => dispatch(fetchEmployees()),
         fetchImages: () => dispatch(fetchImages()),
-
         addEmployee: (newEmployee) => dispatch(addEmployee(newEmployee))
 
     };
