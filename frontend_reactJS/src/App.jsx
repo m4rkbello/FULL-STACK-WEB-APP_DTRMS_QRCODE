@@ -13,12 +13,15 @@ import UserDetails from './components/Auth/admin/user/UserDetails';
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
+import Department from './components/Auth/admin/department/Department';
+
 
 //EMPLOYEE
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
 import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
+import FourOFourNotFound from './components/Auth/admin/pages/404NotFound';
 
 
 //REDUX-DISPATCH ACTIONS
@@ -200,7 +203,7 @@ function App(props) {
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                   <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
-                  
+                  <Route path="/department" element={<Department />} />
                   </Routes>
                   </>
                 ) : (
@@ -208,6 +211,7 @@ function App(props) {
                   <Route path="/admin/login" element={<Login />} />
                   <Route path="/admin/register" element={<Register />} />
                   <Route path="/details" element={<PersonalDetails />} />
+                  <Route path="*" element={<FourOFourNotFound />} />
               </Routes>
             )}
 
@@ -234,8 +238,8 @@ function App(props) {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/details" className='text-2xl'>
-                    Details Test
+                  <Link to="/department" className='text-2xl'>
+                    Department
                   </Link>
                 </li>
               </ul>
