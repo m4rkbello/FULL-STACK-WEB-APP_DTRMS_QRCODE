@@ -47,10 +47,16 @@ const EmployeeDashboard = (props) => {
     const getEmployeeImage = (imageCollectionArrays, employeesList) => {
         // Check if imageCollectionArrays is an array and not empty
         if (Array.isArray(imageCollectionArrays) && imageCollectionArrays.length > 0) {
+            let item = [];
             // Filter the array based on the condition
-            const employeeId = employeesList.length > 0 ? employeesList[0].id : null;
-            console.log("DATA SA employeesList", employeesList);
-            return imageCollectionArrays.filter(image => image.img_emp_id == employeeId);
+            const employeeId = employeesList.length != 0 ? employeesList[0].id : null;
+            console.log("DATA SA employeesList", employeeId);
+
+            for(let x=0; x < employeeId.length; x++){
+                item.push(employeeId[x]);
+            }
+          
+            return imageCollectionArrays.filter(image => image.img_emp_id == 1);
         } else {
           
             return [];
@@ -112,15 +118,16 @@ const EmployeeDashboard = (props) => {
                                                     <div className="avatar">
                                                     {/**
                                                     
-                                                    {filterImage && filterImage.map((image, imageIndex) => (
-                                                         <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                        <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
-                                                    </div>
-                                                    ))}
-                                                    */}
+                                                    
                                                     <div className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                        <img src="" />
+                                                    <img src="" />
                                                     </div>
+                                                */}
+                                                {filterImage && filterImage.map((image, imageIndex) => (
+                                                     <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
+                                                    <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
+                                                </div>
+                                                ))}
                                                     </div>
                                                 </div>
                                             </td>
