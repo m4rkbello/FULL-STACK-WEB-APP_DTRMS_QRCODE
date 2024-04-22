@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('employee_role');
             $table->integer('employee_department');
             $table->integer('employee_status')->default(1);
+            $table->string('employee_image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
