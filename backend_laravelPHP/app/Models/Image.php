@@ -17,12 +17,12 @@ class Image extends Model
         'img_url',
     ];
 
-    public function employee(){
-        return $this->belongsTo(Employee::class, 'img_emp_id');
-    }
+    // public function employee(){
+    //     return $this->belongsTo(Employee::class, 'img_emp_id');
+    // }
 
-    public function user(){
-        return $this->belongsTo(User::class, 'img_user_id');
-    }
+    // public function user(){
+    //     return $this->belongsTo(User::class, 'img_user_id');
+    // }
 }
 
