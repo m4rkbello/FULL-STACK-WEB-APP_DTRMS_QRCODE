@@ -18,17 +18,14 @@ class Employee extends Model
         'employee_position',
         'employee_role',
         'employee_department',
-        'employee_status'
+        'employee_status',
+        'employee_image'
     ];
 
     public function attendances(){
         return $this->hasMany(Attendance::class, 'attendance_employee_id');
     }
-
-    public function images(){
-        return $this->hasMany(Image::class, 'img_emp_id');
-    }
-
+    
     public function department()
     {
         return $this->belongsTo(Department::class, 'employee_department');
