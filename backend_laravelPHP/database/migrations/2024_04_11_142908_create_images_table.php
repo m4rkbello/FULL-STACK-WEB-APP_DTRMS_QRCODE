@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('img_name')->nullable();
             $table->integer('img_status_id');
-            $table->unsignedBigInteger('img_user_id')->nullable(); // Use unsignedBigInteger for foreign keys
-            $table->unsignedBigInteger('img_emp_id')->nullable(); // Use unsignedBigInteger for foreign keys
+            // $table->unsignedBigInteger('img_user_id')->nullable(); // Use unsignedBigInteger for foreign keys
+            // $table->unsignedBigInteger('img_emp_id')->nullable(); // Use unsignedBigInteger for foreign keys
             $table->string('img_url')->nullable();
-            $table->foreign('img_user_id')->references('id')->on('users');
-            $table->foreign('img_emp_id')->references('id')->on('employees');
+            // $table->foreign('img_user_id')->references('id')->on('users');
+            // $table->foreign('img_emp_id')->references('id')->on('employees');
             $table->timestamps();
         });
 
