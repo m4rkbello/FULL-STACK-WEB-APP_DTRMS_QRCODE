@@ -43,10 +43,8 @@ class AuthController extends Controller
             'user_password' => bcrypt($data['user_password'])
         ]);
 
-
         $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
     
-        
         $response = [
             'success' => true,
             'user' =>  $user,
@@ -125,4 +123,6 @@ class AuthController extends Controller
     {
         //
     }
+
+    
 }
