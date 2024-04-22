@@ -33,7 +33,8 @@ class EmployeeController extends Controller
                 'employee_position' => 'required|string',
                 'employee_role' => 'required|string',
                 'employee_department' => 'required|integer',
-                'employee_status' => 'required|integer'
+                'employee_status' => 'required|integer',
+
             ]);
     
             $employee = Employee::create([

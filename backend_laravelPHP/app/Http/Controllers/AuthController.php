@@ -116,6 +116,73 @@ class AuthController extends Controller
         //
     }
 
+    public function updateImage(Request $request, int $id)
+    {
+        $request->validate([
+            'user_image' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
+        ]);
+    
+        $image = $request->file('user_image');
+    
+        if ($image) {
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('images'), $imageName);
+    
+            $existingImage = User::find($id);
+    
+            if ($existingImage) {
+                // Log the existing user image details for debugging
+                \Log::info('Existing user image:', $existingImage->toArray());
+    
+                // Update the user's image path
+                $existingImage->update([
+                    'user_image' => $imageName, // or whatever field name you are updating
+                ]);
+    
+                // Log the updated user image details for debugging
+                \Log::info('Updated user image:', $existingImage->toArray());
+    
+                return response()->json([
+                    'success' => true,
+                    'status' => 200,
+                    'message' => 'User image updated successfully',
+                    'image' => $existingImage->user_image,
+                    'image_details' => $existingImage,
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'status' => 404,
+                    'message' => 'User not found',
+                ], 404);
+            }
+        } else {
+            return response()->json(['message' => 'No image uploaded'], 400);
+        }
+    }
+
+    
+    public function store(Request $request)
+    {
+        $request->validate([
+            'img_name' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'img_status_id' => 'required',
+            'img_user_id' => 'required',
+            'img_emp_id' => 'required',
+        ]);
+    
+        $image = $request->file('img_name');
+    
+        // Check if a file was actually uploaded
+        
+    }
+    
+
+
+    
+
+
+    
     /**
      * Remove the specified resource from storage.
      */
@@ -124,5 +191,5 @@ class AuthController extends Controller
         //
     }
 
-    
+
 }
