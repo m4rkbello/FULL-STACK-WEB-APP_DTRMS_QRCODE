@@ -42,7 +42,7 @@ function App(props) {
   useEffect(() => {
     //kuhaon ang data sa localStorage/Session Storage/Cookie 
     const localStorageHasUserId = localStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
-  const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
+    const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
     const localStorageHasTokenData = localStorage.getItem('DTRMS_BY_M4RKBELLO');
     const sessionStorageHasTokenData = sessionStorage.getItem('DTRMS_BY_M4RKBELLO');
     const cookiesData = document.cookie;
@@ -144,10 +144,12 @@ function App(props) {
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
+                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="http://127.0.0.1:8000/images/1713457202.png" 
+                    src={user.user_image} 
                   />
+                ))}
                 </div>
               </div>
               <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-amber-100 rounded-box w-52">

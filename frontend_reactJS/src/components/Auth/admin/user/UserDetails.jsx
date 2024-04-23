@@ -76,6 +76,7 @@ const UserDetails = (props) => {
       */}
       {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
         <img
+          key={index}
           className="mask mask-circle"
           src={user.user_image}
           type="file"
