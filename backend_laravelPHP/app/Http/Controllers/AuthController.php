@@ -132,6 +132,7 @@ class AuthController extends Controller
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $imagePath = public_path('images') . '/' . $imageName;
     
+            // Delete the previous image if it exists
             if ($user->user_image) {
                 $existingImagePath = public_path($user->user_image);
                 if (File::exists($existingImagePath)) {
@@ -139,20 +140,28 @@ class AuthController extends Controller
                 }
             }
     
+            // Move the new image to the images directory
             $image->move(public_path('images'), $imageName);
+    
+            // Update the user's image path
             $user->user_image = 'images/' . $imageName;
+    
+            // Generate the image URL using the asset function
+            $imageUrl = asset($user->user_image);
         }
     
+        // Save the user object
         $user->save();
     
         return response()->json([
             'success' => true,
             'status' => 200,
             'message' => 'User image updated successfully',
-            'image_url' => asset($user->user_image),
+            'image_url' => isset($imageUrl) ? $imageUrl : null, // Check if $imageUrl is set
             'image_details' => $user,
         ]);
     }
+    
     
     public function store(Request $request)
     {
