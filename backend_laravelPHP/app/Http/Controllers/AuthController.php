@@ -116,18 +116,25 @@ class AuthController extends Controller
         //
     }
 
-    public function updateImage(Request $request, int $id)
+    public function updateImage(Request $request, string $id)
     {
+        // Validate the incoming request
         $request->validate([
-            'user_image' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
+            'user_image' => 'image|mimes:jpeg,png,jpg,gif|max:10240', // Maximum file size: 10MB
         ]);
     
+        // Retrieve the uploaded image
         $image = $request->file('user_image');
     
+        // Check if an image was uploaded
         if ($image) {
+            // Generate a unique image name
             $imageName = time() . '.' . $image->extension();
+    
+            // Move the uploaded image to the public directory
             $image->move(public_path('images'), $imageName);
     
+            // Find the user by ID
             $existingImage = User::find($id);
     
             if ($existingImage) {
@@ -135,21 +142,22 @@ class AuthController extends Controller
                 \Log::info('Existing user image:', $existingImage->toArray());
     
                 // Update the user's image path
-                $existingImage->update([
-                    'user_image' => $imageName, // or whatever field name you are updating
-                ]);
+                $existingImage->user_image = $imageName;
+                $existingImage->save(); // Save the changes to the database
     
                 // Log the updated user image details for debugging
                 \Log::info('Updated user image:', $existingImage->toArray());
     
+                // Return a success response with updated image details
                 return response()->json([
                     'success' => true,
                     'status' => 200,
                     'message' => 'User image updated successfully',
-                    'image' => $existingImage->user_image,
-                    'image_details' => $existingImage,
+                    'image' => $existingImage->user_image, // Return the image path
+                    'image_details' => $existingImage, // Return user details
                 ]);
             } else {
+                // If user not found, return a 404 error
                 return response()->json([
                     'success' => false,
                     'status' => 404,
@@ -157,9 +165,16 @@ class AuthController extends Controller
                 ], 404);
             }
         } else {
-            return response()->json(['message' => 'No image uploaded'], 400);
+            // If no image uploaded, return a 400 error
+            return response()->json([
+                'success' => false,
+                'status' => 400,
+                'message' => 'No image uploaded',
+            ], 400);
         }
     }
+    
+    
 
     
     public function store(Request $request)
