@@ -130,16 +130,17 @@ class AuthController extends Controller
         if ($request->hasFile('user_image')) {
             $image = $request->file('user_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('public', $imageName, 'public');
+            $imagePath = public_path('images') . '/' . $imageName;
     
             if ($user->user_image) {
-                $existingImagePath = public_path('src/public/' . basename($user->user_image));
+                $existingImagePath = public_path($user->user_image);
                 if (File::exists($existingImagePath)) {
                     File::delete($existingImagePath);
                 }
             }
     
-            $user->user_image = 'src/public/' . basename($imagePath);
+            $image->move(public_path('images'), $imageName);
+            $user->user_image = 'images/' . $imageName;
         }
     
         $user->save();
@@ -148,7 +149,7 @@ class AuthController extends Controller
             'success' => true,
             'status' => 200,
             'message' => 'User image updated successfully',
-            'image' => asset('src/public/' . basename($user->user_image)),
+            'image_url' => asset($user->user_image),
             'image_details' => $user,
         ]);
     }
