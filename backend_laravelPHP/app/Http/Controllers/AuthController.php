@@ -143,11 +143,8 @@ class AuthController extends Controller
             // Move the new image to the images directory
             $image->move(public_path('images'), $imageName);
     
-            // Update the user's image path
-            $user->user_image = 'images/' . $imageName;
-    
-            // Generate the image URL using the asset function
-            $imageUrl = asset($user->user_image);
+            // Update the user's image path with the full URL
+            $user->user_image = url('images/' . $imageName);
         }
     
         // Save the user object
@@ -157,10 +154,11 @@ class AuthController extends Controller
             'success' => true,
             'status' => 200,
             'message' => 'User image updated successfully',
-            'image_url' => isset($imageUrl) ? $imageUrl : null, // Check if $imageUrl is set
+            'image_url' => $user->user_image, // Directly use the updated user image path
             'image_details' => $user,
         ]);
     }
+    
     
     
     public function store(Request $request)
