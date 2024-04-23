@@ -54,7 +54,7 @@ const UserDetails = (props) => {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
-  // console.log('FINAL DATA', isAuthenticatedUser);
+  console.log('FINAL DATA', isAuthenticatedUser);
 
   return (
 
@@ -74,12 +74,15 @@ const UserDetails = (props) => {
         {/**
       
       */}
+      {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
         <img
           className="mask mask-circle"
-          src="http://127.0.0.1:8000/images/1713457202.png"
+          src={user.user_image}
           type="file"
           style={{ backgroundColor: 'transparent', width: '30%', height: '50%' }}
         />
+        ))}
+
         <button className="btn  bg-transparent" onClick={() => document.getElementById('my_modal_3').showModal()}><FaUpload height={30} width={30} /></button>
 
         <div className="hero-content flex-col lg:flex-row">
