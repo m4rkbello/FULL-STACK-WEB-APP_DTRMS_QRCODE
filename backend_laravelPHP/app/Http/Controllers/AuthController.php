@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 
 class AuthController extends Controller
 {
@@ -116,66 +119,39 @@ class AuthController extends Controller
         //
     }
 
-    public function updateImage(Request $request, string $id)
+    public function updateImage(Request $request, $id)
     {
-        // Validate the incoming request
         $request->validate([
-            'user_image' => 'image|mimes:jpeg,png,jpg,gif|max:10240', // Maximum file size: 10MB
+            'user_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
         ]);
     
-        // Retrieve the uploaded image
-        $image = $request->file('user_image');
+        $user = User::findOrFail($id);
     
-        // Check if an image was uploaded
-        if ($image) {
-            // Generate a unique image name
-            $imageName = time() . '.' . $image->extension();
+        if ($request->hasFile('user_image')) {
+            $image = $request->file('user_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('public', $imageName, 'public');
     
-            // Move the uploaded image to the public directory
-            $image->move(public_path('images'), $imageName);
-    
-            // Find the user by ID
-            $existingImage = User::find($id);
-    
-            if ($existingImage) {
-                // Log the existing user image details for debugging
-                \Log::info('Existing user image:', $existingImage->toArray());
-    
-                // Update the user's image path
-                $existingImage->user_image = $imageName;
-                $existingImage->save(); // Save the changes to the database
-    
-                // Log the updated user image details for debugging
-                \Log::info('Updated user image:', $existingImage->toArray());
-    
-                // Return a success response with updated image details
-                return response()->json([
-                    'success' => true,
-                    'status' => 200,
-                    'message' => 'User image updated successfully',
-                    'image' => $existingImage->user_image, // Return the image path
-                    'image_details' => $existingImage, // Return user details
-                ]);
-            } else {
-                // If user not found, return a 404 error
-                return response()->json([
-                    'success' => false,
-                    'status' => 404,
-                    'message' => 'User not found',
-                ], 404);
+            if ($user->user_image) {
+                $existingImagePath = public_path('src/public/' . basename($user->user_image));
+                if (File::exists($existingImagePath)) {
+                    File::delete($existingImagePath);
+                }
             }
-        } else {
-            // If no image uploaded, return a 400 error
-            return response()->json([
-                'success' => false,
-                'status' => 400,
-                'message' => 'No image uploaded',
-            ], 400);
+    
+            $user->user_image = 'src/public/' . basename($imagePath);
         }
+    
+        $user->save();
+    
+        return response()->json([
+            'success' => true,
+            'status' => 200,
+            'message' => 'User image updated successfully',
+            'image' => asset('src/public/' . basename($user->user_image)),
+            'image_details' => $user,
+        ]);
     }
-    
-    
-
     
     public function store(Request $request)
     {

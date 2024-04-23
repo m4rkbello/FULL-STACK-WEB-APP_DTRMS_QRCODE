@@ -22,7 +22,7 @@ use App\Http\Controllers\ImagesController;
 Route::get('/users',[AuthController::class, 'index']);
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
-Route::put('/update-image/{id}', [AuthController::class, 'updateImage']);
+Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);
 
 
 //EMPLOYEE
