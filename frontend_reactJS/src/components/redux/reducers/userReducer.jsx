@@ -16,7 +16,10 @@ import {
     REGISTER_USER_FAILURE,
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
-    LOGIN_USER_FAILURE
+    LOGIN_USER_FAILURE,
+    UPLOAD_AND_UPDATE_IMAGE_REQUEST,
+    UPLOAD_AND_UPDATE_IMAGE_FAILURE,
+    UPLOAD_AND_UPDATE_IMAGE_SUCCESS,
 } from '../types/userTypes.jsx';
 
 const initialState = {
@@ -25,6 +28,8 @@ const initialState = {
     error: null,
     isAuthenticated: false,
     loggedInUser: null,
+    uploadAndUpdateImageLoading: false,
+    uploadAndUpdateImageError: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -35,6 +40,7 @@ const userReducer = (state = initialState, action) => {
         case DELETE_USER_REQUEST:
         case REGISTER_USER_REQUEST:
         case LOGIN_USER_REQUEST:
+        case UPLOAD_AND_UPDATE_IMAGE_REQUEST:
             return  {
                 ...state,
                 loading: true,
@@ -77,6 +83,12 @@ const userReducer = (state = initialState, action) => {
                     loading: false,
                     error: null
                 };
+        case UPLOAD_AND_UPDATE_IMAGE_FAILURE:
+            return {
+                ...state,
+                uploadAndUpdateImageLoading: false,
+                uploadAndUpdateImageError: null,
+            };
         case FETCH_USERS_FAILURE:
         case ADD_USER_FAILURE:
         case UPDATE_USER_FAILURE:
@@ -88,6 +100,12 @@ const userReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
+        case UPLOAD_AND_UPDATE_IMAGE_FAILURE:
+            return {
+                ...state,
+                uploadAndUpdateImageLoading: false,
+                uploadAndUpdateImageError: action.payload,
+            }
         default:
             return state;
     } 
