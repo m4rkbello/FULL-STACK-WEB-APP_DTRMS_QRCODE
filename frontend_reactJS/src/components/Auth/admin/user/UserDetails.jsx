@@ -20,7 +20,7 @@ const UserDetails = (props) => {
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
 
-// console.log("IMAGES DATA", props)
+  // console.log("IMAGES DATA", props)
 
   useEffect(() => {
     //kuhaon ang data sa localStorage/Session Storage/Cookie
@@ -54,14 +54,12 @@ const UserDetails = (props) => {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
-  console.log('FINAL DATA', isAuthenticatedUser);
+  // console.log('FINAL DATA', isAuthenticatedUser);
 
   return (
 
-
-
     <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
-      <dialog id="my_modal_3" className="modal">
+      <dialog id="uploadUserUImage" className="modal">
         <div className="modal-box">
           <form method="dialog justify-center">
             <input type="file" className="file-input bg-amber-100 w-full max-w-xs" />
@@ -74,28 +72,29 @@ const UserDetails = (props) => {
         {/**
       
       */}
-      {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-        <img
-          key={index}
-          className="mask mask-circle"
-          src={user.user_image}
-          type="file"
-          style={{ backgroundColor: 'transparent', width: '30%', height: '50%' }}
-        />
+        {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+          <img
+            key={index}
+            className="mask mask-circle shadow-inner"
+            src={user.user_image}
+            type="file"
+            style={{ backgroundColor: 'transparent', width: '30%', height: '30%' }}
+          />
         ))}
 
-        <button className="btn  bg-transparent" onClick={() => document.getElementById('my_modal_3').showModal()}><FaUpload height={30} width={30} /></button>
+        <FaUpload
+          onClick={() => document.getElementById('uploadUserUImage').showModal()}
+          style={{ backgroundColor: 'transparent', border: 'none', width: '35px', height: '35px' }}
+
+        />
 
         <div className="hero-content flex-col lg:flex-row">
           <div className="flex">
             <div className="">
               {/**
-        <img
-          src={img}
-          className="max-w-sm rounded-lg shadow-2xl"
-        />
-        
-          */}
+            */}
+
+
             </div>
           </div>
 
