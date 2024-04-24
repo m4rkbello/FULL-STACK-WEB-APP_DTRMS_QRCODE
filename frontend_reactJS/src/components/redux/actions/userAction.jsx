@@ -20,7 +20,10 @@ import {
     REGISTER_USER_FAILURE,
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
-    LOGIN_USER_FAILURE
+    LOGIN_USER_FAILURE,
+    UPLOAD_AND_UPDATE_REQUEST,
+    UPLOAD_AND_UPDATE_SUCCESS,
+    UPLOAD_AND_UPDATE_FAILURE,
 } from '../types/userTypes.jsx';
 
 //MAG-FETCH UG USER
@@ -213,3 +216,15 @@ export const loginUser = userData => async dispatch => {
         });
     }
 };
+
+
+
+export const updateImage = (formData, userId) => async (dispatch) => {
+    try{
+        dispatch({type: UPLOAD_AND_UPDATE_REQUEST});
+        const uploadAndUpdateImageReqRes = await MarkBelloApi.post
+
+    } catch(error){
+
+    }
+}
