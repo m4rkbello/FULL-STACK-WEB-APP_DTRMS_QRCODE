@@ -146,6 +146,7 @@ function App(props) {
                 <div className="w-10 rounded-full">
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <img
+                    key={index}
                     alt="Tailwind CSS Navbar component"
                     src={user.user_image} 
                   />
