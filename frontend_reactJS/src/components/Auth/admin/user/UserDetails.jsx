@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 //redux-actions
-import { fetchUsers } from '../../../redux/actions/userAction';
+import { fetchUsers, uploadAndUpdateImageUser } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
 
 import img from '../../../../assets/images/pic-removebg-preview.png'
@@ -19,6 +19,7 @@ const UserDetails = (props) => {
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
+  const [image, setImage] = useState(null);
 
   // console.log("IMAGES DATA", props)
 
@@ -56,14 +57,29 @@ const UserDetails = (props) => {
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
   // console.log('FINAL DATA', isAuthenticatedUser);
 
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const handleImageUpload = () => {
+    event.preventDefault();
+    if (image) {
+      const formData = new FormData();
+      formData.append('user_image', image);
+      // Dispatch the updateImage action with formData and userId
+      props.uploadAndUpdateImageUser(formData, localStorageHasUserIdData); // Assuming you have access to localStorageHasUserIdData
+    }
+  };
+
   return (
 
     <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
       <dialog id="uploadUserUImage" className="modal">
         <div className="modal-box">
           <form method="dialog justify-center">
-            <input type="file" className="file-input bg-amber-100 w-full max-w-xs" />
-            <button className="btn btn-primary ml-5">Upload</button>
+            <input type="file" onChange={handleImageChange} className="file-input bg-amber-100 w-full max-w-xs" />
+            <button onClick={handleImageUpload} className="btn btn-primary ml-5">Upload</button>
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
         </div>
@@ -179,6 +195,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => dispatch(fetchUsers()),
   fetchEmployees: () => dispatch(fetchEmployees()),
   fetchImages: () => dispatch(fetchImages()),
+  uploadAndUpdateImageUser: (formData, userId) => dispatch(uploadAndUpdateImageUser(formData, userId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);

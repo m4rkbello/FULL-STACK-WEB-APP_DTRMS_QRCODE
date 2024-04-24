@@ -83,7 +83,7 @@ const userReducer = (state = initialState, action) => {
                     loading: false,
                     error: null
                 };
-        case UPLOAD_AND_UPDATE_IMAGE_FAILURE:
+        case UPLOAD_AND_UPDATE_IMAGE_SUCCESS:
             return {
                 ...state,
                 uploadAndUpdateImageLoading: false,

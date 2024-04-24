@@ -21,9 +21,9 @@ import {
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAILURE,
-    UPLOAD_AND_UPDATE_REQUEST,
-    UPLOAD_AND_UPDATE_SUCCESS,
-    UPLOAD_AND_UPDATE_FAILURE,
+    UPLOAD_AND_UPDATE_IMAGE_REQUEST,
+    UPLOAD_AND_UPDATE_IMAGE_FAILURE,
+    UPLOAD_AND_UPDATE_IMAGE_SUCCESS,
 } from '../types/userTypes.jsx';
 
 //MAG-FETCH UG USER
@@ -219,12 +219,24 @@ export const loginUser = userData => async dispatch => {
 
 
 
-export const updateImage = (formData, userId) => async (dispatch) => {
+export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) => {
     try{
-        dispatch({type: UPLOAD_AND_UPDATE_REQUEST});
-        const uploadAndUpdateImageReqRes = await MarkBelloApi.post
+        dispatch({type: UPLOAD_AND_UPDATE_IMAGE_REQUEST});
+        const uploadAndUpdateImageReqRes = await MarkBelloApi.post(`/update-image/${userId}`, formData, {
+            headers: {
+                'Content-Type':'multipart/form-data',
+            },
+        });
+        dispatch({
+            type: UPLOAD_AND_UPDATE_IMAGE_SUCCESS,
+            payload: response.data.user_image
+        });
 
     } catch(error){
+        dispatch({
+            type: UPLOAD_AND_UPDATE_IMAGE_FAILURE,
+            payload: error.message,
+        });
 
     }
-}
+};
