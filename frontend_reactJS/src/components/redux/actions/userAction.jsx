@@ -152,7 +152,7 @@ export const loginUser = userData => async dispatch => {
     try {
         setTimeout(() => {
             dispatch({ type: LOGIN_USER_REQUEST });
-        }, 5000);
+        }, 3000);
 
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
 
@@ -217,16 +217,59 @@ export const loginUser = userData => async dispatch => {
     }
 };
 
-
-
 export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) => {
     try{
         dispatch({type: UPLOAD_AND_UPDATE_IMAGE_REQUEST});
-        const uploadAndUpdateImageReqRes = await MarkBelloApi.post(`/update-image/${userId}`, formData, {
+        const uploadAndUpdateImageReqRes = await MarkBelloApi.post(`/api/update-image/${userId}`, formData, {
             headers: {
                 'Content-Type':'multipart/form-data',
             },
         });
+       
+        if(!uploadAndUpdateImageReqRes || uploadAndUpdateImageReqRes.data.success === false){
+            //set ug timer para mo reload .5seconds
+                toast.error(uploadAndUpdateImageReqRes.data.message,'!🥺😱😣', {
+                    position: 'top-right',
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    style: {
+                        background: '#fef3c7',
+                        color: 'red',
+                        fontSize: '20px'
+                    }
+                    
+                });
+
+                setTimeout(()=>{
+                    window.location.reload();
+                }, 5000)
+        }else{
+            toast.success('Image upload successfully!🤭😇🤗', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: '#fef3c7',
+                    color: 'green',
+                    fontSize: '17px'
+                }
+            });
+
+            setTimeout(() => {
+                window.location.reload();
+                navigate("http://localhost:5173/admin/user/profile-details");
+            }, 5000);
+
+        }
+
         dispatch({
             type: UPLOAD_AND_UPDATE_IMAGE_SUCCESS,
             payload: response.data.user_image
