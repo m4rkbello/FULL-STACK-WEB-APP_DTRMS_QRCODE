@@ -22,9 +22,8 @@ import { fetchImages } from '../../redux/actions/imageAction';
 import { useNavigate } from 'react-router-dom';
 
 
-
 const EmployeePersonalDetails = (props) => {
-    const { id } = useParams();
+    const {id} = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -76,7 +75,6 @@ const EmployeePersonalDetails = (props) => {
         };
     }
     
-
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
@@ -85,7 +83,7 @@ const EmployeePersonalDetails = (props) => {
 
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
-    console.log("DATA SA EMPLOYEES", employeesCollectionArrays);
+    // console.log("DATA SA EMPLOYEES", employeesCollectionArrays);
 
     function employeeDetails(employeesCollectionArrays, id) {
         let item = [];
@@ -102,20 +100,19 @@ const EmployeePersonalDetails = (props) => {
 
     const employee = employeeDetails(employeesCollectionArrays, id);
 
-    console.log("SPECIFIC EMPLOYEE", employee);
-    console.log("EMPLOYEE ID SELECTED", id);
-
+    // console.log("SPECIFIC EMPLOYEE", employee);
+    // console.log("EMPLOYEE ID SELECTED", id);
 
 
     const imageCollectionArrays = props.imagesData?.images?.data;
-    console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
+    // console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
 
     const getEmployeeImage = (imageCollectionArrays, employee) => {
         // Check if imageCollectionArrays is an array and not empty
         if (Array.isArray(imageCollectionArrays) && imageCollectionArrays.length > 0) {
             // Filter the array based on the condition
             const employeeId = employee.length > 0 ? employee[0].id : null;
-            console.log("DATA SA employeesList", employee);
+            // console.log("DATA SA employeesList", employee);
             return imageCollectionArrays.filter(image => image.img_emp_id === employeeId);
         } else {
           
@@ -125,7 +122,7 @@ const EmployeePersonalDetails = (props) => {
 
     const filterImage = getEmployeeImage(imageCollectionArrays, employee);
 
-    console.log("FILTERED DATA", filterImage);
+    // console.log("FILTERED DATA", filterImage);
 
     return (
         <div className="hero max-w-full">
