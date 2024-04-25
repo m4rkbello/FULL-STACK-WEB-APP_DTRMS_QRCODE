@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-
 import {
     FETCH_EMPLOYEES_REQUEST,
     FETCH_EMPLOYEES_SUCCESS,
@@ -20,7 +19,6 @@ import {
     DELETE_EMPLOYEE_SUCCESS,
     DELETE_EMPLOYEE_FAILURE,
 } from '../types/employeeTypes.jsx';
-
 
 
 //MAG-FETCH UG EMPLOYEE
@@ -106,11 +104,6 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
                 updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
               })
 
-
-            // setTimeout(() => {
-            // })
-
-            
             dispatch({
                 type: UPDATE_EMPLOYEE_SUCCESS,
                 payload: updateEmployeeResponse
@@ -150,7 +143,6 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
         }
     }
 };
-
 
 //MAG DELETE UG EMPLOYEE
 export const deleteEMPLOYEE = employeeId => async dispatch => {
