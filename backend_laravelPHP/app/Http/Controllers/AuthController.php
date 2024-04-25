@@ -121,9 +121,17 @@ class AuthController extends Controller
 
     public function updateImage(Request $request, $id)
     {
-        $request->validate([
-            'user_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+        $validator = Validator::make($request->all(), [
+            'user_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240', // Max size is 10MB lang 
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'status' => 400,
+                'message' => $validator->errors()->first('user_image'),
+            ]);
+        }
     
         $user = User::findOrFail($id);
     
