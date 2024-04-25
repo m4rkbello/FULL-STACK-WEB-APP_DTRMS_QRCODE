@@ -75,14 +75,14 @@ const userReducer = (state = initialState, action) => {
                 error: null
             };
         case REGISTER_USER_SUCCESS:
-            case LOGIN_USER_SUCCESS:
-                return {
+        case LOGIN_USER_SUCCESS:
+            return {
                     ...state,
                     isAuthenticated: true,
                     loggedInUser: action.payload,
                     loading: false,
                     error: null
-                };
+            };
         case UPLOAD_AND_UPDATE_IMAGE_SUCCESS:
             return {
                 ...state,
