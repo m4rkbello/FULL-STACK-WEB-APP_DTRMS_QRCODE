@@ -28,6 +28,7 @@ Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);
 //EMPLOYEE
 Route::get('/employees', [EmployeeController::class, 'index']);
 Route::get('/employee/{id}', [EmployeeController::class, 'show']);
+Route::post('/employee/image/{id}', [EmployeeController::class, 'uploadAndUpdateEmployeeImage']);
 
 //ATTENDANCE
 
