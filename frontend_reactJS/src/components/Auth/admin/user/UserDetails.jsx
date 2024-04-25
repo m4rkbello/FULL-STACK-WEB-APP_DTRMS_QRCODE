@@ -13,8 +13,6 @@ import { FaUpload } from "react-icons/fa6";
 import { fetchImages } from '../../../redux/actions/imageAction';
 //modal 
 
-
-
 const UserDetails = (props) => {
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
