@@ -3,15 +3,19 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //redux-actions
 import { fetchUsers, uploadAndUpdateImageUser } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
 
-import img from '../../../../assets/images/pic-removebg-preview.png'
-// import UploadImage from '../modal/UploadImage';
+
 import { FaUpload } from "react-icons/fa6";
 import { fetchImages } from '../../../redux/actions/imageAction';
 //modal 
+
+
 
 const UserDetails = (props) => {
   //FOR AUTHENTICATION-PURPOSES
@@ -65,7 +69,6 @@ const UserDetails = (props) => {
     if (image) {
       const formData = new FormData();
       formData.append('user_image', image);
-      // Dispatch the updateImage action with formData and userId
       props.uploadAndUpdateImageUser(formData, localStorageHasUserIdData); // Assuming you have access to localStorageHasUserIdData
     }
   };
@@ -73,6 +76,7 @@ const UserDetails = (props) => {
   return (
 
     <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
+    <ToastContainer />
       <dialog id="uploadUserUImage" className="modal">
         <div className="modal-box">
           <form method="dialog justify-center">
