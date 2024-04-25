@@ -6,6 +6,9 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 
 class EmployeeController extends Controller
@@ -147,4 +150,57 @@ class EmployeeController extends Controller
     {
         return Employee::destroy($id);
     }
+
+
+    public function uploadAndUpdateEmployeeImage(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'employee_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240', // Max size is 10MB lang 
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'status' => 400,
+                'message' => $validator->errors()->first('employee_image'),
+            ]);
+        }
+    
+        $user = Employee::findOrFail($id);
+    
+        if ($request->hasFile('employee_image')) {
+            $image = $request->file('employee_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = public_path('images') . '/' . $imageName;
+    
+            // Delete the previous image if it exists
+            if ($user->employee_image) {
+                $existingImagePath = public_path($user->employee_image);
+                if (File::exists($existingImagePath)) {
+                    File::delete($existingImagePath);
+                }
+            }
+    
+            // Move the new image to the images directory
+            $image->move(public_path('images'), $imageName);
+    
+            // Update the user's image path with the full URL
+            $user->employee_image = url('images/' . $imageName);
+        }
+    
+        // Save the user object
+        $user->save();
+    
+        return response()->json([
+            'success' => true,
+            'status' => 200,
+            'message' => 'Employee image updated successfully',
+            'image_url' => $user->employee_image, // Directly use the updated user image path
+            'image_details' => $user,
+        ]);
+    }
+    
+
+
+
 }
