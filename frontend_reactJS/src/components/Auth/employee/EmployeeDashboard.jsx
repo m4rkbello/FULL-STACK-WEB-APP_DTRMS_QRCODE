@@ -76,8 +76,6 @@ const EmployeeDashboard = (props) => {
                         <form method="dialog">
                         <div className="grid grid-cols-3 gap-6">
 
-                        
-                        
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text text-black text-2xl">Fullname</span>
@@ -85,7 +83,7 @@ const EmployeeDashboard = (props) => {
                             <input
                                 key=""
                                 name="employee_fullname" //key para sa form data
-                                onChange=""
+                               
                                 type="text"
                                 placeholder="text"
                                 className="input input-bordered shadow-2xl text-2xl  text-amber-100"
@@ -100,7 +98,6 @@ const EmployeeDashboard = (props) => {
                             <input
                                 key=""
                                 name="employee_fullname" //key para sa form data
-                                onChange=""
                                 type="text"
                                 placeholder="text"
                                 className="input input-bordered shadow-2xl text-2xl  text-amber-100"
