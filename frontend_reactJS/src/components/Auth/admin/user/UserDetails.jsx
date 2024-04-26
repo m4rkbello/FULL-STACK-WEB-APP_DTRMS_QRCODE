@@ -87,9 +87,7 @@ const UserDetails = (props) => {
         </div>
       </dialog>
       <div className="hero-content flex flex-col items-center">
-        {/**
-      
-      */}
+       
         {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
           <img
             key={index}
