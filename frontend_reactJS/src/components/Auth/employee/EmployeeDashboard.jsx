@@ -149,13 +149,11 @@ const EmployeeDashboard = (props) => {
                                             <td className="md:table-cell">
                                                 <div className="flex items-center gap-3">
                                                     <div className="avatar">
-                                                    {/**
-                                                    
-                                                    
+                                                  
                                                     <div className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                    <img src="" />
+                                                    <img src={item.employee_image} />
                                                     </div>
-                                                */}
+                                                
                                                 {filterImage && filterImage.map((image, imageIndex) => (
                                                      <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
                                                     <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
