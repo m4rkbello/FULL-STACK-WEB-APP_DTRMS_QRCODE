@@ -83,7 +83,7 @@ const EmployeePersonalDetails = (props) => {
 
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
-    // console.log("DATA SA EMPLOYEES", employeesCollectionArrays);
+    console.log("DATA SA EMPLOYEES", employeesCollectionArrays);
 
     function employeeDetails(employeesCollectionArrays, id) {
         let item = [];
@@ -100,12 +100,12 @@ const EmployeePersonalDetails = (props) => {
 
     const employee = employeeDetails(employeesCollectionArrays, id);
 
-    // console.log("SPECIFIC EMPLOYEE", employee);
-    // console.log("EMPLOYEE ID SELECTED", id);
+    console.log("SPECIFIC EMPLOYEE", employee);
+    console.log("EMPLOYEE ID SELECTED", id);
 
 
     const imageCollectionArrays = props.imagesData?.images?.data;
-    // console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
+    console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
 
     const getEmployeeImage = (imageCollectionArrays, employee) => {
         // Check if imageCollectionArrays is an array and not empty
@@ -113,7 +113,7 @@ const EmployeePersonalDetails = (props) => {
             // Filter the array based on the condition
             const employeeId = employee.length > 0 ? employee[0].id : null;
             // console.log("DATA SA employeesList", employee);
-            return imageCollectionArrays.filter(image => image.img_emp_id === employeeId);
+            return imageCollectionArrays.filter(image => image.employee_image === employeeId);
         } else {
           
             return [];
@@ -122,7 +122,7 @@ const EmployeePersonalDetails = (props) => {
 
     const filterImage = getEmployeeImage(imageCollectionArrays, employee);
 
-    // console.log("FILTERED DATA", filterImage);
+    console.log("FILTERED DATA", filterImage);
 
     return (
         <div className="hero max-w-full">
@@ -313,9 +313,9 @@ const EmployeePersonalDetails = (props) => {
                
                
                         <div className="hero-content flex flex-col items-center">
-                        {filterImage && filterImage.map((image, imageIndex) => (
+                        {employee && employee.map((image, imageIndex) => (
                             <img key={imageIndex}
-                            img src={image.img_url} alt={`Avatar ${image.img_name}`} 
+                            img src={image.employee_image} alt={`Avatar ${image.employee_image}`} 
                                 type="file"
                                 className='rounded-full'
                                 width="15%"
@@ -325,12 +325,16 @@ const EmployeePersonalDetails = (props) => {
                             <div className="hero-content flex-col lg:flex-row py-0 px-0">
                                 <div className="flex">
                                     <div className="">
-                                        {/**
+                                    {employee && employee.map((image, index) => {
                                         <img
-                                        src={img}
+                                        key={index}
+                                        src={image.employee_image}
                                         className="max-w-sm rounded-lg shadow-2xl"
                                         />
-                                        */}
+
+                                    })}
+                                       
+                                    
                                     </div>
                                 </div>
                                 <div className="flex-1">
