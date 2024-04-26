@@ -231,7 +231,6 @@ const EmployeePersonalDetails = (props) => {
                                                 className="select shadow-2xl text-2xl w-full max-w-xs"
                                                 style={{ backgroundColor: 'black', color: "#fef3c6" }}
                                                 onChange={handleChangeUpdateData}
-
                                             >
                                                 <option value="1">Active</option>
                                                 <option value="0">Inactive</option>
