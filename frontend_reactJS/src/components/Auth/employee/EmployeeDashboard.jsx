@@ -7,10 +7,13 @@ import { Link } from 'react-router-dom';
 import { FaEye } from "react-icons/fa6";
 import { MdAutoDelete } from "react-icons/md";
 import { IoIosPersonAdd } from "react-icons/io";
+import { HiStatusOnline } from "react-icons/hi";
+import { MdOutlineNoAccounts } from "react-icons/md";
+import { RiAccountPinCircleFill } from "react-icons/ri";
 import { useEffect } from 'react';
 
 //REDUX
-import {  fetchEmployees, addEmployee } from '../../redux/actions/employeeAction';
+import { fetchEmployees, addEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
 
 
@@ -52,13 +55,13 @@ const EmployeeDashboard = (props) => {
             const employeeId = employeesList.length != 0 ? employeesList[0].id : null;
             console.log("DATA SA employeesList", employeeId);
 
-            for(let x=0; x < employeeId.length; x++){
+            for (let x = 0; x < employeeId.length; x++) {
                 item.push(employeeId[x]);
             }
-          
+
             return imageCollectionArrays.filter(image => image.img_emp_id == 1);
         } else {
-          
+
             return [];
         }
     };
@@ -71,44 +74,44 @@ const EmployeeDashboard = (props) => {
         <div className="hero max-w-full">
             <dialog id="addEmployeeModal" className="modal ">
                 <div className="modal-box w-11/12 max-w-5xl bg-amber-100">
-                <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
+                    <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
                     <div className="modal-action">
                         <form method="dialog">
-                        <div className="grid grid-cols-3 gap-6">
+                            <div className="grid grid-cols-3 gap-6">
 
-                        <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-black text-2xl">Fullname</span>
-                        </label>
-                            <input
-                                key=""
-                                name="employee_fullname" //key para sa form data
-                               
-                                type="text"
-                                placeholder="text"
-                                className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                              
-                                style={{ backgroundColor: 'black' }}
-                            />
-                        </div>
-                        <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-black text-2xl">Fullname</span>
-                        </label>
-                            <input
-                                key=""
-                                name="employee_fullname" //key para sa form data
-                                type="text"
-                                placeholder="text"
-                                className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                              
-                                style={{ backgroundColor: 'black' }}
-                            />
-                        </div>
-                        </div>
-                           
-                        <br />
-                        <button className="btn pr-5">Add</button>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Fullname</span>
+                                    </label>
+                                    <input
+                                        key=""
+                                        name="employee_fullname" //key para sa form data
+
+                                        type="text"
+                                        placeholder="text"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Fullname</span>
+                                    </label>
+                                    <input
+                                        key=""
+                                        name="employee_fullname" //key para sa form data
+                                        type="text"
+                                        placeholder="text"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                </div>
+                            </div>
+
+                            <br />
+                            <button className="btn pr-5">Add</button>
                             <button className="btn">Close</button>
                         </form>
                     </div>
@@ -126,7 +129,7 @@ const EmployeeDashboard = (props) => {
                         </center>
                     </span>
 
-                    <div className="overflow-x-auto border-2 hover:border-t-4  bg-slate-400 text-black">
+                    <div className="overflow-x-auto border-2 hover:border-t-4  bg-amber-100 text-black">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table className="table py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
@@ -149,16 +152,16 @@ const EmployeeDashboard = (props) => {
                                             <td className="md:table-cell">
                                                 <div className="flex items-center gap-3">
                                                     <div className="avatar">
-                                                  
-                                                    <div className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                    <img src={item.employee_image} />
-                                                    </div>
-                                                
-                                                {filterImage && filterImage.map((image, imageIndex) => (
-                                                     <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                    <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
-                                                </div>
-                                                ))}
+
+                                                        <div className="mask mask-squircle w-12 h-12 shadow-2xl">
+                                                            <img src={item.employee_image} />
+                                                        </div>
+
+                                                        {filterImage && filterImage.map((image, imageIndex) => (
+                                                            <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
+                                                                <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
+                                                            </div>
+                                                        ))}
                                                     </div>
                                                 </div>
                                             </td>
@@ -179,24 +182,30 @@ const EmployeeDashboard = (props) => {
                                                 {item.employee_position}
                                             </td>
                                             <td className="md:table-cell">
-                                                {item.employee_status === 1 ? 'Active' : 'Inactive'}
-
+                                                {item.employee_status === 1 ?
+                                                    <RiAccountPinCircleFill 
+                                                        style={{ fontSize: "25px", color: "green" }}
+                                                    /> :   <MdOutlineNoAccounts 
+                                                    style={{ fontSize: "25px", color: "red" }}
+                                                /> }
                                             </td>
-                                            <td className="flex items-center pr-2 md:table-cell" >
-                                                <Link to={`/employee/details/${item.id}`} className="text-black mx-2">
-                                                    <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
-                                                </Link>
-                                                <MdAutoDelete style={{ fontSize: "20px", color: "black" }} />
+                                            <td className="flex md:table-cell" >
+                                                <div class="flex">
+                                                    <div class="flex-none mr-3">
+                                                        <Link to={`/employee/details/${item.id}`} className="text-black">
+                                                            <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
+                                                        </Link>
+
+                                                    </div>
+                                                    <div class="flex-none mr-3">
+                                                        <MdAutoDelete style={{ fontSize: "20px", color: "black" }} />
+                                                    </div>
+                                                </div>
                                             </td>
-
-
                                         </tr>
                                     ))}
                                 </tbody>
-
-
                             </table>
-
                         ) : (
                             <h1>NO DATA</h1>
                         )}
