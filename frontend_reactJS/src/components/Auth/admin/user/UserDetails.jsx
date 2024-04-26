@@ -2,9 +2,12 @@
 /* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 
 //redux-actions
 import { fetchUsers, uploadAndUpdateImageUser } from '../../../redux/actions/userAction';
@@ -76,6 +79,11 @@ const UserDetails = (props) => {
   return (
 
     <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
+    <button style={{ marginRight: "93%", marginBottom: "65%" }} >
+    <Link to="/">
+        <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
+    </Link>
+</button>
     <ToastContainer />
       <dialog id="uploadUserUImage" className="modal">
         <div className="modal-box">
