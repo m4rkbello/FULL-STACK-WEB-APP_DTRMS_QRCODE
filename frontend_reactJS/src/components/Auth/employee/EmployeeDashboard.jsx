@@ -96,7 +96,7 @@ const EmployeeDashboard = (props) => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Fullname</span>
+                                        <span className="label-text text-black text-2xl">Email</span>
                                     </label>
                                     <input
                                         key=""
@@ -108,11 +108,80 @@ const EmployeeDashboard = (props) => {
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
+                                <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Contact No.</span>
+                                </label>
+                                    <input
+                                        key=""
+                                        name="employee_fullname" //key para sa form data
+                                        type="text"
+                                        placeholder="text"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                </div>
                             </div>
+                            <div className="grid grid-cols-3 gap-6">
+
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Position</span>
+                                </label>
+                                <input
+                                    key=""
+                                    name="employee_fullname" //key para sa form data
+
+                                    type="text"
+                                    placeholder="text"
+                                    className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+
+                                    style={{ backgroundColor: 'black' }}
+                                />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Role</span>
+                                </label>
+                                <input
+                                    key=""
+                                    name="employee_fullname" //key para sa form data
+                                    type="text"
+                                    placeholder="text"
+                                    className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+
+                                    style={{ backgroundColor: 'black' }}
+                                />
+                            </div>
+                            <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-black text-2xl">Status</span>
+                            </label>
+                                <input
+                                    key=""
+                                    name="employee_fullname" //key para sa form data
+                                    type="text"
+                                    placeholder="text"
+                                    className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+
+                                    style={{ backgroundColor: 'black' }}
+                                />
+                            </div>
+                        </div>
 
                             <br />
-                            <button className="btn pr-5">Add</button>
+                            <div className='flex '>
+                            <div className='flex-initial pr-2'>
+                            <button className="btn">Add</button>
+                            </div>
+                            <div className='flex-initial'>
                             <button className="btn">Close</button>
+                            </div>
+
+                            
+                            
+                            </div>
                         </form>
                     </div>
                 </div>
