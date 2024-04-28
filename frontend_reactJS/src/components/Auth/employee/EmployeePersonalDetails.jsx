@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 //DISPATCH-ACTION REDUX-CORE
-import { fetchEmployees, updateEmployee } from '../../redux/actions/employeeAction';
+import { fetchEmployees, updateEmployee, uploadAndUpdateImageEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
 
 
@@ -78,6 +78,7 @@ const EmployeePersonalDetails = (props) => {
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
+        props.uploadAndUpdateImageEmployee();
 
     }, []);
 
@@ -98,20 +99,19 @@ const EmployeePersonalDetails = (props) => {
         return item;
     }
 
+
     const employee = employeeDetails(employeesCollectionArrays, id);
 
-
     const handleImageEmployeeChange = (e) => {
-        setImage(e.target.files[0]);
+        setImageEmployee(e.target.files[0]);
       };
 
-    
   const handleUploadImageEmployee = () => {
     event.preventDefault();
     if (imageEmployee) {
       const formData = new FormData();
       formData.append('employee_image', imageEmployee);
-      props.uploadAndUpdateImageUser(formData, localStorageHasUserIdData); // Assuming you have access to localStorageHasUserIdData
+      props.uploadAndUpdateImageEmployee(formData, id); 
     }
   };
     
@@ -471,7 +471,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchEmployees: () => dispatch(fetchEmployees()),
         updateEmployee: (employeeId, updateEmployeeData) => dispatch(updateEmployee(employeeId, updateEmployeeData)),
         fetchImages: () => dispatch(fetchImages()),
-        
+        uploadAndUpdateImageEmployee: (formData, employeeId) => dispatch(uploadAndUpdateImageEmployee(formData, employeeId)),
     };
 };
 
