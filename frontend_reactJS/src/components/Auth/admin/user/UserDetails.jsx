@@ -101,6 +101,7 @@ const UserDetails = (props) => {
             key={index}
             className="mask mask-circle shadow-inner"
             src={user.user_image}
+            alt="No Upload User Profile"
             type="file"
             style={{ backgroundColor: 'transparent', width: '30%', height: '30%' }}
           />
