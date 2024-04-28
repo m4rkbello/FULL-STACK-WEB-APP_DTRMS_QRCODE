@@ -86,8 +86,6 @@ const employeeReducer = (state = initialState, action) => {
                 uploadAndUpdateImageLoadingEmployee: true,
                 uploadAndUpdateImageEmployeeError: action.payload,
             }
-
-
         default:
             return state;
     } 
