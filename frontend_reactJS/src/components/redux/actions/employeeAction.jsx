@@ -18,6 +18,9 @@ import {
     DELETE_EMPLOYEE_REQUEST,
     DELETE_EMPLOYEE_SUCCESS,
     DELETE_EMPLOYEE_FAILURE,
+    UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST,
+    UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS,
+    UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE,
 } from '../types/employeeTypes.jsx';
 
 
@@ -144,11 +147,11 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
     }
 };
 
-//MAG DELETE UG EMPLOYEE
+//REDUX-ACTION DISPATCH - FLAG TO 0 OR DELETE DEPENDE SA USECASE
 export const deleteEMPLOYEE = employeeId => async dispatch => {
     try {
         dispatch({ type: DELETE_EMPLOYEE_REQUEST });
-        // Perform async operation, e.g., send delete request to an API
+    
         await MarkBelloApi.delete(employeeId);
         dispatch({
             type: DELETE_EMPLOYEE_SUCCESS,
@@ -159,6 +162,76 @@ export const deleteEMPLOYEE = employeeId => async dispatch => {
             type: DELETE_EMPLOYEE_FAILURE,
             payload: error.message
         });
+    }
+};
+
+//REDUX-ACTION DISPATCH - UPLOAD UG IMAGE UG UPDATE - METHOD POST
+export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dispatch) => {
+    try{
+        dispatch({type: UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST});
+        const uploadAndUpdateImageEmpReqRes = await MarkBelloApi.post(`/api/employee/image/${employeeId}`, formData, {
+            headers: {
+                'Content-Type':'multipart/form-data',
+            },
+        });
+
+        console.log("DATA", uploadAndUpdateImageEmpReqRes);
+
+        if(uploadAndUpdateImageEmpReqRes.data.success === false){
+            //set ug timer para mo reload .5seconds
+                toast.error(uploadAndUpdateImageEmpReqRes.data.message,'!🥺😱😣', {
+                    position: 'top-right',
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    style: {
+                        background: '#fef3c7',
+                        color: 'red',
+                        fontSize: '20px'
+                    }
+                    
+                });
+
+                // setTimeout(()=>{
+                //     window.location.reload();
+                // }, 5000)
+        }else{
+            toast.success('Employee Image upload successfully!🤭😇🤗', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: '#fef3c7',
+                    color: 'green',
+                    fontSize: '17px'
+                }
+            });
+
+            setTimeout(() => {
+                window.location.reload();
+                navigate("http://localhost:5173/admin/user/profile-details");
+            }, 5000);
+
+        }
+
+        dispatch({
+            type: UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS,
+            payload: response.data.user_image
+        });
+
+    } catch(error){
+        dispatch({
+            type: UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE,
+            payload: error.message,
+        });
+
     }
 };
 
