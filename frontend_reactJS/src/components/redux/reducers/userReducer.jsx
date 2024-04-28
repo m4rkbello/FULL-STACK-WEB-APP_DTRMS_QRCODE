@@ -28,8 +28,8 @@ const initialState = {
     error: null,
     isAuthenticated: false,
     loggedInUser: null,
-    uploadAndUpdateImageLoading: false,
-    uploadAndUpdateImageError: null,
+    uploadAndUpdateImageUserLoading: false,
+    uploadAndUpdateImageUserError: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -86,8 +86,8 @@ const userReducer = (state = initialState, action) => {
         case UPLOAD_AND_UPDATE_IMAGE_SUCCESS:
             return {
                 ...state,
-                uploadAndUpdateImageLoading: false,
-                uploadAndUpdateImageError: null,
+                uploadAndUpdateImageUserLoading: false,
+                uploadAndUpdateImageUserError: null,
             };
         case FETCH_USERS_FAILURE:
         case ADD_USER_FAILURE:
@@ -103,8 +103,8 @@ const userReducer = (state = initialState, action) => {
         case UPLOAD_AND_UPDATE_IMAGE_FAILURE:
             return {
                 ...state,
-                uploadAndUpdateImageLoading: false,
-                uploadAndUpdateImageError: action.payload,
+                uploadAndUpdateImageUserLoading: false,
+                uploadAndUpdateImageUserError: action.payload,
             }
         default:
             return state;
