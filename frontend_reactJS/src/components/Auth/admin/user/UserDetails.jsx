@@ -113,14 +113,7 @@ const UserDetails = (props) => {
         />
 
         <div className="hero-content flex-col lg:flex-row">
-          <div className="flex">
-            <div className="">
-              {/**
-            */}
-
-
-            </div>
-          </div>
+     
 
           <div className="flex-1">
             <div className="grid grid-cols-2 gap-0">
