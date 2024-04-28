@@ -26,6 +26,7 @@ const EmployeePersonalDetails = (props) => {
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [imageEmployee, setImageEmployee] = useState(null);
 
     const updateEmployeeNavigator = useNavigate();
 
@@ -67,7 +68,6 @@ const EmployeePersonalDetails = (props) => {
     const handleSumbitEmployeeData = async (event) => {
         event.preventDefault();
         setIsLoading(true);
-
         try {
             props.updateEmployee(id, formDataEmployeeUpdate);
         } catch (error) {
@@ -100,8 +100,21 @@ const EmployeePersonalDetails = (props) => {
 
     const employee = employeeDetails(employeesCollectionArrays, id);
 
-    
 
+    const handleImageEmployeeChange = (e) => {
+        setImage(e.target.files[0]);
+      };
+
+    
+  const handleUploadImageEmployee = () => {
+    event.preventDefault();
+    if (imageEmployee) {
+      const formData = new FormData();
+      formData.append('employee_image', imageEmployee);
+      props.uploadAndUpdateImageUser(formData, localStorageHasUserIdData); // Assuming you have access to localStorageHasUserIdData
+    }
+  };
+    
     return (
         <div className="hero max-w-full">
             <ToastContainer />
@@ -268,13 +281,13 @@ const EmployeePersonalDetails = (props) => {
             )}
 
             <dialog id="uploadEmployeeProfile" className="modal">
-                <div className="modal-box bg-black">
-                    <form method="dialog">
-                        <input type="file" className="file-input  w-full max-w-md" style={{ backgroundColor: '#fef3c6' }} />
-                        <button onclick className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" >✕</button>
-                    </form>
-
-                </div>
+            <div className="modal-box">
+            <form method="dialog justify-center">
+              <input type="file" onChange={handleImageEmployeeChange} className="file-input bg-amber-100 w-full max-w-xs" />
+              <button onClick={handleUploadImageEmployee} className="btn btn-primary ml-5">Upload</button>
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+          </div>
             </dialog>
 
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
@@ -457,7 +470,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchEmployees: () => dispatch(fetchEmployees()),
         updateEmployee: (employeeId, updateEmployeeData) => dispatch(updateEmployee(employeeId, updateEmployeeData)),
-        fetchImages: () => dispatch(fetchImages())
+        fetchImages: () => dispatch(fetchImages()),
+        
     };
 };
 
