@@ -173,10 +173,10 @@ const EmployeeDashboard = (props) => {
                             <br />
                             <div className='flex '>
                             <div className='flex-initial pr-2'>
-                            <button className="btn">Add</button>
+                            <button className="btn bg-black text-amber-100">Add</button>
                             </div>
                             <div className='flex-initial'>
-                            <button className="btn">Close</button>
+                            <button className="btn bg-black text-amber-100">Close</button>
                             </div>
 
                             
