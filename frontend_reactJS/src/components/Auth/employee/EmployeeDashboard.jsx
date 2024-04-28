@@ -18,8 +18,7 @@ import { fetchImages } from '../../redux/actions/imageAction';
 
 
 const EmployeeDashboard = (props) => {
-    console.log("DATA SA PROPS", props)
-
+ 
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
@@ -68,6 +67,17 @@ const EmployeeDashboard = (props) => {
 
     const filterImage = getEmployeeImage(imageCollectionArrays, employeesList);
     console.log("DATA PICTURE", filterImage);
+
+    
+    const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
+        employee_fullname: '',
+        employee_email: '',
+        employee_contact_no: '',
+        employee_role: '',
+        employee_position: '',
+        employee_department: '',
+        employee_status: ''
+    });
 
     return (
 
