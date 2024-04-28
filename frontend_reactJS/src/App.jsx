@@ -147,7 +147,7 @@ function App(props) {
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <img
                     key={index}
-                    alt="Tailwind CSS Navbar component"
+                    alt="No Upload User Profile"
                     src={user.user_image} 
                   />
                 ))}
