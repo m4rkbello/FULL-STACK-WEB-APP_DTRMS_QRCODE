@@ -30,6 +30,7 @@ const EmployeePersonalDetails = (props) => {
 
     const updateEmployeeNavigator = useNavigate();
 
+    //e-open ang modal
     const handleOpenModal = () => {
         setIsModalOpen(true);
         const editEmployeeDetailsDialog = document.getElementById('editEmployeeDetails');
@@ -38,6 +39,7 @@ const EmployeePersonalDetails = (props) => {
         }
     };
 
+    //close ang modal
     const handleCloseModal = () => {
         setIsModalOpen(false);
         const editEmployeeDetailsDialog = document.getElementById('editEmployeeDetails');
