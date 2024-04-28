@@ -30,7 +30,6 @@ const EmployeePersonalDetails = (props) => {
 
     const updateEmployeeNavigator = useNavigate();
 
-
     const handleOpenModal = () => {
         setIsModalOpen(true);
         const editEmployeeDetailsDialog = document.getElementById('editEmployeeDetails');
@@ -74,18 +73,9 @@ const EmployeePersonalDetails = (props) => {
             window.alert("ERROR");
         };
     }
-
-    useEffect(() => {
-        props.fetchEmployees();
-        props.fetchImages();
-        props.uploadAndUpdateImageEmployee();
-
-    }, []);
-
-
+    
     const employeesCollectionArrays = props.employeesData?.employees?.data;
-    console.log("DATA SA EMPLOYEES", employeesCollectionArrays);
-
+    
     function employeeDetails(employeesCollectionArrays, id) {
         let item = [];
 
@@ -98,23 +88,27 @@ const EmployeePersonalDetails = (props) => {
         }
         return item;
     }
-
-
+    
     const employee = employeeDetails(employeesCollectionArrays, id);
-
+    
     const handleImageEmployeeChange = (e) => {
         setImageEmployee(e.target.files[0]);
       };
 
   const handleUploadImageEmployee = () => {
     event.preventDefault();
-    if (imageEmployee) {
-      const formData = new FormData();
-      formData.append('employee_image', imageEmployee);
-      props.uploadAndUpdateImageEmployee(formData, id); 
-    }
-  };
-    
+        if (imageEmployee) {
+        const formData = new FormData();
+        formData.append('employee_image', imageEmployee);
+        props.uploadAndUpdateImageEmployee(formData, id); 
+        }
+    };
+
+    useEffect(() => {
+        props.fetchEmployees();
+        props.fetchImages();
+    }, []);
+
     return (
         <div className="hero max-w-full">
             <ToastContainer />
@@ -457,7 +451,6 @@ const EmployeePersonalDetails = (props) => {
         </div>
     )
 }
-
 
 const mapStateToProps = (state) => {
     return {
