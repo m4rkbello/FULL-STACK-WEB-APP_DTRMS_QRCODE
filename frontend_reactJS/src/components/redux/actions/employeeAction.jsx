@@ -167,8 +167,8 @@ export const deleteEMPLOYEE = employeeId => async dispatch => {
 
 //REDUX-ACTION DISPATCH - UPLOAD UG IMAGE UG UPDATE - METHOD POST
 export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dispatch) => {
-    try{
-        dispatch({type: UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST});
+    try {
+        dispatch({ type: UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST });
         const uploadAndUpdateImageEmpReqRes = await MarkBelloApi.post(`/api/employee/image/${employeeId}`, formData, {
             headers: {
                 'Content-Type':'multipart/form-data',
@@ -177,28 +177,24 @@ export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dis
 
         console.log("DATA", uploadAndUpdateImageEmpReqRes);
 
-        if(uploadAndUpdateImageEmpReqRes.data.success === false){
-            //set ug timer para mo reload .5seconds
-                toast.error(uploadAndUpdateImageEmpReqRes.data.message,'!🥺😱😣', {
-                    position: 'top-right',
-                    autoClose: 10000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    style: {
-                        background: '#fef3c7',
-                        color: 'red',
-                        fontSize: '20px'
-                    }
-                    
-                });
-
-                // setTimeout(()=>{
-                //     window.location.reload();
-                // }, 5000)
-        }else{
+        if (uploadAndUpdateImageEmpReqRes.data.success === false) {
+            // Display error toast if the upload was unsuccessful
+            toast.error(uploadAndUpdateImageEmpReqRes.data.message,'!🥺😱😣', {
+                position: 'top-right',
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: '#fef3c7',
+                    color: 'red',
+                    fontSize: '20px'
+                }
+            });
+        } else {
+            // Display success toast if the upload was successful
             toast.success('Employee Image upload successfully!🤭😇🤗', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -214,24 +210,23 @@ export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dis
                 }
             });
 
+            // Dispatch the success action only if the upload was successful
+            dispatch({
+                type: UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS,
+                payload: uploadAndUpdateImageEmpReqRes.data.employee_image // Use the correct response object
+            });
+
+            // Reload or navigate after a successful upload, not needed if error occurs
             setTimeout(() => {
                 window.location.reload();
                 navigate("http://localhost:5173/admin/user/profile-details");
             }, 5000);
-
         }
-
-        dispatch({
-            type: UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS,
-            payload: response.data.user_image
-        });
-
-    } catch(error){
+    } catch(error) {
         dispatch({
             type: UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE,
             payload: error.message,
         });
-
     }
 };
 
