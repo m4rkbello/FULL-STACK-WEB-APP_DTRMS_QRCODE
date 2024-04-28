@@ -171,7 +171,7 @@ class EmployeeController extends Controller
         if ($request->hasFile('employee_image')) {
             $image = $request->file('employee_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = public_path('images') . '/' . $imageName;
+            // $imagePath = public_path('images') . '/' . $imageName;
     
             // Delete the previous image if it exists
             if ($user->employee_image) {
