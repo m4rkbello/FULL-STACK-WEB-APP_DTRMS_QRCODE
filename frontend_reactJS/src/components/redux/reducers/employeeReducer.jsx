@@ -10,13 +10,18 @@ import {
     UPDATE_EMPLOYEE_FAILURE,
     DELETE_EMPLOYEE_REQUEST,
     DELETE_EMPLOYEE_SUCCESS,
-    DELETE_EMPLOYEE_FAILURE
+    DELETE_EMPLOYEE_FAILURE,
+    UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST,
+    UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS,
+    UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE
 } from '../types/employeeTypes.jsx';
 
 const initialState = {
     employees: [],
     loading: false,
     error: null,
+    uploadAndUpdateImageLoadingEmployee: false,
+    uploadAndUpdateImageEmployeeError: null,
 };
 
 const employeeReducer = (state = initialState, action) => {
@@ -25,6 +30,7 @@ const employeeReducer = (state = initialState, action) => {
         case ADD_EMPLOYEE_REQUEST:
         case UPDATE_EMPLOYEE_REQUEST:
         case DELETE_EMPLOYEE_REQUEST:
+        case UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST:
             return  {
                 ...state,
                 loading: true,
@@ -58,6 +64,13 @@ const employeeReducer = (state = initialState, action) => {
                 loading: false,
                 error: null
             };
+        case UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS:
+            return {
+                ...state,
+                uploadAndUpdateImageLoadingEmployee: false,
+                uploadAndUpdateImageEmployeeError: null,
+
+            }
         case FETCH_EMPLOYEES_FAILURE:
         case ADD_EMPLOYEE_FAILURE:
         case UPDATE_EMPLOYEE_FAILURE:
@@ -67,6 +80,14 @@ const employeeReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
+        case UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE:
+            return {
+                ...state,
+                uploadAndUpdateImageLoadingEmployee: true,
+                uploadAndUpdateImageEmployeeError: action.payload,
+            }
+
+
         default:
             return state;
     } 
