@@ -21,7 +21,6 @@ import { fetchImages } from '../../redux/actions/imageAction';
 
 import { useNavigate } from 'react-router-dom';
 
-
 const EmployeePersonalDetails = (props) => {
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);

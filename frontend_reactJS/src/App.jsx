@@ -97,7 +97,6 @@ function App(props) {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
-  // console.log("FINAL DATA", isAuthenticatedUser);
 
   return (
     <div className="flex flex-col h-screen">
