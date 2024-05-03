@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-
-
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaEye } from "react-icons/fa6";
@@ -16,6 +14,10 @@ import { useEffect, useState } from 'react';
 //REDUX
 import { fetchEmployees, addEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
+
+//TOASTER
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const EmployeeDashboard = (props) => {
@@ -80,6 +82,7 @@ const EmployeeDashboard = (props) => {
         try {
             // Ensure that the action creator function is called correctly
             await props.addEmployee(formDataAddEmployee);
+            
         } catch(error) {
             console.error(error);
         }
@@ -89,6 +92,7 @@ const EmployeeDashboard = (props) => {
     return (
 
         <div className="hero max-w-full">
+        <ToastContainer />
             <dialog id="addEmployeeModal" className="modal ">
                 <div className="modal-box w-11/12 max-w-5xl bg-amber-100">
                     <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
