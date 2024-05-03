@@ -46,7 +46,6 @@ export const fetchEmployees = () => async dispatch => {
 export const addEmployee = newEmployee => async dispatch => {
     try {
         dispatch({ type: ADD_EMPLOYEE_REQUEST });
-        // Perform async operation, e.g., send data to an API
         const addEmployee = await MarkBelloApi.post(newEmployee);
         dispatch({
             type: ADD_EMPLOYEE_SUCCESS,
