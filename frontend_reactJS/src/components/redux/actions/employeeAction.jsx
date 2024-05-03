@@ -48,7 +48,7 @@ export const addEmployee = AddEmployee => async dispatch => {
         dispatch({ type: ADD_EMPLOYEE_REQUEST });
         const addEmployeeRequestResponse = await MarkBelloApi.post('/api/employee-registration', AddEmployee);
 
-        if (!addEmployeeRequestResponse) {
+        if (!addEmployeeRequestResponse.data.success) {
             // Handle the case where the response is empty
             toast.error('Employee not added! 🥺⚠️👽', {
                 position: 'top-right',
@@ -82,10 +82,10 @@ export const addEmployee = AddEmployee => async dispatch => {
             });
         }
         
-        setTimeout(() => {
-            window.location.reload();
-            // updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
-          })
+        // setTimeout(() => {
+        //     window.location.reload();
+        //     // updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
+        //   })
 
     
         dispatch({
