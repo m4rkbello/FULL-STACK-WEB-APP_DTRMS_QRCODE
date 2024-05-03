@@ -127,6 +127,21 @@ const EmployeeDashboard = (props) => {
                                     />
                                 </div>
                                 <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Department</span>
+                                </label>
+                                <input
+                                    key=""
+                                    name="employee_department" //key para sa form data
+                                    type="text"
+                                    placeholder="Enter email"
+                                    className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                    onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_department: e.target.value}))}
+                                    value={formDataAddEmployee.employee_department}    
+                                    style={{ backgroundColor: 'black' }}
+                                />
+                            </div>
+                                <div className="form-control">
                                     <label className="label">
                                         <span className="label-text text-black text-2xl">Contact No.</span>
                                     </label>
@@ -319,7 +334,7 @@ const mapDispatchToProps = (dispatch) => {
 
         fetchEmployees: () => dispatch(fetchEmployees()),
         fetchImages: () => dispatch(fetchImages()),
-        addEmployee: (newEmployee) => dispatch(addEmployee(newEmployee))
+        addEmployee: (AddEmployee) => dispatch(addEmployee(AddEmployee))
 
     };
 };
