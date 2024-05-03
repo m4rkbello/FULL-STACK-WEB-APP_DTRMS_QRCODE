@@ -43,13 +43,13 @@ const employeeReducer = (state = initialState, action) => {
                 loading: false,
                 error: null
             };
-        case ADD_EMPLOYEE_SUCCESS:
-            return {
-                ...state,
-                employees: state.employees.filter(employee => employee.id !== action.payload),
-                loading: false,
-                error: null
-            };
+            case ADD_EMPLOYEE_SUCCESS:
+                return {
+                  ...state,
+                  employees: [...state.employees, action.payload],
+                  loading: false,
+                  error: null
+                };
         case UPDATE_EMPLOYEE_SUCCESS:
             return {
                 ...state,
