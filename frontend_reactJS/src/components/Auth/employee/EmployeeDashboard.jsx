@@ -72,22 +72,19 @@ const EmployeeDashboard = (props) => {
     };
 
     const filterImage = getEmployeeImage(imageCollectionArrays, employeesList);
-    console.log("DATA PICTURE", filterImage);
+    // console.log("DATA PICTURE", filterImage);
 
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormDataEmployeeAddEmployee(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
-
-    const handleAddEmployee = () => {
-        e.preventDefault();
-        props.addEmployee(formDataAddEmployee);
-    };
-
+    const handleAddEmployee = async (event) => {
+        event.preventDefault();
+        
+        try {
+            // Ensure that the action creator function is called correctly
+            await props.addEmployee(formDataAddEmployee);
+        } catch(error) {
+            console.error(error);
+        }
+    }
+    
 
     return (
 
@@ -104,12 +101,12 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-black text-2xl">Fullname</span>
                                     </label>
                                     <input
-                                        key=""
+                                      
                                         name="employee_fullname" //key para sa form data
                                         type="text"
                                         placeholder="Enter Fullname"
                                         className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                        onChange={handleInputChange}
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_fullname: e.target.value }))}
                                         style={{ backgroundColor: 'black' }}
                                         value={formDataAddEmployee.employee_fullname}
                                     />
@@ -124,7 +121,7 @@ const EmployeeDashboard = (props) => {
                                         type="text"
                                         placeholder="Enter email"
                                         className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                        onChange={handleInputChange}
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_email: e.target.value}))}
                                         value={formDataAddEmployee.employee_email}    
                                         style={{ backgroundColor: 'black' }}
                                     />
@@ -134,12 +131,12 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-black text-2xl">Contact No.</span>
                                     </label>
                                     <input
-                                        key=""
-                                        name="employee_fullname" //key para sa form data
+                
+                                        name="employee_contact_no" //key para sa form data
                                         type="text"
                                         placeholder="Enter contact no."
                                         className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                        onChange={handleInputChange}
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState =>({...prevState, employee_contact_no: e.target.value}))}
                                         value={formDataAddEmployee.employee_contact_no}
                                         style={{ backgroundColor: 'black' }}
                                     />
@@ -152,12 +149,12 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-black text-2xl">Position</span>
                                     </label>
                                     <input
-                                        key=""
-                                        name="employee_fullname" //key para sa form data
+                                    
+                                        name="employee_position" //key para sa form data
                                         type="text"
                                         placeholder="Enter Position"
                                         className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                        onChange={handleInputChange}
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_position: e.target.value}))}
                                         value={formDataAddEmployee.employee_position}
                                         style={{ backgroundColor: 'black' }}
                                     />
@@ -167,12 +164,13 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-black text-2xl">Role</span>
                                     </label>
                                     <input
-                                        key=""
-                                        name="employee_fullname" //key para sa form data
+                                  
+                                        name="employee_role" //key para sa form data
                                         type="text"
                                         placeholder="Enter role"
                                         className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                        onChange={handleInputChange}
+                                       
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_role: e.target.value}))}
                                         value={formDataAddEmployee.employee_role}
                                         style={{ backgroundColor: 'black' }}
                                     />
@@ -182,12 +180,12 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-black text-2xl">Status</span>
                                     </label>
                                     <input
-                                        key=""
-                                        name="employee_fullname" //key para sa form data
+                                      
+                                        name="employee_status" //key para sa form data
                                         type="text"
                                         placeholder="Enter status(Active/Inactive)"
                                         className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                        onChange={handleInputChange}
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_status: e.target.value}))}
                                         value={formDataAddEmployee.employee_status}
                                         style={{ backgroundColor: 'black' }}
                                     />
@@ -197,7 +195,7 @@ const EmployeeDashboard = (props) => {
                             <br />
                             <div className='flex '>
                                 <div className='flex-initial pr-2'>
-                                    <button className="btn bg-black text-amber-100">Add</button>
+                                    <button type="submit" className="btn bg-black text-amber-100">Add</button>
                                 </div>
                                 <div className='flex-initial'>
                                     <button className="btn bg-black text-amber-100">Close</button>
