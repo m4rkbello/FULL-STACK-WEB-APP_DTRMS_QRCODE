@@ -47,6 +47,47 @@ export const addEmployee = AddEmployee => async dispatch => {
     try {
         dispatch({ type: ADD_EMPLOYEE_REQUEST });
         const addEmployeeRequestResponse = await MarkBelloApi.post('/api/employee-registration', AddEmployee);
+
+        if (!addEmployeeRequestResponse) {
+            // Handle the case where the response is empty
+            toast.error('Employee not added! 🥺⚠️👽', {
+                position: 'top-right',
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '15px'
+                }
+            });
+        } else {
+            // Handle the case where the update is successful
+            toast.success('Employee Added Successfully!👌👌👌', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
+            });
+        }
+        
+        setTimeout(() => {
+            window.location.reload();
+            // updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
+          })
+
+    
         dispatch({
             type: ADD_EMPLOYEE_SUCCESS,
             payload: addEmployeeRequestResponse
