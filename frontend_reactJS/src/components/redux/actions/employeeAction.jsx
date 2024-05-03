@@ -43,13 +43,13 @@ export const fetchEmployees = () => async dispatch => {
 };
 
 //MAG ADD UG EMPLOYEE 
-export const addEmployee = newEmployee => async dispatch => {
+export const addEmployee = AddEmployee => async dispatch => {
     try {
         dispatch({ type: ADD_EMPLOYEE_REQUEST });
-        const addEmployee = await MarkBelloApi.post(newEmployee);
+        const addEmployeeRequestResponse = await MarkBelloApi.post('/api/employee-registration', AddEmployee);
         dispatch({
             type: ADD_EMPLOYEE_SUCCESS,
-            payload: addEmployee
+            payload: addEmployeeRequestResponse
         });
     } catch (error) {
         dispatch({
