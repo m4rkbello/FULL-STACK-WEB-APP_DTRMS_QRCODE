@@ -2,6 +2,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 
+
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaEye } from "react-icons/fa6";
@@ -10,7 +11,7 @@ import { IoIosPersonAdd } from "react-icons/io";
 import { HiStatusOnline } from "react-icons/hi";
 import { MdOutlineNoAccounts } from "react-icons/md";
 import { RiAccountPinCircleFill } from "react-icons/ri";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 //REDUX
 import { fetchEmployees, addEmployee } from '../../redux/actions/employeeAction';
@@ -18,7 +19,17 @@ import { fetchImages } from '../../redux/actions/imageAction';
 
 
 const EmployeeDashboard = (props) => {
- 
+
+    const [formDataAddEmployee, setFormDataEmployeeAddEmployee] = useState({
+        employee_fullname: '',
+        employee_email: '',
+        employee_contact_no: '',
+        employee_role: '',
+        employee_position: '',
+        employee_department: '',
+        employee_status: ''
+    });
+
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
@@ -30,7 +41,6 @@ const EmployeeDashboard = (props) => {
         let item = [];
         if (employeesCollectionArrays) {
             for (let ez = 0; ez < employeesCollectionArrays.length; ez++) {
-
                 item.push(employeesCollectionArrays[ez]);
             }
         }
@@ -38,10 +48,6 @@ const EmployeeDashboard = (props) => {
     }
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
-
-    const handleAddNewEmploye = (newEmployee) => {
-        props.addEmployee(newEmployee);
-    }
 
     const imageCollectionArrays = props.imagesData?.images?.data;
     console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
@@ -68,16 +74,20 @@ const EmployeeDashboard = (props) => {
     const filterImage = getEmployeeImage(imageCollectionArrays, employeesList);
     console.log("DATA PICTURE", filterImage);
 
-    
-    const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
-        employee_fullname: '',
-        employee_email: '',
-        employee_contact_no: '',
-        employee_role: '',
-        employee_position: '',
-        employee_department: '',
-        employee_status: ''
-    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormDataEmployeeAddEmployee(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const handleAddEmployee = () => {
+        e.preventDefault();
+        props.addEmployee(formDataAddEmployee);
+    };
+
 
     return (
 
@@ -86,7 +96,7 @@ const EmployeeDashboard = (props) => {
                 <div className="modal-box w-11/12 max-w-5xl bg-amber-100">
                     <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
                     <div className="modal-action">
-                        <form method="dialog">
+                        <form method="dialog" onSubmit={handleAddEmployee}>
                             <div className="grid grid-cols-3 gap-6">
 
                                 <div className="form-control">
@@ -96,12 +106,12 @@ const EmployeeDashboard = (props) => {
                                     <input
                                         key=""
                                         name="employee_fullname" //key para sa form data
-
                                         type="text"
-                                        placeholder="text"
+                                        placeholder="Enter Fullname"
                                         className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-
+                                        onChange={handleInputChange}
                                         style={{ backgroundColor: 'black' }}
+                                        value={formDataAddEmployee.employee_fullname}
                                     />
                                 </div>
                                 <div className="form-control">
@@ -112,85 +122,86 @@ const EmployeeDashboard = (props) => {
                                         key=""
                                         name="employee_fullname" //key para sa form data
                                         type="text"
-                                        placeholder="text"
+                                        placeholder="Enter email"
                                         className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-
+                                        onChange={handleInputChange}
+                                        value={formDataAddEmployee.employee_email}    
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
                                 <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-black text-2xl">Contact No.</span>
-                                </label>
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Contact No.</span>
+                                    </label>
                                     <input
                                         key=""
                                         name="employee_fullname" //key para sa form data
                                         type="text"
-                                        placeholder="text"
+                                        placeholder="Enter contact no."
                                         className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-
+                                        onChange={handleInputChange}
+                                        value={formDataAddEmployee.employee_contact_no}
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
                             </div>
                             <div className="grid grid-cols-3 gap-6">
 
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-black text-2xl">Position</span>
-                                </label>
-                                <input
-                                    key=""
-                                    name="employee_fullname" //key para sa form data
-
-                                    type="text"
-                                    placeholder="text"
-                                    className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-
-                                    style={{ backgroundColor: 'black' }}
-                                />
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Position</span>
+                                    </label>
+                                    <input
+                                        key=""
+                                        name="employee_fullname" //key para sa form data
+                                        type="text"
+                                        placeholder="Enter Position"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        onChange={handleInputChange}
+                                        value={formDataAddEmployee.employee_position}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Role</span>
+                                    </label>
+                                    <input
+                                        key=""
+                                        name="employee_fullname" //key para sa form data
+                                        type="text"
+                                        placeholder="Enter role"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        onChange={handleInputChange}
+                                        value={formDataAddEmployee.employee_role}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Status</span>
+                                    </label>
+                                    <input
+                                        key=""
+                                        name="employee_fullname" //key para sa form data
+                                        type="text"
+                                        placeholder="Enter status(Active/Inactive)"
+                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        onChange={handleInputChange}
+                                        value={formDataAddEmployee.employee_status}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                </div>
                             </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-black text-2xl">Role</span>
-                                </label>
-                                <input
-                                    key=""
-                                    name="employee_fullname" //key para sa form data
-                                    type="text"
-                                    placeholder="text"
-                                    className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-
-                                    style={{ backgroundColor: 'black' }}
-                                />
-                            </div>
-                            <div className="form-control">
-                            <label className="label">
-                                <span className="label-text text-black text-2xl">Status</span>
-                            </label>
-                                <input
-                                    key=""
-                                    name="employee_fullname" //key para sa form data
-                                    type="text"
-                                    placeholder="text"
-                                    className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-
-                                    style={{ backgroundColor: 'black' }}
-                                />
-                            </div>
-                        </div>
 
                             <br />
                             <div className='flex '>
-                            <div className='flex-initial pr-2'>
-                            <button className="btn bg-black text-amber-100">Add</button>
-                            </div>
-                            <div className='flex-initial'>
-                            <button className="btn bg-black text-amber-100">Close</button>
-                            </div>
-
-                            
-                            
+                                <div className='flex-initial pr-2'>
+                                    <button className="btn bg-black text-amber-100">Add</button>
+                                </div>
+                                <div className='flex-initial'>
+                                    <button className="btn bg-black text-amber-100">Close</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -262,21 +273,21 @@ const EmployeeDashboard = (props) => {
                                             </td>
                                             <td className="md:table-cell">
                                                 {item.employee_status === 1 ?
-                                                    <RiAccountPinCircleFill 
+                                                    <RiAccountPinCircleFill
                                                         style={{ fontSize: "25px", color: "green" }}
-                                                    /> :   <MdOutlineNoAccounts 
-                                                    style={{ fontSize: "25px", color: "red" }}
-                                                /> }
+                                                    /> : <MdOutlineNoAccounts
+                                                        style={{ fontSize: "25px", color: "red" }}
+                                                    />}
                                             </td>
                                             <td className="flex md:table-cell" >
-                                                <div class="flex">
-                                                    <div class="flex-none mr-3">
+                                                <div className="flex">
+                                                    <div className="flex-none mr-3">
                                                         <Link to={`/employee/details/${item.id}`} className="text-black">
                                                             <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
                                                         </Link>
 
                                                     </div>
-                                                    <div class="flex-none mr-3">
+                                                    <div className="flex-none mr-3">
                                                         <MdAutoDelete style={{ fontSize: "20px", color: "black" }} />
                                                     </div>
                                                 </div>
