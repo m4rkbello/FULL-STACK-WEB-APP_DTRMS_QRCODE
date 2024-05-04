@@ -51,6 +51,8 @@ const EmployeeDashboard = (props) => {
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
 
+    console.log("DATA SA employeesList", employeesList);
+
     const imageCollectionArrays = props.imagesData?.images?.data;
     console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
 
@@ -74,25 +76,45 @@ const EmployeeDashboard = (props) => {
     };
 
     const filterImage = getEmployeeImage(imageCollectionArrays, employeesList);
-    // console.log("DATA PICTURE", filterImage);
 
     const handleAddEmployee = async (event) => {
         event.preventDefault();
-        
         try {
-            // Ensure that the action creator function is called correctly
+            //ipasa ang data sa form na naa sa setter
             await props.addEmployee(formDataAddEmployee);
             
         } catch(error) {
             console.error(error);
         }
     }
+
+    if (props.loading) {
+        return <div>
+        <span className="loading loading-ball loading-xs">TEST</span>
+<span className="loading loading-ball loading-sm"></span>
+<span className="loading loading-ball loading-md"></span>
+<span className="loading loading-ball loading-lg"></span>
+        </div>;
+    }
     
 
     return (
-
         <div className="hero max-w-full">
         <ToastContainer />
+   
+        <dialog id="removeEmployee" className="modal">
+          <div className="modal-box">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 className="font-bold text-lg">REMOVE EMPLOYEE?</h3>
+            <p className="py-4">Are you sure you want to remove this Employee?</p>
+            <button className='btn bg-amber-100'>Yes</button>
+          </div>
+        </dialog>
+
+
             <dialog id="addEmployeeModal" className="modal ">
                 <div className="modal-box w-11/12 max-w-5xl bg-amber-100">
                     <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
@@ -254,7 +276,7 @@ const EmployeeDashboard = (props) => {
                                 </thead>
                                 <tbody>
 
-                                    {employeesList && employeesList.map((item, index) => (
+                                    {employeesList[0].employee_status != 2 && employeesList && employeesList.map((item, index) => (
                                         <tr key={index} className="md:table-row">
                                             <td className="md:table-cell">
                                                 <div className="flex items-center gap-3">
@@ -305,7 +327,9 @@ const EmployeeDashboard = (props) => {
 
                                                     </div>
                                                     <div className="flex-none mr-3">
-                                                        <MdAutoDelete style={{ fontSize: "20px", color: "black" }} />
+                                                        <MdAutoDelete 
+                                                        onClick={() => document.getElementById('removeEmployee').showModal()}
+                                                         style={{ fontSize: "20px", color: "black" }} />
                                                     </div>
                                                 </div>
                                             </td>
@@ -326,20 +350,18 @@ const EmployeeDashboard = (props) => {
 }
 
 const mapStateToProps = (state) => {
-
     return {
         employeesData: state.employeeState,
-        imagesData: state.imageState
+        imagesData: state.imageState,
+        loading: state.employeeState.loading,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
         fetchEmployees: () => dispatch(fetchEmployees()),
         fetchImages: () => dispatch(fetchImages()),
         addEmployee: (AddEmployee) => dispatch(addEmployee(AddEmployee))
-
     };
 };
 
