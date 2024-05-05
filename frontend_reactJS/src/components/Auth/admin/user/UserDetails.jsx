@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,6 +6,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
+import { MdEditSquare } from "react-icons/md";
+import { TbPasswordUser } from "react-icons/tb";
 
 //redux-actions
 import { fetchUsers, uploadAndUpdateImageUser } from '../../../redux/actions/userAction';
@@ -25,6 +25,7 @@ const UserDetails = (props) => {
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
   const [image, setImage] = useState(null);
+  const [isEditing, setIsEditing] = useState(false); // State to determine if editing is enabled
 
   // console.log("IMAGES DATA", props)
 
@@ -48,7 +49,6 @@ const UserDetails = (props) => {
   function getUserAuthenticated(usersCollection) {
     let item = [];
 
-    // Check if usersCollection is defined and not null
     if (usersCollection && usersCollection.length) {
       for (let ez = 0; ez < usersCollection.length; ez++) {
         if (usersCollection[ez].id == sessionStorageHasUserIdData && usersCollection[ez].id == localStorageHasUserIdData){
@@ -60,8 +60,6 @@ const UserDetails = (props) => {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
-  // console.log('FINAL DATA', isAuthenticatedUser);
-
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -79,12 +77,12 @@ const UserDetails = (props) => {
   return (
 
     <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
-    <button style={{ marginRight: "93%", marginBottom: "65%" }} >
-    <Link to="/">
-        <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
-    </Link>
-</button>
-    <ToastContainer />
+      <button style={{ marginRight: "93%", marginBottom: "65%" }} >
+        <Link to="/">
+          <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
+        </Link>
+      </button>
+      <ToastContainer />
       <dialog id="uploadUserUImage" className="modal">
         <div className="modal-box">
           <form method="dialog justify-center">
@@ -103,82 +101,92 @@ const UserDetails = (props) => {
             src={user.user_image}
             alt="No Upload User Profile"
             type="file"
-            style={{ backgroundColor: 'transparent', width: '30%', height: '30%' }}
+            style={{ backgroundColor: 'black', width: '30%', height: '30%' }}
           />
         ))}
 
         <FaUpload
           onClick={() => document.getElementById('uploadUserUImage').showModal()}
-          style={{ backgroundColor: 'transparent', border: 'none', width: '35px', height: '35px' }}
+          style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
 
         />
 
         <div className="hero-content flex-col lg:flex-row">
-     
-
-          <div className="flex-1">
-            <div className="grid grid-cols-2 gap-0">
+          <div className="flex-1 pr-10 pl-10">
+            <div className="grid grid-cols-2 gap-10">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Firstname</span>
+                  <span className="label-text text-3xl">Firstname</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
                     key={index}
                     type="text"
                     placeholder="text"
-                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_firstname}
+                    disabled={!isEditing} // Disable input when not editing
                   />
                 ))}
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-3xl">Lastname</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
                     key={index}
                     type="text"
-                    placeholder="email"
-                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                    placeholder="text"
+                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_lastname}
+                    disabled={!isEditing} // Disable input when not editing
                   />
                 ))}
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-3xl">Email</span>
+                </label>
+                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    placeholder="text"
+                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    defaultValue={user.user_email}
+                    disabled={!isEditing} // Disable input when not editing
+                  />
+                ))}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-3xl">Contact</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
                     key={index}
                     type="text"
                     placeholder="email"
-                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                    defaultValue={user.user_email}
-                  />
-                ))}
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    placeholder="contact no"
-                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_contact_no}
-
+                    disabled={!isEditing} // Disable input when not editing
                   />
                 ))}
               </div>
+              {/* Other input fields */}
             </div>
             <br />
-            <button className="btn btn-primary p-5 m-2">Edit Details</button>
-            <button className="btn btn-primary p-5">Change Password</button>
+            <button onClick={() => setIsEditing(!isEditing)} className="btn bg-black mr-3">
+              {isEditing ? <FaSave style={{ backgroundColor: 'transparent', color: ' #fef3c6', border: 'none', width: '25px', height: '25px' }} /> 
+              :
+              <MdEditSquare style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} /> }
+            </button>
+            <button className="btn bg-black">
+            <TbPasswordUser 
+            style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }}
+            />
+            </button>
           </div>
         </div>
       </div>
