@@ -12,8 +12,10 @@ import { RiAccountPinCircleFill } from "react-icons/ri";
 import { useEffect, useState } from 'react';
 
 //REDUX
-import { fetchEmployees, addEmployee } from '../../redux/actions/employeeAction';
+import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
+
+
 
 //TOASTER
 import { ToastContainer } from 'react-toastify';
@@ -31,6 +33,8 @@ const EmployeeDashboard = (props) => {
         employee_department: '',
         employee_status: ''
     });
+
+    const [deactivateEmployeeId, setDeactivateEmployeeId] = useState(null);
 
     useEffect(() => {
         props.fetchEmployees();
@@ -88,12 +92,21 @@ const EmployeeDashboard = (props) => {
         }
     }
 
+    const handleDeactivateEmployee = async (employeeId) => {
+        try {
+          // Dispatch action to remove employee with the specified ID
+          await props.deactivateEmployee(deactivateEmployeeId);
+        } catch(error) {
+          console.error(error);
+        }
+      }
+
     if (props.loading) {
         return <div>
         <span className="loading loading-ball loading-xs"></span>
-<span className="loading loading-ball loading-sm"></span>
-<span className="loading loading-ball loading-md"></span>
-<span className="loading loading-ball loading-lg"></span>
+        <span className="loading loading-ball loading-sm"></span>
+        <span className="loading loading-ball loading-md"></span>
+        <span className="loading loading-ball loading-lg"></span>
         </div>;
     }
     
@@ -101,11 +114,7 @@ const EmployeeDashboard = (props) => {
     return (
         
         <div className="hero max-w-full">
-        
         <ToastContainer />
-
-        
-   
         <dialog id="removeEmployee" className="modal">
           <div className="modal-box">
             <form method="dialog">
@@ -114,10 +123,9 @@ const EmployeeDashboard = (props) => {
             </form>
             <h3 className="font-bold text-lg">REMOVE EMPLOYEE?</h3>
             <p className="py-4">Are you sure you want to remove this Employee?</p>
-            <button className='btn bg-amber-100'>Yes</button>
+            <button onClick={() => handleDeactivateEmployee(deactivateEmployeeId)} className='btn bg-amber-100'>Yes</button>
           </div>
         </dialog>
-
 
             <dialog id="addEmployeeModal" className="modal ">
                 <div className="modal-box w-11/12 max-w-5xl bg-amber-100">
@@ -369,8 +377,11 @@ const EmployeeDashboard = (props) => {
 
                                                     </div>
                                                     <div className="flex-none mr-3">
-                                                        <MdAutoDelete 
-                                                        onClick={() => document.getElementById('removeEmployee').showModal()}
+                                                        <MdAutoDelete
+                                                        onClick={() => {
+                                                                setDeactivateEmployeeId(item.id); 
+                                                                document.getElementById('removeEmployee').showModal()
+                                                            }}
                                                          style={{ fontSize: "20px", color: "black" }} />
                                                     </div>
                                                 </div>
@@ -404,7 +415,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchEmployees: () => dispatch(fetchEmployees()),
         fetchImages: () => dispatch(fetchImages()),
-        addEmployee: (AddEmployee) => dispatch(addEmployee(AddEmployee))
+        addEmployee: (AddEmployee) => dispatch(addEmployee(AddEmployee)),
+        deactivateEmployee: (employeeId) => dispatch(deactivateEmployee(employeeId))
     };
 };
 
