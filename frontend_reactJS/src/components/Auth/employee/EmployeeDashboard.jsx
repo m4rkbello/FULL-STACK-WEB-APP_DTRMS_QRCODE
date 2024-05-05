@@ -277,7 +277,8 @@ const EmployeeDashboard = (props) => {
                                 </thead>
                                 <tbody>
 
-                                    {employeesList[0].employee_status != 2 && employeesList && employeesList.map((item, index) => (
+                                    {employeesList && employeesList.map((item, index) => (
+                                        item.employee_status != 0 && (
                                         <tr key={index} className="md:table-row">
                                             <td className="md:table-cell">
                                                 <div className="flex items-center gap-3">
@@ -338,6 +339,7 @@ const EmployeeDashboard = (props) => {
                                                 </div>
                                             </td>
                                         </tr>
+                                        )
                                     ))}
                                 </tbody>
                             </table>
