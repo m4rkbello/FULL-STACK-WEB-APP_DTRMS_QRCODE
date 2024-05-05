@@ -23,7 +23,7 @@ Route::get('/users',[AuthController::class, 'index']);
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
 Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);
-
+Route::put('/user/{id}', [AuthController::class, 'update']);
 
 //EMPLOYEE
 Route::get('/employees', [EmployeeController::class, 'index']);
