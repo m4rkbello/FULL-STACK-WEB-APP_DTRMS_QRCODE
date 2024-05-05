@@ -59,56 +59,56 @@ const Register = ({registerUser}) => {
 
            <div className="hero min-h-screen bg-transparent shadow-md">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-center">
             <h1 className="text-5xl font-bold text-black">REGISTER</h1>
             <p className="py-6 text-black">.</p>
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-amber-100 via-black to-black/50 to-black/50">
 
                     <form className="card-body">
-                        <span className="text-center text-3xl py-3 px-3">REGISTER</span>
+
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Firstname</span>
+                                <span className="label-text text-xl text-black">Firstname</span>
                             </label>
                             <input type="text" value={localFirstName} onChange={(e) => setLocalFirstName(e.target.value)} placeholder="name" className="input input-bordered grow bg-amber-100 text-blac" required />
                         </div>
                         <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Lastname</span>
+                            <span className="label-text text-xl text-black">Lastname</span>
                         </label>
                         <input type="text" value={localLastName} onChange={(e) => setLocalLastName(e.target.value)} placeholder="name" className="input input-bordered grow bg-amber-100 text-blac" required />
                     </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text text-xl text-black">Email</span>
                             </label>
                             <input type="email" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} placeholder="email" className="input input-bordered grow bg-amber-100 text-blac" required />
                         </div>
                         <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Contact No.</span>
+                            <span className="label-text text-xl text-black">Contact No.</span>
                         </label>
                         <input type="text" value={localContactNo} onChange={(e) => setLocalContactNo(e.target.value)} placeholder="contact no." className="input input-bordered grow bg-amber-100 text-blac" required />
                     </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Password</span>
+                                <span className="label-text text-xl text-black">Password</span>
                             </label>
                           
                             <input type="password" value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} placeholder="password" className="input input-bordered grow bg-amber-100 text-blacK" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Confirm Password</span>
+                                <span className="label-text text-xl text-black">Confirm Password</span>
                             </label>
                             <input type="password" value={localConfirmPassword} onChange={(e) => setLocalConfirmPassword(e.target.value)} placeholder="confirm password" className="input input-bordered grow bg-amber-100 text-blac" required />
                             <label className="label">
-                                <Link to="/resetpassword" className="label-text-alt link link-hover">Forgot password?</Link>
+                                <Link to="/resetpassword" className="label-text text-xl text-black-alt link link-hover">Forgot password?</Link>
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button onClick={handleRegisterUserRequestAndResponse} className="btn btn-primary">Register</button>
+                            <button onClick={handleRegisterUserRequestAndResponse} className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-amber-100 text-amber-100 hover:text-black  text-2xl">Register</button>
                         </div>
                         <center>
                         <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
