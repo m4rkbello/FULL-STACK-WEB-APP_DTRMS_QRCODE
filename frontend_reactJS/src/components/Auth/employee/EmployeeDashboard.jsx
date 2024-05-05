@@ -263,7 +263,7 @@ const EmployeeDashboard = (props) => {
 
             <div className="hero bg-amber-100 rounded-lg">
                 <div className="bg-black">
-                <div class="flex flex-wrap">
+                <div className="flex flex-wrap">
                     <div>
                     <div className="text-sm breadcrumbs mb-10 bg-transparent">
                     <ul>
