@@ -116,8 +116,12 @@ class AuthController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $user->update($request->all());
+
+        return response($user, 201);
     }
+
 
     public function updateImage(Request $request, $id)
     {
