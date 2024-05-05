@@ -15,13 +15,15 @@ import Register from './components/Auth/admin/Register';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import Department from './components/Auth/admin/department/Department';
 
-
 //EMPLOYEE
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
 import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import FourOFourNotFound from './components/Auth/admin/pages/404NotFound';
+import ArchiveEmployee from './components/Auth/employee/ArchiveEmployee';
+
+
 
 
 //REDUX-DISPATCH ACTIONS
@@ -206,6 +208,7 @@ function App(props) {
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                   <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
                   <Route path="/department" element={<Department />} />
+                  <Route path="/archieve" element={<ArchiveEmployee />} />
                   </Routes>
                   </>
                 ) : (
@@ -234,6 +237,11 @@ function App(props) {
                     Employees List
                   </Link>
                 </li>
+                <li>
+                <Link to="/archieve" className='text-2xl'>
+                  Employee Archieve
+                </Link>
+              </li>
                 <li>
                   <Link to="/content" className='text-2xl'>
                     Content Test
