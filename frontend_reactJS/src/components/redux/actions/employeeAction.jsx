@@ -142,10 +142,10 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
                 }
             });
             
-            setTimeout(() => {
-                window.location.reload();
-                updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
-              })
+            // setTimeout(() => {
+            //     window.location.reload();
+            //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
+            //   })
 
             dispatch({
                 type: UPDATE_EMPLOYEE_SUCCESS,
@@ -188,15 +188,61 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
 };
 
 //REDUX-ACTION DISPATCH - FLAG TO 0 OR DELETE DEPENDE SA USECASE
-export const deleteEMPLOYEE = employeeId => async dispatch => {
+export const deactivateEmployee = employeeId => async dispatch => {
     try {
         dispatch({ type: DELETE_EMPLOYEE_REQUEST });
     
-        await MarkBelloApi.delete(employeeId);
-        dispatch({
-            type: DELETE_EMPLOYEE_SUCCESS,
-            payload: employeeId
-        });
+       const deactivateEmployeeReqAndRes = await MarkBelloApi.put(`/api/employee/deactivated/${employeeId}`);
+       console.log("DATA", deactivateEmployeeReqAndRes);
+
+        if (deactivateEmployeeReqAndRes.success != true) {
+            // Handle the case where the response is empty
+            toast.error('Employee not deactivated! 🥺⚠️👽', {
+                position: 'top-right',
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '15px'
+                }
+            });
+        } else {
+            // Handle the case where the update is successful
+            toast.success('Employee deactivated Successfully!👌👌👌', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
+            });
+            
+            // setTimeout(() => {
+            //     window.location.reload();
+            //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
+            //   })
+
+        
+            dispatch({
+                type: DELETE_EMPLOYEE_SUCCESS,
+                payload: deactivateEmployeeReqAndRes
+            });
+
+        }
+
+
+
     } catch (error) {
         dispatch({
             type: DELETE_EMPLOYEE_FAILURE,
