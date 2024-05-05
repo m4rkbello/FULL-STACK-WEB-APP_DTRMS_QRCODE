@@ -265,6 +265,7 @@ const EmployeeDashboard = (props) => {
                                 <thead className=" text-black ">
                                     <tr className="md:table-row" style={{ fontSize: "15px", color: "black" }}>
                                         <th className="md:table-cell" >Avatar</th>
+                                        <th className="md:table-cell">Id</th>
                                         <th className="md:table-cell">Fullname</th>
                                         <th className="md:table-cell">Email</th>
                                         <th className="md:table-cell">Contact No.</th>
@@ -294,6 +295,9 @@ const EmployeeDashboard = (props) => {
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td className="md:table-cell">
+                                            {item.id}
+                                        </td>
                                             <td className="md:table-cell">
                                                 {item.employee_fullname}
                                             </td>
