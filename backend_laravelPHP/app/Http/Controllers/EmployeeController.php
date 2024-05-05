@@ -138,9 +138,14 @@ class EmployeeController extends Controller
     public function deactivate(Request $request, string $id)
     {
         $employee = Employee::find($id);
-        $employee->update(['employee_status'=>0]);
+        $employee->update(['employee_status' => 0]);
 
-        return response($employee, 201);
+        return response()->json([
+            'success' => true,
+            'status' => 201,
+            'message' => 'Employee deactivated successfully',
+            'data' => $employee
+        ]);
     }
 
     /**
