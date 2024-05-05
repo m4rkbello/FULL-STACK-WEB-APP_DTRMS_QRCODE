@@ -65,20 +65,25 @@ export const addUser = newUser => async dispatch => {
 //MAG UPDATE UG USER GAMIT ID
 export const updateUser = (userId, updatedUserData) => async dispatch => {
     try {
-        dispatch({ type: UPDATE_USER_REQUEST });
-        // Perform async operation, e.g., send updated data to an API
-        const updatedUser = await MarkBelloApi.put(userId, updatedUserData);
-        dispatch({
-            type: UPDATE_USER_SUCCESS,
-            payload: updatedUser
-        });
+      dispatch({ type: UPDATE_USER_REQUEST });
+  
+      // Perform async operation, e.g., send updated data to an API
+      const response = await MarkBelloApi.put(`/api/user/${userId}`, updatedUserData);
+      const updatedUser = response.data; // Assuming the API returns the updated user data
+  
+      dispatch({
+        type: UPDATE_USER_SUCCESS,
+        payload: updatedUser,
+      });
     } catch (error) {
-        dispatch({
-            type: UPDATE_USER_FAILURE,
-            payload: error.message
-        });
+      dispatch({
+        type: UPDATE_USER_FAILURE,
+        payload: error.message,
+      });
     }
-};
+  };
+
+
 
 //MAG DELETE UG USER
 export const deleteUser = userId => async dispatch => {

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
@@ -10,7 +11,7 @@ import { MdEditSquare } from "react-icons/md";
 import { TbPasswordUser } from "react-icons/tb";
 
 //redux-actions
-import { fetchUsers, uploadAndUpdateImageUser } from '../../../redux/actions/userAction';
+import { fetchUsers, updateUser, uploadAndUpdateImageUser } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
 
 
@@ -19,30 +20,49 @@ import { fetchImages } from '../../../redux/actions/imageAction';
 //modal 
 
 
-
 const UserDetails = (props) => {
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
   const [image, setImage] = useState(null);
-  const [isEditing, setIsEditing] = useState(false); // State to determine if editing is enabled
+  const [isEditing, setIsEditing] = useState(false); // e enable niya or disabled
+  //maghandle sa data sa forms-input
+  const [userData, setUserData] = useState({
+    user_firstname:'',
+    user_lastname:'',
+    user_email:'',
+    user_contact_no:'',
+  });
 
-  // console.log("IMAGES DATA", props)
+  //naga hold ug sa formData
+  const handleUpdateInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
 
-  useEffect(() => {
-    //kuhaon ang data sa localStorage/Session Storage/Cookie
-    const localStorageHasUserId = localStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
-    const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
+  console.log("ID", localStorageHasUserIdData);
 
-    setLocalStorageHasUserId(localStorageHasUserId);
-    setSessionStorageHasUserId(sessionStorageHasUserId);
-
-    props.fetchUsers();
-    props.fetchEmployees();
-    props.fetchImages();
-
-  }, []);
-
+  const handleUpdateUser = () => {
+    try {
+      // Check if userData has any changes 
+      const hasChanges = Object.values(userData).some(value => value !== '');
+  
+      if (hasChanges) {
+        props.updateUser(localStorageHasUserIdData, userData); // Pass updated userData
+        setIsEditing(!isEditing); // Toggle editing mode
+        toast.success('User updated successfully.');
+      } else {
+        // No changes detected, toggle editing mode without updating user data
+        setIsEditing(!isEditing);
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
+      toast.error('Failed to update user. Please try again later.');
+    }
+  };
 
   const usersCollection = props?.users;
 
@@ -73,6 +93,30 @@ const UserDetails = (props) => {
       props.uploadAndUpdateImageUser(formData, localStorageHasUserIdData); // Assuming you have access to localStorageHasUserIdData
     }
   };
+
+  useEffect(() => {
+    //kuhaon ang data sa localStorage/Session Storage/Cookie
+    const localStorageHasUserId = localStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
+    const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
+
+    setLocalStorageHasUserId(localStorageHasUserId);
+    setSessionStorageHasUserId(sessionStorageHasUserId);
+
+    props.fetchUsers();
+    props.fetchEmployees();
+    props.fetchImages();
+
+  }, []);
+
+  //para sa loading request if loading pa
+  if (props.loading) {
+    return <div>
+    <span className="loading loading-ball loading-xs"></span>
+    <span className="loading loading-ball loading-sm"></span>
+    <span className="loading loading-ball loading-md"></span>
+    <span className="loading loading-ball loading-lg"></span>
+    </div>;
+}
 
   return (
 
@@ -123,8 +167,10 @@ const UserDetails = (props) => {
                     key={index}
                     type="text"
                     placeholder="text"
+                    name="user_firstname"
                     className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_firstname}
+                    onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
                   />
                 ))}
@@ -138,8 +184,10 @@ const UserDetails = (props) => {
                     key={index}
                     type="text"
                     placeholder="text"
+                    name="user_lastname"
                     className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_lastname}
+                    onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
                   />
                 ))}
@@ -153,8 +201,10 @@ const UserDetails = (props) => {
                     key={index}
                     type="text"
                     placeholder="text"
+                    name="user_email"
                     className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_email}
+                    onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
                   />
                 ))}
@@ -168,8 +218,10 @@ const UserDetails = (props) => {
                     key={index}
                     type="text"
                     placeholder="email"
+                    name="user_contact_no"
                     className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_contact_no}
+                    onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
                   />
                 ))}
@@ -177,11 +229,12 @@ const UserDetails = (props) => {
               {/* Other input fields */}
             </div>
             <br />
-            <button onClick={() => setIsEditing(!isEditing)} className="btn bg-black mr-3">
-              {isEditing ? <FaSave style={{ backgroundColor: 'transparent', color: ' #fef3c6', border: 'none', width: '25px', height: '25px' }} /> 
-              :
-              <MdEditSquare style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} /> }
-            </button>
+          <button onClick={handleUpdateUser} className="btn bg-black mr-3">
+  {isEditing ? 
+    <FaSave style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} /> :
+    <MdEditSquare style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} />
+  }
+</button>
             <button className="btn bg-black">
             <TbPasswordUser 
             style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }}
@@ -199,6 +252,8 @@ const mapStateToProps = (state) => ({
   employees: state.employees,
   attendances: state.attendances,
   images: state.imageState,
+  localStorageHasUserIdData: localStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID'),
+  loading: state.userState.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -206,6 +261,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchEmployees: () => dispatch(fetchEmployees()),
   fetchImages: () => dispatch(fetchImages()),
   uploadAndUpdateImageUser: (formData, userId) => dispatch(uploadAndUpdateImageUser(formData, userId)),
+  updateUser: (userId, updatedUserData) => dispatch(updateUser(userId, updatedUserData)),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);
