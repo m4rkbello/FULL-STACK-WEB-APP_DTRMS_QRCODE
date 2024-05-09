@@ -48,7 +48,7 @@ const UserDetails = (props) => {
       if (hasChanges) {
         props.userChangePassword(localStorageHasUserIdData, userData); // Pass updated userData
         setIsEditing(!isEditing); // Toggle editing mode
-        toast.success('User updated successfully.');
+    
       } else {
         // No changes detected, toggle editing mode without updating user data
         setIsEditing(!isEditing);
