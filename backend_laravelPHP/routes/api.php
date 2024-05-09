@@ -33,10 +33,10 @@ Route::post('/employee/image/{id}', [EmployeeController::class, 'uploadAndUpdate
 
 // MIDDLEWARE FOR FRONTEND-BACKEND  
 Route::middleware('auth:sanctum')->group(function() {
+    Route::put('/user/{id}', [AuthController::class, 'update']);
     
     Route::post('/employee-registration', [EmployeeController::class, 'store']);
     Route::put('/employee/deactivated/{id}', [EmployeeController::class, 'deactivate']);
-    Route::put('/user/{id}', [AuthController::class, 'update']);
     Route::put('/employee/{id}', [EmployeeController::class, 'update']);
     Route::post('/employee/search/', [EmployeeController::class, 'search']);
     Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
