@@ -11,8 +11,9 @@ import { MdEditSquare } from "react-icons/md";
 import { TbPasswordUser } from "react-icons/tb";
 
 //redux-actions
-import { fetchUsers, updateUser, uploadAndUpdateImageUser } from '../../../redux/actions/userAction';
+import { fetchUsers, updateUser, uploadAndUpdateImageUser, userChangePassword } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
+
 
 import { FaUpload } from "react-icons/fa6";
 import { fetchImages } from '../../../redux/actions/imageAction';
@@ -22,18 +23,16 @@ const UserDetails = (props) => {
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
-  const [image, setImage] = useState(null);
   const [isEditing, setIsEditing] = useState(false); // e enable niya or disabled
   //maghandle sa data sa forms-input
   const [userData, setUserData] = useState({
-    user_firstname: '',
-    user_lastname: '',
-    user_email: '',
-    user_contact_no: '',
+    user_password: '',
+    confirm_password: '',
+
   });
 
   //naga hold ug sa formData
-  const handleUpdateInputChange = (e) => {
+  const handleChangePasswordInputChange = (e) => {
     const { name, value } = e.target;
     setUserData({
       ...userData,
@@ -41,13 +40,13 @@ const UserDetails = (props) => {
     });
   };
 
-  const handleUpdateUser = () => {
+  const handleChangePasswordUser = () => {
     try {
       // Check if userData has any changes 
       const hasChanges = Object.values(userData).some(value => value !== '');
 
       if (hasChanges) {
-        props.updateUser(localStorageHasUserIdData, userData); // Pass updated userData
+        props.userChangePassword(localStorageHasUserIdData, userData); // Pass updated userData
         setIsEditing(!isEditing); // Toggle editing mode
         toast.success('User updated successfully.');
       } else {
@@ -134,12 +133,12 @@ const UserDetails = (props) => {
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
                     key={index}
-                    type="text"
+                    type="password"
                     placeholder="text"
-                    name="user_firstname"
+                    name="user_password"
                     className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
-                    defaultValue={user.user_firstname}
-                    onChange={handleUpdateInputChange}
+                    defaultValue={user.user_password}
+                    onChange={handleChangePasswordInputChange}
                     disabled={!isEditing} // Disable input when not editing
                   />
                 ))}
@@ -151,19 +150,19 @@ const UserDetails = (props) => {
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
                     key={index}
-                    type="text"
+                    type="password"
                     placeholder="text"
-                    name="user_lastname"
+                    name="confirm_password"
                     className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
-                    defaultValue={user.user_lastname}
-                    onChange={handleUpdateInputChange}
+                    defaultValue={user.user_password}
+                    onChange={handleChangePasswordInputChange}
                     disabled={!isEditing} // Disable input when not editing
                   />
                 ))}
               </div>
             </div>
             <br />
-            <button onClick={handleUpdateUser} className="btn bg-black mr-3">
+            <button onClick={handleChangePasswordUser} className="btn bg-black mr-3">
               {isEditing ?
                 <FaSave style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} /> :
                 <MdEditSquare style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} />
@@ -191,6 +190,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchImages: () => dispatch(fetchImages()),
   uploadAndUpdateImageUser: (formData, userId) => dispatch(uploadAndUpdateImageUser(formData, userId)),
   updateUser: (userId, updatedUserData) => dispatch(updateUser(userId, updatedUserData)),
+  userChangePassword: (userId, changePasswordUserData) => dispatch(userChangePassword(userId, changePasswordUserData))
 
 });
 
