@@ -77,19 +77,6 @@ const UserDetails = (props) => {
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
-
-  const handleImageUpload = () => {
-    event.preventDefault();
-    if (image) {
-      const formData = new FormData();
-      formData.append('user_image', image);
-      props.uploadAndUpdateImageUser(formData, localStorageHasUserIdData); // Assuming you have access to localStorageHasUserIdData
-    }
-  };
-
   useEffect(() => {
     //kuhaon ang data sa localStorage/Session Storage/Cookie
     const localStorageHasUserId = localStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
@@ -116,22 +103,14 @@ const UserDetails = (props) => {
 
   return (
 
-    <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
+    <div className="hero min-h-screen bg-amber-100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
       <button style={{ marginRight: "93%", marginBottom: "65%" }} >
         <Link to="/">
           <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
         </Link>
       </button>
       <ToastContainer />
-      <dialog id="uploadUserUImage" className="modal">
-        <div className="modal-box">
-          <form method="dialog justify-center">
-            <input type="file" onChange={handleImageChange} className="file-input bg-amber-100 w-full max-w-xs" />
-            <button onClick={handleImageUpload} className="btn btn-primary ml-5">Upload</button>
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-          </form>
-        </div>
-      </dialog>
+
       <div className="hero-content flex flex-col items-center">
 
         {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
@@ -145,18 +124,12 @@ const UserDetails = (props) => {
           />
         ))}
 
-        <FaUpload
-          onClick={() => document.getElementById('uploadUserUImage').showModal()}
-          style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
-
-        />
-
         <div className="hero-content flex-col lg:flex-row">
           <div className="flex-1 pr-10 pl-10">
             <div className="grid grid-cols-2 gap-10">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-3xl">Firstname</span>
+                  <span className="label-text text-3xl">Password</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
@@ -173,7 +146,7 @@ const UserDetails = (props) => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-3xl">Lastname</span>
+                  <span className="label-text text-3xl">Confirm Password</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
@@ -188,41 +161,6 @@ const UserDetails = (props) => {
                   />
                 ))}
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-3xl">Email</span>
-                </label>
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    placeholder="text"
-                    name="user_email"
-                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
-                    defaultValue={user.user_email}
-                    onChange={handleUpdateInputChange}
-                    disabled={!isEditing} // Disable input when not editing
-                  />
-                ))}
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-3xl">Contact</span>
-                </label>
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    placeholder="email"
-                    name="user_contact_no"
-                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
-                    defaultValue={user.user_contact_no}
-                    onChange={handleUpdateInputChange}
-                    disabled={!isEditing} // Disable input when not editing
-                  />
-                ))}
-              </div>
-              {/* Other input fields */}
             </div>
             <br />
             <button onClick={handleUpdateUser} className="btn bg-black mr-3">
@@ -230,11 +168,6 @@ const UserDetails = (props) => {
                 <FaSave style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} /> :
                 <MdEditSquare style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} />
               }
-            </button>
-            <button className="btn bg-black">
-              <TbPasswordUser
-                style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }}
-              />
             </button>
           </div>
         </div>
