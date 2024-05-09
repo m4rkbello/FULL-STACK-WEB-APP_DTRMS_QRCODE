@@ -40,15 +40,32 @@ const UserDetails = (props) => {
     });
   };
 
-  const handleChangePasswordUser = () => {
+  const handleChangePasswordUser = async () => {
     try {
       // Check if userData has any changes 
       const hasChanges = Object.values(userData).some(value => value !== '');
 
       if (hasChanges) {
-        props.userChangePassword(localStorageHasUserIdData, userData); // Pass updated userData
+        const userResReq = await props.userChangePassword(localStorageHasUserIdData, userData); // Pass updated userData
         setIsEditing(!isEditing); // Toggle editing mode
-    
+
+        if(userResReq[0].success === true){
+            toast.success('Updated successfully!🤭😇🤗', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
+            });
+        }
+        
       } else {
         // No changes detected, toggle editing mode without updating user data
         setIsEditing(!isEditing);
