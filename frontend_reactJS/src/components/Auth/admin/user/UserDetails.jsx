@@ -232,9 +232,11 @@ const UserDetails = (props) => {
               }
             </button>
             <button className="btn bg-black">
+            <Link to="/admin/user/profile-details/change-password">
               <TbPasswordUser
                 style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }}
               />
+              </Link>
             </button>
           </div>
         </div>
