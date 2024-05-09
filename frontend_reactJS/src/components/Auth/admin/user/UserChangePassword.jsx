@@ -133,7 +133,7 @@ const UserDetails = (props) => {
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
                     key={index}
-                    type="password"
+                    type="text"
                     placeholder="text"
                     name="user_password"
                     className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
@@ -150,7 +150,7 @@ const UserDetails = (props) => {
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
                     key={index}
-                    type="password"
+                    type="text"
                     placeholder="text"
                     name="confirm_password"
                     className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
