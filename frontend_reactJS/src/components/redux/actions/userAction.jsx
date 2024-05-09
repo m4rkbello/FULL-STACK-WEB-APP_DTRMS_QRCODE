@@ -68,37 +68,37 @@ export const addUser = newUser => async dispatch => {
 //MAG UPDATE UG USER GAMIT ID
 export const updateUser = (userId, updatedUserData) => async dispatch => {
     try {
-      dispatch({ type: UPDATE_USER_REQUEST });
-  
-      const response = await MarkBelloApi.put(`/api/user/${userId}`, updatedUserData);
-      const updatedUser = response.data;
-      
-      toast.success('Updated successfully!🤭😇🤗', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        style: {
-            background: 'white',
-            color: 'green',
-            fontSize: '15px'
-        }
+        dispatch({ type: UPDATE_USER_REQUEST });
+
+        const response = await MarkBelloApi.put(`/api/user/${userId}`, updatedUserData);
+        const updatedUser = response.data;
+
+        toast.success('Updated successfully!🤭😇🤗', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            style: {
+                background: 'white',
+                color: 'green',
+                fontSize: '15px'
+            }
         });
-  
-      dispatch({
-        type: UPDATE_USER_SUCCESS,
-        payload: updatedUser,
-      });
+
+        dispatch({
+            type: UPDATE_USER_SUCCESS,
+            payload: updatedUser,
+        });
     } catch (error) {
-      dispatch({
-        type: UPDATE_USER_FAILURE,
-        payload: error.message,
-      });
+        dispatch({
+            type: UPDATE_USER_FAILURE,
+            payload: error.message,
+        });
     }
-  };
+};
 
 
 
@@ -171,7 +171,7 @@ export const registerUser = userData => async dispatch => {
 };
 
 export const loginUser = userData => async dispatch => {
-try {
+    try {
         setTimeout(() => {
             dispatch({ type: LOGIN_USER_REQUEST });
         }, 3000);
@@ -186,12 +186,12 @@ try {
         sessionStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInUser);
         document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUser}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
         document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUser}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
-        
+
         localStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInUserId);
         sessionStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInUserId);
         document.cookie = `DTRMS_BY_M4RKBELLO_USER_ID=${loggedInUserId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
         document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUserId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
-        
+
         console.log("DATA RESPONSE SA LOGIN NAAY TOKEN", loggedInUser);
         console.log("DATA RESPONSE SA LOGIN", loggedInUserId)
         dispatch({
@@ -240,36 +240,36 @@ try {
 };
 
 export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) => {
-    try{
-        dispatch({type: UPLOAD_AND_UPDATE_IMAGE_REQUEST});
+    try {
+        dispatch({ type: UPLOAD_AND_UPDATE_IMAGE_REQUEST });
         const uploadAndUpdateImageReqRes = await MarkBelloApi.post(`/api/update-image/${userId}`, formData, {
             headers: {
-                'Content-Type':'multipart/form-data',
+                'Content-Type': 'multipart/form-data',
             },
         });
-       
-        if(!uploadAndUpdateImageReqRes || uploadAndUpdateImageReqRes.data.success === false){
-            //set ug timer para mo reload .5seconds
-                toast.error(uploadAndUpdateImageReqRes.data.message,'!🥺😱😣', {
-                    position: 'top-right',
-                    autoClose: 10000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    style: {
-                        background: '#fef3c7',
-                        color: 'red',
-                        fontSize: '20px'
-                    }
-                    
-                });
 
-                setTimeout(()=>{
-                    window.location.reload();
-                }, 5000)
-        }else{
+        if (!uploadAndUpdateImageReqRes || uploadAndUpdateImageReqRes.data.success === false) {
+            //set ug timer para mo reload .5seconds
+            toast.error(uploadAndUpdateImageReqRes.data.message, '!🥺😱😣', {
+                position: 'top-right',
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: '#fef3c7',
+                    color: 'red',
+                    fontSize: '20px'
+                }
+
+            });
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 5000)
+        } else {
             toast.success('Image upload successfully!🤭😇🤗', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -297,7 +297,7 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
             payload: response.data.user_image
         });
 
-    } catch(error){
+    } catch (error) {
         dispatch({
             type: UPLOAD_AND_UPDATE_IMAGE_FAILURE,
             payload: error.message,
@@ -310,35 +310,71 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
 //MAG CHANGE PASSWORD ANG USER
 export const userChangePassword = (userId, changePasswordUserData) => async dispatch => {
     try {
-      dispatch({ type: CHANGE_PASSWORD_USER_REQUEST });
-  
-      const response = await MarkBelloApi.put(`/api/user/${userId}`, changePasswordUserData);
-      const changePasswordUserData = response.data;
-      
-      toast.success('Updated successfully!🤭😇🤗', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        style: {
-            background: 'white',
-            color: 'green',
-            fontSize: '15px'
+        dispatch({ type: CHANGE_PASSWORD_USER_REQUEST });
+
+        const response = await MarkBelloApi.post(`/api/user/change-password/${userId}`, changePasswordUserData);
+
+        const changePasswordData = response.data;
+        const changePasswordReqRes = response.success;
+
+        if (changePasswordReqRes === true) {
+            toast.success('Updated successfully!🤭😇🤗', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
+            });
+
+        } else {
+            toast.error('Updated successfully!🤭😇🤗', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
+            });
         }
+
+        dispatch({
+            type: CHANGE_PASSWORD_USER_SUCCESS,
+            payload: changePasswordData,
         });
-  
-      dispatch({
-        type: CHANGE_PASSWORD_USER_SUCCESS,
-        payload: changePasswordUserData,
-      });
     } catch (error) {
-      dispatch({
-        type: CHANGE_PASSWORD_USER_FAILURE,
-        payload: error.message,
-      });
+
+        toast.error('Updated successfully!🤭😇🤗', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            style: {
+                background: 'white',
+                color: 'green',
+                fontSize: '15px'
+            }
+        });
+
+        dispatch({
+            type: CHANGE_PASSWORD_USER_FAILURE,
+            payload: error.message,
+        });
     }
-  };
+};
 
