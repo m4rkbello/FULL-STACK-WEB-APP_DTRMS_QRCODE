@@ -31,9 +31,7 @@ Route::post('/employee/image/{id}', [EmployeeController::class, 'uploadAndUpdate
 
 // ATTENDANCE
 
-// MIDDLEWARE FOR FRONTEND-BACKEND 
-
-
+// MIDDLEWARE FOR FRONTEND-BACKEND  
 Route::middleware('auth:sanctum')->group(function() {
     
     Route::post('/employee-registration', [EmployeeController::class, 'store']);
