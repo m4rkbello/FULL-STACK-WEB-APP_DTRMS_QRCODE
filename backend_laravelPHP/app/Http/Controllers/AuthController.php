@@ -209,4 +209,29 @@ class AuthController extends Controller
     }
 
 
+//USER CHANG
+    public function changePassword(Request $request, string $id)
+    {
+        $user = User::find($id);
+    
+        // Validate request data, if needed
+        $data = $request->validate([
+            'user_password' => 'required|string|min:8'
+        ]);
+    
+        // Update the user's password with bcrypt hash
+        $user->update([
+            'user_password' => bcrypt($data['user_password'])
+        ]);
+    
+        return response()->json([
+            'success' => true,
+            'status' => 200,
+            'message' => 'Password updated successfully',
+            'details' => $user,
+        ]);
+    }
+    
+
+
 }
