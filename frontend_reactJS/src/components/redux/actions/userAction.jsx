@@ -308,7 +308,7 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
 
 
 //MAG CHANGE PASSWORD ANG USER
-export const changePassword = (userId, changePasswordUserData) => async dispatch => {
+export const userChangePassword = (userId, changePasswordUserData) => async dispatch => {
     try {
       dispatch({ type: CHANGE_PASSWORD_USER_REQUEST });
   
