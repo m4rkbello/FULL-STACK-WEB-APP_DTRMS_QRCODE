@@ -9,9 +9,10 @@ import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
 
 //ADMIN
-import UserDetails from './components/Auth/admin/user/UserDetails';
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
+import UserDetails from './components/Auth/admin/user/UserDetails';
+import UserChangePassword from './components/Auth/admin/user/UserChangePassword';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import Department from './components/Auth/admin/department/Department';
 
@@ -200,17 +201,18 @@ function App(props) {
           {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ?
             (
               <>
-                <Routes>
-                  <Route path="/forgot-password" element={<ForgotPassword />} />
-                  <Route path="/content" element={<Content />} />
-                  <Route path="/employee/register" element={<EmployeeRegister />} />
-                  <Route path="/admin/user/profile-details" element={<UserDetails />} />
-                  <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
-                  <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
-                  <Route path="/department" element={<Department />} />
-                  <Route path="/archieve" element={<ArchiveEmployee />} />
+                  <Routes>
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/content" element={<Content />} />
+                    <Route path="/employee/register" element={<EmployeeRegister />} />
+                    <Route path="/admin/user/profile-details" element={<UserDetails />} />
+                    <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
+                    <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
+                    <Route path="/department" element={<Department />} />
+                    <Route path="/archieve" element={<ArchiveEmployee />} />
+                    <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                   </Routes>
-                  </>
+                </>
                 ) : (
                   <Routes>
                   <Route path="/admin/login" element={<Login />} />
