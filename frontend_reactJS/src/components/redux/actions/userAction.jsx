@@ -24,6 +24,9 @@ import {
     UPLOAD_AND_UPDATE_IMAGE_REQUEST,
     UPLOAD_AND_UPDATE_IMAGE_FAILURE,
     UPLOAD_AND_UPDATE_IMAGE_SUCCESS,
+    CHANGE_PASSWORD_USER_REQUEST,
+    CHANGE_PASSWORD_USER_SUCCESS,
+    CHANGE_PASSWORD_USER_FAILURE,
 } from '../types/userTypes.jsx';
 
 //MAG-FETCH UG USER
@@ -67,9 +70,23 @@ export const updateUser = (userId, updatedUserData) => async dispatch => {
     try {
       dispatch({ type: UPDATE_USER_REQUEST });
   
-      // Perform async operation, e.g., send updated data to an API
       const response = await MarkBelloApi.put(`/api/user/${userId}`, updatedUserData);
-      const updatedUser = response.data; // Assuming the API returns the updated user data
+      const updatedUser = response.data;
+      
+      toast.success('Updated successfully!🤭😇🤗', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+            background: 'white',
+            color: 'green',
+            fontSize: '15px'
+        }
+        });
   
       dispatch({
         type: UPDATE_USER_SUCCESS,
@@ -154,7 +171,7 @@ export const registerUser = userData => async dispatch => {
 };
 
 export const loginUser = userData => async dispatch => {
-    try {
+try {
         setTimeout(() => {
             dispatch({ type: LOGIN_USER_REQUEST });
         }, 3000);
@@ -288,3 +305,40 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
 
     }
 };
+
+
+//MAG CHANGE PASSWORD ANG USER
+export const changePassword = (userId, changePasswordUserData) => async dispatch => {
+    try {
+      dispatch({ type: CHANGE_PASSWORD_USER_REQUEST });
+  
+      const response = await MarkBelloApi.put(`/api/user/${userId}`, changePasswordUserData);
+      const changePasswordUserData = response.data;
+      
+      toast.success('Updated successfully!🤭😇🤗', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+            background: 'white',
+            color: 'green',
+            fontSize: '15px'
+        }
+        });
+  
+      dispatch({
+        type: CHANGE_PASSWORD_USER_SUCCESS,
+        payload: changePasswordUserData,
+      });
+    } catch (error) {
+      dispatch({
+        type: CHANGE_PASSWORD_USER_FAILURE,
+        payload: error.message,
+      });
+    }
+  };
+
