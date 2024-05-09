@@ -26,10 +26,10 @@ const UserDetails = (props) => {
   const [isEditing, setIsEditing] = useState(false); // e enable niya or disabled
   //maghandle sa data sa forms-input
   const [userData, setUserData] = useState({
-    user_firstname:'',
-    user_lastname:'',
-    user_email:'',
-    user_contact_no:'',
+    user_firstname: '',
+    user_lastname: '',
+    user_email: '',
+    user_contact_no: '',
   });
 
   //naga hold ug sa formData
@@ -41,13 +41,11 @@ const UserDetails = (props) => {
     });
   };
 
-  console.log("ID", localStorageHasUserIdData);
-
   const handleUpdateUser = () => {
     try {
       // Check if userData has any changes 
       const hasChanges = Object.values(userData).some(value => value !== '');
-  
+
       if (hasChanges) {
         props.updateUser(localStorageHasUserIdData, userData); // Pass updated userData
         setIsEditing(!isEditing); // Toggle editing mode
@@ -69,7 +67,7 @@ const UserDetails = (props) => {
 
     if (usersCollection && usersCollection.length) {
       for (let ez = 0; ez < usersCollection.length; ez++) {
-        if (usersCollection[ez].id == sessionStorageHasUserIdData && usersCollection[ez].id == localStorageHasUserIdData){
+        if (usersCollection[ez].id == sessionStorageHasUserIdData && usersCollection[ez].id == localStorageHasUserIdData) {
           item.push(usersCollection[ez]);
         }
       }
@@ -106,15 +104,15 @@ const UserDetails = (props) => {
 
   }, []);
 
-  //para sa loading request if loading pa
+  //para sa loading request if loading ang redux-reducer niya is is user_request
   if (props.loading) {
     return <div>
-    <span className="loading loading-ball loading-xs"></span>
-    <span className="loading loading-ball loading-sm"></span>
-    <span className="loading loading-ball loading-md"></span>
-    <span className="loading loading-ball loading-lg"></span>
+      <span className="loading loading-ball loading-xs"></span>
+      <span className="loading loading-ball loading-sm"></span>
+      <span className="loading loading-ball loading-md"></span>
+      <span className="loading loading-ball loading-lg"></span>
     </div>;
-}
+  }
 
   return (
 
@@ -135,7 +133,7 @@ const UserDetails = (props) => {
         </div>
       </dialog>
       <div className="hero-content flex flex-col items-center">
-       
+
         {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
           <img
             key={index}
@@ -227,16 +225,16 @@ const UserDetails = (props) => {
               {/* Other input fields */}
             </div>
             <br />
-          <button onClick={handleUpdateUser} className="btn bg-black mr-3">
-  {isEditing ? 
-    <FaSave style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} /> :
-    <MdEditSquare style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} />
-  }
-</button>
+            <button onClick={handleUpdateUser} className="btn bg-black mr-3">
+              {isEditing ?
+                <FaSave style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} /> :
+                <MdEditSquare style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} />
+              }
+            </button>
             <button className="btn bg-black">
-            <TbPasswordUser 
-            style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }}
-            />
+              <TbPasswordUser
+                style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }}
+              />
             </button>
           </div>
         </div>
