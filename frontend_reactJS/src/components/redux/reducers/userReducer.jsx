@@ -20,6 +20,9 @@ import {
     UPLOAD_AND_UPDATE_IMAGE_REQUEST,
     UPLOAD_AND_UPDATE_IMAGE_FAILURE,
     UPLOAD_AND_UPDATE_IMAGE_SUCCESS,
+    CHANGE_PASSWORD_USER_REQUEST,
+    CHANGE_PASSWORD_USER_SUCCESS,
+    CHANGE_PASSWORD_USER_FAILURE
 } from '../types/userTypes.jsx';
 
 const initialState = {
@@ -30,6 +33,8 @@ const initialState = {
     loggedInUser: null,
     uploadAndUpdateImageUserLoading: false,
     uploadAndUpdateImageUserError: null,
+    changePasswordLoading: false,
+    changePasswordError: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -41,6 +46,7 @@ const userReducer = (state = initialState, action) => {
         case REGISTER_USER_REQUEST:
         case LOGIN_USER_REQUEST:
         case UPLOAD_AND_UPDATE_IMAGE_REQUEST:
+        case CHANGE_PASSWORD_USER_REQUEST:
             return  {
                 ...state,
                 loading: true,
@@ -77,11 +83,11 @@ const userReducer = (state = initialState, action) => {
         case REGISTER_USER_SUCCESS:
         case LOGIN_USER_SUCCESS:
             return {
-                    ...state,
-                    isAuthenticated: true,
-                    loggedInUser: action.payload,
-                    loading: false,
-                    error: null
+                ...state,
+                isAuthenticated: true,
+                loggedInUser: action.payload,
+                loading: false,
+                error: null
             };
         case UPLOAD_AND_UPDATE_IMAGE_SUCCESS:
             return {
@@ -89,6 +95,15 @@ const userReducer = (state = initialState, action) => {
                 uploadAndUpdateImageUserLoading: false,
                 uploadAndUpdateImageUserError: null,
             };
+        case CHANGE_PASSWORD_USER_SUCCESS:
+            return {
+                ...state,
+                users: state.users.map(user => user.id === action.payload.id ? action.payload : user),
+                loading: false,
+                error: null,
+                changePasswordLoading: false,
+                changePasswordError: null,
+            }
         case FETCH_USERS_FAILURE:
         case ADD_USER_FAILURE:
         case UPDATE_USER_FAILURE:
@@ -106,6 +121,14 @@ const userReducer = (state = initialState, action) => {
                 uploadAndUpdateImageUserLoading: false,
                 uploadAndUpdateImageUserError: action.payload,
             }
+        case CHANGE_PASSWORD_USER_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+                changePasswordLoading: false,
+                changePasswordError: action.payload,
+            };
         default:
             return state;
     } 
