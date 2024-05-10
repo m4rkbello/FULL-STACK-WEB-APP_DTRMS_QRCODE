@@ -3,7 +3,7 @@ import EmployeeChart from './EmployeeChart';
 
 const EmployeeAttendance = () => {
   return (
-    <div>
+    <div style={{ width: '100%', height: '100vh' }}>
       <EmployeeChart />
     </div>
   );
