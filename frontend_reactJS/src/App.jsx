@@ -23,6 +23,8 @@ import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
 import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import FourOFourNotFound from './components/Auth/admin/pages/404NotFound';
 import ArchiveEmployee from './components/Auth/employee/ArchiveEmployee';
+import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
+
 
 
 
@@ -211,6 +213,7 @@ function App(props) {
                     <Route path="/department" element={<Department />} />
                     <Route path="/archieve" element={<ArchiveEmployee />} />
                     <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
+                    <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                   </Routes>
                 </>
                 ) : (
@@ -230,7 +233,7 @@ function App(props) {
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
               <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-amber-100">
               <li>
-              <Link to="/attendance" className='text-2xl'>
+              <Link to="/employee/attendance" className='text-2xl'>
                 Attendance
               </Link>
             </li>
