@@ -67,6 +67,8 @@ npm i react-chartjs-2
 15. INSTALL react-html-table-to-excel packages -not installed naay dependencies
 ->npm i --save react-html-table-to-excel
 
+16. npm i --save chart.js react-chartjs-2
+
 
 
 
