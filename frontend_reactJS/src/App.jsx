@@ -3,6 +3,7 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { Line } from 'react-chartjs-2';
 
 //LAYOUTS
 import Content from './components/layouts/Content';
@@ -24,7 +25,7 @@ import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonal
 import FourOFourNotFound from './components/Auth/admin/pages/404NotFound';
 import ArchiveEmployee from './components/Auth/employee/ArchiveEmployee';
 import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
-
+import EmployeeChart from './components/Auth/employee/EmployeeChart';
 
 
 
