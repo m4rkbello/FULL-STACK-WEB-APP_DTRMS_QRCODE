@@ -70,6 +70,7 @@ npm i react-chartjs-2
 16. INSTALL A CHART
 npm i --save chart.js react-chartjs-2
 npm install react-chartjs-2@latest
+->npm install react-redux redux react-chartjs-2 chart.js
 
 
 
