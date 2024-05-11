@@ -61,5 +61,6 @@ Route::prefix('department')->group(function () {
     Route::put('/update/{id}', [DepartmentController::class, 'update']);
     Route::post('/search', [DepartmentController::class, 'search']);
     Route::put('/deactivate/{id}', [DepartmentController::class, 'deactivate']);
+    Route::delete('/delete/{id}', [DepartmentController::class, 'destroy']);
 });
 
