@@ -24,17 +24,8 @@ class DepartmentController extends Controller
         try{
 
             $department = department::all();
-            $department = [
-                'success' => true,
-                'status' => 201,
-                'message' => 'Fetch all Departments have successfully!',
-                'department' => $department,
-            ];
-
+      
             return response()->json([
-                'success' => true,
-                'status' => 201,
-                'message' => 'Fetch all Departments have successful!',
                 'department' => $department,
             ], 201);
 
