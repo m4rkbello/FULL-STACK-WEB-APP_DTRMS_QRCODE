@@ -27,9 +27,6 @@ import ArchiveEmployee from './components/Auth/employee/ArchiveEmployee';
 import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
 import EmployeeChart from './components/Auth/employee/EmployeeChart';
 
-
-
-
 //REDUX-DISPATCH ACTIONS
 import { fetchUsers } from './components/redux/actions/userAction';
 import { fetchEmployees } from './components/redux/actions/employeeAction';
@@ -58,10 +55,6 @@ function App(props) {
     setLocalStorageHasToken(localStorageHasTokenData);
     setSessionStorageToken(sessionStorageHasTokenData);
     setCookiesData(cookiesData);
-
-    // console.log("ID SA LOCALSTORAGE", localStorageHasUserId);
-    // console.log("ID SA SESSION STORAGE", sessionStorageHasUserId);
-    // console.log("ID SA COOKIE", cookiesData);
 
     props.fetchUsers();
     props.fetchEmployees();
