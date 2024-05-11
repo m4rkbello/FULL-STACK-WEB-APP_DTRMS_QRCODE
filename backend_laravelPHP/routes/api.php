@@ -60,5 +60,6 @@ Route::prefix('department')->group(function () {
     Route::post('/create', [DepartmentController::class, 'store']);
     Route::put('/update/{id}', [DepartmentController::class, 'update']);
     Route::post('/search', [DepartmentController::class, 'search']);
+    Route::put('/deactivate/{id}', [DepartmentController::class, 'deactivate']);
 });
 
