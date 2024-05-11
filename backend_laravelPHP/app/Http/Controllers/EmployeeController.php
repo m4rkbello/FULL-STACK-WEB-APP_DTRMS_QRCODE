@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 
+
 class EmployeeController extends Controller
 {
     /**
@@ -19,7 +20,6 @@ class EmployeeController extends Controller
     public function index()
     {
         $data = Employee::all();
-
         return response($data, 201);
     }
 
@@ -37,7 +37,6 @@ class EmployeeController extends Controller
                 'employee_role' => 'required|string',
                 'employee_department' => 'required|integer',
                 'employee_status' => 'required|integer',
-
             ]);
     
             $employee = Employee::create([
