@@ -172,11 +172,11 @@ class DepartmentController extends Controller
         //
     }
 
-    public function deactivated(Request $request, string $id){
+    public function deactivate(Request $request, string $id){
         
         try{
             $department = department::find($id);
-            $department->update(['employee_status' => 0]);
+            $department->update(['dept_status_id' => 0]);
 
             return response()->json([
                 'success' => true,
