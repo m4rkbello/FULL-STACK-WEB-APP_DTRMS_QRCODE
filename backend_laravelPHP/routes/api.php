@@ -56,7 +56,7 @@ Route::post('/image', [ImagesController::class, 'store']);
 
 //DEPARTMENT-ROUTES-ENDPOINTS
 Route::prefix('department')->group(function () {
-    Route::get('/view-all-departments', [DepartmentController::class, 'index']);
+    Route::get('/view/all', [DepartmentController::class, 'index']);
     Route::post('/create', [DepartmentController::class, 'store']);
     Route::put('/update/{id}', [DepartmentController::class, 'update']);
     Route::post('/search', [DepartmentController::class, 'search']);
