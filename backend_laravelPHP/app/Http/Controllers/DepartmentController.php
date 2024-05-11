@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\department;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
+
 
 class DepartmentController extends Controller
 {
@@ -13,6 +20,8 @@ class DepartmentController extends Controller
     public function index()
     {
         //
+        $data = department::all();
+        return response($data, 201);
     }
 
     /**
@@ -28,7 +37,35 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->validate([
+                'dept_name' => 'required|string',
+                'dept_description' => 'required|string',
+                'dept_status_id' => 'required|integer',
+            ]);
+    
+            $department = department::create([
+                'dept_name' => $data['dept_name'],
+                'dept_description' => $data['dept_description'],
+                'dept_status_id' => $data['dept_status_id'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+    
+            $response_data = [
+                'success' => true,
+                'message' => 'Department has successfully created!',
+                'department' => $department,
+            ];
+    
+            return response($response_data, 201);
+        } catch (ValidationException $e) {
+           
+            return response()->json([
+                'success' => false,
+                'errors' => $e->errors(),
+            ], 422);
+        } 
     }
 
     /**
@@ -50,9 +87,19 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, department $department)
+    public function update(Request $request, department $id)
     {
-        //
+        
+        $department = department::find($id);
+        $department->update($request->all());
+
+        
+        return response()->json([
+            'success' => true,
+            'status' => 200,
+            'message' => 'Department updated successfully',
+            'details' => $department,
+        ]);
     }
 
     /**
