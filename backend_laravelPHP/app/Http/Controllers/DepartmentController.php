@@ -20,8 +20,32 @@ class DepartmentController extends Controller
     public function index()
     {
         //
-        $data = department::all();
-        return response($data, 201);
+      
+        try{
+
+            $department = department::all();
+            $department = [
+                'success' => true,
+                'status' => 201,
+                'message' => 'Fetch all Departments have successfully!',
+                'department' => $department,
+            ];
+
+            return response()->json([
+                'success' => true,
+                'status' => 201,
+                'message' => 'Fetch all Departments have successful!',
+                'department' => $department,
+            ], 201);
+
+        }catch(\Exception $error){
+            return response()->json([
+                'success' => false,
+                'status' => 401,
+                'message' => 'Fetch all Departments have unsuccessful!',
+                'error' => $error,
+            ], 401);
+        }
     }
 
     /**
@@ -59,11 +83,11 @@ class DepartmentController extends Controller
             ];
     
             return response($response_data, 201);
-        } catch (ValidationException $e) {
+        } catch (\Exception $error) {
            
             return response()->json([
                 'success' => false,
-                'errors' => $e->errors(),
+                'errors' => $error,
             ], 422);
         } 
     }
@@ -98,11 +122,12 @@ class DepartmentController extends Controller
                 ], 200);
             }
     
-        } catch (\Exception $e) {
+        } catch (\Exception $error) {
             return response()->json([
                 'success' => false,
                 'status' => 500,
                 'message' => 'Failed to search department. Please try again later.',
+                'error' => $error
             ], 500);
         }
     }
@@ -120,15 +145,23 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $department = department::find($id);
-        $department->update($request->all());
-
-        return response()->json([
-            'success' => true,
-            'status' => 200,
-            'message' => 'Department updated successfully',
-            'details' => $department,
-        ]);
+        try{
+            $department = department::find($id);
+            $department->update($request->all());
+    
+            return response()->json([
+                'success' => true,
+                'status' => 200,
+                'message' => 'Department updated successfully',
+                'details' => $department,
+            ]);
+        } catch(\Exception $error){
+            return response()->json([
+                'success' => false,
+                'status' => 401,
+                'message' => $error,
+            ]);
+        }
     }
 
     /**
@@ -137,5 +170,30 @@ class DepartmentController extends Controller
     public function destroy(department $department)
     {
         //
+    }
+
+    public function deactivated(Request $request, string $id){
+        
+        try{
+            $department = department::find($id);
+            $department->update(['employee_status' => 0]);
+
+            return response()->json([
+                'success' => true,
+                'status' => 201,
+                'message' => 'Department has deactivated successfully!',
+                'data' => $department
+            ]);
+
+        }catch(\Exception $error){
+            return response()->json([
+                'success' => false,
+                'status' => 401,
+                'message' => 'Department not deactivated successfully!',
+            ]);
+
+        }
+
+
     }
 }
