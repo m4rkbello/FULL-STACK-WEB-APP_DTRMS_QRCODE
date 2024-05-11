@@ -169,23 +169,29 @@ class DepartmentController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
-        try{
+        try {
+            $department = Department::find($id);
 
-            $department = department::destroy($id);
-    
+            if (!$department) { // Check if $department is null
+                return response()->json([
+                    'success' => false,
+                    'status' => 404,
+                    'message' => 'No Department found for the given criteria.',
+                ], 404);
+            } else {
+                $department->delete(); // Use delete() method on the department instance
+                return response()->json([
+                    'success' => true,
+                    'status' => 200,
+                    'message' => 'Department deleted successfully.',
+                ], 200);
+            }
+        } catch (\Exception $error) {
             return response()->json([
-                'success' => true,
-                'status' => 200,
-                'message' => 'Department has deleted successfully!',
-                'details' => $department,
-            ]);
-
-        }catch(\Exception $error){
-            return response()->json([
-                'success' => true,
-                'status' => 401,
-                'message' => 'Department has not deleted!',
-                'error' => $error,
+                'success' => false,
+                'status' => 500,
+                'message' => 'Error occurred while deleting department.',
+                'error' => $error->getMessage(), // Include the error message in the response
             ]);
         }
     }
