@@ -167,9 +167,27 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(department $department)
+    public function destroy(Request $request, string $id)
     {
-        //
+        try{
+
+            $department = department::destroy($id);
+    
+            return response()->json([
+                'success' => true,
+                'status' => 200,
+                'message' => 'Department has deleted successfully!',
+                'details' => $department,
+            ]);
+
+        }catch(\Exception $error){
+            return response()->json([
+                'success' => true,
+                'status' => 401,
+                'message' => 'Department has not deleted!',
+                'error' => $error,
+            ]);
+        }
     }
 
     public function deactivate(Request $request, string $id){
@@ -193,7 +211,6 @@ class DepartmentController extends Controller
             ]);
 
         }
-
-
     }
+
 }
