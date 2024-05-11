@@ -76,6 +76,37 @@ class DepartmentController extends Controller
         //
     }
 
+    public function search(Request $request){
+        try {
+            $data = $request->input('data');
+            
+            $department = department::where('id', 'like', '%' . $data . '%')
+                ->orWhere('dept_name', 'like', '%' . $data . '%')
+                ->get();
+    
+            if ($department->isEmpty()) {
+                return response()->json([
+                    'success' => false,
+                    'status' => 404,
+                    'message' => 'No Department found for the given search criteria.',
+                ], 404);
+            }else{
+                return response()->json([
+                    'success' => true,
+                    'status' => 200,
+                    'department' => $department,
+                ], 200);
+            }
+    
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'status' => 500,
+                'message' => 'Failed to search department. Please try again later.',
+            ], 500);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
