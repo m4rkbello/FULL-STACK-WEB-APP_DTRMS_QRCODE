@@ -87,13 +87,11 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, department $id)
+    public function update(Request $request, string $id)
     {
-        
         $department = department::find($id);
         $department->update($request->all());
 
-        
         return response()->json([
             'success' => true,
             'status' => 200,
