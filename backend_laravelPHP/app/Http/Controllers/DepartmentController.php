@@ -25,16 +25,20 @@ class DepartmentController extends Controller
       
             return response()->json([
                 'department' => $department,
+                'success' => true,
+                'status' => 201,
             ], 201);
 
         }catch(\Exception $error){
+
             return response()->json([
                 'success' => false,
                 'status' => 401,
                 'message' => 'Fetch all Departments have unsuccessful!',
                 'error' => $error,
             ], 401);
-        }
+
+        };
     }
 
     /**
