@@ -110,7 +110,6 @@ const EmployeeDashboard = (props) => {
     
 
     return (
-        
         <div className="hero max-w-full">
         <ToastContainer />
         <dialog id="removeEmployee" className="modal">
