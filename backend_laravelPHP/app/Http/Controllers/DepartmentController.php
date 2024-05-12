@@ -71,6 +71,7 @@ class DepartmentController extends Controller
     
             $response_data = [
                 'success' => true,
+                'status' => 201,
                 'message' => 'Department has successfully created!',
                 'department' => $department,
             ];
