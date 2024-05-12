@@ -25,10 +25,8 @@ UPDATE_DEPARTMENT_SUCCESS }
 from '../types/departmentTypes.jsx';
 
 
-
-
 //MAG-FETCH UG DATA SA DEPARTMENTS
-export const fetchDeparments = () => async dispatch => {
+export const fetchDepartments = () => async dispatch => {
     try {
         dispatch({ type: FETCH_DEPARTMENTS_REQUEST });
         // Perform async operation, e.g., fetch data from an API
