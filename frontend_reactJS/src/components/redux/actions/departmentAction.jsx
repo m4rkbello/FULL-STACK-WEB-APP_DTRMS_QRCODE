@@ -49,11 +49,14 @@ export const addDepartment = departmentData => async dispatch => {
         dispatch({ type: ADD_DEPARTMENT_REQUEST });
         const addDepartmentRequestAndResponse = await MarkBelloApi.post('/api/department/create', departmentData);
 
-        if (!addDepartmentRequestAndResponse.data.success) {
-            // Handle the case where the response is empty
-            toast.error('Employee not added! 🥺⚠️👽', {
+            const statusCode = addDepartmentRequestAndResponse.status;
+            
+        if (statusCode === 422) {
+            // Handle the case where the department is successfully created
+
+            toast.error('An error occurred while adding the department! 🥺⚠️👽', {
                 position: 'top-right',
-                autoClose: 10000,
+                autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: false,
                 pauseOnHover: false,
@@ -65,9 +68,24 @@ export const addDepartment = departmentData => async dispatch => {
                     fontSize: '15px'
                 }
             });
-        } else {
-            // Handle the case where the update is successful
-            toast.success('Employee Added Successfully!👌👌👌', {
+        } else if(statusCode === 422){
+            toast.success('Department Added Successfully!👌👌👌', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
+            });
+              
+        }else {
+            toast.success('Department Added Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -83,12 +101,6 @@ export const addDepartment = departmentData => async dispatch => {
             });
         }
         
-        // setTimeout(() => {
-        //     window.location.reload();
-        //     // updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
-        //   })
-
-    
         dispatch({
             type: ADD_DEPARTMENT_SUCCESS,
             payload: addDepartmentRequestAndResponse,
@@ -100,6 +112,8 @@ export const addDepartment = departmentData => async dispatch => {
         });
     }
 };
+
+
 
 //MAG UPDATE UG EMPLOYEE GAMIT ID
 export const updateDepartment = (deptartmentId, updateDepartmentData) => async dispatch => {
