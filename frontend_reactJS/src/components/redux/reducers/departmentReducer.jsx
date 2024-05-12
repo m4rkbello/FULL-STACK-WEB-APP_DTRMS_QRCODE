@@ -44,56 +44,52 @@ const departmentReducer = (state = initialState, action) => {
                 loading: true,
                 error: null
             };
-        case ADD_DEPARTMENT_SUCCESS:
-            return {
-                ...state,
-                employees: action.payload,
-                loading: false,
-                error: null
-            };
-            case DEACTIVATE_DEPARTMENT_SUCCESS:
-                return {
-                  ...state,
-                  employees: [...state.employees, action.payload],
-                  loading: false,
-                  error: null
-                };
-        case DELETE_DEPARTMENT_SUCCESS:
-            return {
-                ...state,
-                employees: state.employees.map(employee => employee.id === action.payload.id ? action.payload : employee),
-                loading: false,
-                error: null,
-            };
         case FETCH_DEPARTMENTS_SUCCESS:
             return {
                 ...state,
-                employees: state.employees.filter(employee => employee.id !== action.payload),
+                departments: action.payload,
                 loading: false,
                 error: null
             };
-        case UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS:
+        case ADD_DEPARTMENT_SUCCESS:
             return {
                 ...state,
-                uploadAndUpdateImageLoadingEmployee: false,
-                uploadAndUpdateImageEmployeeError: null,
-
-            }
-        case FETCH_EMPLOYEES_FAILURE:
-        case ADD_EMPLOYEE_FAILURE:
-        case UPDATE_EMPLOYEE_FAILURE:
-        case DELETE_EMPLOYEE_FAILURE:
+                departments: [...state.departments, action.payload],
+                loading: false,
+                error: null
+            };
+        case UPDATE_DEPARTMENT_SUCCESS:
+            return {
+                ...state,
+                departments: state.departments.map(department => department.id === action.payload.id ? action.payload : department),
+                loading: false,
+                error: null,
+            };
+        case DEACTIVATE_DEPARTMENT_SUCCESS:
+            return {
+                ...state,
+                departments: state.departments.map(department => department.id === action.payload.id ? action.payload : department),
+                loading: false,
+                error: null,
+            };
+        case DELETE_DEPARTMENT_SUCCESS:
+            return {
+                ...state,
+                departments: state.departments.filter(department => department.id !== action.payload),
+                loading: false,
+                error: null
+            };
+      
+        case FETCH_DEPARTMENTS_FAILURE:
+        case ADD_DEPARTMENT_FAILURE:
+        case UPDATE_DEPARTMENT_FAILURE:
+        case DELETE_DEPARTMENT_FAILURE:
+        case DEACTIVATE_DEPARTMENT_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             };
-        case UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE:
-            return {
-                ...state,
-                uploadAndUpdateImageLoadingEmployee: true,
-                uploadAndUpdateImageEmployeeError: action.payload,
-            }
         default:
             return state;
     } 
