@@ -44,10 +44,10 @@ export const fetchDepartments = () => async dispatch => {
 };
 
 //MAG ADD UG EMPLOYEE 
-export const addDepartment = AddDepartment => async dispatch => {
+export const addDepartment = departmentData => async dispatch => {
     try {
         dispatch({ type: ADD_DEPARTMENT_REQUEST });
-        const addDeptReqRes = await MarkBelloApi.post('/api/department/create', AddDepartment);
+        const addDeptReqRes = await MarkBelloApi.post('/api/department/create', departmentData);
 
         if (!addDeptReqRes.data.success) {
             // Handle the case where the response is empty
