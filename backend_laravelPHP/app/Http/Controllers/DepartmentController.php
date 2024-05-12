@@ -81,6 +81,7 @@ class DepartmentController extends Controller
            
             return response()->json([
                 'success' => false,
+                'status' => 422,
                 'errors' => $error,
             ], 422);
         } 
