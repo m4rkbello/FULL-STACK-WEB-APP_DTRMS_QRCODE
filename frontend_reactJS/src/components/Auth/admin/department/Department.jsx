@@ -1,55 +1,97 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
+import { FaEye } from "react-icons/fa6";
+import { MdAutoDelete } from "react-icons/md";
+import { IoIosPersonAdd } from "react-icons/io";
+import { HiStatusOnline } from "react-icons/hi";
+import { MdOutlineNoAccounts } from "react-icons/md";
+import { RiAccountPinCircleFill } from "react-icons/ri";
 import { connect } from 'react-redux';
-import { fetchDeparments } from '../../../redux/actions/departmentAction';
+import { fetchDepartments } from '../../../redux/actions/departmentAction';
 
 const Department = (props) => {
   console.log("DATA SA FETCH DEPARTMENT", props && props);
-
+  
   useEffect(() => {
-    props.fetchDeparments();
+    props.fetchDepartments();
   },[])
 
+  const getAllDepartmentCollectionArrays = props?.departmentData?.departments?.data?.department;
+  console.log("DATA SA PROPS DRILLING", getAllDepartmentCollectionArrays);
 
+  const getAllDepartments = (getAllDepartmentCollectionArrays) => {
+    let items = [];
+    if (Array.isArray(getAllDepartmentCollectionArrays)) {
+      getAllDepartmentCollectionArrays.forEach(department => {
+        items.push(department);
+      });
+    }
+    return items;
+  }
+  
+  const departmentArrays = getAllDepartments(getAllDepartmentCollectionArrays);
+  console.log("DATA NA GIKAN SA ARROW FUNCTION FOREACH", departmentArrays);
+
+  if (props.loading) {
+    return <div>
+    <span className="loading loading-ball loading-xs"></span>
+    <span className="loading loading-ball loading-sm"></span>
+    <span className="loading loading-ball loading-md"></span>
+    <span className="loading loading-ball loading-lg"></span>
+    </div>;
+  }
 
   return (
     <div className='bg-base-200 h-full w-full'>
       <div className='bg-base-300 h-full w-full'>
-        <div className="overflow-x-auto h-full w-full">
-        <table className="table w-full h-full">
-            {/* head */}
-            <thead>
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-              </tr>
-              {/* row 2 */}
-              <tr className="hover">
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
-              </tr>
-              {/* row 3 */}
-              <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div className="overflow-x-auto">
+        {Array.isArray(departmentArrays) && departmentArrays.length > 0 ? (
+
+          <table className="table w-full h-full">
+              <thead className='bg-amber-100 pr-3 pl-3 pb-3 pt-3'>
+                <tr>
+                  <th className='text-1xl text-black'>NO.</th>
+                  <th className='text-1xl text-black'>DEPARTMENT NAME</th>
+                  <th className='text-1xl text-black'>DEPARTMENT DESCRIPTION</th>
+                  <th className='text-1xl text-black'>DEPARTMENT STATUS</th>
+                  <th className='text-1xl text-black'>ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+              {departmentArrays && departmentArrays.map((item, index) => (
+                <tr>
+                  <th>{index}</th>
+                  <td>{item.dept_name}</td>
+                  <td>{item.dept_description}</td>
+                  <td>{item.dept_status_id}</td>
+                  <td>
+                  <div className="flex">
+                  <div className="flex-none mr-3">
+                      <Link to={`/employee/details/${item.id}`} className="text-black">
+                          <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
+                      </Link>
+
+                  </div>
+                  <div className="flex-none mr-3">
+                      <MdAutoDelete
+                      onClick={() => {
+                              setDeactivateEmployeeId(item.id); 
+                              document.getElementById('removeEmployee').showModal()
+                          }}
+                       style={{ fontSize: "20px", color: "black" }} />
+                  </div>
+              </div>
+                  </td>
+                </tr>
+              ))}
+              
+              </tbody>
+            </table>
+        ) : (
+          <h1>NO DATA</h1>
+        )
+       } 
+        </div>  
       </div>
     </div>
   )
@@ -57,13 +99,14 @@ const Department = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    departmentData: state.departmentState
+    departmentData: state.departmentState,
+    loading: state.departmentState.loading,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchDeparments: () => dispatch(fetchDeparments()),
+    fetchDepartments: () => dispatch(fetchDepartments()),
     
   };
 };
