@@ -26,6 +26,8 @@ import FourOFourNotFound from './components/Auth/admin/pages/404NotFound';
 import ArchiveEmployee from './components/Auth/employee/ArchiveEmployee';
 import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
 import EmployeeChart from './components/Auth/employee/EmployeeChart';
+import AddDepartment from './components/Auth/admin/department/AddDepartment';
+
 
 //REDUX-DISPATCH ACTIONS
 import { fetchUsers } from './components/redux/actions/userAction';
@@ -208,6 +210,7 @@ function App(props) {
                     <Route path="/archieve" element={<ArchiveEmployee />} />
                     <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                     <Route path="/employee/attendance" element={<EmployeeAttendance />} />
+                    <Route path="/department/add" element={<AddDepartment />} />
                   </Routes>
                 </>
                 ) : (
