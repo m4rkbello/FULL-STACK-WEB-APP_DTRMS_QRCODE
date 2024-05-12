@@ -3,23 +3,22 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
-import { FaUpload } from "react-icons/fa6";
-import { FaUserEdit, FaExpeditedssl, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
-import { IoMdCloseCircle } from "react-icons/io";
-
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useParams, useNavigate,Link } from 'react-router-dom';
 
 //DISPATCH-ACTION REDUX-CORE
 import { fetchEmployees, updateEmployee, uploadAndUpdateImageEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
 
+//ICONS
+import { FaUpload } from "react-icons/fa6";
+import { FaUserEdit, FaExpeditedssl, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
+//TOASTER
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { useNavigate } from 'react-router-dom';
+
 
 const EmployeePersonalDetails = (props) => {
     const { id } = useParams();
@@ -261,7 +260,6 @@ const EmployeePersonalDetails = (props) => {
                                             <IoMdCloseCircle style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
                                         </button>
                                     </div>
-
                                 </div>
                             </form>
 
