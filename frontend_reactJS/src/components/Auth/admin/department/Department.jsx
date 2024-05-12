@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { FaEye } from "react-icons/fa6";
@@ -6,7 +7,8 @@ import { IoIosPersonAdd } from "react-icons/io";
 import { HiStatusOnline } from "react-icons/hi";
 import { MdOutlineNoAccounts } from "react-icons/md";
 import { RiAccountPinCircleFill } from "react-icons/ri";
-import { connect } from 'react-redux';
+
+//DEPARTMENT ACTIONS/DISPATCH
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 
 const Department = (props) => {
@@ -50,17 +52,23 @@ const Department = (props) => {
           <table className="table w-full h-full">
               <thead className='bg-amber-100 pr-3 pl-3 pb-3 pt-3'>
                 <tr>
-                  <th className='text-1xl text-black'>NO.</th>
                   <th className='text-1xl text-black'>DEPARTMENT NAME</th>
                   <th className='text-1xl text-black'>DEPARTMENT DESCRIPTION</th>
                   <th className='text-1xl text-black'>DEPARTMENT STATUS</th>
                   <th className='text-1xl text-black'>ACTION</th>
+                  <th className='text-1xl text-black'>
+                  <Link to="/department/add" className="text-black">
+                  <IoIosPersonAdd
+                  style={{ height: "50px", width: "50px", color: "black" }}
+              
+                  />
+                  </Link>
+                  </th>
                 </tr>
               </thead>
               <tbody>
               {departmentArrays && departmentArrays.map((item, index) => (
-                <tr>
-                  <th>{index}</th>
+                <tr key={index}>
                   <td>{item.dept_name}</td>
                   <td>{item.dept_description}</td>
                   <td>{item.dept_status_id}</td>
@@ -68,7 +76,7 @@ const Department = (props) => {
                   <div className="flex">
                   <div className="flex-none mr-3">
                       <Link to={`/employee/details/${item.id}`} className="text-black">
-                          <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
+                          <FaEye style={{ fontSize: "20px", color: "#fef3c6", padding: "0%" }} />
                       </Link>
 
                   </div>
@@ -78,7 +86,7 @@ const Department = (props) => {
                               setDeactivateEmployeeId(item.id); 
                               document.getElementById('removeEmployee').showModal()
                           }}
-                       style={{ fontSize: "20px", color: "black" }} />
+                       style={{ fontSize: "20px", color: "#fef3c6" }} />
                   </div>
               </div>
                   </td>
