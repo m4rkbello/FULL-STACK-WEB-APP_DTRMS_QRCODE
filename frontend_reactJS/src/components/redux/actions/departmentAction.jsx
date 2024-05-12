@@ -47,9 +47,9 @@ export const fetchDepartments = () => async dispatch => {
 export const addDepartment = departmentData => async dispatch => {
     try {
         dispatch({ type: ADD_DEPARTMENT_REQUEST });
-        const addDeptReqRes = await MarkBelloApi.post('/api/department/create', departmentData);
+        const addDepartmentRequestAndResponse = await MarkBelloApi.post('/api/department/create', departmentData);
 
-        if (!addDeptReqRes.data.success) {
+        if (!addDepartmentRequestAndResponse.data.success) {
             // Handle the case where the response is empty
             toast.error('Employee not added! 🥺⚠️👽', {
                 position: 'top-right',
@@ -91,7 +91,7 @@ export const addDepartment = departmentData => async dispatch => {
     
         dispatch({
             type: ADD_DEPARTMENT_SUCCESS,
-            payload: addDeptReqRes,
+            payload: addDepartmentRequestAndResponse,
         });
     } catch (error) {
         dispatch({
