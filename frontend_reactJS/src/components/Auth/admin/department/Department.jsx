@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux';
+import { fetchDeparments } from '../../../redux/actions/departmentAction';
 
-const Department = () => {
+const Department = (props) => {
+  console.log("DATA SA FETCH DEPARTMENT", props && props);
+
+  useEffect(() => {
+    props.fetchDeparments();
+  },[])
+
+
+
   return (
-    <div className='bg-base-200'>
-      <div className='bg-base-300'>
-        <div className="overflow-x-auto ">
-          <table className="table">
+    <div className='bg-base-200 h-full w-full'>
+      <div className='bg-base-300 h-full w-full'>
+        <div className="overflow-x-auto h-full w-full">
+        <table className="table w-full h-full">
             {/* head */}
             <thead>
               <tr>
@@ -45,4 +55,17 @@ const Department = () => {
   )
 }
 
-export default Department
+const mapStateToProps = (state) => {
+  return {
+    departmentData: state.departmentState
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchDeparments: () => dispatch(fetchDeparments()),
+    
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Department);
