@@ -267,9 +267,6 @@ function App(props) {
 }
 
 const mapStateToProps = (state) => {
-  // console.log("DATA SA MAPTOSTATETOPROPS users", state.userState);
-  // console.log("DATA SA MAPTOSTATETOPROPS employees", state.employeeState);
-  // console.log("DATA SA MAPTOSTATETOPROPS attendances", state.attendanceState);
   return {
     users: state.userState.users.data,
     employees: state.employees,
