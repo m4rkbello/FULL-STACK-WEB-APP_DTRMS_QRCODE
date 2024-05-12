@@ -5,11 +5,9 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate,Link } from 'react-router-dom';
-
 //DISPATCH-ACTION REDUX-CORE
 import { fetchEmployees, updateEmployee, uploadAndUpdateImageEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
-
 //ICONS
 import { FaUpload } from "react-icons/fa6";
 import { FaUserEdit, FaExpeditedssl, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
