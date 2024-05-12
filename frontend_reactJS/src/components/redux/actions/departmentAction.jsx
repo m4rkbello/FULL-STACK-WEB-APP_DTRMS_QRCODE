@@ -48,12 +48,24 @@ export const addDepartment = departmentData => async dispatch => {
     try {
         dispatch({ type: ADD_DEPARTMENT_REQUEST });
         const addDepartmentRequestAndResponse = await MarkBelloApi.post('/api/department/create', departmentData);
+        const statusCode = addDepartmentRequestAndResponse.status;
 
-            const statusCode = addDepartmentRequestAndResponse.status;
-            
-        if (statusCode === 422) {
-            // Handle the case where the department is successfully created
-
+        if (statusCode === 201) {
+            toast.success('Department Added Successfully!👌👌👌', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
+            });
+        } else if(statusCode = 401){
             toast.error('An error occurred while adding the department! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -68,34 +80,18 @@ export const addDepartment = departmentData => async dispatch => {
                     fontSize: '15px'
                 }
             });
-        } else if(statusCode === 422){
-            toast.success('Department Added Successfully!👌👌👌', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                style: {
-                    background: 'white',
-                    color: 'green',
-                    fontSize: '15px'
-                }
-            });
-              
         }else {
-            toast.success('Department Added Successfully!👌👌👌', {
+            toast.error('An error occurred while adding the department! 🥺⚠️👽', {
                 position: 'top-right',
-                autoClose: 3000,
+                autoClose: 5000,
                 hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
+                closeOnClick: false,
+                pauseOnHover: false,
                 draggable: true,
                 progress: undefined,
                 style: {
-                    background: 'white',
-                    color: 'green',
+                    background: 'black',
+                    color: 'red',
                     fontSize: '15px'
                 }
             });
