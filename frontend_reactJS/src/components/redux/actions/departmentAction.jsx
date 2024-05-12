@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 import { 
+FETCH_DEPARTMENTS_REQUEST,
+FETCH_DEPARTMENTS_SUCCESS,
+FETCH_DEPARTMENTS_FAILURE,
 ADD_DEPARTMENT_FAILURE,
 ADD_DEPARTMENT_REQUEST,
 ADD_DEPARTMENT_SUCCESS,
@@ -16,9 +19,6 @@ DEACTIVATE_DEPARTMENT_SUCCESS,
 DELETE_DEPARTMENT_FAILURE,
 DELETE_DEPARTMENT_REQUEST,
 DELETE_DEPARTMENT_SUCCESS,
-FETCH_DEPARTMENTS_FAILURE,
-FETCH_DEPARTMENTS_REQUEST,
-FETCH_DEPARTMENTS_SUCCESS,
 UPDATE_DEPARTMENT_FAILURE,
 UPDATE_DEPARTMENT_REQUEST,
 UPDATE_DEPARTMENT_SUCCESS }
@@ -27,31 +27,31 @@ from '../types/departmentTypes.jsx';
 
 
 
-//MAG-FETCH UG EMPLOYEE
-export const fetchEmployees = () => async dispatch => {
+//MAG-FETCH UG DATA SA DEPARTMENTS
+export const fetchDeparments = () => async dispatch => {
     try {
-        dispatch({ type: FETCH_EMPLOYEES_REQUEST });
+        dispatch({ type: FETCH_DEPARTMENTS_REQUEST });
         // Perform async operation, e.g., fetch data from an API
-        const employees = await MarkBelloApi.get('/api/employees');
+        const fetchDeptReqRes = await MarkBelloApi.get('/api/department/view/all');
         dispatch({
-            type: FETCH_EMPLOYEES_SUCCESS,
-            payload: employees
+            type: FETCH_DEPARTMENTS_SUCCESS,
+            payload: fetchDeptReqRes
         });
     } catch (error) {
         dispatch({
-            type: FETCH_EMPLOYEES_FAILURE,
+            type: FETCH_DEPARTMENTS_FAILURE,
             payload: error.message
         });
     }
 };
 
 //MAG ADD UG EMPLOYEE 
-export const addEmployee = AddEmployee => async dispatch => {
+export const addDepartment = AddDepartment => async dispatch => {
     try {
-        dispatch({ type: ADD_EMPLOYEE_REQUEST });
-        const addEmployeeRequestResponse = await MarkBelloApi.post('/api/employee-registration', AddEmployee);
+        dispatch({ type: ADD_DEPARTMENT_REQUEST });
+        const addDeptReqRes = await MarkBelloApi.post('/api/department/create', AddDepartment);
 
-        if (!addEmployeeRequestResponse.data.success) {
+        if (!addDeptReqRes.data.success) {
             // Handle the case where the response is empty
             toast.error('Employee not added! 🥺⚠️👽', {
                 position: 'top-right',
@@ -92,27 +92,27 @@ export const addEmployee = AddEmployee => async dispatch => {
 
     
         dispatch({
-            type: ADD_EMPLOYEE_SUCCESS,
-            payload: addEmployeeRequestResponse
+            type: ADD_DEPARTMENT_SUCCESS,
+            payload: addDeptReqRes,
         });
     } catch (error) {
         dispatch({
-            type: ADD_EMPLOYEE_FAILURE,
+            type: ADD_DEPARTMENT_FAILURE,
             payload: error.message
         });
     }
 };
 
 //MAG UPDATE UG EMPLOYEE GAMIT ID
-export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNavigator) => async dispatch => {
+export const updateDepartment = (deptartmentId, updateDepartmentData) => async dispatch => {
    
     try {
-        dispatch({ type: UPDATE_EMPLOYEE_REQUEST });
+        dispatch({ type: UPDATE_DEPARTMENT_REQUEST });
         // Perform async operation, e.g., send updated data to an API
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
-        const updateEmployeeResponse = await MarkBelloApi.put(`/api/employee/${employeeId}`, updateEmployeeData);
+        const updateDeptResponseRequest = await MarkBelloApi.put(`/api/department/update/${deptartmentId}`, updateDepartmentData);
 
-        if (!updateEmployeeResponse) {
+        if (!updateDeptResponseRequest) {
             // Handle the case where the response is empty
             toast.error('Fill-up correctly! 🥺⚠️👽', {
                 position: 'top-right',
@@ -151,8 +151,8 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
             //   })
 
             dispatch({
-                type: UPDATE_EMPLOYEE_SUCCESS,
-                payload: updateEmployeeResponse
+                type: UPDATE_DEPARTMENT_SUCCESS,
+                payload: updateDeptResponseRequest,
             });
 
         }
@@ -183,7 +183,7 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
         } else {
             // Handle other types of errors
             dispatch({
-                type: UPDATE_EMPLOYEE_FAILURE,
+                type: UPDATE_DEPARTMENT_FAILURE,
                 payload: error.message
             });
         }
@@ -191,14 +191,14 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
 };
 
 //REDUX-ACTION DISPATCH - FLAG TO 0 OR DELETE DEPENDE SA USECASE
-export const deactivateEmployee = employeeId => async dispatch => {
+export const deactivateDepartment = departmentId => async dispatch => {
     try {
-        dispatch({ type: DELETE_EMPLOYEE_REQUEST });
+        dispatch({ type: DEACTIVATE_DEPARTMENT_REQUEST });
     
-       const deactivateEmployeeReqAndRes = await MarkBelloApi.put(`/api/employee/deactivated/${employeeId}`);
+       const deactivateDepartmentRequestAndResponse = await MarkBelloApi.put(`/api/department/deactivate/${departmentId}`);
        console.log("DATA", deactivateEmployeeReqAndRes);
 
-        if (deactivateEmployeeReqAndRes.success != true) {
+        if (deactivateDepartmentRequestAndResponse.success != true) {
             // Handle the case where the response is empty
             toast.error('Employee not deactivated! 🥺⚠️👽', {
                 position: 'top-right',
@@ -236,55 +236,47 @@ export const deactivateEmployee = employeeId => async dispatch => {
             //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
             //   })
 
-        
             dispatch({
-                type: DELETE_EMPLOYEE_SUCCESS,
-                payload: deactivateEmployeeReqAndRes
+                type: DEACTIVATE_DEPARTMENT_SUCCESS,
+                payload: deactivateDepartmentRequestAndResponse
             });
-
         }
-
-
 
     } catch (error) {
         dispatch({
-            type: DELETE_EMPLOYEE_FAILURE,
+            type: DEACTIVATE_DEPARTMENT_FAILURE,
             payload: error.message
         });
     }
 };
 
 //REDUX-ACTION DISPATCH - UPLOAD UG IMAGE UG UPDATE - METHOD POST
-export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dispatch) => {
+export const deleteDepartment = departmentId => async dispatch => {
     try {
-        dispatch({ type: UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST });
-        const uploadAndUpdateImageEmpReqRes = await MarkBelloApi.post(`/api/employee/image/${employeeId}`, formData, {
-            headers: {
-                'Content-Type':'multipart/form-data',
-            },
-        });
+        dispatch({ type: DELETE_DEPARTMENT_REQUEST });
+    
+       const deleteDepartmentRequestAndResponse = await MarkBelloApi.delete(`/api/department/deactivate/${departmentId}`);
+       console.log("DATA", deleteDepartmentRequestAndResponse);
 
-        console.log("DATA", uploadAndUpdateImageEmpReqRes);
-
-        if (uploadAndUpdateImageEmpReqRes.data.success === false) {
-            // Display error toast if the upload was unsuccessful
-            toast.error(uploadAndUpdateImageEmpReqRes.data.message,'!🥺😱😣', {
+        if (deleteDepartmentRequestAndResponse.success != true) {
+            // Handle the case where the response is empty
+            toast.error('Employee not deactivated! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 10000,
                 hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
+                closeOnClick: false,
+                pauseOnHover: false,
                 draggable: true,
                 progress: undefined,
                 style: {
-                    background: '#fef3c7',
+                    background: 'black',
                     color: 'red',
-                    fontSize: '20px'
+                    fontSize: '15px'
                 }
             });
         } else {
-            // Display success toast if the upload was successful
-            toast.success('Employee Image upload successfully!🤭😇🤗', {
+            // Handle the case where the update is successful
+            toast.success('Employee deactivated Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -293,30 +285,27 @@ export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dis
                 draggable: true,
                 progress: undefined,
                 style: {
-                    background: '#fef3c7',
+                    background: 'white',
                     color: 'green',
-                    fontSize: '17px'
+                    fontSize: '15px'
                 }
             });
+            
+            // setTimeout(() => {
+            //     window.location.reload();
+            //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
+            //   })
 
-            // Dispatch the success action only if the upload was successful
             dispatch({
-                type: UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS,
-                payload: uploadAndUpdateImageEmpReqRes.data.employee_image // Use the correct response object
+                type: DELETE_DEPARTMENT_SUCCESS,
+                payload: deleteDepartmentRequestAndResponse
             });
-
-            // Reload or navigate after a successful upload, not needed if error occurs
-            setTimeout(() => {
-                window.location.reload();
-                navigate("http://localhost:5173/admin/user/profile-details");
-            }, 5000);
         }
-    } catch(error) {
+
+    } catch (error) {
         dispatch({
-            type: UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE,
-            payload: error.message,
+            type: DELETE_DEPARTMENT_FAILURE,
+            payload: error.message
         });
     }
 };
-
-
