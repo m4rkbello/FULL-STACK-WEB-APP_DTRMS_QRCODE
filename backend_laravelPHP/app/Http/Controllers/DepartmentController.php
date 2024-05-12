@@ -19,8 +19,6 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
-      
         try{
 
             $department = department::all();
