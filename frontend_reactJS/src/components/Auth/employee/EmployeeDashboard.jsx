@@ -15,8 +15,6 @@ import { useEffect, useState } from 'react';
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
 
-
-
 //TOASTER
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
