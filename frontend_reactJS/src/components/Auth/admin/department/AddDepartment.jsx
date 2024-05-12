@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 //REDUX ACTION/DISPATCH
 import { addDepartment, fetchDepartments } from '../../../redux/actions/departmentAction';
 //ICONS
@@ -103,9 +104,11 @@ const AddDepartment = (props) => {
                         </div>
 
                         <div>
+                        <Link to="/department" className="text-black">
                             <button className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
                                 <IoMdCloseCircle style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
                             </button>
+                        </Link>
                         </div>
                     </div>
                     </form>
