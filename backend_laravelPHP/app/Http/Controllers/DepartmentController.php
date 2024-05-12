@@ -70,8 +70,8 @@ class DepartmentController extends Controller
             ]);
     
             $response_data = [
-                'success' => true,
                 'status' => 201,
+                'success' => true,
                 'message' => 'Department has successfully created!',
                 'department' => $department,
             ];
@@ -81,9 +81,10 @@ class DepartmentController extends Controller
            
             return response()->json([
                 'success' => false,
-                'status' => 422,
+                'message' => 'Department has not successfully created!',
+                'status' => 401,
                 'errors' => $error,
-            ], 422);
+            ], 401);
         } 
     }
 
