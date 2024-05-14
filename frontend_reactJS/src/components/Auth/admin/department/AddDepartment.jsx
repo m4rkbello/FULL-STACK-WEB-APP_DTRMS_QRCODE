@@ -21,14 +21,14 @@ const AddDepartment = (props) => {
         dept_description: '',
         dept_status_id: '',
     });
-
+    //FUNCTION PARA E-HOLD ANG DATA GIKAN SA ONCHANGGE
     const handleChangeAddDepartmentData = (ez) => {
         setFormDataAddDepartment({
             ...formDataAddDepartment,
             [ez.target.name]: ez.target.value,
         });
     };
-
+    //FUNCTION PARA IPASA SA REDUX
     const handleAddDepartment = async (event) => {
         event.preventDefault();
         try {
