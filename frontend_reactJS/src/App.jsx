@@ -24,6 +24,7 @@ import ArchiveEmployee from './components/Auth/employee/ArchiveEmployee';
 import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
 import EmployeeChart from './components/Auth/employee/EmployeeChart';
 import AddDepartment from './components/Auth/admin/department/AddDepartment';
+import EditDepartment from './components/Auth/admin/department/EditDepartment';
 //REDUX-DISPATCH ACTIONS
 import { fetchUsers } from './components/redux/actions/userAction';
 import { fetchEmployees } from './components/redux/actions/employeeAction';
@@ -207,6 +208,7 @@ function App(props) {
                     <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                     <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                     <Route path="/department/add" element={<AddDepartment />} />
+                    <Route path="/department/edit" element={<EditDepartment />} />
                   </Routes>
                 </>
                 ) : (
