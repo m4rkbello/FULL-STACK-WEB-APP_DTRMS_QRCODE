@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
-
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
-
 //ADMIN
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
@@ -16,7 +14,6 @@ import UserDetails from './components/Auth/admin/user/UserDetails';
 import UserChangePassword from './components/Auth/admin/user/UserChangePassword';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import Department from './components/Auth/admin/department/Department';
-
 //EMPLOYEE
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
@@ -27,12 +24,11 @@ import ArchiveEmployee from './components/Auth/employee/ArchiveEmployee';
 import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
 import EmployeeChart from './components/Auth/employee/EmployeeChart';
 import AddDepartment from './components/Auth/admin/department/AddDepartment';
-
-
 //REDUX-DISPATCH ACTIONS
 import { fetchUsers } from './components/redux/actions/userAction';
 import { fetchEmployees } from './components/redux/actions/employeeAction';
 import { fetchAttendances } from './components/redux/actions/attendanceAction';
+
 
 function App(props) {
   //FOR AUTHENTICATION-PURPOSES GAMIT TOKEN UG ID SA USERS
