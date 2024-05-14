@@ -17,7 +17,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
 const EmployeePersonalDetails = (props) => {
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
