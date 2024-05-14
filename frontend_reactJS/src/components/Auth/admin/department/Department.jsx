@@ -12,7 +12,7 @@ import { RiAccountPinCircleFill } from "react-icons/ri";
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 
 const Department = (props) => {
-  console.log("DATA SA FETCH DEPARTMENT", props && props);
+  // console.log("DATA SA FETCH DEPARTMENT", props && props);
   
   useEffect(() => {
     props.fetchDepartments();
@@ -32,7 +32,7 @@ const Department = (props) => {
   }
   
   const departmentArrays = getAllDepartments(getAllDepartmentCollectionArrays);
-  console.log("DATA NA GIKAN SA ARROW FUNCTION FOREACH", departmentArrays);
+  // console.log("DATA NA GIKAN SA ARROW FUNCTION FOREACH", departmentArrays);
 
   if (props.loading) {
     return <div>
@@ -114,7 +114,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchDepartments: () => dispatch(fetchDepartments()),
-    
   };
 };
 

@@ -9,7 +9,7 @@ import { useParams, useNavigate,Link } from 'react-router-dom';
 import { fetchDepartments, updateDepartment } from '../../../redux/actions/departmentAction';
 //ICONS
 import { FaUpload } from "react-icons/fa6";
-import { FaUserEdit, FaExpeditedssl, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
+import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 //TOASTER
 import { ToastContainer } from 'react-toastify';
@@ -17,12 +17,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const EditDepartment = (props) => {
+    console.log("DATA SA FETCH DEPARTMENT", props);
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [imageEmployee, setImageEmployee] = useState(null);
 
-    const updateEmployeeNavigator = useNavigate();
+    useEffect(() => {
+        props.fetchDepartments();
+    }, []);
+
 
     //e-open ang modal
     const handleOpenModal = () => {
@@ -42,29 +45,24 @@ const EditDepartment = (props) => {
         }
     };
 
-    const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
-        employee_fullname: '',
-        employee_email: '',
-        employee_contact_no: '',
-        employee_role: '',
-        employee_position: '',
-        employee_department: '',
-        employee_status: ''
+    const [formDataUpdateDepartment, setFormDataUpdateDepartment] = useState({
+        dept_name: '',
+        dept_description: '',
+        dept_status_id: '',
     });
 
     const handleChangeUpdateData = (ez) => {
-        setFormDataEmployeeUpdate({
-            ...formDataEmployeeUpdate,
+        setFormDataUpdateDepartment({
+            ...formDataUpdateDepartment,
             [ez.target.name]: ez.target.value,
         });
     };
 
-
-    const handleSumbitEmployeeData = async (event) => {
+    const handleSubmitDepartmentData = async (event) => {
         event.preventDefault();
         setIsLoading(true);
         try {
-            props.updateEmployee(id, formDataEmployeeUpdate);
+            props.updateEmployee(id, formDataUpdateDepartment);
         } catch (error) {
             window.alert("ERROR");
         };
@@ -72,38 +70,30 @@ const EditDepartment = (props) => {
     
     const employeesCollectionArrays = props.employeesData?.employees?.data;
     
-    function employeeDetails(employeesCollectionArrays, id) {
-        let item = [];
+    // function employeeDetails(employeesCollectionArrays, id) {
+    //     let item = [];
 
-        if (employeesCollectionArrays) {
-            for (let ez = 0; ez < employeesCollectionArrays.length; ez++) {
-                if (employeesCollectionArrays[ez].id == id) {
-                    item.push(employeesCollectionArrays[ez]);
-                }
-            }
-        }
-        return item;
-    }
+    //     if (employeesCollectionArrays) {
+    //         for (let ez = 0; ez < employeesCollectionArrays.length; ez++) {
+    //             if (employeesCollectionArrays[ez].id == id) {
+    //                 item.push(employeesCollectionArrays[ez]);
+    //             }
+    //         }
+    //     }
+    //     return item;
+    // }
     
-    const employee = employeeDetails(employeesCollectionArrays, id);
+    // const employee = employeeDetails(employeesCollectionArrays, id);
     
-    const handleImageEmployeeChange = (e) => {
-        setImageEmployee(e.target.files[0]);
-      };
 
-  const handleUploadImageEmployee = () => {
-    event.preventDefault();
-        if (imageEmployee) {
-        const formData = new FormData();
-        formData.append('employee_image', imageEmployee);
-        props.uploadAndUpdateImageEmployee(formData, id); 
-        }
-    };
-
-    useEffect(() => {
-        props.fetchEmployees();
-        props.fetchImages();
-    }, []);
+    if (props.loading) {
+        return <div>
+        <span className="loading loading-ball loading-xs"></span>
+        <span className="loading loading-ball loading-sm"></span>
+        <span className="loading loading-ball loading-md"></span>
+        <span className="loading loading-ball loading-lg"></span>
+        </div>;
+      }
 
     return (
         <div className="hero max-w-full">
@@ -114,7 +104,7 @@ const EditDepartment = (props) => {
                         <h3 className="font-bold text-3xl text-black">EDIT EMPLOYEE DETAILS</h3>
 
                         <div className="modal-action">
-                            <form method="dialog" onSubmit={handleSumbitEmployeeData}>
+                            <form method="dialog" onSubmit={handleSubmitDepartmentData}>
                                 <div className="grid grid-cols-3 gap-6">
 
                                     <div className="form-control">
@@ -124,7 +114,7 @@ const EditDepartment = (props) => {
                                         {employee && employee.map((item, index) => (
                                             <input
                                                 key={index}
-                                                name="employee_fullname" //key para sa form data
+                                                name="dept_name" //key para sa form data
                                                 onChange={handleChangeUpdateData}
                                                 type="text"
                                                 placeholder="text"
@@ -142,7 +132,7 @@ const EditDepartment = (props) => {
                                         {employee && employee.map((item, index) => (
                                             <input
                                                 key={index}
-                                                name="employee_email" //key para sa formData
+                                                name="dept_description" //key para sa formData
                                                 onChange={handleChangeUpdateData}
                                                 type="text"
                                                 placeholder="email"
@@ -152,85 +142,15 @@ const EditDepartment = (props) => {
                                             />
                                         ))}
                                     </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text text-black text-2xl">Contact No.</span>
-                                        </label>
-                                        {employee && employee.map((item, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                name="employee_contact_no"
-                                                onChange={handleChangeUpdateData}
-                                                placeholder="contact number"
-                                                className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                                defaultValue={item.employee_contact_no}
-                                                style={{ backgroundColor: 'black' }}
-                                            />
-                                        ))}
-                                    </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text text-black text-2xl">Role</span>
-                                        </label>
-                                        {employee && employee.map((item, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                name="employee_role"
-                                                onChange={handleChangeUpdateData}
-                                                placeholder="Role"
-                                                className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                                defaultValue={item.employee_role}
-                                                style={{ backgroundColor: 'black' }}
-                                            />
-                                        ))}
-                                    </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text text-black text-2xl">Position</span>
-                                        </label>
-                                        {employee && employee.map((item, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                name="employee_position"
-                                                onChange={handleChangeUpdateData}
-                                                placeholder="Position"
-                                                className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                                defaultValue={item.employee_position}
-                                                style={{ backgroundColor: 'black' }}
-                                            />
 
-                                        ))}
-                                    </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text text-black text-2xl">Department</span>
-                                        </label>
-                                        {employee && employee.map((item, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                name="employee_department"
-                                                onChange={handleChangeUpdateData}
-                                                placeholder="Enter a department"
-                                                className="input input-bordered shadow-2xl text-2xl text-amber-100"
-                                                defaultValue={item.employee_department}
-                                                style={{ backgroundColor: 'black' }}
-                                            />
-                                        ))}
-                                    </div>
-                                    <center>
-                                    </center>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text text-black text-2xl">Status</span>
                                         </label>
-                                        {employee && employee.map((item, index) => (
+                                       
                                             <select
                                                 key={index}
-                                                name="employee_status"
+                                                name="dept_status_id"
                                                 className="select shadow-2xl text-2xl w-full max-w-xs"
                                                 style={{ backgroundColor: 'black', color: "#fef3c6" }}
                                                 onChange={handleChangeUpdateData}
@@ -238,7 +158,7 @@ const EditDepartment = (props) => {
                                                 <option value="1">Active</option>
                                                 <option value="0">Inactive</option>
                                             </select>
-                                        ))}
+                                 
                                     </div>
 
 
@@ -269,15 +189,6 @@ const EditDepartment = (props) => {
 
             )}
 
-            <dialog id="uploadEmployeeProfile" className="modal">
-            <div className="modal-box">
-            <form method="dialog justify-center">
-              <input type="file" onChange={handleImageEmployeeChange} className="file-input bg-amber-100 w-full max-w-xs" />
-              <button onClick={handleUploadImageEmployee} className="btn btn-primary ml-5">Upload</button>
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-          </div>
-            </dialog>
 
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
@@ -448,8 +359,10 @@ const EditDepartment = (props) => {
 }
 
 const mapStateToProps = (state) => {
+
     return {
-        departmentData: state.departmentState.department
+        departmentData: state.departmentState.department,
+        loading: state.departmentState.loading,
     }
 };
 
