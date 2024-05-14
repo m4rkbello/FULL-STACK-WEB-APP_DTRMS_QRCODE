@@ -11,9 +11,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const AddDepartment = (props) => {
-
     useEffect(() => {
         props.fetchDepartments();
     }, []);
@@ -41,7 +39,6 @@ const AddDepartment = (props) => {
             console.error(error);
         }
     }
-
 
     return (
         <div>
