@@ -60,7 +60,6 @@ const Department = (props) => {
                   <Link to="/department/add" className="text-black">
                   <IoIosPersonAdd
                   style={{ height: "50px", width: "50px", color: "black" }}
-              
                   />
                   </Link>
                   </th>
@@ -75,7 +74,7 @@ const Department = (props) => {
                   <td>
                   <div className="flex">
                   <div className="flex-none mr-3">
-                      <Link to={`/employee/details/${item.id}`} className="text-black">
+                      <Link to={`/department/edit/${item.id}`} className="text-black">
                           <FaEye style={{ fontSize: "20px", color: "#fef3c6", padding: "0%" }} />
                       </Link>
 
