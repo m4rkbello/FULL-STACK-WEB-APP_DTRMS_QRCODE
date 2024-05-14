@@ -52,7 +52,6 @@ const EmployeeDashboard = (props) => {
     }
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
-
     console.log("DATA SA employeesList", employeesList);
 
     const imageCollectionArrays = props.imagesData?.images?.data;
