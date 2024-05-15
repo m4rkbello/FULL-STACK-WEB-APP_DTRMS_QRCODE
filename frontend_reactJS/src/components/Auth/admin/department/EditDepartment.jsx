@@ -17,7 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const EditDepartment = (props) => {
-    console.log("DATA SA FETCH DEPARTMENT", props);
+    console.log("DATA SA FETCH DEPARTMENT", props && props);
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
