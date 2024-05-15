@@ -86,7 +86,7 @@ const EditDepartment = (props) => {
     }
     
     const departments = departmentsDetails(departmentCollectionArrays, id);
-    
+    console.log("AYAW KOL", departments);
 
     if (props.loading) {
         return <div>
@@ -121,7 +121,7 @@ const EditDepartment = (props) => {
                                                 type="text"
                                                 placeholder="text"
                                                 className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                                defaultValue={item.employee_fullname}
+                                                defaultValue={item.dept_name}
                                                 style={{ backgroundColor: 'black' }}
                                             />
                                         ))}
@@ -139,7 +139,7 @@ const EditDepartment = (props) => {
                                                 type="text"
                                                 placeholder="email"
                                                 className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                                defaultValue={item.departments_email}
+                                                defaultValue={item.dept_description}
                                                 style={{ backgroundColor: 'black' }}
                                             />
                                         ))}
@@ -156,11 +156,10 @@ const EditDepartment = (props) => {
                                                 className="select shadow-2xl text-2xl w-full max-w-xs"
                                                 style={{ backgroundColor: 'black', color: "#fef3c6" }}
                                                 onChange={handleChangeUpdateData}
-                                            >
+                                                >
                                                 <option value="1">Active</option>
                                                 <option value="0">Inactive</option>
                                             </select>
-                                 
                                     </div>
 
 
@@ -191,7 +190,6 @@ const EditDepartment = (props) => {
 
             )}
 
-
             {Array.isArray(departmentsDetails) && departmentsDetails.length > 0 ? (
                 <>
                     <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
@@ -204,24 +202,16 @@ const EditDepartment = (props) => {
 
                         <div className="hero-content flex flex-col items-center">
 
-                            {departments && departments.map((image, imageIndex) => (
-                                <img
-                                    key={imageIndex}
-                                    className="mask mask-circle shadow-inner"
-                                    src={image.employee_image}
-                                    type="file"
-                                    style={{ backgroundColor: 'transparent', width: '20%', height: '20%' }}
-                                />
-                            ))}
+                      
 
-                            <FaUpload onClick={() => document.getElementById('uploadEmployeeProfile').showModal()} alt="Upload image" style={{ fontSize: "20px", color: "black" }} />
+
                             <div className="hero-content flex-col lg:flex-row py-0 px-0">
                                 <div className="flex">
                                     <div className="">
                                         {departments && departments.map((image, index) => {
                                             <img
                                                 key={index}
-                                                src={image.employee_image}
+                                                src={image.dept_description}
                                                 className="max-w-sm rounded-lg shadow-2xl"
                                             />
                                         })}
@@ -230,105 +220,23 @@ const EditDepartment = (props) => {
                                 <div className="flex-1">
 
                                     <div className="grid grid-cols-3 gap-6">
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Fullname</span>
-                                            </label>
-                                            {departments && departments.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="text"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                                    defaultValue={item.employee_fullname}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text text-black text-2xl">Status</span>
+                                        </label>
+                                        {departments && departments.map((item, index) => (
+                                            <select
+                                                key={index}
+                                                name="dept_status_id"
+                                                className="select shadow-2xl text-2xl w-full max-w-xs"
+                                                style={{ backgroundColor: 'black', color: "#fef3c6" }}
+                                                onChange={handleChangeUpdateData}
+                                                >
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
+                                        ))}
                                         </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Email</span>
-                                            </label>
-                                            {departments && departments.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="email"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                                    defaultValue={item.employee_email}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Contact No.</span>
-                                            </label>
-                                            {departments && departments.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="email"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                                    defaultValue={item.employee_contact_no}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Role</span>
-                                            </label>
-                                            {departments && departments.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="contact no"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                                    defaultValue={item.employee_role}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Position</span>
-                                            </label>
-                                            {departments && departments.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="contact no"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                                    defaultValue={item.employee_position}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-
-                                            ))}
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Department</span>
-                                            </label>
-                                            {departments && departments.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="contact no"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                                    defaultValue={item.employee_department}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <center>
-                                        </center>
                                         <div className="form-control">
                                             <label className="label">
                                                 <span className="label-text text-black text-2xl">Status</span>
