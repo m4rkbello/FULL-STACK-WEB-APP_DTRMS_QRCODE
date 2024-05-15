@@ -208,7 +208,7 @@ function App(props) {
                     <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                     <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                     <Route path="/department/add" element={<AddDepartment />} />
-                    <Route path="/department/edit" element={<EditDepartment />} />
+                    <Route path="/department/edit/:id" element={<EditDepartment />} />
                   </Routes>
                 </>
                 ) : (
