@@ -1,4 +1,9 @@
 import React from 'react'
+//REDUX 
+
+
+
+
 
 const EditDepartment = () => {
   return (
@@ -6,4 +11,18 @@ const EditDepartment = () => {
   )
 }
 
-export default EditDepartment
+
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+const mapToDispatch = (dispatch) => {
+    return {
+
+    }
+}
+
+
+export default connect(mapStateToProps, mapToDispatch)(EditDepartment)
