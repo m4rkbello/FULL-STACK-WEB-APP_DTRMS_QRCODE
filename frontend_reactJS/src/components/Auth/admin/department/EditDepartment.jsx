@@ -86,7 +86,7 @@ const EditDepartment = (props) => {
     }
     
     const departments = departmentsDetails(departmentCollectionArrays, id);
-    console.log("AYAW KOL", departments);
+    // console.log("AYAW KOL", departments);
 
     if (props.loading) {
         return <div>
@@ -201,9 +201,6 @@ const EditDepartment = (props) => {
                         </button>
 
                         <div className="hero-content flex flex-col items-center">
-
-                      
-
 
                             <div className="hero-content flex-col lg:flex-row py-0 px-0">
                                 <div className="flex">
