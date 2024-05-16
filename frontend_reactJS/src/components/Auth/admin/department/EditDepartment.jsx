@@ -203,51 +203,57 @@ const EditDepartment = (props) => {
                         <div className="hero-content flex flex-col items-center">
 
                             <div className="hero-content flex-col lg:flex-row py-0 px-0">
-                                <div className="flex">
-                                    <div className="">
-                                        {departments && departments.map((image, index) => {
-                                            <img
-                                                key={index}
-                                                src={image.dept_description}
-                                                className="max-w-sm rounded-lg shadow-2xl"
-                                            />
-                                        })}
-                                    </div>
-                                </div>
                                 <div className="flex-1">
 
                                     <div className="grid grid-cols-3 gap-6">
                                     <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text text-black text-2xl">Status</span>
-                                        </label>
-                                        {departments && departments.map((item, index) => (
-                                            <select
-                                                key={index}
-                                                name="dept_status_id"
-                                                className="select shadow-2xl text-2xl w-full max-w-xs"
-                                                style={{ backgroundColor: 'black', color: "#fef3c6" }}
-                                                onChange={handleChangeUpdateData}
-                                                >
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
-                                            </select>
-                                        ))}
-                                        </div>
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Department</span>
+                                    </label>
+                                    {departments && departments.map((item, index) => (
+                                        <input
+                                            key={index}
+                                            name="dept_name" //key para sa formData
+                                            onChange={handleChangeUpdateData}
+                                            type="text"
+                                            placeholder="text"
+                                            className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                            defaultValue={item.dept_}
+                                            style={{ backgroundColor: 'black' }}
+                                        />
+                                    ))}
+                                </div>
+                                    <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Email</span>
+                                    </label>
+                                    {departments && departments.map((item, index) => (
+                                        <input
+                                            key={index}
+                                            name="dept_description" //key para sa formData
+                                            onChange={handleChangeUpdateData}
+                                            type="text"
+                                            placeholder="email"
+                                            className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                            defaultValue={item.dept_description}
+                                            style={{ backgroundColor: 'black' }}
+                                        />
+                                    ))}
+                                </div>
                                         <div className="form-control">
                                             <label className="label">
                                                 <span className="label-text text-black text-2xl">Status</span>
                                             </label>
                                             {departments && departments.map((item, index) => (
                                                 <select key={index} className="select shadow-2xl text-2xl w-full max-w-xs" style={{ backgroundColor: 'transparent', color: "black", border: "" }} disabled>
-                                                    <option value="Active" selected={item.employee_status === 1}>{item.employee_status === 1 ? 'Active' : 'Inactive'}</option>
-                                                    <option value="Inactive" selected={item.employee_status === 0}>{item.employee_status === 0 ? 'Inactive' : 'Active'}</option>
+                                                    <option value="Active" selected={item.dept_status_id === 1}>{item.dept_status_id === 1 ? 'Active' : 'Inactive'}</option>
+                                                    <option value="Inactive" selected={item.dept_status_id === 0}>{item.dept_status_id === 0 ? 'Inactive' : 'Active'}</option>
                                                 </select>
                                             ))}
                                         </div>
                                     </div>
                                     <button onClick={handleOpenModal}>
-                                        <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "40px", color: "black", marginLeft: "-65%", marginBottom: "-100" }} />
+                                        <FaUserEdit onClick={() => document.getElementById('editDepartmentDetails').showModal()} style={{ fontSize: "40px", color: "black", marginLeft: "-65%", marginBottom: "-100" }} />
                                     </button>
                                 </div>
                             </div>
