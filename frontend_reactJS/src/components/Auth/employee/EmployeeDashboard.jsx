@@ -255,8 +255,6 @@ const EmployeeDashboard = (props) => {
                 </div>
             </dialog>
 
-         
-
             <div className="hero bg-amber-100 rounded-lg">
                 <div className="bg-black">
                 <div className="flex flex-wrap">
