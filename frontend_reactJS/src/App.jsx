@@ -203,10 +203,10 @@ function App(props) {
                     <Route path="/admin/user/profile-details" element={<UserDetails />} />
                     <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                     <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
-                    <Route path="/department" element={<Department />} />
                     <Route path="/archieve" element={<ArchiveEmployee />} />
                     <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                     <Route path="/employee/attendance" element={<EmployeeAttendance />} />
+                    <Route path="/department" element={<Department />} />
                     <Route path="/department/add" element={<AddDepartment />} />
                     <Route path="/department/edit/:id" element={<EditDepartment />} />
                   </Routes>
