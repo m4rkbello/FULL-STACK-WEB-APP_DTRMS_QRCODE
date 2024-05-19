@@ -65,7 +65,7 @@ export const addDepartment = departmentData => async dispatch => {
                     fontSize: '15px'
                 }
             });
-        } else if(statusCode = 401){
+        } else if(statusCode == 401){
             toast.error('An error occurred while adding the department! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 5000,
