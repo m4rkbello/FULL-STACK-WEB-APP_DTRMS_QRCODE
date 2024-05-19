@@ -72,6 +72,9 @@ npm i --save chart.js react-chartjs-2
 npm install react-chartjs-2@latest
 ->npm install react-redux redux react-chartjs-2 chart.js
 
+17. INSTALL REACT-DATA-TABLE-COMPONENT 
+->npm i react-data-table-component (dili nata kailangan mag query gamit LIKE as logical operator para e search niya if naa ba na data or wala)
+
 
 
 
