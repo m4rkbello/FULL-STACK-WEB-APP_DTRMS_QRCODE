@@ -1,22 +1,9 @@
 import axios from 'axios';
 
-// const Api = axios.create({
-//   baseURL: process.env.REACT_APP_API_BASE_URL,
-//   withCredentials: true
-// });
-
-//LOCAL - PROD
 const Api = axios.create({
-  baseURL: "http://127.0.0.1:8000/",
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   withCredentials: true
 });
-
-//LIVE - PROD
-// const Api = axios.create({
-//   baseURL: "http://api.prodators.com/",
-//   withCredentials: true
-// });
-
 
 
 // Function to get token from sessionStorage
