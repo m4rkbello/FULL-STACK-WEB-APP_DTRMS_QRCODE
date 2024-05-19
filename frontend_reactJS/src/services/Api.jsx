@@ -6,16 +6,16 @@ import axios from 'axios';
 // });
 
 //LOCAL - PROD
-// const Api = axios.create({
-//   baseURL: "http://127.0.0.1:8000/",
-//   withCredentials: true
-// });
-
-//LIVE - PROD
 const Api = axios.create({
-  baseURL: "http://api.prodators.com/",
+  baseURL: "http://127.0.0.1:8000/",
   withCredentials: true
 });
+
+//LIVE - PROD
+// const Api = axios.create({
+//   baseURL: "http://api.prodators.com/",
+//   withCredentials: true
+// });
 
 
 
