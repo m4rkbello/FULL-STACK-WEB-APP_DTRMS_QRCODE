@@ -53,7 +53,6 @@ Route::post('/employee/search/', [EmployeeController::class, 'search']);
 Route::get('/images', [ImagesController::class, 'index']);
 Route::post('/image', [ImagesController::class, 'store']);
 
-
 //DEPARTMENT-ROUTES-ENDPOINTS
 Route::prefix('department')->group(function () {
     Route::get('/view/all', [DepartmentController::class, 'index']);
