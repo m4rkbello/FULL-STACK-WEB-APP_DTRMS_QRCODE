@@ -65,7 +65,14 @@ const Department = (props) => {
                   <tr key={index}>
                     <td>{item.dept_name}</td>
                     <td>{item.dept_description}</td>
-                    <td>{item.dept_status_id}</td>
+                <center>
+                {item.dept_status_id === 1 ?
+                  <RiAccountPinCircleFill
+                      style={{ fontSize: "25px", color: "green", alignItems: "center" }}
+                  /> : <MdOutlineNoAccounts
+                      style={{ fontSize: "25px", color: "red", alignItems: "center" }}
+                  />}
+                </center>
                     <td>
                       <div className="flex">
                         <div className="flex-none mr-3">
