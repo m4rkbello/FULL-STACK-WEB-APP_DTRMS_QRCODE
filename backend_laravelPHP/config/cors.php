@@ -21,7 +21,8 @@ return [
 
     //TULAY 
     // 'allowed_origins' => ['http://localhost:5173', 'https://prodetors.com'],
-    'allowed_origins' => ['http://localhost:5173', 'https://prodetors.com'],
+    // 'allowed_origins' => ['https://www.prodetors.com'],
+    // 'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 

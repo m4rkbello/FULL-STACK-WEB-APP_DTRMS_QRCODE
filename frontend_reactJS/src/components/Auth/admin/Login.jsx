@@ -27,10 +27,10 @@ const Login = ({ loginUser }) => {
         user_password: localPassword,
       });
 
-      setTimeout(() => {
-        window.location.reload();
-        navigate("/http://localhost:5173/");
-      }, 3000)
+      // setTimeout(() => {
+      //   window.location.reload();
+      //   navigate("/http://localhost:5173/");
+      // }, 3000)
 
     } catch (error) {
       window.alert("ERROR");

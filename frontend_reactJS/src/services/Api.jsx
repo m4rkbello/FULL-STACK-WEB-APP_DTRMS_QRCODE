@@ -5,6 +5,7 @@ const Api = axios.create({
   withCredentials: true
 });
 
+console.log('Base URL:', import.meta.env.VITE_API_BASE_URL);
 
 // Function to get token from sessionStorage
 export const getTokenFromSessionStorage = () => {
