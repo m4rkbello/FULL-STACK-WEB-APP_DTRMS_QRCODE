@@ -43,7 +43,7 @@ const AddDepartment = (props) => {
     return (
         <div>
         <ToastContainer />
-            <div className=" modal-box w-11/12 max-w-5xl bg-amber-100">
+            <div className=" modal-box w-11/12 max-w-5xl glass">
                 <h3 className="font-bold text-3xl text-black">ADD NEW DEPARTMENT</h3>
                     <form method="dialog" onSubmit={handleAddDepartment}>
                         <div className="grid grid-cols-3 gap-6">
@@ -58,7 +58,7 @@ const AddDepartment = (props) => {
                                     type="text"
                                     placeholder="Software Dev. Dept"
                                     className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                    style={{ backgroundColor: 'black' }}
+                                    style={{ backgroundColor: '#A3E636' }}
                                 />
                             </div>
 
@@ -72,7 +72,7 @@ const AddDepartment = (props) => {
                                     onChange={handleChangeAddDepartmentData}
                                     placeholder="For programmer department"
                                     className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                    style={{ backgroundColor: 'black' }}
+                                    style={{ backgroundColor: '#A3E636' }}
                                 />
                             </div>
 
@@ -84,7 +84,7 @@ const AddDepartment = (props) => {
                                 name="dept_status_id"
                                 onChange={handleChangeAddDepartmentData}
                                 className="select input input-bordered shadow-2xl text-2xl text-amber-100"
-                                style={{ backgroundColor: 'black' }}
+                                style={{ backgroundColor: '#A3E636' }}
                             >
                                 <option value="0">Inactive</option>
                                 <option value="1">Active</option>
