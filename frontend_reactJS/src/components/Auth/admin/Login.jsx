@@ -48,8 +48,12 @@ const Login = ({ loginUser }) => {
             <h1 className="text-5xl font-bold text-black">Login</h1>
             <p className="py-6 text-black"></p>
           </div>
+          {/**
+        
           <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-amber-100 via-black to-black/50 to-black/50">
-            <form className="card-body">
+          */}
+          <div className="card shrink-0 w-full max-w-sm shadow-md glass">
+          <form className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-xl text-black">Email</span>
