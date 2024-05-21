@@ -20,7 +20,7 @@ return [
     'allowed_methods' => ['*'],
 
     //TULAY 
-    // 'allowed_origins' => ['http://localhost:5173', 'https://prodetors.com'],
+    'allowed_origins' => ['http://localhost:5173',],
     // 'allowed_origins' => ['https://www.prodetors.com'],
     // 'allowed_origins' => ['*'],
 
