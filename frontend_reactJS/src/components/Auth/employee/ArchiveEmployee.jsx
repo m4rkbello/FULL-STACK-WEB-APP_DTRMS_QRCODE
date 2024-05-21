@@ -148,7 +148,7 @@ const ArchieveEmployee = (props) => {
                         </center>
                     </span>
 
-                    <div className="overflow-x-auto border-2 hover:border-t-4  bg-amber-100 text-black">
+                    <div className="overflow-x-auto border-2 hover:border-t-4  glass text-black">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table className="table py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
