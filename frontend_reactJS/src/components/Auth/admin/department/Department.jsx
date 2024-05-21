@@ -42,11 +42,11 @@ const Department = (props) => {
   }
 
   return (
-    <div className='bg-base-200 w-full'>
+    <div className='glass w-full'>
       <div className='bg-base-300  h-full'>
         <div className="overflow-auto max-h-96"> {/* Add this div */}
           {Array.isArray(departmentArrays) && departmentArrays.length > 0 ? (
-            <table className="table w-full">
+            <table className="table glass w-full">
               <thead className='bg-amber-100'>
                 <tr>
                   <th className='text-1xl text-black'>DEPARTMENT NAME</th>
