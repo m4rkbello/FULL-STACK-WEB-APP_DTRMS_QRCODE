@@ -89,7 +89,7 @@ const AddDepartment = (props) => {
                                 <option value="0">Inactive</option>
                                 <option value="1">Active</option>
                             </select>
-                        </div>
+                            </div>
                         
                         </div>
                         <br />
