@@ -98,7 +98,7 @@ function App(props) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="navbar bg-amber-100 px-4 py-2 md:px-8 md:py-4">
+      <div className="navbar bg-black px-4 py-2 md:px-8 md:py-4">
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
             <div className="flex-none">
@@ -119,7 +119,7 @@ function App(props) {
               </label>
             </div>
             <div className="flex-1">
-              <span className="btn btn-ghost text-2xl text-black">Welcome!
+              <span className="btn btn-ghost text-2xl text-lime-400">Welcome!
               {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                 <span className='text-2xl' key={index}>
                   {user.user_email}
@@ -150,7 +150,7 @@ function App(props) {
                 ))}
                 </div>
               </div>
-              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-amber-100 rounded-box w-52">
+              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-lime-400 rounded-box w-52">
                 <li>
                   <span className="justify-between text-black">
                     Profile <span className="badge bg-black"><span className='text-white'>
@@ -226,12 +226,12 @@ function App(props) {
           <>
             <div className="drawer-side">
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-amber-100">
+              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full glass text-lime-500">
               <li>
-              <Link to="/employee/attendance" className='text-2xl'>
-                Attendance
-              </Link>
-            </li>
+                <Link to="/employee/attendance" className='text-2xl'>
+                  Attendance
+                </Link>
+              </li>
                 <li>
                   <Link to="/employee/dashboard" className='text-2xl'>
                     Employees List
