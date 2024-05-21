@@ -46,16 +46,16 @@ const Department = (props) => {
       <div className='bg-base-300  h-full'>
         <div className="overflow-auto max-h-96"> {/* Add this div */}
           {Array.isArray(departmentArrays) && departmentArrays.length > 0 ? (
-            <table className="table glass w-full">
-              <thead className='bg-lime-400'>
+            <table className="table bg-black w-full">
+              <thead className='glass'>
                 <tr>
-                  <th className='text-1xl text-black'>DEPARTMENT NAME</th>
-                  <th className='text-1xl text-black'>DEPARTMENT DESCRIPTION</th>
-                  <th className='text-1xl text-black'>DEPARTMENT STATUS</th>
-                  <th className='text-1xl text-black'>ACTION</th>
-                  <th className='text-1xl text-black'>
+                  <th className='text-1xl text-white'>DEPARTMENT NAME</th>
+                  <th className='text-1xl text-white'>DEPARTMENT DESCRIPTION</th>
+                  <th className='text-1xl text-white'>DEPARTMENT STATUS</th>
+                  <th className='text-1xl text-white'>ACTION</th>
+                  <th className='text-1xl text-white'>
                     <Link to="/department/add" className="text-black">
-                      <IoIosPersonAdd style={{ height: "50px", width: "50px", color: "black" }} />
+                      <IoIosPersonAdd style={{ height: "50px", width: "50px", color: "#A3E636" }} />
                     </Link>
                   </th>
                 </tr>
@@ -77,7 +77,7 @@ const Department = (props) => {
                       <div className="flex">
                         <div className="flex-none mr-3">
                           <Link to={`/department/edit/${item.id}`} className="text-black">
-                            <FaEye style={{ fontSize: "20px", color: "#fef3c6", padding: "0%" }} />
+                            <FaEye style={{ fontSize: "20px", color: "#A3E636", padding: "0%" }} />
                           </Link>
                         </div>
                         <div className="flex-none mr-3">
@@ -86,7 +86,7 @@ const Department = (props) => {
                               setDeactivateEmployeeId(item.id); 
                               document.getElementById('removeEmployee').showModal()
                             }}
-                            style={{ fontSize: "20px", color: "#fef3c6" }}
+                            style={{ fontSize: "20px", color: "#A3E636" }}
                           />
                         </div>
                       </div>
