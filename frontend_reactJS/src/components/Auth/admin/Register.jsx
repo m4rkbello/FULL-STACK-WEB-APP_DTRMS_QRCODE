@@ -63,7 +63,11 @@ const Register = ({registerUser}) => {
             <h1 className="text-5xl font-bold text-black">REGISTER</h1>
             <p className="py-6 text-black">.</p>
           </div>
+          {/***
+        
           <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-amber-100 via-black to-black/50 to-black/50">
+            */}
+          <div className="card shrink-0 w-full max-w-sm shadow-md glass">
 
                     <form className="card-body">
 
