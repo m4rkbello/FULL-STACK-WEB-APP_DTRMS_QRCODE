@@ -131,7 +131,7 @@ function App(props) {
         ) : (
           <>
             <div className="flex-1">
-              <span className="btn btn-ghost text-2xl text-black">DTRMS BY M4RKBELLO</span>
+              <span className="btn btn-ghost text-4xl text-lime-400">DTRMS+</span>
             </div>
           </>
         )}
@@ -172,7 +172,7 @@ function App(props) {
         ) : (
           <>
             <div>
-              <ul className="menu menu-horizontal px-1 text-black bg-amber-100">
+              <ul className="menu menu-horizontal px-1 text-lime-400 bg-black">
                 <li className='shadow-2xl text-2xl'>
                   <Link to="/qrc">Scan QR</Link>
                 </li>
