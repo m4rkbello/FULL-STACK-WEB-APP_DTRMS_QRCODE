@@ -258,7 +258,7 @@ const EmployeeDashboard = (props) => {
             </dialog>
 
             <div className="hero bg-black rounded-lg">
-                <div className="bg-black">
+                <div className="glass">
                 <div className="flex flex-wrap">
                     <div>
                     <div className="text-sm breadcrumbs mb-10 bg-transparent">
@@ -286,7 +286,7 @@ const EmployeeDashboard = (props) => {
                     </div>
                 </div>
 
-                    <span className="text-4xl font-black  text-white">
+                    <span className="text-4xl font-black">
                         <center>
                         <div className='pb-5'>
                             <IoIosPersonAdd
@@ -299,9 +299,9 @@ const EmployeeDashboard = (props) => {
                         </center>
                     </span>
 
-                    <div className="overflow-x-auto border-2 hover:border-t-4 text-white">
+                    <div className="overflow-x-auto">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                            <table className="table py-10 px-10 my-10 mx-10">
+                            <table className="table bg-black py-10 px-10 my-10 mx-10">
                                 {/* head */}
                                 <thead className=" text-lime-400 ">
                                     <tr className="md:table-row" style={{ fontSize: "15px", color: "#A3E636" }}>
