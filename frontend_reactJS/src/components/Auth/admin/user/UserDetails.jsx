@@ -107,26 +107,26 @@ const UserDetails = (props) => {
   //para sa loading request if loading ang redux-reducer niya is is user_request
   if (props.loading) {
     return <div>
-      <span className="loading loading-ball loading-xs"></span>
-      <span className="loading loading-ball loading-sm"></span>
-      <span className="loading loading-ball loading-md"></span>
-      <span className="loading loading-ball loading-lg"></span>
+      <span className="bg-lime-400 loading loading-ball loading-xs"></span>
+      <span className="bg-lime-400 loading loading-ball loading-sm"></span>
+      <span className="bg-lime-400 loading loading-ball loading-md"></span>
+      <span className="bg-lime-400 loading loading-ball loading-lg"></span>
     </div>;
   }
 
   return (
 
-    <div className="hero min-h-screen glass rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+    <div className="hero min-h-screen bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
       <button style={{ marginRight: "93%", marginBottom: "65%" }} >
         <Link to="/">
-          <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
+          <FaLongArrowAltLeft style={{ fontSize: "50px", color: "#A3E636", marginRight: "90%", marginBottom: "65%" }} />
         </Link>
       </button>
       <ToastContainer />
       <dialog id="uploadUserUImage" className="modal">
         <div className="modal-box">
           <form method="dialog justify-center">
-            <input type="file" onChange={handleImageChange} className="file-input bg-amber-100 w-full max-w-xs" />
+            <input type="file" onChange={handleImageChange} className="file-input bg-lime-400 w-full max-w-xs" />
             <button onClick={handleImageUpload} className="btn btn-primary ml-5">Upload</button>
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
@@ -147,7 +147,7 @@ const UserDetails = (props) => {
 
         <FaUpload
           onClick={() => document.getElementById('uploadUserUImage').showModal()}
-          style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
+          style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '35px', height: '35px' }}
 
         />
 
@@ -164,7 +164,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="user_firstname"
-                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_firstname}
                     onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -181,7 +181,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="user_lastname"
-                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_lastname}
                     onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -198,7 +198,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="user_email"
-                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_email}
                     onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -215,7 +215,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="email"
                     name="user_contact_no"
-                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_contact_no}
                     onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -227,14 +227,14 @@ const UserDetails = (props) => {
             <br />
             <button onClick={handleUpdateUser} className="btn bg-black mr-3">
               {isEditing ?
-                <FaSave style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} /> :
-                <MdEditSquare style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} />
+                <FaSave style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} /> :
+                <MdEditSquare style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} />
               }
             </button>
             <button className="btn bg-black">
             <Link to="/admin/user/profile-details/change-password">
               <TbPasswordUser
-                style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }}
+                style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }}
               />
               </Link>
             </button>
