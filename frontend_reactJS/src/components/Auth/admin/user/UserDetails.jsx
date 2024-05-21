@@ -116,7 +116,7 @@ const UserDetails = (props) => {
 
   return (
 
-    <div className="hero min-h-screen bg-amber-100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+    <div className="hero min-h-screen glass rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
       <button style={{ marginRight: "93%", marginBottom: "65%" }} >
         <Link to="/">
           <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
