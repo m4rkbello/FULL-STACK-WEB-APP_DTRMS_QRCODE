@@ -282,11 +282,11 @@ const EmployeePersonalDetails = (props) => {
 
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
-                    <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
+                    <div className="hero min-h-screen bg-base-200 rounded-t-lg shadow-lg">
 
                         <button style={{ marginRight: "93%", marginBottom: "65%" }} >
                             <Link to="/employee/dashboard">
-                                <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
+                                <FaLongArrowAltLeft style={{ fontSize: "50px", color: "#A3E636", marginRight: "90%", marginBottom: "65%" }} />
                             </Link>
                         </button>
 
