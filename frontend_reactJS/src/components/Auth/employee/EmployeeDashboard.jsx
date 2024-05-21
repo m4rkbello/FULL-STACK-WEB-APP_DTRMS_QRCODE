@@ -124,22 +124,22 @@ const EmployeeDashboard = (props) => {
         </dialog>
 
             <dialog id="addEmployeeModal" className="modal ">
-                <div className="modal-box w-11/12 max-w-5xl bg-amber-100">
-                    <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
+                <div className="modal-box w-11/12 max-w-5xl bg-black">
+                    <h3 className="font-bold text-3xl text-lime-400">ADD EMPLOYEE</h3>
                     <div className="modal-action">
                         <form method="dialog" onSubmit={handleAddEmployee}>
                             <div className="grid grid-cols-3 gap-6">
 
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Fullname</span>
+                                        <span className="label-text text-white text-2xl">Fullname</span>
                                     </label>
                                     <input
                                       
                                         name="employee_fullname" //key para sa form data
                                         type="text"
                                         placeholder="Enter Fullname"
-                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_fullname: e.target.value }))}
                                         style={{ backgroundColor: 'black' }}
                                         value={formDataAddEmployee.employee_fullname}
@@ -147,14 +147,14 @@ const EmployeeDashboard = (props) => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Email</span>
+                                        <span className="label-text text-white text-2xl">Email</span>
                                     </label>
                                     <input
                                         key=""
-                                        name="employee_fullname" //key para sa form data
+                                        name="employee_email" //key para sa form data
                                         type="text"
                                         placeholder="Enter email"
-                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_email: e.target.value}))}
                                         value={formDataAddEmployee.employee_email}    
                                         style={{ backgroundColor: 'black' }}
@@ -162,14 +162,14 @@ const EmployeeDashboard = (props) => {
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-black text-2xl">Department</span>
+                                    <span className="label-text text-white text-2xl">Department</span>
                                 </label>
                                 <input
                                     key=""
                                     name="employee_department" //key para sa form data
                                     type="text"
                                     placeholder="Enter email"
-                                    className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                    className="input input-bordered shadow-2xl text-2xl  text-lime-400"
                                     onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_department: e.target.value}))}
                                     value={formDataAddEmployee.employee_department}    
                                     style={{ backgroundColor: 'black' }}
@@ -184,7 +184,7 @@ const EmployeeDashboard = (props) => {
                                         name="employee_contact_no" //key para sa form data
                                         type="text"
                                         placeholder="Enter contact no."
-                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState =>({...prevState, employee_contact_no: e.target.value}))}
                                         value={formDataAddEmployee.employee_contact_no}
                                         style={{ backgroundColor: 'black' }}
@@ -195,14 +195,14 @@ const EmployeeDashboard = (props) => {
 
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Position</span>
+                                        <span className="label-text text-white text-2xl">Position</span>
                                     </label>
                                     <input
                                     
                                         name="employee_position" //key para sa form data
                                         type="text"
                                         placeholder="Enter Position"
-                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_position: e.target.value}))}
                                         value={formDataAddEmployee.employee_position}
                                         style={{ backgroundColor: 'black' }}
@@ -210,44 +210,46 @@ const EmployeeDashboard = (props) => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Role</span>
+                                        <span className="label-text text-white text-2xl">Role</span>
                                     </label>
                                     <input
                                   
                                         name="employee_role" //key para sa form data
                                         type="text"
                                         placeholder="Enter role"
-                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
                                        
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_role: e.target.value}))}
                                         value={formDataAddEmployee.employee_role}
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
+
+
                                 <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Status</span>
-                                    </label>
-                                    <input
-                                      
-                                        name="employee_status" //key para sa form data
-                                        type="text"
-                                        placeholder="Enter status(Active/Inactive)"
-                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
-                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_status: e.target.value}))}
-                                        value={formDataAddEmployee.employee_status}
-                                        style={{ backgroundColor: 'black' }}
-                                    />
+                                <label className="label">
+                                    <span className="label-text text-black text-2xl">Status</span>
+                                </label>
+                                <select
+                                    name="employee_status"
+                                    onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_status: e.target.value}))}
+                                    className="select input input-bordered shadow-2xl text-2xl text-lime-400"
+                                    value={formDataAddEmployee.employee_status}
+                                    style={{ backgroundColor: 'black' }}
+                                >
+                                    <option value="0">Inactive</option>
+                                    <option value="1">Active</option>
+                                </select>
                                 </div>
                             </div>
 
                             <br />
                             <div className='flex '>
                                 <div className='flex-initial pr-2'>
-                                    <button type="submit" className="btn bg-black text-amber-100">Add</button>
+                                    <button type="submit" className="btn bg-lime-400 text-black">Add</button>
                                 </div>
                                 <div className='flex-initial'>
-                                    <button className="btn bg-black text-amber-100">Close</button>
+                                    <button className="btn bg-lime-400 text-black">Close</button>
                                 </div>
                             </div>
                         </form>
@@ -255,7 +257,7 @@ const EmployeeDashboard = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero bg-amber-100 rounded-lg">
+            <div className="hero bg-black rounded-lg">
                 <div className="bg-black">
                 <div className="flex flex-wrap">
                     <div>
@@ -284,12 +286,12 @@ const EmployeeDashboard = (props) => {
                     </div>
                 </div>
 
-                    <span className="text-4xl font-black  text-amber-100">
+                    <span className="text-4xl font-black  text-white">
                         <center>
                         <div className='pb-5'>
                             <IoIosPersonAdd
                                 onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                style={{background:'black', fontSize: "50px", color: "#fef3c6", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
+                                style={{background:'black', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
                             />
                             EMPLOPYEE DASHBOARD
                             </div>
@@ -297,12 +299,12 @@ const EmployeeDashboard = (props) => {
                         </center>
                     </span>
 
-                    <div className="overflow-x-auto border-2 hover:border-t-4  bg-amber-100 text-black">
+                    <div className="overflow-x-auto border-2 hover:border-t-4 text-white">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table className="table py-10 px-10 my-10 mx-10">
                                 {/* head */}
-                                <thead className=" text-black ">
-                                    <tr className="md:table-row" style={{ fontSize: "15px", color: "black" }}>
+                                <thead className=" text-lime-400 ">
+                                    <tr className="md:table-row" style={{ fontSize: "15px", color: "#A3E636" }}>
                                         <th className="md:table-cell" >Avatar</th>
                                         <th className="md:table-cell">Id</th>
                                         <th className="md:table-cell">Fullname</th>
@@ -366,7 +368,7 @@ const EmployeeDashboard = (props) => {
                                                 <div className="flex">
                                                     <div className="flex-none mr-3">
                                                         <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                            <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
+                                                            <FaEye style={{ fontSize: "20px", color: "#A3E636", padding: "0%" }} />
                                                         </Link>
 
                                                     </div>
@@ -376,7 +378,7 @@ const EmployeeDashboard = (props) => {
                                                                 setDeactivateEmployeeId(item.id); 
                                                                 document.getElementById('removeEmployee').showModal()
                                                             }}
-                                                         style={{ fontSize: "20px", color: "black" }} />
+                                                         style={{ fontSize: "20px", color: "#A3E636" }} />
                                                     </div>
                                                 </div>
                                             </td>
