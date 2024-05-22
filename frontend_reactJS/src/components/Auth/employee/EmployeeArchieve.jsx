@@ -51,10 +51,10 @@ const ArchieveEmployee = (props) => {
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
 
-    console.log("DATA SA employeesList", employeesList);
+    // console.log("DATA SA employeesList", employeesList);
 
     const imageCollectionArrays = props.imagesData?.images?.data;
-    console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
+    // console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
 
     const getEmployeeImage = (imageCollectionArrays, employeesList) => {
         // Check if imageCollectionArrays is an array and not empty
@@ -90,10 +90,10 @@ const ArchieveEmployee = (props) => {
 
     if (props.loading) {
         return <div>
-        <span className="loading loading-ball loading-xs"></span>
-        <span className="loading loading-ball loading-sm"></span>
-        <span className="loading loading-ball loading-md"></span>
-        <span className="loading loading-ball loading-lg"></span>
+        <span className="bg-lime-400 loading loading-ball loading-xs"></span>
+        <span className="bg-lime-400 loading loading-ball loading-sm"></span>
+        <span className="bg-lime-400 loading loading-ball loading-md"></span>
+        <span className="bg-lime-400 loading loading-ball loading-lg"></span>
         </div>;
     }
     
@@ -114,66 +114,66 @@ const ArchieveEmployee = (props) => {
           </div>
         </dialog>
 
-            <div className="hero bg-amber-100 rounded-lg">
-                <div className="bg-black ">
+            <div className="hero glass rounded-lg">
+                <div className="glass">
                 <div className="flex flex-wrap">
                 <div>
                 <div className="text-sm breadcrumbs mb-10 bg-transparent">
                 <ul>
-                <Link to="">
                 <li>
-                    <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                <a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                <Link to="">
                     Home
+                    </Link>
                     </a>
                 </li> 
                 
-                </Link>
-                <Link to="">
                 <li>
-                    <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                    Employee Archive List
+                <a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                <Link to="">
+                Employee Archive List
+                </Link>
                     </a>
                 </li> 
-                </Link>
-                <Link to=""> 
                 <li>
-                    <span className="inline-flex gap-2 items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <span className="inline-flex gap-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <Link to=""> 
                     Employee Personal Details
+                    </Link>
                     </span>
                 </li>
                 
-                </Link>
                 </ul>
                 </div>
                 </div>
             </div>
-                    <span className="text-4xl font-black  text-amber-100">
-                        <center>
+                    <center>
+                        <span className="text-4xl font-black  text-black mb-5">
                             EMPLOPYEE ARCHIVED LIST
-                        </center>
-                    </span>
+                        </span>
+                    </center>
 
-                    <div className="overflow-x-auto border-2 hover:border-t-4  glass text-black">
+                    <div className="overflow-x-auto  bg-black">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table className="table py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
-                                <thead className=" text-black ">
-                                    <tr className="md:table-row" style={{ fontSize: "15px", color: "black" }}>
-                                        <th className="md:table-cell" >Avatar</th>
-                                        <th className="md:table-cell">Id</th>
-                                        <th className="md:table-cell">Fullname</th>
-                                        <th className="md:table-cell">Email</th>
-                                        <th className="md:table-cell">Contact No.</th>
-                                        <th className="md:table-cell">Position</th>
-                                        <th className="md:table-cell">Department</th>
-                                        <th className="md:table-cell">Status</th>
-                                        <th className="md:table-cell">Action</th>
+                                <thead className=" text-red ">
+                                    <tr className="md:table-row" style={{ fontSize: "15px", color: "white" }}>
+                                        <th className="md:table-cell text-lime-400" >Avatar</th>
+                                        <th className="md:table-cell text-lime-400">Id</th>
+                                        <th className="md:table-cell text-lime-400">Fullname</th>
+                                        <th className="md:table-cell text-lime-400">Email</th>
+                                        <th className="md:table-cell text-lime-400">Contact No.</th>
+                                        <th className="md:table-cell text-lime-400">Position</th>
+                                        <th className="md:table-cell text-lime-400">Department</th>
+                                        <th className="md:table-cell text-lime-400">Status</th>
+                                        <th className="md:table-cell text-lime-400">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className='text-white'>
 
                                     {employeesList && employeesList.map((item, index) => (
                                       item.employee_status != 1 && (
@@ -226,14 +226,14 @@ const ArchieveEmployee = (props) => {
                                                 <div className="flex">
                                                     <div className="flex-none mr-3">
                                                         <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                            <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
+                                                            <FaEye style={{ fontSize: "20px", color: "#A3E636", padding: "0%" }} />
                                                         </Link>
 
                                                     </div>
                                                     <div className="flex-none mr-3">
                                                         <MdAutoDelete 
                                                         onClick={() => document.getElementById('removeEmployee').showModal()}
-                                                         style={{ fontSize: "20px", color: "black" }} />
+                                                         style={{ fontSize: "20px", color: "#A3E636" }} />
                                                     </div>
                                                 </div>
                                             </td>
