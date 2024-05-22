@@ -112,7 +112,7 @@ const Register = ({registerUser}) => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                        <button className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-lime-400 text-lime-400 hover:text-black text-2xl">Register</button>
+                        <button onClick={handleRegisterUserRequestAndResponse} className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-lime-400 text-lime-400 hover:text-black text-2xl">Register</button>
                         </div>
                         <center>
                         <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
