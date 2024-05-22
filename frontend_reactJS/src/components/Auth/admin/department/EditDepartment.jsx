@@ -89,15 +89,13 @@ const EditDepartment = (props) => {
     const departments = departmentsDetails(departmentCollectionArrays, id);
     console.log("AYAW KOL", departments);
 
+
     if (props.loading) {
         return <div>
-            {/**
-        <span className="loading loading-ball loading-xs"></span>
-        <span className="loading loading-ball loading-sm"></span>
-        <span className="loading loading-ball loading-md"></span>
-        <span className="loading loading-ball loading-lg"></span>
-        */}
-            <progress className="progress w-56"></progress>
+            <span className="bg-lime-400 loading loading-ball loading-xs"></span>
+            <span className="bg-lime-400 loading loading-ball loading-sm"></span>
+            <span className="bg-lime-400 loading loading-ball loading-md"></span>
+            <span className="bg-lime-400 loading loading-ball loading-lg"></span>
         </div>;
     }
 
@@ -105,47 +103,47 @@ const EditDepartment = (props) => {
         <div>
 
             <dialog id="editEmployeeDetails" className="modal">
-                <div className=" modal-box w-11/12 max-w-5xl bg-amber-100">
-                    <h3 className="font-bold text-3xl text-black">EDIT DEPARTMENT DETAILS</h3>
+                <div className=" modal-box w-11/12 max-w-5xl bg-black">
+                    <h3 className="font-bold text-3xl text-white">EDIT DEPARTMENT DETAILS</h3>
 
                     <div className="modal-action">
                         <form method="dialog" >
                             <div className="grid grid-cols-3 gap-6">
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Department Name</span>
+                                        <span className="label-text text-lime-400 text-2xl">Department Name</span>
                                     </label>
                                     <input
                                         type="text"
                                         name="dept_name"
-                                        placeholder="Department name..."
-                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        placeholder="Department name"
+                                        className="input input-bordered shadow-2xl text-2xl text-lime-800"
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Department Description</span>
+                                        <span className="label-text text-lime-400 text-2xl">Department Description</span>
                                     </label>
                                     <input
                                         type="text"
                                         name="dept_description"
 
-                                        placeholder="Position"
-                                        className="input input-bordered shadow-2xl text-2xl  text-amber-100"
+                                        placeholder="Department description"
+                                        className="input input-bordered shadow-2xl text-2xl  text-lime-800"
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Department Status</span>
+                                        <span className="label-text text-white text-2xl">Department Status</span>
                                     </label>
                                     <select
                                         name="employee_status"
                                         className="select shadow-2xl text-2xl w-full max-w-xs"
-                                        style={{ backgroundColor: 'black', color: "#fef3c6" }}
+                                        style={{ backgroundColor: 'black', color: "#A3E636" }}
                                         >
                                         <option value="1">Active</option>
                                         <option value="0">Inactive</option>
@@ -156,13 +154,13 @@ const EditDepartment = (props) => {
                             <div className="flex ...">
                                 <div>
                                     <button type="submit" className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                        <FaSave style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
+                                        <FaSave style={{ fontSize: "25px", color: "#A3E636", marginRight: "5px" }} />
                                     </button>
                                 </div>
 
                                 <div>
                                     <button onClick={handleCloseModal} className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                        <IoMdCloseCircle style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
+                                        <IoMdCloseCircle style={{ fontSize: "25px", color: "#A3E636", marginRight: "5px" }} />
                                     </button>
                                 </div>
                             </div>
@@ -176,11 +174,11 @@ const EditDepartment = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero min-h-screen bg-amber-100 rounded-t-lg">
+            <div className="hero min-h-screen bg-black rounded-t-lg">
 
                 {Array.isArray(departmentCollectionArrays) && departmentCollectionArrays.length != 0 ? (
                     <>
-                    <div className="hero min-h-screen bg-amber-100 rounded-t-lg" style={{ maxHeight: "100px" }}>
+                    <div className="hero min-h-screen bg-black rounded-t-lg" style={{ maxHeight: "100px" }}>
 
                             <button style={{ marginRight: "80%", marginTop: "-190%" }} >
                                 <Link to="/department">
@@ -205,7 +203,7 @@ const EditDepartment = (props) => {
                                                     placeholder="email"
                                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
                                                     defaultValue={item.dept_name}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
+                                                    style={{ backgroundColor: 'transparent', color: "#A3E636", border: "none" }}
                                                     disabled
                                                 />
                                             ))}
@@ -240,7 +238,7 @@ const EditDepartment = (props) => {
                                         </div>
                                     </div>
                                     <button onClick={handleOpenModal}>
-                                        <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "40px", color: "black", marginRight: "80%", marginTop: "0%", marginBottom: "0%", marginLeft: "0%" }} />
+                                        <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "40px", color: "#A3E636", marginRight: "80%", marginTop: "0%", marginBottom: "0%", marginLeft: "0%" }} />
                                     </button>
                                 </div>
                             </div>

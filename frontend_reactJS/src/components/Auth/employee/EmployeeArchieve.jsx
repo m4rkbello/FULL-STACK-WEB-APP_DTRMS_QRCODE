@@ -82,79 +82,83 @@ const ArchieveEmployee = (props) => {
         try {
             //ipasa ang data sa form na naa sa setter
             await props.addEmployee(formDataAddEmployee);
-            
-        } catch(error) {
+
+        } catch (error) {
             console.error(error);
         }
     }
 
     if (props.loading) {
         return <div>
-        <span className="bg-lime-400 loading loading-ball loading-xs"></span>
-        <span className="bg-lime-400 loading loading-ball loading-sm"></span>
-        <span className="bg-lime-400 loading loading-ball loading-md"></span>
-        <span className="bg-lime-400 loading loading-ball loading-lg"></span>
+            <span className="bg-lime-400 loading loading-ball loading-xs"></span>
+            <span className="bg-lime-400 loading loading-ball loading-sm"></span>
+            <span className="bg-lime-400 loading loading-ball loading-md"></span>
+            <span className="bg-lime-400 loading loading-ball loading-lg"></span>
         </div>;
     }
-    
+
 
     return (
         <div className="hero max-w-full">
-        <ToastContainer />
-   
-        <dialog id="removeEmployee" className="modal">
-          <div className="modal-box">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-            <h3 className="font-bold text-lg">REMOVE EMPLOYEE?</h3>
-            <p className="py-4">Are you sure you want to remove this Employee?</p>
-            <button className='btn bg-amber-100'>Yes</button>
-          </div>
-        </dialog>
+            <ToastContainer />
 
-            <div className="hero glass rounded-lg">
-                <div className="glass">
-                <div className="flex flex-wrap">
-                <div>
-                <div className="text-sm breadcrumbs mb-10 bg-transparent">
-                <ul>
-                <li>
-                <a>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                <Link to="">
-                    Home
-                    </Link>
-                    </a>
-                </li> 
-                
-                <li>
-                <a>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                <Link to="">
-                Employee Archive List
-                </Link>
-                    </a>
-                </li> 
-                <li>
-                <span className="inline-flex gap-2 items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                <Link to=""> 
-                    Employee Personal Details
-                    </Link>
+            <dialog id="removeEmployee" className="modal">
+                <div className="modal-box">
+                    <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <h3 className="font-bold text-lg">REMOVE EMPLOYEE?</h3>
+                    <p className="py-4">Are you sure you want to remove this Employee?</p>
+                    <button className='btn bg-amber-100'>Yes</button>
+                </div>
+            </dialog>
+
+            <div className="hero bg-black rounded-lg">
+                <div className="bg-black">
+                    <div className="flex flex-wrap">
+                        <div>
+                            <div className="text-sm breadcrumbs mb-10 bg-transparent">
+                                <ul>
+                                    <li>
+                                        <a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                            <Link to="">
+                                                Home
+                                            </Link>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                            <Link to="">
+                                                Employee Archive List
+                                            </Link>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <span className="inline-flex gap-2 items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                            <Link to="">
+                                                Employee Personal Details
+                                            </Link>
+                                        </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span className="text-4xl font-black">
+                        <center>
+                            <div className='pb-5 glass'>
+                                EMPLOPYEE ARCHIEVE LIST
+                            </div>
+
+                        </center>
                     </span>
-                </li>
-                
-                </ul>
-                </div>
-                </div>
-            </div>
-                    <center>
-                        <span className="text-4xl font-black  text-black mb-5">
-                            EMPLOPYEE ARCHIVED LIST
-                        </span>
-                    </center>
 
                     <div className="overflow-x-auto  bg-black">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
@@ -176,70 +180,70 @@ const ArchieveEmployee = (props) => {
                                 <tbody className='text-white'>
 
                                     {employeesList && employeesList.map((item, index) => (
-                                      item.employee_status != 1 && (
+                                        item.employee_status != 1 && (
 
-                                        <tr key={index} className="md:table-row">
-                                            <td className="md:table-cell">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="avatar">
+                                            <tr key={index} className="md:table-row">
+                                                <td className="md:table-cell">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="avatar">
 
-                                                        <div className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                            <img src={item.employee_image} />
-                                                        </div>
-
-                                                        {filterImage && filterImage.map((image, imageIndex) => (
-                                                            <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                                <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
+                                                            <div className="mask mask-squircle w-12 h-12 shadow-2xl">
+                                                                <img src={item.employee_image} />
                                                             </div>
-                                                        ))}
+
+                                                            {filterImage && filterImage.map((image, imageIndex) => (
+                                                                <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
+                                                                    <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
+                                                                </div>
+                                                            ))}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td className="md:table-cell">
-                                            {item.id}
-                                        </td>
-                                            <td className="md:table-cell">
-                                                {item.employee_fullname}
-                                            </td>
+                                                </td>
+                                                <td className="md:table-cell">
+                                                    {item.id}
+                                                </td>
+                                                <td className="md:table-cell">
+                                                    {item.employee_fullname}
+                                                </td>
 
-                                            <td className="md:table-cell">
-                                                {item.employee_email}
-                                            </td>
+                                                <td className="md:table-cell">
+                                                    {item.employee_email}
+                                                </td>
 
-                                            <td className="md:table-cell">
-                                                {item.employee_contact_no}
-                                            </td>
-                                            <td className="md:table-cell">5
-                                            </td>
-                                            <td className="md:table-cell">
-                                                {item.employee_position}
-                                            </td>
-                                            <td className="md:table-cell">
-                                                {item.employee_status === 1 ?
-                                                    <RiAccountPinCircleFill
-                                                        style={{ fontSize: "25px", color: "green" }}
-                                                    /> : <MdOutlineNoAccounts
-                                                        style={{ fontSize: "25px", color: "red" }}
-                                                    />}
-                                            </td>
-                                            <td className="flex md:table-cell" >
-                                                <div className="flex">
-                                                    <div className="flex-none mr-3">
-                                                        <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                            <FaEye style={{ fontSize: "20px", color: "#A3E636", padding: "0%" }} />
-                                                        </Link>
+                                                <td className="md:table-cell">
+                                                    {item.employee_contact_no}
+                                                </td>
+                                                <td className="md:table-cell">5
+                                                </td>
+                                                <td className="md:table-cell">
+                                                    {item.employee_position}
+                                                </td>
+                                                <td className="md:table-cell">
+                                                    {item.employee_status === 1 ?
+                                                        <RiAccountPinCircleFill
+                                                            style={{ fontSize: "25px", color: "green" }}
+                                                        /> : <MdOutlineNoAccounts
+                                                            style={{ fontSize: "25px", color: "red" }}
+                                                        />}
+                                                </td>
+                                                <td className="flex md:table-cell" >
+                                                    <div className="flex">
+                                                        <div className="flex-none mr-3">
+                                                            <Link to={`/employee/details/${item.id}`} className="text-black">
+                                                                <FaEye style={{ fontSize: "20px", color: "#A3E636", padding: "0%" }} />
+                                                            </Link>
 
+                                                        </div>
+                                                        <div className="flex-none mr-3">
+                                                            <MdAutoDelete
+                                                                onClick={() => document.getElementById('removeEmployee').showModal()}
+                                                                style={{ fontSize: "20px", color: "#A3E636" }} />
+                                                        </div>
                                                     </div>
-                                                    <div className="flex-none mr-3">
-                                                        <MdAutoDelete 
-                                                        onClick={() => document.getElementById('removeEmployee').showModal()}
-                                                         style={{ fontSize: "20px", color: "#A3E636" }} />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
 
-                                      )
+                                        )
                                     ))}
                                 </tbody>
                             </table>

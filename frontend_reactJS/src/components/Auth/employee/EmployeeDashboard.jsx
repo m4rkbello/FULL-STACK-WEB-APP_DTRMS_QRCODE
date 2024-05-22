@@ -302,7 +302,7 @@ const EmployeeDashboard = (props) => {
                                 style={{background:'transparent', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
                             />
                             EMPLOPYEE DASHBOARD
-                            </div>
+                        </div>
 
                         </center>
                     </span>
