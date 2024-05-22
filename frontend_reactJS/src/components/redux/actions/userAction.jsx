@@ -125,13 +125,9 @@ export const registerUser = userData => async dispatch => {
     try {
         dispatch({ type: REGISTER_USER_REQUEST });
         const registeredUser = await MarkBelloApi.post('/api/register', userData);
-        dispatch({
-            type: REGISTER_USER_SUCCESS,
-            payload: registeredUser
-        });
-
+        
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
-
+        
         toast.success('Registered successfully!🤭😇🤗', {
             position: 'top-right',
             autoClose: 10000,
@@ -141,12 +137,17 @@ export const registerUser = userData => async dispatch => {
             draggable: true,
             progress: undefined,
             style: {
-                background: 'white',
-                color: 'green',
-                fontSize: '15px'
+                background: 'black',
+                color: '#A3E636',
+                fontSize: '17px'
             }
         });
-
+        
+        dispatch({
+            type: REGISTER_USER_SUCCESS,
+            payload: registeredUser
+        });
+        
     } catch (error) {
         dispatch({
             type: REGISTER_USER_FAILURE,
@@ -199,8 +200,8 @@ export const loginUser = userData => async dispatch => {
             payload: loggedInUser
         });
 
-        console.log("RESPONSE DATA SA LOGIN", loggedInUser);
-        toast.success('Login successfully!🤭😇🤗', {
+        // console.log("RESPONSE DATA SA LOGIN", loggedInUser);
+        toast.success('Login successfully!🤭🤗😎', {
             position: 'top-right',
             autoClose: 10000,
             hideProgressBar: false,
@@ -209,8 +210,8 @@ export const loginUser = userData => async dispatch => {
             draggable: true,
             progress: undefined,
             style: {
-                background: '#fef3c7',
-                color: 'green',
+                background: 'black',
+                color: '#A3E636',
                 fontSize: '17px'
             }
         });
@@ -259,7 +260,7 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
                 draggable: true,
                 progress: undefined,
                 style: {
-                    background: '#fef3c7',
+                    background: 'black',
                     color: 'red',
                     fontSize: '20px'
                 }
@@ -279,8 +280,8 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
                 draggable: true,
                 progress: undefined,
                 style: {
-                    background: '#fef3c7',
-                    color: 'green',
+                    background: 'black',
+                    color: '#A3E636',
                     fontSize: '17px'
                 }
             });
@@ -327,9 +328,9 @@ export const userChangePassword = (userId, changePasswordUserData) => async disp
                 draggable: true,
                 progress: undefined,
                 style: {
-                    background: 'white',
-                    color: 'green',
-                    fontSize: '15px'
+                    background: 'black',
+                    color: '#A3E636',
+                    fontSize: '17px'
                 }
             });
 
@@ -343,9 +344,9 @@ export const userChangePassword = (userId, changePasswordUserData) => async disp
                 draggable: true,
                 progress: undefined,
                 style: {
-                    background: 'white',
-                    color: 'green',
-                    fontSize: '15px'
+                    background: 'black',
+                    color: '#A3E636',
+                    fontSize: '17px'
                 }
             });
         }
@@ -365,9 +366,9 @@ export const userChangePassword = (userId, changePasswordUserData) => async disp
             draggable: true,
             progress: undefined,
             style: {
-                background: 'white',
-                color: 'green',
-                fontSize: '15px'
+                background: 'black',
+                color: '#A3E636',
+                fontSize: '17px'
             }
         });
 
