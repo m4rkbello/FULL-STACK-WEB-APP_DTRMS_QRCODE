@@ -20,7 +20,7 @@ import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails'
 import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
 import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import FourOFourNotFound from './components/Auth/admin/pages/404NotFound';
-import ArchiveEmployee from './components/Auth/employee/ArchiveEmployee';
+import ArchiveEmployee from './components/Auth/employee/EmployeeArchieve';
 import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
 import EmployeeChart from './components/Auth/employee/EmployeeChart';
 import AddDepartment from './components/Auth/admin/department/AddDepartment';
