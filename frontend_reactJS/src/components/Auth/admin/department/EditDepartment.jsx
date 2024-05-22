@@ -174,11 +174,11 @@ const EditDepartment = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero min-h-screen bg-black rounded-t-lg">
+            <div className="hero bg-white rounded-t-lg">
 
                 {Array.isArray(departmentCollectionArrays) && departmentCollectionArrays.length != 0 ? (
                     <>
-                    <div className="hero min-h-screen bg-black rounded-t-lg" style={{ maxHeight: "100px" }}>
+                    <div className="hero-content max-w-full bg-white rounded-t-lg" style={{ maxHeight: "100px" }}>
 
                             <button style={{ marginRight: "80%", marginTop: "-190%" }} >
                                 <Link to="/department">
@@ -186,7 +186,7 @@ const EditDepartment = (props) => {
                                 </Link>
                             </button>
 
-                           <div className="hero-content flex flex-col items-center" style={{ height: "200px" }}>
+                           <div className="hero-content max-w-full flex flex-col items-center" style={{ height: "200px" }}>
 
                                 <div className="flex-1">
 
@@ -194,7 +194,7 @@ const EditDepartment = (props) => {
 
                                         <div className="form-control">
                                             <label className="label">
-                                                <span className="label-text text-black text-2xl">Department Name</span>
+                                                <span className="label-text text-white text-2xl">Department Name</span>
                                             </label>
                                             {departments && departments.map((item, index) => (
                                                 <input
