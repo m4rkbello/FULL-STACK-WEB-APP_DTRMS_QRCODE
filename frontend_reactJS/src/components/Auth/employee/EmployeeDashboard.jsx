@@ -258,7 +258,7 @@ const EmployeeDashboard = (props) => {
             </dialog>
 
             <div className="hero bg-black rounded-lg">
-                <div className="glass">
+                <div className="bg-black">
                 <div className="flex flex-wrap">
                     <div>
                     <div className="text-sm breadcrumbs mb-10 bg-transparent">
@@ -288,10 +288,10 @@ const EmployeeDashboard = (props) => {
 
                     <span className="text-4xl font-black">
                         <center>
-                        <div className='pb-5'>
+                        <div className='pb-5 glass'>
                             <IoIosPersonAdd
                                 onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                style={{background:'black', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
+                                style={{background:'transparent', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
                             />
                             EMPLOPYEE DASHBOARD
                             </div>
