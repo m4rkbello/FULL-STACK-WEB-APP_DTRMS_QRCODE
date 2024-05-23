@@ -4,17 +4,14 @@ TECHSTACK
 -> npm v. 10.5.0
 -> node v. 20.12.0
 
-
 -BACKEND 
 ->composer v. 2.7.2
 ->php v. 8.1.10
-
 
 -COLOR CODE/ COLOR SCHEMES
 #A3E636 
 #000000
 #ffffff
-
 
 1. CREATE BACKEND PROJECT USING LARAVEL 10
 -> composer create-project laravel/laravel backend_laravelPHP
