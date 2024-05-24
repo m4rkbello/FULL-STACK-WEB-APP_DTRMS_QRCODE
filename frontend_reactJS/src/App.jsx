@@ -209,6 +209,7 @@ function App(props) {
                   <Route path="/department" element={<Department />} />
                   <Route path="/department/add" element={<AddDepartment />} />
                   <Route path="/department/edit/:id" element={<EditDepartment />} />
+               
                 </Routes>
               </>
             ) : (
