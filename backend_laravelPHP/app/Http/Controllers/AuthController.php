@@ -82,6 +82,7 @@ class AuthController extends Controller
                 'status' => '401',
                 'message' => 'email or password is incorrect!'
             ], 401);
+            
         }else{
             return response([
                 'success' => true,
