@@ -12,7 +12,6 @@ const Login = ({ loginUser }) => {
   const navigate = useNavigate();
 
 
-
   const handleLoginRequestAndResponse = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -27,11 +26,11 @@ const Login = ({ loginUser }) => {
       setIsLoading(false);
   
       setTimeout(() => {
-        navigate("/dashboard"); // Redirect to dashboard upon successful login
+        navigate("/"); // Redirect to root path upon successful login
       }, 1000); // Adjust the timeout duration as needed
     } catch (error) {
       setIsLoading(false);
-      window.alert("ERROR");
+      toast.error("Failed to log in. Please try again."); // Use toast for error notification
     }
   }
 
