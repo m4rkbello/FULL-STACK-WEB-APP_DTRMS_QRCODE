@@ -81,7 +81,7 @@ function App(props) {
   // console.log("ID CHOI", usersCollection);
   function getUserAuthenticated(usersCollection) {
     let item = [];
-  
+
     // Check if usersCollection is defined and not null
     if (usersCollection && usersCollection.length) {
       for (let ez = 0; ez < usersCollection.length; ez++) {
@@ -90,7 +90,7 @@ function App(props) {
         }
       }
     }
-  
+
     return item;
   }
 
@@ -120,11 +120,11 @@ function App(props) {
             </div>
             <div className="flex-1">
               <span className="btn btn-ghost text-2xl text-lime-400">Welcome!
-              {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                <span className='text-2xl' key={index}>
-                  {user.user_email}
-                </span>
-              ))}
+                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                  <span className='text-2xl' key={index}>
+                    {user.user_email}
+                  </span>
+                ))}
               </span>
             </div>
           </>
@@ -141,22 +141,22 @@ function App(props) {
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <img
-                    key={index}
-                    alt="No Upload User Profile"
-                    src={user.user_image} 
-                  />
-                ))}
+                  {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                    <img
+                      key={index}
+                      alt="No Upload User Profile"
+                      src={user.user_image}
+                    />
+                  ))}
                 </div>
               </div>
               <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-lime-400 rounded-box w-52">
                 <li>
                   <span className="justify-between text-black">
                     Profile <span className="badge bg-black"><span className='text-white'>
-                    <Link to="/admin/user/profile-details">
-                    Open
-                    </Link>
+                      <Link to="/admin/user/profile-details">
+                        Open
+                      </Link>
                     </span></span>
                   </span>
                 </li>
@@ -196,27 +196,27 @@ function App(props) {
           {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ?
             (
               <>
-                  <Routes>
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
-                    <Route path="/content" element={<Content />} />
-                    <Route path="/employee/register" element={<EmployeeRegister />} />
-                    <Route path="/admin/user/profile-details" element={<UserDetails />} />
-                    <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
-                    <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
-                    <Route path="/archieve" element={<ArchiveEmployee />} />
-                    <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
-                    <Route path="/employee/attendance" element={<EmployeeAttendance />} />
-                    <Route path="/department" element={<Department />} />
-                    <Route path="/department/add" element={<AddDepartment />} />
-                    <Route path="/department/edit/:id" element={<EditDepartment />} />
-                  </Routes>
-                </>
-                ) : (
-                  <Routes>
-                  <Route path="/admin/login" element={<Login />} />
-                  <Route path="/admin/register" element={<Register />} />
-                  <Route path="/details" element={<PersonalDetails />} />
-                  <Route path="*" element={<FourOFourNotFound />} />
+                <Routes>
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route path="/content" element={<Content />} />
+                  <Route path="/employee/register" element={<EmployeeRegister />} />
+                  <Route path="/admin/user/profile-details" element={<UserDetails />} />
+                  <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
+                  <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
+                  <Route path="/archieve" element={<ArchiveEmployee />} />
+                  <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
+                  <Route path="/employee/attendance" element={<EmployeeAttendance />} />
+                  <Route path="/department" element={<Department />} />
+                  <Route path="/department/add" element={<AddDepartment />} />
+                  <Route path="/department/edit/:id" element={<EditDepartment />} />
+                </Routes>
+              </>
+            ) : (
+              <Routes>
+                <Route path="/admin/login" element={<Login />} />
+                <Route path="/admin/register" element={<Register />} />
+                <Route path="/details" element={<PersonalDetails />} />
+                <Route path="*" element={<FourOFourNotFound />} />
               </Routes>
             )}
 
@@ -227,21 +227,21 @@ function App(props) {
             <div className="drawer-side">
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
               <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full glass text-lime-500">
-              <li>
-                <Link to="/employee/attendance" className='text-2xl'>
-                  Attendance
-                </Link>
-              </li>
+                <li>
+                  <Link to="/employee/attendance" className='text-2xl'>
+                    Attendance
+                  </Link>
+                </li>
                 <li>
                   <Link to="/employee/dashboard" className='text-2xl'>
                     Employees List
                   </Link>
                 </li>
                 <li>
-                <Link to="/archieve" className='text-2xl'>
-                  Employee Archieve
-                </Link>
-              </li>
+                  <Link to="/archieve" className='text-2xl'>
+                    Employee Archieve
+                  </Link>
+                </li>
                 <li>
                   <Link to="/content" className='text-2xl'>
                     Content Test
