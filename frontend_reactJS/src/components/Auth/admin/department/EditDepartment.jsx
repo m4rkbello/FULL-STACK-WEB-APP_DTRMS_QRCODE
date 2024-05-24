@@ -144,7 +144,7 @@ const EditDepartment = (props) => {
                                         name="employee_status"
                                         className="select shadow-2xl text-2xl w-full max-w-xs"
                                         style={{ backgroundColor: 'black', color: "#A3E636" }}
-                                        >
+                                    >
                                         <option value="1">Active</option>
                                         <option value="0">Inactive</option>
                                     </select>
@@ -178,7 +178,7 @@ const EditDepartment = (props) => {
 
                 {Array.isArray(departmentCollectionArrays) && departmentCollectionArrays.length != 0 ? (
                     <>
-                    <div className="hero-content max-w-full bg-white rounded-t-lg" style={{ maxHeight: "100px" }}>
+                        <div className="hero-content max-w-full bg-white rounded-t-lg" style={{ maxHeight: "100px" }}>
 
                             <button style={{ marginRight: "80%", marginTop: "-190%" }} >
                                 <Link to="/department">
@@ -186,7 +186,7 @@ const EditDepartment = (props) => {
                                 </Link>
                             </button>
 
-                           <div className="hero-content max-w-full flex flex-col items-center" style={{ height: "200px" }}>
+                            <div className="hero-content max-w-full flex flex-col items-center" style={{ height: "200px" }}>
 
                                 <div className="flex-1">
 
