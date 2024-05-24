@@ -83,45 +83,45 @@ const EmployeeDashboard = (props) => {
         try {
             //ipasa ang data sa form na naa sa setter
             await props.addEmployee(formDataAddEmployee);
-            
-        } catch(error) {
+
+        } catch (error) {
             console.error(error);
         }
     }
 
     const handleDeactivateEmployee = async (employeeId) => {
         try {
-          // Dispatch action to remove employee with the specified ID
-          await props.deactivateEmployee(deactivateEmployeeId);
-        } catch(error) {
-          console.error(error);
+            // Dispatch action to remove employee with the specified ID
+            await props.deactivateEmployee(deactivateEmployeeId);
+        } catch (error) {
+            console.error(error);
         }
-      }
+    }
 
     if (props.loading) {
         return <div>
-        <span className="loading loading-ball loading-xs"></span>
-        <span className="loading loading-ball loading-sm"></span>
-        <span className="loading loading-ball loading-md"></span>
-        <span className="loading loading-ball loading-lg"></span>
+            <span className="loading loading-ball loading-xs"></span>
+            <span className="loading loading-ball loading-sm"></span>
+            <span className="loading loading-ball loading-md"></span>
+            <span className="loading loading-ball loading-lg"></span>
         </div>;
     }
-    
+
 
     return (
         <div className="hero max-w-full">
-        <ToastContainer />
-        <dialog id="removeEmployee" className="modal">
-          <div className="modal-box">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-            <h3 className="font-bold text-lg">REMOVE EMPLOYEE?</h3>
-            <p className="py-4">Are you sure you want to remove this Employee?</p>
-            <button onClick={() => handleDeactivateEmployee(deactivateEmployeeId)} className='btn bg-amber-100'>Yes</button>
-          </div>
-        </dialog>
+            <ToastContainer />
+            <dialog id="removeEmployee" className="modal">
+                <div className="modal-box">
+                    <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <h3 className="font-bold text-lg">REMOVE EMPLOYEE?</h3>
+                    <p className="py-4">Are you sure you want to remove this Employee?</p>
+                    <button onClick={() => handleDeactivateEmployee(deactivateEmployeeId)} className='btn bg-amber-100'>Yes</button>
+                </div>
+            </dialog>
 
             <dialog id="addEmployeeModal" className="modal ">
                 <div className="modal-box w-11/12 max-w-5xl bg-black">
@@ -135,7 +135,7 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-white text-2xl">Fullname</span>
                                     </label>
                                     <input
-                                      
+
                                         name="employee_fullname" //key para sa form data
                                         type="text"
                                         placeholder="Enter Fullname"
@@ -155,37 +155,37 @@ const EmployeeDashboard = (props) => {
                                         type="text"
                                         placeholder="Enter email"
                                         className="input input-bordered shadow-2xl text-2xl  text-lime-400"
-                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_email: e.target.value}))}
-                                        value={formDataAddEmployee.employee_email}    
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_email: e.target.value }))}
+                                        value={formDataAddEmployee.employee_email}
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
                                 <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-white text-2xl">Department</span>
-                                </label>
-                                <input
-                                    key=""
-                                    name="employee_department" //key para sa form data
-                                    type="text"
-                                    placeholder="Enter email"
-                                    className="input input-bordered shadow-2xl text-2xl  text-lime-400"
-                                    onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_department: e.target.value}))}
-                                    value={formDataAddEmployee.employee_department}    
-                                    style={{ backgroundColor: 'black' }}
-                                />
-                            </div>
+                                    <label className="label">
+                                        <span className="label-text text-white text-2xl">Department</span>
+                                    </label>
+                                    <input
+                                        key=""
+                                        name="employee_department" //key para sa form data
+                                        type="text"
+                                        placeholder="Enter email"
+                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department: e.target.value }))}
+                                        value={formDataAddEmployee.employee_department}
+                                        style={{ backgroundColor: 'black' }}
+                                    />
+                                </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text text-black text-2xl">Contact No.</span>
                                     </label>
                                     <input
-                
+
                                         name="employee_contact_no" //key para sa form data
                                         type="text"
                                         placeholder="Enter contact no."
                                         className="input input-bordered shadow-2xl text-2xl  text-lime-400"
-                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState =>({...prevState, employee_contact_no: e.target.value}))}
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_contact_no: e.target.value }))}
                                         value={formDataAddEmployee.employee_contact_no}
                                         style={{ backgroundColor: 'black' }}
                                     />
@@ -198,12 +198,12 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-white text-2xl">Position</span>
                                     </label>
                                     <input
-                                    
+
                                         name="employee_position" //key para sa form data
                                         type="text"
                                         placeholder="Enter Position"
                                         className="input input-bordered shadow-2xl text-2xl  text-lime-400"
-                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_position: e.target.value}))}
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_position: e.target.value }))}
                                         value={formDataAddEmployee.employee_position}
                                         style={{ backgroundColor: 'black' }}
                                     />
@@ -213,13 +213,13 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-white text-2xl">Role</span>
                                     </label>
                                     <input
-                                  
+
                                         name="employee_role" //key para sa form data
                                         type="text"
                                         placeholder="Enter role"
                                         className="input input-bordered shadow-2xl text-2xl  text-lime-400"
-                                       
-                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_role: e.target.value}))}
+
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_role: e.target.value }))}
                                         value={formDataAddEmployee.employee_role}
                                         style={{ backgroundColor: 'black' }}
                                     />
@@ -227,19 +227,19 @@ const EmployeeDashboard = (props) => {
 
 
                                 <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-black text-2xl">Status</span>
-                                </label>
-                                <select
-                                    name="employee_status"
-                                    onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({...prevState, employee_status: e.target.value}))}
-                                    className="select input input-bordered shadow-2xl text-2xl text-lime-400"
-                                    value={formDataAddEmployee.employee_status}
-                                    style={{ backgroundColor: 'black' }}
-                                >
-                                    <option value="0">Inactive</option>
-                                    <option value="1">Active</option>
-                                </select>
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Status</span>
+                                    </label>
+                                    <select
+                                        name="employee_status"
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status: e.target.value }))}
+                                        className="select input input-bordered shadow-2xl text-2xl text-lime-400"
+                                        value={formDataAddEmployee.employee_status}
+                                        style={{ backgroundColor: 'black' }}
+                                    >
+                                        <option value="0">Inactive</option>
+                                        <option value="1">Active</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -259,51 +259,49 @@ const EmployeeDashboard = (props) => {
 
             <div className="hero bg-black rounded-lg">
                 <div className="bg-black">
-                <div className="flex flex-wrap">
-                    <div>
-                    <div className="text-sm breadcrumbs mb-10 bg-transparent">
-                    <ul>
-                    <li>
-                    
-                    <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                        <Link to="/">
-                            Home
-                        </Link>
-                        </a>
-                    </li> 
-                    <li>
-                    <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                    <Link to="/employee/dashboard">
-                        Employee Dashboard
-                        </Link>
-                        </a>
-                    </li> 
-                    <li>
-                    
-                    <span className="inline-flex gap-2 items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    <Link to="">
-                    Employee Personal Details
-                    </Link>
-                    </span>
-                    </li>
-                    </ul>
-                    </div>
-                    </div>
-                </div>
+                    <div className="flex flex-wrap">
+                        <div>
+                            <div className="text-sm breadcrumbs mb-10 bg-transparent">
+                                <ul>
+                                    <li>
 
+                                        <a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                            <Link to="/">
+                                                Home
+                                            </Link>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                            <Link to="/employee/dashboard">
+                                                Employee Dashboard
+                                            </Link>
+                                        </a>
+                                    </li>
+                                    <li>
+
+                                        <span className="inline-flex gap-2 items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                            <Link to="">
+                                                Employee Personal Details
+                                            </Link>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <span className="text-4xl font-black">
                         <center>
-                        <div className='pb-5 glass'>
-                            <IoIosPersonAdd
-                                onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                style={{background:'transparent', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
-                            />
-                            EMPLOPYEE DASHBOARD
-                        </div>
-
+                            <div className='pb-5 glass'>
+                                <IoIosPersonAdd
+                                    onClick={() => document.getElementById('addEmployeeModal').showModal()}
+                                    style={{ background: 'transparent', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
+                                />
+                                EMPLOPYEE DASHBOARD
+                            </div>
                         </center>
                     </span>
 
@@ -328,69 +326,69 @@ const EmployeeDashboard = (props) => {
 
                                     {employeesList && employeesList.map((item, index) => (
                                         item.employee_status != 0 && (
-                                        <tr key={index} className="md:table-row">
-                                            <td className="md:table-cell">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="avatar">
+                                            <tr key={index} className="md:table-row">
+                                                <td className="md:table-cell">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="avatar">
 
-                                                        <div className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                            <img src={item.employee_image} />
-                                                        </div>
-
-                                                        {filterImage && filterImage.map((image, imageIndex) => (
-                                                            <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                                <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
+                                                            <div className="mask mask-squircle w-12 h-12 shadow-2xl">
+                                                                <img src={item.employee_image} />
                                                             </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="md:table-cell">
-                                            {item.id}
-                                        </td>
-                                            <td className="md:table-cell">
-                                                {item.employee_fullname}
-                                            </td>
 
-                                            <td className="md:table-cell">
-                                                {item.employee_email}
-                                            </td>
-
-                                            <td className="md:table-cell">
-                                                {item.employee_contact_no}
-                                            </td>
-                                            <td className="md:table-cell">5
-                                            </td>
-                                            <td className="md:table-cell">
-                                                {item.employee_position}
-                                            </td>
-                                            <td className="md:table-cell">
-                                                {item.employee_status === 1 ?
-                                                    <RiAccountPinCircleFill
-                                                        style={{ fontSize: "25px", color: "green" }}
-                                                    /> : <MdOutlineNoAccounts
-                                                        style={{ fontSize: "25px", color: "red" }}
-                                                    />}
-                                            </td>
-                                            <td className="flex md:table-cell" >
-                                                <div className="flex">
-                                                    <div className="flex-none mr-3">
-                                                        <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                            <FaEye style={{ fontSize: "20px", color: "#A3E636", padding: "0%" }} />
-                                                        </Link>
-
+                                                            {filterImage && filterImage.map((image, imageIndex) => (
+                                                                <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
+                                                                    <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
+                                                                </div>
+                                                            ))}
+                                                        </div>
                                                     </div>
-                                                    <div className="flex-none mr-3">
-                                                        <MdAutoDelete
-                                                        onClick={() => {
-                                                                setDeactivateEmployeeId(item.id); 
-                                                                document.getElementById('removeEmployee').showModal()
-                                                            }}
-                                                         style={{ fontSize: "20px", color: "#A3E636" }} />
+                                                </td>
+                                                <td className="md:table-cell">
+                                                    {item.id}
+                                                </td>
+                                                <td className="md:table-cell">
+                                                    {item.employee_fullname}
+                                                </td>
+
+                                                <td className="md:table-cell">
+                                                    {item.employee_email}
+                                                </td>
+
+                                                <td className="md:table-cell">
+                                                    {item.employee_contact_no}
+                                                </td>
+                                                <td className="md:table-cell">5
+                                                </td>
+                                                <td className="md:table-cell">
+                                                    {item.employee_position}
+                                                </td>
+                                                <td className="md:table-cell">
+                                                    {item.employee_status === 1 ?
+                                                        <RiAccountPinCircleFill
+                                                            style={{ fontSize: "25px", color: "green" }}
+                                                        /> : <MdOutlineNoAccounts
+                                                            style={{ fontSize: "25px", color: "red" }}
+                                                        />}
+                                                </td>
+                                                <td className="flex md:table-cell" >
+                                                    <div className="flex">
+                                                        <div className="flex-none mr-3">
+                                                            <Link to={`/employee/details/${item.id}`} className="text-black">
+                                                                <FaEye style={{ fontSize: "20px", color: "#A3E636", padding: "0%" }} />
+                                                            </Link>
+
+                                                        </div>
+                                                        <div className="flex-none mr-3">
+                                                            <MdAutoDelete
+                                                                onClick={() => {
+                                                                    setDeactivateEmployeeId(item.id);
+                                                                    document.getElementById('removeEmployee').showModal()
+                                                                }}
+                                                                style={{ fontSize: "20px", color: "#A3E636" }} />
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
                                         )
                                     ))}
                                 </tbody>
