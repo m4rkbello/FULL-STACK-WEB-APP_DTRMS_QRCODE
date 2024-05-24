@@ -175,7 +175,7 @@ export const loginUser = userData => async dispatch => {
     try {
         setTimeout(() => {
             dispatch({ type: LOGIN_USER_REQUEST });
-        }, 3000);
+        }, 1000);
 
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
 
