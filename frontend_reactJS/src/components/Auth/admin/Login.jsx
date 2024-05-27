@@ -11,7 +11,6 @@ const Login = ({ loginUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-
   const handleLoginRequestAndResponse = async (event) => {
     event.preventDefault();
     setIsLoading(true);
