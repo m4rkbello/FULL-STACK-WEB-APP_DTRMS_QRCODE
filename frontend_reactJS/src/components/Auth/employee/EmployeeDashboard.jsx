@@ -102,6 +102,7 @@ const EmployeeDashboard = (props) => {
             <span className="bg-lime-400 loading loading-ball loading-sm"></span>
             <span className="bg-lime-400 loading loading-ball loading-md"></span>
             <span className="bg-lime-400 loading loading-ball loading-lg"></span>
+            <span className="bg-lime-400 loading loading-ball loading-xl"></span>
         </div>;
     }
 
