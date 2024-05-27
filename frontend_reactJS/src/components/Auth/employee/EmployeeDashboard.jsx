@@ -10,11 +10,9 @@ import { HiStatusOnline } from "react-icons/hi";
 import { MdOutlineNoAccounts } from "react-icons/md";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { useEffect, useState } from 'react';
-
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
-
 //TOASTER
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -109,7 +107,7 @@ const EmployeeDashboard = (props) => {
 
 
     return (
-        <div className="hero max-w-full">
+        <div className="hero max-w-full rounded-l-lg rounded-t-lg rounded-r-lg rounded-b-lg">
             <ToastContainer />
             <dialog id="removeEmployee" className="modal">
                 <div className="modal-box">
