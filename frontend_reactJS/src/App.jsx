@@ -209,7 +209,7 @@ function App(props) {
                   <Route path="/department" element={<Department />} />
                   <Route path="/department/add" element={<AddDepartment />} />
                   <Route path="/department/edit/:id" element={<EditDepartment />} />
-               
+
                 </Routes>
               </>
             ) : (
@@ -227,30 +227,75 @@ function App(props) {
           <>
             <div className="drawer-side">
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full glass text-lime-500">
+              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-lime-500">
                 <li>
-                  <Link to="/employee/attendance" className='text-2xl'>
+                  <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
                     Attendance
                   </Link>
                 </li>
                 <li>
-                  <Link to="/employee/dashboard" className='text-2xl'>
+                  <Link to="/employee/dashboard" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
                     Employees List
                   </Link>
                 </li>
                 <li>
-                  <Link to="/archieve" className='text-2xl'>
+                  <Link to="/archieve" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
                     Employee Archieve
                   </Link>
                 </li>
                 <li>
-                  <Link to="/content" className='text-2xl'>
+                  <Link to="/content" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
                     Content Test
                   </Link>
                 </li>
                 <li>
-                  <Link to="/department" className='text-2xl'>
+                  <Link to="/department" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
                     Department
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST
                   </Link>
                 </li>
               </ul>
