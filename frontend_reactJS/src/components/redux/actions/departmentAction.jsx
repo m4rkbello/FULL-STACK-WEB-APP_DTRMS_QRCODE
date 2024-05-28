@@ -324,5 +324,18 @@ export const deleteDepartment = departmentId => async dispatch => {
 
 //MAGSEARCH O QUERY'G DATA SA DEPARTMENTS_TABLE
 export const searchDepartments = (query) => async dispatch => {
+    dispatch({ type: SEARCH_DEPARTMENT_REQUEST });
+    try{
+        const searchDepartmentReqRes = await MarkBelloApi.post('/api/search', { data: query });
+        dispatch({
+            type: SEARCH_DEPARTMENT_SUCCESS,
+            payload: searchDepartmentReqRes,
+        });
+    }catch (error){
+        dispatch({
+            type: SEARCH_DEPARTMENT_FAILURE,
+            payload: error
+        });
+    }
 
 };
