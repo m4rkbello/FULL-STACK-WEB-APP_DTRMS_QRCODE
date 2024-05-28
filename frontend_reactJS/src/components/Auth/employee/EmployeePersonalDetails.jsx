@@ -4,10 +4,11 @@
 /* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate,Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 //DISPATCH-ACTION REDUX-CORE
 import { fetchEmployees, updateEmployee, uploadAndUpdateImageEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
+import { fetchDepartments } from '../../redux/actions/departmentAction';
 //ICONS
 import { FaUpload } from "react-icons/fa6";
 import { FaUserEdit, FaExpeditedssl, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
@@ -18,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const EmployeePersonalDetails = (props) => {
+    console.log("DATA SA MAPTOSTATETOPROPS", props)
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -70,12 +72,11 @@ const EmployeePersonalDetails = (props) => {
             window.alert("ERROR");
         };
     }
-    
+
     const employeesCollectionArrays = props.employeesData?.employees?.data;
-    
+
     function employeeDetails(employeesCollectionArrays, id) {
         let item = [];
-
         if (employeesCollectionArrays) {
             for (let ez = 0; ez < employeesCollectionArrays.length; ez++) {
                 if (employeesCollectionArrays[ez].id == id) {
@@ -85,25 +86,45 @@ const EmployeePersonalDetails = (props) => {
         }
         return item;
     }
-    
+
     const employee = employeeDetails(employeesCollectionArrays, id);
-    
+
     const handleImageEmployeeChange = (e) => {
         setImageEmployee(e.target.files[0]);
-      };
+    };
 
-  const handleUploadImageEmployee = () => {
-    event.preventDefault();
+    const handleUploadImageEmployee = () => {
+        event.preventDefault();
         if (imageEmployee) {
-        const formData = new FormData();
-        formData.append('employee_image', imageEmployee);
-        props.uploadAndUpdateImageEmployee(formData, id); 
+            const formData = new FormData();
+            formData.append('employee_image', imageEmployee);
+            props.uploadAndUpdateImageEmployee(formData, id);
         }
     };
+
+    const departmentsCollectionArrays = props?.departmentsData?.departments?.data?.department;
+    console.log("ayaw kol!", departmentsCollectionArrays);
+
+    function fetchDepartments(departmentsCollectionArrays) {
+        let item = [];
+
+        if (departmentsCollectionArrays) {
+            for (let ez = 0; ez < departmentsCollectionArrays.length; ez++) {
+                item.push(departmentsCollectionArrays[ez]);
+            }
+        }
+
+        return item;
+    };
+
+    const departments = fetchDepartments(departmentsCollectionArrays);
+
+    console.log("departments PARA SA MAP!", departments);
 
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
+        props.fetchDepartments();
     }, []);
 
     return (
@@ -111,11 +132,11 @@ const EmployeePersonalDetails = (props) => {
             <ToastContainer />
             {isModalOpen && (
                 <dialog id="editEmployeeDetails" className="modal">
-                    <div className=" modal-box w-11/12 max-w-5xl bg-black">
+                    <div className=" modal-box w-11/12 max-w-5xl bg-black ">
                         <h3 className="font-bold text-3xl text-glass">EDIT EMPLOYEE DETAILS</h3>
-                        <div className="modal-action">
+                        <div className="modal-action ">
                             <form method="dialog" onSubmit={handleSumbitEmployeeData}>
-                                <div className="grid grid-cols-3 gap-6">
+                                <div className="grid grid-cols-3 gap-6 ">
 
                                     <div className="form-control">
                                         <label className="label">
@@ -128,9 +149,9 @@ const EmployeePersonalDetails = (props) => {
                                                 onChange={handleChangeUpdateData}
                                                 type="text"
                                                 placeholder="Enter a Fullname"
-                                                className="input input-bordered shadow-2xl text-2xl text-lime-800 border-1 border-glass"
+                                                className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/100"
                                                 defaultValue={item.employee_fullname}
-                                                style={{ backgroundColor: 'black' }}
+                                                style={{ backgroundColor: '#A3E636' }}
                                             />
                                         ))}
 
@@ -146,9 +167,9 @@ const EmployeePersonalDetails = (props) => {
                                                 onChange={handleChangeUpdateData}
                                                 type="text"
                                                 placeholder="email"
-                                                className="input input-bordered shadow-2xl text-2xl text-lime-800 border-1 border-glass"
+                                                className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/40"
                                                 defaultValue={item.employee_email}
-                                                style={{ backgroundColor: 'black' }}
+                                                style={{ backgroundColor: '#A3E636' }}
                                             />
                                         ))}
                                     </div>
@@ -163,9 +184,9 @@ const EmployeePersonalDetails = (props) => {
                                                 name="employee_contact_no"
                                                 onChange={handleChangeUpdateData}
                                                 placeholder="contact number"
-                                                className="input input-bordered shadow-2xl text-2xl text-lime-800 border-1 border-glass"
+                                                className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/40"
                                                 defaultValue={item.employee_contact_no}
-                                                style={{ backgroundColor: 'black' }}
+                                                style={{ backgroundColor: '#A3E636' }}
                                             />
                                         ))}
                                     </div>
@@ -180,9 +201,9 @@ const EmployeePersonalDetails = (props) => {
                                                 name="employee_role"
                                                 onChange={handleChangeUpdateData}
                                                 placeholder="Role"
-                                                className="input input-bordered shadow-2xl text-2xl text-lime-800 border-1 border-glass"
+                                                className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/40"
                                                 defaultValue={item.employee_role}
-                                                style={{ backgroundColor: 'black' }}
+                                                style={{ backgroundColor: '#A3E636' }}
                                             />
                                         ))}
                                     </div>
@@ -197,30 +218,33 @@ const EmployeePersonalDetails = (props) => {
                                                 name="employee_position"
                                                 onChange={handleChangeUpdateData}
                                                 placeholder="Position"
-                                                className="input input-bordered shadow-2xl text-2xl text-lime-800 border-1 border-glass"
+                                                className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/40"
                                                 defaultValue={item.employee_position}
-                                                style={{ backgroundColor: 'black' }}
+                                                style={{ backgroundColor: '#A3E636' }}
                                             />
 
                                         ))}
                                     </div>
+
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text text-lime-400 text-2xl">Department</span>
                                         </label>
-                                        {employee && employee.map((item, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                name="employee_department"
-                                                onChange={handleChangeUpdateData}
-                                                placeholder="Enter a department"
-                                                className="input input-bordered shadow-2xl text-2xl text-lime-800 border-1 border-glass"
-                                                defaultValue={item.employee_department}
-                                                style={{ backgroundColor: 'black' }}
-                                            />
-                                        ))}
+
+                                        <select
+                                            name="employee_department"
+                                            onChange={handleChangeUpdateData}
+                                            className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
+                                            style={{ backgroundColor: '#A3E636' }}
+                                            >
+                                            {departments.map((item, index) => (
+                                                <option key={index} value={item.id}>
+                                                    {item.dept_name}
+                                                </option>
+                                            ))}
+                                        </select>
                                     </div>
+
                                     <center>
                                     </center>
                                     <div className="form-control">
@@ -231,8 +255,8 @@ const EmployeePersonalDetails = (props) => {
                                             <select
                                                 key={index}
                                                 name="employee_status"
-                                                className="select shadow-2xl text-2xl w-full max-w-xs"
-                                                style={{ backgroundColor: 'black', color: "#A3E636" }}
+                                                className="select shadow-2xl text-2xl w-full max-w-xs shadow-lime-400/40"
+                                                style={{ backgroundColor: '#A3E636', color: "black" }}
                                                 onChange={handleChangeUpdateData}
                                             >
                                                 <option value="1">Active</option>
@@ -270,16 +294,16 @@ const EmployeePersonalDetails = (props) => {
             )}
 
             <dialog id="uploadEmployeeProfile" className="modal">
-            <div className="modal-box">
-            <form method="dialog justify-center">
-              <input type="file" onChange={handleImageEmployeeChange} className="file-input bg-lime-400 w-full max-w-xs" />
-              <button onClick={handleUploadImageEmployee} 
-              className="btn btn-primary ml-5"
-              style={{ background: "black", color: "#A3E636"}} 
-              >Upload</button>
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-          </div>
+                <div className="modal-box">
+                    <form method="dialog justify-center">
+                        <input type="file" onChange={handleImageEmployeeChange} className="file-input bg-lime-400 w-full max-w-xs" />
+                        <button onClick={handleUploadImageEmployee}
+                            className="btn btn-primary ml-5"
+                            style={{ background: "black", color: "#A3E636" }}
+                        >Upload</button>
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                </div>
             </dialog>
 
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
@@ -445,7 +469,7 @@ const EmployeePersonalDetails = (props) => {
                     </center>
                 </>
             )}
-            
+
         </div>
     )
 }
@@ -453,16 +477,19 @@ const EmployeePersonalDetails = (props) => {
 const mapStateToProps = (state) => {
     return {
         employeesData: state.employeeState,
-        imagesData: state.imageState
+        imagesData: state.imageState,
+        departmentsData: state.departmentState
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
+
     return {
         fetchEmployees: () => dispatch(fetchEmployees()),
         updateEmployee: (employeeId, updateEmployeeData) => dispatch(updateEmployee(employeeId, updateEmployeeData)),
         fetchImages: () => dispatch(fetchImages()),
         uploadAndUpdateImageEmployee: (formData, employeeId) => dispatch(uploadAndUpdateImageEmployee(formData, employeeId)),
+        fetchDepartments: () => dispatch(fetchDepartments()),
     };
 };
 
