@@ -209,7 +209,6 @@ function App(props) {
                   <Route path="/department" element={<Department />} />
                   <Route path="/department/add" element={<AddDepartment />} />
                   <Route path="/department/edit/:id" element={<EditDepartment />} />
-
                 </Routes>
               </>
             ) : (
@@ -255,7 +254,27 @@ function App(props) {
                 </li>
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
-                    TEST
+                    TEST 1
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST 2
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST 3
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST 4
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                    TEST 5
                   </Link>
                 </li>
                 <li>
@@ -265,37 +284,17 @@ function App(props) {
                 </li>
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
-                    TEST
+                    TEST 6
                   </Link>
                 </li>
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
-                    TEST
-                  </Link>
+                    TEST 7
+                  </Link> 
                 </li>
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
-                    TEST
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
-                    TEST
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
-                    TEST
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
-                    TEST
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
-                    TEST
+                    TEST 8
                   </Link>
                 </li>
               </ul>
