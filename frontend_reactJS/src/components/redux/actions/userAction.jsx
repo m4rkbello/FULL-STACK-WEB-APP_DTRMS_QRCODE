@@ -334,22 +334,7 @@ export const userChangePassword = (userId, changePasswordUserData) => async disp
                 }
             });
 
-        } else {
-            toast.error('Updated successfully!🤭😇🤗', {
-                position: 'top-right',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                style: {
-                    background: 'black',
-                    color: '#A3E636',
-                    fontSize: '17px'
-                }
-            });
-        }
+        } 
 
         dispatch({
             type: CHANGE_PASSWORD_USER_SUCCESS,
