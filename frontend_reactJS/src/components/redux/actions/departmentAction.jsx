@@ -21,7 +21,11 @@ DELETE_DEPARTMENT_REQUEST,
 DELETE_DEPARTMENT_SUCCESS,
 UPDATE_DEPARTMENT_FAILURE,
 UPDATE_DEPARTMENT_REQUEST,
-UPDATE_DEPARTMENT_SUCCESS }
+UPDATE_DEPARTMENT_SUCCESS,
+SEARCH_DEPARTMENT_REQUEST,
+SEARCH_DEPARTMENT_SUCCESS,
+SEARCH_DEPARTMENT_FAILURE
+}
 from '../types/departmentTypes.jsx';
 
 
@@ -316,4 +320,9 @@ export const deleteDepartment = departmentId => async dispatch => {
             payload: error.message
         });
     }
+};
+
+//MAGSEARCH O QUERY'G DATA SA DEPARTMENTS_TABLE
+export const searchDepartments = (query) => async dispatch => {
+
 };

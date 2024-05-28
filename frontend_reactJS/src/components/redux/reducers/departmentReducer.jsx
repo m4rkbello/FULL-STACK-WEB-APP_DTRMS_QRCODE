@@ -13,13 +13,17 @@ import {
     FETCH_DEPARTMENTS_FAILURE,
     UPDATE_DEPARTMENT_REQUEST,
     UPDATE_DEPARTMENT_FAILURE,
-    UPDATE_DEPARTMENT_SUCCESS 
+    UPDATE_DEPARTMENT_SUCCESS,
+    SEARCH_DEPARTMENT_REQUEST,
+    SEARCH_DEPARTMENT_SUCCESS,
+    SEARCH_DEPARTMENT_FAILURE 
 }
 from '../types/departmentTypes.jsx';
 
 
 const initialState = {
     departments: [],
+    search: [],
     loading: false,
     error: null,
 };
@@ -31,6 +35,7 @@ const departmentReducer = (state = initialState, action) => {
         case DEACTIVATE_DEPARTMENT_REQUEST:
         case DELETE_DEPARTMENT_REQUEST:
         case UPDATE_DEPARTMENT_REQUEST:
+        case SEARCH_DEPARTMENT_REQUEST:
             return  {
                 ...state,
                 loading: true,
@@ -71,12 +76,19 @@ const departmentReducer = (state = initialState, action) => {
                 loading: false,
                 error: null
             };
-      
+        case SEARCH_DEPARTMENT_SUCCESS:
+            return {
+                ...state,
+                search: state.search.map(data => data.id === action.payload.id ? action.payload : data),
+                loading: false,
+                error: null
+            }
         case FETCH_DEPARTMENTS_FAILURE:
         case ADD_DEPARTMENT_FAILURE:
         case UPDATE_DEPARTMENT_FAILURE:
         case DELETE_DEPARTMENT_FAILURE:
         case DEACTIVATE_DEPARTMENT_FAILURE:
+        case SEARCH_DEPARTMENT_FAILURE:
             return {
                 ...state,
                 loading: false,
