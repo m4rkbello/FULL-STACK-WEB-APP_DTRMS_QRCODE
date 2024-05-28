@@ -326,7 +326,8 @@ export const deleteDepartment = departmentId => async dispatch => {
 export const searchDepartments = (query) => async dispatch => {
     dispatch({ type: SEARCH_DEPARTMENT_REQUEST });
     try{
-        const searchDepartmentReqRes = await MarkBelloApi.post('/api/search', { data: query });
+        const searchDepartmentReqRes = await MarkBelloApi.post('/api/department/search/', { data: query });
+        console.log("DATA SA searchDepartments", searchDepartmentReqRes);
         dispatch({
             type: SEARCH_DEPARTMENT_SUCCESS,
             payload: searchDepartmentReqRes,

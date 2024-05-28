@@ -23,7 +23,6 @@ from '../types/departmentTypes.jsx';
 
 const initialState = {
     departments: [],
-    search: [],
     loading: false,
     error: null,
 };
@@ -79,7 +78,7 @@ const departmentReducer = (state = initialState, action) => {
         case SEARCH_DEPARTMENT_SUCCESS:
             return {
                 ...state,
-                search: state.search.map(data => data.id === action.payload.id ? action.payload : data),
+                departments: action.payload,
                 loading: false,
                 error: null
             }
