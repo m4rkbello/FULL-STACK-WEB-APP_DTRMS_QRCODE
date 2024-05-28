@@ -42,11 +42,11 @@ const Department = (props) => {
   }
 
   return (
+    
     <div className="hero min-h-screen bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-    <div className="hero min-h-screen bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-        <div className="overflow-auto max-h-96"> {/* Add this div */}
+        <div className="overflow-auto max-h-screen"> {/* Add this div */}
           {Array.isArray(departmentArrays) && departmentArrays.length > 0 ? (
-            <table className="table bg-black w-full">
+            <table className="table bg-black w-full h-full">
               <thead className='glass'>
                 <tr>
                   <th className='text-1xl text-white'>DEPARTMENT NAME</th>
@@ -100,7 +100,7 @@ const Department = (props) => {
           )}
         </div>
       </div>
-    </div>
+  
   )
 }
 
