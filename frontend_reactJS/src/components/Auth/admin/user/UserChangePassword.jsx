@@ -110,19 +110,19 @@ const UserDetails = (props) => {
   //para sa loading request if loading ang redux-reducer niya is is user_request
   if (props.loading) {
     return <div>
-      <span className="loading loading-ball loading-xs"></span>
-      <span className="loading loading-ball loading-sm"></span>
-      <span className="loading loading-ball loading-md"></span>
-      <span className="loading loading-ball loading-lg"></span>
+      <span className="bg-lime-400 loading loading-ball loading-xs"></span>
+      <span className="bg-lime-400 loading loading-ball loading-sm"></span>
+      <span className="bg-lime-400 loading loading-ball loading-md"></span>
+      <span className="bg-lime-400 loading loading-ball loading-lg"></span>
     </div>;
   }
 
   return (
 
-    <div className="hero min-h-screen bg-amber-100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+    <div className="hero min-h-screen bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
       <button style={{ marginRight: "93%", marginBottom: "65%" }} >
         <Link to="/">
-          <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
+          <FaLongArrowAltLeft style={{ fontSize: "50px", color: "#A3E636", marginRight: "90%", marginBottom: "65%" }} />
         </Link>
       </button>
       <ToastContainer />
@@ -153,7 +153,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="user_password"
-                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_password}
                     onChange={handleChangePasswordInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -170,7 +170,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="confirm_password"
-                    className={`input input-bordered shadow-2xl text-2xl bg-amber-100 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_password}
                     onChange={handleChangePasswordInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -181,8 +181,8 @@ const UserDetails = (props) => {
             <br />
             <button onClick={handleChangePasswordUser} className="btn bg-black mr-3">
               {isEditing ?
-                <FaSave style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} /> :
-                <MdEditSquare style={{ backgroundColor: 'transparent', color: '#fef3c6', border: 'none', width: '25px', height: '25px' }} />
+                <FaSave style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} /> :
+                <MdEditSquare style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} />
               }
             </button>
           </div>
