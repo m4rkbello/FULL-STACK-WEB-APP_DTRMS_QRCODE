@@ -7,6 +7,7 @@ import { IoIosPersonAdd } from 'react-icons/io';
 import { HiStatusOnline } from 'react-icons/hi';
 import { MdOutlineNoAccounts } from 'react-icons/md';
 import { RiAccountPinCircleFill } from 'react-icons/ri';
+import { IoSearch } from "react-icons/io5";
 
 // DEPARTMENT ACTIONS/DISPATCH
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
@@ -38,6 +39,7 @@ const Department = (props) => {
 
 
 
+
   if (props.loading) {
     return (
       <div>
@@ -50,20 +52,40 @@ const Department = (props) => {
   }
 
   return (
-    <div className="hero min-h-screen bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+    <div className="hero max-h-fit bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
       <div className="overflow-auto max-h-screen">
-        <input
-          type="text"
-          placeholder="Search Departments"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 m-2 border border-gray-300 rounded"
-          style={{ backgroundColor: "#A3E636", color: "black" }}
-        />
+
+
+        <span class="inline-grid grid-cols-2 gap-4">
+          <span>
+            <input
+              type="text"
+              placeholder="Search Departments"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="p-2 m-2 border-b-4 border-lime-400 rounded text-white"
+              style={{ backgroundColor: "transparent", color: "white" }}
+            />
+          </span>
+          <span>
+            <IoSearch
+              style={{
+                backgroundColor: "transparent",
+                color: "#A3E636",
+                height: "30px",
+                width: "30px",
+                marginTop: "15px",
+                marginLeft: "-20px"
+              }}
+            />
+          </span>
+
+
+        </span>
         {filteredDepartments.length > 0 ? (
-          <table className="table bg-black w-full h-full">
+          <table className="table bg-black">
             <thead className="glass">
-              <tr>
+              <tr className='max-w-full'>
                 <th className="text-1xl text-white">DEPARTMENT NAME</th>
                 <th className="text-1xl text-white">DEPARTMENT DESCRIPTION</th>
                 <th className="text-1xl text-white">DEPARTMENT STATUS</th>
@@ -116,7 +138,10 @@ const Department = (props) => {
             </tbody>
           </table>
         ) : (
-          <h1>NO DATA test</h1>
+          <table className="table bg-black w-full h-full">
+            <th>NO DATA!</th>
+          </table>
+
         )}
       </div>
     </div>
