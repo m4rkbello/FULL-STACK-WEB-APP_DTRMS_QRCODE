@@ -52,11 +52,9 @@ const Department = (props) => {
   }
 
   return (
-    <div className="hero max-h-fit bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+    <div className="hero bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
       <div className="overflow-auto max-h-screen">
-
-
-        <span class="inline-grid grid-cols-2 gap-4">
+        <span class="inline-grid grid-cols-2 gap-4 py-5">
           <span>
             <input
               type="text"
@@ -79,14 +77,12 @@ const Department = (props) => {
               }}
             />
           </span>
-
-
         </span>
         {filteredDepartments.length > 0 ? (
-          <table className="table bg-black">
+          <table className="table table-lg bg-black">
             <thead className="glass">
-              <tr className='max-w-full'>
-                <th className="text-1xl text-white">DEPARTMENT NAME</th>
+              <tr className='table-lg'>
+                <th className="text-1xl text-white ">DEPARTMENT NAME</th>
                 <th className="text-1xl text-white">DEPARTMENT DESCRIPTION</th>
                 <th className="text-1xl text-white">DEPARTMENT STATUS</th>
                 <th className="text-1xl text-white">ACTION</th>
@@ -138,9 +134,18 @@ const Department = (props) => {
             </tbody>
           </table>
         ) : (
-          <table className="table bg-black w-full h-full">
-            <th>NO DATA!</th>
-          </table>
+          <div className="hero max-h-fit bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+            <div className="card lg:card-side bg-base-100 shadow-xl">
+              <figure><img src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album" /></figure>
+              <div className="card-body">
+                <h2 className="card-title">New album is released!</h2>
+                <p>Click the button to listen on Spotiwhy app.</p>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">Listen</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         )}
       </div>
