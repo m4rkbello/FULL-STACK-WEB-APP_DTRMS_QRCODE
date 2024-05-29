@@ -41,7 +41,8 @@ const AddDepartment = (props) => {
     }
 
     return (
-        <div>
+      
+        <div className="hero  bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
         <ToastContainer />
             <div className=" modal-box w-11/12 max-w-5xl glass">
                 <h3 className="font-bold text-3xl text-black">ADD NEW DEPARTMENT</h3>
