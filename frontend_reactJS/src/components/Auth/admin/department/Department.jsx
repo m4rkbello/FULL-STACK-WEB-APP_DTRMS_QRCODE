@@ -16,6 +16,7 @@ const Department = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredDepartments, setFilteredDepartments] = useState([]);
 
+  //sideeffect sa fetchStudent
   useEffect(() => {
     props.fetchDepartments();
   }, []);
@@ -36,8 +37,6 @@ const Department = (props) => {
   const getAllDepartments = (departmentsArray) => {
     return Array.isArray(departmentsArray) ? departmentsArray : [];
   };
-
-
 
 
   if (props.loading) {
@@ -82,6 +81,7 @@ const Department = (props) => {
           <table className="table table-lg bg-black">
             <thead className="glass">
               <tr className='table-lg'>
+                      <th className="text-1xl text-white ">NO</th>
                 <th className="text-1xl text-white ">DEPARTMENT NAME</th>
                 <th className="text-1xl text-white">DEPARTMENT DESCRIPTION</th>
                 <th className="text-1xl text-white">DEPARTMENT STATUS</th>
@@ -96,6 +96,7 @@ const Department = (props) => {
             <tbody>
               {filteredDepartments.map((item, index) => (
                 <tr key={index}>
+                <td>{item.id}</td>
                   <td>{item.dept_name}</td>
                   <td>{item.dept_description}</td>
                   <td>
