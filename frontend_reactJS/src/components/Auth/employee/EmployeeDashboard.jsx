@@ -114,7 +114,7 @@ const EmployeeDashboard = (props) => {
 
     return (
         <div className="hero max-w-full rounded-l-lg rounded-t-lg rounded-r-lg rounded-b-lg">
-            <ToastContainer />
+            <ToastContainer /> 
             <dialog id="removeEmployee" className="modal">
                 <div className="modal-box">
                     <form method="dialog">
@@ -133,13 +133,11 @@ const EmployeeDashboard = (props) => {
                     <div className="modal-action">
                         <form method="dialog" onSubmit={handleAddEmployee}>
                             <div className="grid grid-cols-3 gap-6">
-
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text text-white text-2xl">Fullname</span>
                                     </label>
                                     <input
-
                                         name="employee_fullname" //key para sa form data
                                         type="text"
                                         placeholder="Enter Fullname"
@@ -179,6 +177,8 @@ const EmployeeDashboard = (props) => {
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
+                                </div>
+                            <div className="grid grid-cols-3 gap-6">
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text text-2xl text-white">Contact No.</span>
@@ -193,8 +193,6 @@ const EmployeeDashboard = (props) => {
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
-                            </div>
-                            <div className="grid grid-cols-3 gap-6">
 
                                 <div className="form-control">
                                     <label className="label">
@@ -227,23 +225,28 @@ const EmployeeDashboard = (props) => {
                                         style={{ backgroundColor: 'black' }}
                                     />
                                 </div>
-
-
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-black text-2xl">Status</span>
-                                    </label>
-                                    <select
-                                        name="employee_status"
-                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status: e.target.value }))}
-                                        className="select input input-bordered shadow-2xl text-2xl text-lime-400"
-                                        value={formDataAddEmployee.employee_status}
-                                        style={{ backgroundColor: 'black' }}
-                                    >
-                                        <option value="0">Inactive</option>
-                                        <option value="1">Active</option>
-                                    </select>
                                 </div>
+                                
+                                <div className="grid grid-cols-3 gap-6">
+                                <div className="form-control">
+                                </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text text-black text-2xl">Status</span>
+                                        </label>
+                                        <select
+                                            name="employee_status"
+                                            onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status: e.target.value }))}
+                                            className="select input input-bordered shadow-2xl text-2xl text-lime-400"
+                                            value={formDataAddEmployee.employee_status}
+                                            style={{ backgroundColor: 'black' }}
+                                        >
+                                            <option value="0">Inactive</option>
+                                            <option value="1">Active</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-control">
+                                    </div>
                             </div>
 
                             <br />
