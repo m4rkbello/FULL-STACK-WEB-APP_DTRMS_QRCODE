@@ -30,12 +30,12 @@ const EmployeeDashboard = (props) => {
         employee_status: ''
     });
 
-    const [deactivateEmployeeId, setDeactivateEmployeeId] = useState(null);
-
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
     }, []);
+
+    const [deactivateEmployeeId, setDeactivateEmployeeId] = useState(null);
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
 
@@ -50,10 +50,10 @@ const EmployeeDashboard = (props) => {
     }
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
-    console.log("DATA SA employeesList", employeesList);
+    // console.log("DATA SA employeesList", employeesList);
 
     const imageCollectionArrays = props.imagesData?.images?.data;
-    console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
+    // console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
 
     const getEmployeeImage = (imageCollectionArrays, employeesList) => {
         // Check if imageCollectionArrays is an array and not empty
@@ -103,13 +103,11 @@ const EmployeeDashboard = (props) => {
             <span className="bg-lime-400 loading loading-ball loading-md"></span>
             <span className="bg-lime-400 loading loading-ball loading-lg"></span>
             <span className="bg-lime-400 loading loading-ball loading-xl"></span>
-            <span className="bg-lime-400 loading loading-infinity loading-xs"></span>
-                <span className="bg-lime-400 loading loading-infinity loading-sm"></span>
-                <span className="bg-lime-400 loading loading-infinity loading-md"></span>
-                <span className="bg-lime-400 loading loading-infinity loading-lg"></span>
+            <span className="bg-lime-400 loading loading-ball loading-lg"></span>
+            <span className="bg-lime-400 loading loading-ball loading-md"></span>
+            <span className="bg-lime-400 loading loading-ball loading-sm"></span>
         </div>;
     }
-
 
     return (
         <div className="hero max-w-full rounded-l-lg rounded-t-lg rounded-r-lg rounded-b-lg">
@@ -267,10 +265,9 @@ const EmployeeDashboard = (props) => {
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
                                 <ul>
                                     <li>
-
                                         <a>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                                            <Link to="/">
+                                            <Link to="/" className='hover:text-lime-400'>
                                                 Home
                                             </Link>
                                         </a>
@@ -278,7 +275,7 @@ const EmployeeDashboard = (props) => {
                                     <li>
                                         <a>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                                            <Link to="/employee/dashboard">
+                                            <Link to="/employee/dashboard" className='hover:text-lime-400'>
                                                 Employee Dashboard
                                             </Link>
                                         </a>
@@ -287,7 +284,7 @@ const EmployeeDashboard = (props) => {
 
                                         <span className="inline-flex gap-2 items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                            <Link to="">
+                                            <Link to="" className='hover:text-lime-400'>
                                                 Employee Personal Details
                                             </Link>
                                         </span>
