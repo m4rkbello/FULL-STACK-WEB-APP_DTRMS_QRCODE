@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
 //TOASTER
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -77,15 +77,18 @@ const EmployeeDashboard = (props) => {
     const filterImage = getEmployeeImage(imageCollectionArrays, employeesList);
 
     const handleAddEmployee = async (event) => {
+        console.log("DATA SA formDataAddEmployee", formDataAddEmployee);
         event.preventDefault();
         try {
-            //ipasa ang data sa form na naa sa setter
             await props.addEmployee(formDataAddEmployee);
-
+    
+            // Success toast will be handled in the Redux action
+    
         } catch (error) {
             console.error(error);
+            // Error toast will be handled in the Redux action
         }
-    }
+    };
 
     const handleDeactivateEmployee = async (employeeId) => {
         try {
@@ -178,10 +181,9 @@ const EmployeeDashboard = (props) => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Contact No.</span>
+                                        <span className="label-text text-2xl text-white">Contact No.</span>
                                     </label>
                                     <input
-
                                         name="employee_contact_no" //key para sa form data
                                         type="text"
                                         placeholder="Enter contact no."
@@ -265,20 +267,20 @@ const EmployeeDashboard = (props) => {
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
                                 <ul>
                                     <li>
-                                        <a>
+                                     
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
                                             <Link to="/" className='hover:text-lime-400'>
                                                 Home
                                             </Link>
-                                        </a>
+                                      
                                     </li>
                                     <li>
-                                        <a>
+                                     
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
                                             <Link to="/employee/dashboard" className='hover:text-lime-400'>
                                                 Employee Dashboard
                                             </Link>
-                                        </a>
+                                      
                                     </li>
                                     <li>
 
@@ -417,7 +419,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchEmployees: () => dispatch(fetchEmployees()),
         fetchImages: () => dispatch(fetchImages()),
-        addEmployee: (AddEmployee) => dispatch(addEmployee(AddEmployee)),
+        addEmployee: (AddEmployeeData) => dispatch(addEmployee(AddEmployeeData)),
         deactivateEmployee: (employeeId) => dispatch(deactivateEmployee(employeeId))
     };
 };
