@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import MarkBelloApi from '../../../services/Api.jsx';
 // import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -43,13 +43,14 @@ export const fetchEmployees = () => async dispatch => {
 };
 
 //MAG ADD UG EMPLOYEE 
-export const addEmployee = AddEmployee => async dispatch => {
+export const addEmployee = AddEmployeeData => async dispatch => {
     try {
         dispatch({ type: ADD_EMPLOYEE_REQUEST });
-        const addEmployeeRequestResponse = await MarkBelloApi.post('/api/employee-registration', AddEmployee);
+
+        const addEmployeeRequestResponse = await MarkBelloApi.post('/api/employee-registration', AddEmployeeData);
+        console.log("DATA!", addEmployeeRequestResponse);
 
         if (!addEmployeeRequestResponse.data.success) {
-            // Handle the case where the response is empty
             toast.error('Employee not added! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 10000,
@@ -65,7 +66,6 @@ export const addEmployee = AddEmployee => async dispatch => {
                 }
             });
         } else {
-            // Handle the case where the update is successful
             toast.success('Employee Added Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -81,18 +81,27 @@ export const addEmployee = AddEmployee => async dispatch => {
                 }
             });
         }
-        
-        // setTimeout(() => {
-        //     window.location.reload();
-        //     // updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
-        //   })
 
-    
         dispatch({
             type: ADD_EMPLOYEE_SUCCESS,
             payload: addEmployeeRequestResponse
         });
     } catch (error) {
+        toast.error('Error adding employee!', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            style: {
+                background: 'black',
+                color: 'red',
+                fontSize: '15px'
+            }
+        });
+
         dispatch({
             type: ADD_EMPLOYEE_FAILURE,
             payload: error.message
