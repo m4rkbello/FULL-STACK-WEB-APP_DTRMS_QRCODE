@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import MarkBelloApi from '../../../services/Api.jsx';
 // import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,24 +48,12 @@ export const addEmployee = AddEmployeeData => async dispatch => {
         dispatch({ type: ADD_EMPLOYEE_REQUEST });
 
         const addEmployeeRequestResponse = await MarkBelloApi.post('/api/employee-registration', AddEmployeeData);
+        const isSucess = addEmployeeRequestResponse.data.success;
         console.log("DATA!", addEmployeeRequestResponse);
+        console.log("DATA!", isSucess);
 
-        if (!addEmployeeRequestResponse.data.success) {
-            toast.error('Employee not added! 🥺⚠️👽', {
-                position: 'top-right',
-                autoClose: 10000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                style: {
-                    background: 'black',
-                    color: 'red',
-                    fontSize: '15px'
-                }
-            });
-        } else {
+        if (isSucess) {
+
             toast.success('Employee Added Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -80,6 +68,24 @@ export const addEmployee = AddEmployeeData => async dispatch => {
                     fontSize: '15px'
                 }
             });
+
+        } else {
+  
+            toast.error('Employee not added! 🥺⚠️👽', {
+                position: 'top-right',
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '15px'
+                }
+            });
+
         }
 
         dispatch({
