@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
+import { fetchDepartments } from '../../redux/actions/departmentAction';
 //TOASTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,6 +34,7 @@ const EmployeeDashboard = (props) => {
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
+        props.fetchDepartments();
     }, []);
 
     const [deactivateEmployeeId, setDeactivateEmployeeId] = useState(null);
@@ -61,7 +63,6 @@ const EmployeeDashboard = (props) => {
             let item = [];
             // Filter the array based on the condition
             const employeeId = employeesList.length != 0 ? employeesList[0].id : null;
-            console.log("DATA SA employeesList", employeeId);
 
             for (let x = 0; x < employeeId.length; x++) {
                 item.push(employeeId[x]);
@@ -77,7 +78,7 @@ const EmployeeDashboard = (props) => {
     const filterImage = getEmployeeImage(imageCollectionArrays, employeesList);
 
     const handleAddEmployee = async (event) => {
-        console.log("DATA SA formDataAddEmployee", formDataAddEmployee);
+        // console.log("DATA SA formDataAddEmployee", formDataAddEmployee);
         event.preventDefault();
         try {
             const addEmployeeRequestResponse = await props.addEmployee(formDataAddEmployee);
@@ -123,7 +124,23 @@ const EmployeeDashboard = (props) => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
+
+    const departmentsCollectionArrays = props?.departmentsData?.departments?.data?.department;
+
+    function fetchDepartments(departmentsCollectionArrays) {
+        let item = [];
+
+        if (departmentsCollectionArrays) {
+            for (let ez = 0; ez < departmentsCollectionArrays.length; ez++) {
+                item.push(departmentsCollectionArrays[ez]);
+            }
+        };
+        return item;
+
+    };
+
+    const departments = fetchDepartments(departmentsCollectionArrays);
 
     if(props.loading) {
         return <div>
@@ -192,16 +209,21 @@ const EmployeeDashboard = (props) => {
                                     <label className="label">
                                         <span className="label-text text-white text-2xl">Department</span>
                                     </label>
-                                    <input
-                                        key=""
-                                        name="employee_department" //key para sa form data
-                                        type="text"
-                                        placeholder="Enter email"
-                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
-                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department: e.target.value }))}
-                                        value={formDataAddEmployee.employee_department}
-                                        style={{ backgroundColor: 'black' }}
-                                    />
+                                
+
+                                    <select
+                                    name="employee_department"
+                                    onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department: e.target.value }))}
+                                    className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
+                                    style={{ backgroundColor: '#A3E636' }}
+                                    >
+                                    {departments.map((item, index) => (
+                                        <option key={index} value={item.id}>
+                                            {item.dept_name}
+                                        </option>
+                                    ))}
+                                </select>
+
                                 </div>
                                 </div>
                             <div className="grid grid-cols-3 gap-6">
@@ -437,9 +459,11 @@ const EmployeeDashboard = (props) => {
 }
 
 const mapStateToProps = (state) => {
+    console.log("DATA SA DEPARTMENT DATA")
     return {
         employeesData: state.employeeState,
         imagesData: state.imageState,
+        departmentsData: state.departmentState,
         loading: state.employeeState.loading,
     };
 };
@@ -449,7 +473,8 @@ const mapDispatchToProps = (dispatch) => {
         fetchEmployees: () => dispatch(fetchEmployees()),
         fetchImages: () => dispatch(fetchImages()),
         addEmployee: (AddEmployeeData) => dispatch(addEmployee(AddEmployeeData)),
-        deactivateEmployee: (employeeId) => dispatch(deactivateEmployee(employeeId))
+        deactivateEmployee: (employeeId) => dispatch(deactivateEmployee(employeeId)),
+        fetchDepartments: () => dispatch(fetchDepartments()),
     };
 };
 
