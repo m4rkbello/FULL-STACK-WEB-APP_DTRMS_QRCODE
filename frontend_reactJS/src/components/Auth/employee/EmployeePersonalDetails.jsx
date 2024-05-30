@@ -103,7 +103,6 @@ const EmployeePersonalDetails = (props) => {
     };
 
     const departmentsCollectionArrays = props?.departmentsData?.departments?.data?.department;
-    console.log("ayaw kol!", departmentsCollectionArrays);
 
     function fetchDepartments(departmentsCollectionArrays) {
         let item = [];
@@ -112,14 +111,12 @@ const EmployeePersonalDetails = (props) => {
             for (let ez = 0; ez < departmentsCollectionArrays.length; ez++) {
                 item.push(departmentsCollectionArrays[ez]);
             }
-        }
-
+        };
         return item;
+
     };
 
     const departments = fetchDepartments(departmentsCollectionArrays);
-
-    console.log("departments PARA SA MAP!", departments);
 
     useEffect(() => {
         props.fetchEmployees();
