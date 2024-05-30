@@ -80,13 +80,39 @@ const EmployeeDashboard = (props) => {
         console.log("DATA SA formDataAddEmployee", formDataAddEmployee);
         event.preventDefault();
         try {
-            await props.addEmployee(formDataAddEmployee);
+            const addEmployeeRequestResponse = await props.addEmployee(formDataAddEmployee);
     
-            // Success toast will be handled in the Redux action
-    
+            toast.success('Employee added successfully!🤭🤗😎', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: '#A3E636',
+                    fontSize: '17px'
+                }
+            });
+
         } catch (error) {
-            console.error(error);
-            // Error toast will be handled in the Redux action
+            toast.error('Employee faield to add! 🥺⚠️👽', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '15px',
+                    fontWeight: 'Bold'
+                }
+            });
         }
     };
 
