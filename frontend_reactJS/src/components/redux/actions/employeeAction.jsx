@@ -48,70 +48,19 @@ export const addEmployee = AddEmployeeData => async dispatch => {
         dispatch({ type: ADD_EMPLOYEE_REQUEST });
 
         const addEmployeeRequestResponse = await MarkBelloApi.post('/api/employee-registration', AddEmployeeData);
-        const isSucess = addEmployeeRequestResponse.data.success;
-        console.log("DATA!", addEmployeeRequestResponse);
-        console.log("DATA!", isSucess);
-
-        if (isSucess) {
-
-            toast.success('Employee Added Successfully!👌👌👌', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                style: {
-                    background: 'white',
-                    color: 'green',
-                    fontSize: '15px'
-                }
-            });
-
-        } else {
-  
-            toast.error('Employee not added! 🥺⚠️👽', {
-                position: 'top-right',
-                autoClose: 10000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                style: {
-                    background: 'black',
-                    color: 'red',
-                    fontSize: '15px'
-                }
-            });
-
-        }
 
         dispatch({
             type: ADD_EMPLOYEE_SUCCESS,
             payload: addEmployeeRequestResponse
         });
-    } catch (error) {
-        toast.error('Error adding employee!', {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            style: {
-                background: 'black',
-                color: 'red',
-                fontSize: '15px'
-            }
-        });
 
+    } catch (error) {
+        
         dispatch({
             type: ADD_EMPLOYEE_FAILURE,
             payload: error.message
         });
+
     }
 };
 
