@@ -86,16 +86,24 @@ const ArchieveEmployee = (props) => {
             console.error(error);
         }
     }
-
     if (props.loading) {
-        return <div>
-            <span className="bg-lime-400 loading loading-ball loading-xs"></span>
-            <span className="bg-lime-400 loading loading-ball loading-sm"></span>
-            <span className="bg-lime-400 loading loading-ball loading-md"></span>
-            <span className="bg-lime-400 loading loading-ball loading-lg"></span>
-        </div>;
-    }
-
+        return (
+          <div>
+          {/**
+          <span className="bg-lime-400 loading loading-ball loading-xs"></span>
+          <span className="bg-lime-400 loading loading-ball loading-sm"></span>
+          <span className="bg-lime-400 loading loading-ball loading-md"></span>
+          <span className="bg-lime-400 loading loading-ball loading-lg"></span>
+          */}
+          <div className="flex flex-col gap-6 w-96">
+          <div className="skeleton h-48 w-full"></div>
+          <div className="skeleton h-6 w-36"></div>
+          <div className="skeleton h-6 w-full"></div>
+          <div className="skeleton h-6 w-full"></div>
+      </div>
+          </div>
+        );
+      }
 
     return (
         <div className="hero max-w-full">
