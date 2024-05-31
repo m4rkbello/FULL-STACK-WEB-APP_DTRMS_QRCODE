@@ -98,7 +98,7 @@ function App(props) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="navbar bg-black px-4 py-2 md:px-8 md:py-4">
+      <div className="navbar bg-black px-4 py-2 md:px-8 md:py-4  border-r-4 border-lime-400">
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
             <div className="flex-none">
@@ -198,17 +198,17 @@ function App(props) {
               <>
                 <Routes>
                   <Route path="/forgot-password" element={<ForgotPassword />} />
-                  <Route path="/content" element={<Content />} />
-                  <Route path="/employee/register" element={<EmployeeRegister />} />
+                  <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
+                  <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                   <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
                   <Route path="/archieve" element={<ArchiveEmployee />} />
-                  <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                   <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                   <Route path="/department" element={<Department />} />
                   <Route path="/department/add" element={<AddDepartment />} />
                   <Route path="/department/edit/:id" element={<EditDepartment />} />
+                  <Route path="/content" element={<Content />} />
                 </Routes>
               </>
             ) : (
@@ -224,8 +224,8 @@ function App(props) {
 
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
-            <div className="drawer-side">
-              <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+            <div className="drawer-side border-r-4 border-lime-400">
+              <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay "></label>
               <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-lime-500">
                 <li>
                   <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
