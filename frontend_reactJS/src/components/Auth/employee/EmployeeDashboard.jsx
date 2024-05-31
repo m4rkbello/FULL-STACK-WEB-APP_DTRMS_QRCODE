@@ -171,7 +171,7 @@ const EmployeeDashboard = (props) => {
             </dialog>
 
             <dialog id="addEmployeeModal" className="modal ">
-                <div className="modal-box w-11/12 max-w-5xl bg-black">
+                <div className="modal-box w-11/12 max-w-5xl bg-white">
                     <h3 className="font-bold text-3xl text-lime-400">ADD EMPLOYEE</h3>
                     <div className="modal-action">
                         <form method="dialog" onSubmit={handleAddEmployee}>
@@ -186,7 +186,7 @@ const EmployeeDashboard = (props) => {
                                         placeholder="Enter Fullname"
                                         className="input input-bordered shadow-2xl text-2xl  text-lime-400"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_fullname: e.target.value }))}
-                                        style={{ backgroundColor: 'black' }}
+                                        style={{ backgroundColor: '#E9DCC9' }}
                                         value={formDataAddEmployee.employee_fullname}
                                     />
                                 </div>
