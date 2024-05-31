@@ -128,8 +128,8 @@ const EmployeePersonalDetails = (props) => {
         <div className="hero max-w-full">
             <ToastContainer />
             {isModalOpen && (
-                <dialog id="editEmployeeDetails" className="modal">
-                    <div className=" modal-box w-11/12 max-w-5xl bg-black ">
+                <dialog id="editEmployeeDetails" className="modal border border-lime-400">
+                    <div className=" modal-box w-11/12 max-w-5xl bg-black  border border-lime-400">
                         <h3 className="font-bold text-3xl text-lime-400">EDIT EMPLOYEE DETAILS</h3>
                         
                         <div className="modal-action ">
