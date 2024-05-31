@@ -130,14 +130,15 @@ const EmployeePersonalDetails = (props) => {
             {isModalOpen && (
                 <dialog id="editEmployeeDetails" className="modal">
                     <div className=" modal-box w-11/12 max-w-5xl bg-black ">
-                        <h3 className="font-bold text-3xl text-glass">EDIT EMPLOYEE DETAILS</h3>
+                        <h3 className="font-bold text-3xl text-lime-400">EDIT EMPLOYEE DETAILS</h3>
+                        
                         <div className="modal-action ">
                             <form method="dialog" onSubmit={handleSumbitEmployeeData}>
                                 <div className="grid grid-cols-3 gap-6 ">
 
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-lime-400 text-2xl">Fullname</span>
+                                            <span className="label-text text-white text-2xl">Fullname</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -155,7 +156,7 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-lime-400 text-2xl">Email</span>
+                                            <span className="label-text text-white text-2xl">Email</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -172,7 +173,7 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-lime-400 text-2xl">Contact No.</span>
+                                            <span className="label-text text-white text-2xl">Contact No.</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -189,7 +190,7 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-lime-400 text-2xl">Role</span>
+                                            <span className="label-text text-white text-2xl">Role</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -206,7 +207,7 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-lime-400 text-2xl">Position</span>
+                                            <span className="label-text text-white text-2xl">Position</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -225,7 +226,7 @@ const EmployeePersonalDetails = (props) => {
 
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-lime-400 text-2xl">Department</span>
+                                            <span className="label-text text-white text-2xl">Department</span>
                                         </label>
 
                                         <select
@@ -265,16 +266,16 @@ const EmployeePersonalDetails = (props) => {
 
                                 </div>
                                 <br />
-                                <div className="flex ...">
+                                <div className="flex">
                                     <div>
-                                        <button type="submit" className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                            <FaSave style={{ fontSize: "25px", color: "#A3E636", marginRight: "5px" }} />
+                                        <button type="submit" className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                            <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                                         </button>
                                     </div>
 
                                     <div>
-                                        <button onClick={handleCloseModal} className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                            <IoMdCloseCircle style={{ fontSize: "25px", color: "#A3E636", marginRight: "5px" }} />
+                                        <button onClick={handleCloseModal} className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                            <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                                         </button>
                                     </div>
                                 </div>
