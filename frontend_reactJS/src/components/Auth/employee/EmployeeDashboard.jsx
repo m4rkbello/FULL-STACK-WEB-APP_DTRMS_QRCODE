@@ -9,7 +9,9 @@ import { IoIosPersonAdd } from "react-icons/io";
 import { HiStatusOnline } from "react-icons/hi";
 import { MdOutlineNoAccounts } from "react-icons/md";
 import { RiAccountPinCircleFill } from "react-icons/ri";
+import { IoMdCloseCircle } from "react-icons/io";
 import { useEffect, useState } from 'react';
+import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
@@ -142,17 +144,15 @@ const EmployeeDashboard = (props) => {
 
     const departments = fetchDepartments(departmentsCollectionArrays);
 
-    if(props.loading) {
-        return <div>
-            <span className="bg-lime-400 loading loading-ball loading-xs"></span>
-            <span className="bg-lime-400 loading loading-ball loading-sm"></span>
-            <span className="bg-lime-400 loading loading-ball loading-md"></span>
-            <span className="bg-lime-400 loading loading-ball loading-lg"></span>
-            <span className="bg-lime-400 loading loading-ball loading-xl"></span>
-            <span className="bg-lime-400 loading loading-ball loading-lg"></span>
-            <span className="bg-lime-400 loading loading-ball loading-md"></span>
-            <span className="bg-lime-400 loading loading-ball loading-sm"></span>
-        </div>;
+    if (props.loading) {
+        return (
+            <div className="flex flex-col gap-6 w-96">
+                <div className="skeleton h-48 w-full"></div>
+                <div className="skeleton h-6 w-36"></div>
+                <div className="skeleton h-6 w-full"></div>
+                <div className="skeleton h-6 w-full"></div>
+            </div>
+        );
     }
 
     return (
@@ -170,8 +170,8 @@ const EmployeeDashboard = (props) => {
                 </div>
             </dialog>
 
-            <dialog id="addEmployeeModal" className="modal ">
-                <div className="modal-box w-11/12 max-w-5xl bg-white">
+            <dialog id="addEmployeeModal" className="modal border border-lime-400">
+                <div className="modal-box w-11/12 max-w-5xl bg-black border border-lime-400">
                     <h3 className="font-bold text-3xl text-lime-400">ADD EMPLOYEE</h3>
                     <div className="modal-action">
                         <form method="dialog" onSubmit={handleAddEmployee}>
@@ -184,9 +184,9 @@ const EmployeeDashboard = (props) => {
                                         name="employee_fullname" //key para sa form data
                                         type="text"
                                         placeholder="Enter Fullname"
-                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
+                                        className="input input-bordered shadow-2xl text-2xl  text-black"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_fullname: e.target.value }))}
-                                        style={{ backgroundColor: '#E9DCC9' }}
+                                        style={{ backgroundColor: '#A3E636' }}
                                         value={formDataAddEmployee.employee_fullname}
                                     />
                                 </div>
@@ -199,18 +199,16 @@ const EmployeeDashboard = (props) => {
                                         name="employee_email" //key para sa form data
                                         type="text"
                                         placeholder="Enter email"
-                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
+                                        className="input input-bordered shadow-2xl text-2xl  text-black"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_email: e.target.value }))}
                                         value={formDataAddEmployee.employee_email}
-                                        style={{ backgroundColor: 'black' }}
+                                        style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text text-white text-2xl">Department</span>
                                     </label>
-                                
-
                                     <select
                                     name="employee_department"
                                     onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department: e.target.value }))}
@@ -235,10 +233,10 @@ const EmployeeDashboard = (props) => {
                                         name="employee_contact_no" //key para sa form data
                                         type="text"
                                         placeholder="Enter contact no."
-                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
+                                        className="input input-bordered shadow-2xl text-2xl  text-black"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_contact_no: e.target.value }))}
                                         value={formDataAddEmployee.employee_contact_no}
-                                        style={{ backgroundColor: 'black' }}
+                                        style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
 
@@ -251,10 +249,10 @@ const EmployeeDashboard = (props) => {
                                         name="employee_position" //key para sa form data
                                         type="text"
                                         placeholder="Enter Position"
-                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
+                                        className="input input-bordered shadow-2xl text-2xl  text-black"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_position: e.target.value }))}
                                         value={formDataAddEmployee.employee_position}
-                                        style={{ backgroundColor: 'black' }}
+                                        style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                                 <div className="form-control">
@@ -266,11 +264,11 @@ const EmployeeDashboard = (props) => {
                                         name="employee_role" //key para sa form data
                                         type="text"
                                         placeholder="Enter role"
-                                        className="input input-bordered shadow-2xl text-2xl  text-lime-400"
+                                        className="input input-bordered shadow-2xl text-2xl  text-black"
 
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_role: e.target.value }))}
                                         value={formDataAddEmployee.employee_role}
-                                        style={{ backgroundColor: 'black' }}
+                                        style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                                 </div>
@@ -285,9 +283,9 @@ const EmployeeDashboard = (props) => {
                                         <select
                                             name="employee_status"
                                             onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status: e.target.value }))}
-                                            className="select input input-bordered shadow-2xl text-2xl text-lime-400"
+                                            className="select input input-bordered shadow-2xl text-2xl text-black"
                                             value={formDataAddEmployee.employee_status}
-                                            style={{ backgroundColor: 'black' }}
+                                            style={{ backgroundColor: '#A3E636' }}
                                         >
                                             <option value="0">Inactive</option>
                                             <option value="1">Active</option>
@@ -298,14 +296,21 @@ const EmployeeDashboard = (props) => {
                             </div>
 
                             <br />
-                            <div className='flex '>
-                                <div className='flex-initial pr-2'>
-                                    <button type="submit" className="btn bg-lime-400 text-black">Add</button>
-                                </div>
-                                <div className='flex-initial'>
-                                    <button className="btn bg-lime-400 text-black">Close</button>
-                                </div>
+                            <div className="flex">
+                            <div>
+                                <button type="submit" className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                    <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
+                                </button>
                             </div>
+
+                            <div>
+                              
+                                    <button className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                        <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
+                                    </button>
+                               
+                            </div>
+                        </div>
                         </form>
                     </div>
                 </div>
