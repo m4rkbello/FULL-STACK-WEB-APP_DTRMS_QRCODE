@@ -95,20 +95,20 @@ const AddDepartment = (props) => {
                         </div>
                         <br />
                         <div className="flex ...">
-                        <div>
-                            <button type="submit" className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                <FaSave style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
-                            </button>
-                        </div>
+                            <div>
+                                <button type="submit" className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                    <FaSave style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
+                                </button>
+                            </div>
 
-                        <div>
-                        <Link to="/department" className="text-black">
-                            <button className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                <IoMdCloseCircle style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
-                            </button>
-                        </Link>
+                            <div>
+                                <Link to="/department" className="text-black">
+                                    <button className="btn bg-transparent" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                        <IoMdCloseCircle style={{ fontSize: "25px", color: "black", marginRight: "5px" }} />
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
                     </form>
             </div>
         </div>
