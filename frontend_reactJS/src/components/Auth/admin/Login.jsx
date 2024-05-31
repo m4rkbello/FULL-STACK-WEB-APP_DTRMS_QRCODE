@@ -34,49 +34,46 @@ const Login = ({ loginUser }) => {
   }
 
   return (
-    <div>
-      <ToastContainer />
-      <div className="hero min-h-screen bg-transparent shadow-md">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold text-transparent">Login</h1>
-            <p className="py-6 text-black"></p>
-          </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-md bg-black">
+    <div className="min-h-screen flex items-center justify-center">
+    <ToastContainer />
+
+    <div className="artboard phone-2 flex flex-col items-center justify-center w-full px-4">
+        <div className="card shrink-0 w-full max-w-sm shadow-md bg-black  border-t-4 border-b-4 border-lime-400">
             <div className="text-center lg:text-center">
-              <h1 className="text-5xl font-bold text-lime-400 pt-10 pb-2">[x_x]</h1>
+                <h1 className="text-5xl font-bold text-lime-400 pt-10 pb-2">[x_x]</h1>
             </div>
             <form className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-xl text-lime-400">Email</span>
-                </label>
-                <label className="input input-bordered flex items-center gap-2 glass">
-                  <input type="text" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} className="grow bg-amber-100 text-lime-400" placeholder="Email" />
-                </label>
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-xl text-lime-400">Password</span>
-                </label>
-                <label className="input input-bordered flex items-center gap-2 glass">
-                  <input value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} type="password" className="grow bg-amber-100 text-lime-400" placeholder="Password"  />
-                </label>
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover text-white text-xl">Forgot password?</a>
-                </label>
-              </div>
-              <div className="form-control mt-6">
-                <button onClick={handleLoginRequestAndResponse} className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-lime-400 text-lime-400 hover:text-black text-2xl">Login</button>
-              </div>
-              <center>
-                <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
-              </center>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text text-xl text-lime-400">Email</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 glass">
+                        <input type="text" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} className="grow bg-amber-100 text-lime-400" placeholder="Email" />
+                    </label>
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text text-xl text-lime-400">Password</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 glass">
+                        <input value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} type="password" className="grow bg-amber-100 text-lime-400" placeholder="Password" />
+                    </label>
+                    <label className="label">
+                        <a href="#" className="label-text-alt link link-hover text-white text-xl">Forgot password?</a>
+                    </label>
+                </div>
+                <div className="form-control mt-6">
+                    <button onClick={handleLoginRequestAndResponse} className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-lime-400 text-lime-400 hover:text-black text-2xl">Login</button>
+                </div>
+                <center>
+                    <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
+                </center>
             </form>
-          </div>
         </div>
-      </div>
     </div>
+</div>
+
+    
   )
 }
 
