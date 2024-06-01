@@ -2,14 +2,14 @@ import React from 'react';
 
 const FourOFourNotFound = () => {
   return (
-    <div>
-      <div className="flex flex-col gap-8 w-96">
-        <div className="skeleton h-64 w-full"></div>
-        <div className="skeleton h-8 w-56"></div>
-        <div className="skeleton h-8 w-full"></div>
-        <div className="skeleton h-8 w-full"></div>
-      </div>
+    <div className="mockup-browser border bg-base-300 border-t-4 border-lime-400">
+    <div className="mockup-browser-toolbar">
+      <div className="input text-lime-400">https://markbello.com</div>
     </div>
+    <div className="flex justify-center px-4 py-16 bg-base-200">
+    <span className='text-lg'>AYAW PANGITAA ANG WALA!</span>
+    </div>
+  </div>
   )
 }
 
