@@ -26,6 +26,7 @@ const Login = ({ loginUser }) => {
   
       setTimeout(() => {
         navigate("/"); // Redirect to root path upon successful login
+        window.reload;
       }, 1000); // Adjust the timeout duration as needed
     } catch (error) {
       setIsLoading(false);
