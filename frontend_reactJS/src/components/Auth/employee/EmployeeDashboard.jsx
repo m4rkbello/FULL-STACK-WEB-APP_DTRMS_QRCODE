@@ -12,6 +12,7 @@ import { RiAccountPinCircleFill } from "react-icons/ri";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useEffect, useState } from 'react';
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
@@ -84,7 +85,7 @@ const EmployeeDashboard = (props) => {
         event.preventDefault();
         try {
             const addEmployeeRequestResponse = await props.addEmployee(formDataAddEmployee);
-    
+
             toast.success('Employee added successfully!🤭🤗😎', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -157,7 +158,7 @@ const EmployeeDashboard = (props) => {
 
     return (
         <div className="hero max-w-full rounded-l-lg rounded-t-lg rounded-r-lg rounded-b-lg">
-            <ToastContainer /> 
+            <ToastContainer />
             <dialog id="removeEmployee" className="modal">
                 <div className="modal-box">
                     <form method="dialog">
@@ -210,20 +211,20 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-white text-2xl">Department</span>
                                     </label>
                                     <select
-                                    name="employee_department"
-                                    onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department: e.target.value }))}
-                                    className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
-                                    style={{ backgroundColor: '#A3E636' }}
+                                        name="employee_department"
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department: e.target.value }))}
+                                        className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
+                                        style={{ backgroundColor: '#A3E636' }}
                                     >
-                                    {departments.map((item, index) => (
-                                        <option key={index} value={item.id}>
-                                            {item.dept_name}
-                                        </option>
-                                    ))}
-                                </select>
+                                        {departments.map((item, index) => (
+                                            <option key={index} value={item.id}>
+                                                {item.dept_name}
+                                            </option>
+                                        ))}
+                                    </select>
 
                                 </div>
-                                </div>
+                            </div>
                             <div className="grid grid-cols-3 gap-6">
                                 <div className="form-control">
                                     <label className="label">
@@ -271,46 +272,46 @@ const EmployeeDashboard = (props) => {
                                         style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
-                                </div>
-                                
-                                <div className="grid grid-cols-3 gap-6">
+                            </div>
+
+                            <div className="grid grid-cols-3 gap-6">
                                 <div className="form-control">
                                 </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text text-black text-2xl">Status</span>
-                                        </label>
-                                        <select
-                                            name="employee_status"
-                                            onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status: e.target.value }))}
-                                            className="select input input-bordered shadow-2xl text-2xl text-black"
-                                            value={formDataAddEmployee.employee_status}
-                                            style={{ backgroundColor: '#A3E636' }}
-                                        >
-                                            <option value="0">Inactive</option>
-                                            <option value="1">Active</option>
-                                        </select>
-                                    </div>
-                                    <div className="form-control">
-                                    </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-black text-2xl">Status</span>
+                                    </label>
+                                    <select
+                                        name="employee_status"
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status: e.target.value }))}
+                                        className="select input input-bordered shadow-2xl text-2xl text-black"
+                                        value={formDataAddEmployee.employee_status}
+                                        style={{ backgroundColor: '#A3E636' }}
+                                    >
+                                        <option value="0">Inactive</option>
+                                        <option value="1">Active</option>
+                                    </select>
+                                </div>
+                                <div className="form-control">
+                                </div>
                             </div>
 
                             <br />
                             <div className="flex">
-                            <div>
-                                <button type="submit" className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                    <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
-                                </button>
-                            </div>
+                                <div>
+                                    <button type="submit" className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                        <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
+                                    </button>
+                                </div>
 
-                            <div>
-                              
+                                <div>
+
                                     <button className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
                                         <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                                     </button>
-                               
+
+                                </div>
                             </div>
-                        </div>
                         </form>
                     </div>
                 </div>
@@ -323,20 +324,20 @@ const EmployeeDashboard = (props) => {
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
                                 <ul>
                                     <li>
-                                     
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                                            <Link to="/" className='hover:text-lime-400'>
-                                                Home
-                                            </Link>
-                                      
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                        <Link to="/" className='hover:text-lime-400'>
+                                            Home
+                                        </Link>
+
                                     </li>
                                     <li>
-                                     
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                                            <Link to="/employee/dashboard" className='hover:text-lime-400'>
-                                                Employee Dashboard
-                                            </Link>
-                                      
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                        <Link to="/employee/dashboard" className='hover:text-lime-400'>
+                                            Employee Dashboard
+                                        </Link>
+
                                     </li>
                                     <li>
 
@@ -354,6 +355,48 @@ const EmployeeDashboard = (props) => {
                     <span className="text-4xl font-black">
                         <center>
                             <div className='pb-5 glass'>
+
+                            <div class="grid grid-rows-4 grid-flow-col gap-4">
+                            <div className='cols-3'>01</div>
+                        
+                            <div>09</div>
+                            <div>01</div>
+                        
+                            <div>09</div>
+                          </div>
+
+                                        
+
+                                <div className='row'>
+                                    <div className='col-3'>         <span class="inline-grid grid-cols-2 gap-4 py-5">
+                                        <span>
+                                            <input
+                                                type="text"
+                                                placeholder="Search Departments"
+                                                // value={searchDepartment}
+                                                // onChange={(e) => setSearchDepartment(e.target.value)}
+                                                className="p-2 m-2 border-b-4 border-lime-400 rounded text-white"
+                                                style={{ backgroundColor: "transparent", color: "white" }}
+                                            />
+                                        </span>
+                                        <span>
+                                            <IoSearch
+                                                style={{
+                                                    backgroundColor: "transparent",
+                                                    color: "#A3E636",
+                                                    height: "30px",
+                                                    width: "30px",
+                                                    marginTop: "15px",
+                                                    marginLeft: "-20px"
+                                                }}
+                                            />
+                                        </span>
+                                    </span></div>
+                                    <div className='columns-3'></div>
+                                    <div className='columns-3'></div>
+                                    <div className='columns-'></div>
+                                </div>
+
                                 <IoIosPersonAdd
                                     onClick={() => document.getElementById('addEmployeeModal').showModal()}
                                     style={{ background: 'transparent', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
