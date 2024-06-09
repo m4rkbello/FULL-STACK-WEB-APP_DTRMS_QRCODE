@@ -16,22 +16,12 @@ return [
     */
 
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
-
     'allowed_methods' => ['*'],
-
-    //TULAY 
-    'allowed_origins' => ['http://localhost:5173'],
-    // 'allowed_origins' => ['https://www.prodetors.com'],
-    // 'allowed_origins' => ['*'],
-
+    'allowed_origins' => ['https://dailytimerecordmonitoringsystem.markbello.website', 'http://localhost:5173'],
     'allowed_origins_patterns' => [],
-
     'allowed_headers' => ['*'],
-
     'exposed_headers' => [],
-
     'max_age' => 0,
-
     'supports_credentials' => true,
 
 ];
