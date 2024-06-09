@@ -13,7 +13,7 @@ import { IoSearch } from "react-icons/io5";
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 
 const Department = (props) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchDepartment, setSearchDepartment] = useState('');
   const [filteredDepartments, setFilteredDepartments] = useState([]);
 
   //sideeffect sa fetchStudent
@@ -29,10 +29,10 @@ const Department = (props) => {
   useEffect(() => {
     const allDepartments = getAllDepartments(props?.departmentData?.departments?.data?.department);
     const filtered = allDepartments.filter(department =>
-      department.dept_name.toLowerCase().includes(searchTerm.toLowerCase())
+      department.dept_name.toLowerCase().includes(searchDepartment.toLowerCase())
     );
     setFilteredDepartments(filtered);
-  }, [searchTerm]);
+  }, [searchDepartment]);
 
   const getAllDepartments = (departmentsArray) => {
     return Array.isArray(departmentsArray) ? departmentsArray : [];
@@ -100,8 +100,8 @@ const Department = (props) => {
             <input
               type="text"
               placeholder="Search Departments"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              value={searchDepartment}
+              onChange={(e) => setSearchDepartment(e.target.value)}
               className="p-2 m-2 border-b-4 border-lime-400 rounded text-white"
               style={{ backgroundColor: "transparent", color: "white" }}
             />
