@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Image;
 
 class ImagesController extends Controller
@@ -37,37 +38,41 @@ class ImagesController extends Controller
             'img_emp_id' => 'required',
         ]);
     
-        $image = $request->file('img_name');
-    
-        // Check if a file was actually uploaded
-        if ($image) {
-            $imageName = time() . '.' . $image->extension();
-            $image->move(public_path('images'), $imageName);
-            
-            // Create a new instance of the Image model and set its attributes
-            $imageModel = new Image();
-            $imageModel->img_name = $imageName;
-            $imageModel->img_status_id = $request->input('img_status_id');
-            $imageModel->img_user_id = $request->input('img_user_id');
-            $imageModel->img_emp_id = $request->input('img_emp_id');
-            
-            $url = asset('images/' . $imageName);
-            $imageModel->img_url = $url;
-            $imageModel->save();
+        try {
+            $image = $request->file('img_name');
 
-            $image_data = Image::where('img_name', '=', $imageName)->first();
+            // Check if a file was actually uploaded
+            if ($image) {
+                $imageName = time() . '.' . $image->extension();
+                $imagePath = $image->storeAs('images', $imageName, 'public');
 
-            return response()->json([
-                'success' => true,
-                'status' => 201,
-                'message' => 'Image uploaded successfully',
-                 'image' => $url,
-                 'image_details' => $image_data,
-                //  'image_url' => $image_url,
+                // Create a new instance of the Image model and set its attributes
+                $imageModel = new Image();
+                $imageModel->img_name = $imageName;
+                $imageModel->img_status_id = $request->input('img_status_id');
+                $imageModel->img_user_id = $request->input('img_user_id');
+                $imageModel->img_emp_id = $request->input('img_emp_id');
+                
+                $url = Storage::url($imagePath);
+                $imageModel->img_url = $url;
+                $imageModel->save();
+
+                return response()->json([
+                    'success' => true,
+                    'status' => 201,
+                    'message' => 'Image uploaded successfully',
+                    'image' => $url,
+                    'image_details' => $imageModel,
                 ]);
-        } else {
-            // Handle the case where no file was uploaded
-            return response()->json(['message' => 'No image uploaded'], 400);
+            } else {
+                return response()->json(['message' => 'No image uploaded'], 400);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while uploading the image.',
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
     
