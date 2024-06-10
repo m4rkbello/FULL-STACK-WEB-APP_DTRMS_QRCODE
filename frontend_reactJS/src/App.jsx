@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
+import { BiLogOutCircle } from "react-icons/bi";
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
@@ -153,16 +154,30 @@ function App(props) {
               <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-lime-400 rounded-box w-52">
                 <li>
                   <span className="justify-between text-black">
-                    Profile <span className="badge bg-black"><span className='text-white'>
+                    Profile 
+                    <span className="badge bg-black">
+                    <span className='text-white'>
                       <Link to="/admin/user/profile-details">
                         Open
                       </Link>
-                    </span></span>
+                    </span>
+                    </span>
                   </span>
                 </li>
                 <li className='text-black'>
+                <span className="justify-between text-black">
                   Settings
+                  <span className="badge bg-black">
+                  <span className='text-white'>
+                    <Link to="">
+                      Open
+                    </Link>
+                  </span>
+                  </span>
+                  </span>
+
                 </li>
+                <BiLogOutCircle />
                 <li className='text-black' onClick={destroyAuthentications}>
                   Logout
                 </li>
