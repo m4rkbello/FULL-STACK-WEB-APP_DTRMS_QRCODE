@@ -85,6 +85,8 @@ npm install react-chartjs-2@latest
 ->npm i react-data-table-component (dili nata kailangan mag query gamit LIKE as logical operator para e search niya if naa ba na data or wala)
 18. ADD IMAGES USING STORAGE OF LARAVEL
 ->php artisan storage:link
+19. INSTALL ReactHTMLTableToExcel 
+->npm install --save react-html-table-to-excel-3
 
 
 
