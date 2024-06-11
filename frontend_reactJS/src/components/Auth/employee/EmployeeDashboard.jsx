@@ -356,16 +356,16 @@ const EmployeeDashboard = (props) => {
                         <center>
                             <div className='pb-5 glass'>
 
-                            <div class="grid grid-rows-4 grid-flow-col gap-4">
-                            <div className='cols-3'>01</div>
-                        
-                            <div>09</div>
-                            <div>01</div>
-                        
-                            <div>09</div>
-                          </div>
+                                <div class="grid grid-rows-4 grid-flow-col gap-4">
+                                    <div className='cols-3'>01</div>
 
-                                        
+                                    <div>09</div>
+                                    <div>01</div>
+
+                                    <div>09</div>
+                                </div>
+
+
 
                                 <div className='row'>
                                     <div className='col-3'>         <span class="inline-grid grid-cols-2 gap-4 py-5">
