@@ -20,9 +20,14 @@ import { fetchDepartments } from '../../redux/actions/departmentAction';
 //TOASTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+//GENERATE EXCEL FILE
+import React, { useRef } from 'react';
+import { DownloadTableExcel } from 'react-export-table-to-excel';
 
 
 const EmployeeDashboard = (props) => {
+
+    const tableRef = useRef(null);
 
     const [formDataAddEmployee, setFormDataEmployeeAddEmployee] = useState({
         employee_fullname: '',
@@ -145,6 +150,39 @@ const EmployeeDashboard = (props) => {
 
     const departments = fetchDepartments(departmentsCollectionArrays);
 
+
+    function huhays() {
+        const item = null;
+        const dateFinal = Date.prototype.getDate();
+        dateFinal.push(item);
+        return item;
+    }
+
+    const dataDriven = huhays;
+
+    function printEmployeeDashboard() {
+        var printTable = document.getElementById("employeesDataList").cloneNode(true);
+
+        var headerRow = printTable.querySelector("thead tr");
+        if (headerRow) {
+            headerRow.removeChild(headerRow.lastElementChild);
+        }
+
+        var dataRows = printTable.querySelectorAll("tbody tr");
+        for (var i = 0; i < dataRows.length; i++) {
+            dataRows[i].removeChild(dataRows[i].lastElementChild);
+        }
+
+        var printContents = printTable.outerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+
     if (props.loading) {
         return (
             <div className="flex flex-col gap-6 w-96">
@@ -246,7 +284,6 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-white text-2xl">Position</span>
                                     </label>
                                     <input
-
                                         name="employee_position" //key para sa form data
                                         type="text"
                                         placeholder="Enter Position"
@@ -320,6 +357,10 @@ const EmployeeDashboard = (props) => {
             <div className="hero bg-black rounded-lg">
                 <div className="bg-black">
                     <div className="flex flex-wrap">
+
+
+
+
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
                                 <ul>
@@ -356,7 +397,17 @@ const EmployeeDashboard = (props) => {
                         <center>
                             <div className='pb-5 glass'>
 
-                                <div class="grid grid-rows-4 grid-flow-col gap-4">
+                                <DownloadTableExcel
+                                    filename={dataDriven}
+                                    sheet="users"
+                                    currentTableRef={tableRef.current}
+                                >
+
+                                    <button> Export excel </button>
+
+                                </DownloadTableExcel>
+
+                                <div className="grid grid-rows-4 grid-flow-col gap-4">
                                     <div className='cols-3'>01</div>
 
                                     <div>09</div>
@@ -368,7 +419,7 @@ const EmployeeDashboard = (props) => {
 
 
                                 <div className='row'>
-                                    <div className='col-3'>         <span class="inline-grid grid-cols-2 gap-4 py-5">
+                                    <div className='col-3'>         <span className="inline-grid grid-cols-2 gap-4 py-5">
                                         <span>
                                             <input
                                                 type="text"
@@ -396,20 +447,24 @@ const EmployeeDashboard = (props) => {
                                     <div className='columns-3'></div>
                                     <div className='columns-'></div>
                                 </div>
+                                <div>
+                              
+                                </div>
 
                                 <IoIosPersonAdd
                                     onClick={() => document.getElementById('addEmployeeModal').showModal()}
                                     style={{ background: 'transparent', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
                                 />
                                 EMPLOPYEE DASHBOARD
+
+                                <button onClick={printEmployeeDashboard} > HAYS</button>
                             </div>
                         </center>
                     </span>
 
                     <div className="overflow-x-auto">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                            <table className="table bg-black py-10 px-10 my-10 mx-10">
-                                {/* head */}
+                            <table id="employeesDataList" ref={tableRef} className="table bg-black py-10 px-10 my-10 mx-10">
                                 <thead className=" text-lime-400 ">
                                     <tr className="md:table-row" style={{ fontSize: "15px", color: "#A3E636" }}>
                                         <th className="md:table-cell" >Avatar</th>
@@ -500,14 +555,12 @@ const EmployeeDashboard = (props) => {
 
                     </div>
                 </div>
-
             </div>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    console.log("DATA SA DEPARTMENT DATA")
     return {
         employeesData: state.employeeState,
         imagesData: state.imageState,
