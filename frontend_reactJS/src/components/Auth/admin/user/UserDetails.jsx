@@ -123,7 +123,7 @@ const UserDetails = (props) => {
 
   return (
 
-    <div className="hero min-h-screen bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+    <div className="hero min-h-screen bg-zinc-300 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
       <button style={{ marginRight: "93%", marginBottom: "65%" }} >
         <Link to="/">
           <FaLongArrowAltLeft style={{ fontSize: "50px", color: "#A3E636", marginRight: "90%", marginBottom: "65%" }} />
@@ -171,7 +171,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="user_firstname"
-                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_firstname}
                     onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -188,7 +188,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="user_lastname"
-                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_lastname}
                     onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -205,7 +205,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="user_email"
-                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_email}
                     onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -222,7 +222,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="email"
                     name="user_contact_no"
-                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_contact_no}
                     onChange={handleUpdateInputChange}
                     disabled={!isEditing} // Disable input when not editing
