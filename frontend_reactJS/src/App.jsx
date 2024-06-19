@@ -99,7 +99,9 @@ function App(props) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="navbar bg-black px-4 py-2 md:px-8 md:py-4  border-r-4 border-lime-400">
+      <div className="navbar px-4 py-2 md:px-8 md:py-4  border-r-4 border-lime-400"
+      style={{ backgroundColor: '#363636' }}
+      >
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
             <div className="flex-none">
@@ -120,7 +122,9 @@ function App(props) {
               </label>
             </div>
             <div className="flex-1">
-              <span className="btn btn-ghost text-2xl text-lime-400">Welcome!
+              <span className="btn btn-ghost text-2xl"
+              style={{ color: '#E5FCC2' }}
+              >Welcome!
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <span className='text-2xl' key={index}>
                     {user.user_email}
@@ -241,7 +245,9 @@ function App(props) {
           <>
             <div className="drawer-side border-r-4 border-lime-400">
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay "></label>
-              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-black text-lime-500">
+              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full text-lime-500"
+              style={{ backgroundColor: '#363636' }}
+              >
                 <li>
                   <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
                     Attendance
