@@ -99,9 +99,7 @@ function App(props) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="navbar px-4 py-2 md:px-8 md:py-4  border-r-4 border-lime-400"
-      style={{ backgroundColor: '#363636' }}
-      >
+      <div className="navbar bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  px-4 py-2 md:px-8 md:py-4  border-r-4 border-lime-400">
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
             <div className="flex-none">
@@ -122,9 +120,7 @@ function App(props) {
               </label>
             </div>
             <div className="flex-1">
-              <span className="btn btn-ghost text-2xl"
-              style={{ color: '#E5FCC2' }}
-              >Welcome!
+              <span className="btn btn-ghost text-2xl text-lime-400">Welcome!
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <span className='text-2xl' key={index}>
                     {user.user_email}
@@ -155,7 +151,7 @@ function App(props) {
                   ))}
                 </div>
               </div>
-              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-lime-400 rounded-box w-52">
+              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-box w-52">
                 <li>
                   <span className="justify-between text-black">
                     Profile 
@@ -191,7 +187,7 @@ function App(props) {
         ) : (
           <>
             <div>
-              <ul className="menu menu-horizontal px-1 text-lime-400 bg-black border-b-4">
+              <ul className="menu menu-horizontal px-1 text-lime-400 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-b-4">
                 <li className='shadow-2xl text-2xl'>
                   <Link to="/qrc">Scan QR</Link>
                 </li>
@@ -245,9 +241,7 @@ function App(props) {
           <>
             <div className="drawer-side border-r-4 border-lime-400">
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay "></label>
-              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full text-lime-500"
-              style={{ backgroundColor: '#363636' }}
-              >
+              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  text-lime-500">
                 <li>
                   <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
                     Attendance
