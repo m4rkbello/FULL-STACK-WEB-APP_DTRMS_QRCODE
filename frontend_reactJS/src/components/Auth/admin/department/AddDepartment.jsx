@@ -42,7 +42,7 @@ const AddDepartment = (props) => {
 
     return (
       
-        <div className="hero  bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+        <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
         <ToastContainer />
             <div className=" modal-box w-11/12 max-w-5xl glass">
                 <h3 className="font-bold text-3xl text-black">ADD NEW DEPARTMENT</h3>
