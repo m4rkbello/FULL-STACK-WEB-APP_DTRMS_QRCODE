@@ -13,6 +13,8 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { useEffect, useState } from 'react';
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
+import { SiMicrosoftexcel } from "react-icons/si";
+import { IoIosPrint } from "react-icons/io";
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
@@ -179,7 +181,6 @@ const EmployeeDashboard = (props) => {
         document.body.innerHTML = printContents;
 
         window.print();
-
         document.body.innerHTML = originalContents;
     }
 
@@ -362,20 +363,20 @@ const EmployeeDashboard = (props) => {
                                 <ul>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                                        <Link to="/" className='hover:text-lime-400'>
+                                        <Link to="/" className='hover:text-white'>
                                             Home
                                         </Link>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                                        <Link to="/employee/dashboard" className='hover:text-lime-400'>
+                                        <Link to="/employee/dashboard" className='hover:text-white'>
                                             Employee Dashboard
                                         </Link>
                                     </li>
                                     <li>
                                         <span className="inline-flex gap-2 items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                            <Link to="" className='hover:text-lime-400'>
+                                            <Link to="" className='hover:text-white'>
                                                 Employee Personal Details
                                             </Link>
                                         </span>
@@ -385,29 +386,34 @@ const EmployeeDashboard = (props) => {
                         </div>
                     </div>
                     <span className="text-4xl font-black">
-                        <center>
-                            <div className='pb-5 glass'>
 
+                        <div class="flex ...">
+                            <div className='mx-2'>
                                 <DownloadTableExcel
-                                    filename={dataDriven}
+                                    filename="ExportEmployee"
                                     sheet="users"
                                     currentTableRef={tableRef.current}
                                 >
-
-                                    <button> Export excel </button>
-
+                                    <button>
+                                        <SiMicrosoftexcel />
+                                    </button>
                                 </DownloadTableExcel>
+                            </div>
+                            <div className='mx-2'>
+                                <button onClick={printEmployeeDashboard} > <IoIosPrint /></button>
+                            </div>
+                        </div>
 
-                                <div className="grid grid-rows-4 grid-flow-col gap-4">
-                                    <div className='cols-3'>01</div>
 
-                                    <div>09</div>
-                                    <div>01</div>
-                                    <div>09</div>
-                                </div>
+
+
+
+                        <center>
+                            <div className='pb-5 glass'>
 
                                 <div className='row'>
-                                    <div className='col-3'>         <span className="inline-grid grid-cols-2 gap-4 py-5">
+                                    <div className='col-1'>
+                                    <span className="inline-grid grid-cols-2 gap-4 py-5">
                                         <span>
                                             <input
                                                 type="text"
@@ -422,7 +428,7 @@ const EmployeeDashboard = (props) => {
                                             <IoSearch
                                                 style={{
                                                     backgroundColor: "transparent",
-                                                    color: "#A3E636",
+                                                    color: "black",
                                                     height: "30px",
                                                     width: "30px",
                                                     marginTop: "15px",
@@ -439,10 +445,10 @@ const EmployeeDashboard = (props) => {
                                 </div>
                                 <IoIosPersonAdd
                                     onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                    style={{ background: 'transparent', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
+                                    style={{ background: 'transparent', fontSize: "50px", color: "black", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
                                 />
                                 EMPLOPYEE DASHBOARD
-                                <button onClick={printEmployeeDashboard} > HAYS</button>
+
                             </div>
                         </center>
                     </span>
@@ -515,7 +521,7 @@ const EmployeeDashboard = (props) => {
                                                     <div className="flex">
                                                         <div className="flex-none mr-3">
                                                             <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                                <FaEye style={{ fontSize: "20px", color: "#A3E636", padding: "0%" }} />
+                                                                <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
                                                             </Link>
 
                                                         </div>
@@ -525,7 +531,7 @@ const EmployeeDashboard = (props) => {
                                                                     setDeactivateEmployeeId(item.id);
                                                                     document.getElementById('removeEmployee').showModal()
                                                                 }}
-                                                                style={{ fontSize: "20px", color: "#A3E636" }} />
+                                                                style={{ fontSize: "20px", color: "black" }} />
                                                         </div>
                                                     </div>
                                                 </td>
