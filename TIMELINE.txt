@@ -9,15 +9,10 @@ TECHSTACK
 ->php v. 8.1.10
 
 -COLOR CODE/ COLOR SCHEMES
-#A3E636 
+bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%
 #000000
 #ffffff
 
-
-#0B0B0B
-#A3FDA1
-#2D2D2D
-#925FF0
 
 1. CREATE BACKEND PROJECT USING LARAVEL 10
 -> composer create-project laravel/laravel backend_laravelPHP
