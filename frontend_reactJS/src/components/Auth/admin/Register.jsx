@@ -63,7 +63,7 @@ const Register = ({ registerUser }) => {
         
           <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-amber-100 via-black to-black/50 to-black/50">
             */}
-                    <div className="card shrink-0 w-full max-w-sm shadow-md bg-black border-t-4 border-b-4 border-lime-400">
+                    <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-t-4 border-b-4 border-black">
 
                         <form className="card-body">
 
@@ -108,7 +108,7 @@ const Register = ({ registerUser }) => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button onClick={handleRegisterUserRequestAndResponse} className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-lime-400 text-lime-400 hover:text-black text-2xl">Register</button>
+                                <button onClick={handleRegisterUserRequestAndResponse} className="btn drop-shadow-2xl bg-gradient-to-r from-zinc-100 to-black-100 hover:from-black hover:to-zinc-400 text-black hover:text-black text-2xl">Register</button>
                             </div>
                             <center>
                                 <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
