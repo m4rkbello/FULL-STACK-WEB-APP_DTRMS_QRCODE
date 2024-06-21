@@ -413,14 +413,14 @@ const EmployeeDashboard = (props) => {
 
                                 <div className='row'>
                                     <div className='col-1'>
-                                    <span className="inline-grid grid-cols-2 gap-4 py-5">
+                                    <span className="inline-grid grid-cols-2 gap-1">
                                         <span>
                                             <input
                                                 type="text"
                                                 placeholder="Search Departments"
                                                 // value={searchDepartment}
                                                 // onChange={(e) => setSearchDepartment(e.target.value)}
-                                                className="p-2 m-2 border-b-4 border-zinc-400 rounded text-white"
+                                                className="border-b-4 border-black rounded text-white"
                                                 style={{ backgroundColor: "transparent", color: "white" }}
                                             />
                                         </span>
@@ -437,9 +437,6 @@ const EmployeeDashboard = (props) => {
                                             />
                                         </span>
                                     </span></div>
-                                    <div className='columns-3'></div>
-                                    <div className='columns-3'></div>
-                                    <div className='columns-'></div>
                                 </div>
                                 <div>
                                 </div>
