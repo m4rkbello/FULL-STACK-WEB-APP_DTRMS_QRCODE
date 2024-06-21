@@ -15,6 +15,7 @@ import { FaRunning } from "react-icons/fa";
 import { FaRegListAlt } from "react-icons/fa";
 import { ImUsers } from "react-icons/im";
 import { FaUsersSlash } from "react-icons/fa6";
+import { RiOrganizationChart } from "react-icons/ri";
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
@@ -300,7 +301,8 @@ function App(props) {
                 </li>
                 <li>
                   <Link to="/department" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    Department
+                  <RiOrganizationChart />
+                  Department
                   </Link>
                 </li>
                 <li>
