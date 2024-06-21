@@ -102,7 +102,6 @@ function App(props) {
         }
       }
     }
-
     return item;
   }
 
