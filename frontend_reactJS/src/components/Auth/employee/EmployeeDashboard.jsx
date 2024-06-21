@@ -464,9 +464,9 @@ const EmployeeDashboard = (props) => {
 
                     <div className="overflow-x-auto">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                            <table id="employeesDataList" ref={tableRef} className="table bg-black py-10 px-10 my-10 mx-10">
-                                <thead className=" text-lime-400 ">
-                                    <tr className="md:table-row" style={{ fontSize: "15px", color: "#A3E636" }}>
+                            <table id="employeesDataList" ref={tableRef} className="table bg-zinc-100 py-10 px-10 my-10 mx-10">
+                                <thead className=" text-white ">
+                                    <tr className="md:table-row" style={{ fontSize: "17px", color: "black" }}>
                                         <th className="md:table-cell" >Avatar</th>
                                         <th className="md:table-cell">Id</th>
                                         <th className="md:table-cell">Fullname</th>
@@ -482,7 +482,7 @@ const EmployeeDashboard = (props) => {
 
                                     {employeesList && employeesList.map((item, index) => (
                                         item.employee_status != 0 && (
-                                            <tr key={index} className="md:table-row">
+                                            <tr key={index} className="md:table-row overflow-x-auto">
                                                 <td className="md:table-cell">
                                                     <div className="flex items-center gap-3">
                                                         <div className="avatar">
