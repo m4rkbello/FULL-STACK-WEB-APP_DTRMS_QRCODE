@@ -39,32 +39,32 @@ const Login = ({ loginUser }) => {
     <ToastContainer />
 
     <div className="artboard phone-2 flex flex-col items-center justify-center w-full px-4">
-        <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-t-4 border-b-4 border-lime-400">
+        <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-t-4 border-b-4 border-black">
             <div className="text-center lg:text-center">
-                <h1 className="text-5xl font-bold text-lime-400 pt-10 pb-2">[x_x]</h1>
+                <h1 className="text-5xl font-bold text-black pt-10 pb-2">[x_x]</h1>
             </div>
             <form className="card-body">
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text text-xl text-lime-400">Email</span>
+                        <span className="label-text text-xl text-black">Email</span>
                     </label>
                     <label className="input input-bordered flex items-center gap-2 glass">
-                        <input type="text" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} className="grow bg-amber-100 text-lime-400" placeholder="Email" />
+                        <input type="text" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} className="grow bg-amber-100 text-zinc-100" placeholder="Email" />
                     </label>
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text text-xl text-lime-400">Password</span>
+                        <span className="label-text text-xl text-black">Password</span>
                     </label>
                     <label className="input input-bordered flex items-center gap-2 glass">
-                        <input value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} type="password" className="grow bg-amber-100 text-lime-400" placeholder="Password" />
+                        <input value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} type="password" className="grow bg-amber-100 text-zinc-100" placeholder="Password" />
                     </label>
                     <label className="label">
                         <a href="#" className="label-text-alt link link-hover text-white text-xl">Forgot password?</a>
                     </label>
                 </div>
                 <div className="form-control mt-6">
-                    <button onClick={handleLoginRequestAndResponse} className="btn bg-gradient-to-r from-black to-black-100 hover:from-black hover:to-lime-400 text-lime-400 hover:text-black text-2xl">Login</button>
+                    <button onClick={handleLoginRequestAndResponse} className="btn drop-shadow-2xl bg-gradient-to-r from-zinc-100 to-black-100 hover:from-black hover:to-zinc-400 text-black hover:text-black text-2xl">Login</button>
                 </div>
                 <center>
                     <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
