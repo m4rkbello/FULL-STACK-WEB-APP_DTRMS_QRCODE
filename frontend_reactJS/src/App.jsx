@@ -99,7 +99,7 @@ function App(props) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="navbar bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  px-4 py-2 md:px-8 md:py-4  border-r-4 border-lime-400">
+      <div className="navbar bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  px-4 py-2 md:px-8 md:py-4  border-r-4 border-black">
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
             <div className="flex-none">
@@ -120,7 +120,7 @@ function App(props) {
               </label>
             </div>
             <div className="flex-1">
-              <span className="btn btn-ghost text-2xl text-lime-400">Welcome!
+              <span className="btn btn-ghost text-2xl text-black">Welcome!
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <span className='text-2xl' key={index}>
                     {user.user_email}
@@ -132,7 +132,7 @@ function App(props) {
         ) : (
           <>
             <div className="flex-1">
-              <span className="btn btn-ghost text-4xl text-lime-400 border-lime-400">DTRMS+</span>
+              <span className="btn btn-ghost text-4xl text-zinc-400 border-b-4 border-black">DTRMS+</span>
             </div>
           </>
         )}
@@ -187,7 +187,7 @@ function App(props) {
         ) : (
           <>
             <div>
-              <ul className="menu menu-horizontal px-1 text-lime-400 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-b-4">
+              <ul className="menu menu-horizontal px-1 text-black bg-transparent border-b-4">
                 <li className='shadow-2xl text-2xl'>
                   <Link to="/qrc">Scan QR</Link>
                 </li>
@@ -239,76 +239,76 @@ function App(props) {
 
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
-            <div className="drawer-side border-r-4 border-lime-400">
+            <div className="drawer-side border-r-4 border-black">
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay "></label>
-              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  text-lime-500">
+              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-zinc-300">
                 <li>
-                  <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     Attendance
                   </Link>
                 </li>
                 <li>
-                  <Link to="/employee/dashboard" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="/employee/dashboard" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     Employees List
                   </Link>
                 </li>
                 <li>
-                  <Link to="/archieve" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="/archieve" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     Employee Archieve
                   </Link>
                 </li>
                 <li>
-                  <Link to="/content" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="/content" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     Content Test
                   </Link>
                 </li>
                 <li>
-                  <Link to="/department" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="/department" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     Department
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST 1
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST 2
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST 3
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST 4
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST 5
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST 6
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST 7
                   </Link> 
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r from-black hover:from-lime-400 hover:to-lime-900 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST 8
                   </Link>
                 </li>
