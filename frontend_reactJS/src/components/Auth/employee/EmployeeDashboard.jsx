@@ -211,8 +211,11 @@ const EmployeeDashboard = (props) => {
             </dialog>
 
             <dialog id="addEmployeeModal" className="modal border border-lime-400">
-                <div className="modal-box w-11/12 max-w-5xl bg-black border border-lime-400">
-                    <h3 className="font-bold text-3xl text-lime-400">ADD EMPLOYEE</h3>
+                <div className="modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% border border-lime-400">
+                    <div className='glass'>
+                        <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
+                    </div>
+                    <hr />
                     <div className="modal-action">
                         <form method="dialog" onSubmit={handleAddEmployee}>
                             <div className="grid grid-cols-3 gap-6">
@@ -224,9 +227,8 @@ const EmployeeDashboard = (props) => {
                                         name="employee_fullname" //key para sa form data
                                         type="text"
                                         placeholder="Enter Fullname"
-                                        className="input input-bordered shadow-2xl text-2xl  text-black"
+                                        className="input input-bordered shadow-2xl text-2xl text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_fullname: e.target.value }))}
-                                        style={{ backgroundColor: '#A3E636' }}
                                         value={formDataAddEmployee.employee_fullname}
                                     />
                                 </div>
@@ -239,10 +241,10 @@ const EmployeeDashboard = (props) => {
                                         name="employee_email" //key para sa form data
                                         type="text"
                                         placeholder="Enter email"
-                                        className="input input-bordered shadow-2xl text-2xl  text-black"
+                                        className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_email: e.target.value }))}
                                         value={formDataAddEmployee.employee_email}
-                                        style={{ backgroundColor: '#A3E636' }}
+                                        // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                                 <div className="form-control">
@@ -252,8 +254,8 @@ const EmployeeDashboard = (props) => {
                                     <select
                                         name="employee_department"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department: e.target.value }))}
-                                        className="input input-bordered shadow-2xl text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
-                                        style={{ backgroundColor: '#A3E636' }}
+                                        className="input input-bordered shadow-2xl text-2xl text-black border-1 glass border-glass rounded-se-3xl shadow-lime-400/40"
+                                        // style={{ backgroundColor: '#A3E636' }}
                                     >
                                         {departments.map((item, index) => (
                                             <option key={index} value={item.id}>
@@ -273,10 +275,10 @@ const EmployeeDashboard = (props) => {
                                         name="employee_contact_no" //key para sa form data
                                         type="text"
                                         placeholder="Enter contact no."
-                                        className="input input-bordered shadow-2xl text-2xl  text-black"
+                                        className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_contact_no: e.target.value }))}
                                         value={formDataAddEmployee.employee_contact_no}
-                                        style={{ backgroundColor: '#A3E636' }}
+                                        // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
 
@@ -288,10 +290,10 @@ const EmployeeDashboard = (props) => {
                                         name="employee_position" //key para sa form data
                                         type="text"
                                         placeholder="Enter Position"
-                                        className="input input-bordered shadow-2xl text-2xl  text-black"
+                                        className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_position: e.target.value }))}
                                         value={formDataAddEmployee.employee_position}
-                                        style={{ backgroundColor: '#A3E636' }}
+                                        // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                                 <div className="form-control">
@@ -303,11 +305,11 @@ const EmployeeDashboard = (props) => {
                                         name="employee_role" //key para sa form data
                                         type="text"
                                         placeholder="Enter role"
-                                        className="input input-bordered shadow-2xl text-2xl  text-black"
+                                        className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
 
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_role: e.target.value }))}
                                         value={formDataAddEmployee.employee_role}
-                                        style={{ backgroundColor: '#A3E636' }}
+                                        // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                             </div>
@@ -322,9 +324,9 @@ const EmployeeDashboard = (props) => {
                                     <select
                                         name="employee_status"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status: e.target.value }))}
-                                        className="select input input-bordered shadow-2xl text-2xl text-black"
+                                        className="select input input-bordered shadow-2xl text-2xl text-black glass drop-shadow-xl"
                                         value={formDataAddEmployee.employee_status}
-                                        style={{ backgroundColor: '#A3E636' }}
+                                        // style={{ backgroundColor: '#A3E636' }}
                                     >
                                         <option value="0">Inactive</option>
                                         <option value="1">Active</option>
