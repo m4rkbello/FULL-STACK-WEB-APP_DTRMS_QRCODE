@@ -122,7 +122,7 @@ const ArchieveEmployee = (props) => {
             </dialog>
 
             <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
-                <div className="bg-glass bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                     <div className="flex flex-wrap">
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
@@ -167,7 +167,8 @@ const ArchieveEmployee = (props) => {
                         </center>
                     </span>
 
-                    <div className="overflow-x-auto  bg-zinc-100">
+                  
+                    <div className="overflow-x-auto bg-zinc-100">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table className="table py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
@@ -249,7 +250,6 @@ const ArchieveEmployee = (props) => {
                                                     </div>
                                                 </td>
                                             </tr>
-
                                         )
                                     ))}
                                 </tbody>
