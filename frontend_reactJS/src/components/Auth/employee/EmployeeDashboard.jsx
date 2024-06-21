@@ -403,14 +403,8 @@ const EmployeeDashboard = (props) => {
                                 <button onClick={printEmployeeDashboard} > <IoIosPrint /></button>
                             </div>
                         </div>
-
-
-
-
-
                         <center>
                             <div className='pb-5 glass'>
-
                                 <div className='row'>
                                     <div className='col-1'>
                                     <span className="inline-grid grid-cols-2 gap-1">
