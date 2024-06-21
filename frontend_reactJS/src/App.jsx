@@ -5,6 +5,16 @@ import { useEffect, useState } from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import { BiLogOutCircle } from "react-icons/bi";
+import { BsQrCodeScan } from "react-icons/bs";
+import { FaSignInAlt } from "react-icons/fa";
+import { TiUserAddOutline } from "react-icons/ti";
+import { FaUserTie } from "react-icons/fa6";
+import { AiFillSetting } from "react-icons/ai";
+import { ImExit } from "react-icons/im";
+import { FaRunning } from "react-icons/fa";
+import { FaRegListAlt } from "react-icons/fa";
+import { ImUsers } from "react-icons/im";
+import { FaUsersSlash } from "react-icons/fa6";
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
@@ -154,32 +164,49 @@ function App(props) {
               <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-box w-52">
                 <li>
                   <span className="justify-between text-black">
-                    Profile 
-                    <span className="badge bg-black">
-                    <span className='text-white'>
-                      <Link to="/admin/user/profile-details">
-                        Open
-                      </Link>
+                    <FaUserTie
+                      style={{ fontSize: "25px", color: "white" }}
+                    />
+                    <span style={{ fontSize: "20px", color: "white", textAlign: "left" }}>
+                      Profile
                     </span>
+                    <span className="badge bg-black">
+                      <span className='text-white'>
+                        <Link to="/admin/user/profile-details">
+                          Open
+                        </Link>
+                      </span>
                     </span>
                   </span>
                 </li>
                 <li className='text-black'>
-                <span className="justify-between text-black">
-                  Settings
-                  <span className="badge bg-black">
-                  <span className='text-white'>
-                    <Link to="">
-                      Open
-                    </Link>
-                  </span>
-                  </span>
+                  <span className="justify-between text-black">
+                    <AiFillSetting
+                      style={{ fontSize: "25px", color: "white" }}
+                    />
+                    <span style={{ fontSize: "20px", color: "white", textAlign: "left" }}>
+                      Settings
+                    </span>
+                    <span className="badge bg-black">
+                      <span className='text-white'>
+                        <Link to="">
+                          Open
+                        </Link>
+                      </span>
+                    </span>
                   </span>
 
                 </li>
-                <BiLogOutCircle />
                 <li className='text-black' onClick={destroyAuthentications}>
-                  Logout
+                  <span className="flex justify-between items-center text-black">
+                    <FaRunning
+                      style={{ fontSize: "25px", color: "white" }}
+                    />
+                    <span style={{ fontSize: "20px", color: "white" }}>
+                      Logout
+                    </span>
+                  
+                  </span>
                 </li>
               </ul>
             </div>
@@ -187,15 +214,21 @@ function App(props) {
         ) : (
           <>
             <div>
-              <ul className="menu menu-horizontal px-1 text-black bg-transparent border-b-4">
+              <ul className="menu menu-horizontal drop-shadow-xl  px-1 text-black bg-transparent border-b-4">
                 <li className='shadow-2xl text-2xl'>
-                  <Link to="/qrc">Scan QR</Link>
+                  <Link to="/qrc">
+                    <BsQrCodeScan />
+                  </Link>
                 </li>
                 <li className='shadow-2xl text-2xl'>
-                  <Link to="/admin/login">Login</Link>
+                  <Link to="/admin/login">
+                    <FaSignInAlt />
+                  </Link>
                 </li>
                 <li className='shadow-2xl text-2xl'>
-                  <Link to="/admin/register">Register</Link>
+                  <Link to="/admin/register">
+                    <TiUserAddOutline />
+                  </Link>
                 </li>
                 <li className='shadow-2xl text-2xl'>
                 </li>
@@ -244,17 +277,20 @@ function App(props) {
               <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-zinc-300">
                 <li>
                   <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    Attendance
+                    <FaRegListAlt />
+                  Attendance
                   </Link>
                 </li>
                 <li>
                   <Link to="/employee/dashboard" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    Employees List
+                  <ImUsers />
+                  Employees List
                   </Link>
                 </li>
                 <li>
                   <Link to="/archieve" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    Employee Archieve
+                  <FaUsersSlash />
+                  Employee Archieve
                   </Link>
                 </li>
                 <li>
@@ -305,7 +341,7 @@ function App(props) {
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     TEST 7
-                  </Link> 
+                  </Link>
                 </li>
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
