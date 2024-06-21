@@ -354,34 +354,25 @@ const EmployeeDashboard = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero bg-black rounded-lg">
-                <div className="bg-black">
+            <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
+                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                     <div className="flex flex-wrap">
-
-
-
-
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
                                 <ul>
                                     <li>
-
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
                                         <Link to="/" className='hover:text-lime-400'>
                                             Home
                                         </Link>
-
                                     </li>
                                     <li>
-
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
                                         <Link to="/employee/dashboard" className='hover:text-lime-400'>
                                             Employee Dashboard
                                         </Link>
-
                                     </li>
                                     <li>
-
                                         <span className="inline-flex gap-2 items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                                             <Link to="" className='hover:text-lime-400'>
@@ -412,11 +403,8 @@ const EmployeeDashboard = (props) => {
 
                                     <div>09</div>
                                     <div>01</div>
-
                                     <div>09</div>
                                 </div>
-
-
 
                                 <div className='row'>
                                     <div className='col-3'>         <span className="inline-grid grid-cols-2 gap-4 py-5">
@@ -426,7 +414,7 @@ const EmployeeDashboard = (props) => {
                                                 placeholder="Search Departments"
                                                 // value={searchDepartment}
                                                 // onChange={(e) => setSearchDepartment(e.target.value)}
-                                                className="p-2 m-2 border-b-4 border-lime-400 rounded text-white"
+                                                className="p-2 m-2 border-b-4 border-zinc-400 rounded text-white"
                                                 style={{ backgroundColor: "transparent", color: "white" }}
                                             />
                                         </span>
@@ -448,15 +436,12 @@ const EmployeeDashboard = (props) => {
                                     <div className='columns-'></div>
                                 </div>
                                 <div>
-                              
                                 </div>
-
                                 <IoIosPersonAdd
                                     onClick={() => document.getElementById('addEmployeeModal').showModal()}
                                     style={{ background: 'transparent', fontSize: "50px", color: "#A3E636", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
                                 />
                                 EMPLOPYEE DASHBOARD
-
                                 <button onClick={printEmployeeDashboard} > HAYS</button>
                             </div>
                         </center>
