@@ -39,7 +39,7 @@ const Login = ({ loginUser }) => {
     <ToastContainer />
 
     <div className="artboard phone-2 flex flex-col items-center justify-center w-full px-4">
-        <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-t-4 border-b-4 border-black">
+        <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% border-t-4 border-b-4 border-black">
             <div className="text-center lg:text-center">
                 <h1 className="text-5xl font-bold text-black pt-10 pb-2">[x_x]</h1>
             </div>
