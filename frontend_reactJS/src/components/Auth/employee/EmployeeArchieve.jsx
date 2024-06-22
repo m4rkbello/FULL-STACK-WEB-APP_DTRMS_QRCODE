@@ -108,7 +108,6 @@ const ArchieveEmployee = (props) => {
     return (
         <div className="hero max-w-full">
             <ToastContainer />
-
             <dialog id="removeEmployee" className="modal">
                 <div className="modal-box">
                     <form method="dialog">
@@ -123,7 +122,7 @@ const ArchieveEmployee = (props) => {
 
             <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
                 <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-                    <div className="flex flex-wrap">
+                    <div className="flex flex-wrap bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
                                 <ul>
@@ -168,9 +167,9 @@ const ArchieveEmployee = (props) => {
                     </span>
 
                   
-                    <div className="overflow-x-auto bg-zinc-100">
+                    <div className="overflow-x-auto bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                            <table className="table py-10 px-10 my-10 mx-10 overflow-x-auto">
+                            <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
                                 <thead className=" text-red ">
                                     <tr className="md:table-row" style={{ fontSize: "15px", color: "black" }}>
