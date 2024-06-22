@@ -125,10 +125,10 @@ const UserDetails = (props) => {
 
   return (
 
-    <div className="hero min-h-screen bg-black rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+    <div className="hero min-h-screen bg-zinc-100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
       <button style={{ marginRight: "93%", marginBottom: "65%" }} >
         <Link to="/">
-          <FaLongArrowAltLeft style={{ fontSize: "50px", color: "#A3E636", marginRight: "90%", marginBottom: "65%" }} />
+          <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
         </Link>
       </button>
       <ToastContainer />
@@ -159,7 +159,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="user_password"
-                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl glass text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_password}
                     onChange={handleChangePasswordInputChange}
                     disabled={!isEditing} // Disable input when not editing
@@ -176,7 +176,7 @@ const UserDetails = (props) => {
                     type="text"
                     placeholder="text"
                     name="confirm_password"
-                    className={`input input-bordered shadow-2xl text-2xl bg-lime-400 text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                    className={`input input-bordered shadow-2xl text-2xl glass text-black ${isEditing ? '' : 'pointer-events-none'}`}
                     defaultValue={user.user_password}
                     onChange={handleChangePasswordInputChange}
                     disabled={!isEditing} // Disable input when not editing
