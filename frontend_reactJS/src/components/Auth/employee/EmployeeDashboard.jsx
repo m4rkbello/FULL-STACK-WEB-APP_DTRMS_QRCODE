@@ -445,7 +445,7 @@ const EmployeeDashboard = (props) => {
 
                     <div className="overflow-x-auto">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                            <table id="employeesDataList" ref={tableRef} className="table bg-zinc-100 ">
+                            <table id="employeesDataList" ref={tableRef} className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                                 <thead className=" text-white ">
                                     <tr className="md:table-row" style={{ fontSize: "17px", color: "black" }}>
                                         <th className="md:table-cell" >Avatar</th>
