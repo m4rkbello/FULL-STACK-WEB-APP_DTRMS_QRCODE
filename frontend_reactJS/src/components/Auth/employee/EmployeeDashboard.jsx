@@ -385,9 +385,33 @@ const EmployeeDashboard = (props) => {
                             </div>
                         </div>
                     </div>
-                    <span className="text-4xl font-black">
+                    <span className="text-3xl font-black">
 
                         <div class="flex ...">
+                        <span className="inline-grid grid-cols-2 gap-1">
+                        <span>
+                            <input
+                                type="text"
+                                placeholder="Search Departments"
+                                // value={searchDepartment}
+                                // onChange={(e) => setSearchDepartment(e.target.value)}
+                                className="border-b-4 border-black rounded text-white"
+                                style={{ backgroundColor: "transparent", color: "white" }}
+                            />
+                        </span>
+                        <span>
+                            <IoSearch
+                                style={{
+                                    backgroundColor: "transparent",
+                                    color: "black",
+                                    height: "30px",
+                                    width: "30px",
+                                    // marginTop: "15px",
+                                    // marginLeft: "-20px"
+                                }}
+                            />
+                        </span>
+                    </span>
                             <div className='mx-2'>
                                 <DownloadTableExcel
                                     filename="ExportEmployee"
@@ -402,43 +426,19 @@ const EmployeeDashboard = (props) => {
                             <div className='mx-2'>
                                 <button onClick={printEmployeeDashboard} > <IoIosPrint /></button>
                             </div>
+                            <div className='row'>
+                            <div className='col-1'>
+          
+                            </div>
+                        </div>
                         </div>
                         <center>
-                            <div className='pb-5 glass'>
-                                <div className='row'>
-                                    <div className='col-1'>
-                                    <span className="inline-grid grid-cols-2 gap-1">
-                                        <span>
-                                            <input
-                                                type="text"
-                                                placeholder="Search Departments"
-                                                // value={searchDepartment}
-                                                // onChange={(e) => setSearchDepartment(e.target.value)}
-                                                className="border-b-4 border-black rounded text-white"
-                                                style={{ backgroundColor: "transparent", color: "white" }}
-                                            />
-                                        </span>
-                                        <span>
-                                            <IoSearch
-                                                style={{
-                                                    backgroundColor: "transparent",
-                                                    color: "black",
-                                                    height: "30px",
-                                                    width: "30px",
-                                                    marginTop: "15px",
-                                                    marginLeft: "-20px"
-                                                }}
-                                            />
-                                        </span>
-                                    </span></div>
-                                </div>
-                                <div>
-                                </div>
+                            <div className='pb-5 pt-5 glass'>
+                            EMPLOPYEE DASHBOARD
                                 <IoIosPersonAdd
                                     onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                    style={{ background: 'transparent', fontSize: "50px", color: "black", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "0%" }}
+                                    style={{ background: 'transparent', fontSize: "50px", color: "black", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "-4%", paddingTop: '0', paddingLeft:'0', paddingRight: '0', paddingBottom: '0' }}
                                 />
-                                EMPLOPYEE DASHBOARD
                             </div>
                         </center>
                     </span>
