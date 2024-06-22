@@ -210,8 +210,8 @@ const EmployeeDashboard = (props) => {
                 </div>
             </dialog>
 
-            <dialog id="addEmployeeModal" className="modal border border-lime-400">
-                <div className="modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% border border-lime-400">
+            <dialog id="addEmployeeModal" className="modal border border-black">
+                <div className="modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% border border-black">
                     <div className='glass'>
                         <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
                     </div>
@@ -345,11 +345,9 @@ const EmployeeDashboard = (props) => {
                                 </div>
 
                                 <div>
-
                                     <button className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
                                         <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                                     </button>
-
                                 </div>
                             </div>
                         </form>
@@ -358,7 +356,7 @@ const EmployeeDashboard = (props) => {
             </dialog>
 
             <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
-                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% overflow-x-auto">
                     <div className="flex flex-wrap">
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
@@ -446,9 +444,9 @@ const EmployeeDashboard = (props) => {
                         </center>
                     </span>
 
-                    <div className="overflow-x-auto">
+                    <div className="">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                            <table id="employeesDataList" ref={tableRef} className="table bg-zinc-100">
+                            <table id="employeesDataList" ref={tableRef} className="table bg-zinc-100 ">
                                 <thead className=" text-white ">
                                     <tr className="md:table-row" style={{ fontSize: "17px", color: "black" }}>
                                         <th className="md:table-cell" >Avatar</th>
