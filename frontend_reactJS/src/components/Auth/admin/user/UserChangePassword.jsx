@@ -187,8 +187,8 @@ const UserDetails = (props) => {
             <br />
             <button onClick={handleChangePasswordUser} className="btn bg-black mr-3">
               {isEditing ?
-                <FaSave style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} /> :
-                <MdEditSquare style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} />
+                <FaSave style={{ backgroundColor: 'transparent', color: '#4B0082', border: 'none', width: '25px', height: '25px' }} /> :
+                <MdEditSquare style={{ backgroundColor: 'transparent', color: '#4B0082', border: 'none', width: '25px', height: '25px' }} />
               }
             </button>
           </div>
