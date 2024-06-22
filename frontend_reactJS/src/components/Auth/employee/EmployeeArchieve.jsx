@@ -144,7 +144,7 @@ const ArchieveEmployee = (props) => {
                                         </a>
                                     </li>
 
-                                    <li>
+                                <li>
                                         <span className="inline-flex gap-2 items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                                             <Link to="" className='hover:text-white'>
@@ -159,29 +159,27 @@ const ArchieveEmployee = (props) => {
 
                     <span className="text-4xl font-black">
                         <center>
-                            <div className='pb-5 glass'>
+                            <div className='pb-5 pt-5 glass'>
                                 EMPLOPYEE ARCHIEVE LIST
                             </div>
-
                         </center>
                     </span>
-
                   
                     <div className="overflow-x-auto bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% py-10 px-10 my-10 mx-10 overflow-x-auto">
                                 {/* head */}
                                 <thead className=" text-red ">
-                                    <tr className="md:table-row" style={{ fontSize: "15px", color: "black" }}>
-                                        <th className="md:table-cell text-black" >Avatar</th>
-                                        <th className="md:table-cell text-black">Id</th>
-                                        <th className="md:table-cell text-black">Fullname</th>
-                                        <th className="md:table-cell text-black">Email</th>
-                                        <th className="md:table-cell text-black">Contact No.</th>
-                                        <th className="md:table-cell text-black">Position</th>
-                                        <th className="md:table-cell text-black">Department</th>
-                                        <th className="md:table-cell text-black">Status</th>
-                                        <th className="md:table-cell text-black">Action</th>
+                                    <tr className="md:table-row" style={{ fontSize: "15px", color: "white" }}>
+                                        <th className="md:table-cell text-white" >Avatar</th>
+                                        <th className="md:table-cell text-white">Id</th>
+                                        <th className="md:table-cell text-white">Fullname</th>
+                                        <th className="md:table-cell text-white">Email</th>
+                                        <th className="md:table-cell text-white">Contact No.</th>
+                                        <th className="md:table-cell text-white">Position</th>
+                                        <th className="md:table-cell text-white">Department</th>
+                                        <th className="md:table-cell text-white">Status</th>
+                                        <th className="md:table-cell text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody className='text-black'>
@@ -237,7 +235,7 @@ const ArchieveEmployee = (props) => {
                                                     <div className="flex">
                                                         <div className="flex-none mr-3">
                                                             <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                                <FaEye style={{ fontSize: "20px", color: "indigo", padding: "0%" }} />
+                                                                <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
                                                             </Link>
 
                                                         </div>
