@@ -133,7 +133,7 @@ const UserDetails = (props) => {
       <dialog id="uploadUserUImage" className="modal">
         <div className="modal-box">
           <form method="dialog justify-center">
-            <input type="file" onChange={handleImageChange} className="file-input bg-lime-400 w-full max-w-xs" />
+            <input type="file" onChange={handleImageChange} className="file-input bg-black w-full max-w-xs" />
             <button onClick={handleImageUpload} className="btn btn-primary ml-5">Upload</button>
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
@@ -143,18 +143,23 @@ const UserDetails = (props) => {
 
         {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
           <img
-            key={index}
-            className="mask mask-circle shadow-inner"
-            src={user.user_image}
-            alt="No Upload User Profile"
-            type="file"
-            style={{ backgroundColor: 'black', width: '30%', height: '30%' }}
-          />
+          key={index}
+          className="mask mask-circle"
+          src={user.user_image}
+          alt="No Upload User Profile"
+          type="file"
+          style={{
+            backgroundColor: 'black',
+            width: '30%',
+            height: '30%',
+       
+          }}
+        />
         ))}
 
         <FaUpload
           onClick={() => document.getElementById('uploadUserUImage').showModal()}
-          style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '35px', height: '35px' }}
+          style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
 
         />
 
