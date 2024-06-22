@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+//ICONS
 import { FaEye } from 'react-icons/fa6';
 import { MdAutoDelete } from 'react-icons/md';
 import { IoIosPersonAdd } from 'react-icons/io';
@@ -8,6 +9,9 @@ import { HiStatusOnline } from 'react-icons/hi';
 import { MdOutlineNoAccounts } from 'react-icons/md';
 import { RiAccountPinCircleFill } from 'react-icons/ri';
 import { IoSearch } from "react-icons/io5";
+import { TiArrowRightThick } from "react-icons/ti";
+import { TiArrowLeftThick } from "react-icons/ti";
+//REDUX
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 
 const Department = (props) => {
@@ -48,7 +52,7 @@ const Department = (props) => {
 
   // Create an array of page numbers
   const pageNumbers = [];
-  for (let i = 5; i <= Math.ceil(filteredDepartments.length / departmentsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(filteredDepartments.length / departmentsPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -105,7 +109,7 @@ const Department = (props) => {
               placeholder="Search Departments"
               value={searchDepartment}
               onChange={(e) => setSearchDepartment(e.target.value)}
-              className="p-2 m-2 border-b-4 border-lime-400 rounded text-white"
+              className="p-2 m-2 border-b-4 bg-black rounded text-white"
               style={{ backgroundColor: "transparent", color: "white" }}
             />
           </span>
@@ -113,7 +117,7 @@ const Department = (props) => {
             <IoSearch
               style={{
                 backgroundColor: "transparent",
-                color: "#A3E636",
+                color: "black",
                 height: "30px",
                 width: "30px",
                 marginTop: "15px",
@@ -124,7 +128,14 @@ const Department = (props) => {
         </span>
         {filteredDepartments.length > 0 ? (
           <>
-            <table className="table table-lg bg-black">
+            <span className="text-4xl font-black">
+              <center>
+                <div className='pb-3 p glass'>
+                  DEPARTMENTS LIST
+                </div>
+              </center>
+            </span>
+            <table className="table table-lg bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
               <thead className="glass">
                 <tr className='table-lg'>
                   <th className="text-1xl text-white ">NO</th>
@@ -142,7 +153,7 @@ const Department = (props) => {
               <tbody>
                 {currentDepartments.map((item, index) => (
                   <tr key={index}>
-                    <td>{item.id}</td>
+                    <td>{indexOfFirstDepartment + index + 1}</td>
                     <td>{item.dept_name}</td>
                     <td>{item.dept_description}</td>
                     <td>
@@ -180,28 +191,23 @@ const Department = (props) => {
                 ))}
               </tbody>
             </table>
-            <div className="pagination">
-              <button
-                onClick={() => paginate(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                Previous
-              </button>
-              {pageNumbers.map(number => (
-                <button
-                  key={number}
-                  onClick={() => paginate(number)}
-                  className={number === currentPage ? 'active' : ''}
-                >
-                  {number}
-                </button>
-              ))}
-              <button
-                onClick={() => paginate(currentPage + 1)}
-                disabled={currentPage === pageNumbers.length}
-              >
-                Next
-              </button>
+
+            <div class="flex items-center">
+              <div class="flex-none w-14 ...">
+                <TiArrowLeftThick
+                  onClick={() => paginate(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  style={{ fontSize: "25px", color: "black", width: '35px',  height: '35px'  }}
+                />
+              </div>
+              <div class="flex-auto w-64 ...">
+                <TiArrowRightThick
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === pageNumbers.length}
+                  style={{ fontSize: "25px", color: "black", width: '35px',  height: '35px' }}
+                />
+              </div>
+
             </div>
           </>
         ) : (
