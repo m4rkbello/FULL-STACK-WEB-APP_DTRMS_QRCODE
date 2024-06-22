@@ -355,8 +355,8 @@ const EmployeeDashboard = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
-                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% overflow-x-auto">
+            <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg ">
+                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ">
                     <div className="flex flex-wrap">
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
@@ -444,7 +444,7 @@ const EmployeeDashboard = (props) => {
                         </center>
                     </span>
 
-                    <div className="">
+                    <div className="overflow-x-auto">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <table id="employeesDataList" ref={tableRef} className="table bg-zinc-100 ">
                                 <thead className=" text-white ">
