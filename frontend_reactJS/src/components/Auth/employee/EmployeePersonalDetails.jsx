@@ -149,7 +149,6 @@ const EmployeePersonalDetails = (props) => {
                                                 placeholder="Enter a Fullname"
                                                 className="input input-bordered glass shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/100"
                                                 defaultValue={item.employee_fullname}
-                                             
                                             />
                                         ))}
 
@@ -167,7 +166,6 @@ const EmployeePersonalDetails = (props) => {
                                                 placeholder="email"
                                                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
                                                 defaultValue={item.employee_email}
-                                           
                                             />
                                         ))}
                                     </div>
@@ -184,7 +182,6 @@ const EmployeePersonalDetails = (props) => {
                                                 placeholder="contact number"
                                                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
                                                 defaultValue={item.employee_contact_no}
-                                               
                                             />
                                         ))}
                                     </div>
@@ -201,7 +198,6 @@ const EmployeePersonalDetails = (props) => {
                                                 placeholder="Role"
                                                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
                                                 defaultValue={item.employee_role}
-                                                
                                             />
                                         ))}
                                     </div>
@@ -219,7 +215,6 @@ const EmployeePersonalDetails = (props) => {
                                                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
                                                 defaultValue={item.employee_position}
                                             />
-
                                         ))}
                                     </div>
 
@@ -265,13 +260,13 @@ const EmployeePersonalDetails = (props) => {
                                 <br />
                                 <div className="flex">
                                     <div>
-                                        <button type="submit" className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                        <button type="submit" className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
                                             <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                                         </button>
                                     </div>
 
                                     <div>
-                                        <button onClick={handleCloseModal} className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                        <button onClick={handleCloseModal} className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
                                             <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                                         </button>
                                     </div>
@@ -291,10 +286,10 @@ const EmployeePersonalDetails = (props) => {
             <dialog id="uploadEmployeeProfile" className="modal">
                 <div className="modal-box">
                     <form method="dialog justify-center">
-                        <input type="file" onChange={handleImageEmployeeChange} className="file-input bg-lime-400 w-full max-w-xs" />
+                        <input type="file" onChange={handleImageEmployeeChange} className="file-input bg-black w-full max-w-xs" />
                         <button onClick={handleUploadImageEmployee}
                             className="btn btn-primary ml-5"
-                            style={{ background: "black", color: "black" }}
+                            style={{ background: "black", color: "white" }}
                         >Upload</button>
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
@@ -323,7 +318,7 @@ const EmployeePersonalDetails = (props) => {
                                 />
                             ))}
 
-                            <FaUpload onClick={() => document.getElementById('uploadEmployeeProfile').showModal()} alt="Upload image" style={{ fontSize: "20px", color: "#A3E636" }} />
+                            <FaUpload onClick={() => document.getElementById('uploadEmployeeProfile').showModal()} alt="Upload image" style={{ fontSize: "25px", color: "black" }} />
                             <div className="hero-content flex-col lg:flex-row py-0 px-0">
                                 <div className="flex">
                                     <div className="">
@@ -348,7 +343,7 @@ const EmployeePersonalDetails = (props) => {
                                                     key={index}
                                                     type="text"
                                                     placeholder="text"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-lime-400 text-glass"
+                                                    className="input input-bordered shadow-2xl text-2xl bg-black text-glass"
                                                     defaultValue={item.employee_fullname}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
@@ -396,7 +391,7 @@ const EmployeePersonalDetails = (props) => {
                                                     key={index}
                                                     type="text"
                                                     placeholder="contact no"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-lime-400 text-black"
+                                                    className="input input-bordered shadow-2xl text-2xl bg-black text-black"
                                                     defaultValue={item.employee_role}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
