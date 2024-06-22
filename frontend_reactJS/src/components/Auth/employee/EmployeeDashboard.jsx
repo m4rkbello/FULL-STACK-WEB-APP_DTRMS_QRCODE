@@ -212,10 +212,8 @@ const EmployeeDashboard = (props) => {
 
             <dialog id="addEmployeeModal" className="modal border border-black">
                 <div className="modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% border border-black">
-                    <div className='glass'>
                         <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
-                    </div>
-                    <hr />
+            
                     <div className="modal-action">
                         <form method="dialog" onSubmit={handleAddEmployee}>
                             <div className="grid grid-cols-3 gap-6">
@@ -355,8 +353,8 @@ const EmployeeDashboard = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg ">
-                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ">
+            <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
+                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
                     <div className="flex flex-wrap">
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
@@ -392,7 +390,7 @@ const EmployeeDashboard = (props) => {
                         <span>
                             <input
                                 type="text"
-                                placeholder="Search Departments"
+                                placeholder="Search Employee"
                                 // value={searchDepartment}
                                 // onChange={(e) => setSearchDepartment(e.target.value)}
                                 className="border-b-4 border-black rounded text-white"
