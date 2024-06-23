@@ -165,12 +165,13 @@ const ArchieveEmployee = (props) => {
                         </center>
                     </span>
                   
-                    <div className="overflow-x-auto bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                    <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                            <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% py-10 px-10 my-10 mx-10 overflow-x-auto">
-                                {/* head */}
+                            <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+                            <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% py-10 px-10 my-10 mx-10 border-2 border-black">
+                            {/* head */}
                                 <thead className=" text-red ">
-                                    <tr className="md:table-row" style={{ fontSize: "15px", color: "white" }}>
+                                    <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
                                         <th className="md:table-cell text-white" >Avatar</th>
                                         <th className="md:table-cell text-white">Id</th>
                                         <th className="md:table-cell text-white">Fullname</th>
@@ -182,8 +183,8 @@ const ArchieveEmployee = (props) => {
                                         <th className="md:table-cell text-white">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody className='text-black'>
 
+                                <tbody className='text-black'>
                                     {employeesList && employeesList.map((item, index) => (
                                         item.employee_status != 1 && (
 
@@ -249,8 +250,9 @@ const ArchieveEmployee = (props) => {
                                             </tr>
                                         )
                                     ))}
-                                </tbody>
+                                    </tbody>
                             </table>
+                            </div>
                         ) : (
                             <h1>NO DATA</h1>
                         )}
