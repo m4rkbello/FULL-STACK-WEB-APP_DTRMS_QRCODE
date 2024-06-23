@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 //IMPORT BACON-QR-CODE
-use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use Log;
 
@@ -29,101 +29,99 @@ class EmployeeController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     */public function store(Request $request)
-{
-    try {
-        // Validate the request data
-        $data = $request->validate([
-            'employee_fullname' => 'required|string',
-            'employee_email' => 'required|string|unique:employees,employee_email',
-            'employee_contact_no' => 'required|string|max:11',
-            'employee_position' => 'required|string',
-            'employee_role' => 'required|string',
-            'employee_department' => 'required|integer',
-            'employee_status' => 'required|integer',
-        ]);
+     */
+    public function store(Request $request)
+    {
+        try {
+            // Validate the request data
+            $data = $request->validate([
+                'employee_fullname' => 'required|string',
+                'employee_email' => 'required|string|unique:employees,employee_email',
+                'employee_contact_no' => 'required|string|max:11',
+                'employee_position' => 'required|string',
+                'employee_role' => 'required|string',
+                'employee_department' => 'required|integer',
+                'employee_status' => 'required|integer',
+            ]);
 
-        // Create the employee record
-        $employee = Employee::create([
-            'employee_fullname' => $data['employee_fullname'],
-            'employee_email' => $data['employee_email'],
-            'employee_contact_no' => $data['employee_contact_no'],
-            'employee_position' => $data['employee_position'],
-            'employee_role' => $data['employee_role'],
-            'employee_department' => $data['employee_department'],
-            'employee_status' => $data['employee_status'],
-        ]);
+            // Create the employee record
+            $employee = Employee::create([
+                'employee_fullname' => $data['employee_fullname'],
+                'employee_email' => $data['employee_email'],
+                'employee_contact_no' => $data['employee_contact_no'],
+                'employee_position' => $data['employee_position'],
+                'employee_role' => $data['employee_role'],
+                'employee_department' => $data['employee_department'],
+                'employee_status' => $data['employee_status'],
+            ]);
 
-        // Generate QR code content (using employee email)
-        $qrCode = new \Endroid\QrCode\QrCode($employee->employee_email);
-        $qrCode->setSize(400);
-        $qrCode->setWriterByName('png');
+            // Generate QR code content (using employee email)
+            $qrCode = new QrCode($employee->employee_email);
+            $qrCode->setSize(400);
 
-        // Save QR code to disk
-        $qrCodePath = $this->saveQRCode($qrCode, $employee->id);
+            $writer = new PngWriter();
+            $qrCodeImage = $writer->write($qrCode);
 
-        if ($qrCodePath === false) {
+            // Save QR code to disk
+            $qrCodePath = $this->saveQRCode($qrCodeImage, $employee->id);
+
+            if ($qrCodePath === false) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to save QR code',
+                ], 500);
+            }
+
+            // Prepare the response data
+            $response_data = [
+                'success' => true,
+                'message' => 'Employee has been successfully created!',
+                'employee' => $employee,
+                'qr_code_path' => asset('qrcodes/' . $employee->id . '.png'),
+            ];
+
+            return response()->json($response_data, 201);
+        } catch (\Exception $e) {
+            // Handle exceptions
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to save QR code',
+                'message' => 'An error occurred: ' . $e->getMessage(),
             ], 500);
         }
-
-        // Prepare the response data
-        $response_data = [
-            'success' => true,
-            'message' => 'Employee has been successfully created!',
-            'employee' => $employee,
-            'qr_code_path' => asset('qrcodes/' . $employee->id . '.png'),
-        ];
-
-        return response()->json($response_data, 201);
-    } catch (ValidationException $e) {
-        // Handle validation errors
-        return response()->json([
-            'success' => false,
-            'errors' => $e->errors(),
-        ], 422);
-    } catch (\Exception $e) {
-        // Handle general errors
-        return response()->json([
-            'success' => false,
-            'message' => 'An error occurred: ' . $e->getMessage(),
-        ], 500);
     }
-}
 
     
 
-private function saveQRCode($qrCode, $userId)
-{
-    $directory = public_path('qrcodes');
-    if (!is_dir($directory)) {
-        if (!mkdir($directory, 0755, true)) {
-            Log::error("Failed to create directory: $directory");
+    private function saveQRCode($qrCodeImage, $userId)
+    {
+        $directory = public_path('qrcodes');
+        if (!is_dir($directory)) {
+            if (!mkdir($directory, 0755, true)) {
+                Log::error("Failed to create directory: $directory");
+                return false;
+            }
+        }
+
+        $path = $directory . DIRECTORY_SEPARATOR . $userId . '.png';
+
+        // Ensure the directory is writable
+        if (!is_writable($directory)) {
+            Log::error("Directory $directory is not writable");
             return false;
         }
+
+        // Save QR code to file
+        try {
+            $qrCodeImage->saveToFile($path);
+        } catch (\Exception $e) {
+            Log::error("Failed to save QR code to: $path");
+            return false;
+        }
+
+        Log::info("QR code saved successfully to: $path");
+        return $path;
     }
 
-    $path = $directory . DIRECTORY_SEPARATOR . $userId . '.png';
-
-    // Ensure the directory is writable
-    if (!is_writable($directory)) {
-        Log::error("Directory $directory is not writable");
-        return false;
-    }
-
-    // Save QR code to file
-    try {
-        $qrCode->writeFile($path);
-    } catch (\Exception $e) {
-        Log::error("Failed to save QR code to: $path");
-        return false;
-    }
-
-    Log::info("QR code saved successfully to: $path");
-    return $path;
-}
 
     
     
