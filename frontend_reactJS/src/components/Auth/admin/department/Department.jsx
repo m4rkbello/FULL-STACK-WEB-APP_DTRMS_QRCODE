@@ -130,13 +130,14 @@ const Department = (props) => {
           <>
             <span className="text-4xl font-black">
               <center>
-                <div className='pb-3 p glass'>
+                <div className='pb-5 pt-5 glass'>
                   DEPARTMENTS LIST
                 </div>
               </center>
             </span>
+            <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
             <table className="table table-lg bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-              <thead className="glass">
+              <thead className="bg-black border-2 border-black">
                 <tr className='table-lg'>
                   <th className="text-1xl text-white ">NO</th>
                   <th className="text-1xl text-white ">DEPARTMENT NAME</th>
@@ -145,7 +146,7 @@ const Department = (props) => {
                   <th className="text-1xl text-white">ACTION</th>
                   <th className="text-1xl text-white">
                     <Link to="/department/add" className="text-black">
-                      <IoIosPersonAdd style={{ height: "50px", width: "50px", color: "#A3E636" }} />
+                      <IoIosPersonAdd style={{ height: "50px", width: "50px", color: "indigo" }} />
                     </Link>
                   </th>
                 </tr>
@@ -173,7 +174,7 @@ const Department = (props) => {
                       <div className="flex">
                         <div className="flex-none mr-3">
                           <Link to={`/department/edit/${item.id}`} className="text-black">
-                            <FaEye style={{ fontSize: "20px", color: "#A3E636", padding: "0%" }} />
+                            <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
                           </Link>
                         </div>
                         <div className="flex-none mr-3">
@@ -182,7 +183,7 @@ const Department = (props) => {
                               setDeactivateEmployeeId(item.id);
                               document.getElementById('removeEmployee').showModal();
                             }}
-                            style={{ fontSize: "20px", color: "#A3E636" }}
+                            style={{ fontSize: "20px", color: "black" }}
                           />
                         </div>
                       </div>
@@ -191,6 +192,7 @@ const Department = (props) => {
                 ))}
               </tbody>
             </table>
+            </div>
 
             <div class="flex items-center">
               <div class="flex-none w-14 ...">
@@ -211,14 +213,20 @@ const Department = (props) => {
             </div>
           </>
         ) : (
-          <div className="mockup-browser border bg-base-300 border-t-4 border-lime-400">
-            <div className="mockup-browser-toolbar">
-              <div className="input text-lime-400">https://markbello.com</div>
-            </div>
-            <div className="flex justify-center px-4 py-16 bg-base-200">
-              <span className='text-lg'>AYAW PANGITAA ANG WALA!</span>
-            </div>
-          </div>
+      <div className="mockup-browser mt-10 mb-10 border border-t-4 ">
+        <div className="mockup-browser-toolbar">
+          <div className="input text-black-400">https://markbello.com</div>
+        </div>
+        <div className="flex justify-center px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+          <span
+            style={{ fontSize: '50px', fontWeightL: 'Bolder' }}
+          >
+            <b>
+              AYAW NA PANGITAA ANG WALA!
+            </b>
+          </span>
+        </div>
+      </div>
         )}
       </div>
     </div>
