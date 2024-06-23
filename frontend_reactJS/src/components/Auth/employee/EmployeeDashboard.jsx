@@ -212,8 +212,8 @@ const EmployeeDashboard = (props) => {
 
             <dialog id="addEmployeeModal" className="modal border border-black">
                 <div className="modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% border border-black">
-                        <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
-            
+                    <h3 className="font-bold text-3xl text-black">ADD EMPLOYEE</h3>
+
                     <div className="modal-action">
                         <form method="dialog" onSubmit={handleAddEmployee}>
                             <div className="grid grid-cols-3 gap-6">
@@ -242,7 +242,7 @@ const EmployeeDashboard = (props) => {
                                         className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_email: e.target.value }))}
                                         value={formDataAddEmployee.employee_email}
-                                        // style={{ backgroundColor: '#A3E636' }}
+                                    // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                                 <div className="form-control">
@@ -253,7 +253,7 @@ const EmployeeDashboard = (props) => {
                                         name="employee_department"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department: e.target.value }))}
                                         className="input input-bordered shadow-2xl text-2xl text-black border-1 glass border-glass rounded-se-3xl shadow-lime-400/40"
-                                        // style={{ backgroundColor: '#A3E636' }}
+                                    // style={{ backgroundColor: '#A3E636' }}
                                     >
                                         {departments.map((item, index) => (
                                             <option key={index} value={item.id}>
@@ -276,7 +276,7 @@ const EmployeeDashboard = (props) => {
                                         className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_contact_no: e.target.value }))}
                                         value={formDataAddEmployee.employee_contact_no}
-                                        // style={{ backgroundColor: '#A3E636' }}
+                                    // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
 
@@ -291,7 +291,7 @@ const EmployeeDashboard = (props) => {
                                         className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_position: e.target.value }))}
                                         value={formDataAddEmployee.employee_position}
-                                        // style={{ backgroundColor: '#A3E636' }}
+                                    // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                                 <div className="form-control">
@@ -307,7 +307,7 @@ const EmployeeDashboard = (props) => {
 
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_role: e.target.value }))}
                                         value={formDataAddEmployee.employee_role}
-                                        // style={{ backgroundColor: '#A3E636' }}
+                                    // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                             </div>
@@ -324,7 +324,7 @@ const EmployeeDashboard = (props) => {
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status: e.target.value }))}
                                         className="select input input-bordered shadow-2xl text-2xl text-black glass drop-shadow-xl"
                                         value={formDataAddEmployee.employee_status}
-                                        // style={{ backgroundColor: '#A3E636' }}
+                                    // style={{ backgroundColor: '#A3E636' }}
                                     >
                                         <option value="0">Inactive</option>
                                         <option value="1">Active</option>
@@ -361,180 +361,152 @@ const EmployeeDashboard = (props) => {
                                 <ul>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                                        <Link to="/" className='hover:text-white'>
-                                            Home
-                                        </Link>
+                                        <Link to="/" className='hover:text-white'>Home</Link>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                                        <Link to="/employee/dashboard" className='hover:text-white'>
-                                            Employee Dashboard
-                                        </Link>
+                                        <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
                                     </li>
                                     <li>
                                         <span className="inline-flex gap-2 items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                            <Link to="" className='hover:text-white'>
-                                                Employee Personal Details
-                                            </Link>
+                                            <Link to="" className='hover:text-white'>Employee Personal Details</Link>
                                         </span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <span className="text-3xl font-black">
-
-                        <div class="flex ...">
+                    <div class="flex flex-row">
+                        <div class="basis-1/2 flex justify-start">         
                         <span className="inline-grid grid-cols-2 gap-1">
-                        <span>
-                            <input
-                                type="text"
-                                placeholder="Search Employee"
-                                // value={searchDepartment}
-                                // onChange={(e) => setSearchDepartment(e.target.value)}
-                                className="border-b-4 border-black rounded text-white"
-                                style={{ backgroundColor: "transparent", color: "white" }}
-                            />
+                            <span>
+                                <input
+                                    type="text"
+                                    placeholder="Search Employee"
+                                    className="border-b-4 border-black rounded text-white"
+                                    style={{ backgroundColor: "transparent", color: "white" }}
+                                />
+                            </span>
+                            <span>
+                                <IoSearch
+                                    style={{
+                                        backgroundColor: "transparent",
+                                        color: "black",
+                                        height: "30px",
+                                        width: "30px",
+                                    }}
+                                />
+                            </span>
                         </span>
-                        <span>
-                            <IoSearch
-                                style={{
-                                    backgroundColor: "transparent",
-                                    color: "black",
-                                    height: "30px",
-                                    width: "30px",
-                                    // marginTop: "15px",
-                                    // marginLeft: "-20px"
-                                }}
-                            />
-                        </span>
-                    </span>
+                        </div>
+                        <div class="basis-1/4"></div>
+                        <div class="basis-1/4 flex justify-end mr-5"> 
+                        <div className='mx-2'>
+                            <DownloadTableExcel
+                                filename="ExportEmployee"
+                                sheet="users"
+                                currentTableRef={tableRef.current}
+                            >
+                                <button><SiMicrosoftexcel /></button>
+                            </DownloadTableExcel>
+                        </div>
                             <div className='mx-2'>
-                                <DownloadTableExcel
-                                    filename="ExportEmployee"
-                                    sheet="users"
-                                    currentTableRef={tableRef.current}
-                                >
-                                    <button>
-                                        <SiMicrosoftexcel />
-                                    </button>
-                                </DownloadTableExcel>
-                            </div>
-                            <div className='mx-2'>
-                                <button onClick={printEmployeeDashboard} > <IoIosPrint /></button>
+                                <button onClick={printEmployeeDashboard}><IoIosPrint /></button>
                             </div>
                             <div className='row'>
-                            <div className='col-1'>
-          
+                                <div className='col-1'></div>
                             </div>
                         </div>
-                        </div>
+                    </div>
+                    <span className="text-3xl font-black">
                         <center>
                             <div className='pb-5 pt-5 glass'>
-                            EMPLOPYEE DASHBOARD
+                                EMPLOYEE DASHBOARD
                                 <IoIosPersonAdd
                                     onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                    style={{ background: 'transparent', fontSize: "50px", color: "black", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "-4%", paddingTop: '0', paddingLeft:'0', paddingRight: '0', paddingBottom: '0' }}
+                                    style={{ background: 'transparent', fontSize: "50px", color: "black", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "-4%", paddingTop: '0', paddingLeft: '0', paddingRight: '0', paddingBottom: '0' }}
                                 />
                             </div>
                         </center>
                     </span>
-
-                    <div className="overflow-x-auto">
-                        {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                            <table id="employeesDataList" ref={tableRef} className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-                                <thead className=" text-white ">
-                                    <tr className="md:table-row" style={{ fontSize: "17px", color: "black" }}>
-                                        <th className="md:table-cell" >Avatar</th>
-                                        <th className="md:table-cell">Id</th>
-                                        <th className="md:table-cell">Fullname</th>
-                                        <th className="md:table-cell">Email</th>
-                                        <th className="md:table-cell">Contact No.</th>
-                                        <th className="md:table-cell">Position</th>
-                                        <th className="md:table-cell">Department</th>
-                                        <th className="md:table-cell">Status</th>
-                                        <th className="md:table-cell">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    {employeesList && employeesList.map((item, index) => (
-                                        item.employee_status != 0 && (
-                                            <tr key={index} className="md:table-row overflow-x-auto">
-                                                <td className="md:table-cell">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="avatar">
-
-                                                            <div className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                                <img src={item.employee_image} />
-                                                            </div>
-
-                                                            {filterImage && filterImage.map((image, imageIndex) => (
-                                                                <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                                    <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td className="md:table-cell">
-                                                    {item.id}
-                                                </td>
-                                                <td className="md:table-cell">
-                                                    {item.employee_fullname}
-                                                </td>
-
-                                                <td className="md:table-cell">
-                                                    {item.employee_email}
-                                                </td>
-
-                                                <td className="md:table-cell">
-                                                    {item.employee_contact_no}
-                                                </td>
-                                                <td className="md:table-cell">5
-                                                </td>
-                                                <td className="md:table-cell">
-                                                    {item.employee_position}
-                                                </td>
-                                                <td className="md:table-cell">
-                                                    {item.employee_status === 1 ?
-                                                        <RiAccountPinCircleFill
-                                                            style={{ fontSize: "25px", color: "green" }}
-                                                        /> : <MdOutlineNoAccounts
-                                                            style={{ fontSize: "25px", color: "red" }}
-                                                        />}
-                                                </td>
-                                                <td className="flex md:table-cell" >
-                                                    <div className="flex">
-                                                        <div className="flex-none mr-3">
-                                                            <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                                <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
-                                                            </Link>
-
-                                                        </div>
-                                                        <div className="flex-none mr-3">
-                                                            <MdAutoDelete
-                                                                onClick={() => {
-                                                                    setDeactivateEmployeeId(item.id);
-                                                                    document.getElementById('removeEmployee').showModal()
-                                                                }}
-                                                                style={{ fontSize: "20px", color: "black" }} />
-                                                        </div>
-                                                    </div>
-                                                </td>
+                    <div className="">
+                        <div className='p-4'>
+                            {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
+                                <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+                                    <table id="employeesDataList" ref={tableRef} className="table bg-white border-2 border-black">
+                                        <thead className=" text-white ">
+                                            <tr className="md:table-row pb-5 pt-5" style={{ fontSize: "17px", backgroundColor: 'black', color: 'white' }}>
+                                                <th className="md:table-cell">Avatar</th>
+                                                <th className="md:table-cell">Id</th>
+                                                <th className="md:table-cell">Fullname</th>
+                                                <th className="md:table-cell">Email</th>
+                                                <th className="md:table-cell">Contact No.</th>
+                                                <th className="md:table-cell">Position</th>
+                                                <th className="md:table-cell">Department</th>
+                                                <th className="md:table-cell">Status</th>
+                                                <th className="md:table-cell">Action</th>
                                             </tr>
-                                        )
-                                    ))}
-                                </tbody>
-                            </table>
-                        ) : (
-                            <h1>NO DATA</h1>
-                        )}
-
+                                        </thead>
+                                        <tbody>
+                                            {employeesList && employeesList.map((item, index) => (
+                                                item.employee_status != 0 && (
+                                                    <tr key={index} className="md:table-row overflow-x-auto">
+                                                        <td className="md:table-cell">
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="avatar">
+                                                                    <div className="mask mask-squircle w-12 h-12 shadow-2xl">
+                                                                        <img src={item.employee_image} />
+                                                                    </div>
+                                                                    {filterImage && filterImage.map((image, imageIndex) => (
+                                                                        <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
+                                                                            <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td className="md:table-cell">{item.id}</td>
+                                                        <td className="md:table-cell">{item.employee_fullname}</td>
+                                                        <td className="md:table-cell">{item.employee_email}</td>
+                                                        <td className="md:table-cell">{item.employee_contact_no}</td>
+                                                        <td className="md:table-cell">5</td>
+                                                        <td className="md:table-cell">{item.employee_position}</td>
+                                                        <td className="md:table-cell">
+                                                            {item.employee_status === 1 ?
+                                                                <RiAccountPinCircleFill style={{ fontSize: "25px", color: "green" }} /> : <MdOutlineNoAccounts style={{ fontSize: "25px", color: "red" }} />}
+                                                        </td>
+                                                        <td className="flex md:table-cell">
+                                                            <div className="flex">
+                                                                <div className="flex-none mr-3">
+                                                                    <Link to={`/employee/details/${item.id}`} className="text-black">
+                                                                        <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
+                                                                    </Link>
+                                                                </div>
+                                                                <div className="flex-none mr-3">
+                                                                    <MdAutoDelete
+                                                                        onClick={() => {
+                                                                            setDeactivateEmployeeId(item.id);
+                                                                            document.getElementById('removeEmployee').showModal()
+                                                                        }}
+                                                                        style={{ fontSize: "20px", color: "black" }} />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            ) : (
+                                <h1>NO DATA</h1>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
