@@ -72,6 +72,11 @@ class EmployeeController extends Controller
                 ], 500);
             }
 
+            //esave ang path diria 
+            $employee->employee_qrcode = asset('qrcodes/' . $employee->id . '.png');
+            $employee->save();
+
+
             // Prepare the response data
             $response_data = [
                 'success' => true,
@@ -89,8 +94,6 @@ class EmployeeController extends Controller
             ], 500);
         }
     }
-
-    
 
     private function saveQRCode($qrCodeImage, $userId)
     {
@@ -121,13 +124,6 @@ class EmployeeController extends Controller
         Log::info("QR code saved successfully to: $path");
         return $path;
     }
-
-
-    
-    
-    
-
-
 
     /**
      * Display the specified resource.
