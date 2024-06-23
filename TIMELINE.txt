@@ -85,7 +85,13 @@ npm install react-chartjs-2@latest
 19. INSTALL ReactHTMLTableToExcel 
 ->npm install --save react-html-table-to-excel-3
 20. INSTALL QRCODE FOR LARAVEL 
-->composer require simplesoftwareio/simple-qrcode
+->composer require simplesoftwareio/simple-qrcode (ERROR NI)
+21. INSTALL QRCODE GAMIT BACON
+->composer require bacon/bacon-qr-code
+22. INSTALL ENDROID/QR-CODE (WALAY NEED emagick)
+->composer require endroid/qr-code
+
+
 
 
 
