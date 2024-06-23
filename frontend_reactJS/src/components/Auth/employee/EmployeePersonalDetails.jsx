@@ -307,6 +307,17 @@ const EmployeePersonalDetails = (props) => {
                         </button>
 
                         <div className="hero-content flex flex-col items-center">
+                        
+
+                            {employee && employee.map((image, imageIndex) => (
+                                <img
+                                    key={imageIndex}
+                                    className="mask mask-square shadow-inner"
+                                    src={image.employee_qrcode}
+                                    type="file"
+                                    style={{ backgroundColor: 'transparent', width: '20%', height: '20%' }}
+                                />
+                            ))}
 
                             {employee && employee.map((image, imageIndex) => (
                                 <img
@@ -443,6 +454,10 @@ const EmployeePersonalDetails = (props) => {
                                                 </select>
                                             ))}
                                         </div>
+                                        <br/>
+                                        <hr />
+                                        <br />
+                                        
                                     </div>
                                     <button onClick={handleOpenModal}>
                                         <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "40px", color: "black", marginLeft: "-65%", marginBottom: "-100" }} />
