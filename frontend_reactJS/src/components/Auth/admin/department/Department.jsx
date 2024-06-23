@@ -150,7 +150,7 @@ const Department = (props) => {
               </center>
             </span>
             <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-            <table className="table table-lg bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+            <table className="table table-lg bg-white">
               <thead className="bg-black pt-5 pb-5 border-2 border-black">
                 <tr className='table-lg'>
                   <th className="text-1xl text-white ">NO</th>
@@ -158,7 +158,6 @@ const Department = (props) => {
                   <th className="text-1xl text-white">DEPARTMENT DESCRIPTION</th>
                   <th className="text-1xl text-white">DEPARTMENT STATUS</th>
                   <th className="text-1xl text-white">ACTION</th>
-              
                 </tr>
               </thead>
               <tbody>
@@ -203,21 +202,21 @@ const Department = (props) => {
               </tbody>
             </table>
             </div>
-
-  
-
             <div class="flex flex-row">
-  <div class="basis-1/4">  <TiArrowLeftThick
-  onClick={() => paginate(currentPage - 1)}
-  disabled={currentPage === 1}
-  style={{ fontSize: "", color: "black", width: '',  height: ''  }}
-/></div>
-  <div class="basis-1/4"><TiArrowRightThick
-  onClick={() => paginate(currentPage + 1)}
-  disabled={currentPage === pageNumbers.length}
-  style={{ fontSize: "", color: "black", width: '',  height: '' }}
-  /></div>
-</div>
+            <div class="basis-1/4">  
+                <TiArrowLeftThick
+                  onClick={() => paginate(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  style={{ fontSize: "", color: "black", width: '',  height: ''  }}
+            />
+            </div>
+                <div class="basis-1/4"><TiArrowRightThick
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === pageNumbers.length}
+                  style={{ fontSize: "", color: "black", width: '',  height: '' }}
+                />
+                </div>
+            </div>
           </>
         ) : (
       <div className="mockup-browser mt-10 mb-10 border border-t-4 ">
