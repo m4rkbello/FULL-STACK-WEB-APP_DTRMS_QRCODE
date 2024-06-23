@@ -168,7 +168,7 @@ const ArchieveEmployee = (props) => {
                     <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-                            <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% py-10 px-10 my-10 mx-10 border-2 border-black">
+                            <table className="table bg-white py-10 px-10 my-10 mx-10 border-2 border-black">
                             {/* head */}
                                 <thead className=" text-red ">
                                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
