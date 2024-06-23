@@ -130,25 +130,35 @@ const Department = (props) => {
           <>
             <span className="text-4xl font-black">
               <center>
-                <div className='pb-5 pt-5 glass'>
-                  DEPARTMENTS LIST
+                <div className=''>
+                
+                  <div> 
+             
                 </div>
+                </div>
+
+          <div class="flex flex-row pb-5 pt-5 glass">
+            <div class="basis-1/4"></div>
+            <div class="basis-1/2">DEPARTMENTS LIST</div>
+            <div class="basis-1/4">
+              <Link to="/department/add" className="text-black">
+                <IoIosPersonAdd style={{ height: "50px",  width: "50px", color: "indigo" }} />
+              </Link>
+            </div>
+          </div>
+                
               </center>
             </span>
             <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
             <table className="table table-lg bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-              <thead className="bg-black border-2 border-black">
+              <thead className="bg-black pt-5 pb-5 border-2 border-black">
                 <tr className='table-lg'>
                   <th className="text-1xl text-white ">NO</th>
                   <th className="text-1xl text-white ">DEPARTMENT NAME</th>
                   <th className="text-1xl text-white">DEPARTMENT DESCRIPTION</th>
                   <th className="text-1xl text-white">DEPARTMENT STATUS</th>
                   <th className="text-1xl text-white">ACTION</th>
-                  <th className="text-1xl text-white">
-                    <Link to="/department/add" className="text-black">
-                      <IoIosPersonAdd style={{ height: "50px", width: "50px", color: "indigo" }} />
-                    </Link>
-                  </th>
+              
                 </tr>
               </thead>
               <tbody>
@@ -194,23 +204,20 @@ const Department = (props) => {
             </table>
             </div>
 
-            <div class="flex items-center">
-              <div class="flex-none w-14 ...">
-                <TiArrowLeftThick
-                  onClick={() => paginate(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  style={{ fontSize: "25px", color: "black", width: '35px',  height: '35px'  }}
-                />
-              </div>
-              <div class="flex-auto w-64 ...">
-                <TiArrowRightThick
-                  onClick={() => paginate(currentPage + 1)}
-                  disabled={currentPage === pageNumbers.length}
-                  style={{ fontSize: "25px", color: "black", width: '35px',  height: '35px' }}
-                />
-              </div>
+  
 
-            </div>
+            <div class="flex flex-row">
+  <div class="basis-1/4">  <TiArrowLeftThick
+  onClick={() => paginate(currentPage - 1)}
+  disabled={currentPage === 1}
+  style={{ fontSize: "", color: "black", width: '',  height: ''  }}
+/></div>
+  <div class="basis-1/4"><TiArrowRightThick
+  onClick={() => paginate(currentPage + 1)}
+  disabled={currentPage === pageNumbers.length}
+  style={{ fontSize: "", color: "black", width: '',  height: '' }}
+  /></div>
+</div>
           </>
         ) : (
       <div className="mockup-browser mt-10 mb-10 border border-t-4 ">
