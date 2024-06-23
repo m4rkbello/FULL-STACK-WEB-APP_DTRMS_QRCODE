@@ -19,7 +19,8 @@ class Employee extends Model
         'employee_role',
         'employee_department',
         'employee_status',
-        'employee_image'
+        'employee_image',
+        'employee_qrcode'
     ];
 
     public function attendances(){

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('employee_department');
             $table->integer('employee_status')->default(1);
             $table->string('employee_image')->nullable();
+            $table->string('employee_qrcode')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
