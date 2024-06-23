@@ -25,6 +25,9 @@ const EmployeePersonalDetails = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [imageEmployee, setImageEmployee] = useState(null);
 
+    const empId = id;
+    console.log("ID useParams ayaw kol", empId);
+
     const updateEmployeeNavigator = useNavigate();
 
     //e-open ang modal
@@ -88,6 +91,7 @@ const EmployeePersonalDetails = (props) => {
     }
 
     const employee = employeeDetails(employeesCollectionArrays, id);
+    console.log("DATA", employee)
 
     const handleImageEmployeeChange = (e) => {
         setImageEmployee(e.target.files[0]);
@@ -113,10 +117,14 @@ const EmployeePersonalDetails = (props) => {
             }
         };
         return item;
-
     };
 
     const departments = fetchDepartments(departmentsCollectionArrays);
+
+    
+    const departmentCollectionArraysData = props?.departmentsData?.departments?.data?.department;
+
+
 
     useEffect(() => {
         props.fetchEmployees();
@@ -272,8 +280,6 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                 </div>
                             </form>
-
-
                         </div>
                         <center>
                             <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
@@ -307,7 +313,6 @@ const EmployeePersonalDetails = (props) => {
                         </button>
 
                         <div className="hero-content flex flex-col items-center">
-                        
 
                             {employee && employee.map((image, imageIndex) => (
                                 <img
@@ -435,7 +440,7 @@ const EmployeePersonalDetails = (props) => {
                                                     type="text"
                                                     placeholder="contact no"
                                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                                    defaultValue={item.employee_department}
+                                                    defaultValue={item.dept_name}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
                                                 />
