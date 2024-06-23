@@ -90,6 +90,10 @@ npm install react-chartjs-2@latest
 ->composer require bacon/bacon-qr-code
 22. INSTALL ENDROID/QR-CODE (WALAY NEED emagick)
 ->composer require endroid/qr-code
+->composer clear-cache
+->composer dump-autoload
+->composer remove endroid/qr-code
+->composer require endroid/qr-code
 
 
 
