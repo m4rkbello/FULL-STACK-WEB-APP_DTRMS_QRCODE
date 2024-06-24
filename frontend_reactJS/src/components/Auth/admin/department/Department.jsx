@@ -131,108 +131,108 @@ const Department = (props) => {
             <span className="text-4xl font-black">
               <center>
                 <div className=''>
-                
-                  <div> 
-             
-                </div>
+
+                  <div>
+
+                  </div>
                 </div>
 
-          <div class="flex flex-row pb-5 pt-5 glass">
-            <div class="basis-1/4"></div>
-            <div class="basis-1/2">DEPARTMENTS LIST</div>
-            <div class="basis-1/4">
-              <Link to="/department/add" className="text-black">
-                <IoIosPersonAdd style={{ height: "50px",  width: "50px", color: "indigo" }} />
-              </Link>
-            </div>
-          </div>
-                
+                <div class="flex flex-row pb-5 pt-5 glass">
+                  <div class="basis-1/4"></div>
+                  <div class="basis-1/2">DEPARTMENTS LIST</div>
+                  <div class="basis-1/4">
+                    <Link to="/department/add" className="text-black">
+                      <IoIosPersonAdd style={{ height: "50px", width: "50px", color: "indigo" }} />
+                    </Link>
+                  </div>
+                </div>
+
               </center>
             </span>
             <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-            <table className="table table-lg bg-white">
-              <thead className="bg-black pt-5 pb-5 border-2 border-black">
-                <tr className='table-lg'>
-                  <th className="text-1xl text-white ">NO</th>
-                  <th className="text-1xl text-white ">DEPARTMENT NAME</th>
-                  <th className="text-1xl text-white">DEPARTMENT DESCRIPTION</th>
-                  <th className="text-1xl text-white">DEPARTMENT STATUS</th>
-                  <th className="text-1xl text-white">ACTION</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentDepartments.map((item, index) => (
-                  <tr key={index}>
-                    <td>{indexOfFirstDepartment + index + 1}</td>
-                    <td>{item.dept_name}</td>
-                    <td>{item.dept_description}</td>
-                    <td>
-                      <center>
-                        {item.dept_status_id === 1 ? (
-                          <RiAccountPinCircleFill
-                            style={{ fontSize: "25px", color: "green", alignItems: "center" }}
-                          />
-                        ) : (
-                          <MdOutlineNoAccounts
-                            style={{ fontSize: "25px", color: "red", alignItems: "center" }}
-                          />
-                        )}
-                      </center>
-                    </td>
-                    <td>
-                      <div className="flex">
-                        <div className="flex-none mr-3">
-                          <Link to={`/department/edit/${item.id}`} className="text-black">
-                            <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
-                          </Link>
-                        </div>
-                        <div className="flex-none mr-3">
-                          <MdAutoDelete
-                            onClick={() => {
-                              setDeactivateEmployeeId(item.id);
-                              document.getElementById('removeEmployee').showModal();
-                            }}
-                            style={{ fontSize: "20px", color: "black" }}
-                          />
-                        </div>
-                      </div>
-                    </td>
+              <table className="table table-lg bg-white">
+                <thead className="bg-black pt-5 pb-5 border-2 border-black">
+                  <tr className='table-lg'>
+                    <th className="text-1xl text-white ">NO</th>
+                    <th className="text-1xl text-white ">DEPARTMENT NAME</th>
+                    <th className="text-1xl text-white">DEPARTMENT DESCRIPTION</th>
+                    <th className="text-1xl text-white">DEPARTMENT STATUS</th>
+                    <th className="text-1xl text-white">ACTION</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {currentDepartments.map((item, index) => (
+                    <tr key={index}>
+                      <td>{indexOfFirstDepartment + index + 1}</td>
+                      <td>{item.dept_name}</td>
+                      <td>{item.dept_description}</td>
+                      <td>
+                        <center>
+                          {item.dept_status_id === 1 ? (
+                            <RiAccountPinCircleFill
+                              style={{ fontSize: "25px", color: "green", alignItems: "center" }}
+                            />
+                          ) : (
+                            <MdOutlineNoAccounts
+                              style={{ fontSize: "25px", color: "red", alignItems: "center" }}
+                            />
+                          )}
+                        </center>
+                      </td>
+                      <td>
+                        <div className="flex">
+                          <div className="flex-none mr-3">
+                            <Link to={`/department/edit/${item.id}`} className="text-black">
+                              <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
+                            </Link>
+                          </div>
+                          <div className="flex-none mr-3">
+                            <MdAutoDelete
+                              onClick={() => {
+                                setDeactivateEmployeeId(item.id);
+                                document.getElementById('removeEmployee').showModal();
+                              }}
+                              style={{ fontSize: "20px", color: "black" }}
+                            />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
             <div class="flex flex-row">
-            <div class="basis-1/4">  
+              <div class="basis-1/4">
                 <TiArrowLeftThick
                   onClick={() => paginate(currentPage - 1)}
                   disabled={currentPage === 1}
-                  style={{ fontSize: "", color: "black", width: '',  height: ''  }}
-            />
-            </div>
-                <div class="basis-1/4"><TiArrowRightThick
-                  onClick={() => paginate(currentPage + 1)}
-                  disabled={currentPage === pageNumbers.length}
-                  style={{ fontSize: "", color: "black", width: '',  height: '' }}
+                  style={{ fontSize: "", color: "black", width: '', height: '' }}
                 />
-                </div>
+              </div>
+              <div class="basis-1/4"><TiArrowRightThick
+                onClick={() => paginate(currentPage + 1)}
+                disabled={currentPage === pageNumbers.length}
+                style={{ fontSize: "", color: "black", width: '', height: '' }}
+              />
+              </div>
             </div>
           </>
         ) : (
-      <div className="mockup-browser mt-10 mb-10 border border-t-4 ">
-        <div className="mockup-browser-toolbar">
-          <div className="input text-black-400">https://markbello.com</div>
-        </div>
-        <div className="flex justify-center px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-          <span
-            style={{ fontSize: '50px', fontWeightL: 'Bolder' }}
-          >
-            <b>
-              AYAW NA PANGITAA ANG WALA!
-            </b>
-          </span>
-        </div>
-      </div>
+          <div className="mockup-browser mt-10 mb-10 border border-t-4 ">
+            <div className="mockup-browser-toolbar">
+              <div className="input text-black-400">https://markbello.com</div>
+            </div>
+            <div className="flex justify-center px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+              <span
+                style={{ fontSize: '50px', fontWeightL: 'Bolder' }}
+              >
+                <b>
+                  AYAW NA PANGITAA ANG WALA!
+                </b>
+              </span>
+            </div>
+          </div>
         )}
       </div>
     </div>
