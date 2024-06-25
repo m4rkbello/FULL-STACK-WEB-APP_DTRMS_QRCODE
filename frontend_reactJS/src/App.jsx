@@ -37,11 +37,11 @@ import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
 import EmployeeChart from './components/Auth/employee/EmployeeChart';
 import AddDepartment from './components/Auth/admin/department/AddDepartment';
 import EditDepartment from './components/Auth/admin/department/EditDepartment';
+import EmployeeScanQRCode from './components/Auth/employee/EmployeeScanQRCode';
 //REDUX-DISPATCH ACTIONS
 import { fetchUsers } from './components/redux/actions/userAction';
 import { fetchEmployees } from './components/redux/actions/employeeAction';
 import { fetchAttendances } from './components/redux/actions/attendanceAction';
-
 
 function App(props) {
   //FOR AUTHENTICATION-PURPOSES GAMIT TOKEN UG ID SA USERS
@@ -264,7 +264,7 @@ function App(props) {
                 <Route path="/admin/login" element={<Login />} />
                 <Route path="/admin/register" element={<Register />} />
                 <Route path="/details" element={<PersonalDetails />} />
-                <Route path="*" element={<FourOFourNotFound />} />
+                <Route path="/scan/employee" element={<EmployeeScanQRCode />} />
               </Routes>
             )}
 
