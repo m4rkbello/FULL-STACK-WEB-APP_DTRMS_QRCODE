@@ -46,29 +46,29 @@ const Login = ({ loginUser }) => {
             <form className="card-body">
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text text-xl text-black">Email</span>
+                        <span className="label-text text-xl text-white">Email</span>
                     </label>
                     <label className="input input-bordered flex items-center gap-2 glass">
                         <input type="text" 
                         value={localEmail} 
                         onChange={(e) => setLocalEmail(e.target.value)}
-                         className="grow bg-black text-black"
+                         className="grow bg-black text-black placeholder-black"
                           placeholder="Email" />
                     </label>
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text text-xl text-black">Password</span>
+                        <span className="label-text text-xl text-white">Password</span>
                     </label>
                     <label className="input input-bordered flex items-center gap-2 glass">
                         <input value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} type="password" 
-                        className="grow text-black"
+                        className="grow text-black placeholder-black"
                          placeholder="Password"
                          style={{ color:'black' }}
                          />
                     </label>
                     <label className="label">
-                        <a href="#" className="label-text-alt link link-hover text-white text-xl">Forgot password?</a>
+                        <a href="#" className="label-text-alt link link-hover text-white text-lg">Forgot password?</a>
                     </label>
                 </div>
                 <div className="form-control mt-6">
