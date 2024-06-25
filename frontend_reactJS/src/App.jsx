@@ -217,7 +217,7 @@ function App(props) {
               <ul className="menu menu-horizontal drop-shadow-xl  px-1 text-black bg-transparent border-b-4">
                 <li className='shadow-2xl text-2xl'>
                   <Link to="/qrc">
-                    <BsQrCodeScan />
+                    <EmployeeScanQRCode />
                   </Link>
                 </li>
                 <li className='shadow-2xl text-2xl'>
