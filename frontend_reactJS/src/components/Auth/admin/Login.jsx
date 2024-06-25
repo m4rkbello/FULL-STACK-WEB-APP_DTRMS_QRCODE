@@ -49,7 +49,11 @@ const Login = ({ loginUser }) => {
                         <span className="label-text text-xl text-black">Email</span>
                     </label>
                     <label className="input input-bordered flex items-center gap-2 glass">
-                        <input type="text" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} className="grow bg-amber-100 text-zinc-100" placeholder="Email" />
+                        <input type="text" 
+                        value={localEmail} 
+                        onChange={(e) => setLocalEmail(e.target.value)}
+                         className="grow bg-black text-black"
+                          placeholder="Email" />
                     </label>
                 </div>
                 <div className="form-control">
@@ -57,7 +61,11 @@ const Login = ({ loginUser }) => {
                         <span className="label-text text-xl text-black">Password</span>
                     </label>
                     <label className="input input-bordered flex items-center gap-2 glass">
-                        <input value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} type="password" className="grow bg-amber-100 text-zinc-100" placeholder="Password" />
+                        <input value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} type="password" 
+                        className="grow text-black"
+                         placeholder="Password"
+                         style={{ color:'black' }}
+                         />
                     </label>
                     <label className="label">
                         <a href="#" className="label-text-alt link link-hover text-white text-xl">Forgot password?</a>
