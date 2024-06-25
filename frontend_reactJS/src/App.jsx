@@ -216,8 +216,8 @@ function App(props) {
             <div>
               <ul className="menu menu-horizontal drop-shadow-xl  px-1 text-black bg-transparent border-b-4">
                 <li className='shadow-2xl text-2xl'>
-                  <Link to="/qrc">
-                    <EmployeeScanQRCode />
+                  <Link to="/attendance/scan">
+                    <BsQrCodeScan />
                   </Link>
                 </li>
                 <li className='shadow-2xl text-2xl'>
@@ -264,7 +264,7 @@ function App(props) {
                 <Route path="/admin/login" element={<Login />} />
                 <Route path="/admin/register" element={<Register />} />
                 <Route path="/details" element={<PersonalDetails />} />
-                <Route path="/scan/employee" element={<EmployeeScanQRCode />} />
+                <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
               </Routes>
             )}
 
