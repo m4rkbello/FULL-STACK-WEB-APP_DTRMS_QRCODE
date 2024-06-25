@@ -98,8 +98,11 @@ npm install react-chartjs-2@latest
 ->composer remove endroid/qr-code
 ->composer require endroid/qr-code
 
-23. INSTALL QUICK-RESPONSE CODE READER IN REACTJS 
-->npm i react-qr-code 
+23. INSTALL QUICK-RESPONSE CODE READER IN REACTJS -HAS ERROR
+->npm i react-qr-code //HAS ERROR
+24. INSTALL ANOTHER QR-CODE READER FOR REACTJS
+->npm i qr-scanner 
+
 
 
 
