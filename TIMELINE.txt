@@ -102,6 +102,10 @@ npm install react-chartjs-2@latest
 ->npm i react-qr-code //HAS ERROR
 24. INSTALL ANOTHER QR-CODE READER FOR REACTJS
 ->npm i qr-scanner 
+25. ADD A REACT-ROUTER-DOM FOR QRCODE READER IN REACTJS 
+->npm install react-router-dom qr-scanner
+26. ADD AND IMPORT THE MODULE IN THE ROOT FOLDER (SRC)
+
 
 
 
