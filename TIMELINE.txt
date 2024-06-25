@@ -80,20 +80,27 @@ npm install react-chartjs-2@latest
 
 17. INSTALL REACT-DATA-TABLE-COMPONENT 
 ->npm i react-data-table-component (dili nata kailangan mag query gamit LIKE as logical operator para e search niya if naa ba na data or wala)
+
 18. ADD IMAGES USING STORAGE OF LARAVEL
 ->php artisan storage:link
 19. INSTALL ReactHTMLTableToExcel 
 ->npm install --save react-html-table-to-excel-3
+
 20. INSTALL QRCODE FOR LARAVEL 
 ->composer require simplesoftwareio/simple-qrcode (ERROR NI)
 21. INSTALL QRCODE GAMIT BACON
 ->composer require bacon/bacon-qr-code
+
 22. INSTALL ENDROID/QR-CODE (WALAY NEED emagick)
 ->composer require endroid/qr-code
 ->composer clear-cache
 ->composer dump-autoload
 ->composer remove endroid/qr-code
 ->composer require endroid/qr-code
+
+23. INSTALL QUICK-RESPONSE CODE READER IN REACTJS 
+->npm i react-qr-code 
+
 
 
 
