@@ -1,39 +1,31 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import QrScanner from 'qr-scanner';
 import 'qr-scanner/qr-scanner-worker.min.js';
+import { qrCodeAttendance } from '../../redux/actions/attendanceAction';
 
 function EmployeeScanQRCode() {
   const videoRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [debouncedScan, setDebouncedScan] = useState(null);
 
   useEffect(() => {
-    const scanner = new QrScanner(videoRef.current, async (email) => {
+    const scanner = new QrScanner(videoRef.current, async (result) => {
       try {
         // Update the debounced scan function
         setDebouncedScan(() => {
           return async () => {
             try {
-              // Actual fetch request
-              const response = await fetch('http://127.0.0.1:8000/api/scan-qrcode', {
-                method: 'POST',
-                body: JSON.stringify({ email }),
-              });
+              const email = result.data; // Assuming the QR code contains the email
+              // Dispatch the Redux action
+              await dispatch(qrCodeAttendance(email));
 
-              if (!response.ok) {
-                throw new Error(`API request failed with status ${response.status}`);
-              }
-
-              const data = await response.json();
-
-              // Handle successful response (e.g., login user, redirect)
-              console.log("QR Code Authentication Successful:", data);
+              // Navigate to the dashboard or handle the successful response
               navigate('/dashboard'); // Replace with your desired redirect
             } catch (error) {
-              // Handle errors (e.g., display error messages)
               console.error("QR Code Authentication Error:", error);
-              // Display error message to user
               alert("An error occurred during authentication. Please try again.");
             }
           };
@@ -47,7 +39,6 @@ function EmployeeScanQRCode() {
         }, 500);
       } catch (error) {
         console.error("QR Code Scanner Error:", error);
-        // Display error message to user
         alert("QR Code Scanner encountered an error. Please try again or check your camera permissions.");
       }
     });
@@ -55,9 +46,9 @@ function EmployeeScanQRCode() {
     scanner.start();
 
     return () => {
-      scanner.stop(); // Use `stop` instead of `destroy` to stop the scanner
+      scanner.stop();
     };
-  }, [debouncedScan, navigate]);
+  }, [debouncedScan, dispatch, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">
