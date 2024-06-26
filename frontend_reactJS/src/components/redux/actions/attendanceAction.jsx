@@ -15,8 +15,14 @@ import {
     DELETE_EMPLOYEE_REQUEST,
     DELETE_EMPLOYEE_SUCCESS,
     DELETE_EMPLOYEE_FAILURE,
-
 } from '../types/employeeTypes.jsx';
+
+import {
+    QRCODE_ATTENDANCE_REQUEST,
+    QRCODE_ATTENDANCE_SUCCESS,
+    QRCODE_ATTENDANCE_FAILURE,
+} from '../types/attendanceTypes.jsx';
+
 
 //MAG-FETCH UG EMPLOYEE
 export const fetchAttendances = () => async dispatch => {
@@ -86,6 +92,24 @@ export const deleteAttendance = attendanceId => async dispatch => {
         dispatch({
             type: DELETE_EMPLOYEE_FAILURE,
             payload: error.message
+        });
+    }
+};
+
+
+// ISKANON SA FRONTEND TAPOS ILABAY SA REDUX SA ENDPOINT
+export const qrCodeAttendance = (email) => async (dispatch) => {
+    try {
+        dispatch({ type: QRCODE_ATTENDANCE_REQUEST });
+        const response = await MarkBelloApi.post('/api/scan-qrcode', { email });
+        dispatch({
+            type: QRCODE_ATTENDANCE_SUCCESS,
+            payload: response.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: QRCODE_ATTENDANCE_FAILURE,
+            payload: error.message,
         });
     }
 };
