@@ -50,7 +50,6 @@ class AttendanceController extends Controller
             'attendance_time_out' => Carbon::now(),
             'attendance_status' => 1,
         ]);
-
                 // Log the successful operation
                 Log::info('Attendance created successfully for employee ID: ' . $employeeId, [
                     'employee_id' => $employeeId,
