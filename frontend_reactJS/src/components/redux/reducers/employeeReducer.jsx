@@ -70,7 +70,7 @@ const employeeReducer = (state = initialState, action) => {
                 uploadAndUpdateImageLoadingEmployee: false,
                 uploadAndUpdateImageEmployeeError: null,
 
-            }
+            };
         case FETCH_EMPLOYEES_FAILURE:
         case ADD_EMPLOYEE_FAILURE:
         case UPDATE_EMPLOYEE_FAILURE:
