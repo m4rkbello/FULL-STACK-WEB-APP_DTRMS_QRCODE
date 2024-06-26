@@ -96,10 +96,7 @@ function EmployeeScanQRCode() {
           </div>
         </div>
       </div>
-
     </div>
-
-
   );
 }
 
