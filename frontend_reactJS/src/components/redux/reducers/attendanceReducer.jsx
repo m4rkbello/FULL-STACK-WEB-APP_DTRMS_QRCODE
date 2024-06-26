@@ -10,7 +10,10 @@ import {
     UPDATE_ATTENDANCE_FAILURE,
     DELETE_ATTENDANCE_REQUEST,
     DELETE_ATTENDANCE_SUCCESS,
-    DELETE_ATTENDANCE_FAILURE
+    DELETE_ATTENDANCE_FAILURE,
+    QRCODE_ATTENDANCE_REQUEST,
+    QRCODE_ATTENDANCE_SUCCESS,
+    QRCODE_ATTENDANCE_FAILURE,
 } from '../types/attendanceTypes.jsx';
 
 const initialState = {
@@ -25,6 +28,7 @@ const attendanceReducer = (state = initialState, action) => {
         case ADD_ATTENDANCE_REQUEST:
         case UPDATE_ATTENDANCE_REQUEST:
         case DELETE_ATTENDANCE_REQUEST:
+        case QRCODE_ATTENDANCE_REQUEST:
             return  {
                 ...state,
                 loading: true,
@@ -58,10 +62,18 @@ const attendanceReducer = (state = initialState, action) => {
                 loading: false,
                 error: null
             };
+        case QRCODE_ATTENDANCE_SUCCESS:
+            return {
+                ...state,
+                attendances: [...state.attendances, action.payload],
+                loading: false,
+                error: null
+            };
         case FETCH_ATTENDANCES_FAILURE:
         case ADD_ATTENDANCE_FAILURE:
         case UPDATE_ATTENDANCE_FAILURE:
         case DELETE_ATTENDANCE_FAILURE:
+        case QRCODE_ATTENDANCE_FAILURE:
             return {
                 ...state,
                 loading: false,
