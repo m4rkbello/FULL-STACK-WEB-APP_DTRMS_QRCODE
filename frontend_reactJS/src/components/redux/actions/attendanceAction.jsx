@@ -101,25 +101,27 @@ export const deleteAttendance = attendanceId => async dispatch => {
 // ISKANON SA FRONTEND TAPOS ILABAY SA REDUX SA ENDPOINT
 export const qrCodeAttendance = (email) => async (dispatch) => {
     try {
-        console.log("Request Data:", email); // Log the request data
-        dispatch({ type: QRCODE_ATTENDANCE_REQUEST });
-        
-        const response = await MarkBelloApi.post('/api/scan-qrcode', { email });
-        console.log("Response Data:", response.data); // Log the response data
-        
+      console.log("Request Data:", { employee_email: email });
+      dispatch({ type: QRCODE_ATTENDANCE_REQUEST });
+  
+      const response = await MarkBelloApi.post('api/attendance/qrcode/data', { employee_email: email });
+      console.log("Response Data:", response.data);
+  
+      if (response.data.success) {
         dispatch({
-            type: QRCODE_ATTENDANCE_SUCCESS,
-            payload: response.data,
+          type: QRCODE_ATTENDANCE_SUCCESS,
+          payload: response.data,
         });
-        
-        return response.data; // Return the response data for further handling
+        return response.data;
+      } else {
+        throw new Error(response.data.message || 'Failed to record attendance');
+      }
     } catch (error) {
-        console.error("Error Response:", error); // Log the error response
-        dispatch({
-            type: QRCODE_ATTENDANCE_FAILURE,
-            payload: error.message,
-        });
-        
-        throw error; // Rethrow the error to handle it in the component
+      console.error("Error Response:", error.response || error);
+      dispatch({
+        type: QRCODE_ATTENDANCE_FAILURE,
+        payload: error.message,
+      });
+      throw error;
     }
-};
+  };
