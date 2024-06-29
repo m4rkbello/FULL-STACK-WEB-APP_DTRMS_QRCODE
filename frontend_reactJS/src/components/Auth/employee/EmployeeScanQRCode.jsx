@@ -12,15 +12,19 @@ function EmployeeScanQRCode() {
   const [debouncedScan, setDebouncedScan] = useState(null);
 
   useEffect(() => {
+    console.log("Setting up QR Scanner");
     const scanner = new QrScanner(videoRef.current, async (result) => {
+      console.log("QR Code detected:", result);
       try {
         // Update the debounced scan function
         setDebouncedScan(() => {
           return async () => {
             try {
               const email = result.data; // Assuming the QR code contains the email
+              console.log("Email extracted from QR code:", email);
               // Dispatch the Redux action
-              await dispatch(qrCodeAttendance(email));
+              const qrcodeReqRes = await dispatch(qrCodeAttendance(email));
+              console.log("QR Code Attendance Result:", qrcodeReqRes); // Log the result
 
               // Navigate to the dashboard or handle the successful response
               navigate('/dashboard'); // Replace with your desired redirect
@@ -34,6 +38,7 @@ function EmployeeScanQRCode() {
         // Call the debounced function after 500 milliseconds
         setTimeout(() => {
           if (debouncedScan) {
+            console.log("Executing debounced scan function");
             debouncedScan();
           }
         }, 500);
@@ -43,10 +48,16 @@ function EmployeeScanQRCode() {
       }
     });
 
-    scanner.start();
+    scanner.start().then(() => {
+      console.log("QR Scanner started");
+    }).catch(error => {
+      console.error("Failed to start QR Scanner:", error);
+      alert("Failed to start QR Scanner. Please check your camera permissions.");
+    });
 
     return () => {
       scanner.stop();
+      console.log("QR Scanner stopped");
     };
   }, [debouncedScan, dispatch, navigate]);
 
