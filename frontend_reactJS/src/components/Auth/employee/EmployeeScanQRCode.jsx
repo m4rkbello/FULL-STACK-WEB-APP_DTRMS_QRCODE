@@ -9,57 +9,64 @@ function EmployeeScanQRCode() {
   const videoRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [debouncedScan, setDebouncedScan] = useState(null);
+  const [scannerActive, setScannerActive] = useState(true);
+  const [scanResult, setScanResult] = useState(null);
 
   useEffect(() => {
-    console.log("Setting up QR Scanner");
-    const scanner = new QrScanner(videoRef.current, async (result) => {
-      console.log("QR Code detected:", result);
-      try {
-        // Update the debounced scan function
-        setDebouncedScan(() => {
-          return async () => {
-            try {
-              const email = result.data; // Assuming the QR code contains the email
-              console.log("Email extracted from QR code:", email);
-              // Dispatch the Redux action
-              const qrcodeReqRes = await dispatch(qrCodeAttendance(email));
-              console.log("QR Code Attendance Result:", qrcodeReqRes); // Log the result
-
-              // Navigate to the dashboard or handle the successful response
-              navigate('/dashboard'); // Replace with your desired redirect
-            } catch (error) {
-              console.error("QR Code Authentication Error:", error);
-              alert("An error occurred during authentication. Please try again.");
+    let scanner;
+    
+    const setupScanner = () => {
+      scanner = new QrScanner(videoRef.current, async (result) => {
+        if (scannerActive) {
+          console.log("QR Code detected:", result);
+          setScanResult(result.data);
+          setScannerActive(false);
+          
+          try {
+            const email = result.data;
+            // if (!email.includes('@gmail.com')) {
+            //   throw new Error('Invalid email format in QR code');
+            // }
+            console.log("Email extracted from QR code:", email);
+            const qrcodeReqRes = await dispatch(qrCodeAttendance(email));
+            console.log("QR Code Attendance Result:", qrcodeReqRes);
+            
+            if (qrcodeReqRes.success) {
+              alert(qrcodeReqRes.message || "Attendance recorded successfully!");
+            } else {
+              throw new Error(qrcodeReqRes.message || "Failed to record attendance");
             }
-          };
-        });
-
-        // Call the debounced function after 500 milliseconds
-        setTimeout(() => {
-          if (debouncedScan) {
-            console.log("Executing debounced scan function");
-            debouncedScan();
+            
+          } catch (error) {
+            console.error("QR Code Authentication Error:", error);
+            alert(error.message || "An error occurred during authentication. Please try again.");
+          } finally {
+            // Re-enable the scanner after 15 seconds
+            setTimeout(() => {
+              setScannerActive(true);
+              setScanResult(null);
+            }, 15000);
           }
-        }, 500);
-      } catch (error) {
-        console.error("QR Code Scanner Error:", error);
-        alert("QR Code Scanner encountered an error. Please try again or check your camera permissions.");
-      }
-    });
-
-    scanner.start().then(() => {
-      console.log("QR Scanner started");
-    }).catch(error => {
-      console.error("Failed to start QR Scanner:", error);
-      alert("Failed to start QR Scanner. Please check your camera permissions.");
-    });
-
-    return () => {
-      scanner.stop();
-      console.log("QR Scanner stopped");
+        }
+      });
+  
+      scanner.start().then(() => {
+        console.log("QR Scanner started");
+      }).catch(error => {
+        console.error("Failed to start QR Scanner:", error);
+        alert("Failed to start QR Scanner. Please check your camera permissions.");
+      });
     };
-  }, [debouncedScan, dispatch, navigate]);
+  
+    setupScanner();
+  
+    return () => {
+      if (scanner) {
+        scanner.destroy();
+        console.log("QR Scanner stopped");
+      }
+    };
+  }, [dispatch]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -81,6 +88,11 @@ function EmployeeScanQRCode() {
                   muted
                   style={{ objectFit: 'cover' }}
                 />
+                {scanResult && (
+                  <div className="mt-4 text-center text-green-600">
+                    Scan successful! Please wait for 15 seconds before scanning again.
+                  </div>
+                )}
               </div>
               <div className='flex justify-center'>
                 <label className="text-2xl mx-2">
