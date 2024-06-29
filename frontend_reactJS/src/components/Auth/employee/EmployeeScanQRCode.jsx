@@ -24,11 +24,10 @@ function EmployeeScanQRCode() {
           
           try {
             const email = result.data;
-            // if (!email.includes('@gmail.com')) {
-            //   throw new Error('Invalid email format in QR code');
-            // }
             console.log("Email extracted from QR code:", email);
-            const qrcodeReqRes = await dispatch(qrCodeAttendance(email));
+            
+            // Dispatch the action with the email
+            const qrcodeReqRes = await dispatch(qrCodeAttendance({ employee_email: email }));
             console.log("QR Code Attendance Result:", qrcodeReqRes);
             
             if (qrcodeReqRes.success) {
@@ -68,6 +67,7 @@ function EmployeeScanQRCode() {
     };
   }, [dispatch]);
 
+  
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="mockup-phone border-primary">
