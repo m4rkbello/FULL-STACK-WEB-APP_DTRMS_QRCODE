@@ -51,8 +51,8 @@ class AttendanceController extends Controller
             $attendance = Attendance::create([
                 'attendance_employee_id' => $employeeId,
                 'attendance_note' => $employeeId,
-                'attendance_time_in' => Carbon::now(),
-                'attendance_time_out' => Carbon::now(),
+                // 'attendance_time_in' => Carbon::now(),
+                // 'attendance_time_out' => Carbon::now(),
                 'attendance_status' => 1,
             ]);
     
@@ -68,7 +68,7 @@ class AttendanceController extends Controller
                 'details' => $attendance,
                 'message' => 'Employee has been successfully added!',
             ], 200);
-            
+
         } catch (\Illuminate\Validation\ValidationException $e) {
             Log::error('Validation error: ' . $e->getMessage(), ['errors' => $e->errors()]);
             return response()->json([

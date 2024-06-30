@@ -19,11 +19,11 @@ function EmployeeScanQRCode() {
       scanner = new QrScanner(videoRef.current, async (result) => {
         if (scannerActive) {
           console.log("QR Code detected:", result);
-          setScanResult(result.data);
+          setScanResult(result);
           setScannerActive(false);
           
           try {
-            const email = result.data;
+            const email = result;
             console.log("Email extracted from QR code:", email);
             
             // Dispatch the action with the email
