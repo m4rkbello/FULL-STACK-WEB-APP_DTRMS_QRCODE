@@ -101,29 +101,29 @@ export const deleteAttendance = attendanceId => async dispatch => {
 // ISKANON SA FRONTEND TAPOS ILABAY SA REDUX SA ENDPOINT
 export const qrCodeAttendance = (data) => async (dispatch) => {
     try {
-      console.log("qrCodeAttendance action called with data:", data);
-      dispatch({ type: QRCODE_ATTENDANCE_REQUEST });
-  
-    //   const response = await MarkBelloApi.post('api/attendance/qrcode/data', data);
-    const response = await MarkBelloApi.post('api/attendance/qrcode/data', JSON.stringify({ employee_email: data.employee_email }));
-      console.log("Full API Response:", response);
-  
-      if (response.data.success) {
-        dispatch({
-          type: QRCODE_ATTENDANCE_SUCCESS,
-          payload: response.data,
-        });
-        return response.data;
-      } else {
-        throw new Error(response.data.message || 'Failed to record attendance');
-      }
+        console.log("qrCodeAttendance action called with data:", data);
+        dispatch({ type: 'QRCODE_ATTENDANCE_REQUEST' });
+
+        // Post request to the API
+        const response = await MarkBelloApi.post('/api/attendance/qrcode/data', { employee_email: data.employee_email });
+        console.log("Full API Response:", response);
+
+        if (response.data.success) {
+            dispatch({
+                type: 'QRCODE_ATTENDANCE_SUCCESS',
+                payload: response.data,
+            });
+            return response.data;
+        } else {
+            throw new Error(response.data.message || 'Failed to record attendance');
+        }
     } catch (error) {
-      console.error("Full Error Object:", error);
-      console.error("Error Response Data:", error.response?.data);
-      dispatch({
-        type: QRCODE_ATTENDANCE_FAILURE,
-        payload: error.message,
-      });
-      throw error;
+        console.error("Full Error Object:", error);
+        console.error("Error Response Data:", error.response?.data);
+        dispatch({
+            type: 'QRCODE_ATTENDANCE_FAILURE',
+            payload: error.message,
+        });
+        throw error;
     }
 };
