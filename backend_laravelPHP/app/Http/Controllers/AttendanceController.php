@@ -47,6 +47,8 @@ class AttendanceController extends Controller
             }
     
             $employeeId = $employee->id;
+
+            
     
             $attendance = Attendance::create([
                 'attendance_employee_id' => $employeeId,
