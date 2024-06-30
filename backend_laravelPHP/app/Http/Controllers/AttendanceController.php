@@ -47,33 +47,37 @@ class AttendanceController extends Controller
                 ], 401);
             }
 
-            $dateNow = Carbon::now();
-            $currentDate = $dateNow->format('Y-m-d');
-
+            //id-sa-empleyado
             $employeeId = $employee->id;
+            $timeIn = 'Time-in';
+            $timeOut = 'Time-out';
 
-            // $parsedDate = Carbon::createFromFormat('Y-m-d', $currentDate)->format('Y-m-d');
+            $attendanceCollections = Attendance::where('attendance_employee_id', '=', $employeeId)->exists();
 
-            // $employee = Attendance::where('attendance_employee_id','=', $employeeId)where('created_at','=',)
-            $attendanceCollection = DB::table('attendances')
-            ->where('attendance_employee_id','=',$employeeId)
-            ->whereDate('created_at','=',$currentDate)
-            ->first();
+            if(!$attendanceCollections){
+                $attendance = Attendance::create([
+                    'attendance_employee_id' => $employeeId,
+                    'attendance_note' => $timeIn,
+                    'attendance_time_in' => Carbon::now(),
+                    // 'attendance_time_out' => Carbon::now(),
+                    'attendance_status' => 1,
+                ]);
+            }else{
+                $attendance = Attendance::create([
+                    'attendance_employee_id' => $employeeId,
+                    'attendance_note' => $timeOut,
+                    // 'attendance_time_in' => Carbon::now(),
+                    'attendance_time_out' => Carbon::now(),
+                    'attendance_status' => 2,
+                ]);
+            }
 
-            $attendance = Attendance::create([
-                'attendance_employee_id' => $employeeId,
-                'attendance_note' => $employeeId,
-                'attendance_time_in' => Carbon::now(),
-                // 'attendance_time_out' => Carbon::now(),
-                'attendance_status' => 1,
-            ]);
-    
             Log::info('Attendance created successfully', [
                 'employee_id' => $employeeId,
                 'attendance_id' => $attendance->id,
                 'attendance_time_in' => $attendance->attendance_time_in,
                 'attendance_time_out' => $attendance->attendance_time_out,
-                'parse'=> $currentDate, 
+                'parse'=> $attendanceCollections, 
             ]);
     
             return response()->json([
