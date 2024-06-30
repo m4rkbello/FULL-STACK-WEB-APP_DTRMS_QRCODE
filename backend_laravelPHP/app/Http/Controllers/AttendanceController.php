@@ -8,6 +8,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use DB;
 
 class AttendanceController extends Controller
 {
@@ -45,15 +46,24 @@ class AttendanceController extends Controller
                     'message' => 'No existing employee!',
                 ], 401);
             }
-    
+
+            $dateNow = Carbon::now();
+            $currentDate = $dateNow->format('Y-m-d');
+
             $employeeId = $employee->id;
 
-            
-    
+            // $parsedDate = Carbon::createFromFormat('Y-m-d', $currentDate)->format('Y-m-d');
+
+            // $employee = Attendance::where('attendance_employee_id','=', $employeeId)where('created_at','=',)
+            $attendanceCollection = DB::table('attendances')
+            ->where('attendance_employee_id','=',$employeeId)
+            ->whereDate('created_at','=',$currentDate)
+            ->first();
+
             $attendance = Attendance::create([
                 'attendance_employee_id' => $employeeId,
                 'attendance_note' => $employeeId,
-                // 'attendance_time_in' => Carbon::now(),
+                'attendance_time_in' => Carbon::now(),
                 // 'attendance_time_out' => Carbon::now(),
                 'attendance_status' => 1,
             ]);
@@ -63,6 +73,7 @@ class AttendanceController extends Controller
                 'attendance_id' => $attendance->id,
                 'attendance_time_in' => $attendance->attendance_time_in,
                 'attendance_time_out' => $attendance->attendance_time_out,
+                'parse'=> $currentDate, 
             ]);
     
             return response()->json([
