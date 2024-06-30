@@ -65,7 +65,7 @@ function EmployeeScanQRCode() {
         console.log("QR Scanner stopped");
       }
     };
-  }, [dispatch]);
+  }, [dispatch, scannerActive]);
 
   
   return (
