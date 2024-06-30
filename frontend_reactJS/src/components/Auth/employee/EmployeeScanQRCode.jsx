@@ -1,9 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+// QR Code Reader
 import QrScanner from 'qr-scanner';
 import 'qr-scanner/qr-scanner-worker.min.js';
+// Redux
 import { qrCodeAttendance } from '../../redux/actions/attendanceAction';
+// Toaster
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function EmployeeScanQRCode() {
   const videoRef = useRef(null);
@@ -11,44 +16,71 @@ function EmployeeScanQRCode() {
   const dispatch = useDispatch();
   const [scannerActive, setScannerActive] = useState(true);
   const [scanResult, setScanResult] = useState(null);
+  const audioRef = useRef(new Audio('/frontend_reactJS/public/Recording.m4a')); // Adjust the path to your audio file
 
   useEffect(() => {
     let scanner;
-    
+
     const setupScanner = () => {
       scanner = new QrScanner(videoRef.current, async (result) => {
         if (scannerActive) {
           console.log("QR Code detected:", result);
           setScanResult(result);
           setScannerActive(false);
-          
+
           try {
             const email = result;
             console.log("Email extracted from QR code:", email);
-            
+
             // Dispatch the action with the email
             const qrcodeReqRes = await dispatch(qrCodeAttendance({ employee_email: email }));
             console.log("QR Code Attendance Result:", qrcodeReqRes);
-            
+
             if (qrcodeReqRes.success) {
-              alert(qrcodeReqRes.message || "Attendance recorded successfully!");
+              toast.success(qrcodeReqRes.message || 'Attendance recorded successfully!', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                  background: 'black',
+                  color: '#A3E636',
+                  fontSize: '17px',
+                },
+              });
             } else {
-              throw new Error(qrcodeReqRes.message || "Failed to record attendance");
+              throw new Error(qrcodeReqRes.message || 'Failed to record attendance');
             }
-            
           } catch (error) {
-            console.error("QR Code Authentication Error:", error);
-            alert(error.message || "An error occurred during authentication. Please try again.");
+            console.error('QR Code Authentication Error:', error);
+            toast.error(error.message || 'An error occurred during authentication. Please try again.', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              style: {
+                background: 'black',
+                color: 'red',
+                fontSize: '15px',
+                fontWeight: 'Bold',
+              },
+            });
           } finally {
             // Re-enable the scanner after 15 seconds
             setTimeout(() => {
               setScannerActive(true);
               setScanResult(null);
-            }, 15000);
+            }, 3000);
           }
         }
       });
-  
+
       scanner.start().then(() => {
         console.log("QR Scanner started");
       }).catch(error => {
@@ -56,9 +88,9 @@ function EmployeeScanQRCode() {
         alert("Failed to start QR Scanner. Please check your camera permissions.");
       });
     };
-  
+
     setupScanner();
-  
+
     return () => {
       if (scanner) {
         scanner.destroy();
@@ -67,9 +99,16 @@ function EmployeeScanQRCode() {
     };
   }, [dispatch, scannerActive]);
 
-  
+  // Use useEffect to play audio when scanResult is updated
+  useEffect(() => {
+    if (scanResult) {
+      audioRef.current.play();
+    }
+  }, [scanResult]);
+
   return (
     <div className="min-h-screen flex items-center justify-center">
+      <ToastContainer />
       <div className="mockup-phone border-primary">
         <div className="camera"></div>
         <div className="display">
@@ -89,7 +128,7 @@ function EmployeeScanQRCode() {
                   style={{ objectFit: 'cover' }}
                 />
                 {scanResult && (
-                  <div className="mt-4  text-lg text-center text-white">
+                  <div className="mt-4 text-lg text-center text-white">
                     Scan successful! Please wait for 15 seconds before scanning again.
                   </div>
                 )}
