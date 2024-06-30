@@ -68,6 +68,7 @@ class AttendanceController extends Controller
                 'details' => $attendance,
                 'message' => 'Employee has been successfully added!',
             ], 200);
+            
         } catch (\Illuminate\Validation\ValidationException $e) {
             Log::error('Validation error: ' . $e->getMessage(), ['errors' => $e->errors()]);
             return response()->json([
@@ -99,6 +100,7 @@ class AttendanceController extends Controller
             ], 500);
         }
     }
+    
     
     
     /**
