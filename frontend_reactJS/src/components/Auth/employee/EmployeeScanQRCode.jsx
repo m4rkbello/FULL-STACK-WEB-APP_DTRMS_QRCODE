@@ -89,7 +89,7 @@ function EmployeeScanQRCode() {
                   style={{ objectFit: 'cover' }}
                 />
                 {scanResult && (
-                  <div className="mt-4 text-center text-green-600">
+                  <div className="mt-4  text-lg text-center text-white">
                     Scan successful! Please wait for 15 seconds before scanning again.
                   </div>
                 )}
