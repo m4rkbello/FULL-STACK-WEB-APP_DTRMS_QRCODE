@@ -54,6 +54,13 @@ class AttendanceController extends Controller
 
             $attendanceCollections = Attendance::where('attendance_employee_id', '=', $employeeId)->exists();
 
+            $attendanceCollectionsTimein = Attendance::where('attendance_employee_id', '=', $employeeId)
+            ->where('attendance_status','=',1)
+            ->exists();
+            $attendanceCollectionsTimeout = Attendance::where('attendance_employee_id', '=', $employeeId)
+            ->where('attendance_status','=',2)
+            ->exists();
+
             if(!$attendanceCollections){
                 $attendance = Attendance::create([
                     'attendance_employee_id' => $employeeId,
@@ -62,15 +69,29 @@ class AttendanceController extends Controller
                     // 'attendance_time_out' => Carbon::now(),
                     'attendance_status' => 1,
                 ]);
+            }elseif($attendanceCollectionsTimein && !$attendanceCollectionsTimeout){
+                    $attendance = Attendance::create([
+                        'attendance_employee_id' => $employeeId,
+                        'attendance_note' => $timeOut,
+                        // 'attendance_time_in' => Carbon::now(),
+                        'attendance_time_out' => Carbon::now(),
+                        'attendance_status' => 2,
+                    ]);
+            }elseif($attendanceCollectionsTimein && $attendanceCollectionsTimeout){
+                return response()->json([
+                    'success' => true,
+                    'details' => $attendanceCollections,
+                    'message' => 'Duplicated!',
+                ], 401);
+
             }else{
-                $attendance = Attendance::create([
-                    'attendance_employee_id' => $employeeId,
-                    'attendance_note' => $timeOut,
-                    // 'attendance_time_in' => Carbon::now(),
-                    'attendance_time_out' => Carbon::now(),
-                    'attendance_status' => 2,
-                ]);
-            }
+                return response()->json([
+                    'success' => true,
+                    'details' => $attendanceCollections,
+                    'message' => 'Duplicated!',
+                ], 401);
+    
+            }   
 
             Log::info('Attendance created successfully', [
                 'employee_id' => $employeeId,
