@@ -60,7 +60,7 @@ class AttendanceController extends Controller
             $attendanceCollectionsTimein = Attendance::where('attendance_employee_id', $employeeId)
             ->whereDate('created_at', Carbon::today())
             ->where('attendance_status', 1)
-            ->whereTime('created_at', '<', '12:00:00')
+            ->whereTime('created_at', '<=', '12:00:00')
             ->exists();
 
             // Check if there is a time-in record for today in the PM
