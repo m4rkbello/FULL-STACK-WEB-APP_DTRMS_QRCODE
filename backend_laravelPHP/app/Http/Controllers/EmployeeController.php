@@ -76,7 +76,6 @@ class EmployeeController extends Controller
             $employee->employee_qrcode = asset('qrcodes/' . $employee->id . '.png');
             $employee->save();
 
-
             // Prepare the response data
             $response_data = [
                 'success' => true,
