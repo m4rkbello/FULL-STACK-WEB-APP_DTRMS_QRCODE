@@ -52,13 +52,18 @@ class AttendanceController extends Controller
             $timeIn = 'Time-in';
             $timeOut = 'Time-out';
 
-            $attendanceCollections = Attendance::where('attendance_employee_id', '=', $employeeId)->exists();
+            $attendanceCollections = Attendance::where('attendance_employee_id', '=', $employeeId)
+            ->whereDate('created_at', Carbon::today())
+            ->exists();
 
             $attendanceCollectionsTimein = Attendance::where('attendance_employee_id', '=', $employeeId)
+            ->whereDate('created_at', Carbon::today())
             ->where('attendance_status','=',1)
             ->exists();
+
             $attendanceCollectionsTimeout = Attendance::where('attendance_employee_id', '=', $employeeId)
             ->where('attendance_status','=',2)
+            ->whereDate('created_at', Carbon::today())
             ->exists();
 
             if(!$attendanceCollections){
@@ -81,14 +86,14 @@ class AttendanceController extends Controller
                 return response()->json([
                     'success' => true,
                     'details' => $attendanceCollections,
-                    'message' => 'Duplicated!',
+                    'message' => 'Duplicated Employee Attendance!',
                 ], 401);
 
             }else{
                 return response()->json([
                     'success' => true,
                     'details' => $attendanceCollections,
-                    'message' => 'Duplicated!',
+                    'message' => 'Duplicated Employee Attendance!',
                 ], 401);
     
             }   
@@ -138,8 +143,6 @@ class AttendanceController extends Controller
             ], 500);
         }
     }
-    
-    
     
     /**
      * Display the specified resource.
