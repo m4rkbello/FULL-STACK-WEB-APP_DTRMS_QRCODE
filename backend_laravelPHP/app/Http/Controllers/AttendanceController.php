@@ -56,14 +56,18 @@ class AttendanceController extends Controller
             ->whereDate('created_at', Carbon::today())
             ->exists();
 
-            $attendanceCollectionsTimein = Attendance::where('attendance_employee_id', '=', $employeeId)
+   // Check if there is a time-in record for today in the AM
+            $attendanceCollectionsTimein = Attendance::where('attendance_employee_id', $employeeId)
             ->whereDate('created_at', Carbon::today())
-            ->where('attendance_status','=',1)
+            ->where('attendance_status', 1)
+            ->whereTime('created_at', '<', '12:00:00')
             ->exists();
 
-            $attendanceCollectionsTimeout = Attendance::where('attendance_employee_id', '=', $employeeId)
-            ->where('attendance_status','=',2)
+            // Check if there is a time-in record for today in the PM
+            $attendanceCollectionsTimeout = Attendance::where('attendance_employee_id', $employeeId)
             ->whereDate('created_at', Carbon::today())
+            ->where('attendance_status', 2)
+            ->whereTime('created_at', '>=', '12:00:00')
             ->exists();
 
             if(!$attendanceCollections){
@@ -74,7 +78,7 @@ class AttendanceController extends Controller
                     // 'attendance_time_out' => Carbon::now(),
                     'attendance_status' => 1,
                 ]);
-            }elseif($attendanceCollectionsTimein && !$attendanceCollectionsTimeout){
+            }elseif(!$attendanceCollectionsTimein && !$attendanceCollectionsTimeout){
                     $attendance = Attendance::create([
                         'attendance_employee_id' => $employeeId,
                         'attendance_note' => $timeOut,
@@ -149,7 +153,30 @@ class AttendanceController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+        try {
+            $employee = Attendance::findOrFail($id);
+        
+            return response()->json([
+                'success' => true,
+                'employee' => $employee,
+            ], 200);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Employee not found.',
+            ], 404);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch employee. Please try again later.',
+            ], 500);
+        }
     }
 
     /**
