@@ -45,7 +45,7 @@ class AttendanceController extends Controller
                     'status' => 401,
                     'message' => 'No existing employee!',
                 ], 401);
-            }
+            };
 
             //id-sa-empleyado
             $employeeId = $employee->id;
