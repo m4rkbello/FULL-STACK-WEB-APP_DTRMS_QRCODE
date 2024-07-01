@@ -33,6 +33,7 @@ Route::post('/login',[AuthController::class, 'login']);
 Route::prefix('attendance')->group(function () {
         Route::get('/all',[AttendanceController::class, 'index']);
         Route::post('/qrcode/data',[AttendanceController::class, 'store']);
+        Route::get('/qrcode/data/{id}',[AttendanceController::class, 'show']);
 });
 
 
