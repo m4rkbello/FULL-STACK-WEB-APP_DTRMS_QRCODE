@@ -78,7 +78,7 @@ class AttendanceController extends Controller
                     // 'attendance_time_out' => Carbon::now(),
                     'attendance_status' => 1,
                 ]);
-            }elseif(!$attendanceCollectionsTimein && !$attendanceCollectionsTimeout){
+            }elseif($attendanceCollectionsTimein && !$attendanceCollectionsTimeout){
                     $attendance = Attendance::create([
                         'attendance_employee_id' => $employeeId,
                         'attendance_note' => $timeOut,
