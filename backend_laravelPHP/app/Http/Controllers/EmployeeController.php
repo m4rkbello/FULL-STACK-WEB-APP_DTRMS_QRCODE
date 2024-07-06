@@ -97,6 +97,7 @@ class EmployeeController extends Controller
     private function saveQRCode($qrCodeImage, $userId)
     {
         $directory = public_path('qrcodes');
+        
         if (!is_dir($directory)) {
             if (!mkdir($directory, 0755, true)) {
                 Log::error("Failed to create directory: $directory");
