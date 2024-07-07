@@ -120,7 +120,6 @@ const UserDetails = (props) => {
     );
 }
 
-
   return (
 
     <div className="hero min-h-screen bg-zinc-300 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
