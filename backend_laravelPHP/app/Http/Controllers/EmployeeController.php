@@ -15,7 +15,6 @@ use Endroid\QrCode\Writer\PngWriter;
 use Log;
 
 
-
 class EmployeeController extends Controller
 {
     /**
