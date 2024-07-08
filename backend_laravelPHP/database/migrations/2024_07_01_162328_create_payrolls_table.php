@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('payroll_description');
             $table->string('payroll_department');
             $table->integer('payroll_status_id')->nullable();
-
-
             $table->timestamps();
         });
     }
