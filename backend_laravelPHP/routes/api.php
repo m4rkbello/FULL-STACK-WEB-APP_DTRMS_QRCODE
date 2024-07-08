@@ -38,14 +38,14 @@ Route::prefix('attendance')->group(function () {
 
 
 
-// MIDDLEWARE FOR FRONTEND-BACKEND  
 Route::middleware('auth:sanctum')->group(function() {
-    // ADMIN
-    Route::get('/users',[AuthController::class, 'index']);
-    Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);
-    Route::post('/user/change-password/{id}', [AuthController::class, 'changePassword']);
-    // EMPLOYEE
-    Route::get('/employees', [EmployeeController::class, 'index']);
+// MIDDLEWARE FOR FRONTEND-BACKEND  
+// ADMIN
+Route::get('/users',[AuthController::class, 'index']);
+Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);
+Route::post('/user/change-password/{id}', [AuthController::class, 'changePassword']);
+// EMPLOYEE
+Route::get('/employees', [EmployeeController::class, 'index']);
     Route::get('/employee/{id}', [EmployeeController::class, 'show']);
     Route::post('/employee/image/{id}', [EmployeeController::class, 'uploadAndUpdateEmployeeImage']);
     Route::put('/user/{id}', [AuthController::class, 'update']);
@@ -66,7 +66,7 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::put('/deactivate/{id}', [DepartmentController::class, 'deactivate']);
         Route::delete('/delete/{id}', [DepartmentController::class, 'destroy']);
     });
-
+    
 
 });
 
