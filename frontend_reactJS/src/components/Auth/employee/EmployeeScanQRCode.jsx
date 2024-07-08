@@ -58,10 +58,10 @@ function EmployeeScanQRCode() {
             console.error('QR Code Authentication Error:', error);
             toast.error(error.message || 'An error occurred during authentication. Please try again.', {
               position: 'top-right',
-              autoClose: 5000,
+              autoClose: 3000,
               hideProgressBar: false,
-              closeOnClick: false,
-              pauseOnHover: false,
+              closeOnClick: true,
+              pauseOnHover: true,
               draggable: true,
               progress: undefined,
               style: {
