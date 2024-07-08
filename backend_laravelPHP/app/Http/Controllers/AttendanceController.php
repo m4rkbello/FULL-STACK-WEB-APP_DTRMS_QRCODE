@@ -53,19 +53,19 @@ class AttendanceController extends Controller
             $timeOut = 'Time-out';
 
             $attendanceCollections = Attendance::where('attendance_employee_id', '=', $employeeId)
-            ->whereDate('created_at', Carbon::today())
+            ->whereDay('created_at', Carbon::today())
             ->exists();
 
    // Check if there is a time-in record for today in the AM
             $attendanceCollectionsTimein = Attendance::where('attendance_employee_id', $employeeId)
-            ->whereDate('created_at', Carbon::today())
+            ->whereDay('created_at', Carbon::today())
             ->where('attendance_status', 1)
-            ->whereTime('created_at', '<=', '12:00:00')
+            // ->whereTime('created_at', '<=', '12:00:00')
             ->exists();
 
             // Check if there is a time-in record for today in the PM
             $attendanceCollectionsTimeout = Attendance::where('attendance_employee_id', $employeeId)
-            ->whereDate('created_at', Carbon::today())
+            ->whereDay('created_at', Carbon::today())
             ->where('attendance_status', 2)
             ->whereTime('created_at', '>=', '12:00:00')
             ->exists();
@@ -88,17 +88,17 @@ class AttendanceController extends Controller
                     ]);
             }elseif($attendanceCollectionsTimein && $attendanceCollectionsTimeout){
                 return response()->json([
-                    'success' => true,
+                    'success' => false,
                     'details' => $attendanceCollections,
                     'message' => 'Duplicated Employee Attendance!',
-                ], 401);
+                ]);
 
             }else{
                 return response()->json([
-                    'success' => true,
+                    'success' => false,
                     'details' => $attendanceCollections,
                     'message' => 'Duplicated Employee Attendance!',
-                ], 401);
+                ]);
     
             }   
 
