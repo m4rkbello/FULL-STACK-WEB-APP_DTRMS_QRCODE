@@ -1,12 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-// QR Code Reader
 import QrScanner from 'qr-scanner';
 import 'qr-scanner/qr-scanner-worker.min.js';
-// Redux
 import { qrCodeAttendance } from '../../redux/actions/attendanceAction';
-// Toaster
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,9 +11,30 @@ function EmployeeScanQRCode() {
   const videoRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [scannerActive, setScannerActive] = useState(true);
+  const [scannerActive, setScannerActive] = useState(false);
   const [scanResult, setScanResult] = useState(null);
-  const audioRef = useRef(new Audio('/frontend_reactJS/public/Recording.m4a')); // Adjust the path to your audio file
+  const audioRefSuccess = useRef(new Audio('/patotoya.m4a'));
+  const audioRefError = useRef(new Audio('/ganiharakaba.m4a'));
+
+  const startScanner = () => {
+    setScannerActive(true);
+    console.log("Scanner started by user interaction.");
+  };
+
+  // Function to handle audio playback errors
+  const handleAudioError = (audioRef, error) => {
+    console.error(`Audio playback failed: ${error}`);
+    // Handle error logging or other actions as needed
+  };
+
+  // Function to play error audio
+  const playErrorAudio = () => {
+    try {
+      audioRefError.current.play();
+    } catch (error) {
+      handleAudioError(audioRefError.current, error);
+    }
+  };
 
   useEffect(() => {
     let scanner;
@@ -32,7 +50,6 @@ function EmployeeScanQRCode() {
             const email = result;
             console.log("Email extracted from QR code:", email);
 
-            // Dispatch the action with the email
             const qrcodeReqRes = await dispatch(qrCodeAttendance({ employee_email: email }));
             console.log("QR Code Attendance Result:", qrcodeReqRes);
 
@@ -44,18 +61,47 @@ function EmployeeScanQRCode() {
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
-                progress: undefined,
                 style: {
                   background: 'black',
                   color: '#A3E636',
                   fontSize: '17px',
                 },
               });
+
+              // Play success audio
+              setTimeout(() => {
+                try {
+                  audioRefSuccess.current.play();
+                } catch (error) {
+                  handleAudioError(audioRefSuccess.current, error);
+                }
+              }, 1000);
+
             } else {
-              throw new Error(qrcodeReqRes.message || 'Failed to record attendance');
+              // Play error audio for any unsuccessful response
+              playErrorAudio();
+
+              toast.error(qrcodeReqRes.message || 'Failed to record attendance', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                style: {
+                  background: 'black',
+                  color: 'red',
+                  fontSize: '15px',
+                  fontWeight: 'Bold',
+                },
+              });
             }
           } catch (error) {
             console.error('QR Code Authentication Error:', error);
+
+            // Play error audio for any error
+            playErrorAudio();
+
             toast.error(error.message || 'An error occurred during authentication. Please try again.', {
               position: 'top-right',
               autoClose: 3000,
@@ -63,7 +109,6 @@ function EmployeeScanQRCode() {
               closeOnClick: true,
               pauseOnHover: true,
               draggable: true,
-              progress: undefined,
               style: {
                 background: 'black',
                 color: 'red',
@@ -72,7 +117,7 @@ function EmployeeScanQRCode() {
               },
             });
           } finally {
-            // Re-enable the scanner after 15 seconds
+            // Re-enable the scanner after 3 seconds
             setTimeout(() => {
               setScannerActive(true);
               setScanResult(null);
@@ -86,10 +131,13 @@ function EmployeeScanQRCode() {
       }).catch(error => {
         console.error("Failed to start QR Scanner:", error);
         alert("Failed to start QR Scanner. Please check your camera permissions.");
+        playErrorAudio(); // Play error audio if scanner fails to start
       });
     };
 
-    setupScanner();
+    if (scannerActive) {
+      setupScanner();
+    }
 
     return () => {
       if (scanner) {
@@ -98,13 +146,6 @@ function EmployeeScanQRCode() {
       }
     };
   }, [dispatch, scannerActive]);
-
-  // Use useEffect to play audio when scanResult is updated
-  useEffect(() => {
-    if (scanResult) {
-      audioRef.current.play();
-    }
-  }, [scanResult]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -129,10 +170,21 @@ function EmployeeScanQRCode() {
                 />
                 {scanResult && (
                   <div className="mt-4 text-lg text-center text-white">
-                    Scan successful! Please wait for 15 seconds before scanning again.
+                    Scan successful! Please wait for 3 seconds before scanning again.
                   </div>
                 )}
               </div>
+              {!scannerActive && (
+                <div className='flex justify-center'>
+                  <button
+                    onClick={startScanner}
+                    className="m-4 p-2  bg-indigo-500  rounded"
+                    style={{ zIndex: 10 }}
+                  >
+                    Start Scanner
+                  </button>
+                </div>
+              )}
               <div className='flex justify-center'>
                 <label className="text-2xl mx-2">
                   <Link to="/admin/login" className="label-text-alt link link-hover">
