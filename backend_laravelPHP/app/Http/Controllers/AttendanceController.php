@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
-use App\Models\User;
+
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -49,44 +49,44 @@ class AttendanceController extends Controller
 
             //id-sa-empleyado
             $employeeId = $employee->id;
-            $timeIn = 'Time-in';
-            $timeOut = 'Time-out';
+            $timeInNote = 'Time-in';
+            $timeOutNote = 'Time-out';
 
             $attendanceCollections = Attendance::where('attendance_employee_id', '=', $employeeId)
-            ->whereDay('created_at', Carbon::today())
+            ->whereDay('created_at','=',Carbon::today())
             ->exists();
 
    // Check if there is a time-in record for today in the AM
-            $attendanceCollectionsTimein = Attendance::where('attendance_employee_id', $employeeId)
-            ->whereDay('created_at', Carbon::today())
-            ->where('attendance_status', 1)
-            // ->whereTime('created_at', '<=', '12:00:00')
+            $attendanceCollectionsTimeIn = Attendance::where('attendance_employee_id', $employeeId)
+            ->whereDay('created_at','=',Carbon::today())
+            ->where('attendance_status','=',1)
+            ->whereTime('created_at','<','12:00:00')
             ->exists();
 
             // Check if there is a time-in record for today in the PM
             $attendanceCollectionsTimeout = Attendance::where('attendance_employee_id', $employeeId)
-            ->whereDay('created_at', Carbon::today())
-            ->where('attendance_status', 2)
-            ->whereTime('created_at', '>=', '12:00:00')
+            ->whereDay('created_at','=',Carbon::today())
+            ->where('attendance_status','=',2)
+            // ->whereTime('created_at', '>=', '12:00:00')
             ->exists();
 
             if(!$attendanceCollections){
                 $attendance = Attendance::create([
                     'attendance_employee_id' => $employeeId,
-                    'attendance_note' => $timeIn,
+                    'attendance_note' => $timeInNote,
                     'attendance_time_in' => Carbon::now(),
                     // 'attendance_time_out' => Carbon::now(),
                     'attendance_status' => 1,
                 ]);
-            }elseif($attendanceCollectionsTimein && !$attendanceCollectionsTimeout){
+            }elseif($attendanceCollectionsTimeIn && !$attendanceCollectionsTimeout){
                     $attendance = Attendance::create([
                         'attendance_employee_id' => $employeeId,
-                        'attendance_note' => $timeOut,
+                        'attendance_note' => $timeOutNote,
                         // 'attendance_time_in' => Carbon::now(),
                         'attendance_time_out' => Carbon::now(),
                         'attendance_status' => 2,
                     ]);
-            }elseif($attendanceCollectionsTimein && $attendanceCollectionsTimeout){
+            }elseif($attendanceCollectionsTimeIn && $attendanceCollectionsTimeout){
                 return response()->json([
                     'success' => false,
                     'details' => $attendanceCollections,
@@ -153,7 +153,6 @@ class AttendanceController extends Controller
      */
     public function show(string $id)
     {
-
         try {
             $employee = Attendance::findOrFail($id);
         
@@ -166,18 +165,14 @@ class AttendanceController extends Controller
                 'success' => false,
                 'message' => 'Employee not found.',
             ], 404);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return response()->json([
-                'success' => false,
-                'errors' => $e->errors(),
-            ], 422);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to fetch employee. Please try again later.',
             ], 500);
         }
     }
+    
 
     /**
      * Update the specified resource in storage.
