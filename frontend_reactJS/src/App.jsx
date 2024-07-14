@@ -16,6 +16,7 @@ import { FaRegListAlt } from "react-icons/fa";
 import { ImUsers } from "react-icons/im";
 import { FaUsersSlash } from "react-icons/fa6";
 import { RiOrganizationChart } from "react-icons/ri";
+import { FcDoughnutChart } from "react-icons/fc";
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
@@ -26,6 +27,7 @@ import UserDetails from './components/Auth/admin/user/UserDetails';
 import UserChangePassword from './components/Auth/admin/user/UserChangePassword';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import Department from './components/Auth/admin/department/Department';
+import Dashboard from './components/Auth/admin/Dashboard';
 //EMPLOYEE
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
@@ -245,6 +247,7 @@ function App(props) {
             (
               <>
                 <Routes>
+                <Route path="/" element={<Dashboard />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
@@ -273,8 +276,20 @@ function App(props) {
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
             <div className="drawer-side border-r-4 border-black">
-              <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay "></label>
-              <ul className="menu pt-4 pl-4 pr-4 pb-4 w-80 min-h-full bg-zinc-300">
+              <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+              <ul className="menu w-80 min-h-full bg-zinc-300">
+              <li>
+              <Link to="/" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+              <FcDoughnutChart 
+                style={{ 
+                        height: "120%",
+                        width: "120%",
+                        boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                      }} 
+                      />
+                Dashboard
+              </Link>
+            </li>
                 <li>
                   <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
                     <FaRegListAlt />
