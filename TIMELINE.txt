@@ -111,7 +111,9 @@ npm install react-chartjs-2@latest
 32. ADD MODEL FOR RATE 
 33. ADD MODEL FOR DEDUCTION 
 34. ADD MODEL FOR 
-
+35. INSTALL PACKAGE-ICON
+    -> https://boxicons.com/
+    -> npm i boxicons --save
 
 
 
