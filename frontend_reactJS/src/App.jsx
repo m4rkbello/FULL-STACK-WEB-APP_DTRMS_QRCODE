@@ -306,22 +306,22 @@ function App(props) {
                 </li>
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    TEST 1
+                    Payrolls
                   </Link>
                 </li>
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    TEST 2
+                    Rates
                   </Link>
                 </li>
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    TEST 3
+                    Overtime
                   </Link>
                 </li>
                 <li>
                   <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    TEST 4
+                    Deduction
                   </Link>
                 </li>
                 <li>
