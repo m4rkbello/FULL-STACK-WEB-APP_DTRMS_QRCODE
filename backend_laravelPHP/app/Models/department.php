@@ -16,8 +16,5 @@ class Department extends Model
         'dept_emp_id'
     ];
 
-    public function employee(){
-        return $this->belongsTo(Employee::class, 'dept_emp_id');
-    }
 
 }
