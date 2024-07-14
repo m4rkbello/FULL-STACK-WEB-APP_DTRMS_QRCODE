@@ -15,6 +15,8 @@ import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { SiMicrosoftexcel } from "react-icons/si";
 import { IoIosPrint } from "react-icons/io";
+import { FcPrint, FcDataSheet, FcPlus, FcSearch  } from "react-icons/fc";
+
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
@@ -389,49 +391,73 @@ const EmployeeDashboard = (props) => {
                                 />
                             </span>
                             <span>
-                                <IoSearch
+                                <FcSearch
                                     style={{
-                                        backgroundColor: "transparent",
-                                        color: "black",
-                                        height: "30px",
-                                        width: "30px",
-                                    }}
+                                            backgroundColor: "transparent",
+                                            color: "black",
+                                            height: "30px",
+                                            width: "30px",
+                                       
+                                          }}
                                 />
                             </span>
                         </span>
                         </div>
                         <div class="basis-1/4"></div>
                         <div class="basis-1/4 flex justify-end mr-5"> 
-                        <div className='mx-2'>
+                        <div className='mx-4'>
                             <DownloadTableExcel
                                 filename="ExportEmployee"
                                 sheet="users"
                                 currentTableRef={tableRef.current}
                             >
-                                <button><SiMicrosoftexcel /></button>
+                                <button>
+                                <FcDataSheet
+                                style={{ 
+                                        height: "200%",
+                                        width: "200%",
+                                      
+                                       }} 
+                                 /></button>
                             </DownloadTableExcel>
                         </div>
                             <div className='mx-2'>
-                                <button onClick={printEmployeeDashboard}><IoIosPrint /></button>
+                                <button onClick={printEmployeeDashboard}>
+                                <FcPrint
+                                style={{ 
+                                        height: "200%",
+                                        width: "200%", 
+                                       }} 
+                                /></button>
                             </div>
-                            <div className='row'>
-                                <div className='col-1'></div>
-                            </div>
+
                         </div>
                     </div>
                     <span className="text-3xl font-black">
                         <center>
                             <div className='pb-5 pt-5 glass'>
                                 EMPLOYEE DASHBOARD
-                                <IoIosPersonAdd
+                                <FcPlus
+
                                     onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                    style={{ background: 'transparent', fontSize: "50px", color: "black", marginLeft: "95%", marginRight: "0%", marginBottom: "0%", marginTop: "-4%", paddingTop: '0', paddingLeft: '0', paddingRight: '0', paddingBottom: '0' }}
+                                    style={{ 
+                                            fontSize: "50px",
+                                            color: "black",
+                                            marginLeft: "92%",
+                                            marginRight: "0%",
+                                            marginBottom: "0%",
+                                            marginTop: "-4%",
+                                            paddingTop: '0',
+                                            paddingLeft: '0',
+                                            paddingRight: '0',
+                                            paddingBottom: '0',
+                                           }}
                                 />
                             </div>
                         </center>
                     </span>
                     <div className="">
-                        <div className='p-4'>
+                        <div className='p-0'>
                             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                                 <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
                                     <table id="employeesDataList" ref={tableRef} className="table bg-white border-2 border-black">
