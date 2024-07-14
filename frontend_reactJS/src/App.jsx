@@ -3,20 +3,13 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
-import { Line } from 'react-chartjs-2';
-import { BiLogOutCircle } from "react-icons/bi";
 import { BsQrCodeScan } from "react-icons/bs";
 import { FaSignInAlt } from "react-icons/fa";
 import { TiUserAddOutline } from "react-icons/ti";
 import { FaUserTie } from "react-icons/fa6";
 import { AiFillSetting } from "react-icons/ai";
-import { ImExit } from "react-icons/im";
 import { FaRunning } from "react-icons/fa";
-import { FaRegListAlt } from "react-icons/fa";
-import { ImUsers } from "react-icons/im";
-import { FaUsersSlash } from "react-icons/fa6";
-import { RiOrganizationChart } from "react-icons/ri";
-import { FcDoughnutChart } from "react-icons/fc";
+import { FcDoughnutChart, FcElectricalThreshold, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcFolder  } from "react-icons/fc";
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
@@ -281,86 +274,139 @@ function App(props) {
               <li>
               <Link to="/" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
               <FcDoughnutChart 
-                style={{ 
-                        height: "120%",
-                        width: "120%",
-                        boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                      }} 
+                      style={{ 
+                              height: "120%",
+                              width: "120%",
+                              boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                            }} 
                       />
                 Dashboard
               </Link>
             </li>
                 <li>
-                  <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    <FaRegListAlt />
+                  <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                    <FcElectricalThreshold
+                    style={{ 
+                            height: "120%",
+                            width: "120%",
+                            boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                          }} 
+                    />
                   Attendance
                   </Link>
                 </li>
                 <li>
-                  <Link to="/employee/dashboard" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                  <ImUsers />
+                  <Link to="/employee/dashboard" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                  <FcConferenceCall
+                    style={{ 
+                            height: "120%",
+                            width: "120%",
+                            boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                          }} 
+                  />
                   Employees List
                   </Link>
                 </li>
                 <li>
-                  <Link to="/archieve" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                  <FaUsersSlash />
+                  <Link to="/archieve" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                  <FcReuse
+                  style={{ 
+                          height: "120%",
+                          width: "120%",
+                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                        }} 
+                  />
                   Employee Archieve
                   </Link>
                 </li>
                 <li>
-                  <Link to="/content" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
+                  <Link to="/content" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
                     Content Test
                   </Link>
                 </li>
                 <li>
-                  <Link to="/department" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                  <RiOrganizationChart />
+                  <Link to="/department" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                  <FcDepartment
+                  style={{ 
+                          height: "120%",
+                          width: "120%",
+                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                        }} 
+                  />
                   Department
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                  <FcMoneyTransfer
+                  style={{ 
+                          height: "120%",
+                          width: "120%",
+                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                        }} 
+                  />
                     Payrolls
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                  <FcMoneyTransfer
+                  style={{ 
+                          height: "120%",
+                          width: "120%",
+                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                        }} 
+                  />
                     Rates
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    Overtime
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                  <FcOvertime
+                  style={{ 
+                          height: "120%",
+                          width: "120%",
+                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                        }} 
+                  />
+                  Overtime
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
-                    Deduction
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                  <FcDebt
+                  style={{ 
+                          height: "120%",
+                          width: "120%",
+                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                        }} 
+                  />
+                  
+                  Deduction
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
                     TEST 5
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
                     TEST
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
                     TEST 6
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
                     TEST 7
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-zinc-700 hover:to-zinc-100 hover:text-black'>
+                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
                     TEST 8
                   </Link>
                 </li>
