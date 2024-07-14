@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('deductions', function (Blueprint $table) {
             $table->id();
+            $table->decimal('deduction_amount', 10, 2); // 10 digits total, 2 decimal places
+            $table->string('rate_details',255);
+            $table->string('rate_description',255);
+            $table->integer('rate_department_id',11)->nullable();
+            $table->integer('rate_created_by',11)->nullable();
+            $table->integer('rate_updated_by',11)->nullable();
             $table->timestamps();
         });
     }
