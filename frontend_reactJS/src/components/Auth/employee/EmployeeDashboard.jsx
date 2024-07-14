@@ -15,7 +15,7 @@ import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { SiMicrosoftexcel } from "react-icons/si";
 import { IoIosPrint } from "react-icons/io";
-import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcFolder, FcFile   } from "react-icons/fc";
+import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcFolder, FcFile, FcCheckmark, FcViewDetails , FcEmptyTrash, FcCancel  } from "react-icons/fc";
 
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
@@ -30,6 +30,8 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 
 
 const EmployeeDashboard = (props) => {
+    const defaultImage = '../../../../public/defaultPicture.jpg';
+    const eyeView = '../../../../public/svg/view.png';
 
     const tableRef = useRef(null);
 
@@ -319,7 +321,7 @@ const EmployeeDashboard = (props) => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text text-black text-2xl">Status</span>
+                                        <span className="label-text text-white text-2xl">Status</span>
                                     </label>
                                     <select
                                         name="employee_status"
@@ -339,14 +341,19 @@ const EmployeeDashboard = (props) => {
                             <br />
                             <div className="flex">
                                 <div>
-                                    <button type="submit" className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                        <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
+                                    <button type="submit" className="btn glass" >
+                                        <FcCheckmark 
+                                        style={{ fontSize: "25px", color: "", marginRight: "5px" }} />
                                     </button>
                                 </div>
 
                                 <div>
-                                    <button className="btn bg-black hover:text-white hover:bg-lime-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                        <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
+                                    <button className="btn glass">
+                                        <FcCancel style={{
+                                                fontSize: "25px",
+                                              color: "",
+                                               marginRight: "5px" 
+                                            }} />
                                     </button>
                                 </div>
                             </div>
@@ -499,14 +506,8 @@ const EmployeeDashboard = (props) => {
                                                         <td className="md:table-cell">
                                                             <div className="flex items-center gap-3">
                                                                 <div className="avatar">
-                                                                    <div className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                                        <img src={item.employee_image} />
-                                                                    </div>
-                                                                    {filterImage && filterImage.map((image, imageIndex) => (
-                                                                        <div key={imageIndex} className="mask mask-squircle w-12 h-12 shadow-2xl">
-                                                                            <img src={image.img_url} alt={`Avatar ${image.img_name}`} />
-                                                                        </div>
-                                                                    ))}
+                                                                <img src={item.employee_image || defaultImage} alt={`Employee ${item.employee_name}`} />
+            
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -518,22 +519,51 @@ const EmployeeDashboard = (props) => {
                                                         <td className="md:table-cell">{item.employee_position}</td>
                                                         <td className="md:table-cell">
                                                             {item.employee_status === 1 ?
-                                                                <RiAccountPinCircleFill style={{ fontSize: "25px", color: "green" }} /> : <MdOutlineNoAccounts style={{ fontSize: "25px", color: "red" }} />}
+                                                                <FcCheckmark  
+                                                                style = {{ 
+                                                                    height: "50%",
+                                                                    width: "50%",
+                                                                    marginTop: "20px",
+                                                                  
+                                                                    }} 
+                                                  
+                                                                /> 
+                                                                : <FcCancel
+                                                                style = {{ 
+                                                                    height: "50%",
+                                                                    width: "50%",
+                                                                    margin: "0%",
+                                                                    padding: "0%"  
+                                                                    }} 
+                                                                />
+                                                            }
                                                         </td>
                                                         <td className="flex md:table-cell">
                                                             <div className="flex">
                                                                 <div className="flex-none mr-3">
                                                                     <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                                        <FaEye style={{ fontSize: "20px", color: "black", padding: "0%" }} />
+                                                                        <FcViewDetails 
+                                                                        style = {{ 
+                                                                            height: "200%",
+                                                                            width: "200%",
+                                                              
+                                                                            }} 
+                                                                           />
                                                                     </Link>
                                                                 </div>
                                                                 <div className="flex-none mr-3">
-                                                                    <MdAutoDelete
+                                                                    <FcEmptyTrash
+                                                                        style = {{ 
+                                                                            height: "200%",
+                                                                            width: "200%", 
+                                                               
+                                                                            }} 
+
                                                                         onClick={() => {
                                                                             setDeactivateEmployeeId(item.id);
                                                                             document.getElementById('removeEmployee').showModal()
                                                                         }}
-                                                                        style={{ fontSize: "20px", color: "black" }} />
+                                                                   />
                                                                 </div>
                                                             </div>
                                                         </td>
