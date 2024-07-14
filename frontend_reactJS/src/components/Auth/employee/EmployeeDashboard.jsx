@@ -15,7 +15,7 @@ import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { SiMicrosoftexcel } from "react-icons/si";
 import { IoIosPrint } from "react-icons/io";
-import { FcPrint, FcDataSheet, FcPlus, FcSearch  } from "react-icons/fc";
+import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcFolder, FcFile   } from "react-icons/fc";
 
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
@@ -362,16 +362,34 @@ const EmployeeDashboard = (props) => {
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
                                 <ul>
                                     <li>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                        <FcFolder 
+                                        style={{ 
+                                                height: "120%",
+                                                width: "120%",
+                                                boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                                               }} 
+                                        />
                                         <Link to="/" className='hover:text-white'>Home</Link>
                                     </li>
                                     <li>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                        <FcFolder 
+                                        style={{ 
+                                                height: "120%",
+                                                width: "120%",
+                                                boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                                            }} 
+                                        />
                                         <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
                                     </li>
                                     <li>
                                         <span className="inline-flex gap-2 items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                            <FcFile  
+                                            style={{ 
+                                                    height: "120%",
+                                                    width: "120%",
+                                                    boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
+                                                }} 
+                                            />
                                             <Link to="" className='hover:text-white'>Employee Personal Details</Link>
                                         </span>
                                     </li>
