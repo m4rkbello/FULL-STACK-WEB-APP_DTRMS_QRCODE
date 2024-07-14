@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            $table->decimal('rate_per_day', 10, 2); // 10 digits total, 2 decimal places
+            $table->decimal('rate_amount_per_day', 10, 2); // 10 digits total, 2 decimal places
+            $table->string('rate_name',255);
             $table->string('rate_details',255);
             $table->string('rate_description',255);
+            $table->integer('rate_status_id',11)->nullable();
             $table->integer('rate_department_id',11)->nullable();
             $table->integer('rate_created_by',11)->nullable();
             $table->integer('rate_updated_by',11)->nullable();
             $table->timestamps();
+            //FOREIGN KEY ID
+            $table->foreign('rate_department_id')->references('id')->on('departments');
         });
     }
 
