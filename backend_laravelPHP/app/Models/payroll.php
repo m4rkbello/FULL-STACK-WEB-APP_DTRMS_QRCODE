@@ -47,16 +47,4 @@ class Payroll extends Model
     {
         return $this->hasMany(Overtime::class, 'payroll_overtime_id');
     }
-  
-
-
-    
-
-
-
 }
-
-
-
-
-
