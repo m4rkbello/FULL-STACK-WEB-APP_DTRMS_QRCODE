@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('overtimes', function (Blueprint $table) {
             $table->id();
-            $table->decimal('overtime_hour', 10, 2); // 10 digits total, 2 decimal places
-            $table->decimal('overtime_rate_per_hour', 10, 2);
-            $table->string('overtime_name',255);
-            $table->string('overtime_description',255);
-            $table->integer('overtime_created_by',11)->nullable();
-            $table->integer('overtime_updated_by',11)->nullable();
+            $table->string('overtime_name',255)->nullable();
+            $table->decimal('overtime_hour', 10, 2)->nullable();
+            $table->decimal('overtime_rate_per_hour', 10, 2)->nullable();
+            $table->string('overtime_description',255)->nullable();
+            $table->unsignedBigInteger('overtime_status_id')->nullable();
+            $table->unsignedBigInteger('overtime_created_by')->nullable();
+            $table->unsignedBigInteger('overtime_updated_by')->nullable();
             $table->timestamps();
         });
     }
