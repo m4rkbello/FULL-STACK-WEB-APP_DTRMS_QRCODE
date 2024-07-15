@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payroll extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'payroll_total_amount',
         'payroll_details',
