@@ -17,7 +17,4 @@ class Overtime extends Model
         'overtime_created_by',
         'overtime_updated_by',
     ];
-
-
-
 }
