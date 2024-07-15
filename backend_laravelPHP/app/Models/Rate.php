@@ -22,10 +22,6 @@ class Rate extends Model
 
     public function department()
     {
-        return $this->belongsTo(Department::class, 'rate_department_id');
+        return $this->belongsTo(Department::class, 'id');
     }
-
-
-
-
 }
