@@ -8,21 +8,22 @@ class CreateRatesTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('rates', function (Blueprint $table) {
-            $table->id();
-            $table->string('rate_name', 255)->nullable();
-            $table->decimal('rate_amount_per_day', 10, 2)->nullable();
-            $table->string('rate_details', 255)->nullable();
-            $table->string('rate_description', 255)->nullable();
-            $table->unsignedBigInteger('rate_status_id')->nullable();
-            $table->unsignedBigInteger('rate_department_id')->nullable();
-            $table->unsignedBigInteger('rate_created_by')->nullable();
-            $table->unsignedBigInteger('rate_updated_by')->nullable();
-            $table->timestamps();
+        if (!Schema::hasTable('rates')) {
+            Schema::create('rates', function (Blueprint $table) {
+                $table->id();
+                $table->string('rate_name', 255)->nullable();
+                $table->decimal('rate_amount_per_day', 10, 2)->nullable();
+                $table->string('rate_details', 255)->nullable();
+                $table->string('rate_description', 255)->nullable();
+                $table->unsignedBigInteger('rate_status_id')->nullable();
+                $table->unsignedBigInteger('rate_department_id')->nullable();
+                $table->unsignedBigInteger('rate_created_by')->nullable();
+                $table->unsignedBigInteger('rate_updated_by')->nullable();
+                $table->timestamps();
 
-            $table->foreign('rate_department_id')->references('id')->on('departments');
-            // Add other foreign key constraints as needed
-        });
+                $table->foreign('rate_department_id')->references('id')->on('departments');
+            });
+        }
     }
 
     public function down(): void
