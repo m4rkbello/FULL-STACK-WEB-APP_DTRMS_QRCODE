@@ -19,7 +19,7 @@ class AttendanceController extends Controller
     {
         $data = Attendance::all();
 
-        return response($data, 200);
+        return response($data, 200); 
     }
 
     /**
