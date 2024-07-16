@@ -19,8 +19,4 @@ class Deduction extends Model
         'deduction_updated_by',
     ];
 
-
-
-
-
 }
