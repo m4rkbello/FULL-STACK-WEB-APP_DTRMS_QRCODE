@@ -197,7 +197,7 @@ public function store(Request $request)
                 'attendance_time_out' => null,
                 'attendance_status' => 1,
             ]);
-        } elseif ($attendanceCollectionsTimeIn && !$attendanceCollectionsTimeout) {
+        } elseif ($attendanceCollectionsTimeIn || !$attendanceCollectionsTimeout) {
             $attendance = Attendance::create([
                 'attendance_employee_id' => $employeeId,
                 'attendance_note' => $timeOutNote,
