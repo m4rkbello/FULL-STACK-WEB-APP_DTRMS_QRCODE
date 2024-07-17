@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->string('attendance_note');
-            $table->dateTime('attendance_time_in')->nullable()->change();
-            $table->dateTime('attendance_time_out')->nullable()->change();
+            $table->string('attendance_note')->nullable();
+            $table->string('attendance_time_in')->nullable();
+            $table->string('attendance_time_out')->nullable();
             $table->integer('attendance_status')->default(1);
-            $table->rememberToken();
+            $table->rememberToken()->nullable();
             $table->timestamps();
             //FK
             $table->foreignId('attendance_employee_id')->constrained('employees');
