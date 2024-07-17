@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\HasMany;
 
 class Deduction extends Model
 {
@@ -19,4 +17,8 @@ class Deduction extends Model
         'deduction_updated_by',
     ];
 
+    public function payroll()
+    {
+        return $this->belongsTo(Payroll::class, 'payroll_deduction_id');
+    }
 }
