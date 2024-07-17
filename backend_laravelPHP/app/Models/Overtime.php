@@ -17,4 +17,9 @@ class Overtime extends Model
         'overtime_created_by',
         'overtime_updated_by',
     ];
+
+    public function payroll()
+    {
+        return $this->belongsTo(Payroll::class, 'payroll_overtime_id');
+    }
 }
