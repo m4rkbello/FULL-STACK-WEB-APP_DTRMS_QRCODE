@@ -16,12 +16,10 @@ class CreateRatesTable extends Migration
                 $table->string('rate_details', 255)->nullable();
                 $table->string('rate_description', 255)->nullable();
                 $table->unsignedBigInteger('rate_status_id')->nullable();
-                $table->unsignedBigInteger('rate_department_id')->nullable();
+                $table->foreignId('rate_department_id')->nullable()->constrained('departments');
                 $table->unsignedBigInteger('rate_created_by')->nullable();
                 $table->unsignedBigInteger('rate_updated_by')->nullable();
                 $table->timestamps();
-
-                $table->foreign('rate_department_id')->references('id')->on('departments');
             });
         }
     }
