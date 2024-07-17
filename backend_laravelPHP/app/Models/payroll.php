@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payroll extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'payroll_total_amount',
         'payroll_details',
@@ -38,11 +40,11 @@ class Payroll extends Model
 
     public function deduction()
     {
-        return $this->hasMany(Deduction::class, 'payroll_deduction_id');
+        return $this->belongsTo(Deduction::class, 'payroll_deduction_id');
     }
 
     public function overtime()
     {
-        return $this->hasMany(Overtime::class, 'payroll_overtime_id');
+        return $this->belongsTo(Overtime::class, 'payroll_overtime_id');
     }
 }
