@@ -235,7 +235,7 @@ function App(props) {
 
       <div className="drawer lg:drawer-open flex-1">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center px-4 py-8 md:px-8 md:py-12">
+        <div className="drawer-content flex flex-col items-center justify-center px-4 py-4 md:px-4 md:py-4">
           {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ?
             (
               <>
