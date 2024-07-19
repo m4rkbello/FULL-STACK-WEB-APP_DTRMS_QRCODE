@@ -94,7 +94,7 @@ function App(props) {
       for (let ez = 0; ez < usersCollection.length; ez++) {
         if (usersCollection[ez].id == sessionStorageHasUserIdData && usersCollection[ez].id == localStorageHasUserIdData) {
           item.push(usersCollection[ez]);
-        }
+        } 
       }
     }
     return item;
@@ -263,156 +263,168 @@ function App(props) {
                 <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
               </Routes>
             )}
-
         </div>
 
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
-            <div className="drawer-side border-r-4 border-black">
-              <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-              <ul className="menu w-80 min-h-full bg-zinc-300">
+          <div className="drawer-side border-r-4 glass border-black">
+            <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+            <ul className="menu w-80 min-h-full glass">
+            <ul className="menu w-80 min-h-full glass">
+            <li>
+            <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay">test</label>
+                    <details>
+                      <summary>HOME</summary>
+                      <ul className="menu bg-base-200 rounded-box w-80 min-h-full">
+                        <li><a>Submenu 1</a></li>
+                        <li><a>Submenu 2</a></li>
+                        <li>
+                          <details>
+                            <summary>Sub Parent</summary>
+                            <ul className="menu bg-base-200 rounded-box w-full">
+                              <li><a>Submenu 1</a></li>
+                              <li><a>Submenu 2</a></li>
+                            </ul>
+                          </details>
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+                  </ul>
+            
               <li>
-              <Link to="/" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
-              <FcDoughnutChart 
-                      style={{ 
-                              height: "120%",
-                              width: "120%",
-                              boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                            }} 
-                      />
-                Dashboard
-              </Link>
-            </li>
-                <li>
-                  <Link to="/employee/attendance" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
-                    <FcElectricalThreshold
+                <Link to="/" className='text-2xl glass'>
+                  <FcDoughnutChart 
                     style={{ 
-                            height: "120%",
-                            width: "120%",
-                            boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                          }} 
-                    />
+                      height: "120%",
+                      width: "120%",
+                    }} 
+                  />
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link to="/employee/attendance" className='text-2xl glass'>
+                  <FcElectricalThreshold
+                    style={{ 
+                      height: "120%",
+                      width: "120%",
+                    }} 
+                  />
                   Attendance
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/employee/dashboard" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                </Link>
+              </li>
+              <li>
+                <Link to="/employee/dashboard" className='text-2xl glass'>
                   <FcConferenceCall
                     style={{ 
-                            height: "120%",
-                            width: "120%",
-                            boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                          }} 
+                      height: "120%",
+                      width: "120%",
+                    }} 
                   />
                   Employees List
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/archieve" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                </Link>
+              </li>
+              <li>
+                <Link to="/archieve" className='text-2xl glass'>
                   <FcReuse
-                  style={{ 
-                          height: "120%",
-                          width: "120%",
-                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                        }} 
+                    style={{ 
+                      height: "120%",
+                      width: "120%",
+                    }} 
                   />
                   Employee Archieve
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/content" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
-                    Content Test
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/department" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                </Link>
+              </li>
+              <li>
+                <Link to="/content" className='text-2xl glass'>
+                  Content Test
+                </Link>
+              </li>
+              <li>
+                <Link to="/department" className='text-2xl glass'>
                   <FcDepartment
-                  style={{ 
-                          height: "120%",
-                          width: "120%",
-                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                        }} 
+                    style={{ 
+                      height: "120%",
+                      width: "120%",
+                    }} 
                   />
                   Department
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='text-2xl glass'>
                   <FcMoneyTransfer
-                  style={{ 
-                          height: "120%",
-                          width: "120%",
-                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                        }} 
+                    style={{ 
+                      height: "120%",
+                      width: "120%",
+                    }} 
                   />
-                    Payrolls
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                  Payrolls
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='text-2xl glass'>
                   <FcMoneyTransfer
-                  style={{ 
-                          height: "120%",
-                          width: "120%",
-                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                        }} 
+                    style={{ 
+                      height: "120%",
+                      width: "120%",
+                    }} 
                   />
-                    Rates
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                  Rates
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='text-2xl glass'>
                   <FcOvertime
-                  style={{ 
-                          height: "120%",
-                          width: "120%",
-                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                        }} 
+                    style={{ 
+                      height: "120%",
+                      width: "120%",
+                    }} 
                   />
                   Overtime
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='text-2xl glass'>
                   <FcDebt
-                  style={{ 
-                          height: "120%",
-                          width: "120%",
-                          boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                        }} 
+                    style={{ 
+                      height: "120%",
+                      width: "120%",
+                    }} 
                   />
-                  
                   Deduction
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
-                    TEST 5
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
-                    TEST
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
-                    TEST 6
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
-                    TEST 7
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='text-2xl bg-gradient-to-r hover:from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:to-emerald-500 hover:text-white'>
-                    TEST 8
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </>
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='text-2xl glass'>
+                  TEST 5
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='text-2xl glass'>
+                  TEST
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='text-2xl glass'>
+                  TEST 6
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='text-2xl glass'>
+                  TEST 7
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='text-2xl glass'>
+                  TEST 8
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </>
+        
         ) : (
           <>
 
