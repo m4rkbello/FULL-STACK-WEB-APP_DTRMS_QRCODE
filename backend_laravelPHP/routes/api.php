@@ -1,13 +1,17 @@
 <?php
-
-use App\Http\Controllers\DepartmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+//ALL CONTROLLERS
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\PayrollController;
+use App\Http\Controllers\RateController;
+use App\Http\Controllers\DeductionController;
+use App\Http\Controllers\OvertimeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +40,34 @@ Route::prefix('attendance')->group(function () {
         Route::get('/qrcode/data/{id}',[AttendanceController::class, 'show']);
 });
 
+//PAYROLLS-ENDPOINTS
+Route::prefix('payroll')->group(function () {
+    Route::get('/all',[PayrollController::class, 'index']);
+
+});
+
+//RATES-ENDPOINTS
+Route::prefix('rate')->group(function () {
+    Route::get('/all',[RateController::class, 'index']);
+
+});
+
+//DEDECUCTION-ENDPOINTS
+Route::prefix('deduction')->group(function () {
+    Route::get('/all',[RateController::class, 'index']);
+
+});
+
+//OVERTIME-ENDPOINTS
+Route::prefix('deduction')->group(function () {
+    Route::get('/all',[RateController::class, 'index']);
+
+});
+
+
+
+
+
 
 
 Route::middleware('auth:sanctum')->group(function() {
@@ -58,7 +90,7 @@ Route::get('/employees', [EmployeeController::class, 'index']);
     Route::get('/images', [ImagesController::class, 'index']);
     Route::post('/image', [ImagesController::class, 'store']);
     //DEPARTMENT-ROUTES-ENDPOINTS
-    Route::prefix('department')->group(function () {
+    Route::prefix('departments')->group(function () {
         Route::get('/view/all', [DepartmentController::class, 'index']);
         Route::post('/create', [DepartmentController::class, 'store']);
         Route::put('/update/{id}', [DepartmentController::class, 'update']);
