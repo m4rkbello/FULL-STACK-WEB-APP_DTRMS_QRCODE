@@ -97,7 +97,6 @@ export const deleteAttendance = attendanceId => async dispatch => {
     }
 };
 
-
 // ISKANON SA FRONTEND TAPOS ILABAY SA REDUX SA ENDPOINT
 export const qrCodeAttendance = (data) => async (dispatch) => {
     try {
