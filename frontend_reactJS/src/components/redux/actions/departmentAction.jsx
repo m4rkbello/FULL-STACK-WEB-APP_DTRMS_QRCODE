@@ -34,7 +34,7 @@ export const fetchDepartments = () => async dispatch => {
     try {
         dispatch({ type: FETCH_DEPARTMENTS_REQUEST });
         // Perform async operation, e.g., fetch data from an API
-        const fetchDeptReqRes = await MarkBelloApi.get('/api/department/view/all');
+        const fetchDeptReqRes = await MarkBelloApi.get('/api/departments/view/all');
         dispatch({
             type: FETCH_DEPARTMENTS_SUCCESS,
             payload: fetchDeptReqRes
@@ -51,7 +51,7 @@ export const fetchDepartments = () => async dispatch => {
 export const addDepartment = departmentData => async dispatch => {
     try {
         dispatch({ type: ADD_DEPARTMENT_REQUEST });
-        const addDepartmentRequestAndResponse = await MarkBelloApi.post('/api/department/create', departmentData);
+        const addDepartmentRequestAndResponse = await MarkBelloApi.post('/api/departments/create', departmentData);
         const statusCode = addDepartmentRequestAndResponse.status;
 
         if (statusCode === 201) {
@@ -122,7 +122,7 @@ export const updateDepartment = (deptartmentId, updateDepartmentData) => async d
         dispatch({ type: UPDATE_DEPARTMENT_REQUEST });
         // Perform async operation, e.g., send updated data to an API
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
-        const updateDeptResponseRequest = await MarkBelloApi.put(`/api/department/update/${deptartmentId}`, updateDepartmentData);
+        const updateDeptResponseRequest = await MarkBelloApi.put(`/api/departments/update/${deptartmentId}`, updateDepartmentData);
 
         if (!updateDeptResponseRequest) {
             // Handle the case where the response is empty
@@ -207,7 +207,7 @@ export const deactivateDepartment = departmentId => async dispatch => {
     try {
         dispatch({ type: DEACTIVATE_DEPARTMENT_REQUEST });
     
-       const deactivateDepartmentRequestAndResponse = await MarkBelloApi.put(`/api/department/deactivate/${departmentId}`);
+       const deactivateDepartmentRequestAndResponse = await MarkBelloApi.put(`/api/departments/deactivate/${departmentId}`);
        console.log("DATA", deactivateEmployeeReqAndRes);
 
         if (deactivateDepartmentRequestAndResponse.success != true) {
@@ -267,7 +267,7 @@ export const deleteDepartment = departmentId => async dispatch => {
     try {
         dispatch({ type: DELETE_DEPARTMENT_REQUEST });
     
-       const deleteDepartmentRequestAndResponse = await MarkBelloApi.delete(`/api/department/deactivate/${departmentId}`);
+       const deleteDepartmentRequestAndResponse = await MarkBelloApi.delete(`/api/departments/deactivate/${departmentId}`);
        console.log("DATA", deleteDepartmentRequestAndResponse);
 
         if (deleteDepartmentRequestAndResponse.success != true) {
@@ -326,7 +326,7 @@ export const deleteDepartment = departmentId => async dispatch => {
 export const searchDepartments = (query) => async dispatch => {
     dispatch({ type: SEARCH_DEPARTMENT_REQUEST });
     try{
-        const searchDepartmentReqRes = await MarkBelloApi.post('/api/department/search/', { data: query });
+        const searchDepartmentReqRes = await MarkBelloApi.post('/api/departments/search/', { data: query });
         console.log("DATA SA searchDepartments", searchDepartmentReqRes);
         dispatch({
             type: SEARCH_DEPARTMENT_SUCCESS,
