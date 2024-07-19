@@ -173,6 +173,10 @@ public function store(Request $request)
         $employeeId = $employee->id;
         $timeInNote = 'Time-in';
         $timeOutNote = 'Time-out';
+        $isStatusTrue = 1;
+
+   
+
 
         $attendanceCollections = Attendance::where('attendance_employee_id', '=', $employeeId)
             ->whereDay('created_at', '=', Carbon::today())
@@ -188,6 +192,7 @@ public function store(Request $request)
             ->whereDay('created_at', '=', Carbon::today())
             ->where('attendance_status', '=', 2)
             ->exists();
+
 
         if (!$attendanceCollections) {
             $attendance = Attendance::create([
