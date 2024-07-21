@@ -26,7 +26,7 @@ class AttendanceController extends Controller
             $data = Attendance::all();
 
             return response()->json([
-                'department' => $data,
+                'data' => $data,
                 'success' => true,
                 'status' => 201,
             ], 201);
@@ -36,7 +36,7 @@ class AttendanceController extends Controller
             return response()->json([
                 'success' => false,
                 'status' => 401,
-                'message' => 'Fetch all Overtimes have unsuccessful!',
+                'message' => 'Fetch all Attendance have unsuccessful!',
                 'error' => $error,
             ], 401);
             
