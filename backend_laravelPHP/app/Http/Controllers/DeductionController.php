@@ -16,9 +16,25 @@ class DeductionController extends Controller
      */
     public function index()
     {
-        //
-        $data = Deduction::all();
-        return response($data, 201);
+        try{
+            $data = Deduction::all();
+
+            return response()->json([
+                'department' => $data,
+                'success' => true,
+                'status' => 201,
+            ], 201);
+
+        }catch(\Exception $error){
+
+            return response()->json([
+                'success' => false,
+                'status' => 401,
+                'message' => 'Fetch all Departments have unsuccessful!',
+                'error' => $error,
+            ], 401);
+            
+        };
     }
 
     /**
