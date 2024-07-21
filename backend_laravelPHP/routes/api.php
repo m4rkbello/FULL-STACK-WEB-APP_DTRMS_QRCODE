@@ -34,33 +34,37 @@ Route::post('/login',[AuthController::class, 'login']);
 
 
 //ATTENDANCE ROUTE-ENDPOINTS
-Route::prefix('attendance')->group(function () {
+Route::prefix('attendances')->group(function () {
         Route::get('/all',[AttendanceController::class, 'index']);
         Route::post('/qrcode/data',[AttendanceController::class, 'store']);
         Route::get('/qrcode/data/{id}',[AttendanceController::class, 'show']);
+        Route::post('/search', [AttendanceController::class, 'search']);
 });
 
 //PAYROLLS-ENDPOINTS
-Route::prefix('payroll')->group(function () {
+Route::prefix('payrolls')->group(function () {
     Route::get('/all',[PayrollController::class, 'index']);
+    Route::post('/search', [PayrollController::class, 'search']);
 
 });
 
 //RATES-ENDPOINTS
-Route::prefix('rate')->group(function () {
+Route::prefix('rates')->group(function () {
     Route::get('/all',[RateController::class, 'index']);
 
 });
 
 //DEDECUCTION-ENDPOINTS
-Route::prefix('deduction')->group(function () {
-    Route::get('/all',[RateController::class, 'index']);
+Route::prefix('deductions')->group(function () {
+    Route::get('/all',[DeductionController::class, 'index']);
+    Route::post('/search', [DeductionController::class, 'search']);
+
 
 });
 
 //OVERTIME-ENDPOINTS
-Route::prefix('deduction')->group(function () {
-    Route::get('/all',[RateController::class, 'index']);
+Route::prefix('overtimes')->group(function () {
+    Route::get('/all',[OvertimeController::class, 'index']);
 
 });
 
@@ -71,13 +75,13 @@ Route::prefix('deduction')->group(function () {
 
 
 Route::middleware('auth:sanctum')->group(function() {
-// MIDDLEWARE FOR FRONTEND-BACKEND  
-// ADMIN
-Route::get('/users',[AuthController::class, 'index']);
-Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);
-Route::post('/user/change-password/{id}', [AuthController::class, 'changePassword']);
+    // MIDDLEWARE FOR FRONTEND-BACKEND  
+    // ADMIN
+    Route::get('/users',[AuthController::class, 'index']);
+    Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);
+    Route::post('/user/change-password/{id}', [AuthController::class, 'changePassword']);
 // EMPLOYEE
-Route::get('/employees', [EmployeeController::class, 'index']);
+    Route::get('/employees', [EmployeeController::class, 'index']);
     Route::get('/employee/{id}', [EmployeeController::class, 'show']);
     Route::post('/employee/image/{id}', [EmployeeController::class, 'uploadAndUpdateEmployeeImage']);
     Route::put('/user/{id}', [AuthController::class, 'update']);
@@ -90,6 +94,7 @@ Route::get('/employees', [EmployeeController::class, 'index']);
     Route::get('/images', [ImagesController::class, 'index']);
     Route::post('/image', [ImagesController::class, 'store']);
     //DEPARTMENT-ROUTES-ENDPOINTS
+    
     Route::prefix('departments')->group(function () {
         Route::get('/view/all', [DepartmentController::class, 'index']);
         Route::post('/create', [DepartmentController::class, 'store']);
@@ -98,8 +103,6 @@ Route::get('/employees', [EmployeeController::class, 'index']);
         Route::put('/deactivate/{id}', [DepartmentController::class, 'deactivate']);
         Route::delete('/delete/{id}', [DepartmentController::class, 'destroy']);
     });
-    
-
 });
 
 
