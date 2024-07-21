@@ -104,7 +104,7 @@ export const qrCodeAttendance = (data) => async (dispatch) => {
         dispatch({ type: 'QRCODE_ATTENDANCE_REQUEST' });
 
         // Post request to the API
-        const response = await MarkBelloApi.post('api/attendance/qrcode/data', { employee_email: data.employee_email });
+        const response = await MarkBelloApi.post('api/attendances/qrcode/data', { employee_email: data.employee_email });
         console.log("Full API Response:", response);
 
         if (response.data.success) {
