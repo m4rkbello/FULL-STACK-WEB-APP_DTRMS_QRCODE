@@ -23,8 +23,13 @@ class AttendanceController extends Controller
     public function index()
     {
         $data = Attendance::all();
-
-        return response($data, 200); 
+        
+        return response()->json([
+            'success' => true,
+            'status' => 200,
+            'message' => 'View all attendance records!',
+            'data' => $data
+        ], 200);
     }
 
     /**
