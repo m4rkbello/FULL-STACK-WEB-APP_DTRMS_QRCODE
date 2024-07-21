@@ -22,14 +22,26 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $data = Attendance::all();
-        
-        return response()->json([
-            'success' => true,
-            'status' => 200,
-            'message' => 'View all attendance records!',
-            'data' => $data
-        ], 200);
+        try{
+            $data = Attendance::all();
+
+            return response()->json([
+                'department' => $data,
+                'success' => true,
+                'status' => 201,
+            ], 201);
+
+        }catch(\Exception $error){
+
+            return response()->json([
+                'success' => false,
+                'status' => 401,
+                'message' => 'Fetch all Overtimes have unsuccessful!',
+                'error' => $error,
+            ], 401);
+            
+        };
+
     }
 
     /**
