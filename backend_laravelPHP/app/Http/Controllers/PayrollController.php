@@ -32,7 +32,7 @@ class PayrollController extends Controller
                 return response()->json([
                     'success' => false,
                     'status' => 401,
-                    'message' => 'Fetch all Payroll have unsuccessful!',
+                    'message' => 'Fetch all payrolls have unsuccessful!',
                     'error' => $error,
                 ], 401);
                 
