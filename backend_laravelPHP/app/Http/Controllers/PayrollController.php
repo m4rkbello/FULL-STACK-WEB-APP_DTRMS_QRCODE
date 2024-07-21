@@ -37,7 +37,6 @@ class PayrollController extends Controller
                 ], 401);
                 
             };
-    
         }
     }
 
