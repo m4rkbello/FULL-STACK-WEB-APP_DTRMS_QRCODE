@@ -20,9 +20,25 @@ class AuthController extends Controller
      */
     public function index()
     {
-        $data = User::all();
+        try{
+            $data = User::all();
 
-        return response($data, 200);
+            return response()->json([
+                'department' => $data,
+                'success' => true,
+                'status' => 201,
+            ], 201);
+
+        }catch(\Exception $error){
+
+            return response()->json([
+                'success' => false,
+                'status' => 401,
+                'message' => 'Fetch all Users have unsuccessful!',
+                'error' => $error,
+            ], 401);
+            
+        };
     }
 
     /**
