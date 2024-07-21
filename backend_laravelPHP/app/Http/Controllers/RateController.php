@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Rate;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminatapie\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -16,11 +15,30 @@ class RateController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
     public function index()
     {
-        //
-        $data = Rate::all();
-        return response($data, 201);
+        {
+            try{
+                $data = Rate::all();
+    
+                return response()->json([
+                    'data' => $data,
+                    'success' => true,
+                    'status' => 201,
+                ], 201);
+    
+            }catch(\Exception $error){
+    
+                return response()->json([
+                    'success' => false,
+                    'status' => 401,
+                    'message' => 'Fetch all payrolls have unsuccessful!',
+                    'error' => $error,
+                ], 401);
+                
+            };
+        }
     }
 
     /**
