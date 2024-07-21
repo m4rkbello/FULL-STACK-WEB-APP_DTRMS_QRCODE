@@ -192,8 +192,6 @@ public function store(Request $request)
             ->whereDay('created_at', '=', Carbon::today())
             ->where('attendance_status', '=', 2)
             ->exists();
-
-
         if (!$attendanceCollections) {
             $attendance = Attendance::create([
                 'attendance_employee_id' => $employeeId,
@@ -201,6 +199,12 @@ public function store(Request $request)
                 'attendance_time_in' => Carbon::now(),
                 'attendance_time_out' => null,
                 'attendance_status' => 1,
+            ]);
+        } elseif ($attendanceCollectionsTimeIn && $attendanceCollectionsTimeout) {
+            return response()->json([
+                'success' => false,
+                'details' => $attendanceCollections,
+                'message' => 'Duplicated Employee Attendance!',
             ]);
         } elseif ($attendanceCollectionsTimeIn || !$attendanceCollectionsTimeout) {
             $attendance = Attendance::create([
@@ -210,13 +214,7 @@ public function store(Request $request)
                 'attendance_time_out' => Carbon::now(),
                 'attendance_status' => 2,
             ]);
-        } elseif ($attendanceCollectionsTimeIn && $attendanceCollectionsTimeout) {
-            return response()->json([
-                'success' => false,
-                'details' => $attendanceCollections,
-                'message' => 'Duplicated Employee Attendance!',
-            ]);
-        } else {
+        }  else {
             return response()->json([
                 'success' => false,
                 'details' => $attendanceCollections,
