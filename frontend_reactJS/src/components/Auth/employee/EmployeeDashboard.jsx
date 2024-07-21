@@ -30,7 +30,7 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 
 
 const EmployeeDashboard = (props) => {
-    const defaultImage = '../../../../public/defaultPicture.jpg';
+    const defaultImage = '../../../../public/miming.jpg';
     const eyeView = '../../../../public/svg/view.png';
 
     const tableRef = useRef(null);
@@ -485,8 +485,8 @@ const EmployeeDashboard = (props) => {
                         <div className='p-0'>
                             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                                 <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-                                    <table id="employeesDataList" ref={tableRef} className="table bg-white border-2 border-black">
-                                        <thead className=" text-white ">
+                                    <table id="employeesDataList" ref={tableRef} className="table glass border-2">
+                                        <thead className=" text-white">
                                             <tr className="md:table-row pb-5 pt-5" style={{ fontSize: "17px", backgroundColor: 'black', color: 'white' }}>
                                                 <th className="md:table-cell">Avatar</th>
                                                 <th className="md:table-cell">Id</th>
@@ -502,10 +502,10 @@ const EmployeeDashboard = (props) => {
                                         <tbody>
                                             {employeesList && employeesList.map((item, index) => (
                                                 item.employee_status != 0 && (
-                                                    <tr key={index} className="md:table-row overflow-x-auto">
-                                                        <td className="md:table-cell">
-                                                            <div className="flex items-center gap-3">
-                                                                <div className="avatar">
+                                                    <tr key={index} className="md:table-row overflow-x-auto glass">
+                                                        <td className="sm:table-cell box-border h-24 w-24 p-4 drop-shadow-lg">
+                                                            <div className="flex items-center">
+                                                                <div className="avatar hover:box-content">
                                                                 <img src={item.employee_image || defaultImage} alt={`Employee ${item.employee_name}`} />
             
                                                                 </div>
