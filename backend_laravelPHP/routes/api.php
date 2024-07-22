@@ -42,30 +42,24 @@ Route::prefix('attendances')->group(function () {
 Route::prefix('payrolls')->group(function () {
     Route::get('/all',[PayrollController::class, 'index']);
     Route::post('/search', [PayrollController::class, 'search']);
-
 });
 //RATES-ENDPOINTS
 Route::prefix('rates')->group(function () {
     Route::get('/all',[RateController::class, 'index']);
     Route::post('/add', [RateController::class, 'store']);
-    Route::put('/item/{id}', [RateController::class, 'update']);
-
-
+    Route::put('/update/{id}', [RateController::class, 'update']);
+    Route::put('/deactivate/{id}', [RateController::class, 'deactivate']);
 });
 //DEDECUCTION-ENDPOINTS
 Route::prefix('deductions')->group(function () {
     Route::get('/all',[DeductionController::class, 'index']);
     Route::post('/search', [DeductionController::class, 'search']);
-
-
 });
 
 //OVERTIME-ENDPOINTS
 Route::prefix('overtimes')->group(function () {
     Route::get('/all',[OvertimeController::class, 'index']);
-
 });
-
 
 
 Route::middleware('auth:sanctum')->group(function() {
@@ -88,7 +82,6 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/images', [ImagesController::class, 'index']);
     Route::post('/image', [ImagesController::class, 'store']);
     //DEPARTMENT-ROUTES-ENDPOINTS
-    
     Route::prefix('departments')->group(function () {
         Route::get('/view/all', [DepartmentController::class, 'index']);
         Route::post('/create', [DepartmentController::class, 'store']);
