@@ -1,44 +1,40 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Rate;
 use Illuminate\Validation\ValidationException;
-use Illuminatapie\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
-
 
 class RateController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    
     public function index()
     {
-        {
-            try{
-                $data = Rate::all();
-    
-                return response()->json([
-                    'data' => $data,
-                    'success' => true,
-                    'status' => 201,
-                ], 201);
-    
-            }catch(\Exception $error){
-    
-                return response()->json([
-                    'success' => false,
-                    'status' => 401,
-                    'message' => 'Fetch all payrolls have unsuccessful!',
-                    'error' => $error,
-                ], 401);
-                
-            };
+        try {
+            $data = Rate::all();
+
+            return response()->json([
+                'data' => $data,
+                'success' => true,
+                'status' => 201,
+            ], 201);
+
+        } catch (\Exception $error) {
+
+            return response()->json([
+                'success' => false,
+                'status' => 401,
+                'message' => 'Fetch all payrolls have been unsuccessful!',
+                'error' => $error,
+            ], 401);
         }
     }
 
@@ -50,42 +46,54 @@ class RateController extends Controller
         try {
             $data = $request->validate([
                 'rate_name' => 'required|string',
-                'employee_amount_per_day' => 'required|integer',
+                'rate_amount_per_day' => 'required|integer',
                 'rate_details' => 'required|string',
                 'rate_description' => 'required|string',
                 'rate_status_id' => 'required|integer',
                 'rate_department_id' => 'required|string',
             ]);
-    
+
             $rates = Rate::create([
                 'rate_name' => $data['rate_name'],
-                'employee_amount_per_day' => $data['employee_amount_per_day'],
+                'rate_amount_per_day' => $data['rate_amount_per_day'],
                 'rate_details' => $data['rate_details'],
                 'rate_description' => $data['rate_description'],
                 'rate_status_id' => $data['rate_status_id'],
                 'rate_department_id' => $data['rate_department_id'],
+                'created_by' => auth()->id(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
-    
+
             $response_data = [
                 'status' => 201,
                 'success' => true,
                 'message' => 'Rate has successfully created!',
                 'details' => $rates,
             ];
-    
-            return response($response_data, 201);
-        } catch (\Exception $error) {
 
+            return response($response_data, 201);
+        } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Rate has not successfully created!',
-                'status' => 401,
-                'errors' => $error,
-            ], 401);
-            
-        } 
+                'message' => 'Validation failed',
+                'status' => 422,
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Rate not found',
+                'status' => 404,
+            ], 404);
+        } catch (\Exception $error) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
     }
 
     /**
@@ -101,7 +109,62 @@ class RateController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            // Validate the incoming request data
+            $data = $request->validate([
+                'rate_name' => 'required|string',
+                'rate_amount_per_day' => 'required|integer',
+                'rate_details' => 'required|string',
+                'rate_description' => 'required|string',
+                'rate_status_id' => 'required|integer',
+                'rate_department_id' => 'required|string',
+            ]);
+
+            // Find the rate by ID
+            $rate = Rate::find($id);
+
+            // Check if the rate exists
+            if (!$rate) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Rate not found',
+                    'status' => 404,
+                ], 404);
+            }
+
+            // Update the rate with the validated data
+            $rate->update($data);
+
+            // Return the updated rate data
+            return response()->json([
+                'data' => $rate,
+                'success' => true,
+                'status' => 200,
+            ], 200);
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'status' => 422,
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (ModelNotFoundException $e) {
+            // Handle model not found error
+            return response()->json([
+                'success' => false,
+                'message' => 'Rate not found',
+                'status' => 404,
+            ], 404);
+        } catch (\Exception $error) {
+            // Handle other exceptions
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
     }
 
     /**
