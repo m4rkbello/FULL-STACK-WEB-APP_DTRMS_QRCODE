@@ -51,6 +51,7 @@ Route::prefix('payrolls')->group(function () {
 //RATES-ENDPOINTS
 Route::prefix('rates')->group(function () {
     Route::get('/all',[RateController::class, 'index']);
+    
 
 });
 
