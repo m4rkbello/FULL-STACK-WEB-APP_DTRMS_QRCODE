@@ -48,6 +48,7 @@ Route::prefix('payrolls')->group(function () {
 Route::prefix('rates')->group(function () {
     Route::get('/all',[RateController::class, 'index']);
     Route::post('/add', [RateController::class, 'store']);
+    Route::put('/item/{id}', [RateController::class, 'update']);
 
 
 });
