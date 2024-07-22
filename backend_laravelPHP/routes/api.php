@@ -31,8 +31,6 @@ Route::prefix('admin')->group(function () {
 //LOGIN/REGISTER ROUTE-ENDPOINTS
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
-
-
 //ATTENDANCE ROUTE-ENDPOINTS
 Route::prefix('attendances')->group(function () {
         Route::get('/all',[AttendanceController::class, 'index']);
@@ -40,21 +38,19 @@ Route::prefix('attendances')->group(function () {
         Route::get('/qrcode/data/{id}',[AttendanceController::class, 'show']);
         Route::post('/search', [AttendanceController::class, 'search']);
 });
-
 //PAYROLLS-ENDPOINTS
 Route::prefix('payrolls')->group(function () {
     Route::get('/all',[PayrollController::class, 'index']);
     Route::post('/search', [PayrollController::class, 'search']);
 
 });
-
 //RATES-ENDPOINTS
 Route::prefix('rates')->group(function () {
     Route::get('/all',[RateController::class, 'index']);
-    
+    Route::post('/add', [RateController::class, 'store']);
+
 
 });
-
 //DEDECUCTION-ENDPOINTS
 Route::prefix('deductions')->group(function () {
     Route::get('/all',[DeductionController::class, 'index']);
@@ -68,10 +64,6 @@ Route::prefix('overtimes')->group(function () {
     Route::get('/all',[OvertimeController::class, 'index']);
 
 });
-
-
-
-
 
 
 
