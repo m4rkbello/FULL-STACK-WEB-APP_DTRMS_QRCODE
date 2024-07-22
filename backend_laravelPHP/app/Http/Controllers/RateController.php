@@ -141,6 +141,7 @@ class RateController extends Controller
                 'success' => true,
                 'status' => 200,
             ], 200);
+
         } catch (ValidationException $e) {
             // Handle validation errors
             return response()->json([
@@ -149,6 +150,7 @@ class RateController extends Controller
                 'status' => 422,
                 'errors' => $e->errors(),
             ], 422);
+
         } catch (ModelNotFoundException $e) {
             // Handle model not found error
             return response()->json([
@@ -156,6 +158,7 @@ class RateController extends Controller
                 'message' => 'Rate not found',
                 'status' => 404,
             ], 404);
+            
         } catch (\Exception $error) {
             // Handle other exceptions
             return response()->json([
@@ -170,8 +173,40 @@ class RateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deactivate(string $id)
     {
-        //
+        try {
+            // Find the rate by ID and ensure it meets the additional condition(s)
+            $rate = Rate::where('id', $id)
+                        ->where('rate_status_id', 1) // Example condition
+                        ->firstOrFail();
+        
+            // Update the rate status
+            $rate->update(['rate_status_id' => 0]);
+        
+            // Return the updated rate data
+            return response()->json([
+                'data' => $rate,
+                'success' => true,
+                'status' => 200,
+            ], 200);
+
+        } catch (ModelNotFoundException $e) {
+            // Handle model not found error
+            return response()->json([
+                'success' => false,
+                'message' => 'Rate not found or condition not met',
+                'status' => 404,
+            ], 404);
+        } catch (\Exception $error) {
+            // Handle other exceptions
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
+        
     }
 }
