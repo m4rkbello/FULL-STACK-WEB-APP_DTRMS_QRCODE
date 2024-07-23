@@ -43,6 +43,9 @@ Route::prefix('payrolls')->group(function () {
     Route::get('/all',[PayrollController::class, 'index']);
     Route::post('/search', [PayrollController::class, 'search']);
     Route::post('/add', [PayrollController::class, 'store']);
+    Route::put('/update/{id}', [PayrollController::class, 'update']);
+    Route::put('/deactivate/{id}', [PayrollController::class, 'deactivate']);
+    
 });
 //RATES-ENDPOINTS
 Route::prefix('rates')->group(function () {
@@ -57,23 +60,22 @@ Route::prefix('deductions')->group(function () {
     Route::post('/search', [DeductionController::class, 'search']);
 });
 
+
 //OVERTIME-ENDPOINTS
 Route::prefix('overtimes')->group(function () {
     Route::get('/all',[OvertimeController::class, 'index']);
 });
-
-
 Route::middleware('auth:sanctum')->group(function() {
     // MIDDLEWARE FOR FRONTEND-BACKEND  
     // ADMIN
     Route::get('/users',[AuthController::class, 'index']);
     Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);
     Route::post('/user/change-password/{id}', [AuthController::class, 'changePassword']);
+    Route::put('/user/{id}', [AuthController::class, 'update']);
 // EMPLOYEE
     Route::get('/employees', [EmployeeController::class, 'index']);
     Route::get('/employee/{id}', [EmployeeController::class, 'show']);
     Route::post('/employee/image/{id}', [EmployeeController::class, 'uploadAndUpdateEmployeeImage']);
-    Route::put('/user/{id}', [AuthController::class, 'update']);
     Route::post('/employee-registration', [EmployeeController::class, 'store']);
     Route::put('/employee/{id}', [EmployeeController::class, 'update']);
     Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
