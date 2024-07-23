@@ -42,6 +42,7 @@ Route::prefix('attendances')->group(function () {
 Route::prefix('payrolls')->group(function () {
     Route::get('/all',[PayrollController::class, 'index']);
     Route::post('/search', [PayrollController::class, 'search']);
+    Route::post('/add', [PayrollController::class, 'store']);
 });
 //RATES-ENDPOINTS
 Route::prefix('rates')->group(function () {
