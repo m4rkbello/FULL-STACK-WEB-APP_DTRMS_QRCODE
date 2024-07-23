@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
+
 
 class PayrollController extends Controller
 {
@@ -45,7 +47,63 @@ class PayrollController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->validate([
+                'payroll_details' => 'required|string',
+                'payroll_total_amount' => 'required|integer',
+                'payroll_description' => 'required|string',
+                'payroll_status_id' => 'required|integer',
+                'payroll_employee_id' => 'required|integer',
+                'payroll_department_id' => 'required|integer',
+                'payroll_rate_id' => 'required|integer',
+                'payroll_deduction_id' => 'required|integer',
+                'payroll_overtime_id' => 'required|integer',
+            ]);
+
+            $payroll = Payroll::create([
+                'payroll_details' => $data['payroll_details'],
+                'payroll_total_amount' => $data['payroll_total_amount'],
+                'payroll_description' => $data['payroll_description'],
+                'payroll_status_id' => $data['payroll_status_id'],
+                'payroll_employee_id' => $data['payroll_employee_id'],
+                'payroll_department_id' => $data['payroll_department_id'],
+                'payroll_rate_id' => $data['payroll_rate_id'],
+                'payroll_deduction_id' => $data['payroll_deduction_id'],
+                'payroll_overtime_id' => $data['payroll_overtime_id'],
+                'payroll_created_by' => auth()->id(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $response_data = [
+                'status' => 201,
+                'success' => true,
+                'message' => 'Payroll has successfully created!',
+                'details' => $payroll,
+            ];
+
+            return response($response_data, 201);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'status' => 422,
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Rate not found',
+                'status' => 404,
+            ], 404);
+        } catch (\Exception $error) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
     }
 
     /**
