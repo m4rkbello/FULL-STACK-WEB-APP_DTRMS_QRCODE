@@ -94,7 +94,7 @@ class PayrollController extends Controller
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Rate not found',
+                'message' => 'Payroll not found',
                 'status' => 404,
             ], 404);
         } catch (\Exception $error) {
@@ -186,9 +186,41 @@ class PayrollController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deactivate(string $id)
     {
-        //
+        try {
+            // Find the rate by ID and ensure it meets the additional condition(s)
+            $payroll = Payroll::where('id', $id)
+                        ->where('payroll_status_id', 1) // Example condition
+                        ->firstOrFail();
+        
+            // Update the payroll status
+            $payroll->update(['payroll_status_id' => 0]);
+        
+            // Return the updated payroll data
+            return response()->json([
+                'data' => $payroll,
+                'success' => true,
+                'status' => 200,
+            ], 200);
+
+        } catch (ModelNotFoundException $e) {
+            // Handle model not found error
+            return response()->json([
+                'success' => false,
+                'message' => 'Payroll not found or condition not met',
+                'status' => 404,
+            ], 404);
+        } catch (\Exception $error) {
+            // Handle other exceptions
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
+        
     }
 
     public function search(Request $request)
@@ -207,6 +239,7 @@ class PayrollController extends Controller
         }
 
         try {
+
             $data = $request->input('data');
 
             $payrolls_collection = Payroll::where('id', 'like', '%' . $data . '%')
@@ -228,6 +261,7 @@ class PayrollController extends Controller
                 'message' => 'Payroll found!',
                 'deduction' => $payrolls_collection,
             ], 200);
+
         } catch (\Exception $e) {
             // Log the error for further analysis
             \Log::error('Error in search method: ' . $e->getMessage(), ['exception' => $e]);
