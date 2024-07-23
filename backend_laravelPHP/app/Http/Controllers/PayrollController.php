@@ -120,9 +120,69 @@ class PayrollController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        try {
+            // Validate the incoming request data
+            $data = $request->validate([
+                'payroll_details' => 'required|string',
+                'payroll_total_amount' => 'required|integer',
+                'payroll_description' => 'required|string',
+                'payroll_status_id' => 'required|integer',
+                'payroll_employee_id' => 'required|integer',
+                'payroll_department_id' => 'required|integer',
+                'payroll_rate_id' => 'required|integer',
+                'payroll_deduction_id' => 'required|integer',
+                'payroll_overtime_id' => 'required|integer',
+            ]);
 
+            // Find the payroll by ID
+            $payroll = Payroll::find($id);
+
+            // Check if the payroll exists
+            if (!$payroll) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Rate not found',
+                    'status' => 404,
+                ], 404);
+            }
+
+            // Update the payroll with the validated data
+            $payroll->update($data);
+
+            // Return the updated payroll data
+            return response()->json([
+                'data' => $payroll,
+                'success' => true,
+                'status' => 200,
+            ], 200);
+
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'status' => 422,
+                'errors' => $e->errors(),
+            ], 422);
+
+        } catch (ModelNotFoundException $e) {
+            // Handle model not found error
+            return response()->json([
+                'success' => false,
+                'message' => 'Rate not found',
+                'status' => 404,
+            ], 404);
+            
+        } catch (\Exception $error) {
+            // Handle other exceptions
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      */
