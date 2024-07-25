@@ -34,9 +34,8 @@ class OvertimeController extends Controller
                 'message' => 'Fetch all Overtimes have unsuccessful!',
                 'error' => $error,
             ], 401);
-            
+        
         };
-
     }
 
     /**
