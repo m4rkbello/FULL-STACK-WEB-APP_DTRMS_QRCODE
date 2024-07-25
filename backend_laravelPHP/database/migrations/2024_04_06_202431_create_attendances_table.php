@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('attendance_note')->nullable();
             $table->string('attendance_time_in')->nullable();
             $table->string('attendance_time_out')->nullable();
-            $table->integer('attendance_status')->default(1);
+            $table->integer('attendance_status_id')->default(1);
             $table->rememberToken()->nullable();
             $table->timestamps();
             //FK
