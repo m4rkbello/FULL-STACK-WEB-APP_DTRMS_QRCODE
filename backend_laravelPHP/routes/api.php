@@ -52,14 +52,13 @@ Route::prefix('rates')->group(function () {
     Route::post('/add', [RateController::class, 'store']);
     Route::put('/update/{id}', [RateController::class, 'update']);
     Route::put('/deactivate/{id}', [RateController::class, 'deactivate']);
+    Route::post('/search', [RateController::class, 'search']);
 });
 //DEDECUCTION-ENDPOINTS
 Route::prefix('deductions')->group(function () {
     Route::get('/all',[DeductionController::class, 'index']);
     Route::post('/search', [DeductionController::class, 'search']);
 });
-
-
 //OVERTIME-ENDPOINTS
 Route::prefix('overtimes')->group(function () {
     Route::get('/all',[OvertimeController::class, 'index']);
