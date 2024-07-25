@@ -89,14 +89,14 @@ class OvertimeController extends Controller
         try {
             $data = $request->input('data');
 
-            $overtimes_collection = Overtime::where('id', 'like', '%' . $data . '%')
-                ->orWhere('overtime_employee_id', 'like', '%' . $data . '%')
-                ->orWhere('overtime_note', 'like', '%' . $data . '%')
-                ->orWhere('overtime_time_in', 'like', '%' . $data . '%')
-                ->orWhere('overtime_time_out', 'like', '%' . $data . '%')
+            $overtime = Overtime::where('id', 'like', '%' . $data . '%')
+                ->orWhere('overtime_name', 'like', '%' . $data . '%')
+                ->orWhere('overtime_hour', 'like', '%' . $data . '%')
+                ->orWhere('overtime_rate_per_hour', 'like', '%' . $data . '%')
+                ->orWhere('overtime_description', 'like', '%' . $data . '%')
                 ->get();
 
-            if ($overtimes_collection->isEmpty()) {
+            if ($overtime->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'No overtime found for the given search criteria.',
@@ -106,9 +106,10 @@ class OvertimeController extends Controller
             return response()->json([
                 'success' => true,
                 'status' => 200,
-                'message' => 'Deduction found!',
-                'data' => $overtimes_collection,
+                'message' => 'Overtime found!',
+                'data' => $overtime,
             ], 200);
+
         } catch (\Exception $e) {
             // Log the error for further analysis
             \Log::error('Error in search method: ' . $e->getMessage(), ['exception' => $e]);
