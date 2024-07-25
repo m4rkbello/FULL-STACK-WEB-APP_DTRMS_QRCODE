@@ -56,15 +56,15 @@ class DepartmentController extends Controller
     {
         try {
             $data = $request->validate([
-                'dept_name' => 'required|string',
-                'dept_description' => 'required|string',
-                'dept_status_id' => 'required|integer',
+                'department_name' => 'required|string',
+                'department_description' => 'required|string',
+                'department_status_id' => 'required|integer',
             ]);
     
             $department = department::create([
-                'dept_name' => $data['dept_name'],
-                'dept_description' => $data['dept_description'],
-                'dept_status_id' => $data['dept_status_id'],
+                'department_name' => $data['department_name'],
+                'department_description' => $data['department_description'],
+                'department_status_id' => $data['department_status_id'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -73,7 +73,7 @@ class DepartmentController extends Controller
                 'status' => 201,
                 'success' => true,
                 'message' => 'Department has successfully created!',
-                'department' => $department,
+                'data' => $department,
             ];
     
             return response($response_data, 201);
@@ -101,7 +101,7 @@ class DepartmentController extends Controller
             $data = $request->input('data');
             
             $department = department::where('id', 'like', '%' . $data . '%')
-                ->orWhere('dept_name', 'like', '%' . $data . '%')
+                ->orWhere('department_name', 'like', '%' . $data . '%')
                 ->get();
     
             if ($department->isEmpty()) {
