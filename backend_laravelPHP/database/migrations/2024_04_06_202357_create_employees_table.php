@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('employee_contact_no');
             $table->string('employee_position');
             $table->string('employee_role');
-            $table->integer('employee_department');
-            $table->integer('employee_status')->default(1);
+            $table->integer('employee_department_id');
+            $table->integer('employee_status_id')->default(1);
             $table->string('employee_image')->nullable();
             $table->string('employee_qrcode')->nullable();
             $table->rememberToken();
