@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 
 class DeductionController extends Controller
 {
@@ -42,7 +43,53 @@ class DeductionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->validate([
+                'deduction_name' => 'required|string',
+                'deduction_amount' => 'required|integer',
+                'deduction_description' => 'required|string',
+            ]);
+
+            $deduction_collection = Deduction::create([
+                'deduction_name' => $data['deduction_name'],
+                'deduction_amount' => $data['deduction_amount'],
+                'deduction_description' => $data['deduction_description'],
+                'deduction_status_id' => $data['deduction_status_id'],
+                'deduction_department_id' => $data['deduction_department_id'],
+                'created_by' => auth()->id(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $response_data = [
+                'status' => 201,
+                'success' => true,
+                'message' => 'Rate has successfully created!',
+                'data' => $deduction_collection,
+            ];
+
+            return response($response_data, 201);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'status' => 422,
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Rate not found',
+                'status' => 404,
+            ], 404);
+        } catch (\Exception $error) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
     }
 
     /**
