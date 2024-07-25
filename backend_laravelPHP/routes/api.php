@@ -45,7 +45,6 @@ Route::prefix('payrolls')->group(function () {
     Route::post('/add', [PayrollController::class, 'store']);
     Route::put('/update/{id}', [PayrollController::class, 'update']);
     Route::put('/deactivate/{id}', [PayrollController::class, 'deactivate']);
-    
 });
 //RATES-ENDPOINTS
 Route::prefix('rates')->group(function () {
@@ -64,6 +63,8 @@ Route::prefix('deductions')->group(function () {
 //OVERTIME-ENDPOINTS
 Route::prefix('overtimes')->group(function () {
     Route::get('/all',[OvertimeController::class, 'index']);
+    Route::post('/search', [OvertimeController::class, 'search']);
+
 });
 Route::middleware('auth:sanctum')->group(function() {
     // MIDDLEWARE FOR FRONTEND-BACKEND  
