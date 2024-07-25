@@ -13,12 +13,12 @@ class Payroll extends Model
         'payroll_total_amount',
         'payroll_details',
         'payroll_description',
-        'payroll_department_id',
         'payroll_status_id',
         'payroll_employee_id',
         'payroll_rate_id',
         'payroll_deduction_id',
         'payroll_overtime_id',
+        'payroll_department_id',
         'payroll_created_by',
         'payroll_updated_by',
     ];
