@@ -13,6 +13,7 @@ class Deduction extends Model
         'deduction_amount',
         'deduction_name',
         'deduction_description',
+        'deduction_status_id',
         'deduction_created_by',
         'deduction_updated_by',
     ];
