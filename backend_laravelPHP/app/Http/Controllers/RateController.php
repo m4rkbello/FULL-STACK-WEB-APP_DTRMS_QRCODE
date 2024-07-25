@@ -209,4 +209,59 @@ class RateController extends Controller
         }
         
     }
+
+    public function search(Request $request)
+    {
+        //EVALIDATE NA TAAS PANG GIINPUT OR GAMAY!
+        $validator = Validator::make($request->all(), [
+            'data' => 'required|string|min:1',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid search input.',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        try {
+            $data = $request->input('data');
+
+            $rates = Rate::where('id', 'like', '%' . $data . '%')
+                ->orWhere('rate_name', 'like', '%' . $data . '%')
+                ->orWhere('rate_amount_per_day', 'like', '%' . $data . '%')
+                ->orWhere('rate_details', 'like', '%' . $data . '%')
+                ->orWhere('rate_description', 'like', '%' . $data . '%')
+                ->get();
+
+            if ($rates->isEmpty()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No rates found for the given search criteria.',
+                ], 404);
+            }
+
+            return response()->json([
+                'success' => true,
+                'status' => 200,
+                'message' => 'Rate found!',
+                'data' => $rates,
+            ], 200);
+
+        } catch (\Exception $e) {
+            // Log the error for further analysis
+            \Log::error('Error in search method: ' . $e->getMessage(), ['exception' => $e]);
+
+            // Return a more detailed error message only if in debug mode
+            $errorMessage = config('app.debug') ? $e->getMessage() : 'Failed to search deduction. Please try again later.';
+
+            return response()->json([
+                'success' => false,
+                'message' => $errorMessage,
+            ], 500);
+        }
+    }
+
+
 }
