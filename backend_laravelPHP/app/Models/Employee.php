@@ -17,8 +17,8 @@ class Employee extends Model
         'employee_contact_no',
         'employee_position',
         'employee_role',
-        'employee_department',
-        'employee_status',
+        'employee_department_id',
+        'employee_status_id',
         'employee_image',
         'employee_qrcode'
     ];
@@ -29,7 +29,7 @@ class Employee extends Model
     
     public function department()
     {
-        return $this->belongsTo(Department::class, 'employee_department');
+        return $this->belongsTo(Department::class, 'employee_department_id');
     }
 
 
