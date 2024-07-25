@@ -14,8 +14,9 @@ class CreateDeductionsTable extends Migration
                 $table->string('deduction_name', 255)->nullable();
                 $table->decimal('deduction_amount', 10, 2)->nullable();
                 $table->string('deduction_description', 255)->nullable();
-                $table->unsignedBigInteger('deduction_created_by')->nullable();
-                $table->unsignedBigInteger('deduction_updated_by')->nullable();
+                $table->integer('deduction_status_id')->nullable();;
+                $table->integer('deduction_created_by')->nullable();
+                $table->integer('deduction_updated_by')->nullable();
                 $table->timestamps();
             });
         }
