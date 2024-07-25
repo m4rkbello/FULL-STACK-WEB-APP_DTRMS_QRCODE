@@ -261,7 +261,7 @@ const EmployeeDashboard = (props) => {
                                     >
                                         {departments.map((item, index) => (
                                             <option key={index} value={item.id}>
-                                                {item.dept_name}
+                                                {item.department_name}
                                             </option>
                                         ))}
                                     </select>
