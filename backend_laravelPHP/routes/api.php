@@ -58,7 +58,8 @@ Route::prefix('rates')->group(function () {
 Route::prefix('deductions')->group(function () {
     Route::get('/all',[DeductionController::class, 'index']);
     Route::post('/search', [DeductionController::class, 'search']);
-    Route::post('/add', [RateController::class, 'store']);
+    Route::post('/add', [DeductionController::class, 'store']);
+    Route::put('/update/{id}', [DeductionController::class, 'update']);
 });
 //OVERTIME-ENDPOINTS
 Route::prefix('overtimes')->group(function () {
