@@ -48,6 +48,7 @@ class DeductionController extends Controller
                 'deduction_name' => 'required|string',
                 'deduction_amount' => 'required|integer',
                 'deduction_description' => 'required|string',
+                'deduction_status_id' => 'required|integer',
             ]);
 
             $deduction_collection = Deduction::create([
@@ -55,7 +56,6 @@ class DeductionController extends Controller
                 'deduction_amount' => $data['deduction_amount'],
                 'deduction_description' => $data['deduction_description'],
                 'deduction_status_id' => $data['deduction_status_id'],
-                'deduction_department_id' => $data['deduction_department_id'],
                 'created_by' => auth()->id(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -69,26 +69,33 @@ class DeductionController extends Controller
             ];
 
             return response($response_data, 201);
+
         } catch (ValidationException $e) {
+
             return response()->json([
                 'success' => false,
                 'message' => 'Validation failed',
                 'status' => 422,
                 'errors' => $e->errors(),
             ], 422);
+
         } catch (ModelNotFoundException $e) {
+
             return response()->json([
                 'success' => false,
                 'message' => 'Rate not found',
                 'status' => 404,
             ], 404);
+
         } catch (\Exception $error) {
+
             return response()->json([
                 'success' => false,
                 'message' => 'An error occurred',
                 'status' => 500,
                 'errors' => $error->getMessage(),
             ], 500);
+            
         }
     }
 
@@ -105,9 +112,65 @@ class DeductionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        \Log::info('Request data: ', $request->all());
+        try {
+            // Validate the incoming request data
+            $data = $request->validate([
+                'deduction_name' => 'required|string',
+                'deduction_amount' => 'required|integer',
+                'deduction_description' => 'required|string',
+                'deduction_status_id' => 'required|integer',
+            ]);
 
+            // Find the rate by ID
+            $deductions_collection = Deduction::find($id);
+
+            // Check if the rate exists
+            if (!$deductions_collection) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Deduction not found',
+                    'status' => 404,
+                ], 404);
+            }
+
+            // Update the rate with the validated data
+            $deductions_collection->update($data);
+
+            // Return the updated rate data
+            return response()->json([
+                'data' => $deductions_collection,
+                'success' => true,
+                'status' => 200,
+            ], 200);
+
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'status' => 422,
+                'errors' => $e->errors(),
+            ], 422);
+
+        } catch (ModelNotFoundException $e) {
+            // Handle model not found error
+            return response()->json([
+                'success' => false,
+                'message' => 'Deduction not found',
+                'status' => 404,
+            ], 404);
+            
+        } catch (\Exception $error) {
+            // Handle other exceptions
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      */
