@@ -13,7 +13,7 @@ class Department extends Model
         'department_name',
         'department_description',
         'department_status_id',
-        'department_emp_id'
+        'department_employee_id'
     ];
 
 
