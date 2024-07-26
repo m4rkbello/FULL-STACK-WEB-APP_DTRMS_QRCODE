@@ -38,8 +38,8 @@ class EmployeeController extends Controller
                 'employee_contact_no' => 'required|string|max:11',
                 'employee_position' => 'required|string',
                 'employee_role' => 'required|string',
-                'employee_department' => 'required|integer',
-                'employee_status' => 'required|integer',
+                'employee_department_id' => 'required|integer',
+                'employee_status_id' => 'required|integer',
             ]);
 
             // Create the employee record
@@ -49,8 +49,8 @@ class EmployeeController extends Controller
                 'employee_contact_no' => $data['employee_contact_no'],
                 'employee_position' => $data['employee_position'],
                 'employee_role' => $data['employee_role'],
-                'employee_department' => $data['employee_department'],
-                'employee_status' => $data['employee_status'],
+                'employee_department_id' => $data['employee_department_id'],
+                'employee_status_id' => $data['employee_status_id'],
             ]);
 
             // Generate QR code content (using employee email)
