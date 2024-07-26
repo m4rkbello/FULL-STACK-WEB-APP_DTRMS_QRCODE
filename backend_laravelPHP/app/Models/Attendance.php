@@ -14,7 +14,7 @@ class Attendance extends Model
         'attendance_note',
         'attendance_time_in',
         'attendance_time_out',
-        'attendance_status',
+        'attendance_status_id',
     ];
 
     protected $cast = [
