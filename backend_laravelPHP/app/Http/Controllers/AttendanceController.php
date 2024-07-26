@@ -62,7 +62,7 @@ public function store(Request $request)
         $isStatusActive = 1;
 
         $employee = Employee::where('employee_email', $data['employee_email'])
-            ->where('employee_status','=',$isStatusActive)    
+            ->where('employee_status_id','=',$isStatusActive)    
             ->first();
 
         if (!$employee) {
@@ -85,13 +85,13 @@ public function store(Request $request)
 
         $attendanceCollectionsTimeIn = Attendance::where('attendance_employee_id', $employeeId)
             ->whereDay('created_at', '=', Carbon::today())
-            ->where('attendance_status', '=', 1)
+            ->where('attendance_status_id', '=', 1)
             ->whereTime('created_at', '<', '12:00:00')
             ->exists();
 
         $attendanceCollectionsTimeout = Attendance::where('attendance_employee_id', $employeeId)
             ->whereDay('created_at', '=', Carbon::today())
-            ->where('attendance_status', '=', 2)
+            ->where('attendance_status_id', '=', 2)
             ->exists();
 
         if (!$attendanceCollections) {
@@ -100,7 +100,7 @@ public function store(Request $request)
                 'attendance_note' => $timeInNote,
                 'attendance_time_in' => Carbon::now(),
                 'attendance_time_out' => null,
-                'attendance_status' => 1,
+                'attendance_status_id' => 1,
             ]);
         } elseif ($attendanceCollectionsTimeIn && $attendanceCollectionsTimeout) {
             return response()->json([
@@ -114,7 +114,7 @@ public function store(Request $request)
                 'attendance_note' => $timeOutNote,
                 'attendance_time_in' => null,
                 'attendance_time_out' => Carbon::now(),
-                'attendance_status' => 2,
+                'attendance_status_id' => 2,
             ]);
         }  else {
             return response()->json([
