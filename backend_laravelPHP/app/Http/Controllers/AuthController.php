@@ -21,11 +21,12 @@ class AuthController extends Controller
     public function index()
     {
         try{
-            $data = User::all();
+            $users_collection = User::all();
 
             return response()->json([
-                'department' => $data,
+                'data' => $users_collection,
                 'success' => true,
+                'message' => 'Fetch all Users successfully!',
                 'status' => 201,
             ], 201);
 
