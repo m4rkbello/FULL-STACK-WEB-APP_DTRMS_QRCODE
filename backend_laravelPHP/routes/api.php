@@ -34,10 +34,10 @@ Route::post('/login',[AuthController::class, 'login']);
 
 //ATTENDANCES-ENDPOINTS
 Route::prefix('attendances')->group(function () {
-        Route::get('/all',[AttendanceController::class, 'index']);
-        Route::post('/qrcode/data',[AttendanceController::class, 'store']);
-        Route::get('/qrcode/data/{id}',[AttendanceController::class, 'show']);
-        Route::post('/search', [AttendanceController::class, 'search']);
+    Route::get('/all',[AttendanceController::class, 'index']);
+    Route::post('/qrcode/data',[AttendanceController::class, 'store']);
+    Route::get('/qrcode/data/{id}',[AttendanceController::class, 'show']);
+    Route::post('/search', [AttendanceController::class, 'search']);
 });
 //PAYROLLS-ENDPOINTS
 Route::prefix('payrolls')->group(function () {
