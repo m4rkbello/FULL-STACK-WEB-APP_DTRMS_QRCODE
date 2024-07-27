@@ -112,7 +112,6 @@ class DeductionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        \Log::info('Request data: ', $request->all());
         try {
             // Validate the incoming request data
             $data = $request->validate([
@@ -122,24 +121,24 @@ class DeductionController extends Controller
                 'deduction_status_id' => 'required|integer',
             ]);
 
-            // Find the rate by ID
-            $deductions_collection = Deduction::find($id);
+            // Find the payroll by ID
+            $deduction_collection = Deduction::find($id);
 
-            // Check if the rate exists
-            if (!$deductions_collection) {
+            // Check if the payroll exists
+            if (!$deduction_collection) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Deduction not found',
+                    'message' => 'Rate not found',
                     'status' => 404,
                 ], 404);
             }
 
-            // Update the rate with the validated data
-            $deductions_collection->update($data);
+            // Update the payroll with the validated data
+            $deduction_collection->update($data);
 
-            // Return the updated rate data
+            // Return the updated payroll data
             return response()->json([
-                'data' => $deductions_collection,
+                'data' => $deduction_collection,
                 'success' => true,
                 'status' => 200,
             ], 200);
@@ -157,7 +156,7 @@ class DeductionController extends Controller
             // Handle model not found error
             return response()->json([
                 'success' => false,
-                'message' => 'Deduction not found',
+                'message' => 'Rate not found',
                 'status' => 404,
             ], 404);
             
@@ -174,11 +173,44 @@ class DeductionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deactivate(string $id)
     {
-        //
-    }
+        try {
+            // Find the rate by ID and ensure it meets the additional condition(s)
+            $deduction_collection = Deduction::where('id', $id)
+                        ->where('deduction_status_id', 1) // Example condition
+                        ->firstOrFail();
+        
+            // Update the rate status
+            $deduction_collection->update(['deduction_status_id' => 0]);
+        
+            // Return the updated rate data
+            return response()->json([
+                'data' => $deduction_collection,
+                'success' => true,
+                'status' => 200,
+            ], 200);
 
+        } catch (ModelNotFoundException $e) {
+            // Handle model not found error
+            return response()->json([
+                'success' => false,
+                'message' => 'Deduction not found or condition not met',
+                'status' => 404,
+                'error' => $e
+            ], 404);
+
+        } catch (\Exception $error) {
+            // Handle other exceptions
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred for deactivating the Deduction!',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
+        
+    }
     public function search(Request $request)
     {
         //EVALIDATE NA TAAS PANG GIINPUT OR GAMAY!
