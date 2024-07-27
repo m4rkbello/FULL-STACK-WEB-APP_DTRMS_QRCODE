@@ -68,6 +68,8 @@ Route::prefix('overtimes')->group(function () {
     Route::get('/all',[OvertimeController::class, 'index']);
     Route::post('/search', [OvertimeController::class, 'search']);
     Route::post('/add', [OvertimeController::class, 'store']);
+    Route::put('/update/item/{id}', [OvertimeController::class, 'update']);
+    Route::put('/deactivate/{id}', [OvertimeController::class, 'deactivate']);
 
 
 });
@@ -80,7 +82,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);
     Route::post('/user/change-password/{id}', [AuthController::class, 'changePassword']);
     Route::put('/user/{id}', [AuthController::class, 'update']);
-// EMPLOYEE
+    // EMPLOYEE
     Route::get('/employees', [EmployeeController::class, 'index']);
     Route::get('/employee/{id}', [EmployeeController::class, 'show']);
     Route::post('/employee/image/{id}', [EmployeeController::class, 'uploadAndUpdateEmployeeImage']);
