@@ -200,7 +200,7 @@ const EmployeeDashboard = (props) => {
     }
 
     return (
-        <div className="hero max-w-full rounded-l-lg rounded-t-lg rounded-r-lg rounded-b-lg">
+        <div className="h-full max-h-full w-full max-w-ful hero rounded-l-lg rounded-t-lg rounded-r-lg rounded-b-lg">
             <ToastContainer />
             <dialog id="removeEmployee" className="modal">
                 <div className="modal-box">
@@ -362,7 +362,7 @@ const EmployeeDashboard = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
+            <div className="hero h-full max-h-full w-full max-w-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
                 <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
                     <div className="flex flex-wrap">
                         <div>
