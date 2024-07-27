@@ -22,15 +22,15 @@ import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import Department from './components/Auth/admin/department/Department';
 import Dashboard from './components/Auth/admin/Dashboard';
 import Payroll from './components/Auth/admin/payroll/Payroll';
+import Rate from './components/Auth/admin/rate/Rates';
+import Overtime from './components/Auth/admin/overtime/Overtime';
 //EMPLOYEE
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
 import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
-import FourOFourNotFound from './components/Auth/admin/pages/404NotFound';
 import ArchiveEmployee from './components/Auth/employee/EmployeeArchieve';
 import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
-import EmployeeChart from './components/Auth/employee/EmployeeChart';
 import AddDepartment from './components/Auth/admin/department/AddDepartment';
 import EditDepartment from './components/Auth/admin/department/EditDepartment';
 import EmployeeScanQRCode from './components/Auth/employee/EmployeeScanQRCode';
@@ -86,7 +86,6 @@ function App(props) {
 
   // const usersCollection = props && props.users && props.users.data;
   const usersCollection = props?.users?.data; // Accessing users array from props
-  console.log("DATA SA usersCollection", usersCollection);''
 
   // console.log("ID CHOI", usersCollection);
   function getUserAuthenticated(usersCollection) {
@@ -248,7 +247,9 @@ function App(props) {
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
-                  <Route path="/admin/payroll" element={<Payroll />} />
+                  <Route path="/admin/payrolls" element={<Payroll />} />
+                  <Route path="/admin/rates" element={<Rate />} />
+                  <Route path="/admin/overtimes" element={<Overtime />} />
 
                   <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
@@ -444,7 +445,6 @@ function App(props) {
               </a>
             </li>
           </ul>
-            
               <li>
                 <Link to="/" className='text-2xl glass'>
                   <FcDoughnutChart 
@@ -490,11 +490,6 @@ function App(props) {
                 </Link>
               </li>
               <li>
-                <Link to="/content" className='text-2xl glass'>
-                  Content Test
-                </Link>
-              </li>
-              <li>
                 <Link to="/department" className='text-2xl glass'>
                   <FcDepartment
                     style={{ 
@@ -506,7 +501,7 @@ function App(props) {
                 </Link>
               </li>
               <li>
-                <Link to="/admin/payroll" className='text-2xl glass'>
+                <Link to="/admin/payrolls" className='text-2xl glass'>
                   <FcMoneyTransfer
                     style={{ 
                       height: "120%",
@@ -517,7 +512,7 @@ function App(props) {
                 </Link>
               </li>
               <li>
-                <Link to="" className='text-2xl glass'>
+                <Link to="/admin/rates" className='text-2xl glass'>
                   <FcMoneyTransfer
                     style={{ 
                       height: "120%",
@@ -528,7 +523,7 @@ function App(props) {
                 </Link>
               </li>
               <li>
-                <Link to="" className='text-2xl glass'>
+                <Link to="/admin/overtimes" className='text-2xl glass'>
                   <FcOvertime
                     style={{ 
                       height: "120%",
