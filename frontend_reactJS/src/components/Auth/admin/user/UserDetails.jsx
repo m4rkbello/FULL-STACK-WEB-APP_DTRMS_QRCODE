@@ -19,6 +19,7 @@ import { fetchImages } from '../../../redux/actions/imageAction';
 //modal 
 
 const UserDetails = (props) => {
+  console.log("DATA SA USER PARA E DISPLAY!", props);
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
@@ -60,7 +61,8 @@ const UserDetails = (props) => {
     }
   };
 
-  const usersCollection = props?.users;
+  //NAGBIRAG DATA GIKAN SA PROPS DRILLING
+  const usersCollection = props?.users?.data;
 
   function getUserAuthenticated(usersCollection) {
     let item = [];
