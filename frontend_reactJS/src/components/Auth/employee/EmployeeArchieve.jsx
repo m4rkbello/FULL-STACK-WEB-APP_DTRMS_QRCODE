@@ -90,7 +90,7 @@ const ArchieveEmployee = (props) => {
     }
 
     return (
-        <div className="container glass mx-auto p-4">
+        <div className="h-full max-h-full w-full max-w-ful glass mx-auto p-4">
             <ToastContainer />
             <dialog id="removeEmployee" className="modal">
                 <div className="modal-box">
@@ -103,8 +103,8 @@ const ArchieveEmployee = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
-                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+            <div className="hero h-full max-h-full w-full max-w-ful bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
+                <div className="h-full max-h-full w-full max-w-ful bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                     <div className="flex flex-wrap bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
