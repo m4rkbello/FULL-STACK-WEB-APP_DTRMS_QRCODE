@@ -70,8 +70,6 @@ Route::prefix('overtimes')->group(function () {
     Route::post('/add', [OvertimeController::class, 'store']);
     Route::put('/update/item/{id}', [OvertimeController::class, 'update']);
     Route::put('/deactivate/{id}', [OvertimeController::class, 'deactivate']);
-
-
 });
 
 Route::post('/employee-registration', [EmployeeController::class, 'store']);
@@ -83,13 +81,13 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/user/change-password/{id}', [AuthController::class, 'changePassword']);
     Route::put('/user/{id}', [AuthController::class, 'update']);
     // EMPLOYEE
-    Route::get('/employees', [EmployeeController::class, 'index']);
     Route::get('/employee/{id}', [EmployeeController::class, 'show']);
     Route::post('/employee/image/{id}', [EmployeeController::class, 'uploadAndUpdateEmployeeImage']);
     Route::put('/employee/{id}', [EmployeeController::class, 'update']);
     Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
     Route::post('/employee/search/', [EmployeeController::class, 'search']);
     Route::put('/employee/deactivated/{id}', [EmployeeController::class, 'deactivate']);
+    Route::get('/employees', [EmployeeController::class, 'index']);
     // UPLOAD PICTURE
     Route::get('/images', [ImagesController::class, 'index']);
     Route::post('/image', [ImagesController::class, 'store']);
