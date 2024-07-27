@@ -118,10 +118,11 @@ class OvertimeController extends Controller
         try {
             // Validate the incoming request data
             $data = $request->validate([
-                'deduction_name' => 'required|string',
-                'deduction_amount' => 'required|integer',
-                'deduction_description' => 'required|string',
-                'deduction_status_id' => 'required|integer',
+                'overtime_name' => 'required|string',
+                'overtime_hour' => 'required|integer',
+                'overtime_rate_per_hour' => 'required|integer',
+                'overtime_description' => 'required|string',
+                'overtime_status_id' => 'required|integer',
             ]);
 
             // Find the payroll by ID
@@ -178,9 +179,44 @@ class OvertimeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deactivate(string $id)
     {
-        //
+        try {
+            // Find the rate by ID and ensure it meets the additional condition(s)
+            $overtime_collection = Overtime::where('id', $id)
+                ->where('deduction_status_id', 1) // Example condition
+                ->firstOrFail();
+        
+            // Update the rate status
+            $overtime_collection->update(['deduction_status_id' => 0]);
+        
+            // Return the updated rate data
+            return response()->json([
+                'data' => $overtime_collection,
+                'success' => true,
+                'status' => 200,
+                'message' => 'Overtime item was successfully deactivated!',
+            ], 200);
+
+        } catch (ModelNotFoundException $e) {
+            // Handle model not found error
+            return response()->json([
+                'success' => false,
+                'message' => 'Deduction not found or condition not met',
+                'status' => 404,
+                'error' => $e
+            ], 404);
+
+        } catch (\Exception $error) {
+            // Handle other exceptions
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred for deactivating the Deduction!',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
+        
     }
 
     public function search(Request $request)
