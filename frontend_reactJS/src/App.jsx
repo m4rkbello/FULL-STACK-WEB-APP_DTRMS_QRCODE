@@ -21,6 +21,7 @@ import UserChangePassword from './components/Auth/admin/user/UserChangePassword'
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import Department from './components/Auth/admin/department/Department';
 import Dashboard from './components/Auth/admin/Dashboard';
+import Payroll from './components/Auth/admin/payroll/Payroll';
 //EMPLOYEE
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
@@ -39,6 +40,7 @@ import { fetchEmployees } from './components/redux/actions/employeeAction';
 import { fetchAttendances } from './components/redux/actions/attendanceAction';
 
 function App(props) {
+  console.log("DATA SA PROPS", props);
   //FOR AUTHENTICATION-PURPOSES GAMIT TOKEN UG ID SA USERS
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
@@ -83,7 +85,8 @@ function App(props) {
   }
 
   // const usersCollection = props && props.users && props.users.data;
-  const usersCollection = props?.users; // Accessing users array from props
+  const usersCollection = props?.users?.data; // Accessing users array from props
+  console.log("DATA SA usersCollection", usersCollection);''
 
   // console.log("ID CHOI", usersCollection);
   function getUserAuthenticated(usersCollection) {
@@ -101,6 +104,7 @@ function App(props) {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
+  console.log("DATA SA isAuthenticatedUser", isAuthenticatedUser);
 
   return (
     <div className="flex flex-col h-screen">
@@ -244,6 +248,8 @@ function App(props) {
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
+                  <Route path="/admin/payroll" element={<Payroll />} />
+
                   <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                   <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
@@ -500,7 +506,7 @@ function App(props) {
                 </Link>
               </li>
               <li>
-                <Link to="" className='text-2xl glass'>
+                <Link to="/admin/payroll" className='text-2xl glass'>
                   <FcMoneyTransfer
                     style={{ 
                       height: "120%",
