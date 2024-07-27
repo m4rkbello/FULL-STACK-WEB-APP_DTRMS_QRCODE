@@ -115,7 +115,64 @@ class OvertimeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            // Validate the incoming request data
+            $data = $request->validate([
+                'deduction_name' => 'required|string',
+                'deduction_amount' => 'required|integer',
+                'deduction_description' => 'required|string',
+                'deduction_status_id' => 'required|integer',
+            ]);
+
+            // Find the payroll by ID
+            $overtime_collection = Overtime::find($id);
+
+            // Check if the payroll exists
+            if (!$overtime_collection) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Overtime not found!',
+                    'status' => 404,
+                ], 404);
+            }
+
+            // Update the payroll with the validated data
+            $overtime_collection->update($data);
+
+            // Return the updated payroll data
+            return response()->json([
+                'data' => $overtime_collection,
+                'success' => true,
+                'status' => 200,
+                'message' => 'Overtime updated successfully',
+            ], 200);
+
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'status' => 422,
+                'errors' => $e->errors(),
+            ], 422);
+
+        } catch (ModelNotFoundException $e) {
+            // Handle model not found error
+            return response()->json([
+                'success' => false,
+                'message' => 'Rate not found',
+                'status' => 404,
+            ], 404);
+            
+        } catch (\Exception $error) {
+            // Handle other exceptions
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'status' => 500,
+                'errors' => $error->getMessage(),
+            ], 500);
+        }
     }
 
     /**
