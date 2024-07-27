@@ -32,7 +32,7 @@ const Department = (props) => {
   useEffect(() => {
     const allDepartments = getAllDepartments(props?.departmentData?.departments?.data?.department);
     const filtered = allDepartments.filter(department =>
-      department.dept_name.toLowerCase().includes(searchDepartment.toLowerCase())
+      department.department_name.toLowerCase().includes(searchDepartment.toLowerCase())
     );
     setFilteredDepartments(filtered);
     setCurrentPage(1); // Reset to the first page on new search
@@ -68,8 +68,8 @@ const Department = (props) => {
   }
 
   return (
-    <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-      <div className="overflow-auto max-h-screen">
+    <div className="h-full max-h-full w-full max-w-full hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+      <div className="overflow-auto">
         <div className="flex flex-wrap">
           <div>
             <div className="text-sm breadcrumbs mb-2 bg-transparent">
@@ -137,10 +137,10 @@ const Department = (props) => {
                   </div>
                 </div>
 
-                <div class="flex flex-row pb-5 pt-5 glass">
-                  <div class="basis-1/4"></div>
-                  <div class="basis-1/2">DEPARTMENTS LIST</div>
-                  <div class="basis-1/4">
+                <div className="flex flex-row pb-5 pt-5 glass">
+                  <div className="basis-1/4"></div>
+                  <div className="basis-1/2">DEPARTMENTS LIST</div>
+                  <div className="basis-1/4">
                     <Link to="/department/add" className="text-black">
                       <IoIosPersonAdd style={{ height: "50px", width: "50px", color: "indigo" }} />
                     </Link>
@@ -164,8 +164,8 @@ const Department = (props) => {
                   {currentDepartments.map((item, index) => (
                     <tr key={index}>
                       <td>{indexOfFirstDepartment + index + 1}</td>
-                      <td>{item.dept_name}</td>
-                      <td>{item.dept_description}</td>
+                      <td     style={{ fontSize: "25px", color: "green", alignItems: "center" }}>{item.department_name}</td>
+                      <td     style={{ fontSize: "25px", color: "green", alignItems: "center" }}>{item.department_description}</td>
                       <td>
                         <center>
                           {item.dept_status_id === 1 ? (
@@ -202,20 +202,21 @@ const Department = (props) => {
                 </tbody>
               </table>
             </div>
-            <div class="flex flex-row">
-              <div class="basis-1/4">
+            <div className="flex flex-row">
+              <div className="basis-1/4">
                 <TiArrowLeftThick
                   onClick={() => paginate(currentPage - 1)}
                   disabled={currentPage === 1}
                   style={{ fontSize: "", color: "black", width: '', height: '' }}
                 />
               </div>
-              <div class="basis-1/4"><TiArrowRightThick
-                onClick={() => paginate(currentPage + 1)}
-                disabled={currentPage === pageNumbers.length}
-                style={{ fontSize: "", color: "black", width: '', height: '' }}
-              />
-              </div>
+       
+                <div className="basis-1/4"><TiArrowRightThick
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === pageNumbers.length}
+                  style={{ fontSize: "", color: "black", width: '', height: '' }}
+                />
+                </div>
             </div>
           </>
         ) : (
