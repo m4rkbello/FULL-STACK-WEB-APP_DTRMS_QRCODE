@@ -28,10 +28,11 @@ Route::prefix('admin')->group(function () {
 
 });
 
-//LOGIN/REGISTER ROUTE-ENDPOINTS
+//AUTHENTICATION-ENDPOINTS
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
-//ATTENDANCE ROUTE-ENDPOINTS
+
+//ATTENDANCES-ENDPOINTS
 Route::prefix('attendances')->group(function () {
         Route::get('/all',[AttendanceController::class, 'index']);
         Route::post('/qrcode/data',[AttendanceController::class, 'store']);
@@ -54,17 +55,20 @@ Route::prefix('rates')->group(function () {
     Route::put('/deactivate/{id}', [RateController::class, 'deactivate']);
     Route::post('/search', [RateController::class, 'search']);
 });
-//DEDECUCTION-ENDPOINTS
+//DEDECUCTIONS-ENDPOINTS
 Route::prefix('deductions')->group(function () {
     Route::get('/all',[DeductionController::class, 'index']);
     Route::post('/search', [DeductionController::class, 'search']);
     Route::post('/add', [DeductionController::class, 'store']);
-    Route::put('/update/{id}', [DeductionController::class, 'update']);
+    Route::put('/update/item/{id}', [DeductionController::class, 'update']);
+    Route::put('/deactivate/{id}', [DeductionController::class, 'deactivate']);
 });
-//OVERTIME-ENDPOINTS
+//OVERTIMES-ENDPOINTS
 Route::prefix('overtimes')->group(function () {
     Route::get('/all',[OvertimeController::class, 'index']);
     Route::post('/search', [OvertimeController::class, 'search']);
+    Route::post('/add', [OvertimeController::class, 'store']);
+
 
 });
 
