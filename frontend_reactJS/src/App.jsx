@@ -24,6 +24,7 @@ import Dashboard from './components/Auth/admin/Dashboard';
 import Payroll from './components/Auth/admin/payroll/Payroll';
 import Rate from './components/Auth/admin/rate/Rates';
 import Overtime from './components/Auth/admin/overtime/Overtime';
+import Deduction from './components/Auth/admin/deduction/Deduction';
 //EMPLOYEE
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
@@ -250,6 +251,7 @@ function App(props) {
                   <Route path="/admin/payrolls" element={<Payroll />} />
                   <Route path="/admin/rates" element={<Rate />} />
                   <Route path="/admin/overtimes" element={<Overtime />} />
+                  <Route path="/admin/deductions" element={<Deduction />} />
 
                   <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
@@ -534,7 +536,7 @@ function App(props) {
                 </Link>
               </li>
               <li>
-                <Link to="" className='text-2xl glass'>
+                <Link to="/admin/deductions" className='text-2xl glass'>
                   <FcDebt
                     style={{ 
                       height: "120%",
