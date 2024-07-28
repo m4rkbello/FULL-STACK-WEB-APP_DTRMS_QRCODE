@@ -7,6 +7,8 @@ import imageReducer from './reducers/imageReducer';
 import chartReducer from '../../services/chart/chartReducer';
 import rateReducer from './reducers/rateReducer';
 import payrollReducer from './reducers/payrollReducer';
+import overtimeReducer from './reducers/overtimeReducer';
+
 
 const rootReducer = combineReducers({
   userState: userReducer,
@@ -17,8 +19,7 @@ const rootReducer = combineReducers({
   chartState: chartReducer,
   rateState: rateReducer,
   payrollState: payrollReducer,
-
+  overtimeState: overtimeReducer,
 });
-
 
 export default rootReducer;
