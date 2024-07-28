@@ -19,7 +19,7 @@ import {
     SEARCH_RATE_REQUEST,
     SEARCH_RATE_SUCCESS,
     SEARCH_RATE_FAILURE,
-} from '../types/rateTypes.jsx'
+} from '../types/rateTypes.jsx';
 
 //MAG-FETCH UG DATA SA RATES NA TABLE
 export const fetchRates = () => async dispatch => {
