@@ -256,7 +256,7 @@ function App(props) {
                   <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                   <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
-                  <Route path="/archieve" element={<ArchiveEmployee />} />
+                  <Route path="/employee/archieve" element={<ArchiveEmployee />} />
                   <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                   <Route path="/department" element={<Department />} />
                   <Route path="/department/add" element={<AddDepartment />} />
@@ -481,7 +481,7 @@ function App(props) {
                 </Link>
               </li>
               <li>
-                <Link to="/archieve" className='text-2xl glass'>
+                <Link to="/employee/archieve" className='text-2xl glass'>
                   <FcReuse
                     style={{ 
                       height: "120%",
