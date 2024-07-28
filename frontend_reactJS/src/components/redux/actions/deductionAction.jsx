@@ -34,7 +34,7 @@ export const fetchDeductions = () => async dispatch => {
         });
     } catch (error) {
         dispatch({
-            type: FETCH_RATES_FAILURE,
+            type: FETCH_DEDUCTIONS_FAILURE,
             payload: error.message
         });
     }
