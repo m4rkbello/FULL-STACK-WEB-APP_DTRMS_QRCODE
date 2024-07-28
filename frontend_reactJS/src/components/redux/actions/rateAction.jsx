@@ -135,9 +135,9 @@ export const updateRate = (rateId, updateRateData) => async dispatch => {
             });
         }
     }
-}
+};
 
-//DEACTIVATE RATE GAMIT ID
+//DEACTIVATE RATES GAMIT ID
 export const deactivateRate = rateId => async dispatch => {
     try{
         dispatch({
@@ -148,7 +148,7 @@ export const deactivateRate = rateId => async dispatch => {
 
         if (deactivateRateRequestAndResponse.success != true) {
             // Handle the case where the response is empty
-            toast.error('Employee not deactivated! 🥺⚠️👽', {
+            toast.error('Rate has not deactivated! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 10000,
                 hideProgressBar: false,
@@ -164,7 +164,7 @@ export const deactivateRate = rateId => async dispatch => {
             });
         } else {
             // Handle the case where the update is successful
-            toast.success('Employee deactivated Successfully!👌👌👌', {
+            toast.success('Rate deactivated Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -200,11 +200,11 @@ export const searchRates = searchQuery => async dispatch => {
     try {
         dispatch({ type: SEARCH_RATE_REQUEST });
 
-        const searchResponse = await MarkBelloApi.post('/api/rates/search', searchQuery);
+        const searchDeductionRequestAndResponseData = await MarkBelloApi.post('/api/rates/search', searchQuery);
 
         dispatch({
             type: SEARCH_RATE_SUCCESS,
-            payload: searchResponse
+            payload: searchDeductionRequestAndResponseData
         });
     } catch (error) {
         dispatch({
