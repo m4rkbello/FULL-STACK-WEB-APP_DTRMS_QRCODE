@@ -189,6 +189,7 @@ class RateController extends Controller
                 'data' => $rate,
                 'success' => true,
                 'status' => 200,
+                'message' => 'Rate has been successfully deactivated!'
             ], 200);
 
         } catch (ModelNotFoundException $e) {
