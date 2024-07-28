@@ -16,6 +16,9 @@ import {
     DELETE_RATE_REQUEST,
     DELETE_RATE_SUCCESS,
     DELETE_RATE_FAILURE,
+    SEARCH_RATE_REQUEST,
+    SEARCH_RATE_SUCCESS,
+    SEARCH_RATE_FAILURE,
 } from '../types/rateTypes.jsx'
 
 //MAG-FETCH UG DATA SA RATES NA TABLE
@@ -183,12 +186,32 @@ export const deactivateRate = rateId => async dispatch => {
         }
             
     }catch (error){
+
         dispatch({
             type: DELETE_RATE_FAILURE,
             payload: error.message
         });
     }
-    
-}
+
+};
+
+//SEARCH RATES - Action to search rates
+export const searchRates = searchQuery => async dispatch => {
+    try {
+        dispatch({ type: SEARCH_RATE_REQUEST });
+
+        const searchResponse = await MarkBelloApi.post('/api/rates/search', searchQuery);
+
+        dispatch({
+            type: SEARCH_RATE_SUCCESS,
+            payload: searchResponse
+        });
+    } catch (error) {
+        dispatch({
+            type: SEARCH_RATE_FAILURE,
+            payload: error.message
+        });
+    }
+};
 
 
