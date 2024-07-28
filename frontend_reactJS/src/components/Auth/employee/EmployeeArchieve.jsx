@@ -103,8 +103,8 @@ const ArchieveEmployee = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero h-full max-h-full w-full max-w-ful bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
-                <div className="h-full max-h-full w-full max-w-ful bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+            <div className="h-full max-h-full w-full max-w-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
+                <div className="h-full max-h-full w-full max-w-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                     <div className="flex flex-wrap bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
@@ -148,7 +148,7 @@ const ArchieveEmployee = (props) => {
                         </center>
                     </span>
 
-                    <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                    <div className=" bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                         {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                             <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
                                 <table className="table bg-white py-10 px-10 my-10 mx-10 border-2 border-black">
