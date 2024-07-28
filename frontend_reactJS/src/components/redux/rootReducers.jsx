@@ -5,6 +5,7 @@ import departmentReducer from './reducers/departmentReducer';
 import attendanceReducer from './reducers/attendanceReducer';
 import imageReducer from './reducers/imageReducer';
 import chartReducer from '../../services/chart/chartReducer';
+import rateReducer from './reducers/rateReducer';
 
 const rootReducer = combineReducers({
   userState: userReducer,
@@ -13,9 +14,8 @@ const rootReducer = combineReducers({
   attendanceState: attendanceReducer,
   imageState: imageReducer,
   chartState: chartReducer,
+  rateState: rateReducer,
 });
-
-
 
 
 export default rootReducer;
