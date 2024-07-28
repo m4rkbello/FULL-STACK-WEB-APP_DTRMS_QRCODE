@@ -24,7 +24,7 @@ import {
 } from '../types/employeeTypes.jsx';
 
 
-//MAG-FETCH UG EMPLOYEE
+//MAG-FETCH UG EMPLOYEES DATA
 export const fetchEmployees = () => async dispatch => {
     try {
         dispatch({ type: FETCH_EMPLOYEES_REQUEST });
@@ -66,7 +66,6 @@ export const addEmployee = AddEmployeeData => async dispatch => {
 
 //MAG UPDATE UG EMPLOYEE GAMIT ID
 export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNavigator) => async dispatch => {
-   
     try {
         dispatch({ type: UPDATE_EMPLOYEE_REQUEST });
         // Perform async operation, e.g., send updated data to an API
@@ -197,15 +196,11 @@ export const deactivateEmployee = employeeId => async dispatch => {
             //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
             //   })
 
-        
             dispatch({
                 type: DELETE_EMPLOYEE_SUCCESS,
                 payload: deactivateEmployeeReqAndRes
             });
-
         }
-
-
 
     } catch (error) {
         dispatch({
@@ -219,6 +214,7 @@ export const deactivateEmployee = employeeId => async dispatch => {
 export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dispatch) => {
     try {
         dispatch({ type: UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST });
+        
         const uploadAndUpdateImageEmpReqRes = await MarkBelloApi.post(`/api/employee/image/${employeeId}`, formData, {
             headers: {
                 'Content-Type':'multipart/form-data',
