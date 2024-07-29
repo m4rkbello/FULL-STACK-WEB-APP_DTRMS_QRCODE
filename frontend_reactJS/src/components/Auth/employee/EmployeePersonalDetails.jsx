@@ -77,6 +77,7 @@ const EmployeePersonalDetails = (props) => {
     }
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
+    console.log("DATA SA employeesCollectionArrays", employeesCollectionArrays);
 
     function employeeDetails(employeesCollectionArrays, id) {
         let item = [];
@@ -91,7 +92,9 @@ const EmployeePersonalDetails = (props) => {
     }
 
     const employee = employeeDetails(employeesCollectionArrays, id);
-    console.log("DATA", employee)
+
+    const employeeSpecific = employee;
+    console.log("DATA SA EMPLOYEES",    employeeSpecific);
 
     const handleImageEmployeeChange = (e) => {
         setImageEmployee(e.target.files[0]);
@@ -120,9 +123,9 @@ const EmployeePersonalDetails = (props) => {
     };
 
     const departments = fetchDepartments(departmentsCollectionArrays);
+ 
 
-    
-    const departmentCollectionArraysData = props?.departmentsData?.departments?.data?.department;
+
 
 
 
@@ -131,6 +134,8 @@ const EmployeePersonalDetails = (props) => {
         props.fetchImages();
         props.fetchDepartments();
     }, []);
+
+    
 
 
 
@@ -239,7 +244,7 @@ const EmployeePersonalDetails = (props) => {
                                             >
                                             {departments.map((item, index) => (
                                                 <option key={index} value={item.id}>
-                                                    {item.dept_name}
+                                                    {item.department_name}
                                                 </option>
                                             ))}
                                         </select>
@@ -432,15 +437,15 @@ const EmployeePersonalDetails = (props) => {
                                         </div>
                                         <div className="form-control">
                                             <label className="label">
-                                                <span className="label-text text-black text-2xl">Department</span>
+                                                <span className="label-text text-black text-2xl">Department BUG</span>
                                             </label>
                                             {employee && employee.map((item, index) => (
                                                 <input
                                                     key={index}
                                                     type="text"
-                                                    placeholder="contact no"
+                                                    placeholder="Department"
                                                     className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
-                                                    defaultValue={item.dept_name}
+                                                    defaultValue={item.department_name}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
                                                 />
@@ -490,7 +495,6 @@ const mapStateToProps = (state) => {
         imagesData: state.imageState,
         departmentsData: state.departmentState,
         loading: state.employeeState.loading,
-
     };
 };
 
