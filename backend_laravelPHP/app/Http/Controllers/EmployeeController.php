@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Employee;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use Log;
+use DB;
 
 
 class EmployeeController extends Controller
@@ -22,7 +24,10 @@ class EmployeeController extends Controller
     public function index()
     {
         $data = Employee::all();
+        
         return response($data, 201);
+
+   
     }
 
     /**
