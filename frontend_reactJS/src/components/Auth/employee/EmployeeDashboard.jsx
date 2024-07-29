@@ -33,6 +33,8 @@ const EmployeeDashboard = (props) => {
     const defaultImage = '../../../../public/miming.jpg';
     const eyeView = '../../../../public/svg/view.png';
 
+    //si
+
     const tableRef = useRef(null);
 
     const [formDataAddEmployee, setFormDataEmployeeAddEmployee] = useState({
@@ -42,7 +44,7 @@ const EmployeeDashboard = (props) => {
         employee_role: '',
         employee_position: '',
         employee_department: '',
-        employee_status: ''
+        employee_status_id: ''
     });
 
     useEffect(() => {
@@ -164,7 +166,6 @@ const EmployeeDashboard = (props) => {
         return item;
     }
 
-    const dataDriven = huhays;
 
     function printEmployeeDashboard() {
         var printTable = document.getElementById("employeesDataList").cloneNode(true);
@@ -254,8 +255,8 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-white text-2xl">Department</span>
                                     </label>
                                     <select
-                                        name="employee_department"
-                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department: e.target.value }))}
+                                        name="employee_department_id"
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department_id: e.target.value }))}
                                         className="input input-bordered shadow-2xl text-2xl text-black border-1 glass border-glass rounded-se-3xl shadow-lime-400/40"
                                     // style={{ backgroundColor: '#A3E636' }}
                                     >
@@ -324,11 +325,11 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-white text-2xl">Status</span>
                                     </label>
                                     <select
-                                        name="employee_status"
-                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status: e.target.value }))}
+                                        name="employee_status_id"
+                                        onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status_id: e.target.value }))}
                                         className="select input input-bordered shadow-2xl text-2xl text-black glass drop-shadow-xl"
-                                        value={formDataAddEmployee.employee_status}
-                                    // style={{ backgroundColor: '#A3E636' }}
+                                        value={formDataAddEmployee.employee_status_id}
+                                
                                     >
                                         <option value="0">Inactive</option>
                                         <option value="1">Active</option>
@@ -371,8 +372,7 @@ const EmployeeDashboard = (props) => {
                                     <li>
                                         <FcFolder 
                                         style={{ 
-                                                height: "120%",
-                                                width: "120%",
+                                             
                                                 boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
                                                }} 
                                         />
@@ -381,8 +381,7 @@ const EmployeeDashboard = (props) => {
                                     <li>
                                         <FcFolder 
                                         style={{ 
-                                                height: "120%",
-                                                width: "120%",
+                                           
                                                 boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
                                             }} 
                                         />
@@ -392,8 +391,7 @@ const EmployeeDashboard = (props) => {
                                         <span className="inline-flex gap-2 items-center">
                                             <FcFile  
                                             style={{ 
-                                                    height: "120%",
-                                                    width: "120%",
+                                               
                                                     boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
                                                 }} 
                                             />
