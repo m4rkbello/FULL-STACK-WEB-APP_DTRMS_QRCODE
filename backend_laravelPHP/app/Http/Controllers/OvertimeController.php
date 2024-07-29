@@ -19,10 +19,10 @@ class OvertimeController extends Controller
     public function index()
     {
         try{
-            $data = Overtime::all();
+            $overtime = Overtime::all();
 
             return response()->json([
-                'department' => $data,
+                'department' => $overtime,
                 'success' => true,
                 'status' => 201,
             ], 201);
