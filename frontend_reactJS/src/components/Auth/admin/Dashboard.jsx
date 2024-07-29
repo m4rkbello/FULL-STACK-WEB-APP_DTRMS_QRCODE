@@ -1,6 +1,32 @@
 import React from 'react'
+import { useEffect } from 'react';
+//FETCH ALL DATAS GAMIT REDUX
+import { connect } from 'react-redux';
+import { fetchUsers } from '../../redux/actions/userAction';
+import { fetchEmployees } from '../../redux/actions/employeeAction';
+import { fetchAttendances } from '../../redux/actions/attendanceAction';
+import { fetchDepartments } from '../../redux/actions/departmentAction';
+import { fetchPayrolls } from '../../redux/actions/payrollAction';
+import { fetchDeductions } from '../../redux/actions/deductionAction';
+import { fetchRates } from '../../redux/actions/rateAction';
+import { fetchOvertimes } from '../../redux/actions/overtimeAction';
 
-const Dashboard = () => {
+
+
+const Dashboard = (props) => {
+
+  useEffect(() => {
+    props.fetchUsers();
+    props.fetchEmployees();
+    props.fetchDepartments();
+    props.fetchAttendances();
+    props.fetchPayrolls();
+    props.fetchRates();
+    props.fetchOvertimes();
+    props.fetchDeductions();
+  }, []);
+
+  console.log("DATA SA TANANG PROPERTIES!", props);
   return (
     <div className="h-full max-h-full w-full max-w-ful glass mx-auto p-4 shadow-xl rounded-lg">
 
@@ -73,4 +99,34 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+
+const mapStateToProps = (state) => {
+  return {
+    usersData: state.userState.users.data,
+    employeesData: state.employeeState,
+    attendancesData: state.departmentState,
+    deductionsData: state.deductionState,
+    payrollsData: state.payrollState,
+    ratesData: state.rateState,
+    overtimesData: state.overtimeState,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+    fetchEmployees: () => dispatch(fetchEmployees()),
+    fetchAttendances: () => dispatch(fetchAttendances()),
+    fetchDepartments: () => dispatch(fetchDepartments()),
+    fetchDeductions: () => dispatch(fetchDeductions()),
+    fetchPayrolls: () => dispatch(fetchPayrolls()),
+    fetchRates: () => dispatch(fetchRates()),
+    fetchOvertimes: () => dispatch(fetchOvertimes()),
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+
+
+
