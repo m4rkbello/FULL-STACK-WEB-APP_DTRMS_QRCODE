@@ -8,6 +8,7 @@ import chartReducer from '../../services/chart/chartReducer';
 import rateReducer from './reducers/rateReducer';
 import payrollReducer from './reducers/payrollReducer';
 import overtimeReducer from './reducers/overtimeReducer';
+import deductionReducer from './reducers/deductionReducer';
 
 
 const rootReducer = combineReducers({
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   rateState: rateReducer,
   payrollState: payrollReducer,
   overtimeState: overtimeReducer,
+  deductionState: deductionReducer,
 });
 
 export default rootReducer;
