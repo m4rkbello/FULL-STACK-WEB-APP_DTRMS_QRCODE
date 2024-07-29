@@ -26,7 +26,6 @@ const initialState = {
     search: [],
 };
 
-
 //3 PARAMETERS NA IMPORTANTE SA REDUCER - STATE, InitialState, ACTION
 const deductionReducer = (state = initialState, action) => {
     switch(action.type) {
