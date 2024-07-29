@@ -25,6 +25,7 @@ class RateController extends Controller
                 'data' => $data,
                 'success' => true,
                 'status' => 201,
+                'message' => 'Fetch all payrolls have been successful!',
             ], 201);
 
         } catch (\Exception $error) {
