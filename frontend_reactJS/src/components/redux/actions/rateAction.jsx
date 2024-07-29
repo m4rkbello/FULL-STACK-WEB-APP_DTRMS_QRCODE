@@ -26,10 +26,10 @@ export const fetchRates = () => async dispatch => {
     try {
         dispatch({ type: FETCH_RATES_REQUEST });
         // Perform async operation, e.g., fetch data from an API
-        const employees = await MarkBelloApi.get('/api/rates/all');
+        const fetchRatesRequestAndResponseData = await MarkBelloApi.get('/api/rates/all');
         dispatch({
             type: FETCH_RATES_SUCCESS,
-            payload: employees
+            payload: fetchRatesRequestAndResponseData
         });
     } catch (error) {
         dispatch({
