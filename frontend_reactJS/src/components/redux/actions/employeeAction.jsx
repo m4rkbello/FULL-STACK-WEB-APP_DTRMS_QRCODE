@@ -65,15 +65,16 @@ export const addEmployee = AddEmployeeData => async dispatch => {
 };
 
 //MAG UPDATE UG EMPLOYEE GAMIT ID
-export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNavigator) => async dispatch => {
+export const updateEmployee = (employeeId, updateEmployeeData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_EMPLOYEE_REQUEST });
-        // Perform async operation, e.g., send updated data to an API
-        document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
+
         const updateEmployeeResponse = await MarkBelloApi.put(`/api/employee/${employeeId}`, updateEmployeeData);
 
+        //TANAWON NATO UGG NAA BAY RESPONSE
+        console.log(updateEmployeeResponse);
+
         if (!updateEmployeeResponse) {
-            // Handle the case where the response is empty
             toast.error('Fill-up correctly! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 10000,
@@ -85,11 +86,10 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
                 style: {
                     background: 'black',
                     color: 'red',
-                    fontSize: '15px'
-                }
+                    fontSize: '15px',
+                },
             });
         } else {
-            // Handle the case where the update is successful
             toast.success('Updated Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -101,26 +101,20 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
                 style: {
                     background: 'white',
                     color: 'green',
-                    fontSize: '15px'
-                }
+                    fontSize: '15px',
+                },
             });
-            
-            // setTimeout(() => {
-            //     window.location.reload();
-            //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
-            //   })
 
             dispatch({
                 type: UPDATE_EMPLOYEE_SUCCESS,
-                payload: updateEmployeeResponse
+                payload: updateEmployeeResponse,
             });
 
+            return updateEmployeeResponse;
         }
     } catch (error) {
         console.log("ERROR SA CATCH SA UPDATE EMPLOYEE", error);
-        // Check if the error object has a response and the status code is 500
-        if (error.response && error.response.status !== 200 || error.response && error.response.status !== 201) {
-            // Handle the case where the server returns a 500 error
+        if (error.response && (error.response.status !== 200 || error.response.status !== 201)) {
             toast.error('Something went wrong! 😛😛😛', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -132,21 +126,15 @@ export const updateEmployee = (employeeId, updateEmployeeData, updateEmployeeNav
                 style: {
                     background: 'black',
                     color: 'red',
-                    fontSize: '15px'
-                }
-            });
-
-            setTimeout(() => {
-                window.location.reload();
-              }, 3000)
-
-        } else {
-            // Handle other types of errors
-            dispatch({
-                type: UPDATE_EMPLOYEE_FAILURE,
-                payload: error.message
+                    fontSize: '15px',
+                },
             });
         }
+
+        dispatch({
+            type: UPDATE_EMPLOYEE_FAILURE,
+            payload: error.message,
+        });
     }
 };
 
@@ -263,10 +251,7 @@ export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dis
             });
 
             // Reload or navigate after a successful upload, not needed if error occurs
-            setTimeout(() => {
-                window.location.reload();
-                navigate("http://localhost:5173/admin/user/profile-details");
-            }, 5000);
+
         }
     } catch(error) {
         dispatch({
