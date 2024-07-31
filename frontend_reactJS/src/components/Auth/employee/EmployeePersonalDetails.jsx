@@ -146,7 +146,8 @@ console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFiltered
 
     
     return (
-        <div className="hero h-full max-h-full w-full max-w-full">
+        <div className="hero glass h-full max-h-full w-full max-w-full">
+        
             <ToastContainer />
             {isModalOpen && (
                 <dialog id="editEmployeeDetails" className="modal border border-black">
@@ -298,6 +299,12 @@ console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFiltered
 
             )}
 
+            <div className="grid grid-rows-3 grid-flow-col gap-4">
+            <div className="row-span-3 ...">01</div>
+            <div className="col-span-2 ...">02</div>
+            <div className="row-span-2 col-span-2 ...">03</div>
+          </div>
+
             <dialog id="uploadEmployeeProfile" className="modal">
                 <div className="modal-box">
                     <form method="dialog justify-center">
@@ -313,7 +320,7 @@ console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFiltered
 
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
-                    <div className="hero min-h-screen bg-zinc-100 rounded-t-lg rounded-b-lg shadow-lg">
+                    <div className="hero glass h-full max-h-full w-full max-w-full rounded-t-lg rounded-b-lg shadow-lg">
 
                         <button style={{ marginRight: "93%", marginBottom: "65%" }} >
                             <Link to="/employee/dashboard">
