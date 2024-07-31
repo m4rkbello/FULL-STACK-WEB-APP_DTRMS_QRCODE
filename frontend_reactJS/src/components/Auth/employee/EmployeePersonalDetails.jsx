@@ -25,6 +25,8 @@ const EmployeePersonalDetails = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [imageEmployee, setImageEmployee] = useState(null);
 
+     const defaultImage = '../../../../public/miming.jpg';
+
     const empId = id;
     console.log("ID useParams ayaw kol", empId);
 
@@ -54,8 +56,8 @@ const EmployeePersonalDetails = (props) => {
         employee_contact_no: '',
         employee_role: '',
         employee_position: '',
-        employee_department: '',
-        employee_status: ''
+        employee_department_id: '',
+        employee_status_id: ''
     });
 
     const handleChangeUpdateData = (ez) => {
@@ -72,7 +74,7 @@ const EmployeePersonalDetails = (props) => {
             props.updateEmployee(id, formDataEmployeeUpdate);
         } catch (error) {
             window.alert("ERROR");
-        };
+        }
     }
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
@@ -117,9 +119,9 @@ const EmployeePersonalDetails = (props) => {
             for (let ez = 0; ez < departmentsCollectionArrays.length; ez++) {
                 item.push(departmentsCollectionArrays[ez]);
             }
-        };
+        }
         return item;
-    };
+    }
 
     const departments = fetchDepartments(departmentsCollectionArrays);
  
@@ -133,8 +135,8 @@ const EmployeePersonalDetails = (props) => {
         return [];
     }
     
-    const getEmployeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
-console.log("DATA SA employeeDepartmentFilteredData", getEmployeeDepartmentFilteredData);
+    const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
+console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFilteredData);
 
     useEffect(() => {
         props.fetchEmployees();
@@ -142,20 +144,9 @@ console.log("DATA SA employeeDepartmentFilteredData", getEmployeeDepartmentFilte
         props.fetchDepartments();
     }, []);
 
-    if (props.loading) {
-        return (
-            <div className="flex flex-col gap-6 w-96">
-                <div className="skeleton h-48 w-full"></div>
-                <div className="skeleton h-6 w-36"></div>
-                <div className="skeleton h-6 w-full"></div>
-                <div className="skeleton h-6 w-full"></div>
-            </div>
-        );
-    }
-
     
     return (
-        <div className="hero max-w-full">
+        <div className="hero h-full max-h-full w-full max-w-full">
             <ToastContainer />
             {isModalOpen && (
                 <dialog id="editEmployeeDetails" className="modal border border-black">
@@ -252,7 +243,7 @@ console.log("DATA SA employeeDepartmentFilteredData", getEmployeeDepartmentFilte
                                         </label>
 
                                         <select
-                                            name="employee_department"
+                                            name="employee_department_id"
                                             onChange={handleChangeUpdateData}
                                             className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
                                      
@@ -274,7 +265,7 @@ console.log("DATA SA employeeDepartmentFilteredData", getEmployeeDepartmentFilte
                                         {employee && employee.map((item, index) => (
                                             <select
                                                 key={index}
-                                                name="employee_status"
+                                                name="employee_status_id"
                                                 className="select shadow-2xl text-2xl w-full glass max-w-xs shadow-lime-400/40"
                                                 style={{ backgroundColor: '', color: "black" }}
                                                 onChange={handleChangeUpdateData}
@@ -301,9 +292,7 @@ console.log("DATA SA employeeDepartmentFilteredData", getEmployeeDepartmentFilte
                                 </div>
                             </form>
                         </div>
-                        <center>
-                            <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
-                        </center>
+               
                     </div>
                 </dialog>
 
@@ -344,15 +333,22 @@ console.log("DATA SA employeeDepartmentFilteredData", getEmployeeDepartmentFilte
                                 />
                             ))}
 
-                            {employee && employee.map((image, imageIndex) => (
-                                <img
-                                    key={imageIndex}
-                                    className="mask mask-circle shadow-inner"
-                                    src={image.employee_image}
-                                    type="file"
-                                    style={{ backgroundColor: 'transparent', width: '20%', height: '20%' }}
-                                />
-                            ))}
+                            {/*** PROFILE SA EMPLOYEE */}
+                            {employee && employee.length > 0 ? (
+                                employee.map((image, imageIndex) => (
+                                    <img
+                                        key={imageIndex}
+                                        className="mask mask-circle shadow-inner"
+                                        src={image.employee_image || defaultImage}
+                                        type="file"
+                                        style={{ backgroundColor: 'transparent', width: '20%', height: '20%' }}
+                                    />
+                                ))
+                            ) : (
+                                <div>
+                                {defaultImage}
+                                </div>
+                            )}
 
                             <FaUpload onClick={() => document.getElementById('uploadEmployeeProfile').showModal()} alt="Upload image" style={{ fontSize: "25px", color: "black" }} />
                             <div className="hero-content flex-col lg:flex-row py-0 px-0">
@@ -454,7 +450,7 @@ console.log("DATA SA employeeDepartmentFilteredData", getEmployeeDepartmentFilte
                                             <label className="label">
                                                 <span className="label-text text-black text-2xl">Department BUG</span>
                                             </label>
-                                            {getEmployeeDepartmentFilteredData && getEmployeeDepartmentFilteredData.map((item, index) => (
+                                            {employeeDepartmentFilteredData && employee.map((item, index) => (
                                                 <input
                                                     key={index}
                                                     type="text"
