@@ -16,7 +16,6 @@ import { IoSearch } from "react-icons/io5";
 import { SiMicrosoftexcel } from "react-icons/si";
 import { IoIosPrint } from "react-icons/io";
 import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcFolder, FcFile, FcCheckmark, FcViewDetails , FcEmptyTrash, FcCancel  } from "react-icons/fc";
-
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
@@ -32,9 +31,7 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 const EmployeeDashboard = (props) => {
     const defaultImage = '../../../../public/miming.jpg';
     const eyeView = '../../../../public/svg/view.png';
-
-    //si
-
+    
     const tableRef = useRef(null);
 
     const [formDataAddEmployee, setFormDataEmployeeAddEmployee] = useState({
@@ -151,10 +148,10 @@ const EmployeeDashboard = (props) => {
             for (let ez = 0; ez < departmentsCollectionArrays.length; ez++) {
                 item.push(departmentsCollectionArrays[ez]);
             }
-        };
+        }
         return item;
 
-    };
+    }
 
     const departments = fetchDepartments(departmentsCollectionArrays);
 
@@ -201,7 +198,7 @@ const EmployeeDashboard = (props) => {
     }
 
     return (
-        <div className="h-full max-h-full w-full max-w-ful hero rounded-l-lg rounded-t-lg rounded-r-lg rounded-b-lg">
+        <div className="h-full max-h-full w-full max-w-full hero rounded-l-lg rounded-t-lg rounded-r-lg rounded-b-lg">
             <ToastContainer />
             <dialog id="removeEmployee" className="modal">
                 <div className="modal-box">
@@ -402,8 +399,8 @@ const EmployeeDashboard = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-row">
-                        <div class="basis-1/2 flex justify-start">         
+                    <div className="flex flex-row">
+                        <div className="basis-1/2 flex justify-start">         
                         <span className="inline-grid grid-cols-2 gap-1">
                             <span>
                                 <input
@@ -426,8 +423,8 @@ const EmployeeDashboard = (props) => {
                             </span>
                         </span>
                         </div>
-                        <div class="basis-1/4"></div>
-                        <div class="basis-1/4 flex justify-end mr-5"> 
+                        <div className="basis-1/4"></div>
+                        <div className="basis-1/4 flex justify-end mr-5"> 
                         <div className='mx-4'>
                             <DownloadTableExcel
                                 filename="ExportEmployee"
