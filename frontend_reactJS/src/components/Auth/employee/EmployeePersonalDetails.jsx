@@ -124,14 +124,17 @@ const EmployeePersonalDetails = (props) => {
     const departments = fetchDepartments(departmentsCollectionArrays);
  
     //Display filter sa Department
-    function getEmployeeDepartment(departmentsCollectionArrays, employee){
-        
-        
-
+    function getEmployeeDepartment(departmentsCollectionArrays, employee) {
+        if (Array.isArray(departmentsCollectionArrays) && departmentsCollectionArrays.length > 0 && Array.isArray(employee) && employee.length > 0) {
+            //Assuming na naay 
+            const employeeDepartmentId = employee[0].employee_department_id; // Assuming departmentId is the key in employee object
+            return departmentsCollectionArrays.filter(department => department.id === employeeDepartmentId);
+        }
+        return [];
     }
-
-
-
+    
+    const getEmployeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
+console.log("DATA SA employeeDepartmentFilteredData", getEmployeeDepartmentFilteredData);
 
     useEffect(() => {
         props.fetchEmployees();
@@ -139,10 +142,18 @@ const EmployeePersonalDetails = (props) => {
         props.fetchDepartments();
     }, []);
 
+    if (props.loading) {
+        return (
+            <div className="flex flex-col gap-6 w-96">
+                <div className="skeleton h-48 w-full"></div>
+                <div className="skeleton h-6 w-36"></div>
+                <div className="skeleton h-6 w-full"></div>
+                <div className="skeleton h-6 w-full"></div>
+            </div>
+        );
+    }
+
     
-
-
-
     return (
         <div className="hero max-w-full">
             <ToastContainer />
@@ -443,7 +454,7 @@ const EmployeePersonalDetails = (props) => {
                                             <label className="label">
                                                 <span className="label-text text-black text-2xl">Department BUG</span>
                                             </label>
-                                            {employee && employee.map((item, index) => (
+                                            {getEmployeeDepartmentFilteredData && getEmployeeDepartmentFilteredData.map((item, index) => (
                                                 <input
                                                     key={index}
                                                     type="text"
