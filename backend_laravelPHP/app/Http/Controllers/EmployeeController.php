@@ -25,6 +25,7 @@ class EmployeeController extends Controller
     {
         $data = Employee::all();
         
+        
         return response($data, 201);
 
    
