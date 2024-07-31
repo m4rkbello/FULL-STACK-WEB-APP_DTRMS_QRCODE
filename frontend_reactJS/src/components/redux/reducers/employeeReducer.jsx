@@ -57,6 +57,7 @@ const employeeReducer = (state = initialState, action) => {
                 loading: false,
                 error: null,
             };
+            
         case DELETE_EMPLOYEE_SUCCESS:
             return {
                 ...state,
