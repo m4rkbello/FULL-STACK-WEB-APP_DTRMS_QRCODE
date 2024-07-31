@@ -115,6 +115,12 @@ npm install react-chartjs-2@latest
     -> https://boxicons.com/
     -> npm i boxicons --save
 
+//NEW IMPLEMEMNTATION TO ACHIEVE THE REALTIME 
+1. Set Up Laravel for Real-Time Events
+Install Laravel Echo and Pusher
+->composer require pusher/pusher-php-server
+->npm install --save laravel-echo pusher-js
+
 
 
 
