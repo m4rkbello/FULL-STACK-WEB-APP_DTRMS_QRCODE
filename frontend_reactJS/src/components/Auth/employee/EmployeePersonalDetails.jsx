@@ -65,7 +65,6 @@ const EmployeePersonalDetails = (props) => {
         });
     };
 
-
     const handleSumbitEmployeeData = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -124,7 +123,12 @@ const EmployeePersonalDetails = (props) => {
 
     const departments = fetchDepartments(departmentsCollectionArrays);
  
+    //Display filter sa Department
+    function getEmployeeDepartment(departmentsCollectionArrays, employee){
+        
+        
 
+    }
 
 
 
