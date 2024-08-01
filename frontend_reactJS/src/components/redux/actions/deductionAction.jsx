@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import MarkBelloApi from '../../../services/Api.jsx';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,7 +29,7 @@ export const fetchDeductions = () => async dispatch => {
     try {
         dispatch({ type: FETCH_DEDUCTIONS_REQUEST });
 
-        const deductions = await MarkBelloApi.get('/api/deductions/all');
+        const deductions = await MarkBelloApi.get('/api/deductions/collections/all');
         dispatch({
             type: FETCH_DEDUCTIONS_SUCCESS,
             payload: deductions
