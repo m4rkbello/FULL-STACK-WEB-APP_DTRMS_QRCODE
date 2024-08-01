@@ -19,14 +19,19 @@ class RateController extends Controller
     public function index()
     {
         try{
-            $collection = Rate::all();
+            // $collection = Rate::all();
 
-            return response()->json([
-                'details' => $collection,
-                'success' => true,
-                'status' => 201,
-                'message' => 'Fetch all Rates have been successful!',
-            ], 201);
+            // return response()->json([
+            //     'details' => $collection,
+            //     'success' => true,
+            //     'status' => 201,
+            //     'message' => 'Fetch all Rates have been successful!',
+            // ], 201);
+            
+                $data = Rate::all();
+        
+                return response($data, 201);
+            
 
         }catch(\Exception $error){
 
