@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { useEffect } from 'react';
 //FETCH ALL DATAS GAMIT REDUX
@@ -104,7 +106,7 @@ const mapStateToProps = (state) => {
   return {
     usersData: state.userState.users.data,
     employeesData: state.employeeState,
-    attendancesData: state.departmentState,
+    departmentsData: state.departmentState,
     deductionsData: state.deductionState,
     payrollsData: state.payrollState,
     ratesData: state.rateState,
@@ -126,6 +128,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
 
