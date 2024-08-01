@@ -18,26 +18,29 @@ class RateController extends Controller
      */
     public function index()
     {
-        try {
-            $data = Rate::all();
+        try{
+            $collection = Rate::all();
 
             return response()->json([
-                'details' => $data,
+                'details' => $collection,
                 'success' => true,
                 'status' => 201,
                 'message' => 'Fetch all Rates have been successful!',
             ], 201);
 
-        } catch (\Exception $error) {
+        }catch(\Exception $error){
 
             return response()->json([
                 'success' => false,
                 'status' => 401,
-                'message' => 'Fetch all payrolls have been unsuccessful!',
+                'message' => 'Fetch all Rates has been unsuccessful!',
                 'error' => $error,
             ], 401);
-        }
+            
+        };
     }
+
+
 
     /**
      * Store a newly created resource in storage.
