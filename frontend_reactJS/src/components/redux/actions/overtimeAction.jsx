@@ -25,7 +25,7 @@ export const fetchOvertimes = () => async dispatch => {
     try {
         dispatch({ type: FETCH_OVERTIMES_REQUEST });
         // Perform async operation, e.g., fetch data from an API
-        const overtimes = await MarkBelloApi.get('/api/overtimes/all');
+        const overtimes = await MarkBelloApi.get('/api/overtimes/collections/all');
         dispatch({
             type: FETCH_OVERTIMES_SUCCESS,
             payload: overtimes
@@ -139,7 +139,7 @@ export const updateOvertime = (overtimeId, updateOvertimeData) => async dispatch
             });
         }
 
-    };
+    }
 };
 
 //DEACTIVATE OVERTIMES GAMIT ID
