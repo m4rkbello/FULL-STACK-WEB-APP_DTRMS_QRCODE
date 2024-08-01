@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react-hooks/rules-of-hooks */
 import MarkBelloApi from '../../../services/Api.jsx';
 // import { useNavigate } from 'react-router-dom';
