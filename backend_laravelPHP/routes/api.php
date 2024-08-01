@@ -34,14 +34,14 @@ Route::post('/login',[AuthController::class, 'login']);
 
 //ATTENDANCES-ENDPOINTS
 Route::prefix('attendances')->group(function () {
-    Route::get('/all',[AttendanceController::class, 'index']);
+    Route::get('/collections/all',[AttendanceController::class, 'index']);
     Route::post('/qrcode/data',[AttendanceController::class, 'store']);
     Route::get('/qrcode/data/{id}',[AttendanceController::class, 'show']);
     Route::post('/search', [AttendanceController::class, 'search']);
 });
 //PAYROLLS-ENDPOINTS
 Route::prefix('payrolls')->group(function () {
-    Route::get('/all',[PayrollController::class, 'index']);
+    Route::get('/collections/all',[PayrollController::class, 'index']);
     Route::post('/search', [PayrollController::class, 'search']);
     Route::post('/add', [PayrollController::class, 'store']);
     Route::put('/update/{id}', [PayrollController::class, 'update']);
@@ -49,7 +49,7 @@ Route::prefix('payrolls')->group(function () {
 });
 //RATES-ENDPOINTS
 Route::prefix('rates')->group(function () {
-    Route::get('/all',[RateController::class, 'index']);
+    Route::get('/collections/all',[RateController::class, 'index']);
     Route::post('/add', [RateController::class, 'store']);
     Route::put('/update/{id}', [RateController::class, 'update']);
     Route::put('/deactivate/{id}', [RateController::class, 'deactivate']);
@@ -57,7 +57,7 @@ Route::prefix('rates')->group(function () {
 });
 //DEDECUCTIONS-ENDPOINTS
 Route::prefix('deductions')->group(function () {
-    Route::get('/all',[DeductionController::class, 'index']);
+    Route::get('/collections/all',[DeductionController::class, 'index']);
     Route::post('/search', [DeductionController::class, 'search']);
     Route::post('/add', [DeductionController::class, 'store']);
     Route::put('/update/item/{id}', [DeductionController::class, 'update']);
@@ -65,7 +65,7 @@ Route::prefix('deductions')->group(function () {
 });
 //OVERTIMES-ENDPOINTS
 Route::prefix('overtimes')->group(function () {
-    Route::get('/all',[OvertimeController::class, 'index']);
+    Route::get('/collections/all',[OvertimeController::class, 'index']);
     Route::post('/search', [OvertimeController::class, 'search']);
     Route::post('/add', [OvertimeController::class, 'store']);
     Route::put('/update/item/{id}', [OvertimeController::class, 'update']);
