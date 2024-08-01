@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react'
@@ -12,7 +13,6 @@ import { fetchPayrolls } from '../../redux/actions/payrollAction';
 import { fetchDeductions } from '../../redux/actions/deductionAction';
 import { fetchRates } from '../../redux/actions/rateAction';
 import { fetchOvertimes } from '../../redux/actions/overtimeAction';
-
 
 
 const Dashboard = (props) => {

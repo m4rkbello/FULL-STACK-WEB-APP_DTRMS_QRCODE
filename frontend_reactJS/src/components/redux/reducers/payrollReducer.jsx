@@ -16,7 +16,6 @@ import {
     SEARCH_PAYROLL_SUCCESS,
     SEARCH_PAYROLL_FAILURE,
 } from '../types/payrollTypes.jsx';
-import { FETCH_RATES_SUCCESS } from '../types/rateTypes.jsx';
 
 //INITIALIZER DATA SA STATES
 const initialState = {
@@ -39,11 +38,11 @@ const payrollReducer = (state = initialState, action) => {
                 loading: true,
                 error: null  
             };
-        case FETCH_RATES_SUCCESS:
+        case FETCH_PAYROLLS_SUCCESS:
             return {
                 ...state,
                 payrolls: action.payload,
-                loading: falses,
+                loading: false,
                 error: null,
             };
         case ADD_PAYROLL_SUCCESS:
