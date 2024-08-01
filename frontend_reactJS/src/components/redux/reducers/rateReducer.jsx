@@ -38,12 +38,12 @@ const rateReducer = (state = initialState, action) => {
                 error: null
             };
         case FETCH_RATES_SUCCESS:
-            return {
-                ...state,
-                rates: action.payload,
-                loading: false,
-                error: null
-            };
+                return {
+                    ...state,
+                    rates: action.payload, // Ensure payload structure is correct
+                    loading: false,
+                    error: null
+                };
         case ADD_RATE_SUCCESS:
             return  {
                 ...state,
