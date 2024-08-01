@@ -21,9 +21,10 @@ class DeductionController extends Controller
             $data = Deduction::all();
 
             return response()->json([
-                'department' => $data,
+                'details' => $data,
                 'success' => true,
                 'status' => 201,
+                'message' => 'Fetch all Deductions have been successful!',
             ], 201);
 
         }catch(\Exception $error){
