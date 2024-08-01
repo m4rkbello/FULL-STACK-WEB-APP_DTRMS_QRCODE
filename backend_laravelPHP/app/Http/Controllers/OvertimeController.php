@@ -22,9 +22,10 @@ class OvertimeController extends Controller
             $overtime = Overtime::all();
 
             return response()->json([
-                'department' => $overtime,
+                'details' => $overtime,
                 'success' => true,
                 'status' => 201,
+                'message' => 'Fetch all Overtimes have been successful!',
             ], 201);
 
         }catch(\Exception $error){
