@@ -1,3 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -16,16 +19,17 @@ import { fetchImages } from '../../redux/actions/imageAction';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// eslint-disable-next-line react-refresh/only-export-components
 const ArchieveEmployee = (props) => {
 
-    const [formDataAddEmployee, setFormDataEmployeeAddEmployee] = useState({
+    const [formDataAddEmployee] = useState({
         employee_fullname: '',
         employee_email: '',
         employee_contact_no: '',
         employee_role: '',
         employee_position: '',
-        employee_department: '',
-        employee_status: ''
+        employee_department_id: '',
+        employee_status_id: ''
     });
 
     useEffect(() => {
