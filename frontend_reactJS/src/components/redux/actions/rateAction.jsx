@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import MarkBelloApi from '../../../services/Api.jsx';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,7 +27,7 @@ export const fetchRates = () => async dispatch => {
     try {
         dispatch({ type: FETCH_RATES_REQUEST });
         // Perform async operation, e.g., fetch data from an API
-        const fetchRatesRequestAndResponseData = await MarkBelloApi.get('/api/rates/all');
+        const fetchRatesRequestAndResponseData = await MarkBelloApi.get('/api/rates/colllections/all');
         dispatch({
             type: FETCH_RATES_SUCCESS,
             payload: fetchRatesRequestAndResponseData
