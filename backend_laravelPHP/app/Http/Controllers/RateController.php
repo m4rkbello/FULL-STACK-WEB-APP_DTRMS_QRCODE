@@ -22,10 +22,10 @@ class RateController extends Controller
             $data = Rate::all();
 
             return response()->json([
-                'data' => $data,
+                'details' => $data,
                 'success' => true,
                 'status' => 201,
-                'message' => 'Fetch all payrolls have been successful!',
+                'message' => 'Fetch all Rates have been successful!',
             ], 201);
 
         } catch (\Exception $error) {
