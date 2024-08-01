@@ -1,3 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -40,8 +43,7 @@ const AddDepartment = (props) => {
         }
     }
 
-    return (
-      
+return (
         <div className="hero bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
         <ToastContainer />
             <div className=" modal-box w-11/12 max-w-5xl glass">
