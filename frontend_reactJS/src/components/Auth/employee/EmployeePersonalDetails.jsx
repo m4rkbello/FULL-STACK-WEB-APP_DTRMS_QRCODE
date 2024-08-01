@@ -31,7 +31,6 @@ const EmployeePersonalDetails = (props) => {
     console.log("ID useParams ayaw kol", empId);
 
     const updateEmployeeNavigator = useNavigate();
-
     //e-open ang modal
     const handleOpenModal = () => {
         setIsModalOpen(true);
