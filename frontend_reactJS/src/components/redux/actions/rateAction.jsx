@@ -26,11 +26,10 @@ import {
 export const fetchRates = () => async dispatch => {
     try {
         dispatch({ type: FETCH_RATES_REQUEST });
-        // Perform async operation, e.g., fetch data from an API
-        const fetchRatesRequestAndResponseData = await MarkBelloApi.get('/api/rates/colllections/all');
+        const response = await MarkBelloApi.get('/api/rates/collections/all');
         dispatch({
             type: FETCH_RATES_SUCCESS,
-            payload: fetchRatesRequestAndResponseData
+            payload: response.data
         });
     } catch (error) {
         dispatch({
@@ -39,6 +38,7 @@ export const fetchRates = () => async dispatch => {
         });
     }
 };
+
 
 //MAG ADD UG RATE
 export const addRate = AddRateData => async dispatch => {
