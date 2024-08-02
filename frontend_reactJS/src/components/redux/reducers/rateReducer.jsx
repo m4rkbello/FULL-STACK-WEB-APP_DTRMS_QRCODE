@@ -45,7 +45,7 @@ const rateReducer = (state = initialState, action) => {
                 error: null
             };
         case ADD_RATE_SUCCESS:
-            return  {
+            return {
                 ...state,
                 rates: [...state.rates, action.payload],
                 loading: false,
@@ -59,7 +59,7 @@ const rateReducer = (state = initialState, action) => {
                 error: null
             };
         case DELETE_RATE_SUCCESS:
-            return  {
+            return {
                 ...state,
                 rates: state.rates.filter(rate => rate.id !== action.payload),
                 loading: false,
