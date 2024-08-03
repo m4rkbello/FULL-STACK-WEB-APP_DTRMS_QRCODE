@@ -114,12 +114,22 @@ npm install react-chartjs-2@latest
 35. INSTALL PACKAGE-ICON
     -> https://boxicons.com/
     -> npm i boxicons --save
+36. ADD LUCID-REACT ICONS AS UNIFORM AS OPTIMIZING THE PACKAGE AND TO BE FORMALIZE AS UNIFORM 
+    ->npm i lucide-react
+
+
+
+
+
+
+
 
 //NEW IMPLEMEMNTATION TO ACHIEVE THE REALTIME 
 1. Set Up Laravel for Real-Time Events
 Install Laravel Echo and Pusher
 ->composer require pusher/pusher-php-server
 ->npm install --save laravel-echo pusher-js
+
 
 
 
