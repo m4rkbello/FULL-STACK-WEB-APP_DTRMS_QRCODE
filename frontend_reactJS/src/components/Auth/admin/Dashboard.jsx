@@ -16,35 +16,78 @@ import { fetchOvertimes } from '../../redux/actions/overtimeAction';
 
 
 const Dashboard = (props) => {
-  
+  const ImageEmployeeGroup = '../../../../public/images/EmployeesGroup.jpg';
+  const ImageRate = '../../../../public/images/PersonRates.png';
+  const ImageDepartment = '../../../../public/images/department.png';
+
+  const defaultImage = '../../../../public/miming.jpg';
   console.log("DATA SA PROPS TANANS!", props);
 
 
 
-const employeeDataObjectCollections = props?.employeesData?.employees?.data;
+  const employeeDataObjectCollections = props?.employeesData?.employees?.data;
 
-function countAllEmployeesPopulations(employeeDataObjectCollections) {
-  let items = [];
+  function countAllEmployeesPopulations(employeeDataObjectCollections) {
+    let items = [];
 
-  if (Array.isArray(employeeDataObjectCollections) && employeeDataObjectCollections.length > 0) {
-    for (let ez = 0; ez < employeeDataObjectCollections.length; ez++) {
-      items.push(employeeDataObjectCollections[ez]);
+    if (Array.isArray(employeeDataObjectCollections) && employeeDataObjectCollections.length > 0) {
+      for (let ez = 0; ez < employeeDataObjectCollections.length; ez++) {
+        items.push(employeeDataObjectCollections[ez]);
+      }
     }
+    //FOR COUNT PURPOSES
+    return {
+      items,
+      count: items.length
+    };
   }
-  //FOR COUNT PURPOSES
-  return {
-    items,
-    count: items.length
-  };
-}
 
-const resultcountAllEmployeesPopulations = countAllEmployeesPopulations(employeeDataObjectCollections);
-console.log("DATA SA RESULT!", resultcountAllEmployeesPopulations);
+  const resultcountAllEmployeesPopulations = countAllEmployeesPopulations(employeeDataObjectCollections);
+  console.log("DATA SA RESULT!", resultcountAllEmployeesPopulations);
 
 
-// const departmentDataObjectCollection = props?.empployee?.employee?.data;
+  const ratesDataObjectCollection = props?.ratesData?.rates;
 
-// function countAllDepartmentPopulations
+  function countAllRatesPopulations(ratesDataObjectCollection) {
+    let items = [];
+
+    if (Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length != 0) {
+      for (let ez = 0; ez < ratesDataObjectCollection.length; ez++) {
+        items.push(ratesDataObjectCollection[ez]);
+      }
+    }
+
+    return {
+      items,
+      count: items.length
+    };
+  }
+
+  const resultCountAllRatesPopulations = countAllRatesPopulations(ratesDataObjectCollection);
+  console.log(resultCountAllRatesPopulations);
+
+  
+  const departmentsDataObjectCollection = props?.departmentsData?.departments?.data?.details;
+
+  function countAllDepartmentsPopulations(departmentsDataObjectCollection) {
+    let items = [];
+  
+    if (Array.isArray(departmentsDataObjectCollection) && departmentsDataObjectCollection.length !== 0) {
+      for (let i = 0; i < departmentsDataObjectCollection.length; i++) {
+        items.push(departmentsDataObjectCollection[i]);
+      }
+    }
+  
+    return {
+      items,
+      count: items.length
+    };
+  }
+  
+  const resultCountAllDepartmentsPopulations = countAllDepartmentsPopulations(departmentsDataObjectCollection);
+  console.log("MAO NI resultCountAllDepartmentsPopulations", resultCountAllDepartmentsPopulations);
+
+
 
   useEffect(() => {
     props.fetchUsers();
@@ -56,7 +99,7 @@ console.log("DATA SA RESULT!", resultcountAllEmployeesPopulations);
     props.fetchOvertimes();
     props.fetchDeductions();
   }, []);
-  
+
 
   console.log("DATA SA TANANG PROPERTIES!", props);
   return (
@@ -64,47 +107,47 @@ console.log("DATA SA RESULT!", resultcountAllEmployeesPopulations);
 
       <div className="grid grid-rows-2 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
 
-        <div className="card card-side bg-base-100 shadow-xl">
+        <div className="card card-side bg-white shadow-xl">
           <figure>
             <img
-              src="https://i.ibb.co/xL6Mbx0/m4rk.png"
-              alt="Movie" />
+              src={ImageEmployeeGroup}
+              alt="Employee Group" />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">New movie is released!</h2>
-            <p>Click the button to watch on Jetflix app.</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Watch</button>
+            <span className="card-title text-3xl">Employees</span>
+            <span className='text-7xl text-center'>{resultcountAllEmployeesPopulations.count}</span>
+            <div className="card-actions justify-center">
+              <button className="btn btn-primary">View</button>
             </div>
           </div>
         </div>
 
-        <div className="card card-side bg-base-100 shadow-xl">
+        <div className="card card-side bg-white shadow-xl">
           <figure>
             <img
-              src="https://i.ibb.co/xL6Mbx0/m4rk.png"
-              alt="Movie" />
+              src={ImageRate}
+              alt="Rate Imaage" />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">New movie is released!</h2>
-            <p>Click the button to watch on Jetflix app.</p>
+            <span className="card-title text-3xl">Rates</span>
+            <span className='text-7xl text-center'>{resultCountAllRatesPopulations.count}</span>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Watch</button>
+              <button className="btn btn-primary">View</button>
             </div>
           </div>
         </div>
 
-        <div className="card card-side bg-base-100 shadow-xl">
+        <div className="card card-side bg-white shadow-xl">
           <figure>
             <img
-              src="https://i.ibb.co/xL6Mbx0/m4rk.png"
-              alt="Movie" />
+              src={ImageDepartment}
+              alt="Department Image" />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">New movie is released!</h2>
-            <p>Click the button to watch on Jetflix app.</p>
+            <span className="card-title text-3xl">Departments</span>
+            <span className='text-7xl text-center'>{resultCountAllDepartmentsPopulations.count}</span>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Watch</button>
+              <button className="btn btn-primary">View</button>
             </div>
           </div>
         </div>
@@ -126,70 +169,8 @@ console.log("DATA SA RESULT!", resultcountAllEmployeesPopulations);
 
       </div>
       <br />
-      
-      <div className="grid grid-rows-2 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
 
-        <div className="card card-side bg-base-100 shadow-xl">
-          <figure>
-            <img
-              src="https://i.ibb.co/xL6Mbx0/m4rk.png"
-              alt="Movie" />
-          </figure>
-          <div className="card-body">
-            <h1 className="card-title text-2xl">Employees</h1>
-            <span className='text-7xl'>{resultcountAllEmployeesPopulations.count}</span>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Watch</button>
-            </div>
-          </div>
-        </div>
 
-        <div className="card card-side bg-base-100 shadow-xl">
-          <figure>
-            <img
-              src="https://i.ibb.co/xL6Mbx0/m4rk.png"
-              alt="Movie" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">New movie is released!</h2>
-            <p>Click the button to watch on Jetflix app.</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Watch</button>
-            </div>
-          </div>
-        </div>
-
-        <div className="card card-side bg-base-100 shadow-xl">
-          <figure>
-            <img
-              src="https://i.ibb.co/xL6Mbx0/m4rk.png"
-              alt="Movie" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">New movie is released!</h2>
-            <p>Click the button to watch on Jetflix app.</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Watch</button>
-            </div>
-          </div>
-        </div>
-
-        <div className="card card-side bg-base-100 shadow-xl">
-          <figure>
-            <img
-              src="https://i.ibb.co/xL6Mbx0/m4rk.png"
-              alt="Movie" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">New movie is released!</h2>
-            <p>Click the button to watch on Jetflix app.</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Watch</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
 
     </div>
   )

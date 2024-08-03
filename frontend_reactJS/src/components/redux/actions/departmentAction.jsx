@@ -36,10 +36,10 @@ export const fetchDepartments = () => async dispatch => {
     try {
         dispatch({ type: FETCH_DEPARTMENTS_REQUEST });
         // Perform async operation, e.g., fetch data from an API
-        const fetchDeptReqRes = await MarkBelloApi.get('/api/departments/view/all');
+        const fetchDeptmentRequestAndResponseData = await MarkBelloApi.get('/api/departments/view/all');
         dispatch({
             type: FETCH_DEPARTMENTS_SUCCESS,
-            payload: fetchDeptReqRes
+            payload: fetchDeptmentRequestAndResponseData
         });
     } catch (error) {
         dispatch({
