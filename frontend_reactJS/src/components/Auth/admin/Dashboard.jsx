@@ -185,7 +185,9 @@ const mapStateToProps = (state) => {
     payrollsData: state.payrollState,
     ratesData: state.rateState,
     overtimesData: state.overtimeState,
-    // loading: state.employeeState.loading,
+    loading: state.employeeState.loading,
+    
+    
   };
 };
 
