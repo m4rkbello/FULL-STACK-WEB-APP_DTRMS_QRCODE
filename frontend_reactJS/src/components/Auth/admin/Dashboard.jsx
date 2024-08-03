@@ -115,8 +115,8 @@ const Dashboard = (props) => {
               src={ImageEmployeeGroup}
               alt="Employee Group" />
           </figure>
-          <div className="card-body text-center">
-            <span className="card-title text-3xl text-center">Employees</span>
+          <div className="card-body justify-center">
+            <span className="card-title text-3xl justify-center">Employees</span>
             <span className='text-7xl text-center text-center'>{resultcountAllEmployeesPopulations.count}</span>
             <div className="card-actions justify-center">
               <button className="btn btn-primary text-center">View</button>
@@ -132,10 +132,10 @@ const Dashboard = (props) => {
               alt="Rate Imaage"
             />
           </figure>
-          <div className="card-body">
-            <span className="card-title text-3xl">Rates</span>
-            <span className='text-7xl text-center'>{resultCountAllRatesPopulations.count}</span>
-            <div className="card-actions justify-end">
+          <div className="card-body justify-center">
+            <span className="card-title text-3xl justify-center">Rates</span>
+            <span className='text-7xl text-center justify-center'>{resultCountAllRatesPopulations.count}</span>
+            <div className="card-actions justify-center">
               <button className="btn btn-primary">View</button>
             </div>
           </div>
@@ -148,10 +148,10 @@ const Dashboard = (props) => {
               src={ImageDepartment}
               alt="Department Image" />
           </figure>
-          <div className="card-body">
-            <span className="card-title text-3xl">Departments</span>
-            <span className='text-7xl text-center'>{resultCountAllDepartmentsPopulations.count}</span>
-            <div className="card-actions justify-end">
+          <div className="card-body justify-center">
+            <span className="card-title text-3xl justify-center">Departments</span>
+            <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
+            <div className="card-actions justify-center">
               <button className="btn btn-primary">View</button>
             </div>
           </div>
@@ -164,12 +164,12 @@ const Dashboard = (props) => {
               className='h-3/5'
               alt="Overtime Image" />
           </figure>
-          <div className="card-body">
+          <div className="card-body justify-center">
             <center>
-            <span className="card-title text-3xl">Departments</span>
+            <span className="card-title text-3xl justify-center">Departments</span>
             </center>
-            <span className='text-7xl text-center'>{resultCountAllDepartmentsPopulations.count}</span>
-            <div className="card-actions justify-end">
+            <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
+            <div className="card-actions justify-center">
               <button className="btn btn-primary">View</button>
             </div>
           </div>
