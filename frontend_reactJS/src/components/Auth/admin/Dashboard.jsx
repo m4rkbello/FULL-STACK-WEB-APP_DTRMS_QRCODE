@@ -109,9 +109,7 @@ const Dashboard = (props) => {
   console.log("DATA SA TANANG PROPERTIES!", props);
   return (
     <div className="h-full mx-auto max-h-full w-full max-w-ful glass mx-auto p-4 shadow-xl rounded-lg">
-
       <div className="grid mx-auto grid-rows-3 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
-
         <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
@@ -191,10 +189,49 @@ const Dashboard = (props) => {
           </div>
         </div>
 
+        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+          <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
+            <img
+              src={ImagePayroll}
+              className='h-3/5'
+              alt="Overtime Image" />
+          </figure>
+          <div className="card-body justify-center">
+            <center>
+              <span className="card-title text-3xl justify-center">Departments</span>
+            </center>
+            <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
+            <br />
+            <div className="card-actions justify-center">
+              <button className="btn btn-primary text-center">
+                View<ScanEye />
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+          <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
+            <img
+              src={ImagePayroll}
+              className='h-3/5'
+              alt="Overtime Image" />
+          </figure>
+          <div className="card-body justify-center">
+            <center>
+              <span className="card-title text-3xl justify-center">Departments</span>
+            </center>
+            <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
+            <br />
+            <div className="card-actions justify-center">
+              <button className="btn btn-primary text-center">
+                View<ScanEye />
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-
-
     </div>
   )
 }
