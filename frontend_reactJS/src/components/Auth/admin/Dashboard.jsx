@@ -16,11 +16,12 @@ import { fetchOvertimes } from '../../redux/actions/overtimeAction';
 
 
 const Dashboard = (props) => {
-  const ImageEmployeeGroup = '../../../../public/images/EmployeesGroup.jpg';
+  const ImageEmployeeGroup = '../../../../public/images/EmployeesGroup.png';
   const ImageRate = '../../../../public/images/PersonRates.png';
   const ImageDepartment = '../../../../public/images/department.png';
+  const ImageOvertime = '../../../../public/images/overtime.png';
+  const ImagePayroll = '../../../../public/images/payroll.png';
 
-  const defaultImage = '../../../../public/miming.jpg';
   console.log("DATA SA PROPS TANANS!", props);
 
 
@@ -107,9 +108,10 @@ const Dashboard = (props) => {
 
       <div className="grid grid-rows-2 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
 
-        <div className="card card-side bg-white shadow-xl">
-          <figure>
+      <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
+              className='h-3/5'
               src={ImageEmployeeGroup}
               alt="Employee Group" />
           </figure>
@@ -122,11 +124,13 @@ const Dashboard = (props) => {
           </div>
         </div>
 
-        <div className="card card-side bg-white shadow-xl">
-          <figure>
+        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
+              className='h-3/5'
               src={ImageRate}
-              alt="Rate Imaage" />
+              alt="Rate Imaage"
+             />
           </figure>
           <div className="card-body">
             <span className="card-title text-3xl">Rates</span>
@@ -137,9 +141,10 @@ const Dashboard = (props) => {
           </div>
         </div>
 
-        <div className="card card-side bg-white shadow-xl">
-          <figure>
+        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
+              className='h-3/5'
               src={ImageDepartment}
               alt="Department Image" />
           </figure>
@@ -152,17 +157,18 @@ const Dashboard = (props) => {
           </div>
         </div>
 
-        <div className="card card-side bg-base-100 shadow-xl">
-          <figure>
+        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+          <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
-              src="https://i.ibb.co/xL6Mbx0/m4rk.png"
-              alt="Movie" />
+              src={ImagePayroll}
+              className='h-3/5'
+              alt="Overtime Image" />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">New movie is released!</h2>
-            <p>Click the button to watch on Jetflix app.</p>
+            <span className="card-title text-3xl">Departments</span>
+            <span className='text-7xl text-center'>{resultCountAllDepartmentsPopulations.count}</span>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Watch</button>
+              <button className="btn btn-primary">View</button>
             </div>
           </div>
         </div>
