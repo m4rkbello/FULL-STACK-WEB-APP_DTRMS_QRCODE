@@ -67,24 +67,24 @@ const Dashboard = (props) => {
   const resultCountAllRatesPopulations = countAllRatesPopulations(ratesDataObjectCollection);
   console.log(resultCountAllRatesPopulations);
 
-  
+
   const departmentsDataObjectCollection = props?.departmentsData?.departments?.data?.details;
 
   function countAllDepartmentsPopulations(departmentsDataObjectCollection) {
     let items = [];
-  
+
     if (Array.isArray(departmentsDataObjectCollection) && departmentsDataObjectCollection.length !== 0) {
       for (let i = 0; i < departmentsDataObjectCollection.length; i++) {
         items.push(departmentsDataObjectCollection[i]);
       }
     }
-  
+
     return {
       items,
       count: items.length
     };
   }
-  
+
   const resultCountAllDepartmentsPopulations = countAllDepartmentsPopulations(departmentsDataObjectCollection);
   console.log("MAO NI resultCountAllDepartmentsPopulations", resultCountAllDepartmentsPopulations);
 
@@ -104,33 +104,33 @@ const Dashboard = (props) => {
 
   console.log("DATA SA TANANG PROPERTIES!", props);
   return (
-    <div className="h-full max-h-full w-full max-w-ful glass mx-auto p-4 shadow-xl rounded-lg">
+    <div className="h-full mx-auto max-h-full w-full max-w-ful glass mx-auto p-4 shadow-xl rounded-lg">
 
-      <div className="grid grid-rows-2 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
+      <div className="grid mx-auto grid-rows-2 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
 
-      <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
-        <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
+        <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+          <figure className='px-4 py-4 mx-0 shadow-xl bg-black'>
             <img
               className='h-3/5'
               src={ImageEmployeeGroup}
               alt="Employee Group" />
           </figure>
-          <div className="card-body">
-            <span className="card-title text-3xl">Employees</span>
-            <span className='text-7xl text-center'>{resultcountAllEmployeesPopulations.count}</span>
+          <div className="card-body text-center">
+            <span className="card-title text-3xl text-center">Employees</span>
+            <span className='text-7xl text-center text-center'>{resultcountAllEmployeesPopulations.count}</span>
             <div className="card-actions justify-center">
-              <button className="btn btn-primary">View</button>
+              <button className="btn btn-primary text-center">View</button>
             </div>
           </div>
         </div>
 
-        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
-        <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
+        <div className="mx-auto card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+          <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
               src={ImageRate}
               alt="Rate Imaage"
-             />
+            />
           </figure>
           <div className="card-body">
             <span className="card-title text-3xl">Rates</span>
@@ -142,7 +142,7 @@ const Dashboard = (props) => {
         </div>
 
         <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
-        <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
+          <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
               src={ImageDepartment}
@@ -165,7 +165,9 @@ const Dashboard = (props) => {
               alt="Overtime Image" />
           </figure>
           <div className="card-body">
+            <center>
             <span className="card-title text-3xl">Departments</span>
+            </center>
             <span className='text-7xl text-center'>{resultCountAllDepartmentsPopulations.count}</span>
             <div className="card-actions justify-end">
               <button className="btn btn-primary">View</button>
@@ -174,7 +176,6 @@ const Dashboard = (props) => {
         </div>
 
       </div>
-      <br />
 
 
 
@@ -192,8 +193,8 @@ const mapStateToProps = (state) => {
     ratesData: state.rateState,
     overtimesData: state.overtimeState,
     loading: state.employeeState.loading,
-    
-    
+
+
   };
 };
 
