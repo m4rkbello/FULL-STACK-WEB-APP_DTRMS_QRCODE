@@ -29,7 +29,7 @@ const attendanceReducer = (state = initialState, action) => {
         case UPDATE_ATTENDANCE_REQUEST:
         case DELETE_ATTENDANCE_REQUEST:
         case QRCODE_ATTENDANCE_REQUEST:
-            return  {
+            return {
                 ...state,
                 loading: true,
                 error: null
@@ -37,21 +37,21 @@ const attendanceReducer = (state = initialState, action) => {
         case FETCH_ATTENDANCES_SUCCESS:
             return {
                 ...state,
-                attendances: action.payload,
+                attendances: Array.isArray(action.payload) ? action.payload : [], // Ensure payload is an array
                 loading: false,
                 error: null
             };
         case ADD_ATTENDANCE_SUCCESS:
             return {
                 ...state,
-                attendances: state.attendances.filter(attendance => attendance.id !== action.payload),
+                attendances: [...state.attendances, action.payload], // Add the new attendance to the array
                 loading: false,
                 error: null
             };
         case UPDATE_ATTENDANCE_SUCCESS:
             return {
                 ...state,
-                attendances: state.attendances.map(attendances => attendances.id === action.payload.id ? action.payload : attendances),
+                attendances: state.attendances.map(attendance => attendance.id === action.payload.id ? action.payload : attendance),
                 loading: false,
                 error: null,
             };
@@ -65,7 +65,7 @@ const attendanceReducer = (state = initialState, action) => {
         case QRCODE_ATTENDANCE_SUCCESS:
             return {
                 ...state,
-                attendances: [...state.attendances, action.payload],
+                attendances: [...state.attendances, action.payload], // Ensure payload is correctly added
                 loading: false,
                 error: null
             };
@@ -81,8 +81,7 @@ const attendanceReducer = (state = initialState, action) => {
             };
         default:
             return state;
-    } 
+    }
 }
-
 
 export default attendanceReducer;

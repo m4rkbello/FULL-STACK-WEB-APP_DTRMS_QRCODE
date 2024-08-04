@@ -38,22 +38,22 @@ function EmployeeScanQRCode() {
 
   useEffect(() => {
     let scanner;
-
+  
     const setupScanner = () => {
       scanner = new QrScanner(videoRef.current, async (result) => {
         if (scannerActive) {
           console.log("QR Code detected:", result);
           setScanResult(result);
           setScannerActive(false);
-
+  
           try {
             const email = result;
             console.log("Email extracted from QR code:", email);
-
+  
             const qrcodeReqRes = await dispatch(qrCodeAttendance({ employee_email: email }));
             console.log("QR Code Attendance Result:", qrcodeReqRes);
-
-            if (qrcodeReqRes.success) {
+  
+            if (qrcodeReqRes && qrcodeReqRes.success) {
               toast.success(qrcodeReqRes.message || 'Attendance recorded successfully!', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -67,7 +67,7 @@ function EmployeeScanQRCode() {
                   fontSize: '17px',
                 },
               });
-
+  
               // Play success audio
               setTimeout(() => {
                 try {
@@ -76,12 +76,12 @@ function EmployeeScanQRCode() {
                   handleAudioError(audioRefSuccess.current, error);
                 }
               }, 1000);
-
+  
             } else {
               // Play error audio for any unsuccessful response
               playErrorAudio();
-
-              toast.error(qrcodeReqRes.message || 'Failed to record attendance', {
+  
+              toast.error(qrcodeReqRes ? qrcodeReqRes.message : 'Unknown error occurred', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -98,11 +98,11 @@ function EmployeeScanQRCode() {
             }
           } catch (error) {
             console.error('QR Code Authentication Error:', error);
-
+  
             // Play error audio for any error
             playErrorAudio();
-
-            toast.error(error.message || 'An error occurred during authentication. Please try again.', {
+  
+            toast.error(error.message, {
               position: 'top-right',
               autoClose: 3000,
               hideProgressBar: false,
@@ -125,7 +125,7 @@ function EmployeeScanQRCode() {
           }
         }
       });
-
+  
       scanner.start().then(() => {
         console.log("QR Scanner started");
       }).catch(error => {
@@ -134,11 +134,11 @@ function EmployeeScanQRCode() {
         playErrorAudio(); // Play error audio if scanner fails to start
       });
     };
-
+  
     if (scannerActive) {
       setupScanner();
     }
-
+  
     return () => {
       if (scanner) {
         scanner.destroy();
@@ -146,6 +146,7 @@ function EmployeeScanQRCode() {
       }
     };
   }, [dispatch, scannerActive]);
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center">
