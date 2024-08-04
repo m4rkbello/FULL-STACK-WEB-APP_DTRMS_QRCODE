@@ -33,11 +33,11 @@ const attendanceReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
                 error: null
-            };
+        };
         case FETCH_ATTENDANCES_SUCCESS:
             return {
                 ...state,
-                attendances: Array.isArray(action.payload) ? action.payload : [], // Ensure payload is an array
+                attendances: action.payload,
                 loading: false,
                 error: null
             };
