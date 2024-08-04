@@ -13,9 +13,10 @@ import { FcDoughnutChart, FcElectricalThreshold, FcConferenceCall, FcReuse, FcDe
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
-//ADMIN
+//ADMIN-ROUTES
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
+import UserDashboard from './components/Auth/admin/user/UserDashboard';
 import UserDetails from './components/Auth/admin/user/UserDetails';
 import UserChangePassword from './components/Auth/admin/user/UserChangePassword';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
@@ -25,7 +26,7 @@ import Payroll from './components/Auth/admin/payroll/Payroll';
 import Rate from './components/Auth/admin/rate/Rates';
 import Overtime from './components/Auth/admin/overtime/Overtime';
 import Deduction from './components/Auth/admin/deduction/Deduction';
-//EMPLOYEE
+//EMPLOYEE-ROUTES
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
@@ -246,6 +247,7 @@ function App(props) {
                 <Routes>
                 <Route path="/" element={<Dashboard />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route path="/admin/users" element={<UserDashboard />} />
                   <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
                   <Route path="/admin/payrolls" element={<Payroll />} />
@@ -567,7 +569,7 @@ function App(props) {
                 </Link>
               </li>
               <li>
-                <Link to="/admin/manage/users" className='text-2xl glass'>
+                <Link to="/admin/users" className='text-2xl glass'>
                   <FcPortraitMode 
                     style={{ 
                       height: "120%",
