@@ -341,8 +341,6 @@ const mapStateToProps = (state) => {
 
     //LOADING SKELETON
 
-
-
   };
 };
 
