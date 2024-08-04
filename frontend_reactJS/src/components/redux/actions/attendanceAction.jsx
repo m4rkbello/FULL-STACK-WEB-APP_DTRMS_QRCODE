@@ -18,6 +18,19 @@ import {
 } from '../types/employeeTypes.jsx';
 
 import {
+    FETCH_ATTENDANCES_REQUEST,
+    FETCH_ATTENDANCES_SUCCESS,
+    FETCH_ATTENDANCES_FAILURE,
+    ADD_ATTENDANCE_REQUEST,
+    ADD_ATTENDANCE_SUCCESS,
+    ADD_ATTENDANCE_FAILURE,
+    UPDATE_ATTENDANCE_REQUEST,
+    UPDATE_ATTENDANCE_SUCCESS,
+    UPDATE_ATTENDANCE_FAILURE,
+    DELETE_ATTENDANCE_REQUEST,
+    DELETE_ATTENDANCE_SUCCESS,
+    DELETE_ATTENDANCE_FAILURE,
+
     QRCODE_ATTENDANCE_REQUEST,
     QRCODE_ATTENDANCE_SUCCESS,
     QRCODE_ATTENDANCE_FAILURE,
@@ -28,20 +41,40 @@ import {
 //MAG-FETCH UG EMPLOYEE
 export const fetchAttendances = () => async dispatch => {
     try {
-        dispatch({ type: FETCH_EMPLOYEES_REQUEST });
+        dispatch({ type: FETCH_ATTENDANCES_REQUEST });
         // Perform async operation, e.g., fetch data from an API
-        const attendances = await MarkBelloApi.get('/api/employees');
+        const attendances = await MarkBelloApi.get('/api/attendances/collections/all');
         dispatch({
-            type: FETCH_EMPLOYEES_SUCCESS,
+            type: FETCH_ATTENDANCES_SUCCESS,
             payload: attendances
         });
     } catch (error) {
         dispatch({
-            type: FETCH_EMPLOYEES_FAILURE,
+            type: FETCH_ATTENDANCES_FAILURE,
             payload: error.message
         });
     }
 };
+
+// //MAG-FETCH UG EMPLOYEE
+// export const fetchAttendancesData = () => async dispatch => {
+//     try {
+//         dispatch({ type: FETCH_EMPLOYEES_REQUEST });
+//         // Perform async operation, e.g., fetch data from an API
+//         const attendances = await MarkBelloApi.get('/api/attendances/collections/all');
+//         dispatch({
+//             type: FETCH_EMPLOYEES_REQUEST,
+//             payload: attendances
+//         });
+//     } catch (error) {
+//         dispatch({
+//             type: FETCH_EMPLOYEES_REQUEST,
+//             payload: error.message
+//         });
+//     }
+// };
+
+
 
 //MAG ADD UG EMPLOYEE 
 export const addAttendance = newAttendance => async dispatch => {
