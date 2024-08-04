@@ -26,7 +26,7 @@ class AttendanceController extends Controller
             $data = Attendance::all();
 
             return response()->json([
-                'data' => $data,
+                'details' => $data,
                 'success' => true,
                 'status' => 201,
                 'message' => 'Fetch all Attendance was success!',
