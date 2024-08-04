@@ -29,6 +29,7 @@ class AttendanceController extends Controller
                 'data' => $data,
                 'success' => true,
                 'status' => 201,
+                'message' => 'Fetch all Attendance was success!',
             ], 201);
 
         }catch(\Exception $error){
@@ -137,12 +138,13 @@ public function store(Request $request)
             'details' => $attendance,
             'message' => 'Employee has been successfully added!',
         ], 200);
+
     } catch (\Illuminate\Validation\ValidationException $e) {
         Log::error('Validation error: ' . $e->getMessage(), ['errors' => $e->errors()]);
         return response()->json([
             'success' => false,
             'status' => 422,
-            'message' => 'Validation failed',
+            'message' => 'Validation failed 422 ERROR',
             'errors' => $e->errors(),
         ], 422);
     } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
@@ -150,7 +152,7 @@ public function store(Request $request)
         return response()->json([
             'success' => false,
             'status' => 404,
-            'message' => 'Resource not found',
+            'message' => 'Resource not found 404 ERROR',
         ], 404);
     } catch (\Exception $e) {
         Log::error('Error creating attendance: ' . $e->getMessage(), [
