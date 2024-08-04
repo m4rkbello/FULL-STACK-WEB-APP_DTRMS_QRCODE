@@ -3,6 +3,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 //FETCH ALL DATAS GAMIT REDUX
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../redux/actions/userAction';
@@ -96,6 +97,16 @@ const Dashboard = (props) => {
   console.log("MAO NI resultCountAllDepartmentsPopulations", resultCountAllDepartmentsPopulations);
 
 
+  // if (props.loading) {
+  //   return (
+  //     <div className="flex flex-col gap-6 w-96">
+  //       <div className="skeleton h-48 w-full"></div>
+  //       <div className="skeleton h-6 w-36"></div>
+  //       <div className="skeleton h-6 w-full"></div>
+  //       <div className="skeleton h-6 w-full"></div>
+  //     </div>
+  //   );
+  // }
 
   useEffect(() => {
     props.fetchUsers();
@@ -125,13 +136,35 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center text-center'>{resultcountAllEmployeesPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
-              <button className="btn btn-primary text-center">
+              <button className="btn glass text-center">
                 View<ScanEye />
               </button>
             </div>
           </div>
         </div>
 
+        <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+          <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
+            <img
+              className='h-3/5'
+              src={ImageEmployeeGroup}
+              alt="Attendance" />
+          </figure>
+          <div className="card-body justify-center">
+            <span className="card-title text-3xl justify-center">EMPLOYEES</span>
+            <span className='text-7xl text-center text-center'>{resultcountAllEmployeesPopulations.count}</span>
+            <br />
+            <div className="card-actions justify-center">
+                <Link to="/employee/dashboard">
+              <button className="btn glass text-center">
+                View<ScanEye />
+              </button>
+                </Link>
+            </div>
+          </div>
+        </div>
+
+        
         <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
@@ -144,9 +177,11 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center text-center'>{resultcountAllEmployeesPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
-              <button className="btn btn-primary text-center">
+              <Link to="/employee/attendance">
+              <button className="btn glass text-center">
                 View<ScanEye />
               </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -164,7 +199,7 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center justify-center'>{resultCountAllRatesPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
-              <button className="btn btn-primary text-center">
+              <button className="btn glass text-center">
                 View<ScanEye />
               </button>
             </div>
@@ -183,9 +218,11 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
-              <button className="btn btn-primary text-center">
+              <Link to="/department">
+              <button className="btn glass text-center">
                 View<ScanEye />
               </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -204,7 +241,7 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
-              <button className="btn btn-primary text-center">
+              <button className="btn glass text-center">
                 View<ScanEye />
               </button>
             </div>
@@ -225,7 +262,7 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
-              <button className="btn btn-primary text-center">
+              <button className="btn glass text-center">
                 View<ScanEye />
               </button>
             </div>
@@ -246,7 +283,7 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
-              <button className="btn btn-primary text-center">
+              <button className="btn glass text-center">
                 View<ScanEye />
               </button>
             </div>
@@ -267,7 +304,9 @@ const mapStateToProps = (state) => {
     payrollsData: state.payrollState,
     ratesData: state.rateState,
     overtimesData: state.overtimeState,
-    loading: state.employeeState.loading,
+
+    //LOADING SKELETON
+
 
 
   };

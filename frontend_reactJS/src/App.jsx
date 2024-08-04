@@ -9,7 +9,7 @@ import { TiUserAddOutline } from "react-icons/ti";
 import { FaUserTie } from "react-icons/fa6";
 import { AiFillSetting } from "react-icons/ai";
 import { FaRunning } from "react-icons/fa";
-import { FcDoughnutChart, FcElectricalThreshold, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcFolder  } from "react-icons/fc";
+import { FcDoughnutChart, FcElectricalThreshold, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcFolder, FcPortraitMode } from "react-icons/fc";
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
@@ -567,8 +567,14 @@ function App(props) {
                 </Link>
               </li>
               <li>
-                <Link to="" className='text-2xl glass'>
-                  TEST 8
+                <Link to="/admin/manage/users" className='text-2xl glass'>
+                  <FcPortraitMode 
+                    style={{ 
+                      height: "120%",
+                      width: "120%",
+                    }} 
+                  />
+                  Deduction
                 </Link>
               </li>
             </ul>

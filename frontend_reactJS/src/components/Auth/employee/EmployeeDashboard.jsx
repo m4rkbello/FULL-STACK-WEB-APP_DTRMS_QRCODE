@@ -155,7 +155,6 @@ const EmployeeDashboard = (props) => {
 
     const departments = fetchDepartments(departmentsCollectionArrays);
 
-
     function huhays() {
         const item = null;
         const dateFinal = Date.prototype.getDate();
