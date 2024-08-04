@@ -205,7 +205,7 @@ const Dashboard = (props) => {
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">ATTENDANCES</span>
-            <span className='text-7xl text-center text-center'>{resultcountAllEmployeesPopulations.count}</span>
+            <span className='text-7xl text-center text-center'>test</span>
             <br />
             <div className="card-actions justify-center">
               <Link to="/employee/attendance">
@@ -272,9 +272,11 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center justify-center'>{resultCountAllPayrollsPopulation.count}</span>
             <br />
             <div className="card-actions justify-center">
+              <Link to="/admin/payrolls">
               <button className="btn glass text-center">
                 View<ScanEye />
               </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -335,6 +337,7 @@ const mapStateToProps = (state) => {
     payrollsData: state.payrollState,
     ratesData: state.rateState,
     overtimesData: state.overtimeState,
+    attendancesData: state.attendanceState,
 
     //LOADING SKELETON
 
