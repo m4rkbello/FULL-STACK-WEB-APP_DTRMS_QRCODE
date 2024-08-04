@@ -32,6 +32,26 @@ const Dashboard = (props) => {
 
   console.log("DATA SA PROPS TANANS!", props);
 
+  const usersDataObjectCollections = props?.usersData?.data;
+
+  function countAllUsersPopulations(usersDataObjectCollections){
+    let items = [];
+
+    if(Array.isArray(usersDataObjectCollections) && usersDataObjectCollections.length > 0)  {
+      for(let ez = 0; ez < usersDataObjectCollections.length; ez++) {
+        items.push(usersDataObjectCollections[ez]);
+      }
+    }
+
+    return {
+      items,
+      count: items.length
+    };
+  }
+
+  const resultCountAllUsersPopulation = countAllUsersPopulations(usersDataObjectCollections);
+  console.log("resultCountAllUsersPopulation", resultCountAllUsersPopulation);
+
 
 
   const employeeDataObjectCollections = props?.employeesData?.employees?.data;
@@ -96,17 +116,26 @@ const Dashboard = (props) => {
   const resultCountAllDepartmentsPopulations = countAllDepartmentsPopulations(departmentsDataObjectCollection);
   console.log("MAO NI resultCountAllDepartmentsPopulations", resultCountAllDepartmentsPopulations);
 
+  const payrollsDataObjectCollection = props?.payrollsData?.payrolls?.data?.details;
 
-  // if (props.loading) {
-  //   return (
-  //     <div className="flex flex-col gap-6 w-96">
-  //       <div className="skeleton h-48 w-full"></div>
-  //       <div className="skeleton h-6 w-36"></div>
-  //       <div className="skeleton h-6 w-full"></div>
-  //       <div className="skeleton h-6 w-full"></div>
-  //     </div>
-  //   );
-  // }
+  function countAllPayrollsPopulations(payrollsDataObjectCollection)  {
+    let items = [];
+
+    if(Array.isArray(payrollsDataObjectCollection) && payrollsDataObjectCollection.length != 0) {
+      for(let ez=0; ez < payrollsDataObjectCollection.length; ez++) {
+        items.push(payrollsDataObjectCollection[ez]);
+      }
+    }
+
+    return  {
+      items,
+      count: items.length
+    };
+  }
+
+  const resultCountAllPayrollsPopulation = countAllPayrollsPopulations(payrollsDataObjectCollection);
+  console.log("DATA SA resultCountAllPayrollsPopulation", resultCountAllPayrollsPopulation);
+
 
   useEffect(() => {
     props.fetchUsers();
@@ -133,12 +162,14 @@ const Dashboard = (props) => {
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">USERS</span>
-            <span className='text-7xl text-center text-center'>{resultcountAllEmployeesPopulations.count}</span>
+            <span className='text-7xl text-center text-center'>{resultCountAllUsersPopulation.count}</span>
             <br />
             <div className="card-actions justify-center">
+              <Link to="/admin/users">
               <button className="btn glass text-center">
                 View<ScanEye />
               </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -238,7 +269,7 @@ const Dashboard = (props) => {
             <center>
               <span className="card-title text-3xl justify-center">PAYROLLS</span>
             </center>
-            <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
+            <span className='text-7xl text-center justify-center'>{resultCountAllPayrollsPopulation.count}</span>
             <br />
             <div className="card-actions justify-center">
               <button className="btn glass text-center">
