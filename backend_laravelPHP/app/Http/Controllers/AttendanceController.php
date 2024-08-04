@@ -68,7 +68,7 @@ public function store(Request $request)
 
         if (!$employee) {
             Log::warning('Employee not found', ['employee_email' => $data['employee_email']]);
-            return response([
+            return response()->json([
                 'success' => false,
                 'status' => 401,
                 'message' => 'No existing employee!',
@@ -78,7 +78,6 @@ public function store(Request $request)
         $employeeId = $employee->id;
         $timeInNote = 'Time-in';
         $timeOutNote = 'Time-out';
-  
 
         $attendanceCollections = Attendance::where('attendance_employee_id', '=', $employeeId)
             ->whereDay('created_at', '=', Carbon::today())
@@ -117,7 +116,7 @@ public function store(Request $request)
                 'attendance_time_out' => Carbon::now(),
                 'attendance_status_id' => 2,
             ]);
-        }  else {
+        } else {
             return response()->json([
                 'success' => false,
                 'details' => $attendanceCollections,
@@ -170,6 +169,7 @@ public function store(Request $request)
         ], 500);
     }
 }
+     
 
     
     /**
