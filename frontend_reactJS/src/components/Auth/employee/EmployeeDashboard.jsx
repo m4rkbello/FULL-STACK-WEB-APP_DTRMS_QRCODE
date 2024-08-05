@@ -398,6 +398,7 @@ const EmployeeDashboard = (props) => {
                             </div>
                         </div>
                     </div>
+                    
                     <div className="flex flex-row">
                         <div className="basis-1/2 flex justify-start">         
                         <span className="inline-grid grid-cols-2 gap-1">
