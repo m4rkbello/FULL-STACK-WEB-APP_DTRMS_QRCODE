@@ -269,9 +269,11 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center justify-center'>{resultCountAllRatesPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
+              <Link to="/admin/rates">
               <button className="btn glass text-center">
                 View<ScanEye />
               </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -334,9 +336,11 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
+              <Link to="/admin/overtimes">
               <button className="btn glass text-center">
                 View<ScanEye />
               </button>
+              </Link>
             </div>
           </div>
         </div>
