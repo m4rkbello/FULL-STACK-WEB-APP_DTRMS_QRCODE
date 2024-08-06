@@ -216,7 +216,7 @@ const Dashboard = (props) => {
     ],
   };
 
-  const options = {
+  const BarChartNiChoi = {
     responsive: true,
     plugins: {
       legend: {
@@ -224,7 +224,47 @@ const Dashboard = (props) => {
       },
       title: {
         display: true,
-        text: 'DAILY TIME RECORD MONITORING SYSTEM',
+        text: 'DAILY TIME RECORD MONITORING SYSTEM | BAR GRAPH',
+
+        font: {
+          size: 25,
+          weight: 'bold',
+          family: 'Arial'
+        },
+        color: 'black' // This sets the color of the title
+      }
+    },
+  };
+
+  const DoughnutChartNiChoi = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'DAILY TIME RECORD MONITORING SYSTEM | DOUGHNUT GRAPH',
+
+        font: {
+          size: 25,
+          weight: 'bold',
+          family: 'Arial'
+        },
+        color: 'black' // This sets the color of the title
+      }
+    },
+  };
+
+  const PolarChartNiChoi = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'DAILY TIME RECORD MONITORING SYSTEM | POLARIZE GRAPH',
 
         font: {
           size: 25,
@@ -250,19 +290,46 @@ const Dashboard = (props) => {
 
   console.log("DATA SA TANANG PROPERTIES!", props);
   return (
-    <div className="h-full mx-auto max-h-full w-full max-w-full glass mx-auto p-4 shadow-xl rounded-lg">
-      <div className="grid mx-auto grid-rows-3 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
-        <div className="shadow-xl">
-          <Bar options={options} data={chartDataCollections} />
+    <div className="h-full mx-auto max-h-full w-full max-w-full glass p-4 shadow-xl rounded-lg">
+      <div className="diff aspect-[16/9] shadow-xl">
+        <div className="diff-item-1">
+          <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
+            <Bar options={BarChartNiChoi} data={chartDataCollections} />
+          </div>
         </div>
-        <div className="shadow-xl">
-          <Doughnut options={options} data={chartDataCollections} />
+        <div className="diff-item-2">
+          <div className="bg-base-200 grid place-content-center text-9xl font-black shadow-xl">BAR GRAPH</div>
         </div>
+        <div className="diff-resizer"></div>
+      </div>
+      <br />
+      <div className="diff aspect-[16/9] shadow-xl">
+        <div className="diff-item-1">
+          <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl px-5 py-5">
+            <Doughnut options={DoughnutChartNiChoi} data={chartDataCollections} />
+          </div>
+        </div>
+        <div className="diff-item-2">
+          <div className="bg-base-200 grid place-content-center text-9xl font-black shadow-xl">CIRCLE GRAPH</div>
+        </div>
+        <div className="diff-resizer"></div>
+      </div>
+      <br />
+      <div className="diff aspect-[16/9] shadow-xl">
+        <div className="diff-item-1">
+          <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl px-5 py-5">
+            <div className="shadow-xl">
+              <PolarArea options={PolarChartNiChoi} data={chartDataCollections} />
+            </div>
 
+          </div>
+        </div>
+        <div className="diff-item-2">
+          <div className="bg-base-200 grid place-content-center text-9xl font-black shadow-xl">CIRCLE GRAPH</div>
+        </div>
+        <div className="diff-resizer"></div>
       </div>
-      <div className="shadow-xl">
-        <PolarArea options={options} data={chartDataCollections} />
-      </div>
+
       <div className="grid mx-auto grid-rows-4 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
         <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
