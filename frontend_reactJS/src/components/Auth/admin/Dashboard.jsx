@@ -305,7 +305,7 @@ const Dashboard = (props) => {
       <br />
       <div className="diff aspect-[16/9] shadow-xl">
         <div className="diff-item-1">
-          <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl px-5 py-5">
+          <div className="glass text-primary-content grid place-content-center text-7xl font-black shadow-xl px-5 py-5">
             <Doughnut options={DoughnutChartNiChoi} data={chartDataCollections} />
           </div>
         </div>
@@ -317,12 +317,12 @@ const Dashboard = (props) => {
       <br />
       <div className="diff aspect-[16/9] shadow-xl">
         <div className="diff-item-1">
-          <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl px-5 py-5">
+          <div className="glass text-primary-content grid place-content-center text-7xl font-black shadow-xl px-5 py-5">
           <PolarArea options={PolarChartNiChoi} data={chartDataCollections} />
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="bg-base-200 grid place-content-center text-9xl font-black shadow-xl">POLARIZE DATA</div>
+          <div className="bg-base-200 grid place-content-center text-7xl font-black shadow-xl">POLARIZE DATA</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
