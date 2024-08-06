@@ -351,6 +351,7 @@ const Dashboard = (props) => {
             </div>
           </div>
         </div>
+        
 
         <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
