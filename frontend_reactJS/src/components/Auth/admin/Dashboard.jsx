@@ -15,9 +15,10 @@ import { fetchDeductions } from '../../redux/actions/deductionAction';
 import { fetchRates } from '../../redux/actions/rateAction';
 import { fetchOvertimes } from '../../redux/actions/overtimeAction';
 import { ScanEye } from "lucide-react";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Bar, PolarArea, Doughnut } from 'react-chartjs-2';
 
-
-
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 
 const Dashboard = (props) => {
@@ -34,11 +35,11 @@ const Dashboard = (props) => {
 
   const usersDataObjectCollections = props?.usersData?.data;
 
-  function countAllUsersPopulations(usersDataObjectCollections){
+  function countAllUsersPopulations(usersDataObjectCollections) {
     let items = [];
 
-    if(Array.isArray(usersDataObjectCollections) && usersDataObjectCollections.length > 0)  {
-      for(let ez = 0; ez < usersDataObjectCollections.length; ez++) {
+    if (Array.isArray(usersDataObjectCollections) && usersDataObjectCollections.length > 0) {
+      for (let ez = 0; ez < usersDataObjectCollections.length; ez++) {
         items.push(usersDataObjectCollections[ez]);
       }
     }
@@ -51,8 +52,6 @@ const Dashboard = (props) => {
 
   const resultCountAllUsersPopulation = countAllUsersPopulations(usersDataObjectCollections);
   console.log("resultCountAllUsersPopulation", resultCountAllUsersPopulation);
-
-
 
   const employeeDataObjectCollections = props?.employeesData?.employees?.data;
 
@@ -118,16 +117,16 @@ const Dashboard = (props) => {
 
   const payrollsDataObjectCollection = props?.payrollsData?.payrolls?.data?.details;
 
-  function countAllPayrollsPopulations(payrollsDataObjectCollection)  {
+  function countAllPayrollsPopulations(payrollsDataObjectCollection) {
     let items = [];
 
-    if(Array.isArray(payrollsDataObjectCollection) && payrollsDataObjectCollection.length != 0) {
-      for(let ez=0; ez < payrollsDataObjectCollection.length; ez++) {
+    if (Array.isArray(payrollsDataObjectCollection) && payrollsDataObjectCollection.length != 0) {
+      for (let ez = 0; ez < payrollsDataObjectCollection.length; ez++) {
         items.push(payrollsDataObjectCollection[ez]);
       }
     }
 
-    return  {
+    return {
       items,
       count: items.length
     };
@@ -141,13 +140,13 @@ const Dashboard = (props) => {
   function countAllAttendancesPopulations(attendanceDataObjectCollection) {
     let items = [];
 
-    if(Array.isArray(attendanceDataObjectCollection) && attendanceDataObjectCollection.length > 0)  {
-      for(let ez = 0; ez < attendanceDataObjectCollection.length; ez++) {
+    if (Array.isArray(attendanceDataObjectCollection) && attendanceDataObjectCollection.length > 0) {
+      for (let ez = 0; ez < attendanceDataObjectCollection.length; ez++) {
         items.push(attendanceDataObjectCollection[ez]);
       }
     }
 
-    return  {
+    return {
       items,
       count: items.length
     };
@@ -162,8 +161,8 @@ const Dashboard = (props) => {
   function countAllDeductionPopulations(deductionDataObjectCollection) {
     let items = [];
 
-    if(Array.isArray(deductionDataObjectCollection) && deductionDataObjectCollection.length > 0){
-      for(let ez = 0; ez < deductionDataObjectCollection.length; ez++){
+    if (Array.isArray(deductionDataObjectCollection) && deductionDataObjectCollection.length > 0) {
+      for (let ez = 0; ez < deductionDataObjectCollection.length; ez++) {
         items.push(deductionDataObjectCollection[ez]);
       }
     }
@@ -176,6 +175,66 @@ const Dashboard = (props) => {
 
   const resultCountAllAttendancePopulations = countAllDeductionPopulations(deductionDataObjectCollection);
   console.log("DATAS SA resultCountAllAttendancePopulations", resultCountAllAttendancePopulations);
+
+  const chartDataCollections = {
+    labels: ['Users', 'Employees', 'Departments', 'Rates', 'Attendances', 'Payrolls', 'Overtimes', 'Deductions'],
+    datasets: [
+      {
+        label: 'TOTAL',
+        data: [
+          resultCountAllUsersPopulation.count,
+          resultcountAllEmployeesPopulations.count,
+          resultCountAllDepartmentsPopulations.count,
+          resultCountAllRatesPopulations.count,
+          resultCountAllAttendancePopulation.count,
+          resultCountAllPayrollsPopulation.count,
+          resultCountAllDepartmentsPopulations.count,
+          resultCountAllAttendancePopulations.count
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',   // Red
+          'rgba(54, 162, 235, 0.6)',   // Blue
+          'rgba(255, 206, 86, 0.6)',   // Yellow
+          'rgba(75, 192, 192, 0.6)',   // Green
+          'rgba(153, 102, 255, 0.6)',  // Purple
+          'rgba(255, 159, 64, 0.6)',   // Orange
+          'rgba(199, 199, 199, 0.6)',  // Gray
+          'rgba(83, 102, 255, 0.6)',   // Indigo
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(199, 199, 199, 1)',
+          'rgba(83, 102, 255, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'DAILY TIME RECORD MONITORING SYSTEM',
+
+        font: {
+          size: 25,
+          weight: 'bold',
+          family: 'Arial'
+        },
+        color: 'black' // This sets the color of the title
+      }
+    },
+  };
 
   useEffect(() => {
     props.fetchUsers();
@@ -192,8 +251,20 @@ const Dashboard = (props) => {
   console.log("DATA SA TANANG PROPERTIES!", props);
   return (
     <div className="h-full mx-auto max-h-full w-full max-w-full glass mx-auto p-4 shadow-xl rounded-lg">
+      <div className="grid mx-auto grid-rows-3 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
+        <div className="shadow-xl">
+          <Bar options={options} data={chartDataCollections} />
+        </div>
+        <div className="shadow-xl">
+          <Doughnut options={options} data={chartDataCollections} />
+        </div>
+
+      </div>
+      <div className="shadow-xl">
+        <PolarArea options={options} data={chartDataCollections} />
+      </div>
       <div className="grid mx-auto grid-rows-4 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
-      <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
@@ -206,9 +277,9 @@ const Dashboard = (props) => {
             <br />
             <div className="card-actions justify-center">
               <Link to="/admin/users">
-              <button className="btn glass text-center">
-                View<ScanEye />
-              </button>
+                <button className="btn glass text-center">
+                  View<ScanEye />
+                </button>
               </Link>
             </div>
           </div>
@@ -226,11 +297,11 @@ const Dashboard = (props) => {
             <span className='text-7xl text-center text-center'>{resultcountAllEmployeesPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
-                <Link to="/employee/dashboard">
-              <button className="btn glass text-center">
-                View<ScanEye />
-              </button>
-                </Link>
+              <Link to="/employee/dashboard">
+                <button className="btn glass text-center">
+                  View<ScanEye />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -248,9 +319,9 @@ const Dashboard = (props) => {
             <br />
             <div className="card-actions justify-center">
               <Link to="/department">
-              <button className="btn glass text-center">
-                View<ScanEye />
-              </button>
+                <button className="btn glass text-center">
+                  View<ScanEye />
+                </button>
               </Link>
             </div>
           </div>
@@ -270,9 +341,9 @@ const Dashboard = (props) => {
             <br />
             <div className="card-actions justify-center">
               <Link to="/admin/rates">
-              <button className="btn glass text-center">
-                View<ScanEye />
-              </button>
+                <button className="btn glass text-center">
+                  View<ScanEye />
+                </button>
               </Link>
             </div>
           </div>
@@ -291,9 +362,9 @@ const Dashboard = (props) => {
             <br />
             <div className="card-actions justify-center">
               <Link to="/employee/attendance">
-              <button className="btn glass text-center">
-                View<ScanEye />
-              </button>
+                <button className="btn glass text-center">
+                  View<ScanEye />
+                </button>
               </Link>
             </div>
           </div>
@@ -314,9 +385,9 @@ const Dashboard = (props) => {
             <br />
             <div className="card-actions justify-center">
               <Link to="/admin/payrolls">
-              <button className="btn glass text-center">
-                View<ScanEye />
-              </button>
+                <button className="btn glass text-center">
+                  View<ScanEye />
+                </button>
               </Link>
             </div>
           </div>
@@ -337,9 +408,9 @@ const Dashboard = (props) => {
             <br />
             <div className="card-actions justify-center">
               <Link to="/admin/overtimes">
-              <button className="btn glass text-center">
-                View<ScanEye />
-              </button>
+                <button className="btn glass text-center">
+                  View<ScanEye />
+                </button>
               </Link>
             </div>
           </div>
@@ -381,9 +452,6 @@ const mapStateToProps = (state) => {
     ratesData: state.rateState,
     overtimesData: state.overtimeState,
     attendancesData: state.attendanceState,
-
-    //LOADING SKELETON
-
   };
 };
 
