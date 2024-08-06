@@ -287,6 +287,7 @@ const Dashboard = (props) => {
     props.fetchDeductions();
   }, []);
 
+
   console.log("DATA SA TANANG PROPERTIES!", props);
   return (
     <div className="h-full mx-auto max-h-full w-full max-w-full glass p-4 shadow-xl rounded-lg">
@@ -309,7 +310,7 @@ const Dashboard = (props) => {
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-9xl font-black shadow-xl">CIRCLE GRAPH</div>
+          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-9xl font-black shadow-xl">DOUGHNUT GRAPH</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
@@ -321,7 +322,7 @@ const Dashboard = (props) => {
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="bg-base-200 grid place-content-center text-9xl font-black shadow-xl">CIRCLE GRAPH</div>
+          <div className="bg-base-200 grid place-content-center text-9xl font-black shadow-xl">POLARIZE DATA</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
