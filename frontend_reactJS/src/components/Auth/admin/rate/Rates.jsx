@@ -105,15 +105,15 @@ const Rates = (props) => {
                     </tr>
                   </thead>
                   <tbody className='text-black'>
-                    {resultAllRatesCollection && resultAllRatesCollection.map((oy, index) => (
-                      oy.rate_status_id !== 1 && (
+                    {resultAllRatesCollection && resultAllRatesCollection.map((item, index) => (
+                      item.rate_status_id !== 0 && (
                         <tr className="md:table-row" key={index}>
-                          <td className="md:table-cell">{oy.rate_id}</td>
-                          <td className="md:table-cell">{oy.rate_name}</td>
-                          <td className="md:table-cell">{oy.rate_amount_per_day}</td>
-                          <td className="md:table-cell">{oy.rate_details}</td>
-                          <td className="md:table-cell">{oy.rate_description}</td>
-                          <td className="md:table-cell">{oy.rate_status_id}</td>
+                          <td className="md:table-cell">{item.rate_id}</td>
+                          <td className="md:table-cell">{item.rate_name}</td>
+                          <td className="md:table-cell">{item.rate_amount_per_day}</td>
+                          <td className="md:table-cell">{item.rate_details}</td>
+                          <td className="md:table-cell">{item.rate_description}</td>
+                          <td className="md:table-cell">{item.rate_status_id}</td>
                         </tr>
                       )
                     ))}
