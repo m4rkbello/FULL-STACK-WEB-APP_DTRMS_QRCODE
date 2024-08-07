@@ -17,6 +17,7 @@ import { IoIosPrint } from "react-icons/io";
 import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcFolder, FcFile, FcCheckmark, FcViewDetails, FcEmptyTrash, FcCancel } from "react-icons/fc";
 
 const Payroll = () => {
+
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 '>
       <div className="flex flex-wrap">
