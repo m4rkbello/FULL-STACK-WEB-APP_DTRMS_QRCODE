@@ -290,7 +290,7 @@ const Dashboard = (props) => {
 
   console.log("DATA SA TANANG PROPERTIES!", props);
   return (
-    <div className="h-full mx-auto max-h-full w-full max-w-full glass p-4 shadow-xl rounded-lg">
+    <div className="h-full mx-auto max-h-full w-full max-w-full glass p-4 shadow-xl">
       <div className="diff aspect-[16/9] shadow-xl">
         <div className="diff-item-1">
           <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
@@ -298,19 +298,19 @@ const Dashboard = (props) => {
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-9xl font-black shadow-xl">BAR GRAPH</div>
+          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-7xl font-black shadow-xl">BAR GRAPH</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
       <br />
-      <div className="diff aspect-[16/9] shadow-xl">
+      <div className="diff aspect-[16/9] shadow-xl rounded-lg">
         <div className="diff-item-1">
-          <div className="glass text-primary-content grid place-content-center text-7xl font-black shadow-xl px-5 py-5">
+          <div className="glass text-primary-content grid place-content-center text-7xl font-black shadow-xl px-5 py-5 rounded-lg">
             <Doughnut options={DoughnutChartNiChoi} data={chartDataCollections} />
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-9xl font-black shadow-xl">DOUGHNUT GRAPH</div>
+          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-7xl font-black shadow-xl">DOUGHNUT GRAPH</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
@@ -326,10 +326,7 @@ const Dashboard = (props) => {
         </div>
         <div className="diff-resizer"></div>
       </div>
-      
-
       <br />
-
       <div className="grid mx-auto grid-rows-4 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
         <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
@@ -352,7 +349,6 @@ const Dashboard = (props) => {
           </div>
         </div>
         
-
         <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
