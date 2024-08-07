@@ -18,11 +18,8 @@ const Rates = (props) => {
       for (let ez = 0; ez < ratesDataObjectCollection.length; ez++) {
         items.push(ratesDataObjectCollection[ez]);
       }
-      
     }
-
     return items;
-
   }
 
   const resultAllRatesCollection = getAllRatesPopulations(ratesDataObjectCollection);
