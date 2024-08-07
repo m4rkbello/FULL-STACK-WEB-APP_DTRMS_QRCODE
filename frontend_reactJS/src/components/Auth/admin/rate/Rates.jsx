@@ -1,32 +1,32 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-undef */
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FaEye } from "react-icons/fa6";
-import { MdAutoDelete } from "react-icons/md";
-import { IoIosPersonAdd } from "react-icons/io";
-import { HiStatusOnline } from "react-icons/hi";
-import { MdOutlineNoAccounts } from "react-icons/md";
-import { RiAccountPinCircleFill } from "react-icons/ri";
-import { IoMdCloseCircle } from "react-icons/io";
-import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
-import { IoSearch } from "react-icons/io5";
-import { SiMicrosoftexcel } from "react-icons/si";
-import { IoIosPrint } from "react-icons/io";
-import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcFolder, FcFile, FcCheckmark, FcViewDetails, FcEmptyTrash, FcCancel } from "react-icons/fc";
-//REDUX-ACTION-DISPATCH
+import { FcFolder, FcFile } from "react-icons/fc";
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 
-const Rates = ({fetchRates, addRate, updateRate, deactivateRate, searchRates}) => {
-
+const Rates = (props) => {
   useEffect(() => {
-    fetchRates();
+    props.fetchRates();
   }, []);
+
+  const ratesDataObjectCollection = props?.ratesData?.rates;
+  console.log("ratesDataObjectCollection: ", ratesDataObjectCollection);
+
+  function getAllRatesPopulations(ratesDataObjectCollection) {
+    let items = [];
+    if (Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length !== 0) {
+      for (let ez = 0; ez < ratesDataObjectCollection.length; ez++) {
+        items.push(ratesDataObjectCollection[ez]);
+      }
+      
+    }
+
+    return items;
+
+  }
+
+  const resultAllRatesCollection = getAllRatesPopulations(ratesDataObjectCollection);
+  console.log("resultAllRatesCollection: ", resultAllRatesCollection);
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 '>
@@ -35,31 +35,16 @@ const Rates = ({fetchRates, addRate, updateRate, deactivateRate, searchRates}) =
           <div className="text-sm breadcrumbs mb-10 bg-transparent">
             <ul>
               <li>
-                <FcFolder
-                  style={{
-
-                    boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)",
-                  }}
-                />
+                <FcFolder style={{ boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)" }} />
                 <Link to="/" className='hover:text-white'>Home</Link>
               </li>
               <li>
-                <FcFolder
-                  style={{
-
-                    boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)",
-                  }}
-                />
+                <FcFolder style={{ boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)" }} />
                 <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
               </li>
               <li>
                 <span className="inline-flex gap-2 items-center">
-                  <FcFile
-                    style={{
-
-                      boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)",
-                    }}
-                  />
+                  <FcFile style={{ boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)" }} />
                   <Link to="" className='hover:text-white'>Employee Personal Details</Link>
                 </span>
               </li>
@@ -67,26 +52,101 @@ const Rates = ({fetchRates, addRate, updateRate, deactivateRate, searchRates}) =
           </div>
         </div>
       </div>
+      <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
+        <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+          <div className="flex flex-wrap bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+            <div>
+              <div className="text-sm breadcrumbs mb-10 bg-transparent">
+                <ul>
+                  <li>
+                    <a>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                      <Link to="/" className='hover:text-white'>
+                        Home
+                      </Link>
+                    </a>
+                  </li>
+                  <li>
+                    <a>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                      <Link to="/archieve" className='hover:text-white'>
+                        Employee Archive List
+                      </Link>
+                    </a>
+                  </li>
+                  <li>
+                    <span className="inline-flex gap-2 items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                      <Link to="" className='hover:text-white'>
+                        Employee Archive Details
+                      </Link>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <span className="text-4xl font-black">
+            <center>
+              <div className='pb-5 pt-5 glass'>
+                RATES LIST
+              </div>
+            </center>
+          </span>
+          <div className=" bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+            {Array.isArray(resultAllRatesCollection) && resultAllRatesCollection.length != 0 ? (
+              <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+                <table className="table bg-white py-10 px-10 my-10 mx-10 border-2 border-black">
+                  <thead className=" text-red ">
+                    <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
+                      <th className="md:table-cell text-white">Id</th>
+                      <th className="md:table-cell text-white">Name</th>
+                      <th className="md:table-cell text-white">Amount Per Day</th>
+                      <th className="md:table-cell text-white">Details</th>
+                      <th className="md:table-cell text-white">Description</th>
+                      <th className="md:table-cell text-white">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className='text-black'>
+                    {resultAllRatesCollection.items.map((item, index) => (
+                      item.rate_status_id !== 1 && (
+                        <tr className="md:table-row" key={index}>
+                          <td className="md:table-cell">{item.rate_id}</td>
+                          <td className="md:table-cell">{item.rate_name}</td>
+                          <td className="md:table-cell">{item.rate_amount_per_day}</td>
+                          <td className="md:table-cell">{item.rate_details}</td>
+                          <td className="md:table-cell">{item.rate_description}</td>
+                          <td className="md:table-cell">{item.rate_status_id}</td>
+                        </tr>
+                      )
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div>No rates available</div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-const mapToStateToProps = (state) => {
-  console.log("DATA SA state", state.rateState);
+const mapStateToProps = (state) => {
   return {
     ratesData: state.rateState,
   };
 };
 
-const mapToDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchRates: () => dispatch(fetchRates()),
     addRate: (AddRateData) => dispatch(addRate(AddRateData)),
     updateRate: (rateId, updateRateData) => dispatch(updateRate(rateId, updateRateData)),
     deactivateRate: (rateId) => dispatch(deactivateRate(rateId)),
     searchRates: (searchQuery) => dispatch(searchRates(searchQuery)),
-
   };
 };
 
-export default connect(mapToStateToProps, mapToDispatchToProps)(Rates);
+export default connect(mapStateToProps, mapDispatchToProps)(Rates);
