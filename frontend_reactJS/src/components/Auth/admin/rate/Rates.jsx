@@ -22,11 +22,10 @@ import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcFolder, FcFile, FcCheckmark, 
 //REDUX-ACTION-DISPATCH
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 
-const Rates = (props) => {
-  console.log("DATA HAYS", props);
+const Rates = ({fetchRates, addRate, updateRate, deactivateRate, searchRates}) => {
 
   useEffect(() => {
-    props.fetchRates();
+    fetchRates();
   }, []);
 
   return (
@@ -73,6 +72,7 @@ const Rates = (props) => {
 }
 
 const mapToStateToProps = (state) => {
+  console.log("DATA SA state", state.rateState);
   return {
     ratesData: state.rateState,
   };
@@ -81,6 +81,11 @@ const mapToStateToProps = (state) => {
 const mapToDispatchToProps = (dispatch) => {
   return {
     fetchRates: () => dispatch(fetchRates()),
+    addRate: (AddRateData) => dispatch(addRate(AddRateData)),
+    updateRate: (rateId, updateRateData) => dispatch(updateRate(rateId, updateRateData)),
+    deactivateRate: (rateId) => dispatch(deactivateRate(rateId)),
+    searchRates: (searchQuery) => dispatch(searchRates(searchQuery)),
+
   };
 };
 
