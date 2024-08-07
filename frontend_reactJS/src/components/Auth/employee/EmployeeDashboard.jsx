@@ -243,7 +243,6 @@ const EmployeeDashboard = (props) => {
                                         className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_email: e.target.value }))}
                                         value={formDataAddEmployee.employee_email}
-                                    // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                                 <div className="form-control">
@@ -254,7 +253,6 @@ const EmployeeDashboard = (props) => {
                                         name="employee_department_id"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_department_id: e.target.value }))}
                                         className="input input-bordered shadow-2xl text-2xl text-black border-1 glass border-glass rounded-se-3xl shadow-lime-400/40"
-                                    // style={{ backgroundColor: '#A3E636' }}
                                     >
                                         {departments.map((item, index) => (
                                             <option key={index} value={item.id}>
@@ -277,7 +275,6 @@ const EmployeeDashboard = (props) => {
                                         className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_contact_no: e.target.value }))}
                                         value={formDataAddEmployee.employee_contact_no}
-                                    // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
 
@@ -292,7 +289,6 @@ const EmployeeDashboard = (props) => {
                                         className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_position: e.target.value }))}
                                         value={formDataAddEmployee.employee_position}
-                                    // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                                 <div className="form-control">
@@ -308,7 +304,6 @@ const EmployeeDashboard = (props) => {
 
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_role: e.target.value }))}
                                         value={formDataAddEmployee.employee_role}
-                                    // style={{ backgroundColor: '#A3E636' }}
                                     />
                                 </div>
                             </div>

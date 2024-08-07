@@ -150,7 +150,7 @@ const Dashboard = (props) => {
     }
 
     return {
-      items,
+      items,  
       count: items.length
     };
   }
