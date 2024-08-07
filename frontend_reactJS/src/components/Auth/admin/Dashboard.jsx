@@ -20,7 +20,6 @@ import { Bar, PolarArea, Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-
 const Dashboard = (props) => {
   const ImageEmployeeGroup = '../../../../public/images/EmployeesGroup.png';
   const ImageRate = '../../../../public/images/PersonRates.png';
@@ -30,8 +29,6 @@ const Dashboard = (props) => {
   const ImageUser = '../../../../public/images/user.png';
   const ImageAttendance = '../../../../public/images/attendance.png';
 
-
-  console.log("DATA SA PROPS TANANS!", props);
 
   const usersDataObjectCollections = props?.usersData?.data;
 
@@ -51,10 +48,8 @@ const Dashboard = (props) => {
   }
 
   const resultCountAllUsersPopulation = countAllUsersPopulations(usersDataObjectCollections);
-  console.log("resultCountAllUsersPopulation", resultCountAllUsersPopulation);
 
   const employeeDataObjectCollections = props?.employeesData?.employees?.data;
-
   function countAllEmployeesPopulations(employeeDataObjectCollections) {
     let items = [];
 
@@ -71,11 +66,8 @@ const Dashboard = (props) => {
   }
 
   const resultcountAllEmployeesPopulations = countAllEmployeesPopulations(employeeDataObjectCollections);
-  console.log("DATA SA RESULT!", resultcountAllEmployeesPopulations);
-
 
   const ratesDataObjectCollection = props?.ratesData?.rates;
-
   function countAllRatesPopulations(ratesDataObjectCollection) {
     let items = [];
 
@@ -92,11 +84,8 @@ const Dashboard = (props) => {
   }
 
   const resultCountAllRatesPopulations = countAllRatesPopulations(ratesDataObjectCollection);
-  console.log(resultCountAllRatesPopulations);
-
 
   const departmentsDataObjectCollection = props?.departmentsData?.departments?.data?.details;
-
   function countAllDepartmentsPopulations(departmentsDataObjectCollection) {
     let items = [];
 
@@ -113,10 +102,8 @@ const Dashboard = (props) => {
   }
 
   const resultCountAllDepartmentsPopulations = countAllDepartmentsPopulations(departmentsDataObjectCollection);
-  console.log("MAO NI resultCountAllDepartmentsPopulations", resultCountAllDepartmentsPopulations);
 
   const payrollsDataObjectCollection = props?.payrollsData?.payrolls?.data?.details;
-
   function countAllPayrollsPopulations(payrollsDataObjectCollection) {
     let items = [];
 
@@ -133,10 +120,8 @@ const Dashboard = (props) => {
   }
 
   const resultCountAllPayrollsPopulation = countAllPayrollsPopulations(payrollsDataObjectCollection);
-  console.log("DATA SA resultCountAllPayrollsPopulation", resultCountAllPayrollsPopulation);
 
   const attendanceDataObjectCollection = props?.attendancesData?.attendances?.data?.details;
-
   function countAllAttendancesPopulations(attendanceDataObjectCollection) {
     let items = [];
 
@@ -153,11 +138,8 @@ const Dashboard = (props) => {
   }
 
   const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attendanceDataObjectCollection);
-  console.log("DATA SA resultCountAllAttendancePopulation", resultCountAllAttendancePopulation);
-
 
   const deductionDataObjectCollection = props?.deductionsData?.deductions?.data?.details;
-
   function countAllDeductionPopulations(deductionDataObjectCollection) {
     let items = [];
 
@@ -174,7 +156,6 @@ const Dashboard = (props) => {
   }
 
   const resultCountAllAttendancePopulations = countAllDeductionPopulations(deductionDataObjectCollection);
-  console.log("DATAS SA resultCountAllAttendancePopulations", resultCountAllAttendancePopulations);
 
   const chartDataCollections = {
     labels: ['Users', 'Employees', 'Departments', 'Rates', 'Attendances', 'Payrolls', 'Overtimes', 'Deductions'],
