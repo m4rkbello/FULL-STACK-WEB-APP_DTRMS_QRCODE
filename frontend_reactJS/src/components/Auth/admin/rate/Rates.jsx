@@ -91,7 +91,7 @@ const Rates = (props) => {
             </center>
           </span>
           <div className=" bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-            {Array.isArray(resultAllRatesCollection) && resultAllRatesCollection.length != 0 ? (
+            {Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length != 0 ? (
               <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
                 <table className="table bg-white py-10 px-10 my-10 mx-10 border-2 border-black">
                   <thead className=" text-red ">
@@ -105,7 +105,7 @@ const Rates = (props) => {
                     </tr>
                   </thead>
                   <tbody className='text-black'>
-                    {resultAllRatesCollection.map((oy, index) => (
+                    {resultAllRatesCollection && resultAllRatesCollection.map((oy, index) => (
                       oy.rate_status_id !== 1 && (
                         <tr className="md:table-row" key={index}>
                           <td className="md:table-cell">{oy.rate_id}</td>
