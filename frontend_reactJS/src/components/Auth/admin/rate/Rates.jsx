@@ -96,24 +96,26 @@ const Rates = (props) => {
                 <table className="table bg-white py-10 px-10 my-10 mx-10 border-2 border-black">
                   <thead className=" text-red ">
                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
-                      <th className="md:table-cell text-white">Id</th>
-                      <th className="md:table-cell text-white">Name</th>
-                      <th className="md:table-cell text-white">Amount Per Day</th>
-                      <th className="md:table-cell text-white">Details</th>
-                      <th className="md:table-cell text-white">Description</th>
-                      <th className="md:table-cell text-white">Status</th>
+                      <th className="md:table-cell text-white">RATE NAME</th>
+                      <th className="md:table-cell text-white">RATE AMOUNT</th>
+                      <th className="md:table-cell text-white">RATE DETAILS</th>
+                      <th className="md:table-cell text-white">RATE DESCRIPTION</th>
+                      <th className="md:table-cell text-white">RATE DEPARTMENT</th>
+                      <th className="md:table-cell text-white">RATE STATUS</th>
+                      <th className="md:table-cell text-white">ACTION</th>
                     </tr>
                   </thead>
                   <tbody className='text-black'>
                     {resultAllRatesCollection && resultAllRatesCollection.map((item, index) => (
                       item.rate_status_id !== 0 && (
                         <tr className="md:table-row" key={index}>
-                          <td className="md:table-cell">{item.rate_id}</td>
                           <td className="md:table-cell">{item.rate_name}</td>
                           <td className="md:table-cell">{item.rate_amount_per_day}</td>
                           <td className="md:table-cell">{item.rate_details}</td>
                           <td className="md:table-cell">{item.rate_description}</td>
+                          <td className="md:table-cell">{item.rate_department_id}</td>
                           <td className="md:table-cell">{item.rate_status_id}</td>
+                           <td className="md:table-cell"></td>
                         </tr>
                       )
                     ))}
