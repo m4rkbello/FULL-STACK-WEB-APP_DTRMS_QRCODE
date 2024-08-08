@@ -9,7 +9,7 @@ import { TiUserAddOutline } from "react-icons/ti";
 import { FaUserTie } from "react-icons/fa6";
 import { AiFillSetting } from "react-icons/ai";
 import { FaRunning } from "react-icons/fa";
-import { FcDoughnutChart,FcOpenedFolder, FcElectricalThreshold, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcFolder, FcPortraitMode } from "react-icons/fc";
+import { FcDoughnutChart, FcOpenedFolder, FcManager, FcElectricalThreshold, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcFolder, FcPortraitMode } from "react-icons/fc";
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
