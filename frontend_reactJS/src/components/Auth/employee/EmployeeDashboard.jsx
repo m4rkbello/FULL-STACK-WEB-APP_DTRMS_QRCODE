@@ -15,7 +15,8 @@ import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { SiMicrosoftexcel } from "react-icons/si";
 import { IoIosPrint } from "react-icons/io";
-import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcFolder, FcFile, FcCheckmark, FcViewDetails , FcEmptyTrash, FcCancel  } from "react-icons/fc";
+import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcOpenedFolder, FcFile, FcCheckmark, FcViewDetails, FcEmptyTrash, FcCancel, FcLeft } from "react-icons/fc";
+import { MoveLeft, FolderOpen, Component, Trash, UserPlus   } from 'lucide-react';
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
@@ -31,7 +32,7 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 const EmployeeDashboard = (props) => {
     const defaultImage = '../../../../public/miming.jpg';
     const eyeView = '../../../../public/svg/view.png';
-    
+
     const tableRef = useRef(null);
 
     const [formDataAddEmployee, setFormDataEmployeeAddEmployee] = useState({
@@ -320,7 +321,7 @@ const EmployeeDashboard = (props) => {
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status_id: e.target.value }))}
                                         className="select input input-bordered shadow-2xl text-2xl text-black glass drop-shadow-xl"
                                         value={formDataAddEmployee.employee_status_id}
-                                
+
                                     >
                                         <option value="0">Inactive</option>
                                         <option value="1">Active</option>
@@ -334,18 +335,18 @@ const EmployeeDashboard = (props) => {
                             <div className="flex">
                                 <div>
                                     <button type="submit" className="btn glass" >
-                                        <FcCheckmark 
-                                        style={{ fontSize: "25px", color: "", marginRight: "5px" }} />
+                                        <FcCheckmark
+                                            style={{ fontSize: "25px", color: "", marginRight: "5px" }} />
                                     </button>
                                 </div>
 
                                 <div>
                                     <button className="btn glass">
                                         <FcCancel style={{
-                                                fontSize: "25px",
-                                              color: "",
-                                               marginRight: "5px" 
-                                            }} />
+                                            fontSize: "25px",
+                                            color: "",
+                                            marginRight: "5px"
+                                        }} />
                                     </button>
                                 </div>
                             </div>
@@ -356,94 +357,99 @@ const EmployeeDashboard = (props) => {
 
             <div className="hero h-full max-h-full w-full max-w-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
                 <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
-                    <div className="flex flex-wrap">
-                        <div>
-                            <div className="text-sm breadcrumbs mb-10 bg-transparent">
-                                <ul>
-                                    <li>
-                                        <FcFolder 
-                                        style={{ 
-                                             
-                                                boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                                               }} 
-                                        />
-                                        <Link to="/" className='hover:text-white'>Home</Link>
-                                    </li>
-                                    <li>
-                                        <FcFolder 
-                                        style={{ 
-                                           
-                                                boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                                            }} 
-                                        />
-                                        <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
-                                    </li>
-                                    <li>
-                                        <span className="inline-flex gap-2 items-center">
-                                            <FcFile  
-                                            style={{ 
-                                               
-                                                    boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)", 
-                                                }} 
-                                            />
-                                            <Link to="" className='hover:text-white'>Employee Personal Details</Link>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className="flex flex-row">
-                        <div className="basis-1/2 flex justify-start">         
-                        <span className="inline-grid grid-cols-2 gap-1">
-                            <span>
-                                <input
-                                    type="text"
-                                    placeholder="Search Employee"
-                                    className="border-b-4 border-black rounded text-white"
-                                    style={{ backgroundColor: "transparent", color: "white" }}
-                                />
+                <div className="flex flex-wrap">
+                    <div>
+                    <div className="text-sm breadcrumbs mb-10 bg-transparent">
+                        <ul>
+                        <li>
+                            <FcLeft 
+                                style={{
+                                backgroundColor: "transparent",
+                                color: "black",
+                                height: "35px",
+                                width: "35px",
+                            }}
+                            />
+                            <Link to="/" className='hover:text-white'>Home</Link>
+                        </li>
+                        <li>
+                            <FcOpenedFolder
+                                      style={{
+                                        backgroundColor: "transparent",
+                                        color: "black",
+                                        height: "25px",
+                                        width: "25px",
+                                    }}
+                            />
+                            <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
+                        </li>
+                        <li>
+                            <span className="inline-flex gap-2 items-center">
+                            <FcFile 
+                                              style={{
+                                                backgroundColor: "transparent",
+                                                color: "black",
+                                                height: "25px",
+                                                width: "25px",
+                                            }}
+                            />
+                            <Link to="" className='hover:text-white'>Employee Data</Link>
                             </span>
-                            <span>
-                                <FcSearch
-                                    style={{
+                        </li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+
+                    <div className="flex flex-row">
+                        <div className="basis-1/2 flex justify-start">
+                            <span className="inline-grid grid-cols-2 gap-1">
+                                <span>
+                                    <input
+                                        type="text"
+                                        placeholder="Search Employee"
+                                        className="border-b-4 border-black rounded text-white"
+                                        style={{ backgroundColor: "transparent", color: "white" }}
+                                    />
+                                </span>
+                                <span>
+                                    <FcSearch
+                                        style={{
                                             backgroundColor: "transparent",
                                             color: "black",
                                             height: "30px",
                                             width: "30px",
-                                       
-                                          }}
-                                />
+                                        }}
+                                    />
+                                </span>
                             </span>
-                        </span>
                         </div>
                         <div className="basis-1/4"></div>
-                        <div className="basis-1/4 flex justify-end mr-5"> 
-                        <div className='mx-4'>
-                            <DownloadTableExcel
-                                filename="ExportEmployee"
-                                sheet="users"
-                                currentTableRef={tableRef.current}
-                            >
-                                <button>
-                                <FcDataSheet
-                                style={{ 
-                                        height: "200%",
-                                        width: "200%",
-                                      
-                                       }} 
-                                 /></button>
-                            </DownloadTableExcel>
-                        </div>
+                        <div className="basis-1/4 flex justify-end mr-5">
+                            <div className='mx-4'>
+                                <DownloadTableExcel
+                                    filename="ExportEmployee"
+                                    sheet="users"
+                                    currentTableRef={tableRef.current}
+                                >
+                                    <button>
+                                        <FcDataSheet
+                                            style={{
+                                                height: "200%",
+                                                width: "200%",
+
+                                            }}
+                                        /></button>
+                                </DownloadTableExcel>
+                            </div>
                             <div className='mx-2'>
                                 <button onClick={printEmployeeDashboard}>
-                                <FcPrint
-                                style={{ 
-                                        height: "200%",
-                                        width: "200%", 
-                                       }} 
-                                /></button>
+                                    <FcPrint
+                                        style={{
+                                            height: "200%",
+                                            width: "200%",
+                                        }}
+                                    /></button>
                             </div>
 
                         </div>
@@ -452,21 +458,20 @@ const EmployeeDashboard = (props) => {
                         <center>
                             <div className='pb-5 pt-5 glass'>
                                 EMPLOYEE DASHBOARD
-                                <FcPlus
-
+                                <UserPlus  
                                     onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                    style={{ 
-                                            fontSize: "50px",
-                                            color: "black",
-                                            marginLeft: "92%",
-                                            marginRight: "0%",
-                                            marginBottom: "0%",
-                                            marginTop: "-4%",
-                                            paddingTop: '0',
-                                            paddingLeft: '0',
-                                            paddingRight: '0',
-                                            paddingBottom: '0',
-                                           }}
+                                    style={{
+                                        fontSize: "50px",
+                                        color: "black",
+                                        marginLeft: "92%",
+                                        marginRight: "0%",
+                                        marginBottom: "0%",
+                                        marginTop: "-4%",
+                                        paddingTop: '0',
+                                        paddingLeft: '0',
+                                        paddingRight: '0',
+                                        paddingBottom: '0',
+                                    }}
                                 />
                             </div>
                         </center>
@@ -496,8 +501,8 @@ const EmployeeDashboard = (props) => {
                                                         <td className="sm:table-cell box-border h-24 w-24 p-4 drop-shadow-lg">
                                                             <div className="flex items-center">
                                                                 <div className="avatar hover:box-content">
-                                                                <img src={item.employee_image || defaultImage} alt={`Employee ${item.employee_name}`} />
-            
+                                                                    <img src={item.employee_image || defaultImage} alt={`Employee ${item.employee_name}`} />
+
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -509,22 +514,22 @@ const EmployeeDashboard = (props) => {
                                                         <td className="md:table-cell">{item.employee_position}</td>
                                                         <td className="md:table-cell">
                                                             {item.employee_status === 1 ?
-                                                                <FcCheckmark  
-                                                                style = {{ 
-                                                                    height: "50%",
-                                                                    width: "50%",
-                                                                    marginTop: "20px",
-                                                                  
-                                                                    }} 
-                                                  
-                                                                /> 
+                                                                <FcCheckmark
+                                                                    style={{
+                                                                        height: "50%",
+                                                                        width: "50%",
+                                                                        marginTop: "20px",
+
+                                                                    }}
+
+                                                                />
                                                                 : <FcCancel
-                                                                style = {{ 
-                                                                    height: "50%",
-                                                                    width: "50%",
-                                                                    margin: "0%",
-                                                                    padding: "0%"  
-                                                                    }} 
+                                                                    style={{
+                                                                        height: "50%",
+                                                                        width: "50%",
+                                                                        margin: "0%",
+                                                                        padding: "0%"
+                                                                    }}
                                                                 />
                                                             }
                                                         </td>
@@ -532,28 +537,28 @@ const EmployeeDashboard = (props) => {
                                                             <div className="flex">
                                                                 <div className="flex-none mr-3">
                                                                     <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                                        <FcViewDetails 
-                                                                        style = {{ 
-                                                                            height: "200%",
-                                                                            width: "200%",
-                                                              
-                                                                            }} 
-                                                                           />
+                                                                        <FcViewDetails
+                                                                            style={{
+                                                                                height: "200%",
+                                                                                width: "200%",
+
+                                                                            }}
+                                                                        />
                                                                     </Link>
                                                                 </div>
                                                                 <div className="flex-none mr-3">
                                                                     <FcEmptyTrash
-                                                                        style = {{ 
+                                                                        style={{
                                                                             height: "200%",
-                                                                            width: "200%", 
-                                                               
-                                                                            }} 
+                                                                            width: "200%",
+
+                                                                        }}
 
                                                                         onClick={() => {
                                                                             setDeactivateEmployeeId(item.id);
                                                                             document.getElementById('removeEmployee').showModal()
                                                                         }}
-                                                                   />
+                                                                    />
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -565,19 +570,19 @@ const EmployeeDashboard = (props) => {
                                 </div>
                             ) : (
                                 <div className="mockup-browser  border border-t-4 pb-10 pt-10">
-                                <div className="mockup-browser-toolbar">
-                                  <div className="input text-black-400">https://markbello.com</div>
+                                    <div className="mockup-browser-toolbar">
+                                        <div className="input text-black-400">https://markbello.com</div>
+                                    </div>
+                                    <div className="flex justify-center px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                                        <span
+                                            style={{ fontSize: '50px', fontWeightL: 'Bolder' }}
+                                        >
+                                            <b>
+                                                AYAW NA PANGITAA ANG WALA!
+                                            </b>
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className="flex justify-center px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-                                  <span
-                                    style={{ fontSize: '50px', fontWeightL: 'Bolder' }}
-                                  >
-                                    <b>
-                                      AYAW NA PANGITAA ANG WALA!
-                                    </b>
-                                  </span>
-                                </div>
-                              </div>
                             )}
                         </div>
                     </div>
