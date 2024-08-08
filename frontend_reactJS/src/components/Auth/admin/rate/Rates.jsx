@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FcFolder, FcFile } from "react-icons/fc";
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
+import { MoveLeft, FolderOpen, Component } from 'lucide-react';
+
 
 const Rates = (props) => {
   useEffect(() => {
@@ -22,6 +24,7 @@ const Rates = (props) => {
     return items;
   }
 
+  
   const resultAllRatesCollection = getAllRatesPopulations(ratesDataObjectCollection);
   console.log("resultAllRatesCollection: ", resultAllRatesCollection);
 
@@ -32,16 +35,16 @@ const Rates = (props) => {
           <div className="text-sm breadcrumbs mb-10 bg-transparent">
             <ul>
               <li>
-                <FcFolder style={{ boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)" }} />
+                <MoveLeft/>
                 <Link to="/" className='hover:text-white'>Home</Link>
               </li>
               <li>
-                <FcFolder style={{ boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)" }} />
+                <FolderOpen/>
                 <Link to="/employee/dashboard" className='hover:text-white'>Rates</Link>
               </li>
               <li>
                 <span className="inline-flex gap-2 items-center">
-                  <FcFile style={{ boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)" }} />
+                  <Component/>
                   <Link to="" className='hover:text-white'>Rates Data</Link>
                 </span>
               </li>
