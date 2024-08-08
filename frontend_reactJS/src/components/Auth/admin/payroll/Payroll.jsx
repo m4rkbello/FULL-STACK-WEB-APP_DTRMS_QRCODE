@@ -15,6 +15,9 @@ import { IoSearch } from "react-icons/io5";
 import { SiMicrosoftexcel } from "react-icons/si";
 import { IoIosPrint } from "react-icons/io";
 import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcFolder, FcFile, FcCheckmark, FcViewDetails, FcEmptyTrash, FcCancel } from "react-icons/fc";
+import { MoveLeft, FolderOpen, Component } from 'lucide-react';
+
+
 
 const Payroll = () => {
 
@@ -25,32 +28,17 @@ const Payroll = () => {
           <div className="text-sm breadcrumbs mb-10 bg-transparent">
             <ul>
               <li>
-                <FcFolder
-                  style={{
-
-                    boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)",
-                  }}
-                />
+                <MoveLeft />
                 <Link to="/" className='hover:text-white'>Home</Link>
               </li>
               <li>
-                <FcFolder
-                  style={{
-
-                    boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)",
-                  }}
-                />
-                <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
+                <FolderOpen />
+                <Link to="/employee/dashboard" className='hover:text-white'>Payrolls</Link>
               </li>
               <li>
                 <span className="inline-flex gap-2 items-center">
-                  <FcFile
-                    style={{
-
-                      boxShadow: "0 10px 15px rgba(4, 4, 4, 0.23)",
-                    }}
-                  />
-                  <Link to="" className='hover:text-white'>Employee Personal Details</Link>
+                  <Component />
+                  <Link to="" className='hover:text-white'>Payrolls Data</Link>
                 </span>
               </li>
             </ul>
