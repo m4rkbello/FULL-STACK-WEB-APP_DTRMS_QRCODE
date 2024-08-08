@@ -17,6 +17,7 @@ import { fetchOvertimes } from '../../redux/actions/overtimeAction';
 import { ScanEye } from "lucide-react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar, PolarArea, Doughnut } from 'react-chartjs-2';
+import { MoveLeft, FolderOpen, Component } from 'lucide-react';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -150,7 +151,7 @@ const Dashboard = (props) => {
     }
 
     return {
-      items,  
+      items,
       count: items.length
     };
   }
@@ -272,6 +273,28 @@ const Dashboard = (props) => {
   console.log("DATA SA TANANG PROPERTIES!", props);
   return (
     <div className="h-full mx-auto max-h-full w-full max-w-full glass p-4 shadow-xl">
+      <div className="flex flex-wrap">
+        <div>
+          <div className="text-sm breadcrumbs mb-10 bg-transparent">
+            <ul>
+              <li>
+                <MoveLeft />
+                <Link to="/" className='hover:text-white'>Home</Link>
+              </li>
+              <li>
+                <FolderOpen />
+                <Link to="/employee/dashboard" className='hover:text-white'>Dashboard</Link>
+              </li>
+              <li>
+                <span className="inline-flex gap-2 items-center">
+                  <Component />
+                  <Link to="" className='hover:text-white'>Dashboard Data</Link>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <div className="diff aspect-[16/9] shadow-xl">
         <div className="diff-item-1">
           <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
@@ -299,7 +322,7 @@ const Dashboard = (props) => {
       <div className="diff aspect-[16/9] shadow-xl">
         <div className="diff-item-1">
           <div className="glass text-primary-content grid place-content-center text-7xl font-black shadow-xl px-5 py-5">
-          <PolarArea options={PolarChartNiChoi} data={chartDataCollections} />
+            <PolarArea options={PolarChartNiChoi} data={chartDataCollections} />
           </div>
         </div>
         <div className="diff-item-2">
@@ -329,7 +352,7 @@ const Dashboard = (props) => {
             </div>
           </div>
         </div>
-        
+
         <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
