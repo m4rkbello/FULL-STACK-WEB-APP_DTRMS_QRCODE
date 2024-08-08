@@ -599,7 +599,7 @@ function App(props) {
                         width: "25px",
                     }}
                     />
-                      Project-final.psd
+                  ADD USER
                     </a>
                   </li>
                   <li>
