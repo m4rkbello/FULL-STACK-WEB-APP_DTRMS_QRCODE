@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FcFolder, FcFile } from "react-icons/fc";
+import { FcFolder, FcFile, FcPlus } from "react-icons/fc";
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { MoveLeft, FolderOpen, Component } from 'lucide-react';
 
@@ -30,10 +30,8 @@ const Rates = (props) => {
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 '>
-      {/* You can open the modal using document.getElementById('ID').showModal() method */}
-      <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>open modal</button>
-      <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+      <dialog id="addRateModal" className="modal">
+      <div className="modal-box w-11/12 max-w-5xl">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -69,26 +67,26 @@ const Rates = (props) => {
         <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
 
           <span className="text-4xl font-black">
-            <center>
+            <div className='glass'>
               <div className="grid grid-cols-3 items-center mt-5">
-                {/* Left Column */}
-                <div className="glass p-3 flex justify-center">
-                  Your item here
-                </div>
 
-                {/* Center Column */}
-                <div className="pb-5 pt-5 glass flex justify-center">
+                <div></div>
+
+                <div className="pb-5 pt-5  flex justify-center">
                   RATES LIST
                 </div>
 
-                {/* Right Column (Empty) */}
-                <div></div>
+                <div className="p-3 flex justify-end">
+                  <FcPlus
+                    onClick={() => document.getElementById('addRateModal').showModal()}
+                  />
+                </div>
               </div>
-            </center>
+            </div>
           </span>
 
           <div className=" bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-            <div class="grid gap-x-8 gap-y-4 grid-cols-3">
+            <div className="grid gap-x-8 gap-y-4 grid-cols-3">
               <div>01</div>
               <div>02</div>
               <div>03</div>
