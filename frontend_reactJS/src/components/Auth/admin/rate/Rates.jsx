@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-//REDUXISM
 import { connect } from 'react-redux';
-import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
-import { fetchDepartments } from '../../../redux/actions/departmentAction';
-//ICONS
+import { Link } from 'react-router-dom';
 import { FcFolder, FcFile, FcPlus, FcSalesPerformance } from "react-icons/fc";
+import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { MoveLeft, FolderOpen, Component } from 'lucide-react';
 
 
 const Rates = (props) => {
-  console.log("DATA SA RATE COMPONENT NA NAAY DEPARTMENTS", props);
   useEffect(() => {
     props.fetchRates();
   }, []);
@@ -27,21 +23,6 @@ const Rates = (props) => {
     }
     return items;
   }
-
-
-  const departmentDataObjectCollection = props?.departmentsData?.departments?.data?.details;
-
-  function getSpecificStudentDepartment(departmentDataObjectCollection){
-    let items = [];
-
-    if(Array.isArray(departmentDataObjectCollection) && departmentDataObjectCollection.length !== 0){
-      for(let ez= 0; ez < departmentDataObjectCollection.lengthL; ez++){
-        items.push(departmentDataObjectCollection)
-      }
-    }
-  }
-
-
 
   const resultAllRatesCollection = getAllRatesPopulations(ratesDataObjectCollection);
   console.log("resultAllRatesCollection: ", resultAllRatesCollection);
@@ -154,19 +135,16 @@ const Rates = (props) => {
 const mapStateToProps = (state) => {
   return {
     ratesData: state.rateState,
-    departmentsData: state.departmentState,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchDepartments: () => dispatch(fetchDepartments()),
     fetchRates: () => dispatch(fetchRates()),
     addRate: (AddRateData) => dispatch(addRate(AddRateData)),
     updateRate: (rateId, updateRateData) => dispatch(updateRate(rateId, updateRateData)),
     deactivateRate: (rateId) => dispatch(deactivateRate(rateId)),
     searchRates: (searchQuery) => dispatch(searchRates(searchQuery)),
-
   };
 };
 
