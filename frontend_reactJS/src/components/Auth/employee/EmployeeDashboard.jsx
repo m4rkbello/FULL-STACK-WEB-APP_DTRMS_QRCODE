@@ -81,10 +81,8 @@ const EmployeeDashboard = (props) => {
             for (let x = 0; x < employeeId.length; x++) {
                 item.push(employeeId[x]);
             }
-
             return imageCollectionArrays.filter(image => image.img_emp_id == 1);
         } else {
-
             return [];
         }
     };
@@ -297,12 +295,10 @@ const EmployeeDashboard = (props) => {
                                         <span className="label-text text-white text-2xl">Role</span>
                                     </label>
                                     <input
-
                                         name="employee_role" //key para sa form data
                                         type="text"
                                         placeholder="Enter role"
                                         className="input input-bordered shadow-2xl text-2xl  text-black glass drop-shadow-xl"
-
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_role: e.target.value }))}
                                         value={formDataAddEmployee.employee_role}
                                     />
@@ -321,7 +317,6 @@ const EmployeeDashboard = (props) => {
                                         onChange={(e) => setFormDataEmployeeAddEmployee(prevState => ({ ...prevState, employee_status_id: e.target.value }))}
                                         className="select input input-bordered shadow-2xl text-2xl text-black glass drop-shadow-xl"
                                         value={formDataAddEmployee.employee_status_id}
-
                                     >
                                         <option value="0">Inactive</option>
                                         <option value="1">Active</option>
@@ -374,24 +369,24 @@ const EmployeeDashboard = (props) => {
                         </li>
                         <li>
                             <FcOpenedFolder
-                                      style={{
+                                        style={{
                                         backgroundColor: "transparent",
                                         color: "black",
                                         height: "25px",
                                         width: "25px",
-                                    }}
+                                        }}
                             />
                             <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
                         </li>
                         <li>
                             <span className="inline-flex gap-2 items-center">
                             <FcFile 
-                                              style={{
-                                                backgroundColor: "transparent",
-                                                color: "black",
-                                                height: "25px",
-                                                width: "25px",
-                                            }}
+                                        style={{
+                                        backgroundColor: "transparent",
+                                        color: "black",
+                                        height: "25px",
+                                        width: "25px",
+                                        }}
                             />
                             <Link to="" className='hover:text-white'>Employee Data</Link>
                             </span>
@@ -415,10 +410,10 @@ const EmployeeDashboard = (props) => {
                                 <span>
                                     <FcSearch
                                         style={{
-                                            backgroundColor: "transparent",
-                                            color: "black",
-                                            height: "30px",
-                                            width: "30px",
+                                        backgroundColor: "transparent",
+                                        color: "black",
+                                        height: "30px",
+                                        width: "30px",
                                         }}
                                     />
                                 </span>
@@ -435,9 +430,8 @@ const EmployeeDashboard = (props) => {
                                     <button>
                                         <FcDataSheet
                                             style={{
-                                                height: "200%",
-                                                width: "200%",
-
+                                            height: "200%",
+                                            width: "200%",
                                             }}
                                         /></button>
                                 </DownloadTableExcel>
@@ -519,9 +513,7 @@ const EmployeeDashboard = (props) => {
                                                                         height: "50%",
                                                                         width: "50%",
                                                                         marginTop: "20px",
-
                                                                     }}
-
                                                                 />
                                                                 : <FcCancel
                                                                     style={{
@@ -538,11 +530,10 @@ const EmployeeDashboard = (props) => {
                                                                 <div className="flex-none mr-3">
                                                                     <Link to={`/employee/details/${item.id}`} className="text-black">
                                                                         <FcViewDetails
-                                                                            style={{
-                                                                                height: "200%",
-                                                                                width: "200%",
-
-                                                                            }}
+                                                                        style={{
+                                                                            height: "200%",
+                                                                            width: "200%",
+                                                                        }}
                                                                         />
                                                                     </Link>
                                                                 </div>
@@ -551,7 +542,6 @@ const EmployeeDashboard = (props) => {
                                                                         style={{
                                                                             height: "200%",
                                                                             width: "200%",
-
                                                                         }}
 
                                                                         onClick={() => {
