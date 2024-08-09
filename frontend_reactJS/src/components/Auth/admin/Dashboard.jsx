@@ -337,7 +337,8 @@ const Dashboard = (props) => {
             <img
               className='h-3/5'
               src={ImageUser}
-              alt="User Image" />
+              alt="User Image"
+            />
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">USERS</span>
