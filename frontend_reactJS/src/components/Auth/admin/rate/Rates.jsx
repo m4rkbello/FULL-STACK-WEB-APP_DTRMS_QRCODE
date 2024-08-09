@@ -24,7 +24,6 @@ const Rates = (props) => {
     return items;
   }
 
-
   const resultAllRatesCollection = getAllRatesPopulations(ratesDataObjectCollection);
   console.log("resultAllRatesCollection: ", resultAllRatesCollection);
 
