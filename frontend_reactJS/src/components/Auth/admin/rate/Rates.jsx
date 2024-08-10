@@ -200,8 +200,7 @@ const Rates = (props) => {
                       <th className="md:table-cell text-white">RATE AMOUNT</th>
                       <th className="md:table-cell text-white">RATE DETAILS</th>
                       <th className="md:table-cell text-white">RATE DESCRIPTION</th>
-                      <th className="md:table-cell text-white">RATE DEPARTMENT</th>
-                      <th className="md:table-cell text-white">RATE STATUS</th>
+                      <th className="md:table-cell text-white">RATE DEPARTMENT STATUS</th>
                       <th className="md:table-cell text-white">ACTION</th>
                     </tr>
                   </thead>
@@ -209,10 +208,10 @@ const Rates = (props) => {
                     {resultAllRatesCollection && resultAllRatesCollection.map((item, index) => (
                       item.rate_status_id !== 0 && (
                         <tr className="md:table-row" key={index}>
-                          <td className="md:table-cell"></td>
+                          <td className="md:table-cell">     <FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
                           <td className="md:table-cell">{item.rate_name}</td>
                           <td className="md:table-cell">
-                            <FcSalesPerformance />
+                       
                             {item.rate_amount_per_day}</td>
                           <td className="md:table-cell">{item.rate_details}</td>
                           <td className="md:table-cell">{item.rate_description}</td>
