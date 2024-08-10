@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FcFolder, FcFile, FcPlus, FcSalesPerformance } from "react-icons/fc";
+
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { MoveLeft, FolderOpen, Component } from 'lucide-react';
 
@@ -13,7 +13,6 @@ const Rates = (props) => {
 
   const ratesDataObjectCollection = props?.ratesData?.rates;
   console.log("ratesDataObjectCollection: ", ratesDataObjectCollection);
-
 
   function getAllRatesPopulations(ratesDataObjectCollection) {
     let items = [];
@@ -149,7 +148,7 @@ const Rates = (props) => {
 
 
                   <select
-                    key={index}
+
                     name="employee_status_id"
                     className="select shadow-2xl text-2xl w-full glass max-w-xs shadow-lime-400/40"
                     style={{ backgroundColor: '', color: "black" }}
@@ -171,7 +170,7 @@ const Rates = (props) => {
 
                 <div>
                   <button onClick={handleCloseModal} className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                    <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
+                    <FcSalesPerformance style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                   </button>
                 </div>
               </div>
@@ -261,6 +260,7 @@ const Rates = (props) => {
                       )
                     ))}
                   </tbody>
+
                 </table>
               </div>
             ) : (
@@ -277,7 +277,7 @@ const mapStateToProps = (state) => {
   return {
     ratesData: state.rateState,
     loading: state.rateState.loading,
-  };
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -287,7 +287,7 @@ const mapDispatchToProps = (dispatch) => {
     updateRate: (rateId, updateRateData) => dispatch(updateRate(rateId, updateRateData)),
     deactivateRate: (rateId) => dispatch(deactivateRate(rateId)),
     searchRates: (searchQuery) => dispatch(searchRates(searchQuery)),
-  };
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rates);
