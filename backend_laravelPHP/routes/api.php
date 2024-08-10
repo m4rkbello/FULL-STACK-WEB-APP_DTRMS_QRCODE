@@ -24,10 +24,6 @@ use App\Http\Controllers\OvertimeController;
 |
 */
 
-Route::prefix('admin')->group(function () {
-
-});
-
 //AUTHENTICATION-ENDPOINTS
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
