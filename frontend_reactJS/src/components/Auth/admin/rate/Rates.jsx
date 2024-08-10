@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FcFolder, FcFile, FcPlus, FcSalesPerformance, FcOk } from "react-icons/fc";
+import { FcFolder, FcFile, FcPlus, FcSalesPerformance, FcOk, FcApproval } from "react-icons/fc";
 import { FaUpload } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
 
@@ -215,8 +215,21 @@ const Rates = (props) => {
                             {item.rate_amount_per_day}</td>
                           <td className="md:table-cell">{item.rate_details}</td>
                           <td className="md:table-cell">{item.rate_description}</td>
-                          <td className="md:table-cell">{item.rate_department_id}</td>
-                          <td className="md:table-cell">{item.rate_status_id}</td>
+                          <td className="md:table-cell">{item.rate_department_id}
+
+                          {item.rate_status_id === 1 ? (
+          <FcApproval style={{ fontSize: "40px", color: "green" }} />
+        ) : (
+          <FcCancel style={{ fontSize: "40px", color: "yellow" }} />
+        )}
+                          </td>
+                          <td className="md:table-cell">
+                          {item.rate_status_id === 1 ? (
+          <FcSalesPerformance style={{ fontSize: "40px", color: "green" }} />
+        ) : (
+          <FcSalesPerformance style={{ fontSize: "40px", color: "yellow" }} />
+        )}
+                          </td>
                           <td className="md:table-cell"></td>
                         </tr>
                       )
