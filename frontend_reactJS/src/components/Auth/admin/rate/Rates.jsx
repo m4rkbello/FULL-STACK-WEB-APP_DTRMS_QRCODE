@@ -14,6 +14,7 @@ const Rates = (props) => {
   const ratesDataObjectCollection = props?.ratesData?.rates;
   console.log("ratesDataObjectCollection: ", ratesDataObjectCollection);
 
+
   function getAllRatesPopulations(ratesDataObjectCollection) {
     let items = [];
     if (Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length !== 0) {
@@ -27,19 +28,159 @@ const Rates = (props) => {
   const resultAllRatesCollection = getAllRatesPopulations(ratesDataObjectCollection);
   console.log("resultAllRatesCollection: ", resultAllRatesCollection);
 
+  if (props.loading) {
+    return (
+      <div>
+        <span className="loading loading-spinner text-accent loading-lg"></span> {/* Adjust fontSize as needed */}
+      </div>
+    );
+  }
+
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 '>
-      <dialog id="addRateModal" className="modal">
-      <div className="modal-box w-11/12 max-w-5xl">
-          <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-          </form>
-          <h2 className="font-bold text-lg">ADD</h2>
 
-          <p className="py-4">Press ESC key or click on ✕ button to close</p>
+      <dialog id="addRateDetailsModal" className="modal border border-black">
+        <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
+          <h3 className="font-bold text-3xl text-black">EDIT EMPLOYEE DETAILS</h3>
+          <div className="modal-action ">
+            <form method="dialog">
+              <div className="grid grid-cols-3 gap-6 ">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-white text-2xl">Fullname</span>
+                  </label>
+
+                  <input
+
+                    name="employee_fullname" //key para sa form data
+
+                    type="text"
+                    placeholder="Enter a Fullname"
+                    className="input input-bordered glass shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/100"
+
+                  />
+
+
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-white text-2xl">Email</span>
+                  </label>
+
+                  <input
+
+                    name="employee_email" //key para sa formData
+
+                    type="text"
+                    placeholder="email"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+
+                  />
+
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-white text-2xl">Contact No.</span>
+                  </label>
+
+                  <input
+
+                    type="text"
+                    name="employee_contact_no"
+
+                    placeholder="contact number"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+
+                  />
+
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-white text-2xl">Role</span>
+                  </label>
+
+                  <input
+
+                    type="text"
+                    name="employee_role"
+
+                    placeholder="Role"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-white text-2xl">Position</span>
+                  </label>
+
+                  <input
+
+                    type="text"
+                    name="employee_position"
+
+                    placeholder="Position"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+
+                  />
+
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-white text-2xl">Department</span>
+                  </label>
+
+                  <select
+                    name="employee_department_id"
+
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
+
+                  >
+
+                  </select>
+                </div>
+
+                <center>
+                </center>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-glass text-2xl">Status</span>
+                  </label>
+
+
+                  <select
+                    key={index}
+                    name="employee_status_id"
+                    className="select shadow-2xl text-2xl w-full glass max-w-xs shadow-lime-400/40"
+                    style={{ backgroundColor: '', color: "black" }}
+
+                  >
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                  </select>
+
+                </div>
+              </div>
+              <br />
+              <div className="flex">
+                <div>
+                  <button type="submit" className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                    <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
+                  </button>
+                </div>
+
+                <div>
+                  <button onClick={handleCloseModal} className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                    <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
         </div>
       </dialog>
+
 
       <div className="flex flex-wrap">
         <div>
@@ -78,7 +219,7 @@ const Rates = (props) => {
 
                 <div className="p-3 flex justify-end">
                   <FcPlus
-                    onClick={() => document.getElementById('addRateModal').showModal()}
+                    onClick={() => document.getElementById('addRateDetailsModal').showModal()}
                   />
                 </div>
               </div>
@@ -135,6 +276,7 @@ const Rates = (props) => {
 const mapStateToProps = (state) => {
   return {
     ratesData: state.rateState,
+    loading: state.rateState.loading,
   };
 };
 
