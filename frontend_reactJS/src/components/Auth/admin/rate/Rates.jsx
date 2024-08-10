@@ -46,12 +46,12 @@ const Rates = (props) => {
           <h3 className="font-bold text-3xl text-black">ADD RATE DETAILS</h3>
           <div className="modal-action ">
             <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 glass">✕</button>
               <div className="grid grid-cols-3 gap-6 ">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-white text-2xl">Rate Name</span>
+                    <span className="label-text text-black text-2xl">Rate Name</span>
                   </label>
-
                   <input
                     name="employee_fullname" //key para sa form data
                     type="text"
