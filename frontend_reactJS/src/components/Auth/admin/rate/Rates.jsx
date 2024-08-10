@@ -119,12 +119,9 @@ const Rates = (props) => {
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-glass text-2xl">Status</span>
+                    <span className="label-text text-glass text-2xl">Rate Status</span>
                   </label>
-
-
                   <select
-
                     name="employee_status_id"
                     className="select shadow-2xl text-2xl w-full glass max-w-xs shadow-lime-400/40"
                     style={{ backgroundColor: '', color: "black" }}
