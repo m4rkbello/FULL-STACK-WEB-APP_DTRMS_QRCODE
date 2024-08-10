@@ -72,7 +72,7 @@ const Rates = (props) => {
                     name="employee_email" //key para sa formData
                     type="text"
                     placeholder="Enter rate amount"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100 placeholder-custom-color"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100"
                   />
 
                 </div>
@@ -80,15 +80,11 @@ const Rates = (props) => {
                   <label className="label">
                     <span className="label-text text-black text-2xl">Rate Details</span>
                   </label>
-
                   <input
-
                     type="text"
                     name="employee_contact_no"
-
                     placeholder="Enter rate details"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100 placeholder-custom-color"
-
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100"
                   />
 
                 </div>
@@ -98,25 +94,23 @@ const Rates = (props) => {
                   </label>
 
                   <input
-
                     type="text"
                     name="employee_role"
 
                     placeholder="Enter rate details"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100 placeholder-custom-color"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100"
                   />
                 </div>
 
-
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-white text-2xl">Rate Department</span>
+                    <span className="label-text text-black text-2xl">Rate Department</span>
                   </label>
 
                   <select
                     name="employee_department_id"
 
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-color"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100"
 
                   >
 
