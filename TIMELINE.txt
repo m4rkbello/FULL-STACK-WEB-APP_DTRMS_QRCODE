@@ -116,6 +116,8 @@ npm install react-chartjs-2@latest
     -> npm i boxicons --save
 36. ADD LUCID-REACT ICONS AS UNIFORM AS OPTIMIZING THE PACKAGE AND TO BE FORMALIZE AS UNIFORM 
     ->npm i lucide-react
+37. ADD CONNECTION CURRENT OR CONCURRENTLY 
+    ->npm i -g concurrently
 
 
 
