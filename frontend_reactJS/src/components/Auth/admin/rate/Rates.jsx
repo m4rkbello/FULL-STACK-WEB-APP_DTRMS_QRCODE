@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FcFolder, FcFile, FcPlus, FcSalesPerformance} from "react-icons/fc";
+import { FaUpload } from "react-icons/fa6";
+import { FaSave } from "react-icons/fa";
 
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { MoveLeft, FolderOpen, Component } from 'lucide-react';
@@ -40,40 +43,32 @@ const Rates = (props) => {
 
       <dialog id="addRateDetailsModal" className="modal border border-black">
         <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
-          <h3 className="font-bold text-3xl text-black">EDIT EMPLOYEE DETAILS</h3>
+          <h3 className="font-bold text-3xl text-black">ADD RATE DETAILS</h3>
           <div className="modal-action ">
             <form method="dialog">
               <div className="grid grid-cols-3 gap-6 ">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-white text-2xl">Fullname</span>
+                    <span className="label-text text-white text-2xl">Rate Name</span>
                   </label>
 
                   <input
-
                     name="employee_fullname" //key para sa form data
-
                     type="text"
-                    placeholder="Enter a Fullname"
+                    placeholder="Enter rate name"
                     className="input input-bordered glass shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/100"
-
                   />
-
-
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-white text-2xl">Email</span>
+                    <span className="label-text text-white text-2xl">Rate Amount</span>
                   </label>
 
                   <input
-
                     name="employee_email" //key para sa formData
-
                     type="text"
-                    placeholder="email"
+                    placeholder="Enter rate amount"
                     className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
-
                   />
 
                 </div>
@@ -87,7 +82,7 @@ const Rates = (props) => {
                     type="text"
                     name="employee_contact_no"
 
-                    placeholder="contact number"
+                    placeholder="Enter rate description"
                     className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
 
                   />
@@ -103,7 +98,7 @@ const Rates = (props) => {
                     type="text"
                     name="employee_role"
 
-                    placeholder="Role"
+                    placeholder="Enter rate details"
                     className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
                   />
                 </div>
@@ -148,7 +143,7 @@ const Rates = (props) => {
 
 
                   <select
-
+             
                     name="employee_status_id"
                     className="select shadow-2xl text-2xl w-full glass max-w-xs shadow-lime-400/40"
                     style={{ backgroundColor: '', color: "black" }}
@@ -169,7 +164,7 @@ const Rates = (props) => {
                 </div>
 
                 <div>
-                  <button onClick={handleCloseModal} className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                  <button className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
                     <FcSalesPerformance style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                   </button>
                 </div>
@@ -243,23 +238,23 @@ const Rates = (props) => {
                     </tr>
                   </thead>
                   <tbody className='text-black'>
-                    {resultAllRatesCollection && resultAllRatesCollection.map((item, index) => (
-                      item.rate_status_id !== 0 && (
-                        <tr className="md:table-row" key={index}>
-                          <td className="md:table-cell"></td>
-                          <td className="md:table-cell">{item.rate_name}</td>
-                          <td className="md:table-cell">
-                            <FcSalesPerformance />
-                            {item.rate_amount_per_day}</td>
-                          <td className="md:table-cell">{item.rate_details}</td>
-                          <td className="md:table-cell">{item.rate_description}</td>
-                          <td className="md:table-cell">{item.rate_department_id}</td>
-                          <td className="md:table-cell">{item.rate_status_id}</td>
-                          <td className="md:table-cell"></td>
-                        </tr>
-                      )
-                    ))}
-                  </tbody>
+  {resultAllRatesCollection && resultAllRatesCollection.map((item, index) => (
+    item.rate_status_id !== 0 && (
+      <tr className="md:table-row" key={index}>
+        <td className="md:table-cell"></td>
+        <td className="md:table-cell">{item.rate_name}</td>
+        <td className="md:table-cell">
+          <FcSalesPerformance />
+          {item.rate_amount_per_day}</td>
+        <td className="md:table-cell">{item.rate_details}</td>
+        <td className="md:table-cell">{item.rate_description}</td>
+        <td className="md:table-cell">{item.rate_department_id}</td>
+        <td className="md:table-cell">{item.rate_status_id}</td>
+        <td className="md:table-cell"></td>
+      </tr>
+    )
+  ))}
+</tbody>
 
                 </table>
               </div>
