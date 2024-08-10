@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+  ],
   daisyui: {
     themes: [
       {
@@ -16,7 +18,7 @@ export default {
           "secondary": "#f6d860",
           "accent": "#37cdbe",
           "neutral": "#3d4451",
-          "base-100": "rgb(161 161 170)", // Default background color
+          "base-100": "rgb(226 232 240)",
           "info": "#3abff8",
           "success": "#36d399",
           "warning": "#fbbd23",

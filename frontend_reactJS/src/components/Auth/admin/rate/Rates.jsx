@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FcFolder, FcFile, FcPlus, FcSalesPerformance} from "react-icons/fc";
+import { FcFolder, FcFile, FcPlus, FcSalesPerformance, FcOk } from "react-icons/fc";
 import { FaUpload } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
 
@@ -39,42 +39,46 @@ const Rates = (props) => {
   }
 
   return (
-    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 '>
-
+    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 '>
       <dialog id="addRateDetailsModal" className="modal border border-black">
         <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
           <h3 className="font-bold text-3xl text-black">ADD RATE DETAILS</h3>
           <div className="modal-action ">
             <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 glass">✕</button>
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 glass">✕</button>
               <div className="grid grid-cols-3 gap-6 ">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text text-black text-2xl">Rate Name</span>
                   </label>
                   <input
-                    name="employee_fullname" //key para sa form data
+                    name="employee_fullname"
                     type="text"
                     placeholder="Enter rate name"
-                    className="input input-bordered glass shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/100"
+                    className="input input-bordered
+                    glass shadow-2xl
+                    text-2xl text-black
+                    border-glass
+                    shadow-slate-900/100
+                    "
                   />
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-white text-2xl">Rate Amount</span>
+                    <span className="label-text text-black text-2xl">Rate Amount</span>
                   </label>
 
                   <input
                     name="employee_email" //key para sa formData
                     type="text"
                     placeholder="Enter rate amount"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100 placeholder-custom-color"
                   />
 
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-white text-2xl">Contact No.</span>
+                    <span className="label-text text-black text-2xl">Rate Details</span>
                   </label>
 
                   <input
@@ -82,15 +86,15 @@ const Rates = (props) => {
                     type="text"
                     name="employee_contact_no"
 
-                    placeholder="Enter rate description"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+                    placeholder="Enter rate details"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100 placeholder-custom-color"
 
                   />
 
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-white text-2xl">Role</span>
+                    <span className="label-text text-black text-2xl">Rate Description</span>
                   </label>
 
                   <input
@@ -99,43 +103,26 @@ const Rates = (props) => {
                     name="employee_role"
 
                     placeholder="Enter rate details"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100 placeholder-custom-color"
                   />
                 </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text text-white text-2xl">Position</span>
-                  </label>
 
-                  <input
-
-                    type="text"
-                    name="employee_position"
-
-                    placeholder="Position"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
-
-                  />
-
-                </div>
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-white text-2xl">Department</span>
+                    <span className="label-text text-white text-2xl">Rate Department</span>
                   </label>
 
                   <select
                     name="employee_department_id"
 
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
+                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-color"
 
                   >
 
                   </select>
                 </div>
 
-                <center>
-                </center>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text text-glass text-2xl">Status</span>
@@ -143,7 +130,7 @@ const Rates = (props) => {
 
 
                   <select
-             
+
                     name="employee_status_id"
                     className="select shadow-2xl text-2xl w-full glass max-w-xs shadow-lime-400/40"
                     style={{ backgroundColor: '', color: "black" }}
@@ -158,20 +145,13 @@ const Rates = (props) => {
               <br />
               <div className="flex">
                 <div>
-                  <button type="submit" className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                    <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
-                  </button>
-                </div>
-
-                <div>
-                  <button className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                    <FcSalesPerformance style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
+                  <button className="btn hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }} >
+                    <FcOk type="submit" style={{ fontSize: "40px", color: "transparent" }} className='text-lime-400 hover:text-black' />
                   </button>
                 </div>
               </div>
             </form>
           </div>
-
         </div>
       </dialog>
 
@@ -204,13 +184,10 @@ const Rates = (props) => {
           <span className="text-4xl font-black">
             <div className='glass'>
               <div className="grid grid-cols-3 items-center mt-5">
-
                 <div></div>
-
                 <div className="pb-5 pt-5  flex justify-center">
                   RATES LIST
                 </div>
-
                 <div className="p-3 flex justify-end">
                   <FcPlus
                     onClick={() => document.getElementById('addRateDetailsModal').showModal()}
@@ -238,23 +215,23 @@ const Rates = (props) => {
                     </tr>
                   </thead>
                   <tbody className='text-black'>
-  {resultAllRatesCollection && resultAllRatesCollection.map((item, index) => (
-    item.rate_status_id !== 0 && (
-      <tr className="md:table-row" key={index}>
-        <td className="md:table-cell"></td>
-        <td className="md:table-cell">{item.rate_name}</td>
-        <td className="md:table-cell">
-          <FcSalesPerformance />
-          {item.rate_amount_per_day}</td>
-        <td className="md:table-cell">{item.rate_details}</td>
-        <td className="md:table-cell">{item.rate_description}</td>
-        <td className="md:table-cell">{item.rate_department_id}</td>
-        <td className="md:table-cell">{item.rate_status_id}</td>
-        <td className="md:table-cell"></td>
-      </tr>
-    )
-  ))}
-</tbody>
+                    {resultAllRatesCollection && resultAllRatesCollection.map((item, index) => (
+                      item.rate_status_id !== 0 && (
+                        <tr className="md:table-row" key={index}>
+                          <td className="md:table-cell"></td>
+                          <td className="md:table-cell">{item.rate_name}</td>
+                          <td className="md:table-cell">
+                            <FcSalesPerformance />
+                            {item.rate_amount_per_day}</td>
+                          <td className="md:table-cell">{item.rate_details}</td>
+                          <td className="md:table-cell">{item.rate_description}</td>
+                          <td className="md:table-cell">{item.rate_department_id}</td>
+                          <td className="md:table-cell">{item.rate_status_id}</td>
+                          <td className="md:table-cell"></td>
+                        </tr>
+                      )
+                    ))}
+                  </tbody>
 
                 </table>
               </div>
