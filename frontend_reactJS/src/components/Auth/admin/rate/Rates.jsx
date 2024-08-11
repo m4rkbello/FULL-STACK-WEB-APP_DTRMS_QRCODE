@@ -163,15 +163,15 @@ const Rates = (props) => {
                   <select
                     name="employee_status_id"
                     className="input input-bordered
-                     shadow-2xl
-                      glass
-                       text-2xl
-                        text-black
-                         border-1
-                          border-glass
-                           rounded-se-3xl
-                            shadow-slate-900/100
-                              custom-placeholder-text-color"
+                    shadow-2xl
+                    glass
+                    text-2xl
+                    text-black
+                    border-1
+                    border-glass
+                    rounded-se-3xl
+                    shadow-slate-900/100
+                    custom-placeholder-text-color"
                     style={{ backgroundColor: '', color: "black" }}
 
                   >
