@@ -40,9 +40,11 @@ const Rates = (props) => {
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 '>
+
+      {/**ADD-RATE-MODAL */}
       <dialog id="addRateDetailsModal" className="modal border border-black">
         <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
-          <h3 className="font-bold text-3xl text-black">ADD RATE DETAILS</h3>
+          <span className="font-bold text-3xl text-black">ADD RATE DETAILS</span>
           <div className="modal-action ">
             <form method="dialog">
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 glass">✕</button>
@@ -191,7 +193,18 @@ const Rates = (props) => {
           </div>
         </div>
       </dialog>
-
+      {/**DISABLED RATE-MODAL */}
+      
+      <dialog id="deactivateRateModal" className="modal">
+        <div className="modal-box bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          </form>
+          <span className="font-bold text-3xl text-black">REMOVE RATE</span>
+          <p className="py-4 text-2xl">Are you sure you to remove this item?</p>
+        </div>
+      </dialog>
 
       <div className="flex flex-wrap">
         <div>
@@ -252,9 +265,7 @@ const Rates = (props) => {
               </div>
             </div>
           </span>
-
           <div className=" bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-
             {Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length != 0 ? (
               <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
                 <table className="table glass py-10 px-10 my-10 mx-10 border-2 border-black">
@@ -293,7 +304,8 @@ const Rates = (props) => {
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-4">
                               <FcViewDetails style={{ fontSize: "35px" }} />
-                              <FcEmptyTrash style={{ fontSize: "35px" }} />
+
+                              <FcEmptyTrash onClick={() => document.getElementById('deactivateRateModal').showModal()} style={{ fontSize: "35px" }} />
                             </div>
                           </td>
 
