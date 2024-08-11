@@ -40,6 +40,8 @@ const Rates = (props) => {
     );
   }
 
+
+  {/**DEACTIVATE UG RATE DATA BASE SA ID!  */}
   const handleDeactivateRate = (rateId) => {
     setSelectedRateId(rateId);
     setIsDeactivateRateModal(true);
