@@ -82,14 +82,12 @@ const ArchieveEmployee = (props) => {
 
     if (props.loading) {
         return (
-            <div>
-                <div className="flex flex-col gap-6 w-96">
-                    <div className="skeleton h-48 w-full"></div>
-                    <div className="skeleton h-6 w-36"></div>
-                    <div className="skeleton h-6 w-full"></div>
-                    <div className="skeleton h-6 w-full"></div>
-                </div>
-            </div>
+            <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
+            <div className="skeleton h-48 w-full"></div>
+            <div className="skeleton h-6 w-36"></div>
+            <div className="skeleton h-6 w-full"></div>
+            <div className="skeleton h-6 w-full"></div>
+          </div>
         );
     }
 
