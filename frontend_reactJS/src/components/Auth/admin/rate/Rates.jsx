@@ -1,34 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// REDUXISM - ACTIONS DISPATCH!
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
-// ICONS
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails, FcPrevious } from "react-icons/fc";
-// MODALS SA RATES
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash } from "react-icons/fc";
 import AddRateModal from '../../modals/rates/AddRateModal';
 import DeactivateRateModal from '../../modals/rates/DeactivateRateModal';
-// TOASTER 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Rates = (props) => {
-  console.log("DATA TANAN SA RATES GLOBAL STATE", props);
   const [isAddRateDetailsModal, setIsAddRateDetailsModal] = useState(false);
   const [isDeactivateRateModal, setIsDeactivateRateModal] = useState(false);
   const [selectedRateId, setSelectedRateId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         await props.fetchRates();
+        props.fetchDepartments();
       } catch (error) {
         toast.error('Failed to fetch rates.');
       }
     };
     fetchData();
-    props.fetchDepartments();
   }, [props.fetchRates]);
 
   const handleDeactivateRate = (rateId) => {
@@ -40,23 +38,42 @@ const Rates = (props) => {
     setIsDeactivateRateModal(false);
     try {
       await props.deactivateRate(selectedRateId);
-      // Fetch updated rates after deactivation
       await props.fetchRates();
     } catch (error) {
       toast.error('Failed to deactivate rate.');
-      console.log("DATA SA props", props);
     }
   };
 
-  // Get department data
-  const departmentsObjectDataCollection = props.departmentData && props.departmentData.departments?.data?.details;
-  console.log("DATA SA departmentsObjectDataCollection", departmentsObjectDataCollection);
+  // Handle search and data filtering
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    // Trigger search action (assuming you have one)
+    props.searchRates(e.target.value);
+  };
 
-  // Function to get department name by ID
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Get department data
+  const departmentsObjectDataCollection = props.departmentData?.departments?.data?.details;
+
   const getDepartmentNameById = (departmentId) => {
     const department = departmentsObjectDataCollection?.find(dept => dept.id === departmentId);
     return department ? department.department_name : 'Unknown Department';
   };
+
+  // Filter and paginate rates
+  const filteredRates = props.ratesData?.rates.filter(rate => 
+    rate.rate_name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const indexOfLastRate = currentPage * itemsPerPage;
+  const indexOfFirstRate = indexOfLastRate - itemsPerPage;
+  const currentRates = filteredRates?.slice(indexOfFirstRate, indexOfLastRate);
+
+  const totalPages = Math.ceil(filteredRates.length / itemsPerPage);
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100'>
@@ -65,13 +82,11 @@ const Rates = (props) => {
         isOpen={isAddRateDetailsModal}
         onClose={() => setIsAddRateDetailsModal(false)}
       />
-
       <DeactivateRateModal
         isOpen={isDeactivateRateModal}
         onClose={() => setIsDeactivateRateModal(false)}
         deactivateRate={confirmDeactivateRate}
       />
-
       <div className="flex flex-col bg-transparent mb-10">
         <div className="flex items-center text-sm breadcrumbs">
           <ul className="flex space-x-4">
@@ -96,43 +111,40 @@ const Rates = (props) => {
           </ul>
         </div>
       </div>
-
-
-      <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
-        <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-          <span className="text-4xl font-black">
-            <div className='glass'>
-              <div className="grid grid-cols-3 items-center mt-5">
-                <div>
-                  <span className="inline-grid grid-cols-3 gap-4 py-5">
-                    <div className="p-3 flex justify-start">
-                      <span>
-                        <input
-                          type="text"
-                          placeholder="Search"
-                          className="border-b-4 bg-transparent text-md rounded text-white"
-                        />
-                      </span>
-                    </div>
-                    <span>
-                      <FcSearch />
-                    </span>
-                  </span>
-                </div>
-                <div className="pb-5 pt-5 flex justify-center">
-                  RATES LIST
-                </div>
-                <div className="p-3 flex justify-end">
-                  <FcPlus onClick={() => {
-                    console.log("Opening AddRateDetailsModal");
-                    setIsAddRateDetailsModal(true);
-                  }} />
-                </div>
+      <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-lg">
+        <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500">
+          <div className='glass'>
+            <div className="grid grid-cols-3 items-center mt-5">
+              <div>
+                <span className="inline-grid grid-cols-3 gap-4 py-5">
+                  <div className="p-3 flex justify-start">
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      value={searchQuery}
+                      onChange={handleSearchChange}
+                      className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
+                    />
+                  </div>
+                  <div className="p-3 flex justify-end">
+                    <FcSearch style={{ height: "2rem", width: "2rem" }} />
+                  </div>
+                </span>
+              </div>
+              <div className="pb-5 pt-5 flex justify-center">
+                <h3 className="font-bold text-4xl text-black">RATE LIST</h3>
+              </div>
+              <div className="p-3 flex justify-end">
+                <FcPlus onClick={() => {
+                  setIsAddRateDetailsModal(true);
+                }} 
+                style={{ height: "3rem", width: "3rem" }} 
+                />
               </div>
             </div>
-          </span>
+          </div>
 
-          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% flex flex-col items-center justify-center">
+          <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 flex flex-col items-center justify-center">
             {props.loading ? (
               <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
                 <div className="skeleton h-48 w-full"></div>
@@ -140,7 +152,11 @@ const Rates = (props) => {
                 <div className="skeleton h-6 w-full"></div>
                 <div className="skeleton h-6 w-full"></div>
               </div>
-            ) : props.ratesData?.rates && props.ratesData.rates.length > 0 ? (
+            ) : filteredRates.length === 0 ? (
+              <div className="w-full max-w-5xl text-center text-lg font-semibold text-gray-500">
+                No results found for "{searchQuery}"
+              </div>
+            ) : currentRates?.length > 0 ? (
               <div className="w-full max-w-5xl">
                 <table className="table glass w-full border-2 border-black">
                   <thead className="text-red">
@@ -155,7 +171,7 @@ const Rates = (props) => {
                     </tr>
                   </thead>
                   <tbody className='text-black'>
-                    {props.ratesData.rates.map((item) => (
+                    {currentRates.map((item) => (
                       item.rate_status_id !== 0 && (
                         <tr className="md:table-row" key={item.id}>
                           <td className="md:table-cell"><FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
@@ -171,10 +187,10 @@ const Rates = (props) => {
                           </td>
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-2">
-                              <FcViewDetails style={{ fontSize: "30px" }} />
+                              <FcViewDetails style={{ height: "2rem", width: "2rem" }} />
                               <FcEmptyTrash
                                 onClick={() => handleDeactivateRate(item.id)}
-                                style={{ fontSize: "30px" }}
+                                style={{ height: "2rem", width: "2rem" }}
                               />
                             </div>
                           </td>
@@ -183,13 +199,29 @@ const Rates = (props) => {
                     ))}
                   </tbody>
                 </table>
+                <div className="flex justify-center mt-4 mb-4">
+                  <div className="join grid grid-cols-2">
+                    <button
+                      className="join-item btn btn-outline"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      Previous
+                    </button>
+                    <button
+                      className="join-item btn btn-outline"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
               </div>
             ) : (
               <div>No rates available</div>
             )}
           </div>
-
-
         </div>
       </div>
     </div>
@@ -211,6 +243,7 @@ const mapDispatchToProps = (dispatch) => {
     updateRate: (UpdateRateData) => dispatch(updateRate(UpdateRateData)),
     deactivateRate: (RateId) => dispatch(deactivateRate(RateId)),
     fetchDepartments: () => dispatch(fetchDepartments()),
+    searchRates: (query) => dispatch(searchRates(query)),
   }
 };
 
