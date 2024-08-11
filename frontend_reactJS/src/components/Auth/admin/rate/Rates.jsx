@@ -6,13 +6,13 @@ import { FaUpload } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { MoveLeft, FolderOpen, Component } from 'lucide-react';
-//E-IMPORT TANANG MODALS SA RATES!
 import AddRateModal from '../../modals/rates/AddRateModal';
-import DeactivateRateModal from '../../modals/rates/DeactivateRateModal'; // Make sure the import is correct
+import DeactivateRateModal from '../../modals/rates/DeactivateRateModal'; 
 
 const Rates = (props) => {
   const [isAddRateDetailsModal, isSetAddRateDetailsModal] = useState(false);
   const [isDeactivateRateModal, setIsDeactivateRateModal] = useState(false);
+  const [selectedRateId, setSelectedRateId] = useState(null);
 
   useEffect(() => {
     props.fetchRates();
@@ -40,11 +40,19 @@ const Rates = (props) => {
     );
   }
 
+  const handleDeactivateRate = (rateId) => {
+    setSelectedRateId(rateId);
+    setIsDeactivateRateModal(true);
+  };
+
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 '>
-      {/***E-MOUNT SA COMPONENT ANG MODAL */}
       <AddRateModal isOpen={isAddRateDetailsModal} onClose={() => isSetAddRateDetailsModal(false)} />
-      <DeactivateRateModal isOpen={isDeactivateRateModal} onClose={() => setIsDeactivateRateModal(false)} />
+      <DeactivateRateModal 
+        isOpen={isDeactivateRateModal} 
+        onClose={() => setIsDeactivateRateModal(false)} 
+        deactivateRate={() => props.deactivateRate(selectedRateId)}
+      />
 
       <div className="flex flex-wrap">
         <div>
@@ -139,7 +147,7 @@ const Rates = (props) => {
                             <div className="flex items-center space-x-4">
                               <FcViewDetails style={{ fontSize: "35px" }} />
                               <FcEmptyTrash
-                                onClick={() => setIsDeactivateRateModal(true)}
+                                onClick={() => handleDeactivateRate(item.rate_id)}
                                 style={{ fontSize: "35px" }}
                               />
                             </div>
