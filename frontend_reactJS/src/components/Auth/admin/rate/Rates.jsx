@@ -203,6 +203,13 @@ const Rates = (props) => {
           </form>
           <span className="font-bold text-3xl text-black">REMOVE RATE</span>
           <p className="py-4 text-2xl">Are you sure you to remove this item?</p>
+          <div className="flex">
+                <div>
+                  <button className="btn hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }} >
+                    <FcOk type="submit" style={{ fontSize: "40px", color: "transparent" }} className='text-lime-400 hover:text-black' />
+                  </button>
+                </div>
+              </div>
         </div>
       </dialog>
 
