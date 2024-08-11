@@ -9,7 +9,7 @@ import { TiUserAddOutline } from "react-icons/ti";
 import { FaUserTie } from "react-icons/fa6";
 import { AiFillSetting } from "react-icons/ai";
 import { FaRunning } from "react-icons/fa";
-import { FcDoughnutChart, FcOpenedFolder, FcManager, FcElectricalThreshold, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcFolder, FcPortraitMode } from "react-icons/fc";
+import { FcDoughnutChart, FcOpenedFolder, FcManager, FcElectricalThreshold, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcFolder, FcPortraitMode, FcSalesPerformance } from "react-icons/fc";
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
@@ -513,7 +513,7 @@ function App(props) {
               </li>
               <li>
                 <Link to="/admin/rates" className='text-2xl glass'>
-                  <FcMoneyTransfer
+                  <FcSalesPerformance
                     style={{ 
                       height: "120%",
                       width: "120%",
