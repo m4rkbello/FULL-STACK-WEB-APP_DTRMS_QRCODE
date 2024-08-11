@@ -195,7 +195,7 @@ class RateController extends Controller
         
             // Return the updated rate data
             return response()->json([
-                'data' => $rate,
+                'details' => $rate,
                 'success' => true,
                 'status' => 200,
                 'message' => 'Rate has been successfully deactivated!'
