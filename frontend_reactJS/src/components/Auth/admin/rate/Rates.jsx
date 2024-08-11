@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-//REDUXISM - ACTIONS DISPATCH!
+// REDUXISM - ACTIONS DISPATCH!
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
-//ICONS
+// ICONS
 import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails, FcPrevious } from "react-icons/fc";
-import { MoveLeft, FolderOpen, Component } from 'lucide-react';
-// * MODALS SA RATES
+// MODALS SA RATES
 import AddRateModal from '../../modals/rates/AddRateModal';
 import DeactivateRateModal from '../../modals/rates/DeactivateRateModal';
-//TOASTER 
+// TOASTER 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -29,6 +28,7 @@ const Rates = (props) => {
       }
     };
     fetchData();
+    props.fetchDepartments();
   }, [props.fetchRates]);
 
   const handleDeactivateRate = (rateId) => {
@@ -48,6 +48,15 @@ const Rates = (props) => {
     }
   };
 
+  // Get department data
+  const departmentsObjectDataCollection = props.departmentData && props.departmentData.departments?.data?.details;
+  console.log("DATA SA departmentsObjectDataCollection", departmentsObjectDataCollection);
+
+  // Function to get department name by ID
+  const getDepartmentNameById = (departmentId) => {
+    const department = departmentsObjectDataCollection?.find(dept => dept.id === departmentId);
+    return department ? department.department_name : 'Unknown Department';
+  };
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100'>
@@ -69,26 +78,26 @@ const Rates = (props) => {
             <ul>
               <li>
                 <Link to="/" className='hover:text-white'>
-                <FcPrevious 
-                style={{ height: "2rem", width: "2rem" }}
-                />
-                Home
+                  <FcPrevious
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
+                  Home
                 </Link>
               </li>
               <li>
                 <Link to="/employee/dashboard" className='hover:text-white'>
-                <FcFolder
-                   style={{ height: "2rem", width: "2rem" }}
-                />
-                Rates
+                  <FcFolder
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
+                  Rates
                 </Link>
               </li>
               <li>
-                  <Link to="" className='hover:text-white'>
+                <Link to="" className='hover:text-white'>
                   <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
                   Data
-                  </Link>
-                  </li>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -128,17 +137,17 @@ const Rates = (props) => {
             </div>
           </span>
 
-          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% flex items-center justify-center ">
+          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% flex flex-col items-center justify-center">
             {props.loading ? (
-              <div className="flex flex-col gap-6 w-96">
+              <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
                 <div className="skeleton h-48 w-full"></div>
                 <div className="skeleton h-6 w-36"></div>
                 <div className="skeleton h-6 w-full"></div>
                 <div className="skeleton h-6 w-full"></div>
               </div>
             ) : props.ratesData?.rates && props.ratesData.rates.length > 0 ? (
-              <div style={{ maxWidth: 'auto', overflowY: 'auto' }}>
-                <table className="table glass py-10 px-10 my-10 mx-10 border-2 border-black">
+              <div className="w-full max-w-5xl">
+                <table className="table glass w-full border-2 border-black">
                   <thead className="text-red">
                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
                       <th className="md:table-cell text-white"></th>
@@ -163,18 +172,14 @@ const Rates = (props) => {
                           <td className="md:table-cell">{item.rate_details}</td>
                           <td className="md:table-cell">{item.rate_description}</td>
                           <td className="md:table-cell text-center">
-                            {item.rate_status_id === 1 ? (
-                              <FcApproval style={{ fontSize: "40px", color: "green", alignItems: "center" }} />
-                            ) : (
-                              <FcCancel style={{ fontSize: "40px", color: "yellow" }} />
-                            )}
+                            {getDepartmentNameById(item.rate_department_id)}
                           </td>
                           <td className="md:table-cell">
-                            <div className="flex items-center space-x-4">
-                              <FcViewDetails style={{ fontSize: "35px" }} />
+                            <div className="flex items-center space-x-2">
+                              <FcViewDetails style={{ fontSize: "30px" }} />
                               <FcEmptyTrash
                                 onClick={() => handleDeactivateRate(item.id)}
-                                style={{ fontSize: "35px" }}
+                                style={{ fontSize: "30px" }}
                               />
                             </div>
                           </td>
@@ -188,6 +193,8 @@ const Rates = (props) => {
               <div>No rates available</div>
             )}
           </div>
+
+
         </div>
       </div>
     </div>
@@ -206,9 +213,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchRates: () => dispatch(fetchRates()),
     addRate: (AddRateData) => dispatch(addRate(AddRateData)),
-    updateRate: (rateId, updateRateData) => dispatch(updateRate(rateId, updateRateData)),
-    deactivateRate: (rateId) => dispatch(deactivateRate(rateId)),
-    searchRates: (searchQuery) => dispatch(searchRates(searchQuery)),
+    updateRate: (UpdateRateData) => dispatch(updateRate(UpdateRateData)),
+    deactivateRate: (RateId) => dispatch(deactivateRate(RateId)),
     fetchDepartments: () => dispatch(fetchDepartments()),
   }
 };
