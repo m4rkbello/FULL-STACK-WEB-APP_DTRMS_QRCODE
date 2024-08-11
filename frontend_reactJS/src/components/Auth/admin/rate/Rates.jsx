@@ -72,36 +72,31 @@ const Rates = (props) => {
         deactivateRate={confirmDeactivateRate}
       />
 
-      <div className="flex flex-wrap">
-        <div>
-          <div className="text-sm breadcrumbs mb-10 bg-transparent">
-            <ul>
-              <li>
-                <Link to="/" className='hover:text-white'>
-                  <FcPrevious
-                    style={{ height: "2rem", width: "2rem" }}
-                  />
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/employee/dashboard" className='hover:text-white'>
-                  <FcFolder
-                    style={{ height: "2rem", width: "2rem" }}
-                  />
-                  Rates
-                </Link>
-              </li>
-              <li>
-                <Link to="" className='hover:text-white'>
-                  <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-                  Data
-                </Link>
-              </li>
-            </ul>
-          </div>
+      <div className="flex flex-col bg-transparent mb-10">
+        <div className="flex items-center text-sm breadcrumbs">
+          <ul className="flex space-x-4">
+            <li>
+              <Link to="/" className='flex items-center hover:text-white'>
+                <FcPrevious style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-2">Home</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
+                <FcFolder style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-2">Rates</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="" className='flex items-center hover:text-white'>
+                <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-2">Data</span>
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
+
 
       <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
         <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
