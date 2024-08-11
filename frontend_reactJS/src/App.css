@@ -1,0 +1,4 @@
+.custom-placeholder-text-color::placeholder {
+    color: #3d3737 !important;
+  }
+  
