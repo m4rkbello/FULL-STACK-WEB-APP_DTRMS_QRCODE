@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 //ICONS
-import { FcFolder, FcPlus, FcSalesPerformance, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails, FcPrevious } from "react-icons/fc";
 import { MoveLeft, FolderOpen, Component } from 'lucide-react';
 // * MODALS SA RATES
 import AddRateModal from '../../modals/rates/AddRateModal';
@@ -48,17 +48,18 @@ const Rates = (props) => {
     }
   };
 
+
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100'>
-      <ToastContainer /> 
-      <AddRateModal 
-      isOpen={isAddRateDetailsModal}
-      onClose={() => setIsAddRateDetailsModal(false)} 
+      <ToastContainer />
+      <AddRateModal
+        isOpen={isAddRateDetailsModal}
+        onClose={() => setIsAddRateDetailsModal(false)}
       />
 
-      <DeactivateRateModal 
-        isOpen={isDeactivateRateModal} 
-        onClose={() => setIsDeactivateRateModal(false)} 
+      <DeactivateRateModal
+        isOpen={isDeactivateRateModal}
+        onClose={() => setIsDeactivateRateModal(false)}
         deactivateRate={confirmDeactivateRate}
       />
 
@@ -67,19 +68,27 @@ const Rates = (props) => {
           <div className="text-sm breadcrumbs mb-10 bg-transparent">
             <ul>
               <li>
-                <MoveLeft />
-                <Link to="/" className='hover:text-white'>Home</Link>
+                <Link to="/" className='hover:text-white'>
+                <FcPrevious 
+                style={{ height: "2rem", width: "2rem" }}
+                />
+                Home
+                </Link>
               </li>
               <li>
-                <FolderOpen />
-                <Link to="/employee/dashboard" className='hover:text-white'>Rates</Link>
+                <Link to="/employee/dashboard" className='hover:text-white'>
+                <FcFolder
+                   style={{ height: "2rem", width: "2rem" }}
+                />
+                Rates
+                </Link>
               </li>
               <li>
-                <span className="inline-flex gap-2 items-center">
-                  <Component />
-                  <Link to="" className='hover:text-white'>Rates Data</Link>
-                </span>
-              </li>
+                  <Link to="" className='hover:text-white'>
+                  <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                  Data
+                  </Link>
+                  </li>
             </ul>
           </div>
         </div>
@@ -110,10 +119,10 @@ const Rates = (props) => {
                   RATES LIST
                 </div>
                 <div className="p-3 flex justify-end">
-                <FcPlus onClick={() => {
-  console.log("Opening AddRateDetailsModal");
-  setIsAddRateDetailsModal(true);
-}} />
+                  <FcPlus onClick={() => {
+                    console.log("Opening AddRateDetailsModal");
+                    setIsAddRateDetailsModal(true);
+                  }} />
                 </div>
               </div>
             </div>
