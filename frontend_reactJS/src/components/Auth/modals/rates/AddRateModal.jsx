@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FcOk } from 'react-icons/fc';
 import { connect } from 'react-redux';
 import { addRate } from '../../../redux/actions/rateAction';
+import { fetchDepartments } from '../../../redux/actions/departmentAction';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AddRateModal = ({ isOpen, onClose, addRate }) => {
+const AddRateModal = ({ isOpen, onClose, addRate, fetchDepartments, departmentData }) => {
+  // Log the department data to check its structure
+  console.log("Department Data from Redux State:", departmentData);
+
   const [formData, setFormData] = useState({
     rate_name: '',
     rate_amount_per_day: '',
     rate_details: '',
     rate_description: '',
-    rate_department_id: '1',
+    rate_department_id: '',
     rate_status_id: '1',
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      fetchDepartments(); // Fetch departments when the modal is opened
+    }
+  }, [isOpen, fetchDepartments]);
 
   if (!isOpen) return null;
 
@@ -26,13 +36,17 @@ const AddRateModal = ({ isOpen, onClose, addRate }) => {
     e.preventDefault();
     try {
       await addRate(formData);
-      toast.success('Rate added successfully!');  // Success notification
-      onClose();  // Close the modal after successful addition
+      toast.success('Rate added successfully!');
+      onClose();
     } catch (error) {
-      toast.error('Failed to add rate');  // Error notification
+      toast.error('Failed to add rate');
       console.error('Failed to add rate', error);
     }
   };
+
+  // Assuming departmentData has a structure like { data: { details: [array of departments] } }
+  const departments = departmentData?.departments?.data?.details || [];
+  console.log("DATA SA departmentsxxxx", departments);
 
   return (
     <dialog open className="modal border border-black">
@@ -104,8 +118,12 @@ const AddRateModal = ({ isOpen, onClose, addRate }) => {
                   onChange={handleChange}
                   className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                 >
-                  {/* Populate with actual department options */}
                   <option value="">Select Department</option>
+                  {departments.map((department) => (
+                    <option key={department.id} value={department.id}>
+                      {department.department_name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="form-control">
@@ -117,7 +135,6 @@ const AddRateModal = ({ isOpen, onClose, addRate }) => {
                   value={formData.rate_status_id}
                   onChange={handleChange}
                   className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
-                  style={{ backgroundColor: '', color: "black" }}
                 >
                   <option value="1">Active</option>
                   <option value="0">Inactive</option>
@@ -143,8 +160,13 @@ const AddRateModal = ({ isOpen, onClose, addRate }) => {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  addRate: (rateData) => dispatch(addRate(rateData)),
+const mapToStateToProps = (state) => ({
+  departmentData: state.departmentState,
 });
 
-export default connect(null, mapDispatchToProps)(AddRateModal);
+const mapToDispatchToProps = (dispatch) => ({
+  addRate: (rateData) => dispatch(addRate(rateData)),
+  fetchDepartments: () => dispatch(fetchDepartments()),
+});
+
+export default connect(mapToStateToProps, mapToDispatchToProps)(AddRateModal);
