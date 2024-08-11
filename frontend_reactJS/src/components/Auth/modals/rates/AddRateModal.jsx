@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FcOk } from 'react-icons/fc';
 import { connect } from 'react-redux';
-//REDUXISM
 import { addRate } from '../../../redux/actions/rateAction';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddRateModal = ({ isOpen, onClose, addRate }) => {
   const [formData, setFormData] = useState({
@@ -12,14 +12,14 @@ const AddRateModal = ({ isOpen, onClose, addRate }) => {
     rate_details: '',
     rate_description: '',
     rate_department_id: '1',
-    rate_status_id: '1'
+    rate_status_id: '1',
   });
 
   if (!isOpen) return null;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({ ...prevData, [name]: value }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmitAddRateData = async (e) => {
@@ -33,7 +33,6 @@ const AddRateModal = ({ isOpen, onClose, addRate }) => {
       console.error('Failed to add rate', error);
     }
   };
-
 
   return (
     <dialog open className="modal border border-black">

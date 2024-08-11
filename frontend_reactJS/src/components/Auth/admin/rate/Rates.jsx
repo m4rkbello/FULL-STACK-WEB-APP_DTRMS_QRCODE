@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FcFolder, FcPlus, FcSalesPerformance, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails } from "react-icons/fc";
+//REDUXISM - ACTIONS DISPATCH!
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
+// import { fetchDepartments } from '../../redux/actions/departmentAction';
+//ICONS
+import { FcFolder, FcPlus, FcSalesPerformance, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails } from "react-icons/fc";
 import { MoveLeft, FolderOpen, Component } from 'lucide-react';
+// * MODALS SA RATES
 import AddRateModal from '../../modals/rates/AddRateModal';
-import DeactivateRateModal from '../../modals/rates/DeactivateRateModal'; 
+import DeactivateRateModal from '../../modals/rates/DeactivateRateModal';
+//TOASTER 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Rates = (props) => {
+  console.log("DATA TANAN SA RATES GLOBAL STATE", props);
   const [isAddRateDetailsModal, setIsAddRateDetailsModal] = useState(false);
   const [isDeactivateRateModal, setIsDeactivateRateModal] = useState(false);
   const [selectedRateId, setSelectedRateId] = useState(null);
@@ -183,6 +189,7 @@ const mapStateToProps = (state) => {
   return {
     ratesData: state.rateState,
     loading: state.rateState.loading,
+    // departmentData: state.departmentState,
   }
 };
 
@@ -193,6 +200,7 @@ const mapDispatchToProps = (dispatch) => {
     updateRate: (rateId, updateRateData) => dispatch(updateRate(rateId, updateRateData)),
     deactivateRate: (rateId) => dispatch(deactivateRate(rateId)),
     searchRates: (searchQuery) => dispatch(searchRates(searchQuery)),
+    // fetchDepartments: () => dispatch(fetchAttendances()),
   }
 };
 
