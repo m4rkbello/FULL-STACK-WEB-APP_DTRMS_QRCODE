@@ -5,13 +5,12 @@ const AddRateModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-
-<dialog className="modal border border-black">
-        <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
-          <span className="font-bold text-3xl text-black">ADD RATE DETAILS</span>
-          <div className="modal-action ">
-            <form method="dialog">
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 glass">✕</button>
+<dialog open className="modal border border-black">
+      <div className="modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% border border-black">
+        <span className="font-bold text-3xl text-black">ADD RATE DETAILS</span>
+        <div className="modal-action">
+          <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 glass" onClick={onClose}>✕</button>
               <div className="grid grid-cols-3 gap-8">
                 <div className="form-control">
                   <label className="label">

@@ -45,7 +45,11 @@ const Rates = (props) => {
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100'>
       <ToastContainer /> 
-      <AddRateModal isOpen={isAddRateDetailsModal} onClose={() => setIsAddRateDetailsModal(false)} />
+      <AddRateModal 
+      isOpen={isAddRateDetailsModal}
+      onClose={() => setIsAddRateDetailsModal(false)} 
+      />
+
       <DeactivateRateModal 
         isOpen={isDeactivateRateModal} 
         onClose={() => setIsDeactivateRateModal(false)} 
@@ -100,7 +104,10 @@ const Rates = (props) => {
                   RATES LIST
                 </div>
                 <div className="p-3 flex justify-end">
-                  <FcPlus onClick={() => setIsAddRateDetailsModal(true)} />
+                <FcPlus onClick={() => {
+  console.log("Opening AddRateDetailsModal");
+  setIsAddRateDetailsModal(true);
+}} />
                 </div>
               </div>
             </div>
