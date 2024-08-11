@@ -4,7 +4,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-//FETCH ALL DATAS GAMIT REDUX
+//FETCH ALL DATAS GAMIT REDUXISM
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../redux/actions/userAction';
 import { fetchEmployees } from '../../redux/actions/employeeAction';
