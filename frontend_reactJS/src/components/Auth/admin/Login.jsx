@@ -27,7 +27,7 @@ const Login = ({ loginUser }) => {
       setTimeout(() => {
         navigate("/"); // Redirect to root path upon successful login
         window.location.reload();
-      }, 1000); // Adjust the timeout duration as needed
+      }, 300); // Adjust the timeout duration as needed
     } catch (error) {
       setIsLoading(false);
       toast.error("Failed to log in. Please try again."); // Use toast for error notification
