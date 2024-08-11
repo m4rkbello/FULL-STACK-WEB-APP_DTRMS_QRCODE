@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FcFolder, FcFile, FcPlus, FcSalesPerformance, FcOk, FcApproval } from "react-icons/fc";
+import { FcFolder, FcFile, FcPlus, FcSalesPerformance, FcOk, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails } from "react-icons/fc";
 import { FaUpload } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
 
@@ -221,7 +221,26 @@ const Rates = (props) => {
           <span className="text-4xl font-black">
             <div className='glass'>
               <div className="grid grid-cols-3 items-center mt-5">
-                <div></div>
+                <div>
+                  <span className="inline-grid grid-cols-2 gap-4 py-5">
+                    <span>
+                      <input
+                        type="text"
+                        placeholder="Search Departments"
+                        className="p-2 m-2 border-b-4 bg-black rounded text-white"
+                        style={{ backgroundColor: "transparent", color: "white" }}
+                      />
+                    </span>
+                    <span>
+                      <FcSearch
+                        style={{
+                          backgroundColor: "transparent",
+                          color: "black",
+                        }}
+                      />
+                    </span>
+                  </span>
+                </div>
                 <div className="pb-5 pt-5  flex justify-center">
                   RATES LIST
                 </div>
@@ -238,15 +257,15 @@ const Rates = (props) => {
 
             {Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length != 0 ? (
               <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-                <table className="table bg-white py-10 px-10 my-10 mx-10 border-2 border-black">
+                <table className="table glass py-10 px-10 my-10 mx-10 border-2 border-black">
                   <thead className=" text-red ">
                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
-                      <th className="md:table-cell text-white">Icon</th>
-                      <th className="md:table-cell text-white">RATE NAME</th>
-                      <th className="md:table-cell text-white">RATE AMOUNT</th>
-                      <th className="md:table-cell text-white">RATE DETAILS</th>
-                      <th className="md:table-cell text-white">RATE DESCRIPTION</th>
-                      <th className="md:table-cell text-white">RATE DEPARTMENT STATUS</th>
+                      <th className="md:table-cell text-white"></th>
+                      <th className="md:table-cell text-white">NAME</th>
+                      <th className="md:table-cell text-white">AMOUNT</th>
+                      <th className="md:table-cell text-white">DETAILS</th>
+                      <th className="md:table-cell text-white">DESCRIPTION</th>
+                      <th className="md:table-cell text-white">DEPARTMENT</th>
                       <th className="md:table-cell text-white">ACTION</th>
                     </tr>
                   </thead>
@@ -257,26 +276,28 @@ const Rates = (props) => {
                           <td className="md:table-cell">     <FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
                           <td className="md:table-cell">{item.rate_name}</td>
                           <td className="md:table-cell">
-
-                            {item.rate_amount_per_day}</td>
+                            <span>&#8369;</span>
+                            <b>
+                              {item.rate_amount_per_day}
+                            </b>
+                          </td>
                           <td className="md:table-cell">{item.rate_details}</td>
                           <td className="md:table-cell">{item.rate_description}</td>
-                          <td className="md:table-cell">{item.rate_department_id}
-
+                          <td className="md:table-cell text-center">
                             {item.rate_status_id === 1 ? (
-                              <FcApproval style={{ fontSize: "40px", color: "green" }} />
+                              <FcApproval style={{ fontSize: "40px", color: "green", alignItems: "center" }} />
                             ) : (
                               <FcCancel style={{ fontSize: "40px", color: "yellow" }} />
                             )}
                           </td>
                           <td className="md:table-cell">
-                            {item.rate_status_id === 1 ? (
-                              <FcSalesPerformance style={{ fontSize: "40px", color: "green" }} />
-                            ) : (
-                              <FcSalesPerformance style={{ fontSize: "40px", color: "yellow" }} />
-                            )}
+                            <div className="flex items-center space-x-4">
+                              <FcViewDetails style={{ fontSize: "35px" }} />
+                              <FcEmptyTrash style={{ fontSize: "35px" }} />
+                            </div>
                           </td>
-                          <td className="md:table-cell"></td>
+
+
                         </tr>
                       )
                     ))}
