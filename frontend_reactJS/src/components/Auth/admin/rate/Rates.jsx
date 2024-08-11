@@ -42,8 +42,8 @@ const Rates = (props) => {
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 '>
-
-      <AddRateModal isOpen={isAddRateDetailsModal} onClose={}
+      {/***E-MOUNT SA COMPONENT ANG MODAL */}
+      <AddRateModal isOpen={isAddRateDetailsModal} onClose={() => isSetAddRateDetailsModal(false)} />
       <DeactivateRateModal isOpen={isDeactivateRateModal} onClose={() => setIsDeactivateRateModal(false)} />
 
       <div className="flex flex-wrap">
@@ -71,6 +71,35 @@ const Rates = (props) => {
 
       <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
         <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+
+          <span className="text-4xl font-black">
+            <div className='glass'>
+              <div className="grid grid-cols-3 items-center mt-5">
+                <div>
+                  <span className="inline-grid grid-cols-2 gap-4 py-5">
+                    <span>
+                      <input
+                        type="text"
+                        placeholder="Search Departments"
+                        className="p-2 m-2 border-b-4 bg-black rounded text-white"
+                      />
+                    </span>
+                    <span>
+                      <FcSearch />
+                    </span>
+                  </span>
+                </div>
+                <div className="pb-5 pt-5  flex justify-center">
+                  RATES LIST
+                </div>
+                <div className="p-3 flex justify-end">
+                  <FcPlus
+                  onClick={() => isSetAddRateDetailsModal(true)}
+                  />
+                </div>
+              </div>
+            </div>
+          </span>
 
           <div className=" bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
             {Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length !== 0 ? (
