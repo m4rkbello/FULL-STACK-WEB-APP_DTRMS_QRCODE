@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 //REDUXISM - ACTIONS DISPATCH!
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
-// import { fetchDepartments } from '../../redux/actions/departmentAction';
+import { fetchDepartments } from '../../../redux/actions/departmentAction';
 //ICONS
 import { FcFolder, FcPlus, FcSalesPerformance, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails } from "react-icons/fc";
 import { MoveLeft, FolderOpen, Component } from 'lucide-react';
@@ -189,7 +189,7 @@ const mapStateToProps = (state) => {
   return {
     ratesData: state.rateState,
     loading: state.rateState.loading,
-    // departmentData: state.departmentState,
+    departmentData: state.departmentState,
   }
 };
 
@@ -200,7 +200,7 @@ const mapDispatchToProps = (dispatch) => {
     updateRate: (rateId, updateRateData) => dispatch(updateRate(rateId, updateRateData)),
     deactivateRate: (rateId) => dispatch(deactivateRate(rateId)),
     searchRates: (searchQuery) => dispatch(searchRates(searchQuery)),
-    // fetchDepartments: () => dispatch(fetchAttendances()),
+    fetchDepartments: () => dispatch(fetchDepartments()),
   }
 };
 
