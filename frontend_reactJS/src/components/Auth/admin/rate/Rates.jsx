@@ -46,7 +46,7 @@ const Rates = (props) => {
           <div className="modal-action ">
             <form method="dialog">
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 glass">✕</button>
-              <div className="grid grid-cols-3 gap-6 ">
+              <div className="grid grid-cols-3 gap-8">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text text-black text-2xl">Rate Name</span>
@@ -56,10 +56,13 @@ const Rates = (props) => {
                     type="text"
                     placeholder="Enter rate name"
                     className="input input-bordered
-                    glass shadow-2xl
-                    text-2xl text-black
+                    glass 
+                    shadow-2xl
+                    text-2xl 
+                    text-black
                     border-glass
                     shadow-slate-900/100
+                    custom-placeholder-text-color
                     "
                   />
                 </div>
@@ -72,7 +75,16 @@ const Rates = (props) => {
                     name="employee_email" //key para sa formData
                     type="text"
                     placeholder="Enter rate amount"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100"
+                    className="
+                    input input-bordered
+                    shadow-3xl
+                    glass
+                    text-2xl
+                    text-black
+                    border-1
+                    border-glass
+                    shadow-slate-900/100
+                    custom-placeholder-text-color"
                   />
 
                 </div>
@@ -84,7 +96,16 @@ const Rates = (props) => {
                     type="text"
                     name="employee_contact_no"
                     placeholder="Enter rate details"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100"
+                    className="
+                    input input-bordered
+                    shadow-2xl
+                    glass
+                    text-2xl
+                    text-black
+                    border-1
+                    border-glass
+                    shadow-slate-900/100
+                    custom-placeholder-text-color"
                   />
 
                 </div>
@@ -96,9 +117,17 @@ const Rates = (props) => {
                   <input
                     type="text"
                     name="employee_role"
-
                     placeholder="Enter rate details"
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-slate-900/100"
+                    className="
+                    input input-bordered
+                    shadow-2xl
+                    glass
+                    text-2xl
+                    text-black
+                    border-1
+                    border-glass
+                    shadow-slate-900/100
+                    custom-placeholder-text-color"
                   />
                 </div>
 
@@ -110,8 +139,16 @@ const Rates = (props) => {
                   <select
                     name="employee_department_id"
 
-                    className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100"
-
+                    className="input input-bordered
+                     shadow-2xl
+                    glass
+                     text-2xl
+                      text-black
+                       border-1
+                        border-glass
+                         rounded-se-3xl
+                          shadow-slate-900/100
+                          custom-placeholder-text-color"
                   >
 
                   </select>
@@ -123,7 +160,16 @@ const Rates = (props) => {
                   </label>
                   <select
                     name="employee_status_id"
-                    className="select shadow-2xl text-2xl w-full glass max-w-xs shadow-lime-400/40"
+                    className="input input-bordered
+                     shadow-2xl
+                      glass
+                       text-2xl
+                        text-black
+                         border-1
+                          border-glass
+                           rounded-se-3xl
+                            shadow-slate-900/100
+                              custom-placeholder-text-color"
                     style={{ backgroundColor: '', color: "black" }}
 
                   >
@@ -211,24 +257,24 @@ const Rates = (props) => {
                           <td className="md:table-cell">     <FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
                           <td className="md:table-cell">{item.rate_name}</td>
                           <td className="md:table-cell">
-                       
+
                             {item.rate_amount_per_day}</td>
                           <td className="md:table-cell">{item.rate_details}</td>
                           <td className="md:table-cell">{item.rate_description}</td>
                           <td className="md:table-cell">{item.rate_department_id}
 
-                          {item.rate_status_id === 1 ? (
-          <FcApproval style={{ fontSize: "40px", color: "green" }} />
-        ) : (
-          <FcCancel style={{ fontSize: "40px", color: "yellow" }} />
-        )}
+                            {item.rate_status_id === 1 ? (
+                              <FcApproval style={{ fontSize: "40px", color: "green" }} />
+                            ) : (
+                              <FcCancel style={{ fontSize: "40px", color: "yellow" }} />
+                            )}
                           </td>
                           <td className="md:table-cell">
-                          {item.rate_status_id === 1 ? (
-          <FcSalesPerformance style={{ fontSize: "40px", color: "green" }} />
-        ) : (
-          <FcSalesPerformance style={{ fontSize: "40px", color: "yellow" }} />
-        )}
+                            {item.rate_status_id === 1 ? (
+                              <FcSalesPerformance style={{ fontSize: "40px", color: "green" }} />
+                            ) : (
+                              <FcSalesPerformance style={{ fontSize: "40px", color: "yellow" }} />
+                            )}
                           </td>
                           <td className="md:table-cell"></td>
                         </tr>

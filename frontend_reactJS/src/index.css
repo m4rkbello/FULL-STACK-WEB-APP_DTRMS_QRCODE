@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* COLOR SA PLACEHOLDER PARA VIEWABLE */
+.custom-placeholder-text-color::placeholder {
+    color: #3d3737 !important;
+  }
+  
