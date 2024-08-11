@@ -6,7 +6,7 @@ const AddRateModal = ({ isOpen, onClose }) => {
 
   return (
 
-<dialog open className="modal border border-black">
+<dialog className="modal border border-black">
         <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
           <span className="font-bold text-3xl text-black">ADD RATE DETAILS</span>
           <div className="modal-action ">

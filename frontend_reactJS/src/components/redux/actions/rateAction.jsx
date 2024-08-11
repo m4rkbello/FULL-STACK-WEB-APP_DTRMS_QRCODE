@@ -140,22 +140,22 @@ export const updateRate = (rateId, updateRateData) => async dispatch => {
 
 //DEACTIVATE RATES GAMIT ID
 export const deactivateRate = rateId => async dispatch => {
-    try{
+    try {
         dispatch({
             type: DELETE_RATE_REQUEST,
         });
 
         const deactivateRateRequestAndResponse = await MarkBelloApi.put(`/api/rates/deactivate/${rateId}`);
+        console.log("DATA SA deactivateRateRequestAndResponse", deactivateRateRequestAndResponse);
 
-        if (deactivateRateRequestAndResponse.success != true) {
-            // Handle the case where the response is empty
+        if (deactivateRateRequestAndResponse.data.success !== true) {
             toast.error('Rate has not deactivated! 🥺⚠️👽', {
                 position: 'top-right',
-                autoClose: 10000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: false,
                 pauseOnHover: false,
-                draggable: true,
+                draggable: false,
                 progress: undefined,
                 style: {
                     background: 'black',
@@ -164,14 +164,13 @@ export const deactivateRate = rateId => async dispatch => {
                 }
             });
         } else {
-            // Handle the case where the update is successful
             toast.success('Rate deactivated Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: false,
-                closeOnClick: true,
+                closeOnClick: false,
                 pauseOnHover: true,
-                draggable: true,
+                draggable: false,
                 progress: undefined,
                 style: {
                     background: 'white',
@@ -186,14 +185,12 @@ export const deactivateRate = rateId => async dispatch => {
             });
         }
             
-    }catch (error){
-
+    } catch (error) {
         dispatch({
             type: DELETE_RATE_FAILURE,
             payload: error.message
         });
     }
-
 };
 
 //SEARCH RATES - Action to search rates

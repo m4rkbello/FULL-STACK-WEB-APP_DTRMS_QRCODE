@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FcFolder, FcFile, FcPlus, FcSalesPerformance, FcOk, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails } from "react-icons/fc";
-import { FaUpload } from "react-icons/fa6";
-import { FaSave } from "react-icons/fa";
+import { FcFolder, FcPlus, FcSalesPerformance, FcApproval, FcCancel, FcEmptyTrash, FcSearch, FcViewDetails } from "react-icons/fc";
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { MoveLeft, FolderOpen, Component } from 'lucide-react';
 import AddRateModal from '../../modals/rates/AddRateModal';
 import DeactivateRateModal from '../../modals/rates/DeactivateRateModal'; 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Rates = (props) => {
   const [isAddRateDetailsModal, isSetAddRateDetailsModal] = useState(false);
@@ -18,19 +18,8 @@ const Rates = (props) => {
     props.fetchRates();
   }, []);
 
+  //COLLECTION SA RATES NA NAAY MGA DATAS
   const ratesDataObjectCollection = props?.ratesData?.rates;
-
-  function getAllRatesPopulations(ratesDataObjectCollection) {
-    let items = [];
-    if (Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length !== 0) {
-      for (let ez = 0; ez < ratesDataObjectCollection.length; ez++) {
-        items.push(ratesDataObjectCollection[ez]);
-      }
-    }
-    return items;
-  }
-
-  const resultAllRatesCollection = getAllRatesPopulations(ratesDataObjectCollection);
 
   if (props.loading) {
     return (
@@ -40,20 +29,24 @@ const Rates = (props) => {
     );
   }
 
-
-  {/**DEACTIVATE UG RATE DATA BASE SA ID!  */}
   const handleDeactivateRate = (rateId) => {
     setSelectedRateId(rateId);
     setIsDeactivateRateModal(true);
   };
 
+
+
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 '>
+      <ToastContainer /> 
       <AddRateModal isOpen={isAddRateDetailsModal} onClose={() => isSetAddRateDetailsModal(false)} />
       <DeactivateRateModal 
         isOpen={isDeactivateRateModal} 
         onClose={() => setIsDeactivateRateModal(false)} 
-        deactivateRate={() => props.deactivateRate(selectedRateId)}
+        deactivateRate={() => {
+          setIsDeactivateRateModal(false);
+          props.deactivateRate(selectedRateId);
+        }}
       />
 
       <div className="flex flex-wrap">
@@ -81,19 +74,20 @@ const Rates = (props) => {
 
       <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
         <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-
           <span className="text-4xl font-black">
             <div className='glass'>
               <div className="grid grid-cols-3 items-center mt-5">
                 <div>
-                  <span className="inline-grid grid-cols-2 gap-4 py-5">
-                    <span>
-                      <input
-                        type="text"
-                        placeholder="Search Departments"
-                        className="p-2 m-2 border-b-4 bg-black rounded text-white"
-                      />
-                    </span>
+                  <span className="inline-grid grid-cols-3 gap-4 py-5">
+                    <div className="p-3 flex justify-start">
+                      <span>
+                        <input
+                          type="text"
+                          placeholder="Search"
+                          className=" border-b-4 bg-transparent text-md rounded text-white"
+                        />
+                      </span>
+                    </div>
                     <span>
                       <FcSearch />
                     </span>
@@ -103,9 +97,7 @@ const Rates = (props) => {
                   RATES LIST
                 </div>
                 <div className="p-3 flex justify-end">
-                  <FcPlus
-                  onClick={() => isSetAddRateDetailsModal(true)}
-                  />
+                  <FcPlus onClick={() => isSetAddRateDetailsModal(true)} />
                 </div>
               </div>
             </div>
@@ -113,7 +105,7 @@ const Rates = (props) => {
 
           <div className=" bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
             {Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length !== 0 ? (
-              <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+              <div style={{ maxWidth: 'auto', overflowY: 'auto' }}>
                 <table className="table glass py-10 px-10 my-10 mx-10 border-2 border-black">
                   <thead className=" text-red ">
                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
@@ -127,7 +119,7 @@ const Rates = (props) => {
                     </tr>
                   </thead>
                   <tbody className='text-black'>
-                    {resultAllRatesCollection.map((item, index) => (
+                    {ratesDataObjectCollection.map((item, index) => (
                       item.rate_status_id !== 0 && (
                         <tr className="md:table-row" key={index}>
                           <td className="md:table-cell"><FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
@@ -149,7 +141,7 @@ const Rates = (props) => {
                             <div className="flex items-center space-x-4">
                               <FcViewDetails style={{ fontSize: "35px" }} />
                               <FcEmptyTrash
-                                onClick={() => handleDeactivateRate(item.rate_id)}
+                                onClick={() => handleDeactivateRate(item.id)}
                                 style={{ fontSize: "35px" }}
                               />
                             </div>
