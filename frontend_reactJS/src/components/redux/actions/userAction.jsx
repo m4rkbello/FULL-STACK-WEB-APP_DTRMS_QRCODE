@@ -199,20 +199,19 @@ export const loginUser = userData => async dispatch => {
             type: LOGIN_USER_SUCCESS,
             payload: loggedInUser
         });
-
-        // console.log("RESPONSE DATA SA LOGIN", loggedInUser);
+        //Toaster sa login
         toast.success('Login successfully!🤭🤗😎', {
             position: 'top-right',
             autoClose: 10000,
             hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
             progress: undefined,
             style: {
                 background: 'black',
                 color: '#A3E636',
-                fontSize: '17px'
+                fontSize: '20px'
             }
         });
 
@@ -233,7 +232,7 @@ export const loginUser = userData => async dispatch => {
             style: {
                 background: 'black',
                 color: 'red',
-                fontSize: '15px',
+                fontSize: '20px',
                 fontWeight: 'Bold'
             }
         });
