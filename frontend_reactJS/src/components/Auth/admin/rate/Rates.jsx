@@ -40,7 +40,6 @@ const Rates = (props) => {
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 '>
-
       {/**ADD-RATE-MODAL */}
       <dialog id="addRateDetailsModal" className="modal border border-black">
         <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
@@ -140,17 +139,16 @@ const Rates = (props) => {
 
                   <select
                     name="employee_department_id"
-
                     className="input input-bordered
-                     shadow-2xl
-                    glass
-                     text-2xl
+                      shadow-2xl
+                      glass
+                      text-2xl
                       text-black
-                       border-1
-                        border-glass
-                         rounded-se-3xl
-                          shadow-slate-900/100
-                          custom-placeholder-text-color"
+                      border-1
+                      border-glass
+                      rounded-se-3xl
+                      shadow-slate-900/100
+                      custom-placeholder-text-color"
                   >
 
                   </select>
