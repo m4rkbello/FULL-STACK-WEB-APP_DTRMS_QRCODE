@@ -191,7 +191,14 @@ const Rates = (props) => {
                           </td>
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-2">
-                              <FcViewDetails style={{ height: "2rem", width: "2rem" }} />
+                              <Link path="/admin/rate/edit/:id">
+                              <FcViewDetails 
+                              style={{ height: "2rem", width: "2rem" }}
+                              />
+                              
+                              </Link>
+
+                              
                               <FcEmptyTrash
                                 onClick={() => handleDeactivateRate(item.id)}
                                 style={{ height: "2rem", width: "2rem" }}
