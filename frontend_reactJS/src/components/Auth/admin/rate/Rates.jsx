@@ -91,7 +91,7 @@ const Rates = (props) => {
         onClose={() => setIsDeactivateRateModal(false)}
         deactivateRate={confirmDeactivateRate}
       />
-      <div className="flex flex-col bg-transparent mb-10">
+      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
         <div className="flex items-center text-sm breadcrumbs">
           <ul className="flex space-x-4">
             <li>
@@ -115,10 +115,10 @@ const Rates = (props) => {
           </ul>
         </div>
       </div>
-      <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-lg">
-        <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500">
-          <div className='glass'>
-            <div className="grid grid-cols-3 items-center mt-5">
+      <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+        <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+          <div className='glass shadow-slate-900/100'>
+            <div className="grid grid-cols-3 items-center mt-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
               <div>
                 <span className="inline-grid grid-cols-3 gap-4 py-5">
                   <div className="p-3 flex justify-start">
