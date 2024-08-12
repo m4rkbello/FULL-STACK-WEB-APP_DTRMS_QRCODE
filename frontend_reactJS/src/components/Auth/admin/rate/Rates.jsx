@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
-import { fetchDepartments } from '../../../redux/actions/departmentAction';
 import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash } from "react-icons/fc";
+//REDUXISM
+import { fetchDepartments } from '../../../redux/actions/departmentAction';
+//MODALS
 import AddRateModal from '../../modals/rates/AddRateModal';
 import DeactivateRateModal from '../../modals/rates/DeactivateRateModal';
 import { ToastContainer, toast } from 'react-toastify';
@@ -47,9 +49,10 @@ const Rates = (props) => {
   // Handle search and data filtering
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    // Trigger search action (assuming you have one)
+    setCurrentPage(1); // Reset to the first page when search query changes
     props.searchRates(e.target.value);
   };
+  
 
   // Handle page change
   const handlePageChange = (pageNumber) => {
