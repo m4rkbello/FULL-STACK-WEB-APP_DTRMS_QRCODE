@@ -16,7 +16,7 @@ import { RiAccountPinCircleFill } from 'react-icons/ri';
 import { IoSearch } from "react-icons/io5";
 import { TiArrowRightThick } from "react-icons/ti";
 import { TiArrowLeftThick } from "react-icons/ti";
-//REDUX
+//REDUXISM
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 
 const Department = (props) => {
