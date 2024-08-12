@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext  } from "react-icons/fc";
 //REDUXISM
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 //MODALS
@@ -53,7 +53,6 @@ const Rates = (props) => {
     props.searchRates(e.target.value);
   };
   
-
   // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -205,18 +204,23 @@ const Rates = (props) => {
                 <div className="flex justify-center mt-4 mb-4">
                   <div className="join grid grid-cols-2">
                     <button
-                      className="join-item btn btn-outline"
+                      className="join-item btn btn-outline  glass"
                       onClick={() => handlePageChange(currentPage - 1)}
                       disabled={currentPage === 1}
                     >
-                      Previous
+                     <FcPrevious 
+                         style={{ height: "2rem", width: "2rem" }}
+                     /> Previous
                     </button>
                     <button
-                      className="join-item btn btn-outline"
+                      className="join-item btn btn-outline glass"
                       onClick={() => handlePageChange(currentPage + 1)}
                       disabled={currentPage === totalPages}
                     >
                       Next
+                      <FcNext 
+                        style={{ height: "2rem", width: "2rem" }}
+                      /> 
                     </button>
                   </div>
                 </div>
