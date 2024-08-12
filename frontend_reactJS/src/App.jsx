@@ -23,9 +23,11 @@ import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import Department from './components/Auth/admin/department/Department';
 import Dashboard from './components/Auth/admin/Dashboard';
 import Payroll from './components/Auth/admin/payroll/Payroll';
-import Rate from './components/Auth/admin/rate/Rates';
 import Overtime from './components/Auth/admin/overtime/Overtime';
 import Deduction from './components/Auth/admin/deduction/Deduction';
+import Rate from './components/Auth/admin/rate/Rates';
+import EditRates from './components/Auth/admin/rate/EditRates';
+
 //EMPLOYEE-ROUTES
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
@@ -251,7 +253,9 @@ function App(props) {
                   <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
                   <Route path="/admin/payrolls" element={<Payroll />} />
+                  {/**RATES */}
                   <Route path="/admin/rates" element={<Rate />} />
+                  <Route path="/admin/rate/edit/:id" element={<EditRates />} />
                   <Route path="/admin/overtimes" element={<Overtime />} />
                   <Route path="/admin/deductions" element={<Deduction />} />
 
@@ -259,6 +263,7 @@ function App(props) {
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                   <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
                   <Route path="/employee/archieve" element={<ArchiveEmployee />} />
+                  <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                   <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                   <Route path="/department" element={<Department />} />
                   <Route path="/department/add" element={<AddDepartment />} />
