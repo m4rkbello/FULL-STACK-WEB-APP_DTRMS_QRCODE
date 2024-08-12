@@ -13,10 +13,8 @@ import { TbPasswordUser } from "react-icons/tb";
 //redux-actions
 import { fetchUsers, updateUser, uploadAndUpdateImageUser } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
-
 import { FaUpload } from "react-icons/fa6";
 import { fetchImages } from '../../../redux/actions/imageAction';
-//modal 
 
 const UserDetails = (props) => {
   console.log("DATA SA USER PARA E DISPLAY!", props);
@@ -124,7 +122,7 @@ const UserDetails = (props) => {
 
   return (
 
-    <div className="hero min-h-screen bg-zinc-300 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+    <div className="hero min-h-screen glass rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
       <button style={{ marginRight: "93%", marginBottom: "65%" }} >
         <Link to="/">
           <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
@@ -161,7 +159,6 @@ const UserDetails = (props) => {
         <FaUpload
           onClick={() => document.getElementById('uploadUserUImage').showModal()}
           style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
-
         />
 
         <div className="hero-content flex-col lg:flex-row">

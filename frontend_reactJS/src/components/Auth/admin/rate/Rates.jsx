@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext  } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 //REDUXISM
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 //MODALS
@@ -19,7 +19,7 @@ const Rates = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  const {rateId} = useParams;
+  const { rateId } = useParams;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +54,7 @@ const Rates = (props) => {
     setCurrentPage(1); // Reset to the first page when search query changes
     props.searchRates(e.target.value);
   };
-  
+
   // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -69,7 +69,7 @@ const Rates = (props) => {
   };
 
   // Filter and paginate rates
-  const filteredRates = props.ratesData?.rates.filter(rate => 
+  const filteredRates = props.ratesData?.rates.filter(rate =>
     rate.rate_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -80,7 +80,7 @@ const Rates = (props) => {
   const totalPages = Math.ceil(filteredRates.length / itemsPerPage);
 
   return (
-    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100'>
+    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
       <ToastContainer />
       <AddRateModal
         isOpen={isAddRateDetailsModal}
@@ -141,8 +141,8 @@ const Rates = (props) => {
               <div className="p-3 flex justify-end">
                 <FcPlus onClick={() => {
                   setIsAddRateDetailsModal(true);
-                }} 
-                style={{ height: "3rem", width: "3rem" }} 
+                }}
+                  style={{ height: "3rem", width: "3rem" }}
                 />
               </div>
             </div>
@@ -158,7 +158,21 @@ const Rates = (props) => {
               </div>
             ) : filteredRates.length === 0 ? (
               <div className="w-full max-w-5xl text-center text-lg font-semibold text-gray-500">
-                No results found for "{searchQuery}"
+                <div className="mockup-browser  border border-t-4 pb-10 pt-10">
+                  <div className="mockup-browser-toolbar">
+                    <div className="input text-black-400">https://markbello.com</div>
+                  </div>
+                  <div className="flex justify-center text-black px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                    <span
+                      style={{ fontSize: '30px', fontWeight: 'Bolder' }}
+                    >
+                      <b>
+                        AYAW NA PANGITAA ANG "{searchQuery}" KAY WALA! 
+                    </b>
+                    
+                    </span>
+                  </div>
+                </div>
               </div>
             ) : currentRates?.length > 0 ? (
               <div className="w-full max-w-5xl">
@@ -191,13 +205,11 @@ const Rates = (props) => {
                           </td>
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-2">
-                              <Link path="/admin/rate/edit/:id">
-                              <FcViewDetails 
-                              style={{ height: "2rem", width: "2rem" }}
-                              />
-                              
+                              <Link to={`/admin/rate/edit/${item.id}`}>
+                                <FcViewDetails
+                                  style={{ height: "2rem", width: "2rem" }}
+                                />
                               </Link>
-
                               
                               <FcEmptyTrash
                                 onClick={() => handleDeactivateRate(item.id)}
@@ -217,9 +229,9 @@ const Rates = (props) => {
                       onClick={() => handlePageChange(currentPage - 1)}
                       disabled={currentPage === 1}
                     >
-                     <FcPrevious 
-                         style={{ height: "2rem", width: "2rem" }}
-                     /> Previous
+                      <FcPrevious
+                        style={{ height: "2rem", width: "2rem" }}
+                      /> Previous
                     </button>
                     <button
                       className="join-item btn btn-outline glass"
@@ -227,15 +239,29 @@ const Rates = (props) => {
                       disabled={currentPage === totalPages}
                     >
                       Next
-                      <FcNext 
+                      <FcNext
                         style={{ height: "2rem", width: "2rem" }}
-                      /> 
+                      />
                     </button>
                   </div>
                 </div>
               </div>
             ) : (
-              <div>No rates available</div>
+
+              <div className="mockup-browser  border border-t-4 pb-10 pt-10">
+                <div className="mockup-browser-toolbar">
+                  <div className="input text-black-400">https://markbello.com</div>
+                </div>
+                <div className="flex justify-center px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                  <span
+                    style={{ fontSize: '50px', fontWeightL: 'Bolder' }}
+                  >
+                    <b>
+                      AYAW NA PANGITAA ANG WALA!
+                    </b>
+                  </span>
+                </div>
+              </div>
             )}
           </div>
         </div>
