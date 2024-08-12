@@ -27,7 +27,6 @@ import Overtime from './components/Auth/admin/overtime/Overtime';
 import Deduction from './components/Auth/admin/deduction/Deduction';
 import Rate from './components/Auth/admin/rate/Rates';
 import EditRates from './components/Auth/admin/rate/EditRates';
-
 //EMPLOYEE-ROUTES
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
@@ -44,7 +43,6 @@ import { fetchEmployees } from './components/redux/actions/employeeAction';
 import { fetchAttendances } from './components/redux/actions/attendanceAction';
 
 function App(props) {
-  console.log("DATA SA PROPS", props);
   //FOR AUTHENTICATION-PURPOSES GAMIT TOKEN UG ID SA USERS
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
@@ -207,7 +205,6 @@ function App(props) {
                     <span style={{ fontSize: "20px", color: "white" }}>
                       Logout
                     </span>
-                  
                   </span>
                 </li>
               </ul>
