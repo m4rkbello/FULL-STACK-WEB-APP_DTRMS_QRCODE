@@ -16,7 +16,7 @@ import { IoSearch } from "react-icons/io5";
 import { SiMicrosoftexcel } from "react-icons/si";
 import { IoIosPrint } from "react-icons/io";
 import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcOpenedFolder, FcFile, FcCheckmark, FcViewDetails, FcEmptyTrash, FcCancel, FcLeft } from "react-icons/fc";
-import { MoveLeft, FolderOpen, Component, Trash, UserPlus   } from 'lucide-react';
+import { MoveLeft, FolderOpen, Component, Trash, UserPlus } from 'lucide-react';
 //REDUX
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
@@ -180,11 +180,11 @@ const EmployeeDashboard = (props) => {
     if (props.loading) {
         return (
             <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
-            <div className="skeleton h-48 w-full"></div>
-            <div className="skeleton h-6 w-36"></div>
-            <div className="skeleton h-6 w-full"></div>
-            <div className="skeleton h-6 w-full"></div>
-          </div>
+                <div className="skeleton h-48 w-full"></div>
+                <div className="skeleton h-6 w-36"></div>
+                <div className="skeleton h-6 w-full"></div>
+                <div className="skeleton h-6 w-full"></div>
+            </div>
         );
     }
 
@@ -345,49 +345,49 @@ const EmployeeDashboard = (props) => {
 
             <div className="hero h-full max-h-full w-full max-w-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
                 <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
-                <div className="flex flex-wrap">
-                    <div>
-                    <div className="text-sm breadcrumbs mb-10 bg-transparent">
-                        <ul>
-                        <li>
-                            <FcLeft 
-                                style={{
-                                backgroundColor: "transparent",
-                                color: "black",
-                                height: "35px",
-                                width: "35px",
-                            }}
-                            />
-                            <Link to="/" className='hover:text-white'>Home</Link>
-                        </li>
-                        <li>
-                            <FcOpenedFolder
-                                        style={{
-                                        backgroundColor: "transparent",
-                                        color: "black",
-                                        height: "25px",
-                                        width: "25px",
-                                        }}
-                            />
-                            <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
-                        </li>
-                        <li>
-                            <span className="inline-flex gap-2 items-center">
-                            <FcFile 
-                                        style={{
-                                        backgroundColor: "transparent",
-                                        color: "black",
-                                        height: "25px",
-                                        width: "25px",
-                                        }}
-                            />
-                            <Link to="" className='hover:text-white'>Employee Data</Link>
-                            </span>
-                        </li>
-                        </ul>
+                    <div className="flex flex-wrap">
+                        <div>
+                            <div className="text-sm breadcrumbs mb-10 bg-transparent">
+                                <ul>
+                                    <li>
+                                        <FcLeft
+                                            style={{
+                                                backgroundColor: "transparent",
+                                                color: "black",
+                                                height: "35px",
+                                                width: "35px",
+                                            }}
+                                        />
+                                        <Link to="/" className='hover:text-white'>Home</Link>
+                                    </li>
+                                    <li>
+                                        <FcOpenedFolder
+                                            style={{
+                                                backgroundColor: "transparent",
+                                                color: "black",
+                                                height: "25px",
+                                                width: "25px",
+                                            }}
+                                        />
+                                        <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
+                                    </li>
+                                    <li>
+                                        <span className="inline-flex gap-2 items-center">
+                                            <FcFile
+                                                style={{
+                                                    backgroundColor: "transparent",
+                                                    color: "black",
+                                                    height: "25px",
+                                                    width: "25px",
+                                                }}
+                                            />
+                                            <Link to="" className='hover:text-white'>Employee Data</Link>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
 
                     <div className="flex flex-row">
                         <div className="basis-1/2 flex justify-start">
@@ -403,10 +403,10 @@ const EmployeeDashboard = (props) => {
                                 <span>
                                     <FcSearch
                                         style={{
-                                        backgroundColor: "transparent",
-                                        color: "black",
-                                        height: "30px",
-                                        width: "30px",
+                                            backgroundColor: "transparent",
+                                            color: "black",
+                                            height: "30px",
+                                            width: "30px",
                                         }}
                                     />
                                 </span>
@@ -423,8 +423,8 @@ const EmployeeDashboard = (props) => {
                                     <button>
                                         <FcDataSheet
                                             style={{
-                                            height: "200%",
-                                            width: "200%",
+                                                height: "200%",
+                                                width: "200%",
                                             }}
                                         /></button>
                                 </DownloadTableExcel>
@@ -445,7 +445,7 @@ const EmployeeDashboard = (props) => {
                         <center>
                             <div className='pb-5 pt-5 glass'>
                                 EMPLOYEE DASHBOARD
-                                <UserPlus  
+                                <UserPlus
                                     onClick={() => document.getElementById('addEmployeeModal').showModal()}
                                     style={{
                                         fontSize: "50px",
@@ -523,10 +523,10 @@ const EmployeeDashboard = (props) => {
                                                                 <div className="flex-none mr-3">
                                                                     <Link to={`/employee/details/${item.id}`} className="text-black">
                                                                         <FcViewDetails
-                                                                        style={{
-                                                                            height: "200%",
-                                                                            width: "200%",
-                                                                        }}
+                                                                            style={{
+                                                                                height: "200%",
+                                                                                width: "200%",
+                                                                            }}
                                                                         />
                                                                     </Link>
                                                                 </div>
@@ -571,7 +571,6 @@ const EmployeeDashboard = (props) => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
@@ -594,7 +593,6 @@ const mapDispatchToProps = (dispatch) => {
         fetchDepartments: () => dispatch(fetchDepartments()),
     };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeDashboard);
 
