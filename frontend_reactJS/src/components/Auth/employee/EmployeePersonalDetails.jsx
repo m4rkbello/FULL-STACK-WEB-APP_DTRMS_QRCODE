@@ -11,7 +11,7 @@ import { fetchImages } from '../../redux/actions/imageAction';
 import { fetchDepartments } from '../../redux/actions/departmentAction';
 //ICONS
 import { FaUpload } from "react-icons/fa6";
-import { FaUserEdit, FaExpeditedssl, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
+import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 //TOASTER
 import { ToastContainer } from 'react-toastify';
@@ -19,7 +19,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const EmployeePersonalDetails = (props) => {
-    console.log("DATA SA MAPTOSTATETOPROPS", props)
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,9 +27,7 @@ const EmployeePersonalDetails = (props) => {
      const defaultImage = '../../../../public/miming.jpg';
 
     const empId = id;
-    console.log("ID useParams ayaw kol", empId);
 
-    const updateEmployeeNavigator = useNavigate();
     //e-open ang modal
     const handleOpenModal = () => {
         setIsModalOpen(true);
@@ -49,7 +46,6 @@ const EmployeePersonalDetails = (props) => {
         }
     };
 
-    //form-data na naay entity para mag handle sa mga data
     const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
         employee_fullname: '',
         employee_email: '',
@@ -78,7 +74,6 @@ const EmployeePersonalDetails = (props) => {
     };
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
-    console.log("DATA SA employeesCollectionArrays", employeesCollectionArrays);
 
     function employeeDetails(employeesCollectionArrays, id) {
         let item = [];
@@ -95,7 +90,6 @@ const EmployeePersonalDetails = (props) => {
     const employee = employeeDetails(employeesCollectionArrays, id);
 
     const employeeSpecific = employee;
-    console.log("DATA SA EMPLOYEES",    employeeSpecific);
 
     const handleImageEmployeeChange = (e) => {
         setImageEmployee(e.target.files[0]);
@@ -111,7 +105,6 @@ const EmployeePersonalDetails = (props) => {
     };
 
     const departmentsCollectionArrays = props?.departmentsData?.departments?.data?.details;
-    console.log("DATA SA departmentsCollectionArrays 08152")
 
     function fetchDepartments(departmentsCollectionArrays) {
         let item = [];
@@ -125,7 +118,6 @@ const EmployeePersonalDetails = (props) => {
     }
 
     const departments = fetchDepartments(departmentsCollectionArrays);
-    console.log("DATA SA departments NI departments", departments);
  
     //Display filter sa Department
     function getEmployeeDepartment(departmentsCollectionArrays, employee) {
@@ -138,7 +130,6 @@ const EmployeePersonalDetails = (props) => {
     }
     
     const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
-console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFilteredData);
 
     useEffect(() => {
         props.fetchEmployees();
@@ -149,7 +140,6 @@ console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFiltered
     
     return (
         <div className="hero glass h-full max-h-full w-full max-w-full">
-        
             <ToastContainer />
             {isModalOpen && (
                 <dialog id="editEmployeeDetails" className="modal border border-black">
@@ -249,7 +239,6 @@ console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFiltered
                                             name="employee_department_id"
                                             onChange={handleChangeUpdateData}
                                             className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
-                                     
                                             >
                                             {departments.map((item, index) => (
                                                 <option key={index} value={item.id}>
@@ -298,14 +287,7 @@ console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFiltered
                
                     </div>
                 </dialog>
-
             )}
-
-            <div className="grid grid-rows-3 grid-flow-col gap-4">
-            <div className="row-span-3 ...">01</div>
-            <div className="col-span-2 ...">02</div>
-            <div className="row-span-2 col-span-2 ...">03</div>
-          </div>
 
             <dialog id="uploadEmployeeProfile" className="modal">
                 <div className="modal-box">
@@ -323,7 +305,6 @@ console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFiltered
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
                     <div className="hero glass h-full max-h-full w-full max-w-full rounded-t-lg rounded-b-lg shadow-lg">
-
                         <button style={{ marginRight: "93%", marginBottom: "65%" }} >
                             <Link to="/employee/dashboard">
                                 <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
