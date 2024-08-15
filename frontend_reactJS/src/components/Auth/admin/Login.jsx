@@ -1,5 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 import { connect } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../redux/actions/userAction';
 import { ToastContainer, toast } from 'react-toastify';
