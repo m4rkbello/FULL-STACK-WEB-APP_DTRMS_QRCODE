@@ -1,3 +1,7 @@
+/* eslint-disable react/no-unknown-property */
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -7,9 +11,9 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 import { MdEditSquare } from "react-icons/md";
 import { TbPasswordUser } from "react-icons/tb";
-
 //redux-actions
 import { fetchUsers, updateUser, uploadAndUpdateImageUser } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
@@ -122,12 +126,32 @@ const UserDetails = (props) => {
 
   return (
 
-    <div className="hero min-h-screen glass rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-      <button style={{ marginRight: "93%", marginBottom: "65%" }} >
-        <Link to="/">
-          <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
-        </Link>
-      </button>
+    <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+
+    <div className='glass shadow-slate-900/100'>
+    <div className="grid grid-cols-3 items-center mt-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+      <div>
+        <span className="inline-grid grid-cols-3 gap-4 py-5">
+          <div className="p-3 flex justify-start">
+ 
+          </div>
+          <div className="p-3 flex justify-end">
+            <FcSearch style={{ height: "2rem", width: "2rem" }} />
+          </div>
+        </span>
+      </div>
+      <div className="pb-5 pt-5 flex justify-center">
+        <h3 className="font-bold text-4xl text-black">RATE LIST</h3>
+      </div>
+      <div className="p-3 flex justify-end">
+        <FcPlus 
+
+          style={{ height: "3rem", width: "3rem" }}
+        />
+      </div>
+    </div>
+  </div>
+
       <ToastContainer />
       <dialog id="uploadUserUImage" className="modal">
         <div className="modal-box">
@@ -138,23 +162,19 @@ const UserDetails = (props) => {
           </form>
         </div>
       </dialog>
+      
+      <div class="grid grid-flow-row-dense grid-cols-3 grid-rows-3 ...">
+      <div class="col-span-2"></div>
+      <div class="col-span-2">02</div>
+      <div>03</div>
+      <div>04</div>
+      <div>05</div>
+    </div>
+
+
       <div className="hero-content flex flex-col items-center">
 
-        {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-          <img
-          key={index}
-          className="mask mask-circle"
-          src={user.user_image}
-          alt="No Upload User Profile"
-          type="file"
-          style={{
-            backgroundColor: 'black',
-            width: '30%',
-            height: '30%',
-       
-          }}
-        />
-        ))}
+
 
         <FaUpload
           onClick={() => document.getElementById('uploadUserUImage').showModal()}
