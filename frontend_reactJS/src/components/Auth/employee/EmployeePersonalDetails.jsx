@@ -49,6 +49,7 @@ const EmployeePersonalDetails = (props) => {
         }
     };
 
+    //form-data na naay entity para mag handle sa mga data
     const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
         employee_fullname: '',
         employee_email: '',
@@ -74,7 +75,7 @@ const EmployeePersonalDetails = (props) => {
         } catch (error) {
             window.alert("ERROR");
         }
-    }
+    };
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
     console.log("DATA SA employeesCollectionArrays", employeesCollectionArrays);
@@ -89,7 +90,7 @@ const EmployeePersonalDetails = (props) => {
             }
         }
         return item;
-    }
+    };
 
     const employee = employeeDetails(employeesCollectionArrays, id);
 
@@ -109,7 +110,8 @@ const EmployeePersonalDetails = (props) => {
         }
     };
 
-    const departmentsCollectionArrays = props?.departmentsData?.departments?.data?.department;
+    const departmentsCollectionArrays = props?.departmentsData?.departments?.data?.details;
+    console.log("DATA SA departmentsCollectionArrays 08152")
 
     function fetchDepartments(departmentsCollectionArrays) {
         let item = [];
@@ -120,9 +122,10 @@ const EmployeePersonalDetails = (props) => {
             }
         }
         return item;
-    }
+    };
 
     const departments = fetchDepartments(departmentsCollectionArrays);
+    console.log("DATA SA departments NI departments", departments);
  
     //Display filter sa Department
     function getEmployeeDepartment(departmentsCollectionArrays, employee) {
@@ -132,7 +135,7 @@ const EmployeePersonalDetails = (props) => {
             return departmentsCollectionArrays.filter(department => department.id === employeeDepartmentId);
         }
         return [];
-    }
+    };
     
     const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
 console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFilteredData);
