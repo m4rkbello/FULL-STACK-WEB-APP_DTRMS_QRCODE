@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
@@ -11,8 +13,10 @@ import { fetchImages } from '../../redux/actions/imageAction';
 import { fetchDepartments } from '../../redux/actions/departmentAction';
 //ICONS
 import { FaUpload } from "react-icons/fa6";
-import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
+
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 import { IoMdCloseCircle } from "react-icons/io";
+import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 //TOASTER
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -141,6 +145,30 @@ const EmployeePersonalDetails = (props) => {
     return (
         <div className="hero glass h-full max-h-full w-full max-w-full">
             <ToastContainer />
+            <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+            <div className="flex items-center text-sm breadcrumbs">
+              <ul className="flex space-x-4">
+                <li>
+                  <Link to="/" className='flex items-center hover:text-white'>
+                    <FcPrevious style={{ height: "2rem", width: "2rem" }} />
+                    <span className="ml-2">Home</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
+                    <FcFolder style={{ height: "2rem", width: "2rem" }} />
+                    <span className="ml-2">Rates</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className='flex items-center hover:text-white'>
+                    <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                    <span className="ml-2">Data</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
             {isModalOpen && (
                 <dialog id="editEmployeeDetails" className="modal border border-black">
                     <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
@@ -310,9 +338,7 @@ const EmployeePersonalDetails = (props) => {
                                 <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
                             </Link>
                         </button>
-
                         <div className="hero-content flex flex-col items-center">
-
                             {employee && employee.map((image, imageIndex) => (
                                 <img
                                     key={imageIndex}
