@@ -331,13 +331,15 @@ const Dashboard = (props) => {
         <div className="diff-resizer"></div>
       </div>
       <br />
+
       <div className="grid mx-auto grid-rows-4 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
         <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
-              src={ImageUser}
-              alt="User Image" />
+              src="https://i.ibb.co/StdstKn/user.png"
+              alt="User Image"
+              />
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">USERS</span>
@@ -357,8 +359,9 @@ const Dashboard = (props) => {
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
-              src={ImageEmployeeGroup}
-              alt="Attendance" />
+              src="https://i.ibb.co/dgCWf4m/Employees-Group.png"
+              alt="Employees-Group"
+               />
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">EMPLOYEES</span>
@@ -378,8 +381,9 @@ const Dashboard = (props) => {
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
-              src={ImageDepartment}
-              alt="Department Image" />
+              src="https://i.ibb.co/GHXyKbD/department.png"
+              alt="Department Image"
+            />
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">DEPARTMENTS</span>
@@ -399,8 +403,8 @@ const Dashboard = (props) => {
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
-              src={ImageRate}
-              alt="Rate Imaage"
+              src="https://i.ibb.co/BKHHBpt/Person-Rates.png"
+              alt="Rate Image"
             />
           </figure>
           <div className="card-body justify-center">
@@ -421,7 +425,7 @@ const Dashboard = (props) => {
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
-              src={ImageAttendance}
+              src=""
               alt="Attendance" />
           </figure>
           <div className="card-body justify-center">
