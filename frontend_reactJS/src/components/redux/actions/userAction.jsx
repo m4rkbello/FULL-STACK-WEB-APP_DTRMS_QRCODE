@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import MarkBelloApi from '../../../services/Api.jsx';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -210,7 +211,7 @@ export const loginUser = userData => async dispatch => {
             progress: undefined,
             style: {
                 background: 'black',
-                color: '#A3E636',
+                color: 'white',
                 fontSize: '20px'
             }
         });
