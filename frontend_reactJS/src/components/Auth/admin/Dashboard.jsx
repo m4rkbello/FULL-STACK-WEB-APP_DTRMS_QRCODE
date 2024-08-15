@@ -425,7 +425,8 @@ const Dashboard = (props) => {
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
-              src=""
+              src="https://i.ibb.co/dt4Zz3L/attendance.png"
+     
               alt="Attendance" />
           </figure>
           <div className="card-body justify-center">
