@@ -491,9 +491,10 @@ const Dashboard = (props) => {
         <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
-              src={ImagePayroll}
+              src="https://i.ibb.co/LgbMBkk/payroll.png"
               className='h-3/5'
-              alt="Overtime Image" />
+              alt="Overtime Image"
+            />
           </figure>
           <div className="card-body justify-center">
             <center>
