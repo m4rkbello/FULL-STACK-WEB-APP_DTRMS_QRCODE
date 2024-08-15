@@ -90,7 +90,7 @@ const EmployeePersonalDetails = (props) => {
             }
         }
         return item;
-    };
+    }
 
     const employee = employeeDetails(employeesCollectionArrays, id);
 
@@ -122,7 +122,7 @@ const EmployeePersonalDetails = (props) => {
             }
         }
         return item;
-    };
+    }
 
     const departments = fetchDepartments(departmentsCollectionArrays);
     console.log("DATA SA departments NI departments", departments);
@@ -135,7 +135,7 @@ const EmployeePersonalDetails = (props) => {
             return departmentsCollectionArrays.filter(department => department.id === employeeDepartmentId);
         }
         return [];
-    };
+    }
     
     const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
 console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFilteredData);
