@@ -49,6 +49,7 @@ const userReducer = (state = initialState, action) => {
         case CHANGE_PASSWORD_USER_REQUEST:
             return  {
                 ...state,
+                
                 loading: true,
                 error: null
             };
@@ -56,6 +57,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: action.payload,
+                isAuthenticated: true,
                 loading: false,
                 error: null
             };
