@@ -124,9 +124,9 @@ export const updateRate = (rateId, updateRateData) => async dispatch => {
                 }
             });
 
-            setTimeout(() => {
-                window.location.reload();
-              }, 3000)
+            // setTimeout(() => {
+            //     window.location.reload();
+            //   }, 3000)
 
         } else {
             // Handle other types of errors
