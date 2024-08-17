@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
@@ -34,7 +35,7 @@ const EditRates = ({ fetchRates, updateRate, ratesData, loading }) => {
         rate_amount_per_day: rate.rate_amount_per_day || '',
         rate_details: rate.rate_details || '',
         rate_description: rate.rate_description || '',
-        rate_department_id: rate.rate_department_id || '',
+        rate_department_id: rate.rate_department_id || 1,
         rate_status_id: rate.rate_status_id || '1',
       });
     }
@@ -49,9 +50,12 @@ const EditRates = ({ fetchRates, updateRate, ratesData, loading }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Log formData to verify it contains the rate_status_id
+    console.log(formData);
     // Dispatch the updateRate action with the updated data
     updateRate({ id: numericId, ...formData });
-  };
+};
+
 
   if (loading) {
     return <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
@@ -168,14 +172,15 @@ const EditRates = ({ fetchRates, updateRate, ratesData, loading }) => {
                 <span className="label-text text-glass text-2xl">Rate Status</span>
               </label>
               <select
-                name="rate_status_id"
-                value={formData.rate_status_id}
-                onChange={handleChange}
-                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
-              >
-                <option value="1">Active</option>
-                <option value="0">Inactive</option>
-              </select>
+              name="rate_status_id"
+              value={formData.rate_status_id}
+              onChange={handleChange}
+              className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
+          >
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+          </select>
+          
             </div>
           </div>
           <br />
@@ -205,9 +210,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchRates: () => dispatch(fetchRates()),
-    updateRate: (UpdateRateData) => dispatch(updateRate(UpdateRateData)),
+      fetchRates: () => dispatch(fetchRates()),
+      updateRate: (UpdateRateData) => {
+          console.log(UpdateRateData); // Log the payload before dispatching
+          dispatch(updateRate(UpdateRateData));
+      },
   };
-}
+};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditRates);
