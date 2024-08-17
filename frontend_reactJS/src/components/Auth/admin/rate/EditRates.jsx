@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 // ICONS
 import { FcFolder, FcOpenedFolder, FcPrevious, FcOk } from "react-icons/fc";
-// REDUX ACTIONS
+// REDUXISM-ACTIONS/DISPATCH
 import { fetchRates, updateRate } from '../../../redux/actions/rateAction';
+import {fetchDepartments} from '../../../redux/actions/deductionAction';
 
 const EditRates = ({ fetchRates, updateRate, ratesData, loading }) => {
   const { id } = useParams();
@@ -41,7 +42,7 @@ const EditRates = ({ fetchRates, updateRate, ratesData, loading }) => {
     }
   }, [ratesData, numericId]);
 
-  const handleChange = (e) => {
+  const handleChangeUpdateRate = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -205,6 +206,7 @@ const mapStateToProps = (state) => {
   return {
     ratesData: state.rateState.rates,
     loading: state.rateState.loading,
+    
   };
 }
 
