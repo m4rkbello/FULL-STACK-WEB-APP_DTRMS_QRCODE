@@ -25,6 +25,7 @@ const Rates = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
+  //id sa rate.id para gamiton sa useParams
   const { rateId } = useParams;
 
   useEffect(() => {
@@ -88,7 +89,7 @@ const Rates = (props) => {
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
       <ToastContainer />
-          {/**modal sa addModal rate */}
+      {/**modal sa addModal rate */}
       <AddRateModal
         isOpen={isAddRateDetailsModal}
         onClose={() => setIsAddRateDetailsModal(false)}
@@ -127,8 +128,9 @@ const Rates = (props) => {
 
       <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
         <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+
           <div className='glass shadow-slate-900/100'>
-            <div className="grid grid-cols-3 items-center mt-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+            <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
               <div>
                 <span className="inline-grid grid-cols-3 gap-4 py-5">
                   <div className="p-3 flex justify-start">
@@ -177,9 +179,9 @@ const Rates = (props) => {
                       style={{ fontSize: '30px', fontWeight: 'Bolder' }}
                     >
                       <b>
-                        AYAW NA PANGITAA ANG "{searchQuery}" KAY WALA! 
-                    </b>
-                    
+                        AYAW NA PANGITAA ANG "{searchQuery}" KAY WALA!
+                      </b>
+
                     </span>
                   </div>
                 </div>
@@ -220,7 +222,7 @@ const Rates = (props) => {
                                   style={{ height: "2rem", width: "2rem" }}
                                 />
                               </Link>
-                              
+
                               <FcEmptyTrash
                                 onClick={() => handleDeactivateRate(item.id)}
                                 style={{ height: "2rem", width: "2rem" }}
