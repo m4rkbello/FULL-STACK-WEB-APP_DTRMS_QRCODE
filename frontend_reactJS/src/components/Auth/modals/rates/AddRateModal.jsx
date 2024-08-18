@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { FcOk } from 'react-icons/fc';
 import { connect } from 'react-redux';
