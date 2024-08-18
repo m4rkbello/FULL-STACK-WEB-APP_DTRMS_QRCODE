@@ -252,19 +252,20 @@ function App(props) {
                   <Route path="/admin/payrolls" element={<Payroll />} />
                   {/**RATES */}
                   <Route path="/admin/rates" element={<Rate />} />
-                  <Route path="/admin/rate/edit/:id" element={<EditRates />} />
+                  <Route path="/admin/rate/edit/:rateId" element={<EditRates />} />
                   <Route path="/admin/overtimes" element={<Overtime />} />
                   <Route path="/admin/deductions" element={<Deduction />} />
 
                   <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
-                  <Route path="/employee/details/:id" element={<EmployeePersonalDetails />} />
+                  <Route path="/employee/details/:employeeId" element={<EmployeePersonalDetails />} />
                   <Route path="/employee/archieve" element={<ArchiveEmployee />} />
                   <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                   <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                   <Route path="/department" element={<Department />} />
                   <Route path="/department/add" element={<AddDepartment />} />
-                  <Route path="/department/edit/:id" element={<EditDepartment />} />
+
+                  <Route path="/department/edit/:departmentId" element={<EditDepartment />} />
                   <Route path="/content" element={<Content />} />
                 </Routes>
               </>
