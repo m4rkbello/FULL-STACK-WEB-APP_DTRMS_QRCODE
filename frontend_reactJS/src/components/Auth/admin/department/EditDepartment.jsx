@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
@@ -18,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const EditDepartment = (props) => {
 
-    const { id } = useParams();
+    const { departmentId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,7 +47,7 @@ const EditDepartment = (props) => {
             editEmployeeDetailsDialog.close();
         }
     };
-
+//USE-STATE SETTER SA DATA!
     const [formDataUpdateDepartment, setFormDataUpdateDepartment] = useState({
         dept_name: '',
         dept_description: '',
@@ -67,18 +68,18 @@ const EditDepartment = (props) => {
             props.updateEmployee(id, formDataUpdateDepartment);
         } catch (error) {
             window.alert("ERROR");
-        };
+        }
     }
 
     const departmentCollectionArrays = props.departmentData?.departments?.data?.department;
     console.log("DATA", departmentCollectionArrays);
 
-    function departmentsDetails(departmentCollectionArrays, id) {
+    function departmentsDetails(departmentCollectionArrays, departmentId) {
         let item = [];
 
         if (departmentCollectionArrays) {
             for (let ez = 0; ez < departmentCollectionArrays.length; ez++) {
-                if (departmentCollectionArrays[ez].id == id) {
+                if (departmentCollectionArrays[ez].id == departmentId) {
                     item.push(departmentCollectionArrays[ez]);
                 }
             }
