@@ -14,7 +14,7 @@ import { fetchDepartments } from '../../redux/actions/departmentAction';
 //ICONS
 import { FaUpload } from "react-icons/fa6";
 
-import { FcFolder, FcOpenedFolder, FcPlus, FcOk,  FcSalesPerformance, FcSearch, FcCancel, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPlus, FcOk, FcSalesPerformance, FcSearch, FcCancel, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 import { IoMdCloseCircle } from "react-icons/io";
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 //TOASTER
@@ -29,7 +29,7 @@ const EmployeePersonalDetails = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [imageEmployee, setImageEmployee] = useState(null);
 
-     const defaultImage = '../../../../public/miming.jpg';
+    const defaultImage = '../../../../public/miming.jpg';
 
     // const employeeId = employeeId;
 
@@ -89,7 +89,7 @@ const EmployeePersonalDetails = (props) => {
             setIsLoading(false);
         }
     };
-    
+
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
 
@@ -136,7 +136,7 @@ const EmployeePersonalDetails = (props) => {
     }
 
     const departments = fetchDepartments(departmentsCollectionArrays);
- 
+
     //Display filter sa Department
     function getEmployeeDepartment(departmentsCollectionArrays, employee) {
         if (Array.isArray(departmentsCollectionArrays) && departmentsCollectionArrays.length > 0 && Array.isArray(employee) && employee.length > 0) {
@@ -146,37 +146,37 @@ const EmployeePersonalDetails = (props) => {
         }
         return [];
     }
-    
+
     const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
     console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFilteredData);
 
-    
+
     return (
         <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-        <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
-        <div className="flex items-center text-sm breadcrumbs">
-          <ul className="flex space-x-4">
-            <li>
-              <Link to="/" className='flex items-center hover:text-black'>
-                <FcPrevious style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Home</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/employee/dashboard" className='flex items-center hover:text-black'>
-                <FcFolder style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Employee Dashboard</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="" className='flex items-center hover:text-black'>
-                <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Data</span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
+            <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+                <div className="flex items-center text-sm breadcrumbs">
+                    <ul className="flex space-x-4">
+                        <li>
+                            <Link to="/" className='flex items-center hover:text-black'>
+                                <FcPrevious style={{ height: "2rem", width: "2rem" }} />
+                                <span className="ml-2">Home</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/employee/dashboard" className='flex items-center hover:text-black'>
+                                <FcFolder style={{ height: "2rem", width: "2rem" }} />
+                                <span className="ml-2">Employee Dashboard</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="" className='flex items-center hover:text-black'>
+                                <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                                <span className="ml-2">Data</span>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <ToastContainer />
 
             {isModalOpen && (
@@ -283,7 +283,7 @@ const EmployeePersonalDetails = (props) => {
                                             onChange={handleChangeUpdateData}
                                             className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                                             style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                            >
+                                        >
                                             {departments.map((item, index) => (
                                                 <option key={index} value={item.id}>
                                                     {item.department_name}
@@ -305,7 +305,7 @@ const EmployeePersonalDetails = (props) => {
                                                 className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
                                                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                 onChange={handleChangeUpdateData}
-                                                >
+                                            >
                                                 <option value="1">Active</option>
                                                 <option value="0">Inactive</option>
                                             </select>
@@ -315,30 +315,30 @@ const EmployeePersonalDetails = (props) => {
                                 <br />
 
                                 <div className="flex">
-                                <div className='mx-1'>
-                                  <button
-                                  type="submit"
-                                  className="btn glass hover:text-white hover:bg-indigo-400"
-                                  style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
-                                  >
-                                  <FcOk style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
-                                  </button>
-                                  </div>
+                                    <div className='mx-1'>
+                                        <button
+                                            type="submit"
+                                            className="btn glass hover:text-white hover:bg-indigo-400"
+                                            style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
+                                        >
+                                            <FcOk style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
+                                        </button>
+                                    </div>
 
-                                  <div className='mx-1'>
-                              
-                                      <button
-                                      className="btn glass hover:text-white hover:bg-indigo-400"
-                                      style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
-                                      >
-                                      <FcCancel onClick={handleCloseModal} style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
-                                    </button>
-                               
-                                  </div>
+                                    <div className='mx-1'>
+
+                                        <button
+                                            className="btn glass hover:text-white hover:bg-indigo-400"
+                                            style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
+                                        >
+                                            <FcCancel onClick={handleCloseModal} style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
+                                        </button>
+
+                                    </div>
                                 </div>
                             </form>
                         </div>
-               
+
                     </div>
                 </dialog>
             )}
@@ -383,7 +383,7 @@ const EmployeePersonalDetails = (props) => {
                                 ))
                             ) : (
                                 <div>
-                                {defaultImage}
+                                    {defaultImage}
                                 </div>
                             )}
 
@@ -512,14 +512,29 @@ const EmployeePersonalDetails = (props) => {
                                                 </select>
                                             ))}
                                         </div>
-                                        <br/>
-                                
-                                        
+                                        <br />
+
+                                        <div className="flex">
+                                            <div className='mx-1'>
+                                                <button
+                                                    type="submit"
+                                                    className="btn glass hover:text-white hover:bg-indigo-400"
+                                                    style={{
+
+                                                        color: "transparent", border: "none", backgroundColor: "transparent"
+                                                    }}
+                                                    onClick={handleOpenModal}
+                                                >
+                                                    <FcViewDetails
+                                                        onClick={() => document.getElementById('editEmployeeDetails').showModal()}
+                                                        style={{ height: "2rem", width: "2rem" }} />
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <button onClick={handleOpenModal}>
-                                        <FaUserEdit onClick={() => document.getElementById('editEmployeeDetails').showModal()} style={{ fontSize: "40px", color: "black", marginLeft: "-65%", marginBottom: "-100" }} />
-                                    </button>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
