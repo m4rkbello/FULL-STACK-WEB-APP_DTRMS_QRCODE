@@ -60,6 +60,13 @@ const EmployeePersonalDetails = (props) => {
         employee_status_id: ''
     });
 
+    useEffect(() => {
+        props.fetchEmployees();
+        props.fetchImages();
+        props.fetchDepartments();
+    }, []);
+
+
     const handleChangeUpdateData = (ez) => {
         setFormDataEmployeeUpdate({
             ...formDataEmployeeUpdate,
@@ -71,11 +78,17 @@ const EmployeePersonalDetails = (props) => {
         event.preventDefault();
         setIsLoading(true);
         try {
-            props.updateEmployee(id, formDataEmployeeUpdate);
+            await props.updateEmployee(employeeId, formDataEmployeeUpdate);
+            // Optionally, show a success message here
+            console.log("Employee data updated successfully");
         } catch (error) {
+            console.error("Error in updating employee:", error);
             window.alert("ERROR ANG PAGLABAY SA REDUX!");
+        } finally {
+            setIsLoading(false);
         }
     };
+    
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
 
@@ -104,7 +117,7 @@ const EmployeePersonalDetails = (props) => {
         if (imageEmployee) {
             const formData = new FormData();
             formData.append('employee_image', imageEmployee);
-            props.uploadAndUpdateImageEmployee(formData, id);
+            props.uploadAndUpdateImageEmployee(formData, employeeId);
         }
     };
 
@@ -135,12 +148,6 @@ const EmployeePersonalDetails = (props) => {
     
     const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
     console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFilteredData);
-
-    useEffect(() => {
-        props.fetchEmployees();
-        props.fetchImages();
-        props.fetchDepartments();
-    }, []);
 
     
     return (
@@ -174,7 +181,7 @@ const EmployeePersonalDetails = (props) => {
             {isModalOpen && (
                 <dialog id="editEmployeeDetails" className="modal border border-black">
                     <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
-                        <h3 className="font-bold text-3xl text-black">EDIT EMPLOYEE DETAILS</h3>
+                        <h3 className="font-bold text-3xl text-white">EDIT EMPLOYEE DETAILS</h3>
                         <div className="modal-action ">
                             <form method="dialog" onSubmit={handleSumbitEmployeeData}>
                                 <div className="grid grid-cols-3 gap-6 ">
@@ -189,7 +196,8 @@ const EmployeePersonalDetails = (props) => {
                                                 onChange={handleChangeUpdateData}
                                                 type="text"
                                                 placeholder="Enter a Fullname"
-                                                className="input input-bordered glass shadow-2xl text-2xl text-black border-1 border-glass shadow-lime-400/100"
+                                                className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
+                                                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                 defaultValue={item.employee_fullname}
                                             />
                                         ))}
@@ -206,7 +214,8 @@ const EmployeePersonalDetails = (props) => {
                                                 onChange={handleChangeUpdateData}
                                                 type="text"
                                                 placeholder="email"
-                                                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+                                                className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
+                                                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                 defaultValue={item.employee_email}
                                             />
                                         ))}
@@ -222,7 +231,8 @@ const EmployeePersonalDetails = (props) => {
                                                 name="employee_contact_no"
                                                 onChange={handleChangeUpdateData}
                                                 placeholder="contact number"
-                                                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+                                                className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
+                                                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                 defaultValue={item.employee_contact_no}
                                             />
                                         ))}
@@ -238,7 +248,8 @@ const EmployeePersonalDetails = (props) => {
                                                 name="employee_role"
                                                 onChange={handleChangeUpdateData}
                                                 placeholder="Role"
-                                                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+                                                className="input input-bordered shadow-2xl glass text-2xl text-white border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
+                                                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                 defaultValue={item.employee_role}
                                             />
                                         ))}
@@ -254,7 +265,8 @@ const EmployeePersonalDetails = (props) => {
                                                 name="employee_position"
                                                 onChange={handleChangeUpdateData}
                                                 placeholder="Position"
-                                                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass shadow-lime-400/40"
+                                                className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
+                                                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                 defaultValue={item.employee_position}
                                             />
                                         ))}
@@ -262,13 +274,14 @@ const EmployeePersonalDetails = (props) => {
 
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-white text-2xl">Department test</span>
+                                            <span className="label-text text-white text-2xl">Department</span>
                                         </label>
 
                                         <select
                                             name="employee_department_id"
                                             onChange={handleChangeUpdateData}
-                                            className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-lime-400/40"
+                                            className="input input-bordered shadow-2xl glass text-2xl text-white border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
+                                            style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                             >
                                             {departments.map((item, index) => (
                                                 <option key={index} value={item.id}>
@@ -288,8 +301,8 @@ const EmployeePersonalDetails = (props) => {
                                             <select
                                                 key={index}
                                                 name="employee_status_id"
-                                                className="select shadow-2xl text-2xl w-full glass max-w-xs shadow-lime-400/40"
-                                                style={{ backgroundColor: '', color: "black" }}
+                                                className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
+                                                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                 onChange={handleChangeUpdateData}
                                                 >
                                                 <option value="1">Active</option>
@@ -389,7 +402,7 @@ const EmployeePersonalDetails = (props) => {
                                                     key={index}
                                                     type="text"
                                                     placeholder="text"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-black text-glass"
+                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
                                                     defaultValue={item.employee_fullname}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
@@ -405,7 +418,7 @@ const EmployeePersonalDetails = (props) => {
                                                     key={index}
                                                     type="text"
                                                     placeholder="email"
-                                                    className="input input-bordered shadow-2xl text-2xl text-black"
+                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
                                                     defaultValue={item.employee_email}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
@@ -421,7 +434,7 @@ const EmployeePersonalDetails = (props) => {
                                                     key={index}
                                                     type="text"
                                                     placeholder="email"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
                                                     defaultValue={item.employee_contact_no}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
@@ -437,7 +450,7 @@ const EmployeePersonalDetails = (props) => {
                                                     key={index}
                                                     type="text"
                                                     placeholder="contact no"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-black text-black"
+                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
                                                     defaultValue={item.employee_role}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
@@ -453,7 +466,7 @@ const EmployeePersonalDetails = (props) => {
                                                     key={index}
                                                     type="text"
                                                     placeholder="contact no"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
                                                     defaultValue={item.employee_position}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
@@ -469,7 +482,7 @@ const EmployeePersonalDetails = (props) => {
                                                     key={index}
                                                     type="text"
                                                     placeholder="Department"
-                                                    className="input input-bordered shadow-2xl text-2xl bg-amber-100 text-black"
+                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
                                                     defaultValue={item.department_name}
                                                     style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                     disabled
@@ -483,15 +496,14 @@ const EmployeePersonalDetails = (props) => {
                                                 <span className="label-text text-black text-2xl">Status</span>
                                             </label>
                                             {employee && employee.map((item, index) => (
-                                                <select key={index} className="select shadow-2xl text-2xl w-full max-w-xs" style={{ backgroundColor: 'transparent', color: "black", border: "" }} disabled>
+                                                <select key={index} className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color" style={{ backgroundColor: 'transparent', color: "black", border: "" }} disabled>
                                                     <option value="Active" selected={item.employee_status === 1}>{item.employee_status === 1 ? 'Active' : 'Inactive'}</option>
                                                     <option value="Inactive" selected={item.employee_status === 0}>{item.employee_status === 0 ? 'Inactive' : 'Active'}</option>
                                                 </select>
                                             ))}
                                         </div>
                                         <br/>
-                                        <hr />
-                                        <br />
+                                
                                         
                                     </div>
                                     <button onClick={handleOpenModal}>
