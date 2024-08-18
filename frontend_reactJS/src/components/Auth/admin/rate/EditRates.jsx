@@ -49,38 +49,10 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
     try {
       await updateRate(rateId, formDataUpdateRate);
 
-      //   toast.success('Updated Successfully!👌👌👌', {
-      //     position: 'top-right',
-      //     autoClose: 3000,
-      //     hideProgressBar: false,
-      //     closeOnClick: true,
-      //     pauseOnHover: true,
-      //     draggable: true,
-      //     progress: undefined,
-      //     style: {
-      //         background: 'white',
-      //         color: 'green',
-      //         fontSize: '15px'
-      //     }
-      // });
 
     } catch (error) {
 
-      //   toast.error('Fill-up correctly! 🥺⚠️👽', {
-      //     position: 'top-right',
-      //     autoClose: 10000,
-      //     hideProgressBar: false,
-      //     closeOnClick: false,
-      //     pauseOnHover: false,
-      //     draggable: true,
-      //     progress: undefined,
-      //     style: {
-      //         background: 'black',
-      //         color: 'red',
-      //         fontSize: '15px'
-      //     }
-      // });
-
+console.log("DATA SA error",error);
     }
   };
 
@@ -115,7 +87,7 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
       </div>
 
       <div className='glass shadow-slate-900/100'>
-        <div className="grid grid-cols-3 items-center mt-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+        <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
           <div>
             <span className="inline-grid grid-cols-3 gap-4 py-5">
               <div className="p-3 flex justify-start">
@@ -142,7 +114,7 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
       </div>
 
       {loading ? (
-        <div className="flex flex-col gap-4 w-full m-30 max-w-5xl ps-2 pe-2">
+        <div className="flex flex-col gap-4 w-full m-30 max-w-5xl ps-2 pe-2 mt-30 mb-30">
           <div className="skeleton h-48 w-full"></div>
           <div className="skeleton h-6 w-36"></div>
           <div className="skeleton h-6 w-full"></div>
@@ -263,21 +235,23 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
           <br />
           <div className="flex">
           <div className='mx-1'>
-              <button
-                type="submit"
-                className="btn glass hover:text-white hover:bg-indigo-400"
-                style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
-              >
-                <FcOk style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
-              </button>
+            <button
+            type="submit"
+            className="btn glass hover:text-white hover:bg-indigo-400"
+            style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
+            >
+            <FcOk style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
+            </button>
             </div>
             <div className='mx-1'>
-              <button
+            <Link to="/admin/rates">
+                <button
                 className="btn glass hover:text-white hover:bg-indigo-400"
                 style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
-              >
+                >
                 <FcCancel style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
               </button>
+              </Link>
             </div>
           </div>
         </form>
