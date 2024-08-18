@@ -156,19 +156,19 @@ const EmployeePersonalDetails = (props) => {
         <div className="flex items-center text-sm breadcrumbs">
           <ul className="flex space-x-4">
             <li>
-              <Link to="/" className='flex items-center hover:text-white'>
+              <Link to="/" className='flex items-center hover:text-black'>
                 <FcPrevious style={{ height: "2rem", width: "2rem" }} />
                 <span className="ml-2">Home</span>
               </Link>
             </li>
             <li>
-              <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
+              <Link to="/employee/dashboard" className='flex items-center hover:text-black'>
                 <FcFolder style={{ height: "2rem", width: "2rem" }} />
                 <span className="ml-2">Rates</span>
               </Link>
             </li>
             <li>
-              <Link to="" className='flex items-center hover:text-white'>
+              <Link to="" className='flex items-center hover:text-black'>
                 <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
                 <span className="ml-2">Data</span>
               </Link>
@@ -181,13 +181,13 @@ const EmployeePersonalDetails = (props) => {
             {isModalOpen && (
                 <dialog id="editEmployeeDetails" className="modal border border-black">
                     <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
-                        <h3 className="font-bold text-3xl text-white">EDIT EMPLOYEE DETAILS</h3>
+                        <h3 className="font-bold text-3xl text-black">EDIT EMPLOYEE DETAILS</h3>
                         <div className="modal-action ">
                             <form method="dialog" onSubmit={handleSumbitEmployeeData}>
                                 <div className="grid grid-cols-3 gap-6 ">
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-white text-2xl">Fullname</span>
+                                            <span className="label-text text-black text-2xl">Fullname</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -205,7 +205,7 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-white text-2xl">Email</span>
+                                            <span className="label-text text-black text-2xl">Email</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -222,7 +222,7 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-white text-2xl">Contact No.</span>
+                                            <span className="label-text text-black text-2xl">Contact No.</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -239,7 +239,7 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-white text-2xl">Role</span>
+                                            <span className="label-text text-black text-2xl">Role</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -248,7 +248,7 @@ const EmployeePersonalDetails = (props) => {
                                                 name="employee_role"
                                                 onChange={handleChangeUpdateData}
                                                 placeholder="Role"
-                                                className="input input-bordered shadow-2xl glass text-2xl text-white border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
+                                                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                                                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                                 defaultValue={item.employee_role}
                                             />
@@ -256,7 +256,7 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-white text-2xl">Position</span>
+                                            <span className="label-text text-black text-2xl">Position</span>
                                         </label>
                                         {employee && employee.map((item, index) => (
                                             <input
@@ -274,13 +274,13 @@ const EmployeePersonalDetails = (props) => {
 
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-white text-2xl">Department</span>
+                                            <span className="label-text text-black text-2xl">Department</span>
                                         </label>
 
                                         <select
                                             name="employee_department_id"
                                             onChange={handleChangeUpdateData}
-                                            className="input input-bordered shadow-2xl glass text-2xl text-white border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
+                                            className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                                             style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                                             >
                                             {departments.map((item, index) => (
@@ -314,13 +314,13 @@ const EmployeePersonalDetails = (props) => {
                                 <br />
                                 <div className="flex">
                                     <div>
-                                        <button type="submit" className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                        <button type="submit" className="btn bg-black hover:text-black hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
                                             <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                                         </button>
                                     </div>
 
                                     <div>
-                                        <button onClick={handleCloseModal} className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
+                                        <button onClick={handleCloseModal} className="btn bg-black hover:text-black hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
                                             <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                                         </button>
 
