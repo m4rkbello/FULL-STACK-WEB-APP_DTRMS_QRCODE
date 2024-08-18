@@ -80,12 +80,21 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
         </div>
       </div>
 
+      <div className="flex ...">
+        <div className="flex-1 ...">01</div>
+        <div className="contents">
+          <div className="flex-1 ...">02</div>
+          <div className="flex-1 ...">03</div>
+        </div>
+        <div className="flex-1 ...">04</div>
+      </div>
+
       <div className="grid grid-cols-3 gap-6">
+
         <div className="form-control">
           <label className="label">
-            <span className="label-text text-black text-2xl">Fullname</span>
+            <span className="label-text text-black text-2xl">Rate Name</span>
           </label>
-
           <input
             type="text"
             placeholder="text"
@@ -98,70 +107,55 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
         </div>
 
         <div className="form-control">
-        <label className="label">
-          <span className="label-text text-black text-2xl">Fullname</span>
-        </label>
+          <label className="label">
+            <span className="label-text text-black text-2xl">Rate Amount</span>
+          </label>
 
-        <input
-          // key={index}
-          type="text"
-          placeholder="text"
-          className="input input-bordered shadow-2xl text-2xl bg-black text-glass"
-          // defaultValue={item.employee_fullname}
-          style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-          disabled
-        />
-      </div>
-
-      <div className="form-control">
-      <label className="label">
-        <span className="label-text text-black text-2xl">Fullname</span>
-      </label>
-
-      <input
-        // key={index}
-        type="text"
-        placeholder="text"
-        className="input input-bordered shadow-2xl text-2xl bg-black text-glass"
-        // defaultValue={item.employee_fullname}
-        style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-        disabled
-      />
-    </div>
-
-    <div className="form-control">
-    <label className="label">
-      <span className="label-text text-black text-2xl">Fullname</span>
-    </label>
-
-    <input
-      // key={index}
-      type="text"
-      placeholder="text"
-      className="input input-bordered shadow-2xl text-2xl bg-black text-glass"
-      // defaultValue={item.employee_fullname}
-      style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-      disabled
-    />
-  </div>
-
-
-      </div>
-
-
-
-
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Rate Name</label>
           <input
- 
+            type="text"
+            placeholder="text"
+            className="input input-bordered shadow-2xl text-2xl bg-black text-glass"
+            name="rate_amount_per_day"
+            value={formDataUpdateRate.rate_amount_per_day}
+            onChange={handleChange}
+            style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
           />
         </div>
-        {/* Other form fields */}
-        <button type="submit">Save</button>
-      </form>
+
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text text-black text-2xl">Rate  Details</span>
+          </label>
+          <input
+            type="text"
+            placeholder="text"
+            className="input input-bordered shadow-2xl text-2xl bg-black text-glass"
+            name="rate_details"
+            value={formDataUpdateRate.rate_details}
+            onChange={handleChange}
+            style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
+          />
+        </div>
+
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text text-black text-2xl">Rate Description</span>
+          </label>
+
+          <input
+            type="text"
+            placeholder="text"
+            className="input input-bordered shadow-2xl text-2xl bg-black text-glass"
+            name="rate_description"
+            value={formDataUpdateRate.rate_description}
+            onChange={handleChange}
+            style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
+          />
+        </div>
+
+
+        </div>
+      
     </div>
   );
 };
