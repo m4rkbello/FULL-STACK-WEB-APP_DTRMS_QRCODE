@@ -48,48 +48,48 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
     try {
       await updateRate(rateId, formDataUpdateRate);
 
-      toast.success('Updated Successfully!👌👌👌', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        style: {
-            background: 'white',
-            color: 'green',
-            fontSize: '15px'
-        }
-    });
+    //   toast.success('Updated Successfully!👌👌👌', {
+    //     position: 'top-right',
+    //     autoClose: 3000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     style: {
+    //         background: 'white',
+    //         color: 'green',
+    //         fontSize: '15px'
+    //     }
+    // });
 
     } catch (error) {
 
-      toast.error('Fill-up correctly! 🥺⚠️👽', {
-        position: 'top-right',
-        autoClose: 10000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        style: {
-            background: 'black',
-            color: 'red',
-            fontSize: '15px'
-        }
-    });
-    
+    //   toast.error('Fill-up correctly! 🥺⚠️👽', {
+    //     position: 'top-right',
+    //     autoClose: 10000,
+    //     hideProgressBar: false,
+    //     closeOnClick: false,
+    //     pauseOnHover: false,
+    //     draggable: true,
+    //     progress: undefined,
+    //     style: {
+    //         background: 'black',
+    //         color: 'red',
+    //         fontSize: '15px'
+    //     }
+    // });
+
     }
   };
 
-  if (loading || formDataUpdateRate === null) {
-    return <div>Loading...</div>;
-  }
+  // if (loading || formDataUpdateRate === null) {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (!formDataUpdateRate) {
-    return <p>No rate found for the provided ID.</p>;
-  }
+  // if (!formDataUpdateRate) {
+  //   return <p>No rate found for the provided ID.</p>;
+  // }
 
   const departmentsCollection = departmentData?.departments?.data?.details || [];
 
@@ -121,9 +121,35 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
         </div>
       </div>
 
-      <form onSubmit={handleSubmitUpdateRate}>
+      {loading ? (
+        <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
+        <div className="skeleton h-48 w-full"></div>
+        <div className="skeleton h-6 w-36"></div>
+        <div className="skeleton h-6 w-full"></div>
+        <div className="skeleton h-6 w-full"></div>
+      </div>
+    
+    ) : !formDataUpdateRate ? (
+        <div className="w-full max-w-5xl text-center text-lg font-semibold text-gray-500">
+        <div className="mockup-browser  border border-t-4 pb-10 pt-10">
+          <div className="mockup-browser-toolbar">
+            <div className="input text-black-400">https://markbello.com</div>
+          </div>
+          <div className="flex justify-center text-black px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+            <span
+              style={{ fontSize: '30px', fontWeight: 'Bolder' }}
+            >
+              <b>
+                AYAW NA PANGITAA ANG WALA! 
+            </b>
+            
+            </span>
+          </div>
+        </div>
+      </div>
+      ) : (
+        <form onSubmit={handleSubmitUpdateRate}>
         <div className="grid grid-cols-3 gap-6">
-
           <div className="form-control">
             <label className="label">
               <span className="label-text text-black text-2xl">Rate Name</span>
@@ -228,6 +254,7 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
           </div>
         </div>
       </form>
+      )}
     </div>
   );
 };
