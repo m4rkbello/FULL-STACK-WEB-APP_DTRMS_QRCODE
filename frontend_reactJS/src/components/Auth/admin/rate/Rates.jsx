@@ -26,7 +26,6 @@ const Rates = (props) => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const { rateId } = useParams;
-  console.log("DATA!",rateId);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,7 +71,7 @@ const Rates = (props) => {
 
   const getDepartmentNameById = (departmentId) => {
     const department = departmentsObjectDataCollection?.find(dept => dept.id === departmentId);
-    return department ? department.department_name : 'Unknown Department';
+    return department ? department.department_name : 'NO DEPARTMENT';
   };
 
   // Filter and paginate rates
@@ -89,15 +88,18 @@ const Rates = (props) => {
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
       <ToastContainer />
+          {/**modal sa addModal rate */}
       <AddRateModal
         isOpen={isAddRateDetailsModal}
         onClose={() => setIsAddRateDetailsModal(false)}
       />
+      {/**modal sa deactivate rate */}
       <DeactivateRateModal
         isOpen={isDeactivateRateModal}
         onClose={() => setIsDeactivateRateModal(false)}
         deactivateRate={confirmDeactivateRate}
       />
+
       <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
         <div className="flex items-center text-sm breadcrumbs">
           <ul className="flex space-x-4">
@@ -122,6 +124,7 @@ const Rates = (props) => {
           </ul>
         </div>
       </div>
+
       <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
         <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
           <div className='glass shadow-slate-900/100'>
