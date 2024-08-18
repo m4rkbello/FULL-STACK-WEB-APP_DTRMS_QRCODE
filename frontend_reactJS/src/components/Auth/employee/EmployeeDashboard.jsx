@@ -344,7 +344,7 @@ const EmployeeDashboard = (props) => {
             </dialog>
 
             <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
-                <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
+                <div className=" rounded-lg">
                     <div className="flex flex-wrap">
                         <div>
                             <div className="text-sm breadcrumbs mb-10 bg-transparent">
@@ -389,55 +389,56 @@ const EmployeeDashboard = (props) => {
                         </div>
                     </div>
 
+               
+
+
+                    <div className="h-auto max-h-full w-full max-w-full glass mx-auto p-4 from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
                     <div className='glass shadow-slate-900/100'>
-                        <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-                            <div>
-                                <span className="inline-grid grid-cols-3 gap-4 py-5">
-                                    <div className="p-3 flex justify-start">
-                                        <input
-                                            type="text"
-                                            placeholder="Search"
-                                            className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
-                                        />
-                                    </div>
-                                    <div className="p-3 flex justify-end">
-                                        <FcSearch style={{ height: "2rem", width: "2rem" }} />
-                                    </div>
-                                </span>
-                            </div>
-                            <div className="flex justify-center">
-                                <h1 className="font-bold text-4xl text-black text-center">EMPLOYEE DASHBOARD</h1>
-                            </div>
-                            <div className="p-3 flex justify-end">
-                                <FcPlus
-                                    onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                    style={{ height: "2rem", width: "2rem" }}
-                                />
-                                <DownloadTableExcel
-                                    filename="ExportEmployee"
-                                    sheet="users"
-                                    currentTableRef={tableRef.current}
-                                >
-                                    <button>
-                                        <FcDataSheet
-                                        style={{ height: "2rem", width: "2rem" }}
-                                        /></button>
-                                </DownloadTableExcel>
-                                <button onClick={printEmployeeDashboard}>
-                                    <FcPrint
+                    <div className="grid bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+                        <div>
+                            <span className="inline-grid grid-cols-3 gap-4 py-5">
+                                <div className="p-3 flex justify-start">
+                                    <input
+                                        type="text"
+                                        placeholder="Search"
+                                        className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
+                                    />
+                                </div>
+                                <div className="p-3 flex justify-end">
+                                    <FcSearch style={{ height: "2rem", width: "2rem" }} />
+                                </div>
+                            </span>
+                        </div>
+                        <div className="flex justify-center">
+                            <h1 className="font-bold text-4xl text-black text-center">EMPLOYEE DASHBOARD</h1>
+                        </div>
+                        <div className="p-3 flex justify-end">
+                            <FcPlus
+                                onClick={() => document.getElementById('addEmployeeModal').showModal()}
+                                style={{ height: "2rem", width: "2rem" }}
+                            />
+                            <DownloadTableExcel
+                                filename="ExportEmployee"
+                                sheet="users"
+                                currentTableRef={tableRef.current}
+                            >
+                                <button>
+                                    <FcDataSheet
                                     style={{ height: "2rem", width: "2rem" }}
                                     /></button>
-                            </div>
+                            </DownloadTableExcel>
+                            <button onClick={printEmployeeDashboard}>
+                                <FcPrint
+                                style={{ height: "2rem", width: "2rem" }}
+                                /></button>
                         </div>
                     </div>
+                </div>
 
-
-
-                    <div className="">
-                        <div className='p-0'>
+                    <div className='p-0 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>
                             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                                 <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-                                    <table id="employeesDataList" ref={tableRef} className="table glass border-2">
+                                    <table id="employeesDataList" ref={tableRef} className="table glass border-2 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                                         <thead className=" text-white">
                                             <tr className="md:table-row pb-5 pt-5" style={{ fontSize: "17px", backgroundColor: 'black', color: 'white' }}>
                                                 <th className="md:table-cell">Avatar</th>
