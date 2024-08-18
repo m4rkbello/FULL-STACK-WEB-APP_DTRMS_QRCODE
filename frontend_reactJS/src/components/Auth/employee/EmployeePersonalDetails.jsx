@@ -23,14 +23,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const EmployeePersonalDetails = (props) => {
-    const { id } = useParams();
+    const { employeeId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [imageEmployee, setImageEmployee] = useState(null);
 
      const defaultImage = '../../../../public/miming.jpg';
 
-    const empId = id;
+    // const employeeId = employeeId;
 
     //e-open ang modal
     const handleOpenModal = () => {
@@ -79,11 +79,11 @@ const EmployeePersonalDetails = (props) => {
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
 
-    function employeeDetails(employeesCollectionArrays, id) {
+    function employeeDetails(employeesCollectionArrays, employeeId) {
         let item = [];
         if (employeesCollectionArrays) {
             for (let ez = 0; ez < employeesCollectionArrays.length; ez++) {
-                if (employeesCollectionArrays[ez].id == id) {
+                if (employeesCollectionArrays[ez].id == employeeId) {
                     item.push(employeesCollectionArrays[ez]);
                 }
             }
@@ -91,7 +91,7 @@ const EmployeePersonalDetails = (props) => {
         return item;
     }
 
-    const employee = employeeDetails(employeesCollectionArrays, id);
+    const employee = employeeDetails(employeesCollectionArrays, employeeId);
 
     const employeeSpecific = employee;
 
