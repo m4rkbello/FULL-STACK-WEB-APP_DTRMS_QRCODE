@@ -68,7 +68,6 @@ export const updateRate = (rateId, updateRateData) => async dispatch => {
         const updateRateRequestAndResponse = await MarkBelloApi.put(`/api/rates/update/${rateId}`, updateRateData)
 
         if (!updateRateRequestAndResponse) {
-            // Handle the case where the response is empty
             toast.error('Fill-up correctly! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 10000,
@@ -83,8 +82,14 @@ export const updateRate = (rateId, updateRateData) => async dispatch => {
                     fontSize: '15px'
                 }
             });
+
+            
+            setTimeout(() => {
+                window.location.reload();
+              }, 3000);
+
+
         } else {
-            // Handle the case where the update is successful
             toast.success('Updated Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -105,6 +110,10 @@ export const updateRate = (rateId, updateRateData) => async dispatch => {
                 payload: updateRateRequestAndResponse
             
             });
+
+            setTimeout(() => {
+                window.location.reload();
+              }, 3000);
         }
     }catch (error){
         if (error.response && error.response.status !== 200 || error.response && error.response.status !== 201) {
@@ -151,7 +160,7 @@ export const deactivateRate = rateId => async dispatch => {
         if (deactivateRateRequestAndResponse.data.success !== true) {
             toast.error('Rate has not deactivated! 🥺⚠️👽', {
                 position: 'top-right',
-                autoClose: 3000,
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: false,
                 pauseOnHover: false,
@@ -160,10 +169,12 @@ export const deactivateRate = rateId => async dispatch => {
                 style: {
                     background: 'black',
                     color: 'red',
-                    fontSize: '15px'
+                    fontSize: '17px'
                 }
             });
+
         } else {
+
             toast.success('Rate deactivated Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -173,9 +184,9 @@ export const deactivateRate = rateId => async dispatch => {
                 draggable: false,
                 progress: undefined,
                 style: {
-                    background: 'white',
-                    color: 'green',
-                    fontSize: '15px'
+                    background: 'green',
+                    color: 'violet',
+                    fontSize: '17px'
                 }
             });
 
@@ -183,6 +194,7 @@ export const deactivateRate = rateId => async dispatch => {
                 type: DELETE_RATE_SUCCESS,
                 payload: deactivateRateRequestAndResponse,
             });
+
         }
             
     } catch (error) {
