@@ -73,7 +73,7 @@ const EmployeePersonalDetails = (props) => {
         try {
             props.updateEmployee(id, formDataEmployeeUpdate);
         } catch (error) {
-            window.alert("ERROR");
+            window.alert("ERROR ANG PAGLABAY SA REDUX!");
         }
     };
 
@@ -134,6 +134,7 @@ const EmployeePersonalDetails = (props) => {
     }
     
     const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
+    console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFilteredData);
 
     useEffect(() => {
         props.fetchEmployees();
@@ -143,32 +144,33 @@ const EmployeePersonalDetails = (props) => {
 
     
     return (
-        <div className="hero glass h-full max-h-full w-full max-w-full">
+        <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+        <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+        <div className="flex items-center text-sm breadcrumbs">
+          <ul className="flex space-x-4">
+            <li>
+              <Link to="/" className='flex items-center hover:text-white'>
+                <FcPrevious style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-2">Home</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
+                <FcFolder style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-2">Rates</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="" className='flex items-center hover:text-white'>
+                <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-2">Data</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
             <ToastContainer />
-            <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
-            <div className="flex items-center text-sm breadcrumbs">
-              <ul className="flex space-x-4">
-                <li>
-                  <Link to="/" className='flex items-center hover:text-white'>
-                    <FcPrevious style={{ height: "2rem", width: "2rem" }} />
-                    <span className="ml-2">Home</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
-                    <FcFolder style={{ height: "2rem", width: "2rem" }} />
-                    <span className="ml-2">Rates</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="" className='flex items-center hover:text-white'>
-                    <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-                    <span className="ml-2">Data</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
+
             {isModalOpen && (
                 <dialog id="editEmployeeDetails" className="modal border border-black">
                     <div className=" modal-box w-11/12 max-w-5xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border border-black">
@@ -260,7 +262,7 @@ const EmployeePersonalDetails = (props) => {
 
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text text-white text-2xl">Department</span>
+                                            <span className="label-text text-white text-2xl">Department test</span>
                                         </label>
 
                                         <select
@@ -308,6 +310,7 @@ const EmployeePersonalDetails = (props) => {
                                         <button onClick={handleCloseModal} className="btn bg-black hover:text-white hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
                                             <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
                                         </button>
+
                                     </div>
                                 </div>
                             </form>
@@ -332,12 +335,7 @@ const EmployeePersonalDetails = (props) => {
 
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
-                    <div className="hero glass h-full max-h-full w-full max-w-full rounded-t-lg rounded-b-lg shadow-lg">
-                        <button style={{ marginRight: "93%", marginBottom: "65%" }} >
-                            <Link to="/employee/dashboard">
-                                <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
-                            </Link>
-                        </button>
+                    <div className="h-auto max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
                         <div className="hero-content flex flex-col items-center">
                             {employee && employee.map((image, imageIndex) => (
                                 <img
@@ -464,9 +462,9 @@ const EmployeePersonalDetails = (props) => {
                                         </div>
                                         <div className="form-control">
                                             <label className="label">
-                                                <span className="label-text text-black text-2xl">Department BUG</span>
+                                                <span className="label-text text-black text-2xl">Department</span>
                                             </label>
-                                            {employeeDepartmentFilteredData && employee.map((item, index) => (
+                                            {employeeDepartmentFilteredData.map((item, index) => (
                                                 <input
                                                     key={index}
                                                     type="text"
