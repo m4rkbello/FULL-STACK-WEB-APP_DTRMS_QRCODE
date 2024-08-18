@@ -14,7 +14,7 @@ import { fetchDepartments } from '../../redux/actions/departmentAction';
 //ICONS
 import { FaUpload } from "react-icons/fa6";
 
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPlus, FcOk,  FcSalesPerformance, FcSearch, FcCancel, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 import { IoMdCloseCircle } from "react-icons/io";
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 //TOASTER
@@ -23,6 +23,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const EmployeePersonalDetails = (props) => {
+    //data sa employeee.id ang sa useParams
     const { employeeId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -164,7 +165,7 @@ const EmployeePersonalDetails = (props) => {
             <li>
               <Link to="/employee/dashboard" className='flex items-center hover:text-black'>
                 <FcFolder style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Rates</span>
+                <span className="ml-2">Employee Dashboard</span>
               </Link>
             </li>
             <li>
@@ -312,19 +313,28 @@ const EmployeePersonalDetails = (props) => {
                                     </div>
                                 </div>
                                 <br />
+
                                 <div className="flex">
-                                    <div>
-                                        <button type="submit" className="btn bg-black hover:text-black hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                            <FaSave style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
-                                        </button>
-                                    </div>
+                                <div className='mx-1'>
+                                  <button
+                                  type="submit"
+                                  className="btn glass hover:text-white hover:bg-indigo-400"
+                                  style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
+                                  >
+                                  <FcOk style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
+                                  </button>
+                                  </div>
 
-                                    <div>
-                                        <button onClick={handleCloseModal} className="btn bg-black hover:text-black hover:bg-indigo-400" style={{ fontSize: "40px", color: "black", border: "none" }} >
-                                            <IoMdCloseCircle style={{ fontSize: "25px", color: "", marginRight: "5px" }} className='text-lime-400 hover:text-black' />
-                                        </button>
-
-                                    </div>
+                                  <div className='mx-1'>
+                              
+                                      <button
+                                      className="btn glass hover:text-white hover:bg-indigo-400"
+                                      style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
+                                      >
+                                      <FcCancel onClick={handleCloseModal} style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
+                                    </button>
+                               
+                                  </div>
                                 </div>
                             </form>
                         </div>
