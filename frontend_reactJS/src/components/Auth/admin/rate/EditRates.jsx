@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 //ICONS
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcOk, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 //REDUXISM
 import { fetchRates, addRate, updateRate, deactivateRate, searchRates } from '../../../redux/actions/rateAction';
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
@@ -15,6 +15,7 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
   const { rateId } = useParams();  // Retrieve the rateId from the URL
   console.log("RATE ID GIKAN SA USE PARAMS!", rateId);
   console.log("DATA SA rates", ratesData);
+  console.log("DATA SA DEPARTMENT", departmentData);
 
   useEffect(() => {
     fetchRates();
@@ -40,9 +41,22 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmitUpdateRate = (e) => {
+
+  };
+
+  //e-update ang rate
+  const handleSubmitAddRateData = async (e) => {
     e.preventDefault();
-    updateRate(rateId, formDataUpdateRate);
+    try {
+      e.preventDefault();
+      await updateRate(rateId, formDataUpdateRate);
+      toast.success('Rate added successfully!');
+      onClose();
+    } catch (error) {
+      toast.error('Failed to add rate');
+      console.error('Failed to add rate', error);
+    }
   };
 
   if (loading) {
@@ -52,6 +66,9 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
   if (!formDataUpdateRate.rate_name) {
     return <p>No rate found for the provided ID.</p>;
   }
+
+  const departmentsCollection = departmentData?.departments?.data?.details || [];
+  console.log("DATA SA departments test101", departmentsCollection);
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
@@ -89,6 +106,7 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
         <div className="flex-1 ...">04</div>
       </div>
 
+      <form onSubmit={handleSubmitAddRateData}>
       <div className="grid grid-cols-3 gap-6">
 
         <div className="form-control">
@@ -153,8 +171,55 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
           />
         </div>
 
+      <div className="form-control">
+      <label className="label">
+        <span className="label-text text-black text-2xl">Rate Department</span>
+      </label>
+      <select
+        name="rate_department_id"
+        value={formDataUpdateRate.rate_department_id}  // Corrected here
+        onChange={handleChange}
+        className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
+      >
+        <option value="">Select Department</option>
+        {departmentsCollection.map((department) => (
+          <option key={department.id} value={department.id}>
+            {department.department_name}
+          </option>
+        ))}
+      </select>
+    </div>
 
+
+        <div className="form-control">
+        <label className="label">
+          <span className="label-text text-glass text-2xl">Rate Status</span>
+        </label>
+        <select
+          name="rate_status_id"
+          value={formDataUpdateRate.rate_status_id}
+          onChange={handleChange}
+          className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
+        >
+          <option value="1">Active</option>
+          <option value="0">Inactive</option>
+        </select>
+      </div>
+        
         </div>
+
+        <div className="flex">
+        <div>
+          <button
+            type="submit"
+            className="btn glass hover:text-white hover:bg-indigo-400"
+            style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
+          >
+            <FcOk type="submit" style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
+          </button>
+        </div>
+      </div>
+        </form>
       
     </div>
   );
@@ -162,7 +227,7 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
 
 const mapStateToProps = (state) => {
   return {
-    ratesData: state.rateState,  // Assuming rates are stored under rateState.rates
+    ratesData: state.rateState,
     loading: state.rateState.loading,
     departmentData: state.departmentState,
   };
