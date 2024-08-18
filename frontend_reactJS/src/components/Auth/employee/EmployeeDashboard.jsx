@@ -343,7 +343,7 @@ const EmployeeDashboard = (props) => {
                 </div>
             </dialog>
 
-            <div className="hero h-full max-h-full w-full max-w-full bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
+            <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
                 <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-lg">
                     <div className="flex flex-wrap">
                         <div>
@@ -389,32 +389,30 @@ const EmployeeDashboard = (props) => {
                         </div>
                     </div>
 
-                    <div className="flex flex-row">
-                        <div className="basis-1/2 flex justify-start">
-                            <span className="inline-grid grid-cols-2 gap-1">
-                                <span>
-                                    <input
-                                        type="text"
-                                        placeholder="Search Employee"
-                                        className="border-b-4 border-black rounded text-white"
-                                        style={{ backgroundColor: "transparent", color: "white" }}
-                                    />
+                    <div className='glass shadow-slate-900/100'>
+                        <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+                            <div>
+                                <span className="inline-grid grid-cols-3 gap-4 py-5">
+                                    <div className="p-3 flex justify-start">
+                                        <input
+                                            type="text"
+                                            placeholder="Search"
+                                            className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
+                                        />
+                                    </div>
+                                    <div className="p-3 flex justify-end">
+                                        <FcSearch style={{ height: "2rem", width: "2rem" }} />
+                                    </div>
                                 </span>
-                                <span>
-                                    <FcSearch
-                                        style={{
-                                            backgroundColor: "transparent",
-                                            color: "black",
-                                            height: "30px",
-                                            width: "30px",
-                                        }}
-                                    />
-                                </span>
-                            </span>
-                        </div>
-                        <div className="basis-1/4"></div>
-                        <div className="basis-1/4 flex justify-end mr-5">
-                            <div className='mx-4'>
+                            </div>
+                            <div className="flex justify-center">
+                                <h1 className="font-bold text-4xl text-black text-center">EMPLOYEE DASHBOARD</h1>
+                            </div>
+                            <div className="p-3 flex justify-end">
+                                <FcPlus
+                                    onClick={() => document.getElementById('addEmployeeModal').showModal()}
+                                    style={{ height: "2rem", width: "2rem" }}
+                                />
                                 <DownloadTableExcel
                                     filename="ExportEmployee"
                                     sheet="users"
@@ -422,47 +420,19 @@ const EmployeeDashboard = (props) => {
                                 >
                                     <button>
                                         <FcDataSheet
-                                            style={{
-                                                height: "200%",
-                                                width: "200%",
-                                            }}
+                                        style={{ height: "2rem", width: "2rem" }}
                                         /></button>
                                 </DownloadTableExcel>
-                            </div>
-                            <div className='mx-2'>
                                 <button onClick={printEmployeeDashboard}>
                                     <FcPrint
-                                        style={{
-                                            height: "200%",
-                                            width: "200%",
-                                        }}
+                                    style={{ height: "2rem", width: "2rem" }}
                                     /></button>
                             </div>
-
                         </div>
                     </div>
-                    <span className="text-3xl font-black">
-                        <center>
-                            <div className='pb-5 pt-5 glass'>
-                                EMPLOYEE DASHBOARD
-                                <UserPlus
-                                    onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                    style={{
-                                        fontSize: "50px",
-                                        color: "black",
-                                        marginLeft: "92%",
-                                        marginRight: "0%",
-                                        marginBottom: "0%",
-                                        marginTop: "-4%",
-                                        paddingTop: '0',
-                                        paddingLeft: '0',
-                                        paddingRight: '0',
-                                        paddingBottom: '0',
-                                    }}
-                                />
-                            </div>
-                        </center>
-                    </span>
+
+
+
                     <div className="">
                         <div className='p-0'>
                             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
@@ -489,7 +459,6 @@ const EmployeeDashboard = (props) => {
                                                             <div className="flex items-center">
                                                                 <div className="avatar hover:box-content">
                                                                     <img src={item.employee_image || defaultImage} alt={`Employee ${item.employee_name}`} />
-
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -502,19 +471,10 @@ const EmployeeDashboard = (props) => {
                                                         <td className="md:table-cell">
                                                             {item.employee_status === 1 ?
                                                                 <FcCheckmark
-                                                                    style={{
-                                                                        height: "50%",
-                                                                        width: "50%",
-                                                                        marginTop: "20px",
-                                                                    }}
+                                                                style={{ height: "2rem", width: "2rem" }}
                                                                 />
                                                                 : <FcCancel
-                                                                    style={{
-                                                                        height: "50%",
-                                                                        width: "50%",
-                                                                        margin: "0%",
-                                                                        padding: "0%"
-                                                                    }}
+                                                                style={{ height: "2rem", width: "2rem" }}
                                                                 />
                                                             }
                                                         </td>
@@ -523,20 +483,13 @@ const EmployeeDashboard = (props) => {
                                                                 <div className="flex-none mr-3">
                                                                     <Link to={`/employee/details/${item.id}`} className="text-black">
                                                                         <FcViewDetails
-                                                                            style={{
-                                                                                height: "200%",
-                                                                                width: "200%",
-                                                                            }}
+                                                                        style={{ height: "2rem", width: "2rem" }}
                                                                         />
                                                                     </Link>
                                                                 </div>
                                                                 <div className="flex-none mr-3">
                                                                     <FcEmptyTrash
-                                                                        style={{
-                                                                            height: "200%",
-                                                                            width: "200%",
-                                                                        }}
-
+                                                                    style={{ height: "2rem", width: "2rem" }}
                                                                         onClick={() => {
                                                                             setDeactivateEmployeeId(item.id);
                                                                             document.getElementById('removeEmployee').showModal()
