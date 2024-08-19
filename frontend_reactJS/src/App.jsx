@@ -358,7 +358,6 @@ function App(props) {
                       </Link>
                     </li>
 
-                    
                     <li>
                     <Link to="/department" className='text-2xl glass'>
                       <FcDepartment
