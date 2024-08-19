@@ -11,7 +11,7 @@ import { TiUserAddOutline } from "react-icons/ti";
 import { FaUserTie } from "react-icons/fa6";
 import { AiFillSetting } from "react-icons/ai";
 import { FaRunning } from "react-icons/fa";
-import { FcDoughnutChart, FcOpenedFolder, FcHome, FcManager, FcElectricalThreshold, FcComboChart, FcList, FcSettings, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcPortraitMode, FcSalesPerformance } from "react-icons/fc";
+import { FcDoughnutChart, FcOpenedFolder, FcHome, FcTimeline, FcMenu,FcButtingIn, FcStatistics, FcManager, FcElectricalThreshold, FcComboChart, FcList, FcSettings, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcPortraitMode, FcSalesPerformance } from "react-icons/fc";
 //LAYOUTS
 import Content from './components/layouts/Content';
 import Footer from './components/layouts/Footer';
@@ -100,7 +100,7 @@ function App(props) {
       for (let ez = 0; ez < usersCollection.length; ez++) {
         if (usersCollection[ez].id == sessionStorageHasUserIdData && usersCollection[ez].id == localStorageHasUserIdData) {
           item.push(usersCollection[ez]);
-        } 
+        }
       }
     }
     return item;
@@ -246,7 +246,7 @@ function App(props) {
             (
               <>
                 <Routes>
-                <Route path="/" element={<Dashboard />} />
+                  <Route path="/" element={<Dashboard />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/admin/users" element={<UserDashboard />} />
                   <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
@@ -283,237 +283,326 @@ function App(props) {
 
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
-          <div className="drawer-side border-r-4 glass border-black">
-            <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu w-80 min-h-full glass">
-
-            <li>
-            <details close>
-              <summary>
-              <FcDoughnutChart 
-              style={{ 
-                height: "2.5rem",
-                width: "2.5rem",
-    
-              }} 
-                  />
-                  <span className='text-2xl'>
-                  DASHBOARD
-                  </span>
-              </summary>
-              <ul>
-              <li>
-              <Link to="/" className='text-2xl glass'>
-                <FcComboChart
-                  style={{ 
-                    height: "2rem",
-                    width: "2rem",
-                  }} 
-                />
-                <span className='text-lg'>
-                  ANALYTICS&MONITORING
-                </span>
-              </Link>
-            </li>
+            <div className="drawer-side border-r-4 glass border-black">
+              <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+              <ul className="menu w-80 min-h-full glass">
 
                 <li>
+                  <details close>
+                    <summary>
+                      <FcTimeline
+                        style={{
+                          height: "2.5rem",
+                          width: "2.5rem",
+
+                        }}
+                      />
+                      <span className='text-2xl'>
+                        MAIN
+                      </span>
+                    </summary>
+                    <ul>
+                      <li>
+                        <Link to="/" className='text-2xl glass'>
+                          <FcComboChart
+                            style={{
+                              height: "2rem",
+                              width: "2rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            ANALYTICS&MONITORING
+                          </span>
+                        </Link>
+                      </li>
+
+                      <li>
+                        <Link to="/employee/attendance" className='text-2xl glass'>
+                          <FcStatistics
+                            style={{
+                              height: "2rem",
+                              width: "2rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            ATTENDANCE LIST
+                          </span>
+                        </Link>
+                      </li>
+
+                      <li>
+                        <a>
+                          <FcButtingIn
+                            style={{
+                              height: "2rem",
+                              width: "2rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            EMPLOYEES LIST
+                          </span>
+                        </a>
+                      </li>
+
+                      <li>
+                      <a>
+                        <FcList
+                          style={{
+                            height: "2rem",
+                            width: "2rem",
+                          }}
+                        />
+                        <span className='text-lg'>
+                          EMPLOYEES ARCHIEVE
+                        </span>
+                      </a>
+                    </li>
+
+                    
+                    <li>
+                    <a>
+                      <FcList
+                        style={{
+                          height: "2rem",
+                          width: "2rem",
+                        }}
+                      />
+                      <span className='text-lg'>
+                        DEPARTMENTS
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
                   <a>
-                  <FcList 
-                  style={{ 
-                    height: "2.5rem",
-                    width: "2.5rem",
-                 
-                  }} 
-                  />
-                  <span className='text-2xl'>
-                  USER LIST
-                  </span>
+                    <FcList
+                      style={{
+                        height: "2rem",
+                        width: "2rem",
+                      }}
+                    />
+                    <span className='text-lg'>
+                     PAYROLLS
+                    </span>
                   </a>
                 </li>
+
                 <li>
                 <a>
-                <FcList 
-                style={{ 
-                  height: "2.5rem",
-                  width: "2.5rem",
-               
-                }} 
-                />
-                <span className='text-2xl'>
-                USERS TYPE
-                </span>
+                  <FcList
+                    style={{
+                      height: "2rem",
+                      width: "2rem",
+                    }}
+                  />
+                  <span className='text-lg'>
+                   RATES
+                  </span>
                 </a>
               </li>
-        
-              </ul>
-            </details>
-            </li>
 
               <li>
-                <Link to="/" className='text-2xl glass'>
-                  <FcDoughnutChart 
-                    style={{ 
-                      height: "120%",
-                      width: "120%",
-                    }} 
-                  />
-                  DASHBOARD
-                </Link>
-              </li>
-              <li>
-                <Link to="/employee/attendance" className='text-2xl glass'>
-                  <FcElectricalThreshold
-                    style={{ 
-                      height: "120%",
-                      width: "120%",
-                    }} 
-                  />
-                  ATTENDANCE
-                </Link>
-              </li>
-              <li>
-                <Link to="/employee/dashboard" className='text-2xl glass'>
-                  <FcConferenceCall
-                    style={{ 
-                      height: "120%",
-                      width: "120%",
-                    }} 
-                  />
-                  EMPLOYEES
-                </Link>
-              </li>
-              <li>
-                <Link to="/employee/archieve" className='text-2xl glass'>
-                  <FcReuse
-                    style={{ 
-                      height: "120%",
-                      width: "120%",
-                    }} 
-                  />
-                  EMPLOYEES ARCH.
-                </Link>
-              </li>
-              <li>
-                <Link to="/department" className='text-2xl glass'>
-                  <FcDepartment
-                    style={{ 
-                      height: "120%",
-                      width: "120%",
-                    }} 
-                  />
-                  DEPARTMENTS
-                </Link>
-              </li>
-              <li>
-                <Link to="/admin/payrolls" className='text-2xl glass'>
-                  <FcMoneyTransfer
-                    style={{ 
-                      height: "120%",
-                      width: "120%",
-                    }} 
-                  />
-                  PAYROLLS
-                </Link>
-              </li>
-              <li>
-                <Link to="/admin/rates" className='text-2xl glass'>
-                  <FcSalesPerformance
-                    style={{ 
-                      height: "120%",
-                      width: "120%",
-                    }} 
-                  />
-                  RATES
-                </Link>
-              </li>
-              <li>
-                <Link to="/admin/overtimes" className='text-2xl glass'>
-                  <FcOvertime
-                    style={{ 
-                      height: "120%",
-                      width: "120%",
-                    }} 
-                  />
-                  OVERTIMES
-                </Link>
-              </li>
-              <li>
-                <Link to="/admin/deductions" className='text-2xl glass'>
-                  <FcDebt
-                    style={{ 
-                      height: "120%",
-                      width: "120%",
-                    }} 
-                  />
-                  DEDUCTIONS
-                </Link>
-              </li>
+              <a>
+                <FcList
+                  style={{
+                    height: "2rem",
+                    width: "2rem",
+                  }}
+                />
+                <span className='text-lg'>
+                 OVERTIMES
+                </span>
+              </a>
+            </li> 
 
-              <li>
-              <details close>
-                <summary>
-                <FcSettings 
-                style={{ 
-                  height: "2.5rem",
-                  width: "2.5rem",
-          
-                }} 
-                    />
-                    <span className='text-2xl'>
-                    MANAGE USERS
-                    </span>
-                </summary>
-                <ul>
-                  <li>
-                    <a>
-                    <FcManager
-                    style={{ 
-                      height: "2.5rem",
-                      width: "2.5rem",
-                
-                    }} 
-                    />
-                    <span className='text-2xl'>
-                    USER
-                    </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                    <FcList 
-                    style={{ 
-                      height: "2.5rem",
-                      width: "2.5rem",
-                   
-                    }} 
-                    />
-                    <span className='text-2xl'>
-                    USER LIST
-                    </span>
-                    </a>
-                  </li>
-                  <li>
-                  <a>
-                  <FcList 
-                  style={{ 
-                    height: "2.5rem",
-                    width: "2.5rem",
-                 
-                  }} 
-                  />
-                  <span className='text-2xl'>
-                  USERS TYPE
-                  </span>
-                  </a>
+            <li>
+            <a>
+              <FcList
+                style={{
+                  height: "2rem",
+                  width: "2rem",
+                }}
+              />
+              <span className='text-lg'>
+               DEDUCTIONS
+              </span>
+            </a>
+          </li>
+
+
+
+
+
+
+                    </ul>
+                  </details>
                 </li>
-          
-                </ul>
-              </details>
-              </li>
-            </ul>
-          </div>
-        </>
-        
+
+                <li>
+                  <Link to="/" className='text-2xl glass'>
+                    <FcDoughnutChart
+                      style={{
+                        height: "120%",
+                        width: "120%",
+                      }}
+                    />
+                    DASHBOARD
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/employee/attendance" className='text-2xl glass'>
+                    <FcElectricalThreshold
+                      style={{
+                        height: "120%",
+                        width: "120%",
+                      }}
+                    />
+                    ATTENDANCE
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/employee/dashboard" className='text-2xl glass'>
+                    <FcConferenceCall
+                      style={{
+                        height: "120%",
+                        width: "120%",
+                      }}
+                    />
+                    EMPLOYEES
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/employee/archieve" className='text-2xl glass'>
+                    <FcReuse
+                      style={{
+                        height: "120%",
+                        width: "120%",
+                      }}
+                    />
+                    EMPLOYEES ARCH.
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/department" className='text-2xl glass'>
+                    <FcDepartment
+                      style={{
+                        height: "120%",
+                        width: "120%",
+                      }}
+                    />
+                    DEPARTMENTS
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/admin/payrolls" className='text-2xl glass'>
+                    <FcMoneyTransfer
+                      style={{
+                        height: "120%",
+                        width: "120%",
+                      }}
+                    />
+                    PAYROLLS
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/admin/rates" className='text-2xl glass'>
+                    <FcSalesPerformance
+                      style={{
+                        height: "120%",
+                        width: "120%",
+                      }}
+                    />
+                    RATES
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/admin/overtimes" className='text-2xl glass'>
+                    <FcOvertime
+                      style={{
+                        height: "120%",
+                        width: "120%",
+                      }}
+                    />
+                    OVERTIMES
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/admin/deductions" className='text-2xl glass'>
+                    <FcDebt
+                      style={{
+                        height: "120%",
+                        width: "120%",
+                      }}
+                    />
+                    DEDUCTIONS
+                  </Link>
+                </li>
+
+                <li>
+                  <details close>
+                    <summary>
+                      <FcSettings
+                        style={{
+                          height: "2.5rem",
+                          width: "2.5rem",
+
+                        }}
+                      />
+                      <span className='text-2xl'>
+                        MANAGE USERS
+                      </span>
+                    </summary>
+                    <ul>
+                      <li>
+                        <a>
+                          <FcManager
+                            style={{
+                              height: "2.5rem",
+                              width: "2.5rem",
+
+                            }}
+                          />
+                          <span className='text-2xl'>
+                            USER
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a>
+                          <FcList
+                            style={{
+                              height: "2.5rem",
+                              width: "2.5rem",
+
+                            }}
+                          />
+                          <span className='text-2xl'>
+                            USER LIST
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a>
+                          <FcList
+                            style={{
+                              height: "2.5rem",
+                              width: "2.5rem",
+
+                            }}
+                          />
+                          <span className='text-2xl'>
+                            USERS TYPE
+                          </span>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </>
+
         ) : (
           <>
 
