@@ -12,8 +12,6 @@ import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 //ICONS
 import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
-//REDUXISM
-
 //TOASTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
