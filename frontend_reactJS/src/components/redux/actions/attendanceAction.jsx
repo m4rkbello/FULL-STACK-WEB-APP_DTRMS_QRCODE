@@ -1,22 +1,7 @@
+/* eslint-disable no-unused-vars */
 import MarkBelloApi from '../../../services/Api.jsx';
 // import { toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-
-import {
-    FETCH_EMPLOYEES_REQUEST,
-    FETCH_EMPLOYEES_SUCCESS,
-    FETCH_EMPLOYEES_FAILURE,
-    ADD_EMPLOYEE_REQUEST,
-    ADD_EMPLOYEE_SUCCESS,
-    ADD_EMPLOYEE_FAILURE,
-    UPDATE_EMPLOYEE_REQUEST,
-    UPDATE_EMPLOYEE_SUCCESS,
-    UPDATE_EMPLOYEE_FAILURE,
-    DELETE_EMPLOYEE_REQUEST,
-    DELETE_EMPLOYEE_SUCCESS,
-    DELETE_EMPLOYEE_FAILURE,
-} from '../types/employeeTypes.jsx';
-
 import {
     FETCH_ATTENDANCES_REQUEST,
     FETCH_ATTENDANCES_SUCCESS,
