@@ -48,11 +48,8 @@ const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDep
     e.preventDefault();
     try {
       await updateRate(rateId, formDataUpdateRate);
-
-
     } catch (error) {
-
-console.log("DATA SA error",error);
+      console.log("DATA SA error handleSubmitUpdateRate",error);
     }
   };
 
