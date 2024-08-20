@@ -8,7 +8,6 @@ import { Link, useParams } from 'react-router-dom';
 import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 //REDUXISM
 import { fetchAttendances } from '../../redux/actions/attendanceAction';
-
 //TOASTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
