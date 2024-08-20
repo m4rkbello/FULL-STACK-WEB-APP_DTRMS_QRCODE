@@ -121,7 +121,6 @@ const Dashboard = (props) => {
   }
 
   const resultCountAllPayrollsPopulation = countAllPayrollsPopulations(payrollsDataObjectCollection);
-
   const attendanceDataObjectCollection = props?.attendancesData?.attendances?.data?.details;
   function countAllAttendancesPopulations(attendanceDataObjectCollection) {
     let items = [];
@@ -137,7 +136,6 @@ const Dashboard = (props) => {
       count: items.length
     };
   }
-
   const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attendanceDataObjectCollection);
 
   const deductionDataObjectCollection = props?.deductionsData?.deductions?.data?.details;
