@@ -111,7 +111,7 @@ function App(props) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="navbar bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  px-4 py-2 md:px-8 md:py-4  border-r-4 border-black">
+      <div className="navbar bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 px-4 py-2 md:px-8 md:py-4 border-r-4 border-black">
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
             <div className="flex-none">
@@ -131,8 +131,8 @@ function App(props) {
                 </svg>
               </label>
             </div>
-            <div className="flex-1">
-              <span className="btn btn-ghost text-2xl text-black">Welcome!
+            <div className="flex-1 text-center md:text-left">
+              <span className="btn btn-ghost text-xl md:text-2xl text-black">Welcome!
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <span className='text-2xl' key={index}>
                     {user.user_email}
@@ -241,7 +241,7 @@ function App(props) {
 
       <div className="drawer lg:drawer-open flex-1">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center px-4 py-4 md:px-4 md:py-4">
+        <div className="drawer-content flex flex-col items-center justify-center px-4 py-4 md:px-8 md:py-8">
           {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ?
             (
               <>
@@ -285,7 +285,7 @@ function App(props) {
           <>
             <div className="drawer-side border-r-4 glass border-black">
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-              <ul className="menu w-80 min-h-full glass">
+              <ul className="menu w-64 md:w-80 min-h-full glass">
 
                 <li>
                   <details close>
