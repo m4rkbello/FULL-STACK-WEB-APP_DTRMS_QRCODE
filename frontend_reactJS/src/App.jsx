@@ -602,7 +602,6 @@ function App(props) {
               </ul>
             </div>
           </>
-
         ) : (
           <>
 
