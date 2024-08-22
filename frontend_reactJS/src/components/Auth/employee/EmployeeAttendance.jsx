@@ -12,14 +12,15 @@ import { fetchAttendances } from '../../redux/actions/attendanceAction';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //ANALYTICS
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { Bar, PolarArea, Doughnut } from 'react-chartjs-2';
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
+import { Bar, PolarArea, Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend, RadialLinearScale } from 'chart.js';
+
+// Register all the necessary components
+ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend, RadialLinearScale);
 
 const EmployeeAttendance = ({ fetchAttendances, attendancesData, loading, }) => {
   console.log("DATA SA attendancesData", attendancesData);
-
 
   useEffect(() => {
     fetchAttendances();
