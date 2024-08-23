@@ -587,7 +587,6 @@ function App(props) {
                             style={{
                               height: "2.5rem",
                               width: "2.5rem",
-
                             }}
                           />
                           <span className='text-2xl'>
