@@ -72,7 +72,7 @@ const Overtime = (props) => {
               <Link to="/admin/overtimes" className='flex items-center hover:text-white'>
                 <FcFolder
                   style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Rates</span>
+                <span className="ml-2">Overtimes</span>
               </Link>
             </li>
             <li>
