@@ -204,7 +204,7 @@ const Overtime = (props) => {
                           <td className="md:table-cell">{item.overtime_description}</td>
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-2">
-                              <Link to={`/admin/edit/edit/${item.id}`}>
+                              <Link to={`/admin/overtime/edit/${item.id}`}>
                                 <FcViewDetails
                                   style={{ height: "2rem", width: "2rem" }}
                                 />
