@@ -18,6 +18,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Rates = (props) => {
+  console.log("DATA NESTED PROPS", props);
   const [isAddRateDetailsModal, setIsAddRateDetailsModal] = useState(false);
   const [isDeactivateRateModal, setIsDeactivateRateModal] = useState(false);
   const [selectedRateId, setSelectedRateId] = useState(null);
