@@ -67,14 +67,6 @@ const Rates = (props) => {
     setCurrentPage(pageNumber);
   };
 
-  // Get department data
-  const departmentsObjectDataCollection = props.departmentData?.departments?.data?.details;
-
-  const getDepartmentNameById = (departmentId) => {
-    const department = departmentsObjectDataCollection?.find(dept => dept.id === departmentId);
-    return department ? department.department_name : 'NO DEPARTMENT';
-  };
-
   // Filter and paginate rates
   const filteredRates = props.ratesData?.rates.filter(rate =>
     rate.rate_name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -85,6 +77,13 @@ const Rates = (props) => {
   const currentRates = filteredRates?.slice(indexOfFirstRate, indexOfLastRate);
 
   const totalPages = Math.ceil(filteredRates.length / itemsPerPage);
+
+ // Get department datas
+ const departmentsObjectDataCollection = props.departmentData?.departments?.data?.details;
+ const getDepartmentNameById = (departmentId) => {
+   const department = departmentsObjectDataCollection?.find(dept => dept.id === departmentId);
+   return department ? department.department_name : 'NO DEPARTMENT';
+ };
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
