@@ -40,17 +40,17 @@ export const fetchOvertimes = () => async dispatch => {
 
 //MAG ADD UG DATA SA OVERTIMES TABLE PASA SA ENDPOINT
 export const addOvertime = AddOvertimeData => async dispatch => {
-    try{
-        dispatch({type: ADD_OVERTIME_REQUEST});
+    try {
+        dispatch({ type: ADD_OVERTIME_REQUEST });
 
         const AddOvertimesRequestResponseData = await MarkBelloApi.post('/api/overtimes/add', AddOvertimeData);
 
         dispatch({
-            type: ADD_OVERTIME_SUCCESS, 
+            type: ADD_OVERTIME_SUCCESS,
             payload: AddOvertimesRequestResponseData
         })
 
-    }catch (error){
+    } catch (error) {
 
         dispatch({
             type: ADD_OVERTIME_FAILURE,
@@ -62,7 +62,7 @@ export const addOvertime = AddOvertimeData => async dispatch => {
 
 //MAG UPDATE UG OVERTIME GAMIT ID NA GIKAN SA PROPS OR DESTRUCTURING SA REACT
 export const updateOvertime = (overtimeId, updateOvertimeData) => async dispatch => {
-    try{
+    try {
         dispatch({ type: UPDATE_OVERTIME_REQUEST });
         //DATA VARIABLE NA NAGGUNIT UG RESPONSE UG REQUEST
         const updateOvertimesRequestAndResponseData = await MarkBelloApi.put(`/api/overtimes/update/item/${overtimeId}`, updateOvertimeData)
@@ -101,14 +101,14 @@ export const updateOvertime = (overtimeId, updateOvertimeData) => async dispatch
                 }
             });
 
-            dispatch({ 
+            dispatch({
                 type: UPDATE_OVERTIME_SUCCESS,
                 payload: updateOvertimesRequestAndResponseData
-            
+
             });
         }
 
-    }catch (error){
+    } catch (error) {
 
         if (error.response && error.response.status !== 200 || error.response && error.response.status !== 201) {
             // Handle the case where the server returns a 500 error
@@ -129,7 +129,7 @@ export const updateOvertime = (overtimeId, updateOvertimeData) => async dispatch
 
             setTimeout(() => {
                 window.location.reload();
-              }, 3000)
+            }, 3000)
 
         } else {
             // Handle other types of errors
@@ -143,33 +143,17 @@ export const updateOvertime = (overtimeId, updateOvertimeData) => async dispatch
 };
 
 //DEACTIVATE OVERTIMES GAMIT ID
-export const deactivateOvertime = overtimeId => async dispatch => {
-    try{
+export const deactivateOvertime = (overtimeId) => async (dispatch) => {
+    try {
         dispatch({
             type: DELETE_OVERTIME_REQUEST,
         });
 
         const deactivateOvertimeRequestAndResponseData = await MarkBelloApi.put(`/api/overtimes/deactivate/${overtimeId}`);
 
-        if (deactivateOvertimeRequestAndResponseData.success != true) {
-            // Handle the case where the response is empty
-            toast.error('Overtime item has not deactivated! 🥺⚠️👽', {
-                position: 'top-right',
-                autoClose: 10000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                style: {
-                    background: 'black',
-                    color: 'red',
-                    fontSize: '15px'
-                }
-            });
-        } else {
+        if (deactivateOvertimeRequestAndResponseData.data.success === true) {
             // Handle the case where the update is successful
-            toast.success('Overtime item has been deactivated Successfully!👌👌👌', {
+            toast.success('Overtime item has been deactivated successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -180,8 +164,24 @@ export const deactivateOvertime = overtimeId => async dispatch => {
                 style: {
                     background: 'white',
                     color: 'green',
-                    fontSize: '15px'
-                }
+                    fontSize: '15px',
+                },
+            });
+        } else {
+            // Handle the case where the response indicates failure
+            toast.error('Overtime item has not been deactivated! 🥺⚠️👽', {
+                position: 'top-right',
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '15px',
+                },
             });
 
             dispatch({
@@ -189,16 +189,15 @@ export const deactivateOvertime = overtimeId => async dispatch => {
                 payload: deactivateOvertimeRequestAndResponseData,
             });
         }
-            
-    }catch (error){
+    } catch (error) {
 
         dispatch({
             type: DELETE_OVERTIME_FAILURE,
-            payload: error.message
+            payload: error.message,
         });
-
     }
 };
+
 
 //SEARCH OVERTIME - Action to search overtime
 export const searchOvertimes = searchQuery => async dispatch => {
