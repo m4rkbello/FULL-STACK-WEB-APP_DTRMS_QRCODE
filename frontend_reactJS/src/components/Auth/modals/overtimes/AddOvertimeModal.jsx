@@ -37,12 +37,13 @@ const AddOvertimeModal = ({ isOpen, onClose, addOvertime, overtimeData }) => {
   const handleSubmitAddOvertimeData = async (e) => {
     e.preventDefault();
     try {
-      await addOvertime(formData);
-      toast.success('Rate added successfully!');
-      onClose();
+      await addOvertime(formData);  // Add the new overtime
+      toast.success('Overtime added successfully!');
+      fetchOvertimes();  // Fetch the updated list of overtimes
+      onClose();  // Close the modal
     } catch (error) {
-      toast.error('Failed to add rate');
-      console.error('Failed to add rate', error);
+      toast.error('Failed to add overtime');
+      console.error('Failed to add overtime', error);
     }
   };
 
