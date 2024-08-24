@@ -163,29 +163,24 @@ const Rates = (props) => {
 
           <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 flex flex-col items-center justify-center">
             {props.loading ? (
-              <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
+              <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2 mt-48 mb-48">
                 <div className="skeleton h-48 w-full"></div>
                 <div className="skeleton h-6 w-36"></div>
                 <div className="skeleton h-6 w-full"></div>
                 <div className="skeleton h-6 w-full"></div>
               </div>
             ) : filteredRates.length === 0 ? (
-              <div className="w-full max-w-5xl text-center text-lg font-semibold text-gray-500">
-                <div className="mockup-browser  border border-t-4 pb-10 pt-10">
-                  <div className="mockup-browser-toolbar">
-                    <div className="input text-black-400">https://markbello.com</div>
-                  </div>
-                  <div className="flex justify-center text-black px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-                    <span
-                      style={{ fontSize: '30px', fontWeight: 'Bolder' }}
-                    >
-                      <b>
-                        AYAW NA PANGITAA ANG "{searchQuery}" KAY WALA!
-                      </b>
-
-                    </span>
-                  </div>
+              <div className="mockup-browser bg-base-300 border mt-48 mb-48">
+                <div className="mockup-browser-toolbar">
+                  <div className="input">https://daisyui.com</div>
                 </div>
+                <div className="bg-base-200 flex justify-center px-4 py-16">        <span
+                  style={{ fontSize: '30px', fontWeight: 'Bolder' }}
+                >
+                  <b>
+                    AYAW NA PANGITAA ANG <u>{searchQuery}</u> KAY WALA!
+                  </b>
+                </span></div>
               </div>
             ) : currentRates?.length > 0 ? (
               <div className="w-full max-w-5xl">
@@ -294,10 +289,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchRates: () => dispatch(fetchRates()),
+    fetchDepartments: () => dispatch(fetchDepartments()),
     addRate: (AddRateData) => dispatch(addRate(AddRateData)),
     updateRate: (UpdateRateData) => dispatch(updateRate(UpdateRateData)),
     deactivateRate: (RateId) => dispatch(deactivateRate(RateId)),
-    fetchDepartments: () => dispatch(fetchDepartments()),
     searchRates: (query) => dispatch(searchRates(query)),
   }
 };
