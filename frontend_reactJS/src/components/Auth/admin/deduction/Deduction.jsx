@@ -47,7 +47,6 @@ const Deduction = () => {
     <div className="diff aspect-[16/9] shadow-xl">
       <div className="diff-item-1">
         <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
-
          
         </div>
       </div>
