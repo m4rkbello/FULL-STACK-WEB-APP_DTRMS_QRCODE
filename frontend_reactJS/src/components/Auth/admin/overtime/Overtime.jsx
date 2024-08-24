@@ -17,7 +17,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Overtime = (props) => {
-
   //overtime.id para sa useParams or matchParams
   const { overtimeId } = useParams;
 
@@ -37,7 +36,7 @@ const Overtime = (props) => {
   // Handle search and data filtering
   const handleSearchChange = (e) => {
     setSearchQueryOvertime(e.target.value);
-    setCurrentPageOvertime(1); // Reset to the first page when search query changes
+    setCurrentPageOvertime(1);
     props.searchOvertimes(e.target.value);
   };
 
@@ -73,20 +72,21 @@ const Overtime = (props) => {
     setIsDeactivateOvertimeModal(true);
   };
 
-  
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
     <AddOvertimeModal
     isOpen={isAddOvertimeDetailsModal}
     onClose={() => setIsAddOvertimeDetailsModal(false)}
+    addOvertime={props.addOvertime}
+    fetchOvertimes={props.fetchOvertimes}  // Pass the fetchOvertimes function here
   />
 
   <DeactivateOvertimeModal
   isOpen={isDeactivateOvertimeModal}
   onClose={() => setIsDeactivateOvertimeModal(false)}
   deactivateOvertime={confirmDeactivateRate}
-/>
-    
+  />
+
     <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
         <div className="flex items-center text-sm breadcrumbs">
           <ul className="flex space-x-4">
@@ -114,8 +114,8 @@ const Overtime = (props) => {
       </div>
 
       <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-        <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-
+        <ToastContainer />
+      <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
           <div className='glass shadow-slate-900/100'>
             <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
               <div>
@@ -150,7 +150,7 @@ const Overtime = (props) => {
 
           <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 flex flex-col items-center justify-center">
 
-            {props.loading ? (
+            {props.loading && props.loading ? (
               <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2 mt-32 mb-32">
                 <div className="skeleton h-48 w-full"></div>
                 <div className="skeleton h-6 w-36"></div>
