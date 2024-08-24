@@ -36,7 +36,7 @@ const Overtime = (props) => {
   // Handle search and data filtering
   const handleSearchChange = (e) => {
     setSearchQueryOvertime(e.target.value);
-    setCurrentPageOvertime(1);
+    setCurrentPageOvertime(0);
     props.searchOvertimes(e.target.value);
   };
 
@@ -54,7 +54,7 @@ const Overtime = (props) => {
   const indexOfLastRate = currentPageOvertime * itemsPerPageOvertime;
   const indexOfFirstRate = indexOfLastRate - itemsPerPageOvertime;
   const currentOvertimes = filteredOvertimes?.slice(indexOfFirstRate, indexOfLastRate);
-  const totalPages = Math.ceil(filteredOvertimes.length || 0 / itemsPerPageOvertime);
+  const totalPages = Math.ceil(filteredOvertimes.length / itemsPerPageOvertime);
 
   const confirmDeactivateRate = async () => {
     setIsDeactivateOvertimeModal(false);
