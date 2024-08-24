@@ -185,11 +185,10 @@ class OvertimeController extends Controller
         try {
             // Find the rate by ID and ensure it meets the additional condition(s)
             $overtime_collection = Overtime::where('id', $id)
-                ->where('deduction_status_id', 1) // Example condition
+                ->where('overtime_status_id', 1) // Example condition
                 ->firstOrFail();
         
-            // Update the rate status
-            $overtime_collection->update(['deduction_status_id' => 0]);
+            $overtime_collection->update(['overtime_status_id' => 0]);
         
             // Return the updated rate data
             return response()->json([
