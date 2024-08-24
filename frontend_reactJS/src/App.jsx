@@ -255,7 +255,10 @@ function App(props) {
                   {/**RATES */}
                   <Route path="/admin/rates" element={<Rate />} />
                   <Route path="/admin/rate/edit/:rateId" element={<EditRates />} />
+                  {/**OVERTIMES */}
                   <Route path="/admin/overtimes" element={<Overtime />} />
+                  <Route path="/admin/overtime/edit/overtimeId" element={<Overtime />} />
+
                   <Route path="/admin/deductions" element={<Deduction />} />
 
                   <Route path="/employee/register" element={<EmployeeRegister />} />
