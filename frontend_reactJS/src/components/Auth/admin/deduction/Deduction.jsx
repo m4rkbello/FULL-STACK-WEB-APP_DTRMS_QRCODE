@@ -1,12 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-undef */
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/prop-types */
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable no-unused-vars */
+
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
