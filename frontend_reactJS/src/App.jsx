@@ -27,9 +27,10 @@ import Dashboard from './components/Auth/admin/Dashboard';
 import Payroll from './components/Auth/admin/payroll/Payroll';
 import Overtime from './components/Auth/admin/overtime/Overtime';
 import EditOvertime from './components/Auth/admin/overtime/EditOvertime';
-import Deduction from './components/Auth/admin/deduction/Deduction';
 import Rate from './components/Auth/admin/rate/Rates';
 import EditRates from './components/Auth/admin/rate/EditRates';
+import Deduction from './components/Auth/admin/deduction/Deduction';
+import EditDeduction from './components/Auth/admin/deduction/EditDeduction';
 //EMPLOYEE-ROUTES
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
@@ -259,8 +260,9 @@ function App(props) {
                   {/**OVERTIMES */}
                   <Route path="/admin/overtimes" element={<Overtime />} />
                   <Route path="/admin/overtime/edit/:overtimeId" element={<EditOvertime />} />
-
+                  {/**DEDUCTIONS */}
                   <Route path="/admin/deductions" element={<Deduction />} />
+                  <Route path="/admin/deduction/edit/:deductionId" element={<EditDeduction />} />
 
                   <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
