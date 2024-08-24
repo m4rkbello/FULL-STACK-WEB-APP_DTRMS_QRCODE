@@ -143,7 +143,7 @@ class OvertimeController extends Controller
 
             // Return the updated payroll data
             return response()->json([
-                'data' => $overtime_collection,
+                'details' => $overtime_collection,
                 'success' => true,
                 'status' => 200,
                 'message' => 'Overtime updated successfully',
