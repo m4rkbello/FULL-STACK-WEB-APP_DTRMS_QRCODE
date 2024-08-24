@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import MarkBelloApi from '../../../services/Api.jsx';
-import { toast } from 'react-toastify';
+//TOASTER
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //IMPORT ALL THE TYPES OF RATES 
 import {
@@ -66,26 +68,9 @@ export const updateOvertime = (overtimeId, updateOvertimeData) => async dispatch
         dispatch({ type: UPDATE_OVERTIME_REQUEST });
         //DATA VARIABLE NA NAGGUNIT UG RESPONSE UG REQUEST
         const updateOvertimesRequestAndResponseData = await MarkBelloApi.put(`/api/overtimes/update/item/${overtimeId}`, updateOvertimeData)
+        console.log("DATA SA updateOvertimesRequestAndResponseData", updateOvertimesRequestAndResponseData);
 
-        if (!updateOvertimesRequestAndResponseData) {
-            // Handle the case where the response is empty
-            toast.error('Overtime data has not fillup correctly! 🥺⚠️👽', {
-                position: 'top-right',
-                autoClose: 10000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                style: {
-                    background: 'black',
-                    color: 'red',
-                    fontSize: '15px'
-                }
-            });
-
-        } else {
-            // Handle the case where the update is successful
+        if (updateOvertimesRequestAndResponseData.data.details.success === true) {
             toast.success('Overtime has been updated Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -101,12 +86,30 @@ export const updateOvertime = (overtimeId, updateOvertimeData) => async dispatch
                 }
             });
 
-            dispatch({
-                type: UPDATE_OVERTIME_SUCCESS,
-                payload: updateOvertimesRequestAndResponseData
-
+        } else {
+            // Handle the case where the update is successful
+              // Handle the case where the response is empty
+              toast.error('Overtime data has not fillup correctly! 🥺⚠️👽', {
+                position: 'top-right',
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '15px'
+                }
             });
         }
+
+        dispatch({
+            type: UPDATE_OVERTIME_SUCCESS,
+            payload: updateOvertimesRequestAndResponseData
+
+        });
 
     } catch (error) {
 
