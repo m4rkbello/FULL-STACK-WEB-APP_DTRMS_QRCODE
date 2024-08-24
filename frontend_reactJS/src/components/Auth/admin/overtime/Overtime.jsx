@@ -29,7 +29,6 @@ const Overtime = (props) => {
     props.fetchOvertimes();
   }, []);
 
-
   // Handle search and data filtering
   const handleSearchChange = (e) => {
     setSearchQueryOvertime(e.target.value);
@@ -42,10 +41,10 @@ const Overtime = (props) => {
     setCurrentPageOvertime(pageNumber);
   };
 
+  //DATA DISPLAY SA TABLE UG GIGAMIT PUD SA FILTER SEARCH
   const filteredOvertimes = props.overtimeData?.overtimes?.data?.details?.filter(overtimeItem =>
     overtimeItem.overtime_name.toLowerCase().includes(searchQueryOvertime.toLowerCase())
   ) || [];
-  console.log("DATA SA filteredOvertimes", filteredOvertimes);
 
 
   const indexOfLastRate = currentPageOvertime * itemsPerPageOvertime;
@@ -53,7 +52,6 @@ const Overtime = (props) => {
   const currentOvertimes = filteredOvertimes?.slice(indexOfFirstRate, indexOfLastRate);
 
   const totalPages = Math.ceil(filteredOvertimes.length || 0 / itemsPerPageOvertime);
-
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
