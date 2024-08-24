@@ -6,8 +6,11 @@ import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 //REDUXISM
 import { fetchOvertimes, addOvertime, updateOvertime, deactivateOvertime, searchOvertimes } from '../../../redux/actions/overtimeAction';
+//MODALS ADD/DEACTIVATE
+import AddOvertimeModal from '../../modals/overtimes/AddOvertimeModal';
+import DeactivateOvertimeModal from '../../modals/overtimes/DeactivateOvertimeModal';
 //ICONS
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcOvertime, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 //TOASTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +22,9 @@ const Overtime = (props) => {
   const { overtimeId } = useParams;
 
   //OVERTIMES USESTATE
-  const [selectedOvertimeId, SetSelectedOvertimeId] = useState(null);
+  const [isAddOvertimeDetailsModal, setIsAddOvertimeDetailsModal] = useState(false);
+  const [isDeactivateOvertimeModal, setIsDeactivateOvertimeModal] = useState(false);
+  const [selectedOvertimeId, setSelectedOvertimeId] = useState(null);
   const [searchQueryOvertime, setSearchQueryOvertime] = useState('');
   const [currentPageOvertime, setCurrentPageOvertime] = useState(1);
   const [itemsPerPageOvertime, setItemsPerPageOvertime] = useState(10);
@@ -46,16 +51,43 @@ const Overtime = (props) => {
     overtimeItem.overtime_name.toLowerCase().includes(searchQueryOvertime.toLowerCase())
   ) || [];
 
-
+  //PARA SA SEARCH UG PAGINATION
   const indexOfLastRate = currentPageOvertime * itemsPerPageOvertime;
   const indexOfFirstRate = indexOfLastRate - itemsPerPageOvertime;
   const currentOvertimes = filteredOvertimes?.slice(indexOfFirstRate, indexOfLastRate);
-
   const totalPages = Math.ceil(filteredOvertimes.length || 0 / itemsPerPageOvertime);
 
+  const confirmDeactivateRate = async () => {
+    setIsDeactivateOvertimeModal(false);
+    try {
+      await props.deactivateOvertime(selectedOvertimeId);
+      await props.fetchOvertimes();
+    } catch (error) {
+      toast.error('Failed to deactivate overtime.');
+    }
+  };
+
+  //PAG DEACTIVATE SA ACCOUNT 
+  const handleDeactivateRate = (overtimeId) => {
+    setSelectedOvertimeId(overtimeId);
+    setIsDeactivateOvertimeModal(true);
+  };
+
+  
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
-      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+    <AddOvertimeModal
+    isOpen={isAddOvertimeDetailsModal}
+    onClose={() => setIsAddOvertimeDetailsModal(false)}
+  />
+
+  <DeactivateOvertimeModal
+  isOpen={isDeactivateOvertimeModal}
+  onClose={() => setIsDeactivateOvertimeModal(false)}
+  deactivateOvertime={confirmDeactivateRate}
+/>
+    
+    <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
         <div className="flex items-center text-sm breadcrumbs">
           <ul className="flex space-x-4">
             <li>
@@ -107,7 +139,9 @@ const Overtime = (props) => {
               </div>
               <div className="p-3 flex justify-end">
                 <FcPlus
-
+                onClick={() => {
+                  setIsAddOvertimeDetailsModal(true);
+                }}
                   style={{ height: "3rem", width: "3rem" }}
                 />
               </div>
@@ -155,11 +189,11 @@ const Overtime = (props) => {
                   </thead>
                   <tbody className='text-black'>
                     {currentOvertimes.map((item) => (
-                      item.rate_status_id !== 0 && (
+                      item.overtime_status_id !== 0 && (
                         <tr className="md:table-row"
                           key={item.id}
                         >
-                          <td className="md:table-cell"><FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
+                          <td className="md:table-cell"><FcOvertime style={{ fontSize: "40px", color: "transparent" }} /></td>
                           <td className="md:table-cell">{item.overtime_name}</td>
                           <td className="md:table-cell">
                             <span>&#8369;</span>
@@ -170,14 +204,14 @@ const Overtime = (props) => {
                           <td className="md:table-cell">{item.overtime_description}</td>
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-2">
-                              <Link to={`/admin/rate/edit/${item.id}`}>
+                              <Link to={`/admin/edit/edit/${item.id}`}>
                                 <FcViewDetails
                                   style={{ height: "2rem", width: "2rem" }}
                                 />
                               </Link>
 
                               <FcEmptyTrash
-                                // onClick={() => handleDeactivateRate(item.id)}
+                                onClick={() => handleDeactivateRate(item.id)}
                                 style={{ height: "2rem", width: "2rem" }}
                               />
                             </div>
@@ -185,8 +219,6 @@ const Overtime = (props) => {
                         </tr>
                       )
                     ))}
-
-
                   </tbody>
                 </table>
                 <div className="flex justify-center mt-4 mb-4">
@@ -244,7 +276,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToPProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchOvertimes: () => dispatch(fetchOvertimes()),
     addOvertime: (AddOvertimeData) => dispatch(AddOvertimeData(AddOvertimeData)),
@@ -256,4 +288,4 @@ const mapDispatchToPProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToPProps)(Overtime);
+export default connect(mapStateToProps, mapDispatchToProps)(Overtime);
