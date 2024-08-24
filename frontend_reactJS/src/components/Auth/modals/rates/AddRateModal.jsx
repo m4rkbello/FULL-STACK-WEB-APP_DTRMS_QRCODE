@@ -10,9 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddRateModal = ({ isOpen, onClose, addRate, fetchDepartments, departmentData }) => {
-  // Log the department data to check its structure
-  console.log("Department Data from Redux State:", departmentData);
-
+  
   const [formData, setFormData] = useState({
     rate_name: '',
     rate_amount_per_day: '',
