@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 //REDUXISM
 import { fetchOvertimes, addOvertime, updateOvertime, deactivateOvertime, searchOvertimes } from '../../../redux/actions/overtimeAction';
-
 //ICONS
 import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 //TOASTER
@@ -19,7 +18,6 @@ const Overtime = (props) => {
   //overtime.id para sa useParams or matchParams
   const { overtimeId } = useParams;
 
-  console.log("DATA SA fetchOvertimes", props);
   //OVERTIMES USESTATE
   const [selectedOvertimeId, SetSelectedOvertimeId] = useState(null);
   const [searchQueryOvertime, setSearchQueryOvertime] = useState('');
