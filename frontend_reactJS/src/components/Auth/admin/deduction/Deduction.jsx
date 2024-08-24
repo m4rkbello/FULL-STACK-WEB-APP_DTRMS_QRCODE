@@ -22,10 +22,10 @@ const Deduction = () => {
             </Link>
           </li>
           <li>
-            <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
+            <Link to="/admin/deductions" className='flex items-center hover:text-white'>
               <FcFolder
                 style={{ height: "2rem", width: "2rem" }} />
-              <span className="ml-2">Rates</span>
+              <span className="ml-2">Deduction</span>
             </Link>
           </li>
           <li>
