@@ -26,6 +26,7 @@ import Department from './components/Auth/admin/department/Department';
 import Dashboard from './components/Auth/admin/Dashboard';
 import Payroll from './components/Auth/admin/payroll/Payroll';
 import Overtime from './components/Auth/admin/overtime/Overtime';
+import EditOvertime from './components/Auth/admin/overtime/EditOvertime';
 import Deduction from './components/Auth/admin/deduction/Deduction';
 import Rate from './components/Auth/admin/rate/Rates';
 import EditRates from './components/Auth/admin/rate/EditRates';
@@ -257,7 +258,7 @@ function App(props) {
                   <Route path="/admin/rate/edit/:rateId" element={<EditRates />} />
                   {/**OVERTIMES */}
                   <Route path="/admin/overtimes" element={<Overtime />} />
-                  <Route path="/admin/overtime/edit/overtimeId" element={<Overtime />} />
+                  <Route path="/admin/overtime/edit/overtimeId" element={<EditOvertime />} />
 
                   <Route path="/admin/deductions" element={<Deduction />} />
 
