@@ -14,6 +14,7 @@ import { fetchDepartments } from '../../../redux/actions/departmentAction';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+//DISTRUCTURING
 const EditRates = ({ fetchRates, updateRate, ratesData, departmentData, fetchDepartments, loading }) => {
   //id sa rate.id
   const { rateId } = useParams();
