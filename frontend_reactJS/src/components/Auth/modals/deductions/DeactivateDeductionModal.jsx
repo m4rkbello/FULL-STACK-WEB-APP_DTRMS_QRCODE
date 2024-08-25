@@ -16,7 +16,7 @@ const DeactivateDeductionModal = ({ isOpen, onClose, deactivateDeduction }) => {
         <form method="dialog">
           <button type="button" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={onClose}>✕</button>
         </form>
-        <span className="font-bold text-3xl text-black">REMOVE OVERTIME</span>
+        <span className="font-bold text-3xl text-black">REMOVE DEDUCTION</span>
         <p className="py-4 text-2xl">Are you sure you want to remove this item?</p>
         <div className="flex">
           <button 
