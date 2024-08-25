@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
-
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
@@ -17,8 +16,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Deduction = (props) => {
-  console.log("DATA SA props sa DEDUCTION", props);
-
+  
   //deduction.id gamit useParams / matchParams
   const { deductionId } = useParams;
   console.log("ID SA deductionId", deductionId);
@@ -30,7 +28,6 @@ const Deduction = (props) => {
   const [searchQueryDeduction, setSearchQueryDeduction] = useState('');
   const [currentPageDeduction, setCurrentPageDeduction] = useState(1);
   const [itemsPerPageDeduction, setItemsPerPageDeduction] = useState(10);
-
 
   useEffect(() => {
     props.fetchDeductions();
@@ -59,20 +56,20 @@ const Deduction = (props) => {
   const currentDeductions = filteredDeductions?.slice(indexOfFirstRate, indexOfLastRate);
   const totalPages = Math.ceil(filteredDeductions.length / itemsPerPageDeduction);
 
+    //PAG DEACTIVATE SA ACCOUNT 
+    const handleDeactivateRate = (deductionId) => {
+      setSelectedDeductionId(deductionId);
+      setIsDeactivateDeductionModal(true);
+    };
+
   const confirmDeactivateDeduction = async () => {
     setIsDeactivateDeductionModal(false);
     try {
-      await props.deactivateDeduction(selectedDeductionId);
+      await props.deactivateDeduction(selectedDeductionId);  // Use the selected ID here
       await props.fetchDeductions();
     } catch (error) {
-      toast.error('Failed to deactivate overtime.');
+      toast.error('Failed to deactivate deduction.');
     }
-  };
-
-  //PAG DEACTIVATE SA ACCOUNT 
-  const handleDeactivateRate = (deductionId) => {
-    setSelectedDeductionId(deductionId);
-    setIsDeactivateDeductionModal(true);
   };
 
   return (
@@ -86,9 +83,10 @@ const Deduction = (props) => {
       />
 
       <DeactivateDeductionModal
-        isOpen={isDeactivateDeductionModal}
-        onClose={() => setIsDeactivateDeductionModal(false)}
-        deactivateDeduction={confirmDeactivateDeduction}
+      isOpen={isDeactivateDeductionModal}
+      onClose={() => setIsDeactivateDeductionModal(false)}
+      deactivateDeduction={confirmDeactivateDeduction}
+      deductionId={selectedDeductionId}
       />
 
       <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
@@ -206,7 +204,7 @@ const Deduction = (props) => {
                           <td className="md:table-cell">{item.deduction_status_id}</td>
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-2">
-                              <Link to={`/admin/overtime/edit/${item.id}`}>
+                              <Link to={`/admin/deduction/edit/${item.id}`}>
                                 <FcViewDetails
                                   style={{ height: "2rem", width: "2rem" }}
                                 />
@@ -278,10 +276,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchDeductions: () => dispatch(fetchDeductions()),
-    addDeduction: () => dispatch(addDeduction()),
-    updateDeduction: () => dispatch(updateDeduction()),
-    deactivateDeduction: () => dispatch(deactivateDeduction()),
-    searchDeduction: () => dispatch(searchDeduction()),
+    addDeduction: (AddDeductionData) => dispatch(addDeduction(AddDeductionData)),
+    updateDeduction: (deductionId, updateDeductionData) => dispatch(updateDeduction(deductionId, updateDeductionData)),
+    deactivateDeduction: (deductionId) => dispatch(deactivateDeduction(deductionId)),
+    searchDeduction: (searchQuery) => dispatch(searchDeduction(searchQuery)),
   }
 };
 
