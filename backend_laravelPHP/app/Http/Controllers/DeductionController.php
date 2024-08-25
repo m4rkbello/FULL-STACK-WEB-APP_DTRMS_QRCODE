@@ -187,7 +187,7 @@ class DeductionController extends Controller
         
             // Return the updated rate data
             return response()->json([
-                'data' => $deduction_collection,
+                'details' => $deduction_collection,
                 'success' => true,
                 'status' => 200,
             ], 200);
