@@ -10,7 +10,6 @@ import payrollReducer from './reducers/payrollReducer';
 import overtimeReducer from './reducers/overtimeReducer';
 import deductionReducer from './reducers/deductionReducer';
 
-
 const rootReducer = combineReducers({
   userState: userReducer,
   employeeState: employeeReducer,
