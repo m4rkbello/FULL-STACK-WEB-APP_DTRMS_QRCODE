@@ -39,8 +39,8 @@ const Deduction = (props) => {
   // Handle search and data filtering
   const handleSearchChange = (e) => {
     setSearchQueryDeduction(e.target.value);
-    setCurrentPageDeduction(0);
-    props.searchQueryDeduction(e.target.value);
+    setCurrentPageDeduction(1);
+    props.searchDeduction(e.target.value);
   };
 
   // Handle page change para magchange!
