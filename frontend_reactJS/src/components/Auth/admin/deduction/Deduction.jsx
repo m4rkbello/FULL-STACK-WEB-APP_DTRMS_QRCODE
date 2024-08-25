@@ -35,18 +35,22 @@ const {deductionId} = useParams;
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
     
-  //   <AddDeductionModal
-  //   isOpen={isAddOvertimeDetailsModal}
-  //   onClose={() => setIsAddOvertimeDetailsModal(false)}
-  //   addOvertime={props.addOvertime}
-  //   fetchOvertimes={props.fetchOvertimes}
-  // />
 
-  // <DeactivateDeductionModal
-  // isOpen={isDeactivateOvertimeModal}
-  // onClose={() => setIsDeactivateOvertimeModal(false)}
-  // deactivateOvertime={confirmDeactivateRate}
-  // />
+    {/***
+      
+      <AddDeductionModal
+     isOpen={isAddOvertimeDetailsModal}
+     onClose={() => setIsAddOvertimeDetailsModal(false)}
+     addOvertime={props.addOvertime}
+     fetchOvertimes={props.fetchOvertimes}
+   />
+ 
+   <DeactivateDeductionModal
+   isOpen={isDeactivateOvertimeModal}
+   onClose={() => setIsDeactivateOvertimeModal(false)}
+   deactivateOvertime={confirmDeactivateRate}
+   />
+      */}
 
     <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
         <div className="flex items-center text-sm breadcrumbs">
@@ -85,8 +89,7 @@ const {deductionId} = useParams;
                     <input
                       type="text"
                       placeholder="Search"
-                      value={searchQueryOvertime}
-                      onChange={handleSearchChange}
+                  
                       className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
                     />
                   </div>
@@ -100,9 +103,7 @@ const {deductionId} = useParams;
               </div>
               <div className="p-3 flex justify-end">
                 <FcPlus
-                onClick={() => {
-                  setIsAddOvertimeDetailsModal(true);
-                }}
+           
                   style={{ height: "3rem", width: "3rem" }}
                 />
               </div>
@@ -111,7 +112,11 @@ const {deductionId} = useParams;
 
           <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 flex flex-col items-center justify-center">
 
+          {/***
+            
             {props.loading && props.loading ? (
+            */}
+
               <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2 mt-32 mb-32">
                 <div className="skeleton h-48 w-full"></div>
                 <div className="skeleton h-6 w-36"></div>
@@ -119,7 +124,11 @@ const {deductionId} = useParams;
                 <div className="skeleton h-6 w-full"></div>
               </div>
 
-            ) : filteredOvertimes.length === 0 ? (
+              {/***
+                
+              ) : filteredOvertimes.length === 0 ? (
+                */}
+
 
               <div className="mockup-browser bg-base-300 border mt-36 mb-36">
                 <div className="mockup-browser-toolbar">
@@ -134,7 +143,10 @@ const {deductionId} = useParams;
                 </span></div>
               </div>
 
-            ) : currentOvertimes?.length > 0 ? (
+              {/***
+                
+              ) : currentOvertimes?.length > 0 ? (
+                */}
               <div className="w-full max-w-5xl">
                 <table className="table glass w-full border-2 border-black">
                   <thead className="text-red">
@@ -148,39 +160,43 @@ const {deductionId} = useParams;
                       <th className="md:table-cell text-white">ACTION</th>
                     </tr>
                   </thead>
-                  <tbody className='text-black'>
-                    {currentOvertimes.map((item) => (
-                      item.overtime_status_id !== 0 && (
-                        <tr className="md:table-row"
-                          key={item.id}
-                        >
-                          <td className="md:table-cell"><FcOvertime style={{ fontSize: "40px", color: "transparent" }} /></td>
-                          <td className="md:table-cell">{item.overtime_name}</td>
-                          <td className="md:table-cell">
-                            <span>&#8369;</span>
-                            <b>{item.overtime_rate_per_hour}</b>
-                          </td>
-                          <td className="md:table-cell">{item.overtime_hour}</td>
-                          <td className="md:table-cell">{item.overtime_description}</td>
-                          <td className="md:table-cell">{item.overtime_description}</td>
-                          <td className="md:table-cell">
-                            <div className="flex items-center space-x-2">
-                              <Link to={`/admin/overtime/edit/${item.id}`}>
-                                <FcViewDetails
+                  {/***
+
+                    <tbody className='text-black'>
+                      {currentOvertimes.map((item) => (
+                        item.overtime_status_id !== 0 && (
+                          <tr className="md:table-row"
+                            key={item.id}
+                          >
+                            <td className="md:table-cell"><FcOvertime style={{ fontSize: "40px", color: "transparent" }} /></td>
+                            <td className="md:table-cell">{item.overtime_name}</td>
+                            <td className="md:table-cell">
+                              <span>&#8369;</span>
+                              <b>{item.overtime_rate_per_hour}</b>
+                            </td>
+                            <td className="md:table-cell">{item.overtime_hour}</td>
+                            <td className="md:table-cell">{item.overtime_description}</td>
+                            <td className="md:table-cell">{item.overtime_description}</td>
+                            <td className="md:table-cell">
+                              <div className="flex items-center space-x-2">
+                                <Link to={`/admin/overtime/edit/${item.id}`}>
+                                  <FcViewDetails
+                                    style={{ height: "2rem", width: "2rem" }}
+                                  />
+                                </Link>
+  
+                                <FcEmptyTrash
+                                  onClick={() => handleDeactivateRate(item.id)}
                                   style={{ height: "2rem", width: "2rem" }}
                                 />
-                              </Link>
+                              </div>
+                            </td>
+                          </tr>
+                        )
+                      ))}
+                    </tbody>
 
-                              <FcEmptyTrash
-                                onClick={() => handleDeactivateRate(item.id)}
-                                style={{ height: "2rem", width: "2rem" }}
-                              />
-                            </div>
-                          </td>
-                        </tr>
-                      )
-                    ))}
-                  </tbody>
+                      */}
                 </table>
                 <div className="flex justify-center mt-4 mb-4">
                   <div className="join grid grid-cols-2">
@@ -206,22 +222,26 @@ const {deductionId} = useParams;
                   </div>
                 </div>
               </div>
-            ) : (
-
-              <div className="mockup-browser bg-base-300 border mt-36 mb-36">
-                <div className="mockup-browser-toolbar">
-                  <div className="input">https://markbello.com</div>
+              {/***
+                
+              ) : (
+  
+                <div className="mockup-browser bg-base-300 border mt-36 mb-36">
+                  <div className="mockup-browser-toolbar">
+                    <div className="input">https://markbello.com</div>
+                  </div>
+                  <div className="bg-base-200 flex justify-center px-4 py-16">        <span
+                    style={{ fontSize: '30px', fontWeight: 'Bolder' }}
+                  >
+                    <b>
+                      AYAW NA PANGITAA ANG <u>{searchQueryOvertime}</u> KAY WALA!
+                    </b>
+                  </span></div>
                 </div>
-                <div className="bg-base-200 flex justify-center px-4 py-16">        <span
-                  style={{ fontSize: '30px', fontWeight: 'Bolder' }}
-                >
-                  <b>
-                    AYAW NA PANGITAA ANG <u>{searchQueryOvertime}</u> KAY WALA!
-                  </b>
-                </span></div>
-              </div>
+              )}
+                */}
 
-            )}
+            
           </div>
         </div>
       </div>
@@ -232,12 +252,19 @@ const {deductionId} = useParams;
 
 const mapStateToProps = (state) => {
   return {
-
+    deductionData: state.deductionState,
+    loading: state.deductionState.loading,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchDeductions: () => dispatch(fetchDeductions()),
+    addDeduction: () => dispatch(addDeduction()),
+    updateDeduction: () => dispatch(updateDeduction()),
+    deactivateDeduction: () => dispatch(deactivateDeduction()),
+    searchDeduction: () => dispatch(searchDeduction()),
+
 
   }
 }
