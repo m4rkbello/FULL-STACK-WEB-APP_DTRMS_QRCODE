@@ -30,12 +30,10 @@ const Dashboard = (props) => {
   const ImageUser = '../../../../public/images/user.png';
   const ImageAttendance = '../../../../public/images/attendance.png';
 
-
+  //PARA SA USERS
   const usersDataObjectCollections = props?.usersData?.data;
-
   function countAllUsersPopulations(usersDataObjectCollections) {
     let items = [];
-
     if (Array.isArray(usersDataObjectCollections) && usersDataObjectCollections.length > 0) {
       for (let ez = 0; ez < usersDataObjectCollections.length; ez++) {
         items.push(usersDataObjectCollections[ez]);
@@ -48,12 +46,11 @@ const Dashboard = (props) => {
     };
   }
 
+  //PARA SA EMPLOYEES
   const resultCountAllUsersPopulation = countAllUsersPopulations(usersDataObjectCollections);
-
   const employeeDataObjectCollections = props?.employeesData?.employees?.data;
   function countAllEmployeesPopulations(employeeDataObjectCollections) {
     let items = [];
-
     if (Array.isArray(employeeDataObjectCollections) && employeeDataObjectCollections.length > 0) {
       for (let ez = 0; ez < employeeDataObjectCollections.length; ez++) {
         items.push(employeeDataObjectCollections[ez]);
@@ -65,13 +62,12 @@ const Dashboard = (props) => {
       count: items.length
     };
   }
-
   const resultcountAllEmployeesPopulations = countAllEmployeesPopulations(employeeDataObjectCollections);
 
+  //PARA SA RATES
   const ratesDataObjectCollection = props?.ratesData?.rates;
   function countAllRatesPopulations(ratesDataObjectCollection) {
     let items = [];
-
     if (Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length != 0) {
       for (let ez = 0; ez < ratesDataObjectCollection.length; ez++) {
         items.push(ratesDataObjectCollection[ez]);
@@ -83,13 +79,12 @@ const Dashboard = (props) => {
       count: items.length
     };
   }
-
   const resultCountAllRatesPopulations = countAllRatesPopulations(ratesDataObjectCollection);
 
+  //PARA SA DEPARTMENTS
   const departmentsDataObjectCollection = props?.departmentsData?.departments?.data?.details;
   function countAllDepartmentsPopulations(departmentsDataObjectCollection) {
     let items = [];
-
     if (Array.isArray(departmentsDataObjectCollection) && departmentsDataObjectCollection.length !== 0) {
       for (let i = 0; i < departmentsDataObjectCollection.length; i++) {
         items.push(departmentsDataObjectCollection[i]);
@@ -101,13 +96,12 @@ const Dashboard = (props) => {
       count: items.length
     };
   }
-
   const resultCountAllDepartmentsPopulations = countAllDepartmentsPopulations(departmentsDataObjectCollection);
 
+  //PARA SA PAYROLLS
   const payrollsDataObjectCollection = props?.payrollsData?.payrolls?.data?.details;
   function countAllPayrollsPopulations(payrollsDataObjectCollection) {
     let items = [];
-
     if (Array.isArray(payrollsDataObjectCollection) && payrollsDataObjectCollection.length != 0) {
       for (let ez = 0; ez < payrollsDataObjectCollection.length; ez++) {
         items.push(payrollsDataObjectCollection[ez]);
@@ -119,12 +113,12 @@ const Dashboard = (props) => {
       count: items.length
     };
   }
-
   const resultCountAllPayrollsPopulation = countAllPayrollsPopulations(payrollsDataObjectCollection);
+
+  //PARA SA ATTENDANCES
   const attendanceDataObjectCollection = props?.attendancesData?.attendances?.data?.details;
   function countAllAttendancesPopulations(attendanceDataObjectCollection) {
     let items = [];
-
     if (Array.isArray(attendanceDataObjectCollection) && attendanceDataObjectCollection.length > 0) {
       for (let ez = 0; ez < attendanceDataObjectCollection.length; ez++) {
         items.push(attendanceDataObjectCollection[ez]);
@@ -138,10 +132,10 @@ const Dashboard = (props) => {
   }
   const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attendanceDataObjectCollection);
 
+  //PARA SA DEDUCTIONS
   const deductionDataObjectCollection = props?.deductionsData?.deductions?.data?.details;
   function countAllDeductionPopulations(deductionDataObjectCollection) {
     let items = [];
-
     if (Array.isArray(deductionDataObjectCollection) && deductionDataObjectCollection.length > 0) {
       for (let ez = 0; ez < deductionDataObjectCollection.length; ez++) {
         items.push(deductionDataObjectCollection[ez]);
@@ -154,8 +148,8 @@ const Dashboard = (props) => {
     };
   }
 
-  const resultCountAllAttendancePopulations = countAllDeductionPopulations(deductionDataObjectCollection);
-
+  const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deductionDataObjectCollection);
+  
   const chartDataCollections = {
     labels: ['Users', 'Employees', 'Departments', 'Rates', 'Attendances', 'Payrolls', 'Overtimes', 'Deductions'],
     datasets: [
@@ -169,7 +163,7 @@ const Dashboard = (props) => {
           resultCountAllAttendancePopulation.count,
           resultCountAllPayrollsPopulation.count,
           resultCountAllDepartmentsPopulations.count,
-          resultCountAllAttendancePopulations.count
+          resultCountAllDeductionsPopulations.count
         ],
         backgroundColor: [
           'rgba(255, 99, 132, 0.6)',   // Red
@@ -472,7 +466,7 @@ const Dashboard = (props) => {
           </figure>
           <div className="card-body justify-center">
             <center>
-              <span className="card-title text-3xl justify-center">OVERTIMES</span>
+              <span className="card-title text-3xl justify-center">OVERTIMES HAD BUG!</span>
             </center>
             <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
             <br />
@@ -498,7 +492,7 @@ const Dashboard = (props) => {
             <center>
               <span className="card-title text-3xl justify-center">DEDUCTIONS</span>
             </center>
-            <span className='text-7xl text-center justify-center'>{resultCountAllAttendancePopulations.count}</span>
+            <span className='text-7xl text-center justify-center'>{resultCountAllDeductionsPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
               <button className="btn glass text-center">
