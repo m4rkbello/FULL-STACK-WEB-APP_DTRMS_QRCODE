@@ -129,7 +129,8 @@ const Overtime = (props) => {
                     />
                   </div>
                   <div className="p-3 flex justify-end">
-                    <FcSearch style={{ height: "2rem", width: "2rem" }} />
+                    <FcSearch 
+                    style={{ height: "2rem", width: "2rem" }} />
                   </div>
                 </span>
               </div>
