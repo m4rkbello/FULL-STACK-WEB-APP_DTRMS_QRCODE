@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 //FETCH ALL DATAS GAMIT REDUXISM
 import { connect } from 'react-redux';
+//REDUXISM
 import { fetchUsers } from '../../redux/actions/userAction';
 import { fetchEmployees } from '../../redux/actions/employeeAction';
 import { fetchAttendances } from '../../redux/actions/attendanceAction';
@@ -14,10 +15,12 @@ import { fetchPayrolls } from '../../redux/actions/payrollAction';
 import { fetchDeductions } from '../../redux/actions/deductionAction';
 import { fetchRates } from '../../redux/actions/rateAction';
 import { fetchOvertimes } from '../../redux/actions/overtimeAction';
-import { ScanEye } from "lucide-react";
+//CHARTJS
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar, PolarArea, Doughnut } from 'react-chartjs-2';
-import { MoveLeft, FolderOpen, Component } from 'lucide-react';
+//ICONS
+import { MoveLeft, FolderOpen, Component, ScanEye } from 'lucide-react';
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcOvertime, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -149,7 +152,34 @@ const Dashboard = (props) => {
   }
 
   const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deductionDataObjectCollection);
+
+  const overtimeDataObjectCollection = props?.overtimesData?.overtimes?.data?.details;
+
+  function countAllOvertimePopulations(overtimeDataObjectCollection) {
+    let items = [];
+    if (Array.isArray(overtimeDataObjectCollection) && overtimeDataObjectCollection.length > 0) {
+      for (let ez = 0; ez < overtimeDataObjectCollection.length; ez++) {
+        items.push(overtimeDataObjectCollection[ez]);
+      }
+    }
+
+    return {
+      items,
+      count: items.length
+    };
+  }
+
+  const resultCountAllOvertimesPopulations = countAllOvertimePopulations(overtimeDataObjectCollection);
+
+
+  const createGradient = (ctx, chartArea, startColor, endColor) => {
+    const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
+    gradient.addColorStop(0, startColor);
+    gradient.addColorStop(1, endColor);
+    return gradient;
+  };
   
+
   const chartDataCollections = {
     labels: ['Users', 'Employees', 'Departments', 'Rates', 'Attendances', 'Payrolls', 'Overtimes', 'Deductions'],
     datasets: [
@@ -162,28 +192,29 @@ const Dashboard = (props) => {
           resultCountAllRatesPopulations.count,
           resultCountAllAttendancePopulation.count,
           resultCountAllPayrollsPopulation.count,
-          resultCountAllDepartmentsPopulations.count,
+          resultCountAllOvertimesPopulations.count,
           resultCountAllDeductionsPopulations.count
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',   // Red
-          'rgba(54, 162, 235, 0.6)',   // Blue
-          'rgba(255, 206, 86, 0.6)',   // Yellow
-          'rgba(75, 192, 192, 0.6)',   // Green
-          'rgba(153, 102, 255, 0.6)',  // Purple
-          'rgba(255, 159, 64, 0.6)',   // Orange
-          'rgba(199, 199, 199, 0.6)',  // Gray
-          'rgba(83, 102, 255, 0.6)',   // Indigo
+          'rgba(99, 102, 241, 0.6)',  // Indigo
+          'rgba(14, 165, 233, 0.6)',  // Sky
+          'rgba(16, 185, 129, 0.6)',  // Emerald
+          'rgba(75, 192, 192, 0.6)',  // Green (unchanged)
+          'rgba(153, 102, 255, 0.6)', // Purple (unchanged)
+          'rgba(255, 159, 64, 0.6)',  // Orange (unchanged)
+          'rgba(199, 199, 1, 1)',     // Gold (unchanged)
+          'rgba(245, 187, 145, 0.8)',  // Custom light brown
+          'rgba(83, 102, 255, 0.6)',  // Indigo (unchanged)
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(199, 199, 199, 1)',
-          'rgba(83, 102, 255, 1)',
+          'rgba(99, 102, 241, 1)',  // Indigo
+          'rgba(14, 165, 233, 1)',  // Sky
+          'rgba(16, 185, 129, 1)',  // Emerald
+          'rgba(75, 192, 192, 1)',  // Green (unchanged)
+          'rgba(153, 102, 255, 1)', // Purple (unchanged)
+          'rgba(255, 159, 64, 1)',  // Orange (unchanged)
+          'rgba(199, 199, 1, 1)',   // Gold (unchanged)
+          'rgba(83, 102, 255, 1)',  // Indigo (unchanged)
         ],
         borderWidth: 1,
       },
@@ -265,29 +296,69 @@ const Dashboard = (props) => {
   console.log("DATA SA TANANG PROPERTIES!", props);
   return (
     <div className="h-full mx-auto max-h-full w-full max-w-full glass p-4 shadow-xl">
-      <div className="flex flex-wrap">
-        <div>
-          <div className="text-sm breadcrumbs mb-10 bg-transparent">
-            <ul>
-              <li>
-                <MoveLeft />
-                <Link to="/" className='hover:text-white'>Home</Link>
-              </li>
-              <li>
-                <FolderOpen />
-                <Link to="/employee/dashboard" className='hover:text-white'>Dashboard</Link>
-              </li>
-              <li>
-                <span className="inline-flex gap-2 items-center">
-                  <Component />
-                  <Link to="" className='hover:text-white'>Dashboard Data</Link>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="diff aspect-[16/9] shadow-xl">
+    <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+    <div className="flex items-center text-sm breadcrumbs">
+      <ul className="flex space-x-0">
+        <li>
+          <Link to="/" className='flex items-center hover:text-white'>
+            <FcPrevious style={{ height: "2rem", width: "2rem" }} />
+            <span className="ml-0">Home</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link to="" className='flex items-center hover:text-white'>
+             <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+            <span className="ml-0">Users</span>
+          </Link>
+        </li>
+        <li>
+        <Link to="" className='flex items-center hover:text-white'>
+                     <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+          <span className="ml-0">Employees</span>
+        </Link>
+      </li>
+      <li>
+      <Link to="" className='flex items-center hover:text-white'>
+                   <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+        <span className="ml-0">Departments</span>
+      </Link>
+    </li>
+    <li>
+    <Link to="" className='flex items-center hover:text-white'>
+                 <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+      <span className="ml-0">Rates</span>
+    </Link>
+  </li>
+  <li>
+  <Link to="" className='flex items-center hover:text-white'>
+               <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+    <span className="ml-0">Attendances</span>
+  </Link>
+</li>
+<li>
+<Link to="" className='flex items-center hover:text-white'>
+             <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+  <span className="ml-0">Payrolls</span>
+</Link>
+</li>
+<li>
+<Link to="" className='flex items-center hover:text-white'>
+             <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+  <span className="ml-0">Overtimes</span>
+</Link>
+</li>
+<li>
+<Link to="" className='flex items-center hover:text-white'>
+<FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+  <span className="ml-0">Deductions</span>
+</Link>
+</li>
+      </ul>
+    </div>
+  </div>
+
+      <div className="diff aspect-[16/9] shadow-xl rounded-lg">
         <div className="diff-item-1">
           <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
             <Bar options={BarChartNiChoi} data={chartDataCollections} />
@@ -311,7 +382,7 @@ const Dashboard = (props) => {
         <div className="diff-resizer"></div>
       </div>
       <br />
-      <div className="diff aspect-[16/9] shadow-xl">
+      <div className="diff aspect-[16/9] shadow-xl rounded-lg">
         <div className="diff-item-1">
           <div className="glass text-primary-content grid place-content-center text-7xl font-black shadow-xl px-5 py-5">
             <PolarArea options={PolarChartNiChoi} data={chartDataCollections} />
@@ -335,12 +406,15 @@ const Dashboard = (props) => {
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">USERS</span>
-            <span className='text-7xl text-center text-center'>{resultCountAllUsersPopulation.count}</span>
+            <span className='text-7xl text-center'>{resultCountAllUsersPopulation.count}</span>
             <br />
             <div className="card-actions justify-center">
               <Link to="/admin/users">
                 <button className="btn glass text-center">
-                  View<ScanEye />
+                  View
+                  <FcSearch
+                  style={{ height: "2rem", width: "2rem" }} 
+                   />
                 </button>
               </Link>
             </div>
@@ -362,7 +436,10 @@ const Dashboard = (props) => {
             <div className="card-actions justify-center">
               <Link to="/employee/dashboard">
                 <button className="btn glass text-center">
-                  View<ScanEye />
+                  View
+                  <FcSearch
+                  style={{ height: "2rem", width: "2rem" }} 
+                   />
                 </button>
               </Link>
             </div>
@@ -384,7 +461,10 @@ const Dashboard = (props) => {
             <div className="card-actions justify-center">
               <Link to="/department">
                 <button className="btn glass text-center">
-                  View<ScanEye />
+                  View
+                  <FcSearch
+                  style={{ height: "2rem", width: "2rem" }} 
+                   />
                 </button>
               </Link>
             </div>
@@ -406,7 +486,10 @@ const Dashboard = (props) => {
             <div className="card-actions justify-center">
               <Link to="/admin/rates">
                 <button className="btn glass text-center">
-                  View<ScanEye />
+                  View
+                  <FcSearch
+                  style={{ height: "2rem", width: "2rem" }} 
+                   />
                 </button>
               </Link>
             </div>
@@ -427,7 +510,10 @@ const Dashboard = (props) => {
             <div className="card-actions justify-center">
               <Link to="/employee/attendance">
                 <button className="btn glass text-center">
-                  View<ScanEye />
+                  View
+                  <FcSearch
+                  style={{ height: "2rem", width: "2rem" }} 
+                   />
                 </button>
               </Link>
             </div>
@@ -450,7 +536,10 @@ const Dashboard = (props) => {
             <div className="card-actions justify-center">
               <Link to="/admin/payrolls">
                 <button className="btn glass text-center">
-                  View<ScanEye />
+                  View
+                  <FcSearch
+                  style={{ height: "2rem", width: "2rem" }} 
+                   />
                 </button>
               </Link>
             </div>
@@ -468,12 +557,15 @@ const Dashboard = (props) => {
             <center>
               <span className="card-title text-3xl justify-center">OVERTIMES HAD BUG!</span>
             </center>
-            <span className='text-7xl text-center justify-center'>{resultCountAllDepartmentsPopulations.count}</span>
+            <span className='text-7xl text-center justify-center'>{resultCountAllOvertimesPopulations.count}</span>
             <br />
             <div className="card-actions justify-center">
               <Link to="/admin/overtimes">
                 <button className="btn glass text-center">
-                  View<ScanEye />
+                  View
+                  <FcSearch
+                  style={{ height: "2rem", width: "2rem" }} 
+                   />
                 </button>
               </Link>
             </div>
@@ -496,7 +588,10 @@ const Dashboard = (props) => {
             <br />
             <div className="card-actions justify-center">
               <button className="btn glass text-center">
-                View<ScanEye />
+                View
+                <FcSearch
+                style={{ height: "2rem", width: "2rem" }} 
+                 />
               </button>
             </div>
           </div>
