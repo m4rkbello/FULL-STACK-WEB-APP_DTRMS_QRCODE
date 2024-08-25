@@ -3,11 +3,11 @@
 import React from 'react';
 import { FcOk } from 'react-icons/fc';
 
-const DeactivateDeductionModal = ({ isOpen, onClose, deactivateDeduction }) => {
+const DeactivateDeductionModal = ({ isOpen, onClose, deactivateDeduction, deductionId }) => {  // Accept deductionId as a prop
   if (!isOpen) return null;
 
   const handleDeactivateDeduction = () => {
-    deactivateDeduction();
+    deactivateDeduction(deductionId);  // Use the ID when confirming
   };
 
   return (
@@ -22,7 +22,7 @@ const DeactivateDeductionModal = ({ isOpen, onClose, deactivateDeduction }) => {
           <button 
             className="btn hover:text-white hover:bg-indigo-400" 
             style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }} 
-            onClick={handleDeactivateDeduction}
+            onClick={handleDeactivateDeduction}  // Call the function that uses the ID
           >
             <FcOk style={{ fontSize: "40px" }} className='text-lime-400 hover:text-black' />
           </button>
