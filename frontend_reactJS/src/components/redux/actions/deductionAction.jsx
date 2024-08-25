@@ -151,7 +151,8 @@ export const deactivateDeduction = deductionId => async dispatch => {
 
         const deactivateDeductionRequestAndResponseData = await MarkBelloApi.put(`/api/deductions/deactivate/${deductionId}`);
 
-        if (deactivateDeductionRequestAndResponseData.success != true) {
+        console.log("DATA SA deactivateDeductionRequestAndResponseData", deactivateDeductionRequestAndResponseData);
+        if (deactivateDeductionRequestAndResponseData.data.success != true) {
             // Handle the case where the response is empty
             toast.error('Deduction has not deactivated! 🥺⚠️👽', {
                 position: 'top-right',
