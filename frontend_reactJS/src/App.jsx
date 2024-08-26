@@ -76,9 +76,7 @@ function App(props) {
 
   const destroyAuthentications = () => {
     localStorage.clear();
- 
     sessionStorage.clear();
-    
     // Remove cookies
     document.cookie.split(';').forEach((cookie) => {
       document.cookie = cookie
