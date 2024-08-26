@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import MarkBelloApi from '../../../services/Api.jsx';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
     FETCH_ATTENDANCES_REQUEST,
     FETCH_ATTENDANCES_SUCCESS,
@@ -99,29 +99,79 @@ export const deleteAttendance = attendanceId => async dispatch => {
 // ISKANON SA FRONTEND TAPOS ILABAY SA REDUX SA ENDPOINT
 export const qrCodeAttendance = (data) => async (dispatch) => {
     try {
-        console.log("qrCodeAttendance action called with data:", data);
         dispatch({ type: QRCODE_ATTENDANCE_REQUEST });
 
         // Post request to the API
         const response = await MarkBelloApi.post('api/attendances/qrcode/data', { employee_email: data.employee_email });
-        console.log("Full API Response:", response);
+        console.log("Full API Response REDUX DISPATCH qrCodeAttendance:", response);
 
-        if (response.data && response.data.success) {
-            dispatch({
-                type: QRCODE_ATTENDANCE_SUCCESS,
-                payload: response.data,
+        if (response.data.success === true && response.data.status === 200) {
+            toast.success('QR Code attendance has been added successfully!👌👌👌', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
             });
-            return response.data;
+        } else if (response.data.success === false && response.data.status === 406) {
+            toast.error('QR Code attendance has been duplicated!🥺⚠️👽', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '15px'
+                }
+            });
         } else {
-            throw new Error(response.data.message || 'Unknown error');
+            toast.error('QR Code attendance encountered an error!🥺⚠️👽', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '15px'
+                }
+            });
         }
+
+        // Dispatch success action with payload
+        dispatch({
+            type: QRCODE_ATTENDANCE_SUCCESS,
+            payload: response.data,
+        });
+
+        // Return the response for further handling in the component
+        return response.data;
+
     } catch (error) {
         console.error("Full Error Object:", error);
         console.error("Error Response Data:", error.response?.data);
+
+        // Dispatch failure action with error message as payload
         dispatch({
             type: QRCODE_ATTENDANCE_FAILURE,
             payload: error.message,
         });
+
+        // Rethrow error so it can be caught in the component
         throw error;
     }
 };
