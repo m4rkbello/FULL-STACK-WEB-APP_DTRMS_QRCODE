@@ -62,13 +62,15 @@ const attendanceReducer = (state = initialState, action) => {
                 loading: false,
                 error: null
             };
-        case QRCODE_ATTENDANCE_SUCCESS:
-            return {
-                ...state,
-                attendances: [...state.attendances, action.payload], // Ensure payload is correctly added
-                loading: false,
-                error: null
-            };
+            case QRCODE_ATTENDANCE_SUCCESS:
+                return {
+                    ...state,
+                    attendances: Array.isArray(state.attendances) 
+                        ? [...state.attendances, action.payload]
+                        : [action.payload],
+                    loading: false,
+                    error: null
+                }
         case FETCH_ATTENDANCES_FAILURE:
         case ADD_ATTENDANCE_FAILURE:
         case UPDATE_ATTENDANCE_FAILURE:
