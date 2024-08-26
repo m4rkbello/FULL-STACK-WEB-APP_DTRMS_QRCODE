@@ -27,14 +27,26 @@ use App\Http\Controllers\OvertimeController;
 //AUTHENTICATION-ENDPOINTS
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
+Route::post('/employee-registration', [EmployeeController::class, 'store']);
+
+//ATTENDANCES-ENDPOINTS
+Route::prefix('attendances')->group(function () {
+    Route::post('/qrcode/data',[AttendanceController::class, 'store']);
+});
+
+
+
+
+//WRAPPED BY LARAVEL-SANCTUM FOR SECURITY PURPOSES
+Route::middleware('auth:sanctum')->group(function() {
 
 //ATTENDANCES-ENDPOINTS
 Route::prefix('attendances')->group(function () {
     Route::get('/collections/all',[AttendanceController::class, 'index']);
-    Route::post('/qrcode/data',[AttendanceController::class, 'store']);
     Route::get('/qrcode/data/{id}',[AttendanceController::class, 'show']);
     Route::post('/search', [AttendanceController::class, 'search']);
 });
+
 //PAYROLLS-ENDPOINTS
 Route::prefix('payrolls')->group(function () {
     Route::get('/collections/all',[PayrollController::class, 'index']);
@@ -43,6 +55,7 @@ Route::prefix('payrolls')->group(function () {
     Route::put('/update/{id}', [PayrollController::class, 'update']);
     Route::put('/deactivate/{id}', [PayrollController::class, 'deactivate']);
 });
+
 //RATES-ENDPOINTS
 Route::prefix('rates')->group(function () {
     Route::get('/collections/all',[RateController::class, 'index']);
@@ -51,6 +64,7 @@ Route::prefix('rates')->group(function () {
     Route::put('/deactivate/{id}', [RateController::class, 'deactivate']);
     Route::post('/search', [RateController::class, 'search']);
 });
+
 //DEDECUCTIONS-ENDPOINTS
 Route::prefix('deductions')->group(function () {
     Route::get('/collections/all',[DeductionController::class, 'index']);
@@ -59,6 +73,7 @@ Route::prefix('deductions')->group(function () {
     Route::put('/update/item/{id}', [DeductionController::class, 'update']);
     Route::put('/deactivate/{id}', [DeductionController::class, 'deactivate']);
 });
+
 //OVERTIMES-ENDPOINTS
 Route::prefix('overtimes')->group(function () {
     Route::get('/collections/all',[OvertimeController::class, 'index']);
@@ -67,9 +82,6 @@ Route::prefix('overtimes')->group(function () {
     Route::put('/update/item/{id}', [OvertimeController::class, 'update']);
     Route::put('/deactivate/{id}', [OvertimeController::class, 'deactivate']);
 });
-
-Route::post('/employee-registration', [EmployeeController::class, 'store']);
-Route::middleware('auth:sanctum')->group(function() {
     // MIDDLEWARE FOR FRONTEND-BACKEND  
     // ADMIN
     Route::get('/users',[AuthController::class, 'index']);
