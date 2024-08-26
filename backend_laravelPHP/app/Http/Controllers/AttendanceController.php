@@ -105,6 +105,7 @@ public function store(Request $request)
                 'success' => false,
                 'details' => $attendanceCollections,
                 'message' => 'Duplicated Employee Attendance!',
+                'status' => 406,
             ]);
         } elseif ($attendanceCollectionsTimeIn || !$attendanceCollectionsTimeout) {
             $attendance = Attendance::create([
@@ -119,6 +120,7 @@ public function store(Request $request)
                 'success' => false,
                 'details' => $attendanceCollections,
                 'message' => 'Duplicated Employee Attendance!',
+                'status' => 406,
             ]);
         }
 
@@ -134,37 +136,17 @@ public function store(Request $request)
             'success' => true,
             'details' => $attendance,
             'message' => 'Employee has been successfully added!',
+            'status' => 200,
         ], 200);
 
-    } catch (\Illuminate\Validation\ValidationException $e) {
-        Log::error('Validation error: ' . $e->getMessage(), ['errors' => $e->errors()]);
-        return response()->json([
-            'success' => false,
-            'status' => 422,
-            'message' => 'Validation failed 422 ERROR',
-            'errors' => $e->errors(),
-        ], 422);
-    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-        Log::error('Model not found: ' . $e->getMessage());
+    }catch (\Exception $e) {
+
         return response()->json([
             'success' => false,
             'status' => 404,
-            'message' => 'Resource not found 404 ERROR',
-        ], 404);
-    } catch (\Exception $e) {
-        Log::error('Error creating attendance: ' . $e->getMessage(), [
-            'exception' => get_class($e),
-            'file' => $e->getFile(),
-            'line' => $e->getLine(),
-            'trace' => $e->getTraceAsString(),
-        ]);
-
-        return response()->json([
-            'success' => false,
-            'status' => 500,
-            'message' => 'An error occurred while processing your request.',
+            'message' => 'Attendance QR CODE was error!',
             'error' => $e->getMessage(),
-        ], 500);
+        ], 404);
     }
 }
      
