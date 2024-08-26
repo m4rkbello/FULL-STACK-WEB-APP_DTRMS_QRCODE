@@ -87,8 +87,6 @@ export const updateOvertime = (overtimeId, updateOvertimeData) => async dispatch
             });
 
         } else {
-            // Handle the case where the update is successful
-              // Handle the case where the response is empty
               toast.error('Overtime data has not fillup correctly! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 10000,
