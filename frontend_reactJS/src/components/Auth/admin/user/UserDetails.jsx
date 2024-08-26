@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPlus, FcAcceptDatabase, FcKey, FcUnlock, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 import { MdEditSquare } from "react-icons/md";
 import { TbPasswordUser } from "react-icons/tb";
 //redux-actions
@@ -52,14 +52,12 @@ const UserDetails = (props) => {
       if (hasChanges) {
         props.updateUser(localStorageHasUserIdData, userData); // Pass updated userData
         setIsEditing(!isEditing); // Toggle editing mode
-        toast.success('User updated successfully.');
       } else {
         // No changes detected, toggle editing mode without updating user data
         setIsEditing(!isEditing);
       }
     } catch (error) {
       console.error('Error updating user:', error);
-      toast.error('Failed to update user. Please try again later.');
     }
   };
 
@@ -80,6 +78,7 @@ const UserDetails = (props) => {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
+  console.log("DATA SA isAuthenticatedUser LINE 83", isAuthenticatedUser);
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -108,49 +107,24 @@ const UserDetails = (props) => {
 
   }, []);
 
-  //para sa loading request if loading ang redux-reducer niya is is user_request
-  if (props.loading) {
-    return (
-      <div className="flex flex-col gap-4 w-52">
-      <div className="flex gap-4 items-center">
-        <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
-        <div className="flex flex-col gap-4">
-          <div className="skeleton h-4 w-20"></div>
-          <div className="skeleton h-4 w-28"></div>
-        </div>
-      </div>
-      <div className="skeleton h-32 w-full"></div>
-    </div>
-    );
-}
+  // if (props.loading) {
+  //   return (
+  //     <div className="flex flex-col gap-4 w-52">
+  //       <div className="flex gap-4 items-center">
+  //         <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
+  //         <div className="flex flex-col gap-4">
+  //           <div className="skeleton h-4 w-20"></div>
+  //           <div className="skeleton h-4 w-28"></div>
+  //         </div>
+  //       </div>
+  //       <div className="skeleton h-32 w-full"></div>
+  //     </div>
+  //   );
+  // }
 
   return (
 
     <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-
-    <div className='glass shadow-slate-900/100'>
-    <div className="grid grid-cols-3 items-center mt-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-      <div>
-        <span className="inline-grid grid-cols-3 gap-4 py-5">
-          <div className="p-3 flex justify-start">
- 
-          </div>
-          <div className="p-3 flex justify-end">
-            <FcSearch style={{ height: "2rem", width: "2rem" }} />
-          </div>
-        </span>
-      </div>
-      <div className="pb-5 pt-5 flex justify-center">
-        <h3 className="font-bold text-4xl text-black">RATE LIST</h3>
-      </div>
-      <div className="p-3 flex justify-end">
-        <FcPlus 
-
-          style={{ height: "3rem", width: "3rem" }}
-        />
-      </div>
-    </div>
-  </div>
 
       <ToastContainer />
       <dialog id="uploadUserUImage" className="modal">
@@ -162,25 +136,71 @@ const UserDetails = (props) => {
           </form>
         </div>
       </dialog>
-      
-      <div class="grid grid-flow-row-dense grid-cols-3 grid-rows-3 ...">
-      <div class="col-span-2"></div>
-      <div class="col-span-2">02</div>
-      <div>03</div>
-      <div>04</div>
-      <div>05</div>
-    </div>
 
+      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+        <div className="flex items-center text-sm breadcrumbs">
+          <ul className="flex space-x-4">
+            <li>
+              <Link to="/" className='flex items-center hover:text-white'>
+                <FcPrevious style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-2">Home</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin/users" className='flex items-center hover:text-white'>
+                <FcFolder
+                  style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-2">Users</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="" className='flex items-center hover:text-white'>
+                <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-2">Data</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div className='bg-transparent shadow-slate-900/100'>
+        <div className="grid grid-cols-3 items-center mt-10 mb-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+          <div>
+            <span className="inline-grid grid-cols-3 gap-4 py-5">
+              <div className="p-3 flex justify-start">
+                <span></span>
+              </div>
+
+            </span>
+          </div>
+          <div className="pb-0 pt-5 flex justify-center">
+            <div className="avatar">
+
+
+              <div className="avatar online">
+                <div className="ring-primary ring-offset-base-100 w-40 rounded-full">
+                  {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                    <img key={index} 
+                    src={user.user_image}
+                    className='"input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color'
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="p-3 flex justify-end">
+            <span></span>
+          </div>
+        </div>
+      </div>
 
       <div className="hero-content flex flex-col items-center">
-
-
-
         <FaUpload
           onClick={() => document.getElementById('uploadUserUImage').showModal()}
           style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
         />
-
         <div className="hero-content flex-col lg:flex-row">
           <div className="flex-1 pr-10 pl-10">
             <div className="grid grid-cols-2 gap-10">
@@ -255,17 +275,21 @@ const UserDetails = (props) => {
               {/* Other input fields */}
             </div>
             <br />
-            <button onClick={handleUpdateUser} className="btn bg-black mr-3">
+            <button onClick={handleUpdateUser} className="btn glass mr-3">
               {isEditing ?
-                <FaSave style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} /> :
-                <MdEditSquare style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} />
+                < FcUnlock
+                  style={{
+                    backgroundColor: 'transparent', color: 'white', border: 'none',
+                    width: '25px', height: '25px'
+                  }} /> :
+                <FcKey style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} />
               }
             </button>
             <button className="btn bg-black">
-            <Link to="/admin/user/profile-details/change-password">
-              <TbPasswordUser
-                style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }}
-              />
+              <Link to="/admin/user/profile-details/change-password">
+                <TbPasswordUser
+                  style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }}
+                />
               </Link>
             </button>
           </div>
@@ -290,7 +314,6 @@ const mapDispatchToProps = (dispatch) => ({
   fetchImages: () => dispatch(fetchImages()),
   uploadAndUpdateImageUser: (formData, userId) => dispatch(uploadAndUpdateImageUser(formData, userId)),
   updateUser: (userId, updatedUserData) => dispatch(updateUser(userId, updatedUserData)),
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);
