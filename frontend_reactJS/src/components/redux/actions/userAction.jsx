@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+/* eslint-disable react-hooks/rules-of-hooks */
 import MarkBelloApi from '../../../services/Api.jsx';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -148,16 +149,16 @@ export const registerUser = userData => async dispatch => {
         
         toast.success('Registered successfully!🤭😇🤗', {
             position: 'top-right',
-            autoClose: 10000,
+            autoClose: 5000,
             hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
             progress: undefined,
             style: {
-                background: 'black',
-                color: '#A3E636',
-                fontSize: '17px'
+                background: 'white',
+                color: 'black',
+                fontSize: '15px'
             }
         });
         
