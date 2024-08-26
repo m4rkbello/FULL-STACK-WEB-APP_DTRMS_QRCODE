@@ -47,7 +47,7 @@ const Login = ({ loginUser }) => {
             <form className="card-body">
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text text-xl text-white">Email</span>
+                        <span className="label-text text-xl text-black">Email</span>
                     </label>
                     <label className="input input-bordered flex items-center gap-2 glass">
                         <input type="text" 
@@ -59,7 +59,7 @@ const Login = ({ loginUser }) => {
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text text-xl text-white">Password</span>
+                        <span className="label-text text-xl text-black">Password</span>
                     </label>
                     <label className="input input-bordered flex items-center gap-2 glass">
                         <input value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} type="password" 
@@ -68,8 +68,9 @@ const Login = ({ loginUser }) => {
                          style={{ color:'black' }}
                          />
                     </label>
+                
                     <label className="label">
-                        <a href="#" className="label-text-alt link link-hover text-white text-lg">Forgot password?</a>
+                        <a href="#" className="label-text-alt link link-hover text-black text-lg">Forgot password?</a>
                     </label>
                 </div>
                 <div className="form-control mt-6">
