@@ -3,35 +3,24 @@
 /* eslint-disable react/prop-types */
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FaEye } from "react-icons/fa6";
-import { MdAutoDelete } from "react-icons/md";
-import { IoIosPersonAdd } from "react-icons/io";
-import { HiStatusOnline } from "react-icons/hi";
-import { MdOutlineNoAccounts } from "react-icons/md";
-import { RiAccountPinCircleFill } from "react-icons/ri";
-import { IoMdCloseCircle } from "react-icons/io";
 import { useEffect, useState } from 'react';
-import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
-import { IoSearch } from "react-icons/io5";
-import { SiMicrosoftexcel } from "react-icons/si";
-import { IoIosPrint } from "react-icons/io";
-import { FcPrint, FcDataSheet, FcPlus, FcSearch, FcOpenedFolder, FcFile, FcCheckmark, FcViewDetails, FcEmptyTrash, FcCancel, FcLeft } from "react-icons/fc";
-import { MoveLeft, FolderOpen, Component, Trash, UserPlus } from 'lucide-react';
-//REDUX
+import { FcPrint, FcDataSheet, FcCheckmark, FcPlus, FcSearch, FcOpenedFolder, FcFile, FcViewDetails, FcEmptyTrash, FcCancel, FcLeft } from "react-icons/fc";
+//REDUXISM
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
 import { fetchDepartments } from '../../redux/actions/departmentAction';
 //TOASTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-//GENERATE EXCEL FILE
+//USE-REF - GENERATE EXCEL FILE
 import React, { useRef } from 'react';
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 
 
 const EmployeeDashboard = (props) => {
     const defaultImage = '../../../../public/miming.jpg';
-    const eyeView = '../../../../public/svg/view.png';
+
+    console.log("DATA SA props LINE 32", props);
 
     const tableRef = useRef(null);
 
@@ -66,7 +55,7 @@ const EmployeeDashboard = (props) => {
     }
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
-    // console.log("DATA SA employeesList", employeesList);
+    console.log("DATA SA employeesList LINE 58", employeesList);
 
     const imageCollectionArrays = props.imagesData?.images?.data;
     // console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
@@ -90,7 +79,6 @@ const EmployeeDashboard = (props) => {
     const filterImage = getEmployeeImage(imageCollectionArrays, employeesList);
 
     const handleAddEmployee = async (event) => {
-        // console.log("DATA SA formDataAddEmployee", formDataAddEmployee);
         event.preventDefault();
         try {
             const addEmployeeRequestResponse = await props.addEmployee(formDataAddEmployee);
@@ -138,7 +126,7 @@ const EmployeeDashboard = (props) => {
         }
     };
 
-    const departmentsCollectionArrays = props?.departmentsData?.departments?.data?.department;
+    const departmentsCollectionArrays = props?.departmentsData?.departments?.data?.details;
 
     function fetchDepartments(departmentsCollectionArrays) {
         let item = [];
@@ -153,8 +141,9 @@ const EmployeeDashboard = (props) => {
     }
 
     const departments = fetchDepartments(departmentsCollectionArrays);
+    console.log("DATA SA departments LINE 155", departments);
 
-
+    //PRINT-MODULE EMPLOYEES-DATA
     function printEmployeeDashboard() {
         var printTable = document.getElementById("employeesDataList").cloneNode(true);
 
@@ -455,6 +444,7 @@ const EmployeeDashboard = (props) => {
                                         <tbody>
                                             {employeesList && employeesList.map((item, index) => (
                                                 item.employee_status != 0 && (
+                                            
                                                     <tr key={index} className="md:table-row overflow-x-auto glass">
                                                         <td className="sm:table-cell box-border h-24 w-24 p-4 drop-shadow-lg">
                                                             <div className="flex items-center">
@@ -470,14 +460,14 @@ const EmployeeDashboard = (props) => {
                                                         <td className="md:table-cell">5</td>
                                                         <td className="md:table-cell">{item.employee_position}</td>
                                                         <td className="md:table-cell">
-                                                            {item.employee_status === 1 ?
-                                                                <FcCheckmark
-                                                                style={{ height: "2rem", width: "2rem" }}
-                                                                />
-                                                                : <FcCancel
-                                                                style={{ height: "2rem", width: "2rem" }}
-                                                                />
-                                                            }
+                                                        {item.employee_status !== 0 ? (
+                                                            <FcCheckmark style={{ height: "2rem", width: "2rem" }} />
+                                                        ) : item.employee_status === 0 ? (
+                                                            <FcCancel style={{ height: "2rem", width: "2rem" }} />
+                                                        ) : (
+                                                            <FcCancel style={{ height: "2rem", width: "2rem" }} />
+                                                        )}
+                                                        
                                                         </td>
                                                         <td className="flex md:table-cell">
                                                             <div className="flex">
