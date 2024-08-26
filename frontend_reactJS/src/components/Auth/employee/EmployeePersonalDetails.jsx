@@ -148,8 +148,18 @@ const EmployeePersonalDetails = (props) => {
     }
 
     const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
-    console.log("DATA SA employeeDepartmentFilteredData", employeeDepartmentFilteredData);
 
+    const downloadQRCode = (url) => {
+        console.log('Downloading QR code from:', url); // Check if URL is correct
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'qrcode.png'; // Default filename for download
+    
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+    
 
     return (
         <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
@@ -348,8 +358,8 @@ const EmployeePersonalDetails = (props) => {
                     <form method="dialog justify-center">
                         <input type="file" onChange={handleImageEmployeeChange} className="file-input bg-black w-full max-w-xs" />
                         <button onClick={handleUploadImageEmployee}
-                            className="btn btn-primary ml-5"
-                            style={{ background: "black", color: "white" }}
+                            className="btn btn-white ml-5"
+                            style={{ background: "transparent", color: "white" }}
                         >Upload</button>
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
@@ -360,15 +370,30 @@ const EmployeePersonalDetails = (props) => {
                 <>
                     <div className="h-auto max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
                         <div className="hero-content flex flex-col items-center">
-                            {employee && employee.map((image, imageIndex) => (
-                                <img
-                                    key={imageIndex}
-                                    className="mask mask-square shadow-inner"
-                                    src={image.employee_qrcode}
-                                    type="file"
-                                    style={{ backgroundColor: 'transparent', width: '20%', height: '20%' }}
-                                />
-                            ))}
+
+                        <div className="flex justify-between ...">
+  <div>01</div>
+  <div>02</div>
+  <div>
+  {employee && employee.map((image, imageIndex) => (
+      <div key={imageIndex} style={{ position: '' }}>
+          <img
+              className="mask mask-square shadow-inner absolute top-0 right-0 bg-blue-500 text-white p-5 rounded"
+              src={image.employee_qrcode}
+              style={{ backgroundColor: 'transparent', width: '20%', height: '20%', }}
+          />
+          <button
+              onClick={() => downloadQRCode(image.employee_qrcode)}
+              className=" bg-blue-500  absolute text-white p-2 rounded"
+          >
+              Download QR Code
+          </button>
+      </div>
+  ))}</div>
+</div>
+
+                
+                        
 
                             {/*** PROFILE SA EMPLOYEE */}
                             {employee && employee.length > 0 ? (
