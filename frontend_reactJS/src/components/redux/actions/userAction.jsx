@@ -71,23 +71,40 @@ export const updateUser = (userId, updatedUserData) => async dispatch => {
     try {
         dispatch({ type: UPDATE_USER_REQUEST });
 
-        const response = await MarkBelloApi.put(`/api/user/${userId}`, updatedUserData);
-        const updatedUser = response.data;
+        const updateUserDataReqAndRes = await MarkBelloApi.put(`/api/user/${userId}`, updatedUserData);
+        console.log("DATA SA response SA LINE 76", updateUserDataReqAndRes);
 
-        toast.success('Updated successfully!🤭😇🤗', {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            style: {
-                background: 'white',
-                color: 'green',
-                fontSize: '15px'
-            }
-        });
+        if(updateUserDataReqAndRes.data.status === 200 && updateUserDataReqAndRes.data.success === true){
+            toast.success('User has been updated successfully!🤭😇🤗', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
+            });
+        }else{
+            toast.success('User was not updated!🤭😇🤗', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '15px'
+                }
+            });
+        }
 
         dispatch({
             type: UPDATE_USER_SUCCESS,
@@ -249,8 +266,32 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
             },
         });
 
-        if (!uploadAndUpdateImageReqRes || uploadAndUpdateImageReqRes.data.success === false) {
+        console.log("DATA SA uploadAndUpdateImageReqRes", uploadAndUpdateImageReqRes);
+
+        if (uploadAndUpdateImageReqRes.data.success === true) {
             //set ug timer para mo reload .5seconds
+    
+            toast.success('Image upload successfully!🤭😇🤗', {
+                position: 'top-right',
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                style: {
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
+                }
+            });
+
+
+            // setTimeout(() => {
+            //     window.location.reload();
+            // }, 5000)
+        } else {
+
             toast.error(uploadAndUpdateImageReqRes.data.message, '!🥺😱😣', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -266,30 +307,11 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
                 }
 
             });
-
-            setTimeout(() => {
-                window.location.reload();
-            }, 5000)
-        } else {
-            toast.success('Image upload successfully!🤭😇🤗', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                style: {
-                    background: 'white',
-                    color: 'green',
-                    fontSize: '15px'
-                }
-            });
-
-            setTimeout(() => {
-                window.location.reload();
-                navigate("http://localhost:5173/admin/user/profile-details");
-            }, 5000);
+           
+            // setTimeout(() => {
+            //     window.location.reload();
+            //     navigate("http://localhost:5173/admin/user/profile-details");
+            // }, 5000);
 
         }
 
