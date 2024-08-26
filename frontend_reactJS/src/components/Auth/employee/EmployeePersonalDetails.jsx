@@ -154,12 +154,12 @@ const EmployeePersonalDetails = (props) => {
         const link = document.createElement('a');
         link.href = url;
         link.download = 'qrcode.png'; // Default filename for download
-    
+
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     };
-    
+
 
     return (
         <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
@@ -371,29 +371,29 @@ const EmployeePersonalDetails = (props) => {
                     <div className="h-auto max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
                         <div className="hero-content flex flex-col items-center">
 
-                        <div className="flex justify-between ...">
-  <div>01</div>
-  <div>02</div>
-  <div>
-  {employee && employee.map((image, imageIndex) => (
-      <div key={imageIndex} style={{ position: '' }}>
-          <img
-              className="mask mask-square shadow-inner absolute top-0 right-0 bg-blue-500 text-white p-5 rounded"
-              src={image.employee_qrcode}
-              style={{ backgroundColor: 'transparent', width: '20%', height: '20%', }}
-          />
-          <button
-              onClick={() => downloadQRCode(image.employee_qrcode)}
-              className=" bg-blue-500  absolute text-white p-2 rounded"
-          >
-              Download QR Code
-          </button>
-      </div>
-  ))}</div>
-</div>
+                            <div className="flex justify-between ...">
+                                <div>01</div>
+                                <div>02</div>
+                                <div>
+                                    {employee && employee.map((image, imageIndex) => (
+                                        <div key={imageIndex} style={{ position: '' }}>
+                                            <img
+                                                className="mask mask-square shadow-inner absolute top-0 right-0 bg-blue-500 text-white p-5 rounded"
+                                                src={image.employee_qrcode}
+                                                style={{ backgroundColor: 'transparent', width: '20%', height: '20%', }}
+                                            />
+                                            <button
+                                                onClick={() => downloadQRCode(image.employee_qrcode)}
+                                                className=" bg-blue-500  absolute text-white p-2 rounded"
+                                            >
+                                                Download QR Code
+                                            </button>
+                                        </div>
+                                    ))}</div>
+                            </div>
 
-                
-                        
+
+
 
                             {/*** PROFILE SA EMPLOYEE */}
                             {employee && employee.length > 0 ? (
