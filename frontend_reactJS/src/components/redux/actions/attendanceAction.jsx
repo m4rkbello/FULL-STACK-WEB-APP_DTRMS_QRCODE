@@ -106,7 +106,7 @@ export const qrCodeAttendance = (data) => async (dispatch) => {
         console.log("Full API Response REDUX DISPATCH qrCodeAttendance:", response);
 
         if (response.data.success === true && response.data.status === 200) {
-            toast.success('QR Code attendance has been added successfully!👌👌👌', {
+            toast.success('QR-Code attendance has been added successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -171,7 +171,6 @@ export const qrCodeAttendance = (data) => async (dispatch) => {
             payload: error.message,
         });
 
-        // Rethrow error so it can be caught in the component
         throw error;
     }
 };
