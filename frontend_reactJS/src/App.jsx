@@ -75,19 +75,20 @@ function App(props) {
   }, []);
 
   const destroyAuthentications = () => {
-    //para sa localStorage
     localStorage.clear();
-    //para sa sessionStorage
+ 
     sessionStorage.clear();
-    //para sa cookies
+    
+    // Remove cookies
     document.cookie.split(';').forEach((cookie) => {
       document.cookie = cookie
         .replace(/^ +/, '')
         .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
     });
+    
     window.location.reload();
-    navigate("/http://localhost:5173/");
-  }
+    navigate("/");
+  };
 
   // const usersCollection = props && props.users && props.users.data;
   const usersCollection = props?.users?.data; // Accessing users array from props
