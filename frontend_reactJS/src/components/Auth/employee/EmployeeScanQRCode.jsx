@@ -1,33 +1,43 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import QrScanner from 'qr-scanner';
 import 'qr-scanner/qr-scanner-worker.min.js';
 import { qrCodeAttendance } from '../../redux/actions/attendanceAction';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function EmployeeScanQRCode() {
   const videoRef = useRef(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [scannerActive, setScannerActive] = useState(false);
   const [scanResult, setScanResult] = useState(null);
+  
+  //memes
   const audioRefSuccess = useRef(new Audio('/patotoya.m4a'));
   const audioRefError = useRef(new Audio('/ganiharakaba.m4a'));
+  const audioRefOhaha = useRef(new Audio('/ohaha.m4a'));
 
   const startScanner = () => {
     setScannerActive(true);
     console.log("Scanner started by user interaction.");
   };
 
-  // Function to handle audio playback errors
   const handleAudioError = (audioRef, error) => {
     console.error(`Audio playback failed: ${error}`);
-    // Handle error logging or other actions as needed
   };
 
-  // Function to play error audio
+  //PATOTOYA HAHA
+  const playSuccessAudio = () => {
+    try {
+      audioRefSuccess.current.play();
+    } catch (error) {
+      handleAudioError(audioRefSuccess.current, error);
+    }
+  };
+
+  //GANIHA RAKA BA!
   const playErrorAudio = () => {
     try {
       audioRefError.current.play();
@@ -36,118 +46,100 @@ function EmployeeScanQRCode() {
     }
   };
 
+  //OHAHA AUDIO
+  const playDuplicateAudio = () => {
+    try {
+      audioRefOhaha.current.play();
+    } catch (error) {
+      handleAudioError(audioRefError.current, error);
+    }
+  };
+
+
   useEffect(() => {
     let scanner;
-  
-    const setupScanner = () => {
-      scanner = new QrScanner(videoRef.current, async (result) => {
-        if (scannerActive) {
-          console.log("QR Code detected:", result);
-          setScanResult(result);
-          setScannerActive(false);
-  
-          try {
-            const email = result;
-            console.log("Email extracted from QR code:", email);
-  
-            const qrcodeReqRes = await dispatch(qrCodeAttendance({ employee_email: email }));
-            console.log("QR Code Attendance Result:", qrcodeReqRes);
-  
-            if (qrcodeReqRes && qrcodeReqRes.success) {
-              toast.success(qrcodeReqRes.message || 'Attendance recorded successfully!', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: 'black',
-                  color: '#A3E636',
-                  fontSize: '17px',
-                },
-              });
-  
-              // Play success audio
-              setTimeout(() => {
-                try {
-                  audioRefSuccess.current.play();
-                } catch (error) {
-                  handleAudioError(audioRefSuccess.current, error);
-                }
-              }, 1000);
-  
-            } else {
-              // Play error audio for any unsuccessful response
-              playErrorAudio();
-  
-              toast.error(qrcodeReqRes ? qrcodeReqRes.message : 'Unknown error occurred', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: 'black',
-                  color: 'red',
-                  fontSize: '15px',
-                  fontWeight: 'Bold',
-                },
-              });
-            }
-          } catch (error) {
-            console.error('QR Code Authentication Error:', error);
-  
-            // Play error audio for any error
-            playErrorAudio();
-  
-            toast.error(error.message, {
-              position: 'top-right',
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              style: {
-                background: 'black',
-                color: 'red',
-                fontSize: '15px',
-                fontWeight: 'Bold',
-              },
-            });
-          } finally {
-            // Re-enable the scanner after 3 seconds
-            setTimeout(() => {
-              setScannerActive(true);
-              setScanResult(null);
-            }, 3000);
-          }
-        }
-      });
-  
-      scanner.start().then(() => {
-        console.log("QR Scanner started");
-      }).catch(error => {
-        console.error("Failed to start QR Scanner:", error);
-        alert("Failed to start QR Scanner. Please check your camera permissions.");
-        playErrorAudio(); // Play error audio if scanner fails to start
-      });
-    };
-  
-    if (scannerActive) {
-      setupScanner();
-    }
-  
-    return () => {
-      if (scanner) {
-        scanner.destroy();
-        console.log("QR Scanner stopped");
-      }
-    };
-  }, [dispatch, scannerActive]);
-  
 
+    const setupScanner = () => {
+        scanner = new QrScanner(videoRef.current, async (result) => {
+            if (scannerActive) {
+                console.log("QR Code detected:", result);
+                setScanResult(result);
+                setScannerActive(false);
+
+                try {
+                    const email = result;
+                    console.log("Email extracted from QR code:", email);
+
+                    // Dispatch the Redux action and wait for the response
+                    const response = await dispatch(qrCodeAttendance({ employee_email: email }));
+                    
+                    // Log the response keys and the response itself
+                    console.log("Response Data Keys:", Object.keys(response));
+                    console.log("Full Response Data:", response);
+
+                    // Handle success and error based on the response data
+                    if (response.success === true && response.status === 200) {
+                        playSuccessAudio();
+                    } else if (response.success === false && response.status === 406) {
+                      playDuplicateAudio();
+                    } else {
+                        playErrorAudio();
+                    }
+
+                } catch (error) {
+                    console.error('QR Code Authentication Error:', error);
+
+                    // Log the keys of the error object
+                    console.error('Error object keys:', Object.keys(error));
+
+                    // If the error has a response property (typical for axios errors)
+                    if (error.response) {
+                        console.error('Error response data keys:', Object.keys(error.response.data));
+                        console.error('Error response status:', error.response.status);
+                        console.error('Error response headers:', error.response.headers);
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        console.error('Error request:', error.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.error('Error message:', error.message);
+                    }
+
+                    playErrorAudio();
+                } finally {
+                    // Reactivate the scanner after a short delay
+                    setTimeout(() => {
+                        setScannerActive(true);
+                        setScanResult(null);
+                    }, 3000);
+                }
+            }
+        });
+
+        // Start the QR scanner
+        scanner.start().then(() => {
+            console.log("QR Scanner started");
+        }).catch(error => {
+            console.error("Failed to start QR Scanner:", error);
+            alert("Failed to start QR Scanner. Please check your camera permissions.");
+            playErrorAudio();
+        });
+    };
+
+    // Set up the scanner if it's active
+    if (scannerActive) {
+        setupScanner();
+    }
+
+    // Clean up the scanner on component unmount
+    return () => {
+        if (scanner) {
+            scanner.destroy();
+            console.log("QR Scanner stopped");
+        }
+    };
+}, [dispatch, scannerActive]);
+  
   return (
     <div className="min-h-screen flex items-center justify-center">
       <ToastContainer />
@@ -179,7 +171,7 @@ function EmployeeScanQRCode() {
                 <div className='flex justify-center'>
                   <button
                     onClick={startScanner}
-                    className="m-4 p-2  bg-indigo-500  rounded"
+                    className="m-4 p-2 bg-indigo-500 rounded"
                     style={{ zIndex: 10 }}
                   >
                     Start Scanner
