@@ -69,42 +69,42 @@ const Register = ({ registerUser }) => {
 
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-xl text-white">Firstname</span>
+                                    <span className="label-text text-xl text-black">Firstname</span>
                                 </label>
                                 <input type="text" value={localFirstName} onChange={(e) => setLocalFirstName(e.target.value)} placeholder="Enter Firstname" className="input input-bordered grow glass text-black placeholder-black" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-xl text-white">Lastname</span>
+                                    <span className="label-text text-xl text-black">Lastname</span>
                                 </label>
                                 <input type="text" value={localLastName} onChange={(e) => setLocalLastName(e.target.value)} placeholder="Enter Lastname" className="input input-bordered grow glass text-black placeholder-black" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-xl text-white">Email</span>
+                                    <span className="label-text text-xl text-black">Email</span>
                                 </label>
                                 <input type="email" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} placeholder="Enter Email" className="input input-bordered grow glass text-black placeholder-black" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-xl text-white">Contact No.</span>
+                                    <span className="label-text text-xl text-black">Contact No.</span>
                                 </label>
                                 <input type="text" value={localContactNo} onChange={(e) => setLocalContactNo(e.target.value)} placeholder="Enter Contact No." className="input input-bordered grow glass text-black placeholder-black" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-xl text-white">Password</span>
+                                    <span className="label-text text-xl text-black">Password</span>
                                 </label>
 
                                 <input type="password" value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} placeholder="Enter Password" className="input input-bordered grow glass text-black placeholder-black" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-xl text-white">Confirm Password</span>
+                                    <span className="label-text text-xl text-black">Confirm Password</span>
                                 </label>
                                 <input type="password" value={localConfirmPassword} onChange={(e) => setLocalConfirmPassword(e.target.value)} placeholder="Enter Confirm Password" className="input input-bordered grow glass text-black placeholder-black" required />
                                 <label className="label">
-                                    <Link to="/resetpassword" className="label-text text-xl text-white-alt link link-hover">Forgot password?</Link>
+                                    <Link to="/resetpassword" className="label-text text-xl text-black-alt link link-hover">Forgot password?</Link>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
