@@ -203,16 +203,16 @@ export const loginUser = userData => async dispatch => {
         //Toaster sa login
         toast.success('Login successfully!🤭🤗😎', {
             position: 'top-right',
-            autoClose: 10000,
+            autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: false,
             draggable: false,
             progress: undefined,
             style: {
-                background: 'black',
-                color: 'white',
-                fontSize: '20px'
+                background: 'white',
+                color: 'green',
+                fontSize: '15px'
             }
         });
 
@@ -224,16 +224,16 @@ export const loginUser = userData => async dispatch => {
 
         toast.error('User or Password is incorrect! 🥺⚠️👽', {
             position: 'top-right',
-            autoClose: 10000,
+            autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: false,
-            draggable: true,
+            draggable: false,
             progress: undefined,
             style: {
                 background: 'black',
                 color: 'red',
-                fontSize: '20px',
+                fontSize: '15px',
                 fontWeight: 'Bold'
             }
         });
@@ -253,16 +253,16 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
             //set ug timer para mo reload .5seconds
             toast.error(uploadAndUpdateImageReqRes.data.message, '!🥺😱😣', {
                 position: 'top-right',
-                autoClose: 10000,
+                autoClose: 5000,
                 hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
                 progress: undefined,
                 style: {
                     background: 'black',
                     color: 'red',
-                    fontSize: '20px'
+                    fontSize: '15px'
                 }
 
             });
@@ -280,9 +280,9 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
                 draggable: true,
                 progress: undefined,
                 style: {
-                    background: 'black',
-                    color: '#A3E636',
-                    fontSize: '17px'
+                    background: 'white',
+                    color: 'green',
+                    fontSize: '15px'
                 }
             });
 
@@ -323,14 +323,14 @@ export const userChangePassword = (userId, changePasswordUserData) => async disp
                 position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
                 progress: undefined,
                 style: {
-                    background: 'black',
-                    color: '#A3E636',
-                    fontSize: '17px'
+                    background: 'white',
+                    color: 'greeb',
+                    fontSize: '15px'
                 }
             });
 
@@ -346,14 +346,14 @@ export const userChangePassword = (userId, changePasswordUserData) => async disp
             position: 'top-right',
             autoClose: 5000,
             hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
             progress: undefined,
             style: {
                 background: 'black',
-                color: '#A3E636',
-                fontSize: '17px'
+                color: 'red',
+                fontSize: '15px'
             }
         });
 
