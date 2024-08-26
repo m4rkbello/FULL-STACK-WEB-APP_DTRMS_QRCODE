@@ -1,3 +1,7 @@
+/* eslint-disable no-extra-semi */
+/* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable no-unused-vars */
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -20,6 +24,7 @@ import { fetchImages } from '../../../redux/actions/imageAction';
 //modal 
 
 const UserDetails = (props) => {
+  console.log("DATA SA UserDetails", props);
   //FOR AUTHENTICATION-PURPOSES
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
@@ -28,7 +33,6 @@ const UserDetails = (props) => {
   const [userData, setUserData] = useState({
     user_password: '',
     confirm_password: '',
-
   });
 
   //naga hold ug sa formData
@@ -124,17 +128,9 @@ const UserDetails = (props) => {
   };
 
   return (
-
-    <div className="hero min-h-screen bg-zinc-100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-      <button style={{ marginRight: "93%", marginBottom: "65%" }} >
-        <Link to="/">
-          <FaLongArrowAltLeft style={{ fontSize: "50px", color: "black", marginRight: "90%", marginBottom: "65%" }} />
-        </Link>
-      </button>
+    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
       <ToastContainer />
-
       <div className="hero-content flex flex-col items-center">
-
         {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
           <img
             key={index}
