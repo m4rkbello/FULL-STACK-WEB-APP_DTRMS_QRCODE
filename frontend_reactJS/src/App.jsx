@@ -250,7 +250,7 @@ function App(props) {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/admin/users" element={<UserDashboard />} />
-                  <Route path="/admin/user/profile-details/change-password" element={<UserChangePassword />} />
+                  <Route path="/admin/user/profile-details/change-password/:userId" element={<UserChangePassword />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
                   <Route path="/admin/payrolls" element={<Payroll />} />
                   {/**RATES */}
@@ -290,7 +290,6 @@ function App(props) {
             <div className="drawer-side border-r-4 glass border-black">
               <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
               <ul className="menu w-64 md:w-80 min-h-full glass">
-
                 <li>
                   <details close>
                     <summary className='glass'>
@@ -298,7 +297,6 @@ function App(props) {
                         style={{
                           height: "2.5rem",
                           width: "2.5rem",
-
                         }}
                       />
                       <span className='text-2xl'>
@@ -319,7 +317,6 @@ function App(props) {
                           </span>
                         </Link>
                       </li>
-
                       <li>
                         <Link to="/employee/attendance" className='text-2xl glass'>
                           <FcStatistics
@@ -333,121 +330,106 @@ function App(props) {
                           </span>
                         </Link>
                       </li>
-
                       <li>
-                      <Link to="/employee/dashboard" className='text-2xl glass'>
-                      <FcButtingIn
-                        style={{
-                          height: "2rem",
-                          width: "2rem",
-                        }}
-                      />
-                      <span className='text-lg'>
-                        EMPLOYEES LIST
-                      </span>
+                        <Link to="/employee/dashboard" className='text-2xl glass'>
+                          <FcButtingIn
+                            style={{
+                              height: "2rem",
+                              width: "2rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            EMPLOYEES LIST
+                          </span>
                         </Link>
                       </li>
-
                       <li>
-                      <Link to="/employee/archieve" className='text-2xl glass'>
-                        <FcReuse
-                          style={{
-                            height: "2rem",
-                            width: "2rem",
-                          }}
-                        />
-                        <span className='text-lg'>
-                          EMPLOYEES ARCHIEVE
-                        </span>
-                      </Link>
-                    </li>
-
-                    <li>
-                    <Link to="/department" className='text-2xl glass'>
-                      <FcDepartment
-                        style={{
-                          height: "2rem",
-                          width: "2rem",
-                        }}
-                      />
-                      <span className='text-lg'>
-                        DEPARTMENTS
-                      </span>
-                    </Link>
-                  </li>
-
-                  <li>
-                  <Link to="/admin/payrolls" className='text-2xl glass'>
-                    <FcCurrencyExchange
-                      style={{
-                        height: "2rem",
-                        width: "2rem",
-                      }}
-                    />
-                    <span className='text-lg'>
-                     PAYROLLS
-                    </span>
-                  </Link>
-                </li>
-
-                <li>
-                <Link to="/admin/rates" className='text-2xl glass'>
-                  <FcSalesPerformance 
-                    style={{
-                      height: "2rem",
-                      width: "2rem",
-                    }}
-                  />
-                  <span className='text-lg'>
-                   RATES
-                  </span>
-                </Link>
-              </li>
-
-              <li>
-              <Link to="/admin/overtimes" className='text-2xl glass'>
-                <FcOvertime 
-                  style={{
-                    height: "2rem",
-                    width: "2rem",
-                  }}
-                />
-                <span className='text-lg'>
-                 OVERTIMES
-                </span>
-              </Link>
-            </li> 
-
-            <li>
-            <Link to="/admin/deductions" className='text-2xl glass'>
-              <FcExpired
-                style={{
-                  height: "2rem",
-                  width: "2rem",
-                }}
-              />
-              <span className='text-lg'>
-               DEDUCTIONS
-              </span>
-              </Link>
-
-          </li>
-
-
-
-
-
-
+                        <Link to="/employee/archieve" className='text-2xl glass'>
+                          <FcReuse
+                            style={{
+                              height: "2rem",
+                              width: "2rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            EMPLOYEES ARCHIEVE
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/department" className='text-2xl glass'>
+                          <FcDepartment
+                            style={{
+                              height: "2rem",
+                              width: "2rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            DEPARTMENTS
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/admin/payrolls" className='text-2xl glass'>
+                          <FcCurrencyExchange
+                            style={{
+                              height: "2rem",
+                              width: "2rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            PAYROLLS
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/admin/rates" className='text-2xl glass'>
+                          <FcSalesPerformance
+                            style={{
+                              height: "2.5rem",
+                              width: "2.5rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            RATES
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/admin/overtimes" className='text-2xl glass'>
+                          <FcOvertime
+                            style={{
+                              height: "2.5rem",
+                              width: "2.5rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            OVERTIMES
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/admin/deductions" className='text-2xl glass'>
+                          <FcExpired
+                            style={{
+                              height: "2.5rem",
+                              width: "2.5rem",
+                            }}
+                          />
+                          <span className='text-lg'>
+                            DEDUCTIONS
+                          </span>
+                        </Link>
+                      </li>
                     </ul>
                   </details>
                 </li>
-
                 <li>
                   <Link to="/" className='text-2xl glass'>
                     <FcDoughnutChart
                       style={{
-                        height: "120%",
-                        width: "120%",
+                        height: "2.5rem",
+                        width: "2.5rem",
                       }}
                     />
                     DASHBOARD
@@ -457,8 +439,8 @@ function App(props) {
                   <Link to="/employee/attendance" className='text-2xl glass'>
                     <FcElectricalThreshold
                       style={{
-                        height: "120%",
-                        width: "120%",
+                        height: "2.5rem",
+                        width: "2.5rem",
                       }}
                     />
                     ATTENDANCE
@@ -468,8 +450,8 @@ function App(props) {
                   <Link to="/employee/dashboard" className='text-2xl glass'>
                     <FcConferenceCall
                       style={{
-                        height: "120%",
-                        width: "120%",
+                        height: "2.5rem",
+                        width: "2.5rem",
                       }}
                     />
                     EMPLOYEES
@@ -479,8 +461,8 @@ function App(props) {
                   <Link to="/employee/archieve" className='text-2xl glass'>
                     <FcReuse
                       style={{
-                        height: "120%",
-                        width: "120%",
+                        height: "2.5rem",
+                        width: "2.5rem",
                       }}
                     />
                     EMPLOYEES ARCH.
@@ -490,8 +472,8 @@ function App(props) {
                   <Link to="/department" className='text-2xl glass'>
                     <FcDepartment
                       style={{
-                        height: "120%",
-                        width: "120%",
+                        height: "2.5rem",
+                        width: "2.5rem",
                       }}
                     />
                     DEPARTMENTS
@@ -501,8 +483,8 @@ function App(props) {
                   <Link to="/admin/payrolls" className='text-2xl glass'>
                     <FcMoneyTransfer
                       style={{
-                        height: "120%",
-                        width: "120%",
+                        height: "2.5rem",
+                        width: "2.5rem",
                       }}
                     />
                     PAYROLLS
@@ -512,8 +494,8 @@ function App(props) {
                   <Link to="/admin/rates" className='text-2xl glass'>
                     <FcSalesPerformance
                       style={{
-                        height: "120%",
-                        width: "120%",
+                        height: "2.5rem",
+                        width: "2.5rem",
                       }}
                     />
                     RATES
@@ -523,8 +505,8 @@ function App(props) {
                   <Link to="/admin/overtimes" className='text-2xl glass'>
                     <FcOvertime
                       style={{
-                        height: "120%",
-                        width: "120%",
+                        height: "2.5rem",
+                        width: "2.5rem",
                       }}
                     />
                     OVERTIMES
@@ -534,8 +516,8 @@ function App(props) {
                   <Link to="/admin/deductions" className='text-2xl glass'>
                     <FcDebt
                       style={{
-                        height: "120%",
-                        width: "120%",
+                        height: "2.5rem",
+                        width: "2.5rem",
                       }}
                     />
                     DEDUCTIONS
@@ -549,7 +531,6 @@ function App(props) {
                         style={{
                           height: "2.5rem",
                           width: "2.5rem",
-
                         }}
                       />
                       <span className='text-2xl'>
@@ -563,7 +544,6 @@ function App(props) {
                             style={{
                               height: "2.5rem",
                               width: "2.5rem",
-
                             }}
                           />
                           <span className='text-2xl'>
@@ -577,7 +557,6 @@ function App(props) {
                             style={{
                               height: "2.5rem",
                               width: "2.5rem",
-
                             }}
                           />
                           <span className='text-2xl'>
@@ -598,7 +577,6 @@ function App(props) {
                           </span>
                         </a>
                       </li>
-
                     </ul>
                   </details>
                 </li>
