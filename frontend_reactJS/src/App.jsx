@@ -33,7 +33,6 @@ import Deduction from './components/Auth/admin/deduction/Deduction';
 import EditDeduction from './components/Auth/admin/deduction/EditDeduction';
 //EMPLOYEE-ROUTES
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
-import PersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
 import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import ArchiveEmployee from './components/Auth/employee/EmployeeArchieve';
@@ -281,7 +280,6 @@ function App(props) {
               <Routes>
                 <Route path="/admin/login" element={<Login />} />
                 <Route path="/admin/register" element={<Register />} />
-                <Route path="/details" element={<PersonalDetails />} />
                 <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
               </Routes>
             )}
