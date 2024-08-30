@@ -113,8 +113,6 @@ export const addDepartment = departmentData => async dispatch => {
     }
 };
 
-
-
 //MAG UPDATE UG EMPLOYEE GAMIT ID
 export const updateDepartment = (deptartmentId, updateDepartmentData) => async dispatch => {
    
