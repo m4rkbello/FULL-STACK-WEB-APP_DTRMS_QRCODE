@@ -293,8 +293,6 @@ const Dashboard = (props) => {
   }, []);
 
 
-  console.log("DATA SA TANANG PROPERTIES!", props);
-  
   return (
     <div className="h-full mx-auto max-h-full w-full max-w-full glass p-4 shadow-xl">
     <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
