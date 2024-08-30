@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\department;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -20,25 +20,24 @@ class DepartmentController extends Controller
     public function index()
     {
         try{
-
-            $department = department::all();
+            $department = Department::all();
       
             return response()->json([
                 'details' => $department,
                 'success' => true,
+                'message' => 'Fetch all Departments was successful!',
                 'status' => 201,
             ], 201);
 
         }catch(\Exception $error){
-
             return response()->json([
                 'success' => false,
                 'status' => 401,
-                'message' => 'Fetch all Departments have unsuccessful!',
-                'error' => $error,
+                'message' => 'Fetch all Departments was unsuccessful!',
+                'error' => $error->getMessage(),
             ], 401);
-
-        };
+        }
+        
     }
 
     /**
@@ -61,7 +60,7 @@ class DepartmentController extends Controller
                 'department_status_id' => 'required|integer',
             ]);
     
-            $department = department::create([
+            $department = Department::create([
                 'department_name' => $data['department_name'],
                 'department_description' => $data['department_description'],
                 'department_status_id' => $data['department_status_id'],
@@ -100,7 +99,7 @@ class DepartmentController extends Controller
         try {
             $data = $request->input('data');
             
-            $department = department::where('id', 'like', '%' . $data . '%')
+            $department = Department::where('id', 'like', '%' . $data . '%')
                 ->orWhere('department_name', 'like', '%' . $data . '%')
                 ->get();
     
@@ -142,7 +141,7 @@ class DepartmentController extends Controller
     public function update(Request $request, string $id)
     {
         try{
-            $department = department::find($id);
+            $department = Department::find($id);
             $department->update($request->all());
     
             return response()->json([
@@ -195,7 +194,7 @@ class DepartmentController extends Controller
     public function deactivate(Request $request, string $id){
         
         try{
-            $department = department::find($id);
+            $department = Department::find($id);
             $department->update(['dept_status_id' => 0]);
 
             return response()->json([
