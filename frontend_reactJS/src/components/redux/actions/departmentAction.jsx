@@ -2,10 +2,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable react-hooks/rules-of-hooks */
 import MarkBelloApi from '../../../services/Api.jsx';
-// import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
 
 
 import { 
@@ -36,7 +34,7 @@ export const fetchDepartments = () => async dispatch => {
     try {
         dispatch({ type: FETCH_DEPARTMENTS_REQUEST });
         // Perform async operation, e.g., fetch data from an API
-        const fetchDeptmentRequestAndResponseData = await MarkBelloApi.get('/api/departments/view/all');
+        const fetchDeptmentRequestAndResponseData = await MarkBelloApi.get('/api/departments/collection/all');
         dispatch({
             type: FETCH_DEPARTMENTS_SUCCESS,
             payload: fetchDeptmentRequestAndResponseData
