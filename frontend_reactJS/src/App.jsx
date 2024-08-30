@@ -22,7 +22,6 @@ import UserDashboard from './components/Auth/admin/user/UserDashboard';
 import UserDetails from './components/Auth/admin/user/UserDetails';
 import UserChangePassword from './components/Auth/admin/user/UserChangePassword';
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
-import Department from './components/Auth/admin/department/Department';
 import Dashboard from './components/Auth/admin/Dashboard';
 import Payroll from './components/Auth/admin/payroll/Payroll';
 import Overtime from './components/Auth/admin/overtime/Overtime';
@@ -31,14 +30,13 @@ import Rate from './components/Auth/admin/rate/Rates';
 import EditRates from './components/Auth/admin/rate/EditRates';
 import Deduction from './components/Auth/admin/deduction/Deduction';
 import EditDeduction from './components/Auth/admin/deduction/EditDeduction';
+import PageNotFound from './components/Auth/admin/404/PageNotFound';
 //EMPLOYEE-ROUTES
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
 import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonalDetails';
 import ArchiveEmployee from './components/Auth/employee/EmployeeArchieve';
 import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
-import AddDepartment from './components/Auth/admin/department/AddDepartment';
-import EditDepartment from './components/Auth/admin/department/EditDepartment';
 import EmployeeScanQRCode from './components/Auth/employee/EmployeeScanQRCode';
 //REDUX-DISPATCH ACTIONS
 import { fetchUsers } from './components/redux/actions/userAction';
@@ -268,10 +266,7 @@ function App(props) {
                   <Route path="/employee/archieve" element={<ArchiveEmployee />} />
                   <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                   <Route path="/employee/attendance" element={<EmployeeAttendance />} />
-                  <Route path="/department" element={<Department />} />
-                  <Route path="/department/add" element={<AddDepartment />} />
-
-                  <Route path="/department/edit/:departmentId" element={<EditDepartment />} />
+            
                   <Route path="/content" element={<Content />} />
                 </Routes>
               </>
@@ -280,6 +275,7 @@ function App(props) {
                 <Route path="/admin/login" element={<Login />} />
                 <Route path="/admin/register" element={<Register />} />
                 <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
+                <Route path="/" element={<PageNotFound />} />
               </Routes>
             )}
         </div>
@@ -356,7 +352,7 @@ function App(props) {
                         </Link>
                       </li>
                       <li>
-                        <Link to="/department" className='text-2xl glass'>
+                        <Link to="/admin/departments" className='text-2xl glass'>
                           <FcDepartment
                             style={{
                               height: "2rem",
