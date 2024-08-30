@@ -33,6 +33,7 @@ const Dashboard = (props) => {
   const ImageUser = '../../../../public/images/user.png';
   const ImageAttendance = '../../../../public/images/attendance.png';
 
+
   //PARA SA USERS
   const usersDataObjectCollections = props?.usersData?.data;
   function countAllUsersPopulations(usersDataObjectCollections) {
