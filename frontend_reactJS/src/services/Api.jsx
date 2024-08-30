@@ -25,13 +25,6 @@ Api.interceptors.request.use(
   }
 );
 
-Api.get('/departments/view/all')
-  .then(response => {
-    console.log('Departments:', response.data);
-  })
-  .catch(error => {
-    console.error('Error fetching departments:', error.response || error.message);
-  });
 
 export default Api;
 
