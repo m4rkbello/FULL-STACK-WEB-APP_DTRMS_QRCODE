@@ -105,7 +105,6 @@ function App(props) {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
-  console.log("DATA SA isAuthenticatedUser", isAuthenticatedUser);
 
   return (
     <div className="flex flex-col h-screen">
@@ -464,7 +463,7 @@ function App(props) {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/department" className='text-2xl glass'>
+                  <Link to="/admin/departments" className='text-2xl glass'>
                     <FcDepartment
                       style={{
                         height: "2.5rem",
