@@ -54,7 +54,7 @@ export const fetchDepartments = () => async dispatch => {
 export const addDepartment = departmentData => async dispatch => {
     try {
         dispatch({ type: ADD_DEPARTMENT_REQUEST });
-        const addDepartmentRequestAndResponse = await MarkBelloApi.post('/api/departments/create', departmentData);
+        const addDepartmentRequestAndResponse = await MarkBelloApi.post('/api/departments/add', departmentData);
         const statusCode = addDepartmentRequestAndResponse.status;
 
         if (statusCode === 201) {
@@ -209,40 +209,41 @@ export const deactivateDepartment = departmentId => async dispatch => {
         dispatch({ type: DEACTIVATE_DEPARTMENT_REQUEST });
     
        const deactivateDepartmentRequestAndResponse = await MarkBelloApi.put(`/api/departments/deactivate/${departmentId}`);
-       console.log("DATA", deactivateEmployeeReqAndRes);
+       console.log("DATA RESPONSE SA  REDUX DISPATCH deactivateDepartment", deactivateDepartmentRequestAndResponse);
 
-        if (deactivateDepartmentRequestAndResponse.success != true) {
-            // Handle the case where the response is empty
-            toast.error('Employee not deactivated! 🥺⚠️👽', {
-                position: 'top-right',
-                autoClose: 10000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                style: {
-                    background: 'black',
-                    color: 'red',
-                    fontSize: '15px'
-                }
-            });
-        } else {
-            // Handle the case where the update is successful
-            toast.success('Employee deactivated Successfully!👌👌👌', {
+        if (deactivateDepartmentRequestAndResponse.data.success == true) {
+
+            toast.success('Department was deactivated Successfully!👌👌👌', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
                 progress: undefined,
                 style: {
                     background: 'white',
                     color: 'green',
-                    fontSize: '15px'
+                    fontSize: '17px'
                 }
             });
+        } else {
+            // Handle the case where the update is successful
+                 // Handle the case where the response is empty
+                 toast.error('Department has unsuccessfully deactivated! 🥺⚠️👽', {
+                    position: 'top-right',
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined,
+                    style: {
+                        background: 'black',
+                        color: 'red',
+                        fontSize: '17px'
+                    }
+                });
             
             // setTimeout(() => {
             //     window.location.reload();
@@ -269,7 +270,6 @@ export const deleteDepartment = departmentId => async dispatch => {
         dispatch({ type: DELETE_DEPARTMENT_REQUEST });
     
        const deleteDepartmentRequestAndResponse = await MarkBelloApi.delete(`/api/departments/deactivate/${departmentId}`);
-       console.log("DATA", deleteDepartmentRequestAndResponse);
 
         if (deleteDepartmentRequestAndResponse.success != true) {
             // Handle the case where the response is empty
