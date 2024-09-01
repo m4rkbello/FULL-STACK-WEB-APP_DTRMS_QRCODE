@@ -71,7 +71,7 @@ Route::middleware('auth:sanctum')->group(function() {
     //DEPARTMENT-ROUTES-ENDPOINTS
     Route::prefix('departments')->group(function () {
         Route::get('/collections/all', [DepartmentController::class, 'index']);
-        Route::post('/create', [DepartmentController::class, 'store']);
+        Route::post('/add', [DepartmentController::class, 'store']);
         Route::put('/update/{id}', [DepartmentController::class, 'update']);
         Route::post('/search', [DepartmentController::class, 'search']);
         Route::put('/deactivate/{id}', [DepartmentController::class, 'deactivate']);
