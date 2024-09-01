@@ -18,6 +18,7 @@ import Footer from './components/layouts/Footer';
 //ADMIN-ROUTES
 import Login from './components/Auth/admin/Login';
 import Register from './components/Auth/admin/Register';
+import PageNotFound from './components/Auth/admin/404/PageNotFound';
 import UserDashboard from './components/Auth/admin/user/UserDashboard';
 import UserDetails from './components/Auth/admin/user/UserDetails';
 import UserChangePassword from './components/Auth/admin/user/UserChangePassword';
@@ -31,7 +32,7 @@ import EditRates from './components/Auth/admin/rate/EditRates';
 import Deduction from './components/Auth/admin/deduction/Deduction';
 import EditDeduction from './components/Auth/admin/deduction/EditDeduction';
 import Departments from './components/Auth/admin/department/Departments';
-import PageNotFound from './components/Auth/admin/404/PageNotFound';
+import EditDepartment from './components/Auth/admin/department/EditDepartment';
 //EMPLOYEE-ROUTES
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
 import EmployeeDashboard from './components/Auth/employee/EmployeeDashboard';
@@ -262,6 +263,8 @@ function App(props) {
                   <Route path="/admin/deduction/edit/:deductionId" element={<EditDeduction />} />
                   {/**DEPARTMENTS */}
                   <Route path="/admin/departments" element={<Departments />} />
+                  <Route path="/admin/department/edit/:departmentId" element={<EditDepartment />} />
+
 
                   <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
@@ -521,9 +524,8 @@ function App(props) {
                     DEDUCTIONS
                   </Link>
                 </li>
-
                 <li>
-                  <details open>
+                  <details close>
                     <summary>
                       <FcSettings
                         style={{
