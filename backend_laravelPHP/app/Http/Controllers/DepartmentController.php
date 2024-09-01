@@ -194,23 +194,22 @@ class DepartmentController extends Controller
     public function deactivate(Request $request, string $id){
         
         try{
+            //PANGITAON IF EXISTED ANG DEPARTMENT.ID
             $department = Department::find($id);
-            $department->update(['dept_status_id' => 0]);
-
+            $department->update(['department_status_id' => 0]);
+            
             return response()->json([
                 'success' => true,
                 'status' => 201,
                 'message' => 'Department has deactivated successfully!',
-                'data' => $department
+                'details' => $department
             ]);
-
         }catch(\Exception $error){
             return response()->json([
                 'success' => false,
                 'status' => 401,
                 'message' => 'Department not deactivated successfully!',
             ]);
-
         }
     }
 
