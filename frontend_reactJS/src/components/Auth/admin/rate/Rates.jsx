@@ -26,7 +26,7 @@ const Rates = (props) => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   //id sa rate.id para gamiton sa useParams
-  const { rateId } = useParams;
+  const { rateId } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
