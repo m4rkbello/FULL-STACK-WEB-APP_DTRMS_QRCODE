@@ -17,9 +17,7 @@ import {
     SEARCH_DEPARTMENT_REQUEST,
     SEARCH_DEPARTMENT_SUCCESS,
     SEARCH_DEPARTMENT_FAILURE 
-}
-from '../types/departmentTypes.jsx';
-
+} from '../types/departmentTypes.jsx';
 
 const initialState = {
     departments: [],
