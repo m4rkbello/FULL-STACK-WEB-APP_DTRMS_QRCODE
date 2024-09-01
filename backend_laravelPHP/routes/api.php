@@ -32,7 +32,7 @@ Route::prefix('attendances')->group(function () {
     Route::post('/qrcode/data',[AttendanceController::class, 'store']);
 });
 
-//WRAPPED BY LARAVEL-SANCTUM FOR SECURITY PURPOSES
+//WRAPPED BY LARAVEL-SANCTUM FOR SECURITY AUTHENTICATION PURPOSES ONLY
 Route::middleware('auth:sanctum')->group(function() {
     //ATTENDANCES-ENDPOINTS
     Route::prefix('attendances')->group(function () {
