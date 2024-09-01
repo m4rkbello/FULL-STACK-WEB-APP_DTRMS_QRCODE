@@ -30,14 +30,16 @@ from '../types/departmentTypes.jsx';
 
 
 //MAG-FETCH UG DATA SA DEPARTMENTS
+
 export const fetchDepartments = () => async dispatch => {
     try {
         dispatch({ type: FETCH_DEPARTMENTS_REQUEST });
         // Perform async operation, e.g., fetch data from an API
-        const fetchDeptmentRequestAndResponseData = await MarkBelloApi.get('/api/departments/collection/all');
+        const fetchDepartmentsRequestAndResponseData = await MarkBelloApi.get('/api/departments/collections/all'); // Updated URL
+        console.error("SA departmentAction fetchDeptmentRequestAndResponseData", fetchDepartmentsRequestAndResponseData);
         dispatch({
             type: FETCH_DEPARTMENTS_SUCCESS,
-            payload: fetchDeptmentRequestAndResponseData
+            payload: fetchDepartmentsRequestAndResponseData
         });
     } catch (error) {
         dispatch({
@@ -46,6 +48,7 @@ export const fetchDepartments = () => async dispatch => {
         });
     }
 };
+
 
 //MAG ADD UG EMPLOYEE 
 export const addDepartment = departmentData => async dispatch => {
