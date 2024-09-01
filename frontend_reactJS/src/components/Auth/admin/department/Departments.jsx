@@ -7,9 +7,11 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 //ICONS
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcDepartment, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 //REDUXISM
 import { fetchDepartments, addDepartment, updateDepartment, deactivateDepartment, searchDepartments } from '../../../redux/actions/departmentAction';
+//COMPONENT
+import EditDepartment from './EditDepartment';
 //MODALS
 import AddDepartmentModal from '../../modals/departments/AddDepartmentModal';
 import DeactivateDepartmentModal from '../../modals/departments/DeactivateDepartmentModal';
@@ -27,7 +29,7 @@ const Departments = (props) => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   //id sa rate.id para gamiton sa useParams
-  const { departmentId } = useParams;
+  const { departmentId } = useParams();
 
   console.log("DATA SA departmentId", departmentId);
 
@@ -43,7 +45,7 @@ const Departments = (props) => {
   const confirmDeactivateDepartment = async () => {
     setIsDeactivateDepartmentModal(false);
     try {
-      await props.deactivateRate(selectedDepartmentId);
+      await props.deactivateDepartment(selectedDepartmentId);
       await props.fetchDepartments();
     } catch (error) {
       toast.error('Failed to deactivate rate.');
@@ -78,7 +80,7 @@ const Departments = (props) => {
   const totalPages = Math.ceil(filteredDepartments.length / itemsPerPage);
 
 
-  console.log("Search Query:", searchQuery);
+console.log("Search Query:", searchQuery);
 console.log("Departments Data:", departmentsInvoke);
 console.log("Filtered Departments:", filteredDepartments);
 console.log("Current Departments:", currentDepartments);
@@ -108,10 +110,10 @@ console.log("Current Departments:", currentDepartments);
               </Link>
             </li>
             <li>
-              <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
+              <Link to="/admin/departments" className='flex items-center hover:text-white'>
                 <FcFolder
                   style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Rates</span>
+                <span className="ml-2">Departments</span>
               </Link>
             </li>
             <li>
@@ -126,7 +128,6 @@ console.log("Current Departments:", currentDepartments);
 
       <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
         <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-
           <div className='glass shadow-slate-900/100'>
             <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
               <div>
@@ -134,7 +135,7 @@ console.log("Current Departments:", currentDepartments);
                   <div className="p-3 flex justify-start">
                     <input
                       type="text"
-                      placeholder="Search"
+                      placeholder="Search Department"
                       value={searchQuery}
                       onChange={handleSearchChange}
                       className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
@@ -177,7 +178,6 @@ console.log("Current Departments:", currentDepartments);
                 >
                   <b>
                     AYAW NA PANGITAA ANG <u>
-
                       {searchQuery}
                     </u> KAY WALA!
                   </b>
@@ -201,7 +201,7 @@ console.log("Current Departments:", currentDepartments);
                         <tr className="md:table-row"
                           key={item.id}
                         >
-                          <td className="md:table-cell"><FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
+                          <td className="md:table-cell"><FcDepartment style={{ fontSize: "40px", color: "transparent" }} /></td>
                           <td className="md:table-cell">
                             {item.department_name}
                           </td>
