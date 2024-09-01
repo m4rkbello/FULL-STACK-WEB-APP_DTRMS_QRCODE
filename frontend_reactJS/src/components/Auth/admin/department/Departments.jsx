@@ -11,92 +11,91 @@ import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevi
 //REDUXISM
 import { fetchDepartments, addDepartment, updateDepartment, deactivateDepartment, searchDepartments } from '../../../redux/actions/departmentAction';
 //MODALS
-import AddRateModal from '../../modals/rates/AddRateModal';
-import DeactivateRateModal from '../../modals/rates/DeactivateRateModal';
+import AddDepartmentModal from '../../modals/departments/AddDepartmentModal';
+import DeactivateDepartmentModal from '../../modals/departments/DeactivateDepartmentModal';
+//TOSTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Departments = (props) => {
-  // const [isAddRateDetailsModal, setIsAddRateDetailsModal] = useState(false);
-  // const [isDeactivateRateModal, setIsDeactivateRateModal] = useState(false);
-  // const [selectedRateId, setSelectedRateId] = useState(null);
-  // const [searchQuery, setSearchQuery] = useState('');
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [itemsPerPage, setItemsPerPage] = useState(10);
+  console.log("data sa props", props);
+  const [isAddDepartmentDetailsModal, setIsAddDepartmentDetailsModal] = useState(false);
+  const [isDeactivateDepartmentModal, setIsDeactivateDepartmentModal] = useState(false);
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   //id sa rate.id para gamiton sa useParams
-  // const { rateId } = useParams;
+  const { departmentId } = useParams;
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       await props.fetchRates();
-  //       props.fetchDepartments();
-  //     } catch (error) {
-  //       toast.error('Failed to fetch rates.');
-  //     }
-  //   };
-  //   fetchData();
-  // }, [props.fetchRates]);
+  console.log("DATA SA departmentId", departmentId);
 
-  // const handleDeactivateRate = (rateId) => {
-  //   setSelectedRateId(rateId);
-  //   setIsDeactivateRateModal(true);
-  // };
+  useEffect(() => {
+    props.fetchDepartments();
+  }, [props.fetchDepartments]);
 
-  // const confirmDeactivateRate = async () => {
-  //   setIsDeactivateRateModal(false);
-  //   try {
-  //     await props.deactivateRate(selectedRateId);
-  //     await props.fetchRates();
-  //   } catch (error) {
-  //     toast.error('Failed to deactivate rate.');
-  //   }
-  // };
+  const handleDeactivateDepartment = (departmentId) => {
+    setSelectedDepartmentId(departmentId);
+    setIsDeactivateDepartmentModal(true);
+  };
+
+  const confirmDeactivateDepartment = async () => {
+    setIsDeactivateDepartmentModal(false);
+    try {
+      await props.deactivateRate(selectedDepartmentId);
+      await props.fetchDepartments();
+    } catch (error) {
+      toast.error('Failed to deactivate rate.');
+    }
+  };
 
   // Handle search and data filtering
-  // const handleSearchChange = (e) => {
-  //   setSearchQuery(e.target.value);
-  //   setCurrentPage(1); // Reset to the first page when search query changes
-  //   props.searchRates(e.target.value);
-  // };
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1); // Reset to the first page when search query changes
+    props.searchDepartments(e.target.value); // This should update Redux state
+  };
 
-  // // Handle page change
-  // const handlePageChange = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   // Filter and paginate rates
-  // const filteredRates = props.ratesData?.rates.filter(rate =>
-  //   rate.rate_name.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
+  const departmentsInvoke = props.departmentData?.departments.data?.details || [];
 
-//   const indexOfLastRate = currentPage * itemsPerPage;
-//   const indexOfFirstRate = indexOfLastRate - itemsPerPage;
-//   const currentRates = filteredRates?.slice(indexOfFirstRate, indexOfLastRate);
+  const filteredDepartments = departmentsInvoke.filter(department =>
+    department.department_name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-//   const totalPages = Math.ceil(filteredRates.length / itemsPerPage);
+  console.log("Filtered Departments", filteredDepartments);
 
-//  // Get department datas
-//  const departmentsObjectDataCollection = props.departmentData?.departments?.data?.details;
-//  const getDepartmentNameById = (departmentId) => {
-//    const department = departmentsObjectDataCollection?.find(dept => dept.id === departmentId);
-//    return department ? department.department_name : 'NO DEPARTMENT';
-//  };
+  const indexOfLastRate = currentPage * itemsPerPage;
+  const indexOfFirstRate = indexOfLastRate - itemsPerPage;
+  const currentDepartments = filteredDepartments?.slice(indexOfFirstRate, indexOfLastRate);
+
+  const totalPages = Math.ceil(filteredDepartments.length / itemsPerPage);
+
+
+  console.log("Search Query:", searchQuery);
+console.log("Departments Data:", departmentsInvoke);
+console.log("Filtered Departments:", filteredDepartments);
+console.log("Current Departments:", currentDepartments);
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
       <ToastContainer />
       {/**modal sa addModal rate */}
-      <AddRateModal
-        // isOpen={isAddRateDetailsModal}
-        // onClose={() => setIsAddRateDetailsModal(false)}
+      <AddDepartmentModal
+        isOpen={isAddDepartmentDetailsModal}
+        onClose={() => setIsAddDepartmentDetailsModal(false)}
       />
       {/**modal sa deactivate rate */}
-      <DeactivateRateModal
-        isOpen={isDeactivateRateModal}
-        // onClose={() => setIsDeactivateRateModal(false)}
-        // deactivateRate={confirmDeactivateRate}
+      <DeactivateDepartmentModal
+        isOpen={isDeactivateDepartmentModal}
+        onClose={() => setIsDeactivateDepartmentModal(false)}
+        deactivateRate={confirmDeactivateDepartment}
       />
 
       <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
@@ -110,8 +109,8 @@ const Departments = (props) => {
             </li>
             <li>
               <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
-                <FcFolder 
-                style={{ height: "2rem", width: "2rem" }} />
+                <FcFolder
+                  style={{ height: "2rem", width: "2rem" }} />
                 <span className="ml-2">Rates</span>
               </Link>
             </li>
@@ -136,8 +135,8 @@ const Departments = (props) => {
                     <input
                       type="text"
                       placeholder="Search"
-                      // value={searchQuery}
-                      // onChange={handleSearchChange}
+                      value={searchQuery}
+                      onChange={handleSearchChange}
                       className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
                     />
                   </div>
@@ -147,11 +146,11 @@ const Departments = (props) => {
                 </span>
               </div>
               <div className="pb-5 pt-5 flex justify-center">
-                <h3 className="font-bold text-4xl text-black">RATE LIST</h3>
+                <h3 className="font-bold text-4xl text-black">DEPARTMENT LIST</h3>
               </div>
               <div className="p-3 flex justify-end">
                 <FcPlus onClick={() => {
-                  // setIsAddRateDetailsModal(true);
+                  setIsAddDepartmentDetailsModal(true);
                 }}
                   style={{ height: "3rem", width: "3rem" }}
                 />
@@ -160,21 +159,15 @@ const Departments = (props) => {
           </div>
 
           <div className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 flex flex-col items-center justify-center">
-           {/** 
-            {props.loading ? (
-            
-            */}
-          
+
+          {props.loading ? (
               <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2 mt-48 mb-48">
                 <div className="skeleton h-48 w-full"></div>
                 <div className="skeleton h-6 w-36"></div>
                 <div className="skeleton h-6 w-full"></div>
                 <div className="skeleton h-6 w-full"></div>
               </div>
-              {/***
-                
-              ) : filteredRates.length === 0 ? (
-                */}
+            ) : filteredDepartments.length === 0 ? (
               <div className="mockup-browser bg-base-300 border mt-48 mb-48">
                 <div className="mockup-browser-toolbar">
                   <div className="input">https://daisyui.com</div>
@@ -184,124 +177,72 @@ const Departments = (props) => {
                 >
                   <b>
                     AYAW NA PANGITAA ANG <u>
-                    {/**
-                      
+
                       {searchQuery}
-                      */}
                     </u> KAY WALA!
                   </b>
                 </span></div>
               </div>
-{/***
-  ) : currentRates?.length > 0 ? (
-  
-  */}
+            ) : currentDepartments?.length > 0 ? (
               <div className="w-full max-w-5xl">
                 <table className="table glass w-full border-2 border-black">
                   <thead className="text-red">
                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
                       <th className="md:table-cell text-white"></th>
                       <th className="md:table-cell text-white">NAME</th>
-                      <th className="md:table-cell text-white">AMOUNT</th>
-                      <th className="md:table-cell text-white">DETAILS</th>
                       <th className="md:table-cell text-white">DESCRIPTION</th>
-                      <th className="md:table-cell text-white">DEPARTMENT</th>
+                      <th className="md:table-cell text-white">STATUS</th>
                       <th className="md:table-cell text-white">ACTION</th>
                     </tr>
                   </thead>
                   <tbody className='text-black'>
-
-{/***
-  
-  {currentRates.map((item) => (
-    item.rate_status_id !== 0 && (
-  */}
-
+                    {currentDepartments.map((item) => (
+                      item.department_status_id !== 0 && (
                         <tr className="md:table-row"
-                        {/***
-                          
-                          key={item.id} 
-                          */}
-                         >
+                          key={item.id}
+                        >
                           <td className="md:table-cell"><FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
                           <td className="md:table-cell">
-                          {/*** 
-                            
-                            {item.rate_name}
-                            */}
+                            {item.department_name}
                           </td>
                           <td className="md:table-cell">
                             <span>&#8369;</span>
-
-                            {/***
-                              <b>{item.rate_amount_per_day}
-                              </b>
-                                */}
-                          </td>
-                          <td className="md:table-cell">
-                          {/*** 
-                            
-                            {item.rate_details}
-                            */}
-                          </td>
-                          <td className="md:table-cell">
-                          {/***
-                            
-                            {item.rate_description}
-                            */}
+                            {item.department_description}
                           </td>
                           <td className="md:table-cell text-center">
-                          {/***
-                            
-                            {getDepartmentNameById(item.rate_department_id)}
-                            */}
+                            {item.department_status_id}
                           </td>
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-2">
-                            {/*** 
-                              
-                              <Link to={`/admin/rate/edit/${item.id}`}>
+                              <Link to={`/admin/department/edit/${item.id}`}>
                                 <FcViewDetails
                                   style={{ height: "2rem", width: "2rem" }}
                                 />
                               </Link>
-
                               <FcEmptyTrash
-                                onClick={() => handleDeactivateRate(item.id)}
+                                onClick={() => handleDeactivateDepartment(item.id)}
                                 style={{ height: "2rem", width: "2rem" }}
                               />
-                              */}
                             </div>
                           </td>
                         </tr>
-                        {/*** 
-                          )
-                        ))}
-                          
-                          */}
+                      )
+                    ))}
                   </tbody>
                 </table>
                 <div className="flex justify-center mt-4 mb-4">
                   <div className="join grid grid-cols-2">
-                    <button
-                      className="join-item btn btn-outline  glass"
-                      {/***
-                        
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        */}
+                    <button className="join-item btn btn-outline  glass"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
                     >
                       <FcPrevious
                         style={{ height: "2rem", width: "2rem" }}
                       /> Previous
                     </button>
-                    <button
-                      className="join-item btn btn-outline glass"
-                      {/***
-                        
-                        onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                        */}
+                    <button className="join-item btn btn-outline glass"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
                     >
                       Next
                       <FcNext
@@ -311,11 +252,7 @@ const Departments = (props) => {
                   </div>
                 </div>
               </div>
-              {/*** 
-                
-              ) : (
-                */}
-
+            ) : (
               <div className="mockup-browser  border border-t-4 pb-10 pt-10">
                 <div className="mockup-browser-toolbar">
                   <div className="input text-black-400">https://markbello.com</div>
@@ -330,19 +267,14 @@ const Departments = (props) => {
                   </span>
                 </div>
               </div>
-              {/*** 
-                
-              )}
-                */}
+            )}
           </div>
         </div>
       </div>
     </div>
-    {/*** 
-      
-    );
-  }
-      */}
+  );
+}
+
 
 const mapStateToProps = (state) => {
   return {
@@ -356,8 +288,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchDepartments: () => dispatch(fetchDepartments()),
     addDepartment: (departmentData) => dispatch(addDepartment(departmentData)),
     updateDepartment: (updateDepartmentData) => dispatch(updateDepartment(updateDepartmentData)),
-    deactivateDepartment: () => dispatch(deactivateDepartment()),
-    searchDepartments: () => dispatch(searchDepartments()),
+    deactivateDepartment: (departmentId) => dispatch(deactivateDepartment(departmentId)),
+    searchDepartments: (query) => dispatch(searchDepartments(query)),
   }
 };
 
