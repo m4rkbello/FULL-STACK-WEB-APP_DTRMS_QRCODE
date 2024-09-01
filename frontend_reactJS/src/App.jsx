@@ -30,6 +30,7 @@ import Rate from './components/Auth/admin/rate/Rates';
 import EditRates from './components/Auth/admin/rate/EditRates';
 import Deduction from './components/Auth/admin/deduction/Deduction';
 import EditDeduction from './components/Auth/admin/deduction/EditDeduction';
+import Departments from './components/Auth/admin/department/Departments';
 import PageNotFound from './components/Auth/admin/404/PageNotFound';
 //EMPLOYEE-ROUTES
 import EmployeeRegister from './components/Auth/employee/EmployeeRegister';
@@ -44,6 +45,7 @@ import { fetchEmployees } from './components/redux/actions/employeeAction';
 import { fetchAttendances } from './components/redux/actions/attendanceAction';
 
 function App(props) {
+  console.log("DATA SA props", props);
   //FOR AUTHENTICATION-PURPOSES GAMIT TOKEN UG ID SA USERS
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
@@ -258,6 +260,8 @@ function App(props) {
                   {/**DEDUCTIONS */}
                   <Route path="/admin/deductions" element={<Deduction />} />
                   <Route path="/admin/deduction/edit/:deductionId" element={<EditDeduction />} />
+                  {/**DEPARTMENTS */}
+                  <Route path="/admin/departments" element={<Departments />} />
 
                   <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
