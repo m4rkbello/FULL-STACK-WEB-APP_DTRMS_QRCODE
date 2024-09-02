@@ -31,11 +31,9 @@ const Departments = (props) => {
   //id sa rate.id para gamiton sa useParams
   const { departmentId } = useParams();
 
-  console.log("DATA SA departmentId", departmentId);
-
   useEffect(() => {
     props.fetchDepartments();
-  }, [props.fetchDepartments]);
+  }, []);
 
   const handleDeactivateDepartment = (departmentId) => {
     setSelectedDepartmentId(departmentId);
