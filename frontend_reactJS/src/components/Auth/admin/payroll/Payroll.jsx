@@ -15,22 +15,25 @@ import { fetchRates } from '../../../redux/actions/rateAction';
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 import { fetchOvertimes } from '../../../redux/actions/overtimeAction';
 import { fetchDeductions } from '../../../redux/actions/deductionAction';
+//COMPONENT
+import EditPayroll from './EditPayroll';
 //MODALS
-import AddRateModal from '../../modals/rates/AddRateModal';
-import DeactivateRateModal from '../../modals/rates/DeactivateRateModal';
+import AddPayrollModal from '../../modals/payrolls/AddPayrollModal';
+import DeactivatePayrollModal from '../../modals/payrolls/DeactivatePayrollModal';
+//TOASTERS
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Rates = (props) => {
-  const [isAddRateDetailsModal, setIsAddRateDetailsModal] = useState(false);
-  const [isDeactivateRateModal, setIsDeactivateRateModal] = useState(false);
-  const [selectedRateId, setSelectedRateId] = useState(null);
+const Payroll = (props) => {
+  const [isAddPayrollDetailsModal, setIsAddPayrollDetailsModal] = useState(false);
+  const [isDeactivatePayrollModal, setIsDeactivatePayrollModal] = useState(false);
+  const [selectedPayrollId, setSelectedPayrollId] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   //id sa rate.id para gamiton sa useParams
-  const { rateId } = useParams();
+  const { payrollId } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,15 +47,15 @@ const Rates = (props) => {
     fetchData();
   }, [props.fetchRates]);
 
-  const handleDeactivateRate = (rateId) => {
-    setSelectedRateId(rateId);
-    setIsDeactivateRateModal(true);
+  const handleDeactivateRate = (payrollId) => {
+    setSelectedPayrollId(payrollId);
+    setIsDeactivatePayrollModal(true);
   };
 
-  const confirmDeactivateRate = async () => {
-    setIsDeactivateRateModal(false);
+  const confirmDeactivatePayroll = async () => {
+    setIsDeactivatePayrollModal(false);
     try {
-      await props.deactivateRate(selectedRateId);
+      await props.deactivateRate(payrollId);
       await props.fetchRates();
     } catch (error) {
       toast.error('Failed to deactivate rate.');
@@ -63,7 +66,7 @@ const Rates = (props) => {
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setCurrentPage(1); // Reset to the first page when search query changes
-    props.searchRates(e.target.value);
+    props.searchPayroll(e.target.value);
   };
 
   // Handle page change
@@ -93,15 +96,15 @@ const Rates = (props) => {
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
       <ToastContainer />
       {/**modal sa addModal rate */}
-      <AddRateModal
-        isOpen={isAddRateDetailsModal}
-        onClose={() => setIsAddRateDetailsModal(false)}
+      <AddPayrollModal
+        isOpen={isAddPayrollDetailsModal}
+        onClose={() => setIsAddPayrollDetailsModal(false)}
       />
       {/**modal sa deactivate rate */}
-      <DeactivateRateModal
-        isOpen={isDeactivateRateModal}
-        onClose={() => setIsDeactivateRateModal(false)}
-        deactivateRate={confirmDeactivateRate}
+      <DeactivatePayrollModal
+        isOpen={isDeactivatePayrollModal}
+        onClose={() => setIsDeactivatePayrollModal(false)}
+        deactivatePayroll={confirmDeactivatePayroll}
       />
 
       <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
@@ -156,7 +159,7 @@ const Rates = (props) => {
               </div>
               <div className="p-3 flex justify-end">
                 <FcPlus onClick={() => {
-                  setIsAddRateDetailsModal(true);
+                  setIsAddPayrollDetailsModal(true);
                 }}
                   style={{ height: "3rem", width: "3rem" }}
                 />
@@ -305,4 +308,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Rates);
+export default connect(mapStateToProps, mapDispatchToProps)(Payroll);
