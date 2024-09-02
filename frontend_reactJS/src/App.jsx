@@ -25,6 +25,7 @@ import UserChangePassword from './components/Auth/admin/user/UserChangePassword'
 import ForgotPassword from './components/Auth/admin/ForgotPassword';
 import Dashboard from './components/Auth/admin/Dashboard';
 import Payroll from './components/Auth/admin/payroll/Payroll';
+import EditPayroll from './components/Auth/admin/payroll/EditPayroll';
 import Overtime from './components/Auth/admin/overtime/Overtime';
 import EditOvertime from './components/Auth/admin/overtime/EditOvertime';
 import Rate from './components/Auth/admin/rate/Rates';
@@ -252,27 +253,21 @@ function App(props) {
                   <Route path="/admin/user/profile-details/change-password/:userId" element={<UserChangePassword />} />
                   <Route path="/admin/user/profile-details" element={<UserDetails />} />
                   <Route path="/admin/payrolls" element={<Payroll />} />
-                  {/**RATES */}
+                  <Route path="/admin/payroll/edit/:payrollId" element={<EditPayroll />} />
                   <Route path="/admin/rates" element={<Rate />} />
                   <Route path="/admin/rate/edit/:rateId" element={<EditRates />} />
-                  {/**OVERTIMES */}
                   <Route path="/admin/overtimes" element={<Overtime />} />
                   <Route path="/admin/overtime/edit/:overtimeId" element={<EditOvertime />} />
-                  {/**DEDUCTIONS */}
                   <Route path="/admin/deductions" element={<Deduction />} />
                   <Route path="/admin/deduction/edit/:deductionId" element={<EditDeduction />} />
-                  {/**DEPARTMENTS */}
                   <Route path="/admin/departments" element={<Departments />} />
                   <Route path="/admin/department/edit/:departmentId" element={<EditDepartment />} />
-
-
                   <Route path="/employee/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                   <Route path="/employee/details/:employeeId" element={<EmployeePersonalDetails />} />
                   <Route path="/employee/archieve" element={<ArchiveEmployee />} />
                   <Route path="/employee/attendance" element={<EmployeeAttendance />} />
                   <Route path="/employee/attendance" element={<EmployeeAttendance />} />
-            
                   <Route path="/content" element={<Content />} />
                 </Routes>
               </>
