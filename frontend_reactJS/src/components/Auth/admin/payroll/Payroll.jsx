@@ -78,16 +78,15 @@ const Payroll = (props) => {
     setCurrentPage(pageNumber);
   };
 
-  // Filter and paginate rates
-  const filteredRates = props.ratesData?.rates.filter(rate =>
-    rate.rate_name.toLowerCase().includes(searchQuery.toLowerCase())
+  // Filter and paginate payments
+  const filteredPayrolls = props.payrollData?.payrolls?.data?.details.filter(payrollItem =>
+    payrollItem.payroll_description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const indexOfLastRate = currentPage * itemsPerPage;
   const indexOfFirstRate = indexOfLastRate - itemsPerPage;
-  const currentRates = filteredRates?.slice(indexOfFirstRate, indexOfLastRate);
-
-  const totalPages = Math.ceil(filteredRates.length / itemsPerPage);
+  const currentPayrolls = filteredPayrolls?.slice(indexOfFirstRate, indexOfLastRate);
+  const totalPages = Math.ceil(filteredPayrolls.length / itemsPerPage);
 
  // Get department datas
  const departmentsObjectDataCollection = props.departmentData?.departments?.data?.details;
@@ -159,7 +158,7 @@ const Payroll = (props) => {
                 </span>
               </div>
               <div className="pb-5 pt-5 flex justify-center">
-                <h3 className="font-bold text-4xl text-black">RATE LIST</h3>
+                <h3 className="font-bold text-4xl text-black">MANAGE PAYROLL</h3>
               </div>
               <div className="p-3 flex justify-end">
                 <FcPlus onClick={() => {
@@ -179,7 +178,7 @@ const Payroll = (props) => {
                 <div className="skeleton h-6 w-full"></div>
                 <div className="skeleton h-6 w-full"></div>
               </div>
-            ) : filteredRates.length === 0 ? (
+            ) : filteredPayrolls.length === 0 ? (
               <div className="mockup-browser bg-base-300 border mt-48 mb-48">
                 <div className="mockup-browser-toolbar">
                   <div className="input">https://daisyui.com</div>
@@ -192,13 +191,13 @@ const Payroll = (props) => {
                   </b>
                 </span></div>
               </div>
-            ) : currentRates?.length > 0 ? (
+            ) : currentPayrolls?.length > 0 ? (
               <div className="w-full max-w-5xl">
                 <table className="table glass w-full border-2 border-black">
                   <thead className="text-red">
                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
                       <th className="md:table-cell text-white"></th>
-                      <th className="md:table-cell text-white">NAME</th>
+                      <th className="md:table-cell text-white">DETAILS</th>
                       <th className="md:table-cell text-white">AMOUNT</th>
                       <th className="md:table-cell text-white">DETAILS</th>
                       <th className="md:table-cell text-white">DESCRIPTION</th>
@@ -207,16 +206,16 @@ const Payroll = (props) => {
                     </tr>
                   </thead>
                   <tbody className='text-black'>
-                    {currentRates.map((item) => (
-                      item.rate_status_id !== 0 && (
+                    {currentPayrolls.map((item) => (
+                      item.payroll_status_id !== 0 && (
                         <tr className="md:table-row" key={item.id}>
                           <td className="md:table-cell"><FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
-                          <td className="md:table-cell">{item.rate_name}</td>
+                          <td className="md:table-cell">{item.payroll_details}</td>
                           <td className="md:table-cell">
                             <span>&#8369;</span>
-                            <b>{item.rate_amount_per_day}</b>
+                            <b>{item.payroll_total_amount}</b>
                           </td>
-                          <td className="md:table-cell">{item.rate_details}</td>
+                          <td className="md:table-cell">{item.payroll_description}</td>
                           <td className="md:table-cell">{item.rate_description}</td>
                           <td className="md:table-cell text-center">
                             {getDepartmentNameById(item.rate_department_id)}
@@ -308,7 +307,10 @@ const mapDispatchToProps = (dispatch) => {
     fetchDepartments: () => dispatch(fetchDepartments()),
     fetchDeductions:  () => dispatch(fetchDeductions()),
     fetchOvertimes: () => dispatch(fetchOvertimes()),
-
+    addPayroll: (AddPayrollData) => dispatch(addPayroll(AddPayrollData)),
+    updatePayroll: (payrollId, updatePayrollData) => dispatch(updatePayroll(payrollId, updatePayrollData)),
+    deactivatePayroll: (payrollId) => dispatch(deactivatePayroll(payrollId)),
+    searchPayroll: (searchPayroll) => dispatch((searchPayroll(searchPayroll))),
   }
 };
 
