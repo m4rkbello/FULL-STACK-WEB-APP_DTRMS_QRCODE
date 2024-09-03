@@ -36,16 +36,20 @@ const Payroll = (props) => {
   const { payrollId } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataPayrolls = async () => {
       try {
-        await props.fetchRates();
+        await props.fetchPayrolls();
         props.fetchDepartments();
+        props.fetchEmployees();
+        props.fetchRates();
+        props.fetchOvertimes();
+        props.fetchDeductions();
       } catch (error) {
         toast.error('Failed to fetch rates.');
       }
     };
-    fetchData();
-  }, [props.fetchRates]);
+    fetchDataPayrolls();
+  }, [props.fetchPayrolls]);
 
   const handleDeactivateRate = (payrollId) => {
     setSelectedPayrollId(payrollId);
