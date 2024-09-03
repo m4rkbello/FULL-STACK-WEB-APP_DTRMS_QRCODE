@@ -32,6 +32,7 @@ const Dashboard = (props) => {
   const ImagePayroll = '../../../../public/images/payroll.png';
   const ImageUser = '../../../../public/images/user.png';
   const ImageAttendance = '../../../../public/images/attendance.png';
+  console.log("DATA SA DASHBOARD PROPS", props);
 
 
   //PARA SA USERS
