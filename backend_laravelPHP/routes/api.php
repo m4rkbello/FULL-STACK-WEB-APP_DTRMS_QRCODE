@@ -100,8 +100,8 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::put('/employee/deactivated/{id}', [EmployeeController::class, 'deactivate']);
     Route::get('/employees', [EmployeeController::class, 'index']);
     // UPLOAD PICTURE
-    Route::get('/images', [ImagesController::class, 'index']);
-    Route::post('/image', [ImagesController::class, 'store']);
+        Route::get('/images', [ImagesController::class, 'index']);
+        Route::post('/image', [ImagesController::class, 'store']);
 });
 
 
