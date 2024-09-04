@@ -22,7 +22,14 @@ class PayrollController extends Controller
     {
         {
             try{
-                $data = Payroll::all();
+                // $data = Payroll::all();
+                $data = Payroll::select('payrolls.*', 'employees.employee_fullname')
+                ->leftJoin('employees', 'payrolls.payroll_employee_id', '=', 'employees.id')
+                ->leftJoin('departments', 'payrolls.payroll_department_id', '=', 'departments.id')
+                ->leftJoin('rates','rates.id','payrolls.payroll_rate_id')
+                ->leftJoin('deductions','deductions.id','=','payrolls.payroll_deduction_id')
+                ->leftJoin('overtimes','payrolls.payroll_overtime_id','=','overtimes.id')
+                ->get();
     
                 return response()->json([
                     'details' => $data,
