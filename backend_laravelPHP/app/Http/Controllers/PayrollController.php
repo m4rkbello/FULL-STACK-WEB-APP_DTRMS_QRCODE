@@ -23,7 +23,11 @@ class PayrollController extends Controller
         {
             try{
                 // $data = Payroll::all();
-                $data = Payroll::select('payrolls.*', 'employees.employee_fullname')
+                $data = Payroll::select('payrolls.*', 
+                'employees.employee_fullname',
+                'departments.department_name',
+                '',
+                )
                 ->leftJoin('employees', 'payrolls.payroll_employee_id', '=', 'employees.id')
                 ->leftJoin('departments', 'payrolls.payroll_department_id', '=', 'departments.id')
                 ->leftJoin('rates','rates.id','payrolls.payroll_rate_id')
