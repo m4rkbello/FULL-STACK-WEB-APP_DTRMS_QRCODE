@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 //ICONS
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPrint, FcDataSheet, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 //REDUXISM
 import { fetchPayrolls, addPayroll, updatePayroll, deactivatePayroll, searchPayroll } from '../../../redux/actions/payrollAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
@@ -31,6 +31,8 @@ const Payroll = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  console.log("DATA SA PAYROLL props", props);
 
   //id sa rate.id para gamiton sa useParams
   const { payrollId } = useParams();
@@ -78,11 +80,12 @@ const Payroll = (props) => {
     setCurrentPage(pageNumber);
   };
 
-  // Filter and paginate payments
-  const filteredPayrolls = props.payrollData?.payrolls?.data?.details.filter(payrollItem =>
-    payrollItem.payroll_description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
+    // Filter and paginate payments
+    const filteredPayrolls = props.payrollData?.payrolls?.data?.details?.filter((payrollItem) =>
+      payrollItem?.payroll_description?.toLowerCase().includes(searchQuery.toLowerCase())
+    ) || [];
+    
+//filter without load purposes
   const indexOfLastRate = currentPage * itemsPerPage;
   const indexOfFirstRate = indexOfLastRate - itemsPerPage;
   const currentPayrolls = filteredPayrolls?.slice(indexOfFirstRate, indexOfLastRate);
@@ -120,10 +123,10 @@ const Payroll = (props) => {
               </Link>
             </li>
             <li>
-              <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
+              <Link to="/admin/payrolls" className='flex items-center hover:text-white'>
                 <FcFolder 
                 style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Rates</span>
+                <span className="ml-2">Payrolls</span>
               </Link>
             </li>
             <li>
@@ -146,7 +149,7 @@ const Payroll = (props) => {
                   <div className="p-3 flex justify-start">
                     <input
                       type="text"
-                      placeholder="Search"
+                      placeholder="Search Name..."
                       value={searchQuery}
                       onChange={handleSearchChange}
                       className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
@@ -158,14 +161,36 @@ const Payroll = (props) => {
                 </span>
               </div>
               <div className="pb-5 pt-5 flex justify-center">
-                <h3 className="font-bold text-4xl text-black">MANAGE PAYROLL</h3>
+                <h3 className="font-bold text-4xl text-black">PAYROLL LIST</h3>
               </div>
               <div className="p-3 flex justify-end">
                 <FcPlus onClick={() => {
                   setIsAddPayrollDetailsModal(true);
                 }}
-                  style={{ height: "3rem", width: "3rem" }}
+                  style={{ height: "2rem", width: "2rem" }}
                 />
+
+          
+                {/***
+                  
+                  <DownloadTableExcel
+                      filename="ExportEmployee"
+                      sheet="users"
+                      currentTableRef={tableRef.current}
+                  >
+                  </DownloadTableExcel>
+                  */}
+                <button>
+                    <FcDataSheet
+                    style={{ height: "2rem", width: "2rem" }}
+                    /></button>
+            <button 
+            // onClick={printEmployeeDashboard}
+            >
+                <FcPrint
+                style={{ height: "2rem", width: "2rem" }}
+                />
+            </button>
               </div>
             </div>
           </div>
@@ -197,8 +222,9 @@ const Payroll = (props) => {
                   <thead className="text-red">
                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
                       <th className="md:table-cell text-white"></th>
-                      <th className="md:table-cell text-white">DETAILS</th>
-                      <th className="md:table-cell text-white">AMOUNT</th>
+                      <th className="md:table-cell text-white">NAME</th>
+                      <th className="md:table-cell text-white">NET PAYROLL</th>
+                      <th className="md:table-cell text-white"></th>
                       <th className="md:table-cell text-white">DETAILS</th>
                       <th className="md:table-cell text-white">DESCRIPTION</th>
                       <th className="md:table-cell text-white">DEPARTMENT</th>
@@ -210,7 +236,7 @@ const Payroll = (props) => {
                       item.payroll_status_id !== 0 && (
                         <tr className="md:table-row" key={item.id}>
                           <td className="md:table-cell"><FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
-                          <td className="md:table-cell">{item.payroll_details}</td>
+                          <td className="md:table-cell">{item.employee_fullname}</td>
                           <td className="md:table-cell">
                             <span>&#8369;</span>
                             <b>{item.payroll_total_amount}</b>
