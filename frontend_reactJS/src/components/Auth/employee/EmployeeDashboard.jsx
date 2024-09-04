@@ -419,7 +419,8 @@ const EmployeeDashboard = (props) => {
                             <button onClick={printEmployeeDashboard}>
                                 <FcPrint
                                 style={{ height: "2rem", width: "2rem" }}
-                                /></button>
+                                />
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -444,7 +445,6 @@ const EmployeeDashboard = (props) => {
                                         <tbody>
                                             {employeesList && employeesList.map((item, index) => (
                                                 item.employee_status != 0 && (
-                                            
                                                     <tr key={index} className="md:table-row overflow-x-auto glass">
                                                         <td className="sm:table-cell box-border h-24 w-24 p-4 drop-shadow-lg">
                                                             <div className="flex items-center">
