@@ -19,39 +19,47 @@ class PayrollController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        {
-            try{
+    { {
+            try {
                 // $data = Payroll::all();
-                $data = Payroll::select('payrolls.*', 
-                'employees.employee_fullname',
-                'departments.department_name',
-                '',
+                $data = Payroll::select(
+                    'payrolls.*',
+                    'employees.employee_fullname',
+                    'employees.employee_email',
+                    'departments.department_name',
+                    'rates.rate_name',
+                    'rates.rate_amount_per_day',
+                    'overtimes.overtime_name',
+                    'overtimes.overtime_hour',
+                    'overtimes.overtime_rate_per_hour',
+                    'deductions.deduction_name',
+                    'deductions.deduction_amount'
                 )
-                ->leftJoin('employees', 'payrolls.payroll_employee_id', '=', 'employees.id')
-                ->leftJoin('departments', 'payrolls.payroll_department_id', '=', 'departments.id')
-                ->leftJoin('rates','rates.id','payrolls.payroll_rate_id')
-                ->leftJoin('deductions','deductions.id','=','payrolls.payroll_deduction_id')
-                ->leftJoin('overtimes','payrolls.payroll_overtime_id','=','overtimes.id')
-                ->get();
-    
+                    ->leftJoin('employees', 'employees.id', '=', 'payrolls.payroll_employee_id')
+                    ->leftJoin('departments', 'departments.id', 'payrolls.payroll_department_id')
+                    ->leftJoin('rates', 'rates.id', '=', 'payrolls.payroll_rate_id')
+                    ->leftJoin('deductions', 'deductions.id', '=', 'payrolls.payroll_deduction_id')
+                    ->leftJoin('overtimes', 'payrolls.payroll_overtime_id', '=', 'overtimes.id')
+                    ->get();
+
                 return response()->json([
                     'details' => $data,
                     'success' => true,
                     'status' => 201,
                     'message' => 'Fetch all Payrolls have been successful!',
                 ], 201);
-    
-            }catch(\Exception $error){
-    
+
+            } catch (\Exception $error) {
+
                 return response()->json([
                     'success' => false,
                     'status' => 401,
                     'message' => 'Fetch all payrolls have unsuccessful!',
                     'error' => $error,
                 ], 401);
-                
-            };
+
+            }
+            ;
         }
     }
 
@@ -184,7 +192,7 @@ class PayrollController extends Controller
                 'message' => 'Rate not found',
                 'status' => 404,
             ], 404);
-            
+
         } catch (\Exception $error) {
             // Handle other exceptions
             return response()->json([
@@ -203,12 +211,12 @@ class PayrollController extends Controller
         try {
             // Find the rate by ID and ensure it meets the additional condition(s)
             $payroll = Payroll::where('id', $id)
-                        ->where('payroll_status_id', 1) // Example condition
-                        ->firstOrFail();
-        
+                ->where('payroll_status_id', 1) // Example condition
+                ->firstOrFail();
+
             // Update the payroll status
             $payroll->update(['payroll_status_id' => 0]);
-        
+
             // Return the updated payroll data
             return response()->json([
                 'data' => $payroll,
@@ -232,7 +240,7 @@ class PayrollController extends Controller
                 'errors' => $error->getMessage(),
             ], 500);
         }
-        
+
     }
 
     public function search(Request $request)
