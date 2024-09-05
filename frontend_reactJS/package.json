@@ -26,7 +26,8 @@
     "react-router-dom": "^6.24.0",
     "react-toastify": "^10.0.5",
     "redux": "^5.0.1",
-    "redux-thunk": "^3.1.0"
+    "redux-thunk": "^3.1.0",
+    "uuidv7": "^1.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
