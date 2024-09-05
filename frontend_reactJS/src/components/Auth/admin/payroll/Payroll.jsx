@@ -82,8 +82,10 @@ const Payroll = (props) => {
 
     // Filter and paginate payments
     const filteredPayrolls = props.payrollData?.payrolls?.data?.details?.filter((payrollItem) =>
-      payrollItem?.payroll_description?.toLowerCase().includes(searchQuery.toLowerCase())
+      (payrollItem?.payroll_details?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+       payrollItem?.employee_name?.toLowerCase().includes(searchQuery.toLowerCase()))
     ) || [];
+    
     
 //filter without load purposes
   const indexOfLastRate = currentPage * itemsPerPage;
@@ -221,12 +223,10 @@ const Payroll = (props) => {
                 <table className="table glass w-full border-2 border-black">
                   <thead className="text-red">
                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
-                      <th className="md:table-cell text-white"></th>
                       <th className="md:table-cell text-white">FULLNAME</th>
                       <th className="md:table-cell text-white">PAYROLL</th>
-                      <th className="md:table-cell text-white"></th>
                       <th className="md:table-cell text-white">DETAILS</th>
-                      <th className="md:table-cell text-white">DESCRIPTION</th>
+        
                       <th className="md:table-cell text-white">DEPARTMENT</th>
                       <th className="md:table-cell text-white">ACTION</th>
                     </tr>
@@ -235,20 +235,19 @@ const Payroll = (props) => {
                     {currentPayrolls.map((item) => (
                       item.payroll_status_id !== 0 && (
                         <tr className="md:table-row" key={item.id}>
-                          <td className="md:table-cell"><FcSalesPerformance style={{ fontSize: "40px", color: "transparent" }} /></td>
-                          <td className="md:table-cell">{item.employee_fullname}</td>
+                          <td className="md:table-cell">{item.employee_fullname.toUpperCase()}</td>
                           <td className="md:table-cell">
                             <span>&#8369;</span>
                             <b>{item.payroll_total_amount}</b>
                           </td>
-                          <td className="md:table-cell">{item.payroll_description}</td>
-                          <td className="md:table-cell">{item.rate_description}</td>
+                          <td className="md:table-cell">{item.payroll_details.toUpperCase()}</td>
+                       
                           <td className="md:table-cell text-center">
-                            {getDepartmentNameById(item.rate_department_id)}
+                           {item.department_name.toUpperCase()}
                           </td>
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-2">
-                              <Link to={`/admin/rate/edit/${item.id}`}>
+                              <Link to={`/admin/payroll/edit/${item.id}`}>
                                 <FcViewDetails
                                   style={{ height: "2rem", width: "2rem" }}
                                 />
