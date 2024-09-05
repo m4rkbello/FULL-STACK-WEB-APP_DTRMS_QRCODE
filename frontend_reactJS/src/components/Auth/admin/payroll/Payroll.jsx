@@ -206,7 +206,7 @@ const Payroll = (props) => {
             ) : filteredPayrolls.length === 0 ? (
               <div className="mockup-browser bg-base-300 border mt-48 mb-48">
                 <div className="mockup-browser-toolbar">
-                  <div className="input">https://daisyui.com</div>
+                  <div className="input">https://markbello.website</div>
                 </div>
                 <div className="bg-base-200 flex justify-center px-4 py-16">        <span
                   style={{ fontSize: '30px', fontWeight: 'Bolder' }}
@@ -222,8 +222,8 @@ const Payroll = (props) => {
                   <thead className="text-red">
                     <tr className="md:table-row" style={{ fontSize: "17px", backgroundColor: 'black', color: "white" }}>
                       <th className="md:table-cell text-white"></th>
-                      <th className="md:table-cell text-white">NAME</th>
-                      <th className="md:table-cell text-white">NET PAYROLL</th>
+                      <th className="md:table-cell text-white">FULLNAME</th>
+                      <th className="md:table-cell text-white">PAYROLL</th>
                       <th className="md:table-cell text-white"></th>
                       <th className="md:table-cell text-white">DETAILS</th>
                       <th className="md:table-cell text-white">DESCRIPTION</th>
