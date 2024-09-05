@@ -23,6 +23,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
   //id sa rate.id
   const { payrollId } = useParams();
 
+
   const [formDataUpdatePayroll, setFormDataUpdatePayroll] = useState(null);
 
   console.log("DATA SA payroll", payrollData);
@@ -37,8 +38,8 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
   }, [fetchPayrolls,fetchEmployees, fetchRates, fetchDepartments, fetchOvertimes, fetchDeductions]);
 
   useEffect(() => {
-    if (payrolls && !loading) {
-      const payrollItems = payrolls.details.find(payroll => payroll.id === parseInt(payrollId, 10));
+    if (payrolls.data.details && !loading) {
+      const payrollItems = payrolls.data.details.find(payroll => payroll.id === parseInt(payrollId, 10));
       if (payrollItems) {
         setFormDataUpdatePayroll(payrollItems);
       } else {
@@ -128,7 +129,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           <div className="skeleton h-6 w-full"></div>
         </div>
 
-      ) : !formDataUpdateRate ? (
+      ) : !formDataUpdatePayroll ? (
         <div className="w-full max-w-5xl text-center text-lg font-semibold text-gray-500">
           <div className="mockup-browser  border border-t-4 pb-10 pt-10">
             <div className="mockup-browser-toolbar">
@@ -146,7 +147,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmitUpdateRate}>
+        <form onSubmit={handleSubmitUpdatePayroll}>
           <div className="grid grid-cols-2 gap-6 my-10">
             <div className="form-control">
               <label className="label">
@@ -157,7 +158,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                 name="rate_name"
-                value={formDataUpdateRate.rate_name || ''}
+                value={formDataUpdateRate.payroll_total_amount || ''}
                 onChange={handleChange}
               />
             </div>
@@ -170,7 +171,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 type="text"
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                 name="rate_amount_per_day"
-                value={formDataUpdateRate.rate_amount_per_day || ''}
+                value={formDataUpdateRate.payroll_total_amount || ''}
                 onChange={handleChange}
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
               />
@@ -184,7 +185,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 type="text"
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                 name="rate_details"
-                value={formDataUpdateRate.rate_details || ''}
+                value={formDataUpdateRate.payroll_total_amount || ''}
                 onChange={handleChange}
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
               />
@@ -198,7 +199,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 type="text"
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                 name="rate_description"
-                value={formDataUpdateRate.rate_description || ''}
+                value={formDataUpdateRate.payroll_total_amount || ''}
                 onChange={handleChange}
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
               />
@@ -210,16 +211,19 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
               </label>
               <select
                 name="rate_department_id"
-                value={formDataUpdateRate.rate_department_id || ''}
+                value={formDataUpdateRate.payroll_total_amount || ''}
                 onChange={handleChange}
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
               >
                 <option value="">Select Department</option>
-                {departmentsCollection.map((department) => (
-                  <option key={department.id} value={department.id}>
-                    {department.department_name}
-                  </option>
-                ))}
+                {/***
+                  
+                  {departmentsCollection.map((department) => (
+                    <option key={department.id} value={department.id}>
+                      {department.department_name}
+                    </option>
+                  ))}
+                  */}
               </select>
             </div>
 
@@ -229,7 +233,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
               </label>
               <select
                 name="rate_status_id"
-                value={formDataUpdateRate.rate_status_id || '1'}
+                value={formDataUpdateRate.payroll_total_amount || '1'}
                 onChange={handleChange}
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
               >
