@@ -86,19 +86,11 @@ const Payroll = (props) => {
        payrollItem?.employee_name?.toLowerCase().includes(searchQuery.toLowerCase()))
     ) || [];
     
-    
 //filter without load purposes
   const indexOfLastRate = currentPage * itemsPerPage;
   const indexOfFirstRate = indexOfLastRate - itemsPerPage;
   const currentPayrolls = filteredPayrolls?.slice(indexOfFirstRate, indexOfLastRate);
   const totalPages = Math.ceil(filteredPayrolls.length / itemsPerPage);
-
- // Get department datas
- const departmentsObjectDataCollection = props.departmentData?.departments?.data?.details;
- const getDepartmentNameById = (departmentId) => {
-   const department = departmentsObjectDataCollection?.find(dept => dept.id === departmentId);
-   return department ? department.department_name : 'NO DEPARTMENT';
- };
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
