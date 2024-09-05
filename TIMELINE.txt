@@ -119,6 +119,9 @@ npm install react-chartjs-2@latest
 37. ADD CONNECTION CURRENT OR CONCURRENTLY 
     ->npm i -g concurrently
 
+38. ADD UUIDV7 FOR REACTJS 
+    ->npm i uuidv7
+
 
 
 
