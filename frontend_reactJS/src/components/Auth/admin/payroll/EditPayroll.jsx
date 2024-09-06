@@ -81,9 +81,9 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
               </Link>
             </li>
             <li>
-              <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
+              <Link to="/admin/payrollemployee/dashboard" className='flex items-center hover:text-white'>
                 <FcFolder style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Rates</span>
+                <span className="ml-2">Payroll</span>
               </Link>
             </li>
             <li>
@@ -150,7 +150,51 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
         </div>
       ) : (
         <form onSubmit={handleSubmitUpdatePayroll}>
+
+        <div role="tablist" className="tabs tabs-lifted">
+  <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
+  <div role="tabpanel" className="tab-content bg-base-100 glass rounded-box p-6">
+  ATTENDANCE
+  </div>
+
+  <input
+    type="radio"
+    name="my_tabs_2"
+    role="tab"
+    className="tab"
+    aria-label="Tab 2"
+    checked="checked" />
+  <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    Tab content 2
+  </div>
+
+  <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Tab 3" />
+  <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    Tab content 3
+  </div>
+</div>
+
           <div className="grid grid-cols-2 gap-6 my-10">
+
+          <div className="card lg:card-side bg-base-100 shadow-xl">
+  <figure>
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
+      alt="Album" />
+  </figure>
+  <div className="card-body">
+    <h2 className="card-title">New album is released!</h2>
+    <p>Click the button to listen on Spotiwhy app.</p>
+    <div className="card-actions justify-end">
+      <button className="btn btn-primary">Listen</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-black text-2xl">Rate Name</span>
