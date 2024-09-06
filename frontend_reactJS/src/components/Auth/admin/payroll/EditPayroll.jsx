@@ -113,7 +113,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
             </span>
           </div>
           <div className="pb-5 pt-5 flex justify-center">
-            <h3 className="font-bold text-4xl text-black">UPDATE RATE</h3>
+            <h3 className="font-bold text-4xl text-black">UPDATE PAYROLLS</h3>
           </div>
           <div className="p-3 flex justify-end">
             <FcPlus
