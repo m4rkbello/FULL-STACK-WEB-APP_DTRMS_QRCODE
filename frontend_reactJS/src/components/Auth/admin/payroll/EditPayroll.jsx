@@ -14,20 +14,23 @@ import { fetchRates } from '../../../redux/actions/rateAction';
 import { fetchDepartments } from '../../../redux/actions/departmentAction';
 import { fetchOvertimes } from '../../../redux/actions/overtimeAction';
 import { fetchDeductions } from '../../../redux/actions/deductionAction';
+import { fetchAttendances } from '../../../redux/actions/attendanceAction';
 //TOASTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 //DISTRUCTURING
-const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertimes, fetchDeductions, fetchEmployees, payrollData, userData, rateData, departmentData, overtimeData, deductionData, updateRate, loading }) => {
+const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertimes, fetchDeductions, fetchEmployees, fetchAttendances, payrollData, userData, rateData, departmentData, overtimeData, deductionData, attendanceData, updateRate, loading }) => {
   //id sa rate.id
   const { payrollId } = useParams();
-  console.log("DATA sa payrollId", payrollId );
+  console.log("DATA sa payrollId", payrollId);
 
 
   const [formDataUpdatePayroll, setFormDataUpdatePayroll] = useState(null);
 
   console.log("DATA SA payroll", payrollData);
+  console.log("DATA SA rateData", rateData);
+  console.log("DATA SA ATTENDANCE", attendanceData);
 
   useEffect(() => {
     fetchPayrolls();
@@ -36,7 +39,8 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
     fetchDepartments();
     fetchOvertimes();
     fetchDeductions();
-  }, [fetchPayrolls,fetchEmployees, fetchRates, fetchDepartments, fetchOvertimes, fetchDeductions]);
+    fetchAttendances();
+  }, [fetchPayrolls, fetchEmployees, fetchRates, fetchDepartments, fetchOvertimes, fetchDeductions, fetchAttendances]);
 
   useEffect(() => {
     if (payrollData && payrollData.payrolls && payrollData.payrolls.data && payrollData.payrolls.data.details && !loading) {
@@ -48,7 +52,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
       }
     }
   }, [payrollData, payrollId, loading]);
-  
+
 
   const handleChange = (e) => {
     setFormDataUpdatePayroll({
@@ -63,9 +67,17 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
     try {
       await updatePayroll(payrollId, formDataUpdatePayroll);
     } catch (error) {
-      console.log("DATA SA error handleSubmitUpdateRate",error);
+      console.log("DATA SA error handleSubmitUpdateRate", error);
     }
   };
+
+
+  const attendanceDataObjectCollection = attendanceData && attendanceData.attendances.data.details;
+  console.log("DATA SA attendanceDataObjectCollection LINE 76", attendanceDataObjectCollection);
+
+  function getAllEmployeeAttendance(){
+
+  }
 
 
   return (
@@ -151,47 +163,72 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
       ) : (
         <form onSubmit={handleSubmitUpdatePayroll}>
 
-        <div role="tablist" className="tabs tabs-lifted">
-  <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
-  <div role="tabpanel" className="tab-content bg-base-100 glass rounded-box p-6">
-  ATTENDANCE
-  </div>
+          <div role="tablist" className="tabs tabs-lifted">
+            <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
+            <div role="tabpanel" className="tab-content glass rounded-box p-6">
+            <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Job</th>
+                  <th>Favorite Color</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* row 1 */}
+                <tr className="bg-base-200">
+                  <th>1</th>
+                  <td>Cy Ganderton</td>
+                  <td>Quality Control Specialist</td>
+                  <td>Blue</td>
+                </tr>
+                {/* row 2 */}
+                <tr>
+                  <th>2</th>
+                  <td>Hart Hagerty</td>
+                  <td>Desktop Support Technician</td>
+                  <td>Purple</td>
+                </tr>
+                {/* row 3 */}
+                <tr>
+                  <th>3</th>
+                  <td>Brice Swyre</td>
+                  <td>Tax Accountant</td>
+                  <td>Red</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-  <input
-    type="radio"
-    name="my_tabs_2"
-    role="tab"
-    className="tab"
-    aria-label="Tab 2"
-    checked="checked" />
-  <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-    Tab content 2
-  </div>
+            </div>
 
-  <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Tab 3" />
-  <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-    Tab content 3
-  </div>
-</div>
+            <input
+              type="radio"
+              name="my_tabs_2"
+              role="tab"
+              className="tab"
+              aria-label="Tab 2"
+              checked="checked" />
+            <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+              Tab content 2
+            </div>
+
+            <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Tab 3" />
+            <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+              Tab content 3
+            </div>
+          </div>
 
           <div className="grid grid-cols-2 gap-6 my-10">
 
-          <div className="card lg:card-side bg-base-100 shadow-xl">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-      alt="Album" />
-  </figure>
-  <div className="card-body">
-    <h2 className="card-title">New album is released!</h2>
-    <p>Click the button to listen on Spotiwhy app.</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Listen</button>
-    </div>
-  </div>
-</div>
 
 
+            <div className="artboard phone-3">414×736</div>
+
+            <div className="artboard glass phone-3">414×736</div>
 
 
 
@@ -291,23 +328,23 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           </div>
           <br />
           <div className="flex">
-          <div className='mx-1'>
-            <button
-            type="submit"
-            className="btn glass hover:text-white hover:bg-indigo-400"
-            style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
-            >
-            <FcOk style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
-            </button>
-            </div>
             <div className='mx-1'>
-            <Link to="/admin/rates">
-                <button
+              <button
+                type="submit"
                 className="btn glass hover:text-white hover:bg-indigo-400"
                 style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
-                >
-                <FcCancel style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
+              >
+                <FcOk style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
               </button>
+            </div>
+            <div className='mx-1'>
+              <Link to="/admin/rates">
+                <button
+                  className="btn glass hover:text-white hover:bg-indigo-400"
+                  style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
+                >
+                  <FcCancel style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
+                </button>
               </Link>
             </div>
           </div>
@@ -325,6 +362,7 @@ const mapStateToProps = (state) => {
     departmentData: state.departmentState,
     overtimeData: state.overtimeState,
     deductionData: state.deductionState,
+    attendanceData: state.attendanceState,
     loading: state.payrollState.loading,
   }
 };
@@ -335,8 +373,9 @@ const mapDispatchToProps = (dispatch) => {
     fetchEmployees: () => dispatch(fetchEmployees()),
     fetchRates: () => dispatch(fetchRates()),
     fetchDepartments: () => dispatch(fetchDepartments()),
-    fetchDeductions:  () => dispatch(fetchDeductions()),
+    fetchDeductions: () => dispatch(fetchDeductions()),
     fetchOvertimes: () => dispatch(fetchOvertimes()),
+    fetchAttendances: () => dispatch(fetchAttendances()),
     addPayroll: (AddPayrollData) => dispatch(addPayroll(AddPayrollData)),
     updatePayroll: (payrollId, updatePayrollData) => dispatch(updatePayroll(payrollId, updatePayrollData)),
     deactivatePayroll: (payrollId) => dispatch(deactivatePayroll(payrollId)),
