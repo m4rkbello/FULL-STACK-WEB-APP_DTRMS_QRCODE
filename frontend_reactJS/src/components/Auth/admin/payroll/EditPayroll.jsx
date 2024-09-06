@@ -22,6 +22,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertimes, fetchDeductions, fetchEmployees, payrollData, userData, rateData, departmentData, overtimeData, deductionData, updateRate, loading }) => {
   //id sa rate.id
   const { payrollId } = useParams();
+  console.log("DATA sa payrollId", payrollId );
 
 
   const [formDataUpdatePayroll, setFormDataUpdatePayroll] = useState(null);
@@ -38,8 +39,8 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
   }, [fetchPayrolls,fetchEmployees, fetchRates, fetchDepartments, fetchOvertimes, fetchDeductions]);
 
   useEffect(() => {
-    if (payrolls.data.details && !loading) {
-      const payrollItems = payrolls.data.details.find(payroll => payroll.id === parseInt(payrollId, 10));
+    if (payrollData && payrollData.payrolls && payrollData.payrolls.data && payrollData.payrolls.data.details && !loading) {
+      const payrollItems = payrollData.payrolls.data.details.find(payroll => payroll.id === parseInt(payrollId, 10));
       if (payrollItems) {
         setFormDataUpdatePayroll(payrollItems);
       } else {
@@ -47,6 +48,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
       }
     }
   }, [payrollData, payrollId, loading]);
+  
 
   const handleChange = (e) => {
     setFormDataUpdatePayroll({
@@ -158,7 +160,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
                 name="rate_name"
-                value={formDataUpdateRate.payroll_total_amount || ''}
+                value={formDataUpdatePayroll?.payroll_total_amount || ''}
                 onChange={handleChange}
               />
             </div>
@@ -171,7 +173,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 type="text"
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                 name="rate_amount_per_day"
-                value={formDataUpdateRate.payroll_total_amount || ''}
+                value={formDataUpdatePayroll?.payroll_total_amount || ''}
                 onChange={handleChange}
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
               />
@@ -185,7 +187,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 type="text"
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                 name="rate_details"
-                value={formDataUpdateRate.payroll_total_amount || ''}
+                value={formDataUpdatePayroll?.payroll_total_amount || ''}
                 onChange={handleChange}
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
               />
@@ -199,7 +201,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 type="text"
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
                 name="rate_description"
-                value={formDataUpdateRate.payroll_total_amount || ''}
+                value={formDataUpdatePayroll?.payroll_total_amount || ''}
                 onChange={handleChange}
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
               />
@@ -211,7 +213,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
               </label>
               <select
                 name="rate_department_id"
-                value={formDataUpdateRate.payroll_total_amount || ''}
+                value={formDataUpdatePayroll?.payroll_total_amount || ''}
                 onChange={handleChange}
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
               >
@@ -233,7 +235,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
               </label>
               <select
                 name="rate_status_id"
-                value={formDataUpdateRate.payroll_total_amount || '1'}
+                value={formDataUpdatePayroll?.payroll_total_amount || '1'}
                 onChange={handleChange}
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
               >
