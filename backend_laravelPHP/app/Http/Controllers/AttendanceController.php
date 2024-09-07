@@ -23,7 +23,13 @@ class AttendanceController extends Controller
     public function index()
     {
         try{
-            $data = Attendance::all();
+            // $data = Attendance::all();
+            $data = Attendance::select(
+                'attendances.*',
+                'employees.employee_fullname'
+                )
+            ->leftJoin('employees','employees.id','=','attendances.attendance_employee_id')
+            ->get();
 
             return response()->json([
                 'details' => $data,
