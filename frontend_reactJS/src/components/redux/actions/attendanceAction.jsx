@@ -29,6 +29,9 @@ export const fetchAttendances = () => async dispatch => {
         dispatch({ type: FETCH_ATTENDANCES_REQUEST });
         // Perform async operation, e.g., fetch data from an API
         const attendances = await MarkBelloApi.get('/api/attendances/collections/all');
+
+        console.log("PARA SA attendances", attendances);
+        
         dispatch({
             type: FETCH_ATTENDANCES_SUCCESS,
             payload: attendances
