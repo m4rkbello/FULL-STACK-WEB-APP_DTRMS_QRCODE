@@ -71,7 +71,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
     }
   };
 
-  const attendanceDataObjectCollection = attendanceData && attendanceData?.attendances?.data?.details;
+  const attendanceDataObjectCollection = attendanceData && attendanceData?.attendances && attendanceData?.attendances?.data?.details;
   console.log("attendanceDataObjectCollection:", attendanceDataObjectCollection);
   
 
@@ -169,22 +169,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           <div role="tablist" className="tabs tabs-lifted">
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
             <div role="tabpanel" className="tab-content glass rounded-box p-6">
-            <div className="overflow-x-auto">
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>ATTENDANCE</th>
-                  <th>ATTENDANCE TIME-IN LOGS</th>
-                  <th>ATTENDANCE TIME-OUT LOGS</th>
-                </tr>
-              </thead>
-              <tbody>
-                  {getAllEmployeeAttendance(payrollId)}
-              </tbody>
-            </table>
-          </div>
+     
 
             </div>
 
@@ -196,7 +181,35 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
               aria-label="Tab 2"
               checked="checked" />
             <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-              Tab content 2
+         
+            <div className="overflow-x-auto">
+            <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" >
+              {/* head */}
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>ATTENDANCE DATA</th>
+                  <th>ATTENDANCE TIME-IN</th>
+                  <th>ATTENDANCE TIME-OUT</th>
+                  <th>ATTENDANCE BY</th>
+                </tr>
+              </thead>
+              <tbody>
+              {filteredEmployeeAttendances.map(item => (
+                <tr key={item.id}>
+                <td>{item.id}</td>
+                  <td>
+                    {item.attendance_note}
+                  </td>
+                  <td>{item.attendance_time_in}</td>
+                  <td>{item.attendance_time_out}</td>
+                  <td>{item.employee_fullname}</td>
+                </tr>
+              ))}
+              
+              </tbody>
+            </table>
+          </div>
             </div>
 
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Tab 3" />
