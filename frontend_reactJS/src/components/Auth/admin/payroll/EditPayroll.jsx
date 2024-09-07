@@ -71,13 +71,16 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
     }
   };
 
+  const attendanceDataObjectCollection = attendanceData && attendanceData?.attendances?.data?.details;
+  console.log("attendanceDataObjectCollection:", attendanceDataObjectCollection);
+  
 
-  const attendanceDataObjectCollection = attendanceData && attendanceData.attendances.data.details;
-  console.log("DATA SA attendanceDataObjectCollection LINE 76", attendanceDataObjectCollection);
+  const getAllAttendanceById = (payrollId, attendanceDataObjectCollection) => {
+    return attendanceDataObjectCollection.filter(item => item.attendance_employee_id == payrollId);
+  };
 
-  function getAllEmployeeAttendance(){
-
-  }
+  const filteredEmployeeAttendances = getAllAttendanceById(payrollId, attendanceDataObjectCollection);
+  console.log("DATA SA LINE 82 filteredEmployeeAttendances", filteredEmployeeAttendances);
 
 
   return (
@@ -172,33 +175,13 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
               <thead>
                 <tr>
                   <th></th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>ATTENDANCE</th>
+                  <th>ATTENDANCE TIME-IN LOGS</th>
+                  <th>ATTENDANCE TIME-OUT LOGS</th>
                 </tr>
               </thead>
               <tbody>
-                {/* row 1 */}
-                <tr className="bg-base-200">
-                  <th>1</th>
-                  <td>Cy Ganderton</td>
-                  <td>Quality Control Specialist</td>
-                  <td>Blue</td>
-                </tr>
-                {/* row 2 */}
-                <tr>
-                  <th>2</th>
-                  <td>Hart Hagerty</td>
-                  <td>Desktop Support Technician</td>
-                  <td>Purple</td>
-                </tr>
-                {/* row 3 */}
-                <tr>
-                  <th>3</th>
-                  <td>Brice Swyre</td>
-                  <td>Tax Accountant</td>
-                  <td>Red</td>
-                </tr>
+                  {getAllEmployeeAttendance(payrollId)}
               </tbody>
             </table>
           </div>
