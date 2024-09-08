@@ -110,13 +110,13 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
         <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
           <div>
             <span className="inline-grid grid-cols-3 gap-4 py-5">
-        
+
             </span>
           </div>
           <div className="pb-5 pt-5 flex justify-center">
             <h3 className="font-bold text-4xl text-black">EMPLOYEE PAYROLLS</h3>
           </div>
-   
+
         </div>
       </div>
 
@@ -147,53 +147,53 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
       ) : (
         <form onSubmit={handleSubmitUpdatePayroll}>
 
-          <div role="tablist" className="tabs tabs-lifted">
+          <div role="tablist" className="tabs tabs-lifted tabs-lg">
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
             <div role="tabpanel" className="tab-content glass rounded-box p-6">
-            <div className="overflow-x-auto">
-            <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" >
-              <thead className='bg-black text-white'>
-                <tr>
-                  <th></th>
-                  <th>ATTENDANCE DATA</th>
-                  <th>ATTENDANCE TIME-IN</th>
-                  <th>ATTENDANCE TIME-OUT</th>
-                  <th>ATTENDANCE BY</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredEmployeeAttendances.map(item => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>
-                      {item.attendance_note}
-                    </td>
-                    <td>{item.attendance_time_in}</td>
-                    <td>{item.attendance_time_out}</td>
-                    <td>{item.employee_fullname}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              <div className="overflow-x-auto">
+                <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" >
+                  <thead className='bg-black text-white'>
+                    <tr>
+                      <th></th>
+                      <th>ATTENDANCE DATA</th>
+                      <th>ATTENDANCE TIME-IN</th>
+                      <th>ATTENDANCE TIME-OUT</th>
+                      <th>ATTENDANCE BY</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredEmployeeAttendances.map(item => (
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>
+                          {item.attendance_note}
+                        </td>
+                        <td>{item.attendance_time_in}</td>
+                        <td>{item.attendance_time_out}</td>
+                        <td>{item.employee_fullname}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
             <input
               type="radio"
               name="my_tabs_2"
               role="tab"
               className="tab"
-              aria-label="Tab 2"
+              aria-label="RATE"
               checked="checked" />
             <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-          
+
             </div>
-            <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Tab 3" />
+            <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="OVERTIME" />
             <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
               Tab content 3
             </div>
           </div>
           <div className="grid grid-cols-2 gap-6 my-10">
-            <div className="artboard phone-3">414×736</div>
+            <div className="artboard glass phone-3">414×736</div>
             <div className="artboard glass phone-3">414×736</div>
             <div className="form-control">
               <label className="label">
