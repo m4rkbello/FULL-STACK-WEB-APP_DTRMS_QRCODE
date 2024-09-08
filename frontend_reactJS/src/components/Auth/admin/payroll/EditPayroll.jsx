@@ -127,26 +127,31 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           <div className="skeleton h-6 w-full"></div>
           <div className="skeleton h-6 w-full"></div>
         </div>
-      ) : !formDataUpdatePayroll ? (
-        <div className="w-full max-w-5xl text-center text-lg font-semibold text-gray-500">
-          <div className="mockup-browser  border border-t-4 pb-10 pt-10">
-            <div className="mockup-browser-toolbar">
-              <div className="input text-black-400">https://markbello.com</div>
-            </div>
-            <div className="flex justify-center text-black px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-              <span
-                style={{ fontSize: '30px', fontWeight: 'Bolder' }}
-              >
-                <b>
-                  AYAW NA PANGITAA ANG WALA!
-                </b>
-              </span>
-            </div>
-          </div>
-        </div>
-      ) : (
+      ) :  (
+        <div className='w-full max-w-full glass mx-auto'>
 
-        <div className='h-full max-h-full w-full max-w-full glass mx-auto'>
+        <div className="hero bg-b min-h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" style={{ background: 'linear-gradient(90deg, #213A5757, #0B6477, #14919B, #45DFB1, #80ED99)' }}>
+                <div className="hero-content flex-col lg:flex-row">
+                <img
+                src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                className="max-w-sm rounded-lg shadow-2xl" />
+                <div className="avatar">
+  <div className="ring-primary ring-offset-base-100 w-48 rounded-full ring ring-offset-2">
+    <img src="https://i.ibb.co/xL6Mbx0/m4rk.png" />
+  </div>
+</div>
+                <div>
+                <h1 className="text-5xl font-bold">TEST</h1>
+                <p className="py-3">
+                Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                quasi. In deleniti eaque aut repudiandae et a id nisi.
+                </p>
+                <button className="btn btn-primary">Get Started</button>
+                </div>
+                </div>
+                </div>
+
+<br />
           <div role="tablist" className="tabs tabs-lifted tabs-lg">
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
             <div role="tabpanel" className="tab-content glass rounded-box p-6">
