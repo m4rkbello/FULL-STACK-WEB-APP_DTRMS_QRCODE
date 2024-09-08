@@ -23,12 +23,15 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $data = Employee::all();
-        
-        
-        return response($data, 201);
+        $data = Employee::select(
+            'employees.*',
+            'departments.department_name',
+            'departments.department_description'
+            )
+            ->leftJoin('departments', 'departments.id', '=', 'employees.employee_department_id')
+            ->get();
 
-   
+            return response($data, 201);
     }
 
     /**
