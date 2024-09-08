@@ -110,26 +110,13 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
         <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
           <div>
             <span className="inline-grid grid-cols-3 gap-4 py-5">
-              <div className="p-3 flex justify-start">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
-                />
-              </div>
-              <div className="p-3 flex justify-end">
-                <FcSearch style={{ height: "2rem", width: "2rem" }} />
-              </div>
+        
             </span>
           </div>
           <div className="pb-5 pt-5 flex justify-center">
             <h3 className="font-bold text-4xl text-black">EMPLOYEE PAYROLLS</h3>
           </div>
-          <div className="p-3 flex justify-end">
-            <FcPlus
-              style={{ height: "3rem", width: "3rem" }}
-            />
-          </div>
+   
         </div>
       </div>
 
@@ -163,6 +150,32 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           <div role="tablist" className="tabs tabs-lifted">
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
             <div role="tabpanel" className="tab-content glass rounded-box p-6">
+            <div className="overflow-x-auto">
+            <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" >
+              <thead className='bg-black text-white'>
+                <tr>
+                  <th></th>
+                  <th>ATTENDANCE DATA</th>
+                  <th>ATTENDANCE TIME-IN</th>
+                  <th>ATTENDANCE TIME-OUT</th>
+                  <th>ATTENDANCE BY</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredEmployeeAttendances.map(item => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>
+                      {item.attendance_note}
+                    </td>
+                    <td>{item.attendance_time_in}</td>
+                    <td>{item.attendance_time_out}</td>
+                    <td>{item.employee_fullname}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
             </div>
             <input
               type="radio"
@@ -172,40 +185,13 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
               aria-label="Tab 2"
               checked="checked" />
             <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-              <div className="overflow-x-auto">
-                <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" >
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>ATTENDANCE DATA</th>
-                      <th>ATTENDANCE TIME-IN</th>
-                      <th>ATTENDANCE TIME-OUT</th>
-                      <th>ATTENDANCE BY</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredEmployeeAttendances.map(item => (
-                      <tr key={item.id}>
-                        <td>{item.id}</td>
-                        <td>
-                          {item.attendance_note}
-                        </td>
-                        <td>{item.attendance_time_in}</td>
-                        <td>{item.attendance_time_out}</td>
-                        <td>{item.employee_fullname}</td>
-                      </tr>
-                    ))}
-
-                  </tbody>
-                </table>
-              </div>
+          
             </div>
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Tab 3" />
             <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
               Tab content 3
             </div>
           </div>
-
           <div className="grid grid-cols-2 gap-6 my-10">
             <div className="artboard phone-3">414×736</div>
             <div className="artboard glass phone-3">414×736</div>
@@ -222,7 +208,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 onChange={handleChange}
               />
             </div>
-
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-black text-2xl">Rate Amount</span>
@@ -236,7 +221,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
               />
             </div>
-
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-black text-2xl">Rate Details</span>
@@ -250,7 +234,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
               />
             </div>
-
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-black text-2xl">Rate Description</span>
@@ -264,7 +247,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
               />
             </div>
-
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-black text-2xl">Rate Department</span>
@@ -278,7 +260,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 <option value="">Select Department</option>
               </select>
             </div>
-
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-glass text-2xl">Rate Status</span>
