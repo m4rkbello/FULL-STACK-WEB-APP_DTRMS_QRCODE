@@ -92,15 +92,9 @@ public function store(Request $request)
             ->orderBy('created_at', 'desc')
             ->first();
         
-        $attendanceCollectionsDuplicate = Attendance::where('attendance_employee_id', '=', $employeeId)
-            ->whereDay('created_at', '=', Carbon::today())
-            ->orderBy('created_at', 'desc')
-            ->first();
-        
         $attendanceCollectionsTimeIn = Attendance::where('attendance_employee_id', $employeeId)
             ->whereDay('created_at', '=', Carbon::today())
             ->where('attendance_status_id', '=', 1)
-            // ->whereTime('created_at', '<', '12:00:00')
             ->exists();
 
         $attendanceCollectionsTimeout = Attendance::where('attendance_employee_id', $employeeId)
@@ -117,7 +111,7 @@ public function store(Request $request)
                 'attendance_time_out' => null,
                 'attendance_status_id' => 1,
             ]);
-        } elseif ($attendanceCollections && !$attendanceCollectionsTimeout) {
+        } elseif ($attendanceCollections && $attendanceCollectionsTimeIn && !$attendanceCollectionsTimeout) {
             // Time in exists but no time out, update the attendance record
             // First, retrieve the specific attendance record
             $attendance = Attendance::find($attendanceCollectionsFilterDescending->id);
