@@ -34,7 +34,7 @@ class PayrollController extends Controller
                     'overtimes.overtime_rate_per_hour',
                     'deductions.deduction_name',
                     'deductions.deduction_amount'
-                )
+                    )
                     ->leftJoin('employees', 'employees.id', '=', 'payrolls.payroll_employee_id')
                     ->leftJoin('departments', 'departments.id', 'payrolls.payroll_department_id')
                     ->leftJoin('rates', 'rates.id', '=', 'payrolls.payroll_rate_id')
