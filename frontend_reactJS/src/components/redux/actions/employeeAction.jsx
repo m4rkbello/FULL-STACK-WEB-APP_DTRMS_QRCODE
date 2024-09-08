@@ -29,6 +29,7 @@ export const fetchEmployees = () => async dispatch => {
         dispatch({ type: FETCH_EMPLOYEES_REQUEST });
         // Perform async operation, e.g., fetch data from an API
         const employees = await MarkBelloApi.get('/api/employees');
+        console.log("DATA SA employees EmployeeAction", employees);
         dispatch({
             type: FETCH_EMPLOYEES_SUCCESS,
             payload: employees
