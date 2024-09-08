@@ -21,7 +21,6 @@ class PayrollController extends Controller
     public function index()
     { {
             try {
-                // $data = Payroll::all();
                 $data = Payroll::select(
                     'payrolls.*',
                     'employees.employee_fullname',
