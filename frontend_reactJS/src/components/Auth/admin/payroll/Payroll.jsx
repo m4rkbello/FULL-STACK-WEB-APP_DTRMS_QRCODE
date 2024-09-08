@@ -155,7 +155,7 @@ const Payroll = (props) => {
                 </span>
               </div>
               <div className="pb-5 pt-5 flex justify-center">
-                <h3 className="font-bold text-4xl text-black">PAYROLL LIST</h3>
+                <h3 className="font-bold text-4xl text-black">PAYROLL EMPLOYEE LIST</h3>
               </div>
               <div className="p-3 flex justify-end">
                 <FcPlus onClick={() => {
@@ -225,7 +225,9 @@ const Payroll = (props) => {
                   </thead>
                   <tbody className='text-black'>
                     {currentPayrolls.map((item) => (
+                   
                       item.payroll_status_id !== 0 && (
+                        
                         <tr className="md:table-row" key={item.id}>
                           <td className="md:table-cell">{item.employee_fullname.toUpperCase()}</td>
                           <td className="md:table-cell">
@@ -239,7 +241,7 @@ const Payroll = (props) => {
                           </td>
                           <td className="md:table-cell">
                             <div className="flex items-center space-x-2">
-                              <Link to={`/admin/payroll/edit/${item.id}`}>
+                              <Link to={`/admin/payroll/edit/${item.payroll_employee_id}`}>
                                 <FcViewDetails
                                   style={{ height: "2rem", width: "2rem" }}
                                 />
