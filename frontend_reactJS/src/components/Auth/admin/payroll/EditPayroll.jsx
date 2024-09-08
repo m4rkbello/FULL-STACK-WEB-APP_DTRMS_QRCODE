@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 // ICONS
-import { FcFolder, FcOpenedFolder, FcPrevious, FcOk, FcCancel, FcSearch, FcPlus } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPrevious, FcOk, FcCancel, FcSearch,FcPhone    } from "react-icons/fc";
 // REDUXISM
 import { fetchPayrolls, addPayroll, updatePayroll, deactivatePayroll, searchPayroll } from '../../../redux/actions/payrollAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
@@ -15,12 +15,13 @@ import { fetchDepartments } from '../../../redux/actions/departmentAction';
 import { fetchOvertimes } from '../../../redux/actions/overtimeAction';
 import { fetchDeductions } from '../../../redux/actions/deductionAction';
 import { fetchAttendances } from '../../../redux/actions/attendanceAction';
+
 //TOASTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 //DISTRUCTURING
-const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertimes, fetchDeductions, fetchEmployees, fetchAttendances, payrollData, userData, rateData, departmentData, overtimeData, deductionData, attendanceData, updateRate, loading }) => {
+const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertimes, fetchDeductions, fetchEmployees, fetchAttendances, payrollData, userData, employeeData, rateData, departmentData, overtimeData, deductionData, attendanceData, updateRate, loading }) => {
   //id sa rate.id
   const { payrollId } = useParams();
   console.log("DATA sa payrollId", payrollId);
@@ -30,6 +31,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
   console.log("DATA SA payroll", payrollData);
   console.log("DATA SA rateData", rateData);
   console.log("DATA SA ATTENDANCE", attendanceData);
+  console.log("DATA SA EMPLOYEE", employeeData);
 
   useEffect(() => {
     fetchPayrolls();
@@ -73,11 +75,23 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
   console.log("attendanceDataObjectCollection:", attendanceDataObjectCollection);
 
   const getAllAttendanceById = (payrollId, attendanceDataObjectCollection) => {
-    return attendanceDataObjectCollection.filter(item => item.attendance_employee_id == payrollId);
+    return attendanceDataObjectCollection ? attendanceDataObjectCollection.filter(item => item.attendance_employee_id == payrollId) : [];
   };
 
   const filteredEmployeeAttendances = getAllAttendanceById(payrollId, attendanceDataObjectCollection);
   console.log("DATA SA LINE 82 filteredEmployeeAttendances", filteredEmployeeAttendances);
+
+  const employeeDataObjectCollection = employeeData && employeeData?.employees && employeeData?.employees?.data;
+  console.log("DATA SA EMPLOYEES NI CHOI!", employeeDataObjectCollection);
+
+  const getEmployeeDetails = (payrollId, employeeDataObjectCollection) => {
+    return employeeDataObjectCollection ? employeeDataObjectCollection.filter(employeeItem => employeeItem.id == payrollId) : [];
+  }
+
+  const filteredEmployeeDetails = getEmployeeDetails(payrollId, employeeDataObjectCollection);
+  console.log("FINAL DATA SA EMPLOYEE", filteredEmployeeDetails);
+
+
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
@@ -106,19 +120,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           </ul>
         </div>
       </div>
-      <div className='glass shadow-slate-900/100'>
-        <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-          <div>
-            <span className="inline-grid grid-cols-3 gap-4 py-5">
-
-            </span>
-          </div>
-          <div className="pb-5 pt-5 flex justify-center">
-            <h3 className="font-bold text-4xl text-black">EMPLOYEE PAYROLLS</h3>
-          </div>
-
-        </div>
-      </div>
 
       {loading ? (
         <div className="flex flex-col gap-4 w-full m-30 max-w-5xl ps-2 pe-2 mt-30 mb-30">
@@ -127,31 +128,53 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           <div className="skeleton h-6 w-full"></div>
           <div className="skeleton h-6 w-full"></div>
         </div>
-      ) :  (
+      ) : (
         <div className='w-full max-w-full glass mx-auto'>
 
-        <div className="hero bg-b min-h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" style={{ background: 'linear-gradient(90deg, #213A5757, #0B6477, #14919B, #45DFB1, #80ED99)' }}>
+            {filteredEmployeeDetails.map(employeeData => (
+              <div key={employeeData.id} className="hero bg-b min-h-80  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                 <div className="hero-content flex-col lg:flex-row">
-                <img
-                src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                className="max-w-sm rounded-lg shadow-2xl" />
-                <div className="avatar">
-  <div className="ring-primary ring-offset-base-100 w-48 rounded-full ring ring-offset-2">
-    <img src="https://i.ibb.co/xL6Mbx0/m4rk.png" />
-  </div>
-</div>
-                <div>
-                <h1 className="text-5xl font-bold">TEST</h1>
-                <p className="py-3">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                quasi. In deleniti eaque aut repudiandae et a id nisi.
-                </p>
-                <button className="btn btn-primary">Get Started</button>
-                </div>
-                </div>
-                </div>
+                  <div className="avatar">
+                    <div className="ring-primary ring-offset-base-100 w-56 rounded-full ring ring-offset-2">
+                      <img src={employeeData.employee_image} />
+                    </div>
+                  </div>
+                  {/***
+                    <div className="avatar">
+                      <div className="w-34 rounded">
+                        <img className="w-34 rounded" src={employeeData.employee_qrcode} />
+                      </div>
+                    </div>
+                  */}
+                  <div>
+                    <h1 className="text-5xl font-bold">{employeeData.employee_fullname.toUpperCase()}</h1>
+                    <h1 className="text-3xl font-bold">{employeeData.employee_email.toUpperCase()}</h1>
+                
+                    <h1 className="text-3xl font-bold">
+                  
+                    {employeeData.employee_contact_no.toUpperCase()}</h1>
 
-<br />
+    
+                    <h1 className="text-3xl font-bold">
+
+                    {employeeData.employee_position.toUpperCase()}</h1>
+
+                    <h1 className="text-3xl font-bold">
+                  
+                    {employeeData.employee_role.toUpperCase()}</h1>
+                    
+                    <p className="py-3">
+                      Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                      quasi. In deleniti eaque aut repudiandae et a id nisi.
+                    </p>
+                    <button className="btn btn-primary">Get Started</button>
+                  </div>
+                </div>
+              </div>
+            )
+            )}
+
+          <br />
           <div role="tablist" className="tabs tabs-lifted tabs-lg">
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
             <div role="tabpanel" className="tab-content glass rounded-box p-6">
@@ -212,6 +235,7 @@ const mapStateToProps = (state) => {
   return {
     payrollData: state.payrollState,
     userData: state.userState,
+    employeeData: state.employeeState,
     rateData: state.rateState,
     departmentData: state.departmentState,
     overtimeData: state.overtimeState,
