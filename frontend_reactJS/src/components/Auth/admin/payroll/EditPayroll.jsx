@@ -145,8 +145,8 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmitUpdatePayroll}>
 
+        <div className='h-full max-h-full w-full max-w-full glass mx-auto'>
           <div role="tablist" className="tabs tabs-lifted tabs-lg">
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
             <div role="tabpanel" className="tab-content glass rounded-box p-6">
@@ -195,109 +195,9 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           <div className="grid grid-cols-2 gap-6 my-10">
             <div className="artboard glass phone-3">414×736</div>
             <div className="artboard glass phone-3">414×736</div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-black text-2xl">Rate Name</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
-                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                name="rate_name"
-                value={formDataUpdatePayroll?.payroll_total_amount || ''}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-black text-2xl">Rate Amount</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
-                name="rate_amount_per_day"
-                value={formDataUpdatePayroll?.payroll_total_amount || ''}
-                onChange={handleChange}
-                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-black text-2xl">Rate Details</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
-                name="rate_details"
-                value={formDataUpdatePayroll?.payroll_total_amount || ''}
-                onChange={handleChange}
-                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-black text-2xl">Rate Description</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
-                name="rate_description"
-                value={formDataUpdatePayroll?.payroll_total_amount || ''}
-                onChange={handleChange}
-                style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-black text-2xl">Rate Department</span>
-              </label>
-              <select
-                name="rate_department_id"
-                value={formDataUpdatePayroll?.payroll_total_amount || ''}
-                onChange={handleChange}
-                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
-              >
-                <option value="">Select Department</option>
-              </select>
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-glass text-2xl">Rate Status</span>
-              </label>
-              <select
-                name="rate_status_id"
-                value={formDataUpdatePayroll?.payroll_total_amount || '1'}
-                onChange={handleChange}
-                className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
-              >
-                <option value="1">Active</option>
-                <option value="0">Inactive</option>
-              </select>
-            </div>
+            <div className="artboard glass artboard-horizontal phone-3">736×414</div>
           </div>
-          <br />
-          <div className="flex">
-            <div className='mx-1'>
-              <button
-                type="submit"
-                className="btn glass hover:text-white hover:bg-indigo-400"
-                style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
-              >
-                <FcOk style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
-              </button>
-            </div>
-            <div className='mx-1'>
-              <Link to="/admin/rates">
-                <button
-                  className="btn glass hover:text-white hover:bg-indigo-400"
-                  style={{ fontSize: "40px", color: "transparent", border: "none", backgroundColor: "transparent" }}
-                >
-                  <FcCancel style={{ fontSize: "40px", color: "transparent" }} className='text-black hover:text-black' />
-                </button>
-              </Link>
-            </div>
-          </div>
-        </form>
+        </div>
       )}
     </div>
   );
