@@ -87,10 +87,20 @@ public function store(Request $request)
             ->whereDay('created_at', '=', Carbon::today())
             ->exists();
 
+        $attendanceCollectionsFilterDescending = Attendance::where('attendance_employee_id', '=', $employeeId)
+            ->whereDay('created_at', '=', Carbon::today())
+            ->orderBy('created_at', 'desc')
+            ->first();
+        
+        $attendanceCollectionsDuplicate = Attendance::where('attendance_employee_id', '=', $employeeId)
+            ->whereDay('created_at', '=', Carbon::today())
+            ->orderBy('created_at', 'desc')
+            ->first();
+        
         $attendanceCollectionsTimeIn = Attendance::where('attendance_employee_id', $employeeId)
             ->whereDay('created_at', '=', Carbon::today())
             ->where('attendance_status_id', '=', 1)
-            ->whereTime('created_at', '<', '12:00:00')
+            // ->whereTime('created_at', '<', '12:00:00')
             ->exists();
 
         $attendanceCollectionsTimeout = Attendance::where('attendance_employee_id', $employeeId)
@@ -99,6 +109,7 @@ public function store(Request $request)
             ->exists();
 
         if (!$attendanceCollections) {
+            // No attendance record, create a new one
             $attendance = Attendance::create([
                 'attendance_employee_id' => $employeeId,
                 'attendance_note' => $timeInNote,
@@ -106,30 +117,52 @@ public function store(Request $request)
                 'attendance_time_out' => null,
                 'attendance_status_id' => 1,
             ]);
-        } elseif ($attendanceCollectionsTimeIn && $attendanceCollectionsTimeout) {
+        } elseif ($attendanceCollections && !$attendanceCollectionsTimeout) {
+            // Time in exists but no time out, update the attendance record
+            // First, retrieve the specific attendance record
+            $attendance = Attendance::find($attendanceCollectionsFilterDescending->id);
+            
+            if ($attendance) {
+                $attendance->update([
+                    'attendance_note' => $attendance->attendance_note . ', ' . $timeOutNote,
+                    'attendance_time_out' => Carbon::now(),
+                    'attendance_status_id' => 2,
+                ]);
+        
+                return response()->json([
+                    'success' => true,
+                    'details' => $attendance,
+                    'message' => 'Attendance updated successfully!',
+                    'status' => 200,
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Attendance record not found',
+                    'status' => 404,
+                ]);
+            }
+        } elseif($attendanceCollectionsTimeout){
+
+            // Fallback for handling unexpected cases
             return response()->json([
                 'success' => false,
                 'details' => $attendanceCollections,
-                'message' => 'Duplicated Employee Attendance!',
+                'message' => 'Duplicated Employee Attendance PATOTOYA!',
                 'status' => 406,
             ]);
-        } elseif ($attendanceCollectionsTimeIn || !$attendanceCollectionsTimeout) {
-            $attendance = Attendance::create([
-                'attendance_employee_id' => $employeeId,
-                'attendance_note' => $timeOutNote,
-                'attendance_time_in' => null,
-                'attendance_time_out' => Carbon::now(),
-                'attendance_status_id' => 2,
-            ]);
+
+
         } else {
+            // Fallback for handling unexpected cases
             return response()->json([
                 'success' => false,
                 'details' => $attendanceCollections,
-                'message' => 'Duplicated Employee Attendance!',
+                'message' => 'Duplicated Employee Attendance terst!',
                 'status' => 406,
             ]);
         }
-
+        
         Log::info('Attendance created successfully', [
             'employee_id' => $employeeId,
             'attendance_id' => $attendance->id,
