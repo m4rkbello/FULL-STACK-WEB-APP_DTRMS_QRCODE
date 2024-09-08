@@ -25,7 +25,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
   const { payrollId } = useParams();
   console.log("DATA sa payrollId", payrollId);
 
-
   const [formDataUpdatePayroll, setFormDataUpdatePayroll] = useState(null);
 
   console.log("DATA SA payroll", payrollData);
@@ -53,7 +52,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
     }
   }, [payrollData, payrollId, loading]);
 
-
   const handleChange = (e) => {
     setFormDataUpdatePayroll({
       ...formDataUpdatePayroll,
@@ -73,7 +71,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
 
   const attendanceDataObjectCollection = attendanceData && attendanceData?.attendances && attendanceData?.attendances?.data?.details;
   console.log("attendanceDataObjectCollection:", attendanceDataObjectCollection);
-  
 
   const getAllAttendanceById = (payrollId, attendanceDataObjectCollection) => {
     return attendanceDataObjectCollection.filter(item => item.attendance_employee_id == payrollId);
@@ -81,7 +78,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
 
   const filteredEmployeeAttendances = getAllAttendanceById(payrollId, attendanceDataObjectCollection);
   console.log("DATA SA LINE 82 filteredEmployeeAttendances", filteredEmployeeAttendances);
-
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
@@ -110,7 +106,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           </ul>
         </div>
       </div>
-
       <div className='glass shadow-slate-900/100'>
         <div className="grid grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
           <div>
@@ -145,7 +140,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           <div className="skeleton h-6 w-full"></div>
           <div className="skeleton h-6 w-full"></div>
         </div>
-
       ) : !formDataUpdatePayroll ? (
         <div className="w-full max-w-5xl text-center text-lg font-semibold text-gray-500">
           <div className="mockup-browser  border border-t-4 pb-10 pt-10">
@@ -169,10 +163,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           <div role="tablist" className="tabs tabs-lifted">
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="ATTENDANCE" />
             <div role="tabpanel" className="tab-content glass rounded-box p-6">
-     
-
             </div>
-
             <input
               type="radio"
               name="my_tabs_2"
@@ -181,37 +172,34 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
               aria-label="Tab 2"
               checked="checked" />
             <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-         
-            <div className="overflow-x-auto">
-            <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" >
-              {/* head */}
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>ATTENDANCE DATA</th>
-                  <th>ATTENDANCE TIME-IN</th>
-                  <th>ATTENDANCE TIME-OUT</th>
-                  <th>ATTENDANCE BY</th>
-                </tr>
-              </thead>
-              <tbody>
-              {filteredEmployeeAttendances.map(item => (
-                <tr key={item.id}>
-                <td>{item.id}</td>
-                  <td>
-                    {item.attendance_note}
-                  </td>
-                  <td>{item.attendance_time_in}</td>
-                  <td>{item.attendance_time_out}</td>
-                  <td>{item.employee_fullname}</td>
-                </tr>
-              ))}
-              
-              </tbody>
-            </table>
-          </div>
-            </div>
+              <div className="overflow-x-auto">
+                <table className="table bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" >
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>ATTENDANCE DATA</th>
+                      <th>ATTENDANCE TIME-IN</th>
+                      <th>ATTENDANCE TIME-OUT</th>
+                      <th>ATTENDANCE BY</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredEmployeeAttendances.map(item => (
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>
+                          {item.attendance_note}
+                        </td>
+                        <td>{item.attendance_time_in}</td>
+                        <td>{item.attendance_time_out}</td>
+                        <td>{item.employee_fullname}</td>
+                      </tr>
+                    ))}
 
+                  </tbody>
+                </table>
+              </div>
+            </div>
             <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Tab 3" />
             <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
               Tab content 3
@@ -219,15 +207,8 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
           </div>
 
           <div className="grid grid-cols-2 gap-6 my-10">
-
-
-
             <div className="artboard phone-3">414×736</div>
-
             <div className="artboard glass phone-3">414×736</div>
-
-
-
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-black text-2xl">Rate Name</span>
@@ -295,14 +276,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 className="input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color"
               >
                 <option value="">Select Department</option>
-                {/***
-                  
-                  {departmentsCollection.map((department) => (
-                    <option key={department.id} value={department.id}>
-                      {department.department_name}
-                    </option>
-                  ))}
-                  */}
               </select>
             </div>
 
@@ -320,7 +293,6 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
                 <option value="0">Inactive</option>
               </select>
             </div>
-
           </div>
           <br />
           <div className="flex">
