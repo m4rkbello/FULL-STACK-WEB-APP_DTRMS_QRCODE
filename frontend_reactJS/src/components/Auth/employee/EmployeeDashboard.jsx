@@ -20,8 +20,6 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 const EmployeeDashboard = (props) => {
     const defaultImage = '../../../../public/miming.jpg';
 
-    console.log("DATA SA props LINE 32", props);
-
     const tableRef = useRef(null);
 
     const [formDataAddEmployee, setFormDataEmployeeAddEmployee] = useState({
@@ -55,10 +53,8 @@ const EmployeeDashboard = (props) => {
     }
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
-    console.log("DATA SA employeesList LINE 58", employeesList);
 
     const imageCollectionArrays = props.imagesData?.images?.data;
-    // console.log("IMAGE COLLECTION ARRAYS", imageCollectionArrays);
 
     const getEmployeeImage = (imageCollectionArrays, employeesList) => {
         // Check if imageCollectionArrays is an array and not empty
@@ -141,7 +137,6 @@ const EmployeeDashboard = (props) => {
     }
 
     const departments = fetchDepartments(departmentsCollectionArrays);
-    console.log("DATA SA departments LINE 155", departments);
 
     //PRINT-MODULE EMPLOYEES-DATA
     function printEmployeeDashboard() {
@@ -164,17 +159,6 @@ const EmployeeDashboard = (props) => {
 
         window.print();
         document.body.innerHTML = originalContents;
-    }
-
-    if (props.loading) {
-        return (
-            <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
-                <div className="skeleton h-48 w-full"></div>
-                <div className="skeleton h-6 w-36"></div>
-                <div className="skeleton h-6 w-full"></div>
-                <div className="skeleton h-6 w-full"></div>
-            </div>
-        );
     }
 
     return (
@@ -378,139 +362,138 @@ const EmployeeDashboard = (props) => {
                         </div>
                     </div>
 
-               
-
-
                     <div className="h-auto max-h-full w-full max-w-full glass mx-auto p-4 from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-                    <div className='glass shadow-slate-900/100'>
-                    <div className="grid bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-                        <div>
-                            <span className="inline-grid grid-cols-3 gap-4 py-5">
-                                <div className="p-3 flex justify-start">
-                                    <input
-                                        type="text"
-                                        placeholder="Search"
-                                        className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
-                                    />
+                        <div className='glass shadow-slate-900/100'>
+                            <div className="grid bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+                                <div>
+                                    <span className="inline-grid grid-cols-3 gap-4 py-5">
+                                        <div className="p-3 flex justify-start">
+                                            <input
+                                                type="text"
+                                                placeholder="Search"
+                                                className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
+                                            />
+                                        </div>
+                                        <div className="p-3 flex justify-end">
+                                            <FcSearch style={{ height: "2rem", width: "2rem" }} />
+                                        </div>
+                                    </span>
+                                </div>
+                                <div className="flex justify-center">
+                                    <h1 className="font-bold text-4xl text-black text-center">EMPLOYEE DASHBOARD</h1>
                                 </div>
                                 <div className="p-3 flex justify-end">
-                                    <FcSearch style={{ height: "2rem", width: "2rem" }} />
+                                    <FcPlus
+                                        onClick={() => document.getElementById('addEmployeeModal').showModal()}
+                                        style={{ height: "2rem", width: "2rem" }}
+                                    />
+                                    <DownloadTableExcel
+                                        filename="ExportEmployee"
+                                        sheet="users"
+                                        currentTableRef={tableRef.current}
+                                    >
+                                        <button>
+                                            <FcDataSheet
+                                                style={{ height: "2rem", width: "2rem" }}
+                                            /></button>
+                                    </DownloadTableExcel>
+                                    <button onClick={printEmployeeDashboard}>
+                                        <FcPrint
+                                            style={{ height: "2rem", width: "2rem" }}
+                                        />
+                                    </button>
                                 </div>
-                            </span>
+                            </div>
                         </div>
-                        <div className="flex justify-center">
-                            <h1 className="font-bold text-4xl text-black text-center">EMPLOYEE DASHBOARD</h1>
-                        </div>
-                        <div className="p-3 flex justify-end">
-                            <FcPlus
-                                onClick={() => document.getElementById('addEmployeeModal').showModal()}
-                                style={{ height: "2rem", width: "2rem" }}
-                            />
-                            <DownloadTableExcel
-                                filename="ExportEmployee"
-                                sheet="users"
-                                currentTableRef={tableRef.current}
-                            >
-                                <button>
-                                    <FcDataSheet
-                                    style={{ height: "2rem", width: "2rem" }}
-                                    /></button>
-                            </DownloadTableExcel>
-                            <button onClick={printEmployeeDashboard}>
-                                <FcPrint
-                                style={{ height: "2rem", width: "2rem" }}
-                                />
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
-                    <div className='p-0 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>
-                            {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
-                                <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-                                    <table id="employeesDataList" ref={tableRef} className="table glass border-2 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-                                        <thead className=" text-white">
-                                            <tr className="md:table-row pb-5 pt-5" style={{ fontSize: "17px", backgroundColor: 'black', color: 'white' }}>
-                                                <th className="md:table-cell">Avatar</th>
-                                                <th className="md:table-cell">Id</th>
-                                                <th className="md:table-cell">Fullname</th>
-                                                <th className="md:table-cell">Email</th>
-                                                <th className="md:table-cell">Contact No.</th>
-                                                <th className="md:table-cell">Position</th>
-                                                <th className="md:table-cell">Department</th>
-                                                <th className="md:table-cell">Status</th>
-                                                <th className="md:table-cell">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {employeesList && employeesList.map((item, index) => (
-                                                item.employee_status != 0 && (
-                                                    <tr key={index} className="md:table-row overflow-x-auto glass">
-                                                        <td className="sm:table-cell box-border h-24 w-24 p-4 drop-shadow-lg">
-                                                            <div className="flex items-center">
-                                                                <div className="avatar hover:box-content">
-                                                                    <img src={item.employee_image || defaultImage} alt={`Employee ${item.employee_name}`} />
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td className="md:table-cell">{item.id}</td>
-                                                        <td className="md:table-cell">{item.employee_fullname}</td>
-                                                        <td className="md:table-cell">{item.employee_email}</td>
-                                                        <td className="md:table-cell">{item.employee_contact_no}</td>
-                                                        <td className="md:table-cell">5</td>
-                                                        <td className="md:table-cell">{item.employee_position}</td>
-                                                        <td className="md:table-cell">
-                                                        {item.employee_status !== 0 ? (
-                                                            <FcCheckmark style={{ height: "2rem", width: "2rem" }} />
-                                                        ) : item.employee_status === 0 ? (
-                                                            <FcCancel style={{ height: "2rem", width: "2rem" }} />
-                                                        ) : (
-                                                            <FcCancel style={{ height: "2rem", width: "2rem" }} />
-                                                        )}
-                                                        
-                                                        </td>
-                                                        <td className="flex md:table-cell">
-                                                            <div className="flex">
-                                                                <div className="flex-none mr-3">
-                                                                    <Link to={`/employee/details/${item.id}`} className="text-black">
-                                                                        <FcViewDetails
-                                                                        style={{ height: "2rem", width: "2rem" }}
-                                                                        />
-                                                                    </Link>
-                                                                </div>
-                                                                <div className="flex-none mr-3">
-                                                                    <FcEmptyTrash
-                                                                    style={{ height: "2rem", width: "2rem" }}
-                                                                        onClick={() => {
-                                                                            setDeactivateEmployeeId(item.id);
-                                                                            document.getElementById('removeEmployee').showModal()
-                                                                        }}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            ))}
-                                        </tbody>
-                                    </table>
+                        <div className='p-0 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>
+                            {props.loading ? (
+                                <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
+                                    <div className="skeleton h-48 w-full"></div>
+                                    <div className="skeleton h-6 w-36"></div>
+                                    <div className="skeleton h-6 w-full"></div>
+                                    <div className="skeleton h-6 w-full"></div>
                                 </div>
                             ) : (
-                                <div className="mockup-browser  border border-t-4 pb-10 pt-10">
-                                    <div className="mockup-browser-toolbar">
-                                        <div className="input text-black-400">https://markbello.com</div>
+                                Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
+                                    <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+                                        <table id="employeesDataList" ref={tableRef} className="table glass border-2 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                                            <thead className="text-white">
+                                                <tr className="md:table-row pb-5 pt-5" style={{ fontSize: "17px", backgroundColor: 'black', color: 'white' }}>
+                                                    <th className="md:table-cell">Avatar</th>
+                                                    <th className="md:table-cell">Id</th>
+                                                    <th className="md:table-cell">Fullname</th>
+                                                    <th className="md:table-cell">Email</th>
+                                                    <th className="md:table-cell">Contact No.</th>
+                                                    <th className="md:table-cell">Position</th>
+                                                    <th className="md:table-cell">Department</th>
+                                                    <th className="md:table-cell">Status</th>
+                                                    <th className="md:table-cell">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {employeesList && employeesList.map((item, index) => (
+                                                    item.employee_status !== 0 && (
+                                                        <tr key={index} className="md:table-row overflow-x-auto glass">
+                                                            <td className="sm:table-cell box-border h-24 w-24 p-4 drop-shadow-lg">
+                                                                <div className="flex items-center">
+                                                                    <div className="avatar hover:box-content">
+                                                                        <img src={item.employee_image || defaultImage} alt={`Employee ${item.employee_name}`} />
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td className="md:table-cell">{item.id}</td>
+                                                            <td className="md:table-cell">{item.employee_fullname}</td>
+                                                            <td className="md:table-cell">{item.employee_email}</td>
+                                                            <td className="md:table-cell">{item.employee_contact_no}</td>
+                                                            <td className="md:table-cell">{item.employee_position}</td>
+                                                            <td className="md:table-cell">{item.department_name}</td>
+
+                                                            <td className="md:table-cell">
+                                                                {item.employee_status_id !== 0 ? (
+                                                                    <FcCheckmark style={{ height: "2rem", width: "2rem" }} />
+                                                                ) : (
+                                                                    <FcCancel style={{ height: "2rem", width: "2rem" }} />
+                                                                )}
+                                                            </td>
+                                                            <td className="flex md:table-cell">
+                                                                <div className="flex">
+                                                                    <div className="flex-none mr-3">
+                                                                        <Link to={`/employee/details/${item.id}`} className="text-black">
+                                                                            <FcViewDetails style={{ height: "2rem", width: "2rem" }} />
+                                                                        </Link>
+                                                                    </div>
+                                                                    <div className="flex-none mr-3">
+                                                                        <FcEmptyTrash
+                                                                            style={{ height: "2rem", width: "2rem" }}
+                                                                            onClick={() => {
+                                                                                setDeactivateEmployeeId(item.id);
+                                                                                document.getElementById('removeEmployee').showModal();
+                                                                            }}
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                ))}
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div className="flex justify-center px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-                                        <span
-                                            style={{ fontSize: '50px', fontWeightL: 'Bolder' }}
-                                        >
-                                            <b>
-                                                AYAW NA PANGITAA ANG WALA!
-                                            </b>
-                                        </span>
+                                ) : (
+                                    <div className="mockup-browser border border-t-4 pb-10 pt-10">
+                                        <div className="mockup-browser-toolbar">
+                                            <div className="input text-black-400">https://markbello.com</div>
+                                        </div>
+                                        <div className="flex justify-center px-4 py-16 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                                            <span style={{ fontSize: '50px', fontWeightL: 'Bolder' }}>
+                                                <b>AYAW NA PANGITAA ANG WALA!</b>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
+                                )
                             )}
+
                         </div>
                     </div>
                 </div>
