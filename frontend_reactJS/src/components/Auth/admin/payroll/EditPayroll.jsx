@@ -71,6 +71,7 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
     }
   };
 
+
   const attendanceDataObjectCollection = attendanceData && attendanceData?.attendances && attendanceData?.attendances?.data?.details;
   console.log("attendanceDataObjectCollection:", attendanceDataObjectCollection);
 
@@ -91,6 +92,9 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
   const filteredEmployeeDetails = getEmployeeDetails(payrollId, employeeDataObjectCollection);
   console.log("FINAL DATA SA EMPLOYEE", filteredEmployeeDetails);
 
+
+  const ratesDataObjectCollection = rateData && rateData.rates;
+  console.log("DATA SA ratesDataObjectCollection", ratesDataObjectCollection);
 
 
   return (
