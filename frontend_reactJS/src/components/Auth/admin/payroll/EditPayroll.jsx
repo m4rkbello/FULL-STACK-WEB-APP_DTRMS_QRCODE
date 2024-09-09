@@ -96,6 +96,12 @@ const EditPayroll = ({ fetchPayrolls, fetchRates, fetchDepartments, fetchOvertim
   const ratesDataObjectCollection = rateData && rateData.rates;
   console.log("DATA SA ratesDataObjectCollection", ratesDataObjectCollection);
 
+  // const getEmployeeRates = () => {
+  //   return ratesDataObjectCollection ? ratesDataObjectCollection.filter(rateItem => rateItem.id == ) : [];
+  // }
+
+
+
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
