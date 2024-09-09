@@ -173,15 +173,6 @@ const Dashboard = (props) => {
 
   const resultCountAllOvertimesPopulations = countAllOvertimePopulations(overtimeDataObjectCollection);
 
-
-  const createGradient = (ctx, chartArea, startColor, endColor) => {
-    const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
-    gradient.addColorStop(0, startColor);
-    gradient.addColorStop(1, endColor);
-    return gradient;
-  };
-  
-
   const chartDataCollections = {
     labels: ['Users', 'Employees', 'Departments', 'Rates', 'Attendances', 'Payrolls', 'Overtimes', 'Deductions'],
     datasets: [
@@ -297,67 +288,31 @@ const Dashboard = (props) => {
 
   return (
     <div className="h-full mx-auto max-h-full w-full max-w-full glass p-4 shadow-xl">
-    <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
-    <div className="flex items-center text-sm breadcrumbs">
-      <ul className="flex space-x-0">
-        <li>
-          <Link to="/" className='flex items-center hover:text-white'>
-            <FcPrevious style={{ height: "2rem", width: "2rem" }} />
-            <span className="ml-0">Home</span>
-          </Link>
-        </li>
-
-        <li>
-          <Link to="" className='flex items-center hover:text-white'>
-             <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-            <span className="ml-0">Users</span>
-          </Link>
-        </li>
-        <li>
-        <Link to="" className='flex items-center hover:text-white'>
-                     <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-          <span className="ml-0">Employees</span>
-        </Link>
-      </li>
-      <li>
-      <Link to="" className='flex items-center hover:text-white'>
-                   <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-        <span className="ml-0">Departments</span>
-      </Link>
-    </li>
-    <li>
-    <Link to="" className='flex items-center hover:text-white'>
-                 <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-      <span className="ml-0">Rates</span>
-    </Link>
-  </li>
-  <li>
-  <Link to="" className='flex items-center hover:text-white'>
-               <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-    <span className="ml-0">Attendances</span>
-  </Link>
-</li>
-<li>
-<Link to="" className='flex items-center hover:text-white'>
-             <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-  <span className="ml-0">Payrolls</span>
-</Link>
-</li>
-<li>
-<Link to="" className='flex items-center hover:text-white'>
-             <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-  <span className="ml-0">Overtimes</span>
-</Link>
-</li>
-<li>
-<Link to="" className='flex items-center hover:text-white'>
-<FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-  <span className="ml-0">Deductions</span>
-</Link>
-</li>
-      </ul>
-    </div>
-  </div>
+      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+        <div className="flex items-center text-sm breadcrumbs">
+          <ul className="flex space-x-0">
+            <li>
+              <Link to="/" className='flex items-center hover:text-white'>
+                <FcPrevious style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-0">Home</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="" className='flex items-center hover:text-white'>
+                <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-0">Users</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="" className='flex items-center hover:text-white'>
+                <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                <span className="ml-0">Employees</span>
+              </Link>
+            </li>
+           
+          </ul>
+        </div>
+      </div>
 
       <div className="diff aspect-[16/9] shadow-xl rounded-lg">
         <div className="diff-item-1">
@@ -366,7 +321,7 @@ const Dashboard = (props) => {
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-7xl font-black shadow-xl">BAR GRAPH</div>
+        <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">BAR GRAPH</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
@@ -378,7 +333,7 @@ const Dashboard = (props) => {
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-7xl font-black shadow-xl">DOUGHNUT GRAPH</div>
+          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">DOUGHNUT GRAPH</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
@@ -390,7 +345,7 @@ const Dashboard = (props) => {
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="bg-base-200 grid place-content-center text-7xl font-black shadow-xl">POLARIZE DATA</div>
+        <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">POLARIZE DATA</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
@@ -403,7 +358,7 @@ const Dashboard = (props) => {
               className='h-3/5'
               src="https://i.ibb.co/StdstKn/user.png"
               alt="User Image"
-              />
+            />
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">USERS</span>
@@ -414,8 +369,8 @@ const Dashboard = (props) => {
                 <button className="btn glass text-center">
                   View
                   <FcSearch
-                  style={{ height: "2rem", width: "2rem" }} 
-                   />
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
                 </button>
               </Link>
             </div>
@@ -428,7 +383,7 @@ const Dashboard = (props) => {
               className='h-3/5'
               src="https://i.ibb.co/dgCWf4m/Employees-Group.png"
               alt="Employees-Group"
-               />
+            />
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">EMPLOYEES</span>
@@ -439,8 +394,8 @@ const Dashboard = (props) => {
                 <button className="btn glass text-center">
                   View
                   <FcSearch
-                  style={{ height: "2rem", width: "2rem" }} 
-                   />
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
                 </button>
               </Link>
             </div>
@@ -464,8 +419,8 @@ const Dashboard = (props) => {
                 <button className="btn glass text-center">
                   View
                   <FcSearch
-                  style={{ height: "2rem", width: "2rem" }} 
-                   />
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
                 </button>
               </Link>
             </div>
@@ -489,8 +444,8 @@ const Dashboard = (props) => {
                 <button className="btn glass text-center">
                   View
                   <FcSearch
-                  style={{ height: "2rem", width: "2rem" }} 
-                   />
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
                 </button>
               </Link>
             </div>
@@ -506,15 +461,15 @@ const Dashboard = (props) => {
           </figure>
           <div className="card-body justify-center">
             <span className="card-title text-3xl justify-center">ATTENDANCES</span>
-            <span className='text-7xl text-center text-center'>{resultCountAllAttendancePopulation.count}</span>
+            <span className='text-7xl text-center'>{resultCountAllAttendancePopulation.count}</span>
             <br />
             <div className="card-actions justify-center">
               <Link to="/employee/attendance">
                 <button className="btn glass text-center">
                   View
                   <FcSearch
-                  style={{ height: "2rem", width: "2rem" }} 
-                   />
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
                 </button>
               </Link>
             </div>
@@ -539,8 +494,8 @@ const Dashboard = (props) => {
                 <button className="btn glass text-center">
                   View
                   <FcSearch
-                  style={{ height: "2rem", width: "2rem" }} 
-                   />
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
                 </button>
               </Link>
             </div>
@@ -556,7 +511,7 @@ const Dashboard = (props) => {
           </figure>
           <div className="card-body justify-center">
             <center>
-              <span className="card-title text-3xl justify-center">OVERTIMES HAD BUG!</span>
+              <span className="card-title text-3xl justify-center">OVERTIMES</span>
             </center>
             <span className='text-7xl text-center justify-center'>{resultCountAllOvertimesPopulations.count}</span>
             <br />
@@ -565,8 +520,8 @@ const Dashboard = (props) => {
                 <button className="btn glass text-center">
                   View
                   <FcSearch
-                  style={{ height: "2rem", width: "2rem" }} 
-                   />
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
                 </button>
               </Link>
             </div>
@@ -591,8 +546,8 @@ const Dashboard = (props) => {
               <button className="btn glass text-center">
                 View
                 <FcSearch
-                style={{ height: "2rem", width: "2rem" }} 
-                 />
+                  style={{ height: "2rem", width: "2rem" }}
+                />
               </button>
             </div>
           </div>
@@ -630,7 +585,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
 
