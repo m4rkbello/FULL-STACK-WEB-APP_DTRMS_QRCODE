@@ -11,9 +11,12 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { fetchEmployees, updateEmployee, uploadAndUpdateImageEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
 import { fetchDepartments } from '../../redux/actions/departmentAction';
+import { fetchRates } from '../../redux/actions/rateAction';
+import { fetchOvertimes } from '../../redux/actions/overtimeAction';
+import { fetchDeductions } from '../../redux/actions/deductionAction';
+import { fetchAttendances } from '../../redux/actions/attendanceAction';
 //ICONS
 import { FaUpload } from "react-icons/fa6";
-
 import { FcFolder, FcOpenedFolder, FcPlus, FcOk, FcSalesPerformance, FcSearch, FcCancel, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 import { IoMdCloseCircle } from "react-icons/io";
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
@@ -31,7 +34,15 @@ const EmployeePersonalDetails = (props) => {
 
     const defaultImage = '../../../../public/miming.jpg';
 
-    // const employeeId = employeeId;
+    const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
+        employee_fullname: '',
+        employee_email: '',
+        employee_contact_no: '',
+        employee_role: '',
+        employee_position: '',
+        employee_department_id: '',
+        employee_status_id: ''
+    });
 
     //e-open ang modal
     const handleOpenModal = () => {
@@ -51,22 +62,15 @@ const EmployeePersonalDetails = (props) => {
         }
     };
 
-    const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
-        employee_fullname: '',
-        employee_email: '',
-        employee_contact_no: '',
-        employee_role: '',
-        employee_position: '',
-        employee_department_id: '',
-        employee_status_id: ''
-    });
-
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
         props.fetchDepartments();
+        props.fetchRates();
+        props.fetchDeductions();
+        props.fetchOvertimes();
+        props.fetchAttendances();
     }, []);
-
 
     const handleChangeUpdateData = (ez) => {
         setFormDataEmployeeUpdate({
@@ -89,7 +93,6 @@ const EmployeePersonalDetails = (props) => {
             setIsLoading(false);
         }
     };
-
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
 
@@ -154,12 +157,10 @@ const EmployeePersonalDetails = (props) => {
         const link = document.createElement('a');
         link.href = url;
         link.download = 'qrcode.png'; // Default filename for download
-
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     };
-
 
     return (
         <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
@@ -578,21 +579,31 @@ const EmployeePersonalDetails = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        userData: state.userState,
         employeesData: state.employeeState,
         imagesData: state.imageState,
         departmentsData: state.departmentState,
         loading: state.employeeState.loading,
+        payrollData: state.payrollState,
+        rateData: state.rateState,
+        overtimeData: state.overtimeState,
+        deductionData: state.deductionState,
+        attendanceData: state.attendanceState,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
-
     return {
         fetchEmployees: () => dispatch(fetchEmployees()),
-        updateEmployee: (employeeId, updateEmployeeData) => dispatch(updateEmployee(employeeId, updateEmployeeData)),
         fetchImages: () => dispatch(fetchImages()),
-        uploadAndUpdateImageEmployee: (formData, employeeId) => dispatch(uploadAndUpdateImageEmployee(formData, employeeId)),
         fetchDepartments: () => dispatch(fetchDepartments()),
+        fetchPayrolls: () => dispatch(fetchPayrolls()),
+        fetchRates: () => dispatch(fetchRates()),
+        fetchDeductions: () => dispatch(fetchDeductions()),
+        fetchOvertimes: () => dispatch(fetchOvertimes()),
+        fetchAttendances: () => dispatch(fetchAttendances()),
+        updateEmployee: (employeeId, updateEmployeeData) => dispatch(updateEmployee(employeeId, updateEmployeeData)),
+        uploadAndUpdateImageEmployee: (formData, employeeId) => dispatch(uploadAndUpdateImageEmployee(formData, employeeId)),
     };
 };
 
