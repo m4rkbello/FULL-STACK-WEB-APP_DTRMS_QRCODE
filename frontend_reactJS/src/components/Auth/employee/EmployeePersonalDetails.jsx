@@ -24,7 +24,6 @@ import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const EmployeePersonalDetails = (props) => {
     //data sa employeee.id ang sa useParams
     const { employeeId } = useParams();
@@ -606,6 +605,5 @@ const mapDispatchToProps = (dispatch) => {
         uploadAndUpdateImageEmployee: (formData, employeeId) => dispatch(uploadAndUpdateImageEmployee(formData, employeeId)),
     };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeePersonalDetails);
