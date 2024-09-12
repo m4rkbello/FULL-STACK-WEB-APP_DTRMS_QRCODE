@@ -391,10 +391,6 @@ const EmployeePersonalDetails = (props) => {
                                         </div>
                                     ))}</div>
                             </div>
-
-
-
-
                             {/*** PROFILE SA EMPLOYEE */}
                             {employee && employee.length > 0 ? (
                                 employee.map((image, imageIndex) => (
