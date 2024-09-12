@@ -538,7 +538,6 @@ const EmployeePersonalDetails = (props) => {
                                             ))}
                                         </div>
                                         <br />
-
                                         <div className="flex">
                                             <div className='mx-1'>
                                                 <button
