@@ -366,31 +366,44 @@ const EmployeePersonalDetails = (props) => {
                 </div>
             </dialog>
 
+            <div className="flex w-full flex-col border-opacity-50">
+                <div className="card bg-base-300 rounded-box grid h-20 place-items-center">content</div>
+                <div className="divider">OR</div>
+                <div className="card bg-base-300 rounded-box grid h-20 place-items-center">content</div>
+            </div>
+
             {Array.isArray(employeesCollectionArrays) && employeesCollectionArrays.length > 0 ? (
                 <>
                     <div className="h-auto max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+
+                        <div className="flex w-full flex-col lg:flex-row">
+                            <div className="card bg-base-300 rounded-box grid h-32 flex-grow place-items-center">content</div>
+                            <div className="divider lg:divider-horizontal">OR</div>
+                            <div className="card bg-base-300 rounded-box grid h-32 flex-grow place-items-center">content</div>
+                        </div>
+
+
+
+
+
+                        <div className="grid grid-cols-3 gap-4">
+                            <div className="...">
+
+                            </div>
+                            <div className="...">02</div>
+                            <div className="...">03</div>
+                            <div className="col-span-2 ...">04</div>
+                            <div className="...">05</div>
+                            <div className="...">06</div>
+                            <div className="col-span-2 ...">07</div>
+                        </div>
+
                         <div className="hero-content flex flex-col items-center">
 
-                            <div className="flex justify-between ...">
-                                <div>01</div>
-                                <div>02</div>
-                                <div>
-                                    {employee && employee.map((image, imageIndex) => (
-                                        <div key={imageIndex} style={{ position: '' }}>
-                                            <img
-                                                className="mask mask-square shadow-inner absolute top-0 right-0 bg-blue-500 text-white p-5 rounded"
-                                                src={image.employee_qrcode}
-                                                style={{ backgroundColor: 'transparent', width: '20%', height: '20%', }}
-                                            />
-                                            <button
-                                                onClick={() => downloadQRCode(image.employee_qrcode)}
-                                                className=" bg-blue-500  absolute text-white p-2 rounded"
-                                            >
-                                                Download QR Code
-                                            </button>
-                                        </div>
-                                    ))}</div>
-                            </div>
+
+
+
+
                             {/*** PROFILE SA EMPLOYEE */}
                             {employee && employee.length > 0 ? (
                                 employee.map((image, imageIndex) => (
@@ -424,116 +437,23 @@ const EmployeePersonalDetails = (props) => {
                                 <div className="flex-1">
 
                                     <div className="grid grid-cols-3 gap-6">
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Fullname</span>
-                                            </label>
-                                            {employee && employee.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="text"
-                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
-                                                    defaultValue={item.employee_fullname}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Email</span>
-                                            </label>
-                                            {employee && employee.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="email"
-                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
-                                                    defaultValue={item.employee_email}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Contact No.</span>
-                                            </label>
-                                            {employee && employee.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="email"
-                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
-                                                    defaultValue={item.employee_contact_no}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Role</span>
-                                            </label>
-                                            {employee && employee.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="contact no"
-                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
-                                                    defaultValue={item.employee_role}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Position</span>
-                                            </label>
-                                            {employee && employee.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="contact no"
-                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
-                                                    defaultValue={item.employee_position}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Department</span>
-                                            </label>
-                                            {employeeDepartmentFilteredData.map((item, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    placeholder="Department"
-                                                    className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color"
-                                                    defaultValue={item.department_name}
-                                                    style={{ backgroundColor: 'transparent', color: "black", border: "none" }}
-                                                    disabled
-                                                />
-                                            ))}
-                                        </div>
-                                        <center>
-                                        </center>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-black text-2xl">Status</span>
-                                            </label>
-                                            {employee && employee.map((item, index) => (
-                                                <select key={index} className="input input-bordered glass shadow-2xl text-2xl text-black border-glass shadow-slate-900/100 custom-placeholder-text-color" style={{ backgroundColor: 'transparent', color: "black", border: "" }} disabled>
-                                                    <option value="Active" selected={item.employee_status === 1}>{item.employee_status === 1 ? 'Active' : 'Inactive'}</option>
-                                                    <option value="Inactive" selected={item.employee_status === 0}>{item.employee_status === 0 ? 'Inactive' : 'Active'}</option>
-                                                </select>
-                                            ))}
-                                        </div>
-                                        <br />
+
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+                            <div className="flex items-center text-sm breadcrumbs">
+                                <ul className="flex space-x-4">
+                                    <li>
                                         <div className="flex">
                                             <div className='mx-1'>
                                                 <button
@@ -551,10 +471,10 @@ const EmployeePersonalDetails = (props) => {
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
 
-                                </div>
+                                    </li>
 
+                                </ul>
                             </div>
                         </div>
                     </div>
