@@ -431,16 +431,34 @@ const EmployeePersonalDetails = (props) => {
                         </tr>
                       </thead>
                       <tbody>
-               {filteredEmployeeAttendanceData.map(item => (
-                <tr key={item.id}>
-                    <td>{item.attendance_note}</td>
-                    <td>{item.attendance_time_in}</td>
-                    <td>{item.attendance_time_out}</td>
-                </tr>
-               
+                      {
+                        props.loading ? (
+                          <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
+                            <div className="skeleton h-48 w-full"></div>
+                            <div className="skeleton h-6 w-36"></div>
+                            <div className="skeleton h-6 w-full"></div>
+                            <div className="skeleton h-6 w-full"></div>
+                          </div>
+                        ) : (
+                          filteredEmployeeAttendanceData.length > 0 ? (
+                            filteredEmployeeAttendanceData.map(item => (
+                              <tr key={item.id}>
+                                <td>{item.attendance_note}</td>
+                                <td>{item.attendance_time_in}</td>
+                                <td>{item.attendance_time_out}</td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan="3">No attendance data available</td>
+                            </tr>
+                          )
+                        )
+                      }
+                      
 
-               ))
-               }
+
+         
                       </tbody>
                     </table>
                   </div>
