@@ -154,7 +154,7 @@ const EmployeePersonalDetails = (props) => {
 
 
     //COLLECTION SA TANANG ATTENDANCES
-    const attendanceDataObjectCollection = props?.attendanceData?.attendances?.data?.details;
+    const attendanceDataObjectCollection = props && props?.attendanceData?.attendances?.data?.details;
 
     //CLASS FUNCTION SA 
     const getAllAttendanceByEmployeeIdParams = (employeeId, attendanceDataObjectCollection) => {
@@ -163,7 +163,10 @@ const EmployeePersonalDetails = (props) => {
 
       const filteredEmployeeAttendanceData = getAllAttendanceByEmployeeIdParams(employeeId, attendanceDataObjectCollection);
 
-      console.log("DATA SA getAllAttendanceByEmployeeIdParams", filteredEmployeeAttendanceData);
+
+      //COLLECTION SA TANANG DEDUCTIONS
+      const deductionsCollection = props && props?.deductionData?.deductions?.data?.details;
+      console.log("DATA SA deductionsCollection LINE 169", deductionsCollection);
 
     return (
         <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
@@ -420,9 +423,9 @@ const EmployeePersonalDetails = (props) => {
                         defaultChecked />
                     <div role="tabpanel" className="tab-content bg-white border-base-300 rounded-box p-6">
                     <div className="overflow-x-auto">
-                    <table className="table">
-                      {/* head */}
-                      <thead>
+                    <table className="table ">
+                  
+                      <thead className='bg-black text-white'>
                         <tr>
                           <th>ATTENDANCE NOTE</th>
                           <th>TIME-IN LOG</th>
