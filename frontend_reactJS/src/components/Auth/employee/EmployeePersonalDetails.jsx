@@ -25,6 +25,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EmployeePersonalDetails = (props) => {
+    console.log("DATA SA TANANG PROPS NA NAA SA USEEFFECT!", props);
     //data sa employeee.id ang sa useParams
     const { employeeId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
@@ -151,15 +152,18 @@ const EmployeePersonalDetails = (props) => {
 
     const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
 
-    const downloadQRCode = (url) => {
-        console.log('Downloading QR code from:', url); // Check if URL is correct
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'qrcode.png'; // Default filename for download
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+
+    //COLLECTION SA TANANG ATTENDANCES
+    const attendanceDataObjectCollection = props?.attendanceData?.attendances?.data?.details;
+
+    //CLASS FUNCTION SA 
+    const getAllAttendanceByEmployeeIdParams = (employeeId, attendanceDataObjectCollection) => {
+        return attendanceDataObjectCollection ? attendanceDataObjectCollection.filter(item => item.attendance_employee_id == employeeId) : [];
+      };
+
+      const filteredEmployeeAttendanceData = getAllAttendanceByEmployeeIdParams(employeeId, attendanceDataObjectCollection);
+
+      console.log("DATA SA getAllAttendanceByEmployeeIdParams", filteredEmployeeAttendanceData);
 
     return (
         <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
@@ -367,12 +371,11 @@ const EmployeePersonalDetails = (props) => {
             </dialog>
 
             <div className="mx-auto w-full max-w-full glass p-4 shadow-xl">
-                <div role="tablist" className="tabs tabs-lifted">
+                <div role="tablist" className="tabs tabs-lg tabs-lifted">
                     <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="DEDUCTIONS" />
                     <div role="tabpanel" className="tab-content bg-white border-base-300 rounded-box p-6">
                     <div className="overflow-x-auto">
                     <table className="table">
-                      {/* head */}
                       <thead>
                         <tr>
                           <th></th>
@@ -421,34 +424,23 @@ const EmployeePersonalDetails = (props) => {
                       {/* head */}
                       <thead>
                         <tr>
-                          <th></th>
-                          <th>Name</th>
-                          <th>Job</th>
-                          <th>Favorite Color</th>
+                          <th>ATTENDANCE NOTE</th>
+                          <th>TIME-IN LOG</th>
+                          <th>TIME-OUT LOG</th>
+                       
                         </tr>
                       </thead>
                       <tbody>
-                        {/* row 1 */}
-                        <tr className="bg-base-200">
-                          <th>1</th>
-                          <td>Cy Ganderton</td>
-                          <td>Quality Control Specialist</td>
-                          <td>Blue</td>
-                        </tr>
-                        {/* row 2 */}
-                        <tr>
-                          <th>2</th>
-                          <td>Hart Hagerty</td>
-                          <td>Desktop Support Technician</td>
-                          <td>Purple</td>
-                        </tr>
-                        {/* row 3 */}
-                        <tr>
-                          <th>3</th>
-                          <td>Brice Swyre</td>
-                          <td>Tax Accountant</td>
-                          <td>Red</td>
-                        </tr>
+               {filteredEmployeeAttendanceData.map(item => (
+                <tr key={item.id}>
+                    <td>{item.attendance_note}</td>
+                    <td>{item.attendance_time_in}</td>
+                    <td>{item.attendance_time_out}</td>
+                </tr>
+               
+
+               ))
+               }
                       </tbody>
                     </table>
                   </div>
