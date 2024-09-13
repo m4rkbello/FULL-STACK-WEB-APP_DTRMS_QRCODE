@@ -366,6 +366,137 @@ const EmployeePersonalDetails = (props) => {
                 </div>
             </dialog>
 
+            <div className="mx-auto w-full max-w-full glass p-4 shadow-xl">
+                <div role="tablist" className="tabs tabs-lifted">
+                    <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="DEDUCTIONS" />
+                    <div role="tabpanel" className="tab-content bg-white border-base-300 rounded-box p-6">
+                    <div className="overflow-x-auto">
+                    <table className="table">
+                      {/* head */}
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Name</th>
+                          <th>Job</th>
+                          <th>Favorite Color</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {/* row 1 */}
+                        <tr className="bg-base-200">
+                          <th>1</th>
+                          <td>Cy Ganderton</td>
+                          <td>Quality Control Specialist</td>
+                          <td>Blue</td>
+                        </tr>
+                        {/* row 2 */}
+                        <tr>
+                          <th>2</th>
+                          <td>Hart Hagerty</td>
+                          <td>Desktop Support Technician</td>
+                          <td>Purple</td>
+                        </tr>
+                        {/* row 3 */}
+                        <tr>
+                          <th>3</th>
+                          <td>Brice Swyre</td>
+                          <td>Tax Accountant</td>
+                          <td>Red</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                    </div>
+
+                    <input
+                        type="radio"
+                        name="my_tabs_2"
+                        role="tab"
+                        className="tab"
+                        aria-label="ATTENDANCES"
+                        defaultChecked />
+                    <div role="tabpanel" className="tab-content bg-white border-base-300 rounded-box p-6">
+                    <div className="overflow-x-auto">
+                    <table className="table">
+                      {/* head */}
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Name</th>
+                          <th>Job</th>
+                          <th>Favorite Color</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {/* row 1 */}
+                        <tr className="bg-base-200">
+                          <th>1</th>
+                          <td>Cy Ganderton</td>
+                          <td>Quality Control Specialist</td>
+                          <td>Blue</td>
+                        </tr>
+                        {/* row 2 */}
+                        <tr>
+                          <th>2</th>
+                          <td>Hart Hagerty</td>
+                          <td>Desktop Support Technician</td>
+                          <td>Purple</td>
+                        </tr>
+                        {/* row 3 */}
+                        <tr>
+                          <th>3</th>
+                          <td>Brice Swyre</td>
+                          <td>Tax Accountant</td>
+                          <td>Red</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                    </div>
+
+                    <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="OVERTIMES" />
+                    <div role="tabpanel" className="tab-content bg-white border-base-300 rounded-box p-6">
+                    <div className="overflow-x-auto">
+                    <table className="table">
+                      {/* head */}
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Name</th>
+                          <th>Job</th>
+                          <th>Favorite Color</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {/* row 1 */}
+                        <tr className="bg-base-200">
+                          <th>1</th>
+                          <td>Cy Ganderton</td>
+                          <td>Quality Control Specialist</td>
+                          <td>Blue</td>
+                        </tr>
+                        {/* row 2 */}
+                        <tr>
+                          <th>2</th>
+                          <td>Hart Hagerty</td>
+                          <td>Desktop Support Technician</td>
+                          <td>Purple</td>
+                        </tr>
+                        {/* row 3 */}
+                        <tr>
+                          <th>3</th>
+                          <td>Brice Swyre</td>
+                          <td>Tax Accountant</td>
+                          <td>Red</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
             <div className="flex w-full flex-col border-opacity-50">
                 <div className="card bg-base-300 rounded-box grid h-20 place-items-center">content</div>
                 <div className="divider">OR</div>
@@ -399,10 +530,6 @@ const EmployeePersonalDetails = (props) => {
                         </div>
 
                         <div className="hero-content flex flex-col items-center">
-
-
-
-
 
                             {/*** PROFILE SA EMPLOYEE */}
                             {employee && employee.length > 0 ? (
@@ -438,15 +565,8 @@ const EmployeePersonalDetails = (props) => {
 
                                     <div className="grid grid-cols-3 gap-6">
 
-
                                     </div>
-
                                 </div>
-
-
-
-
-
                             </div>
                         </div>
 
