@@ -31,7 +31,6 @@ const EmployeePersonalDetails = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [imageEmployee, setImageEmployee] = useState(null);
-
     const defaultImage = '../../../../public/miming.jpg';
 
     const [formDataEmployeeUpdate, setFormDataEmployeeUpdate] = useState({
@@ -152,7 +151,6 @@ const EmployeePersonalDetails = (props) => {
 
     const employeeDepartmentFilteredData = getEmployeeDepartment(departmentsCollectionArrays, employee);
 
-
     //COLLECTION SA TANANG ATTENDANCES
     const attendanceDataObjectCollection = props && props?.attendanceData?.attendances?.data?.details;
 
@@ -163,10 +161,8 @@ const EmployeePersonalDetails = (props) => {
 
       const filteredEmployeeAttendanceData = getAllAttendanceByEmployeeIdParams(employeeId, attendanceDataObjectCollection);
 
-
       //COLLECTION SA TANANG DEDUCTIONS
       const deductionsCollection = props && props?.deductionData?.deductions?.data?.details;
-      console.log("DATA SA deductionsCollection LINE 169", deductionsCollection);
 
     return (
         <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
