@@ -161,9 +161,31 @@ const EmployeePersonalDetails = (props) => {
 
       const filteredEmployeeAttendanceData = getAllAttendanceByEmployeeIdParams(employeeId, attendanceDataObjectCollection);
 
-      //COLLECTION SA TANANG DEDUCTIONS
+      //COLLECTION SA DEDUCTION NI CHOI!
       const deductionsCollection = props && props?.deductionData?.deductions?.data?.details;
       console.log("DATA SA deductionsCollection", deductionsCollection);
+      
+      const getAllDeductionsCollections = (deductionsCollection) => {
+        // Create an array to hold all the deductions
+        const items = [];
+      
+        // Check if deductionsCollection is an array and not empty
+        if (Array.isArray(deductionsCollection) && deductionsCollection.length > 0) {
+          // Iterate through the deductionsCollection
+          deductionsCollection.forEach((deduction) => {
+            // Push each deduction into the items array
+            items.push(deduction);
+          });
+        }
+      
+        // Return the array containing all deductions
+        return items;
+      };
+      
+      // Call the function and get all deductions
+      const allDeductions = getAllDeductionsCollections(deductionsCollection);
+      console.log("All NI KOL:", allDeductions);
+      
 
     return (
         <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
