@@ -183,8 +183,8 @@ const EmployeePersonalDetails = (props) => {
       };
       
       // Call the function and get all deductions
-      const allDeductions = getAllDeductionsCollections(deductionsCollection);
-      console.log("All NI KOL:", allDeductions);
+      const getAllDeductions = getAllDeductionsCollections(deductionsCollection);
+      console.log("All NI KOL:", getAllDeductions);
       
 
     return (
