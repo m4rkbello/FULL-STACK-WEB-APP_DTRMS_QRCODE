@@ -400,34 +400,40 @@ const EmployeePersonalDetails = (props) => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th></th>
-                          <th>Name</th>
-                          <th>Job</th>
-                          <th>Favorite Color</th>
+                          <th>NAME</th>
+                          <th>AMOUNT</th>
+                          <th>DESCRIPTION</th>
+                          <th>STATUS</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {/* row 1 */}
-                        <tr className="bg-base-200">
-                          <th>1</th>
-                          <td>Cy Ganderton</td>
-                          <td>Quality Control Specialist</td>
-                          <td>Blue</td>
-                        </tr>
-                        {/* row 2 */}
-                        <tr>
-                          <th>2</th>
-                          <td>Hart Hagerty</td>
-                          <td>Desktop Support Technician</td>
-                          <td>Purple</td>
-                        </tr>
-                        {/* row 3 */}
-                        <tr>
-                          <th>3</th>
-                          <td>Brice Swyre</td>
-                          <td>Tax Accountant</td>
-                          <td>Red</td>
-                        </tr>
+
+                      {
+                        props.loading ? (
+                          <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
+                            <div className="skeleton h-48 w-full"></div>
+                            <div className="skeleton h-6 w-36"></div>
+                            <div className="skeleton h-6 w-full"></div>
+                            <div className="skeleton h-6 w-full"></div>
+                          </div>
+                        ) : (
+                          filteredEmployeeAttendanceData.length > 0 ? (
+                            filteredEmployeeAttendanceData.map(item => (
+                              <tr key={item.id}>
+                                <td>{item.attendance_note}</td>
+                                <td>{item.attendance_time_in}</td>
+                                <td>{item.attendance_time_out}</td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan="3">No attendance data available</td>
+                            </tr>
+                          )
+                        )
+                      }
+                      
+        
                       </tbody>
                     </table>
                   </div>
