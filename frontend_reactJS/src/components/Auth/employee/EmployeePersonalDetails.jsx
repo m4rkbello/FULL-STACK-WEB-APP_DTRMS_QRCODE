@@ -163,6 +163,7 @@ const EmployeePersonalDetails = (props) => {
 
       //COLLECTION SA TANANG DEDUCTIONS
       const deductionsCollection = props && props?.deductionData?.deductions?.data?.details;
+      console.log("DATA SA deductionsCollection", deductionsCollection);
 
     return (
         <div className="h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
