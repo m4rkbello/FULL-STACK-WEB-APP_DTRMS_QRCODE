@@ -1,84 +1,69 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //ICONS
-import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPrevious } from "react-icons/fc";
 //REDUXISM
 import { fetchAttendances } from '../../redux/actions/attendanceAction';
 //TOASTER
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //ANALYTICS
-
-import { Bar, PolarArea, Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend, RadialLinearScale } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { DatePicker } from 'react-datepicker'; // You may need to install this package
+import "react-datepicker/dist/react-datepicker.css";
 
 // Register all the necessary components
-ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend, RadialLinearScale);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const EmployeeAttendance = ({ fetchAttendances, attendancesData, loading, }) => {
-  console.log("DATA SA attendancesData", attendancesData);
+const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
+  const [startDate, setStartDate] = useState(new Date()); // Default to current date
+  const [endDate, setEndDate] = useState(new Date()); // Default to current date
 
   useEffect(() => {
     fetchAttendances();
-  }, [fetchAttendances])
+  }, [fetchAttendances]);
 
   const attendanceDataObjectCollection = attendancesData?.attendances?.data?.details;
-  function countAllAttendancesPopulations(attendanceDataObjectCollection) {
-    let items = [];
 
-    if (Array.isArray(attendanceDataObjectCollection) && attendanceDataObjectCollection.length > 0) {
-      for (let ez = 0; ez < attendanceDataObjectCollection.length; ez++) {
-        items.push(attendanceDataObjectCollection[ez]);
-      }
+  // Function to transform data by month within a specific date range
+  function getMonthlyAttendanceCounts(attendanceData, start, end) {
+    const monthlyCounts = Array(12).fill(0); // Initialize an array for 12 months
+
+    if (Array.isArray(attendanceData) && attendanceData.length > 0) {
+      attendanceData.forEach(attendance => {
+        const createdAt = new Date(attendance.created_at); // Use the created_at field
+
+        if (createdAt >= start && createdAt <= end) {
+          const month = createdAt.getMonth(); // Get the month (0-11)
+          monthlyCounts[month] += 1; // Increment the count for the month
+        }
+      });
     }
 
-    return {
-      items,
-      count: items.length
-    };
+    return monthlyCounts;
   }
-  const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attendanceDataObjectCollection);
-  console.log("DATA SA FN NA resultCountAllAttendancePopulation", resultCountAllAttendancePopulation);
 
+  const filteredAttendanceCounts = getMonthlyAttendanceCounts(attendanceDataObjectCollection, startDate, endDate);
 
   const chartDataCollections = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     datasets: [
       {
-        label: 'TOTAL',
-        data: [
-          resultCountAllAttendancePopulation.count,
-        ],
-        backgroundColor: [
-          'rgba(153, 102, 255, 0.6)',  // Purple
-          'rgba(255, 99, 132, 0.6)',   // Red
-          'rgba(54, 162, 235, 0.6)',   // Blue
-          'rgba(255, 206, 86, 0.6)',   // Yellow
-          'rgba(75, 192, 192, 0.6)',   // Green
-          'rgba(255, 159, 64, 0.6)',   // Orange
-          'rgba(199, 199, 199, 0.6)',  // Gray
-          'rgba(83, 102, 255, 0.6)',   // Indigo
-        ],
-        borderColor: [
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(199, 199, 199, 1)',
-          'rgba(83, 102, 255, 1)',
-          'rgba(255, 99, 132, 1)',
-        ],
-        borderWidth: 3,
+        label: 'Total Attendance',
+        data: filteredAttendanceCounts,
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 2,
       },
     ],
   };
 
-  const BarChartNiChoi = {
+  const BarChartOptions = {
     responsive: true,
     plugins: {
       legend: {
@@ -86,10 +71,9 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData, loading, }) => 
       },
       title: {
         display: true,
-        text: 'DAILY TIME RECORD MONITORING SYSTEM | BAR GRAPH',
-
+        text: 'Monthly Attendance',
         font: {
-          size: 25,
+          size: 20,
           weight: 'bold',
           family: 'Arial'
         },
@@ -100,7 +84,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData, loading, }) => 
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
-      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100">
         <div className="flex items-center text-sm breadcrumbs">
           <ul className="flex space-x-4">
             <li>
@@ -111,8 +95,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData, loading, }) => 
             </li>
             <li>
               <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
-                <FcFolder
-                  style={{ height: "2rem", width: "2rem" }} />
+                <FcFolder style={{ height: "2rem", width: "2rem" }} />
                 <span className="ml-2">Rates</span>
               </Link>
             </li>
@@ -125,10 +108,28 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData, loading, }) => 
           </ul>
         </div>
       </div>
+      <div className="flex mb-4">
+        <div className="mr-4">
+          <label className="block text-sm font-medium text-gray-700">Start Date</label>
+          <DatePicker
+            selected={startDate}
+            onChange={date => setStartDate(date)}
+            dateFormat="yyyy-MM-dd"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">End Date</label>
+          <DatePicker
+            selected={endDate}
+            onChange={date => setEndDate(date)}
+            dateFormat="yyyy-MM-dd"
+          />
+        </div>
+      </div>
       <div className="diff aspect-[16/9] shadow-xl">
         <div className="diff-item-1">
           <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
-            <Bar options={BarChartNiChoi} data={chartDataCollections} />
+            <Bar options={BarChartOptions} data={chartDataCollections} />
           </div>
         </div>
         <div className="diff-item-2">
@@ -136,6 +137,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData, loading, }) => 
         </div>
         <div className="diff-resizer"></div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
@@ -143,7 +145,6 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData, loading, }) => 
 const mapStateToProps = (state) => {
   return {
     attendancesData: state.attendanceState,
-    loading: state.attendanceState.loading,
   }
 };
 
@@ -152,6 +153,5 @@ const mapDispatchToProps = (dispatch) => {
     fetchAttendances: () => dispatch(fetchAttendances()),
   }
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeAttendance);
