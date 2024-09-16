@@ -4,17 +4,17 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-//ICONS
+// ICONS
 import { FcFolder, FcOpenedFolder, FcPrevious } from "react-icons/fc";
-//REDUXISM
+// REDUXISM
 import { fetchAttendances } from '../../redux/actions/attendanceAction';
-//TOASTER
-import { ToastContainer, toast } from 'react-toastify';
+// TOASTER
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-//ANALYTICS
+// ANALYTICS
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { DatePicker } from 'react-datepicker'; // You may need to install this package
+import DatePicker from 'react-datepicker'; // You may need to install this package
 import "react-datepicker/dist/react-datepicker.css";
 
 // Register all the necessary components
@@ -48,6 +48,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
     return monthlyCounts;
   }
 
+  // Ensure dates are valid and filter data
   const filteredAttendanceCounts = getMonthlyAttendanceCounts(attendanceDataObjectCollection, startDate, endDate);
 
   const chartDataCollections = {
@@ -108,13 +109,14 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
           </ul>
         </div>
       </div>
-      <div className="flex mb-4">
-        <div className="mr-4">
+      <div className="flex flex-col items-center mb-4 space-y-4">
+        <div>
           <label className="block text-sm font-medium text-gray-700">Start Date</label>
           <DatePicker
             selected={startDate}
             onChange={date => setStartDate(date)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="MM-dd-yyyy"
+            maxDate={endDate} // Ensure start date is not after end date
           />
         </div>
         <div>
@@ -122,10 +124,41 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
           <DatePicker
             selected={endDate}
             onChange={date => setEndDate(date)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="MM-dd-yyyy"
+            minDate={startDate} // Ensure end date is not before start date
           />
         </div>
       </div>
+
+      <div className="mb-4">
+        <h2 className="text-xl font-bold mb-2">Filtered Attendance Data</h2>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead>
+              <tr>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {attendanceDataObjectCollection
+                ?.filter(attendance => {
+                  const createdAt = new Date(attendance.created_at);
+                  return createdAt >= startDate && createdAt <= endDate;
+                })
+                .map(attendance => (
+                  <tr key={attendance.id}>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.details}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div className="diff aspect-[16/9] shadow-xl">
         <div className="diff-item-1">
           <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
