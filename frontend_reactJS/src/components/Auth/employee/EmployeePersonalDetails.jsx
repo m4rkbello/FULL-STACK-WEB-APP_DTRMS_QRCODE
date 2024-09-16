@@ -398,7 +398,7 @@ const EmployeePersonalDetails = (props) => {
                     <div role="tabpanel" className="tab-content bg-white border-base-300 rounded-box p-6">
                     <div className="overflow-x-auto">
                     <table className="table">
-                      <thead>
+                    <thead className='bg-black text-white'>
                         <tr>
                           <th>NAME</th>
                           <th>AMOUNT</th>
@@ -410,19 +410,24 @@ const EmployeePersonalDetails = (props) => {
 
                       {
                         props.loading ? (
-                          <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
+                          <div className="flex flex-col gap-4 w-full max-w-10xl ps-2 pt-3 pe-2">
+                          {/**
                             <div className="skeleton h-48 w-full"></div>
                             <div className="skeleton h-6 w-36"></div>
                             <div className="skeleton h-6 w-full"></div>
                             <div className="skeleton h-6 w-full"></div>
+                            
+                            */}
+
+                            <span className="loading loading-spinner loading-lg"></span>
                           </div>
                         ) : (
-                          filteredEmployeeAttendanceData.length > 0 ? (
-                            filteredEmployeeAttendanceData.map(item => (
+                            getAllDeductions.length > 0 ? (
+                                getAllDeductions.map(item => (
                               <tr key={item.id}>
-                                <td>{item.attendance_note}</td>
-                                <td>{item.attendance_time_in}</td>
-                                <td>{item.attendance_time_out}</td>
+                                <td>{item.deduction_name}</td>
+                                <td>{item.deduction_amount}</td>
+                                <td>{item.deduction_description}</td>
                               </tr>
                             ))
                           ) : (
@@ -432,8 +437,6 @@ const EmployeePersonalDetails = (props) => {
                           )
                         )
                       }
-                      
-        
                       </tbody>
                     </table>
                   </div>
@@ -455,17 +458,13 @@ const EmployeePersonalDetails = (props) => {
                           <th>ATTENDANCE NOTE</th>
                           <th>TIME-IN LOG</th>
                           <th>TIME-OUT LOG</th>
-                       
                         </tr>
                       </thead>
                       <tbody>
                       {
                         props.loading ? (
                           <div className="flex flex-col gap-4 w-full max-w-5xl ps-2 pe-2">
-                            <div className="skeleton h-48 w-full"></div>
-                            <div className="skeleton h-6 w-36"></div>
-                            <div className="skeleton h-6 w-full"></div>
-                            <div className="skeleton h-6 w-full"></div>
+                          <span className="loading loading-spinner loading-lg"></span>
                           </div>
                         ) : (
                           filteredEmployeeAttendanceData.length > 0 ? (
