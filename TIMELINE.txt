@@ -122,6 +122,8 @@ npm install react-chartjs-2@latest
 38. ADD UUIDV7 FOR REACTJS 
     ->npm i uuidv7
 
+39. npm install react-datepicker --save
+
 
 
 
