@@ -135,14 +135,15 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
         <h2 className="text-xl font-bold mb-2">Filtered Attendance Data</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full glass">
-            <thead>
-              <tr className='bg-black text-white'>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time-in Log</th>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time-out Log</th>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Note</th>
+            <thead className='bg-black text-white'>
+              <tr className=' '>
+                <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Date</th>
+                <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-in(AM)</th>
+                <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-in Log</th>
+                <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-out(PM)</th>
+                <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-out Log</th>
+                <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Note</th>
                 </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -157,7 +158,9 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">          {new Date(attendance.attendance_time_in).toLocaleTimeString()}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_in}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_out).toLocaleTimeString()}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_out}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_note}</td>
                     </tr>
                 ))}
             </tbody>
