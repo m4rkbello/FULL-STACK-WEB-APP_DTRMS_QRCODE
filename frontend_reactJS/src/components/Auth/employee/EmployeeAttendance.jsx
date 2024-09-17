@@ -112,7 +112,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
       </div>
       <div className="flex flex-col items-center mb-4 space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Start Date</label>
+          <label className="block text-md font-medium text-gray-700">Start Date</label>
           <DatePicker
             selected={startDate}
             onChange={date => setStartDate(date)}
@@ -121,7 +121,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">End Date</label>
+          <label className="block text-md font-medium text-gray-700">End Date</label>
           <DatePicker
             selected={endDate}
             onChange={date => setEndDate(date)}
@@ -171,7 +171,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
               <tr>
               <td colSpan="12" className="px-6 py-4 whitespace-nowrap text-md text-gray-500 text-center">
               <div className="flex items-center justify-center space-x-2">
-                <span>No data available</span>
+                <span className='text-2xl'>No data available</span>
                 <FcCancel style={{ height: '3rem', width: '3rem' }} />
               </div>
             </td>
