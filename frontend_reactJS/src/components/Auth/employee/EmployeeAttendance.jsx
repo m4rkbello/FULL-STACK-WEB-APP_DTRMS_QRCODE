@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
+import React, { useEffect, useState, memo } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // ICONS
@@ -13,12 +13,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // ANALYTICS
 import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, ArcElement, LinearScale, BarElement, Title, Tooltip, Legend, RadialLinearScale } from 'chart.js';
+
 import DatePicker from 'react-datepicker'; // You may need to install this package
 import "react-datepicker/dist/react-datepicker.css";
 
 // Register all the necessary components
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, RadialLinearScale);
 
 const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
   const [startDate, setStartDate] = useState(new Date()); // Default to current date
@@ -26,7 +27,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
 
   useEffect(() => {
     fetchAttendances();
-  }, [fetchAttendances]);
+  }, [fetchAttendances]); 
 
   const attendanceDataObjectCollection = attendancesData?.attendances?.data?.details;
 
@@ -133,13 +134,16 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
       <div className="mb-4">
         <h2 className="text-xl font-bold mb-2">Filtered Attendance Data</h2>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full glass">
             <thead>
-              <tr>
+              <tr className='bg-black text-white'>
                 <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                 <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
-              </tr>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time-in Log</th>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time-out Log</th>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Note</th>
+                </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {attendanceDataObjectCollection
@@ -149,10 +153,12 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
                 })
                 .map(attendance => (
                   <tr key={attendance.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.employee_fullname}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.details}</td>
-                  </tr>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">          {new Date(attendance.attendance_time_in).toLocaleTimeString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_in}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_out}</td>
+                    </tr>
                 ))}
             </tbody>
           </table>
@@ -162,7 +168,11 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
       <div className="diff aspect-[16/9] shadow-xl">
         <div className="diff-item-1">
           <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
-            <Bar options={BarChartOptions} data={chartDataCollections} />
+          <Bar 
+          key={`${startDate}-${endDate}`} 
+          options={BarChartOptions} 
+          data={chartDataCollections} 
+        />
           </div>
         </div>
         <div className="diff-item-2">
@@ -187,4 +197,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeAttendance);
+export default connect(mapStateToProps, mapDispatchToProps)(memo(EmployeeAttendance));
