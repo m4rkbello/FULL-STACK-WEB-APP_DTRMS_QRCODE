@@ -45,7 +45,6 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
         }
       });
     }
-
     return monthlyCounts;
   }
 
@@ -209,10 +208,12 @@ const mapStateToProps = (state) => {
   }
 };
 
+
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAttendances: () => dispatch(fetchAttendances()),
   }
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(EmployeeAttendance));
