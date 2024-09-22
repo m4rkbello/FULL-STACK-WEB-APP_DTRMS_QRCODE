@@ -1,8 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react'
-import { useEffect } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { Link } from 'react-router-dom';
 //FETCH ALL DATAS GAMIT REDUXISM
 import { connect } from 'react-redux';
@@ -585,7 +584,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+const MemoizedDashboard = memo(Dashboard);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MemoizedDashboard);
 
 
 
