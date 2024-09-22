@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 import { useState } from 'react';
@@ -15,18 +16,18 @@ const Register = ({ registerUser }) => {
     const [localContactNo, setLocalContactNo] = useState("");
     const [localPassword, setLocalPassword] = useState("");
     const [localConfirmPassword, setLocalConfirmPassword] = useState("");
-    //FOR LOADING REQUEST!
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(""); // State for error message
 
-    //redirect if successful login
     const navigate = useNavigate();
 
     const handleRegisterUserRequestAndResponse = async (event) => {
         event.preventDefault();
         setIsLoading(true);
+        setError(""); // Reset error message
 
         if (localPassword !== localConfirmPassword) {
-            console.error("PASSWORD DOESN'T MATCH!");
+            setError("Passwords do not match!"); // Set error message
             setIsLoading(false);
             return;
         }
@@ -41,13 +42,14 @@ const Register = ({ registerUser }) => {
                 password_confirmation: localConfirmPassword
             });
 
-            setTimeout(() => {
-                window.location.reload();
-                navigate("/http://localhost:5173/admin/login");
-            }, 5000)
+            // setTimeout(() => {
+            //     window.location.reload();
+            //     navigate("/admin/login");
+            // }, 5000)
 
         } catch (error) {
             console.error('Registration error:', error);
+            // navigate("/admin/register");
         } finally {
             setIsLoading(false);
         }
@@ -58,15 +60,9 @@ const Register = ({ registerUser }) => {
             <ToastContainer />
 
             <div className="min-h-screen flex items-center justify-center">
-            <div className="artboard phone-2 flex flex-col items-center justify-center w-full mx-4">
-                    {/***
-        
-          <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-amber-100 via-black to-black/50 to-black/50">
-            */}
+                <div className="artboard phone-2 flex flex-col items-center justify-center w-full mx-4">
                     <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-t-4 border-b-4 border-black">
-
                         <form className="card-body">
-
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-xl text-black">Firstname</span>
@@ -95,7 +91,6 @@ const Register = ({ registerUser }) => {
                                 <label className="label">
                                     <span className="label-text text-xl text-black">Password</span>
                                 </label>
-
                                 <input type="password" value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} placeholder="Enter Password" className="input input-bordered grow glass text-black placeholder-black" required />
                             </div>
                             <div className="form-control">
@@ -103,6 +98,7 @@ const Register = ({ registerUser }) => {
                                     <span className="label-text text-xl text-black">Confirm Password</span>
                                 </label>
                                 <input type="password" value={localConfirmPassword} onChange={(e) => setLocalConfirmPassword(e.target.value)} placeholder="Enter Confirm Password" className="input input-bordered grow glass text-black placeholder-black" required />
+                                {error && <p className="text-red-500 text-sm">{error}</p>} {/* Display error message */}
                                 <label className="label">
                                     <Link to="/resetpassword" className="label-text text-xl text-black-alt link link-hover">Forgot password?</Link>
                                 </label>
@@ -117,7 +113,6 @@ const Register = ({ registerUser }) => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
