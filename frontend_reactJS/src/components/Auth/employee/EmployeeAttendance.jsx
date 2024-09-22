@@ -5,7 +5,7 @@ import React, { useEffect, useState, memo } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // ICONS
-import { FcFolder, FcOpenedFolder, FcPrevious, FcCancel  } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcPrevious, FcCancel } from "react-icons/fc";
 // REDUXISM
 import { fetchAttendances } from '../../redux/actions/attendanceAction';
 // TOASTER
@@ -27,7 +27,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
 
   useEffect(() => {
     fetchAttendances();
-  }, [fetchAttendances]); 
+  }, [fetchAttendances]);
 
   const attendanceDataObjectCollection = attendancesData?.attendances?.data?.details;
 
@@ -97,7 +97,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
             <li>
               <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
                 <FcFolder style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Rates</span>
+                <span className="ml-2">Attendances</span>
               </Link>
             </li>
             <li>
@@ -110,6 +110,11 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
         </div>
       </div>
       <div className="flex flex-col items-center mb-4 space-y-4">
+        <label className='text-2xl'>
+          <b>
+            Filter by
+          </b>
+        </label>
         <div>
           <label className="block text-md font-medium text-gray-700">Start Date</label>
           <DatePicker
@@ -143,41 +148,41 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
                 <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-out(PM)</th>
                 <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-out Log</th>
                 <th className="px-6 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Note</th>
-                </tr>
+              </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-            {attendanceDataObjectCollection
-              ?.filter(attendance => {
+              {attendanceDataObjectCollection
+                ?.filter(attendance => {
+                  const createdAt = new Date(attendance.created_at);
+                  return createdAt >= startDate && createdAt <= endDate;
+                })
+                .map(attendance => (
+                  <tr key={attendance.id}>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.employee_fullname}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_in).toLocaleTimeString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_in}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_out).toLocaleTimeString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_out}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_note}</td>
+                  </tr>
+                ))
+              }
+              {attendanceDataObjectCollection?.filter(attendance => {
                 const createdAt = new Date(attendance.created_at);
                 return createdAt >= startDate && createdAt <= endDate;
-              })
-              .map(attendance => (
-                <tr key={attendance.id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.employee_fullname}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_in).toLocaleTimeString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_in}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_out).toLocaleTimeString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_out}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_note}</td>
-                </tr>
-              ))
-            }
-            {attendanceDataObjectCollection?.filter(attendance => {
-              const createdAt = new Date(attendance.created_at);
-              return createdAt >= startDate && createdAt <= endDate;
-            }).length === 0 && (
-              <tr>
-              <td colSpan="12" className="px-6 py-4 whitespace-nowrap text-md text-gray-500 text-center">
-              <div className="flex items-center justify-center space-x-2">
-                <span className='text-2xl'>No data available</span>
-                <FcCancel style={{ height: '3rem', width: '3rem' }} />
-              </div>
-            </td>
-              </tr>
-            )}
-          </tbody>
-          
+              }).length === 0 && (
+                  <tr>
+                    <td colSpan="12" className="px-6 py-4 whitespace-nowrap text-md text-gray-500 text-center">
+                      <div className="flex items-center justify-center space-x-2">
+                        <span className='text-2xl'>No data available</span>
+                        <FcCancel style={{ height: '3rem', width: '3rem' }} />
+                      </div>
+                    </td>
+                  </tr>
+                )}
+            </tbody>
+
           </table>
         </div>
       </div>
@@ -185,11 +190,11 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
       <div className="diff aspect-[16/9] shadow-xl">
         <div className="diff-item-1">
           <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
-          <Bar 
-          key={`${startDate}-${endDate}`} 
-          options={BarChartOptions} 
-          data={chartDataCollections} 
-        />
+            <Bar
+              key={`${startDate}-${endDate}`}
+              options={BarChartOptions}
+              data={chartDataCollections}
+            />
           </div>
         </div>
         <div className="diff-item-2">
