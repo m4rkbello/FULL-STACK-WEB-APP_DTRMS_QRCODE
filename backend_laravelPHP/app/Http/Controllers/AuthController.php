@@ -47,33 +47,51 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $data = $request->validate([
-            'user_firstname' => 'required|string',
-            'user_lastname' => 'required|string',
-            'user_email' => 'required|string|unique:users,user_email',
-            'user_contact_no' => 'required|string|max:11',
-            'user_password' => 'required|string|min:8'
-        ]);
+        try {
+            // Validate incoming request data
+            $data = $request->validate([
+                'user_firstname' => 'required|string',
+                'user_lastname' => 'required|string',
+                'user_email' => 'required|string|unique:users,user_email',
+                'user_contact_no' => 'required|string|max:11|unique:users,user_contact_no', // Add unique rule for contact number
+                'user_password' => 'required|string|min:8'
+            ]);
     
-        $user = User::create([
-            'user_firstname' => $data['user_firstname'],
-            'user_lastname' => $data['user_lastname'],
-            'user_email' => $data['user_email'],
-            'user_contact_no' => $data['user_contact_no'],
-            'user_password' => bcrypt($data['user_password'])
-        ]);
-
-        $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
+            // Create a new user
+            $user = User::create([
+                'user_firstname' => $data['user_firstname'],
+                'user_lastname' => $data['user_lastname'],
+                'user_email' => $data['user_email'],
+                'user_contact_no' => $data['user_contact_no'],
+                'user_password' => bcrypt($data['user_password'])
+            ]);
     
-        $response = [
-            'success' => true,
-            'user' =>  $user,
-            'token' => $token
-        ];
-
-        \Log::info("DATA SA POST-REGISTER", $response);
-        return response($response, 200);
+            // Generate an authentication token
+            $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
+    
+            // Prepare success response
+            $response = [
+                'success' => true,
+                'user' => $user,
+                'token' => $token
+            ];
+    
+            \Log::info("DATA SA POST-REGISTER", $response);
+            return response()->json($response, 201);
+    
+        } catch (\Exception $error) {
+            // Log the error message
+            \Log::error('Registration error: ' . $error->getMessage());
+    
+            // Prepare error response
+            return response()->json([
+                'success' => false,
+                'message' => 'Registration failed! ' . $error->getMessage(),
+                'status' => 500
+            ], 500);
+        }
     }
+    
 
     public function login(Request $request){
         $data = $request->validate([
