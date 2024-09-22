@@ -144,6 +144,7 @@ export const registerUser = userData => async dispatch => {
     try {
         dispatch({ type: REGISTER_USER_REQUEST });
         const registeredUser = await MarkBelloApi.post('/api/register', userData);
+
         
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
         
@@ -168,27 +169,30 @@ export const registerUser = userData => async dispatch => {
         });
         
     } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message; // Extract message from backend response
         dispatch({
             type: REGISTER_USER_FAILURE,
-            payload: error.message
+            payload: errorMessage
         });
-
-        toast.error('Fill-up correctly! 🥺⚠️👽', {
+        
+        toast.error(errorMessage, {
             position: 'top-right',
-            autoClose: 10000,
+            autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: false,
-            draggable: true,
+            draggable: false,
             progress: undefined,
             style: {
                 background: 'black',
                 color: 'red',
-                fontSize: '15px'
+                fontSize: '15px',
+                fontWeight: 'Bold'
             }
         });
     }
 };
+
 
 export const loginUser = userData => async dispatch => {
     try {
