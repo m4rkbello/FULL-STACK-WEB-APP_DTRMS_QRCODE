@@ -49,7 +49,6 @@ const userReducer = (state = initialState, action) => {
         case CHANGE_PASSWORD_USER_REQUEST:
             return  {
                 ...state,
-                
                 loading: true,
                 error: null
             };
