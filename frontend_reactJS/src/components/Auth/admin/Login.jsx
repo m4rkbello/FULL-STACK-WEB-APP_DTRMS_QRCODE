@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { connect } from 'react-redux';
@@ -27,12 +28,13 @@ const Login = ({ loginUser }) => {
       setIsLoading(false);
   
       setTimeout(() => {
-        navigate("/"); // Redirect to root path upon successful login
+        navigate("/dashboard"); // Redirect to root path upon successful login
         window.location.reload();
       }, 5000); // Adjust the timeout duration as needed
     } catch (error) {
       setIsLoading(false);
-      toast.error("Failed to log in. Please try again."); // Use toast for error notification
+   
+
     }
   }
 
@@ -40,7 +42,7 @@ const Login = ({ loginUser }) => {
     <div className="min-h-screen flex items-center justify-center">
     <ToastContainer />
     <div className="artboard phone-2 flex flex-col items-center justify-center w-full px-4">
-        <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% border-t-4 border-b-4 border-black">
+        <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% border-t-8 border-b-8 border-black">
             <div className="text-center lg:text-center">
                 <h1 className="text-5xl font-bold text-black pt-10 pb-2">DTRMS+</h1>
             </div>
