@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo, useCallback } from 'react';
 import { FcPrint, FcDataSheet, FcCheckmark, FcPlus, FcSearch, FcOpenedFolder, FcFile, FcViewDetails, FcEmptyTrash, FcCancel, FcLeft } from "react-icons/fc";
 //REDUXISM
 import { fetchEmployees, addEmployee, deactivateEmployee } from '../../redux/actions/employeeAction';
@@ -42,14 +42,8 @@ const EmployeeDashboard = (props) => {
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
 
-    function getAllEmployees(employeesCollectionArrays) {
-        let item = [];
-        if (employeesCollectionArrays) {
-            for (let ez = 0; ez < employeesCollectionArrays.length; ez++) {
-                item.push(employeesCollectionArrays[ez]);
-            }
-        }
-        return item;
+    const getAllEmployees = (employeesCollectionArrays = []) => {
+        return [...employeesCollectionArrays];
     }
 
     const employeesList = getAllEmployees(employeesCollectionArrays);
@@ -124,17 +118,10 @@ const EmployeeDashboard = (props) => {
 
     const departmentsCollectionArrays = props?.departmentsData?.departments?.data?.details;
 
-    function fetchDepartments(departmentsCollectionArrays) {
-        let item = [];
-
-        if (departmentsCollectionArrays) {
-            for (let ez = 0; ez < departmentsCollectionArrays.length; ez++) {
-                item.push(departmentsCollectionArrays[ez]);
-            }
-        }
-        return item;
-
-    }
+    const fetchDepartments = (departmentsCollectionArrays = []) => {
+        return [...departmentsCollectionArrays];
+    };
+    
 
     const departments = fetchDepartments(departmentsCollectionArrays);
 
@@ -521,6 +508,9 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeDashboard);
+
+const MemoizedEmployeeDashboard = memo(EmployeeDashboard);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MemoizedEmployeeDashboard);
 
 
