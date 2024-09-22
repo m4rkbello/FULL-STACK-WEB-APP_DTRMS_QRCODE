@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaEye } from "react-icons/fa6";
@@ -10,7 +10,6 @@ import { IoIosPersonAdd } from "react-icons/io";
 import { HiStatusOnline } from "react-icons/hi";
 import { MdOutlineNoAccounts } from "react-icons/md";
 import { RiAccountPinCircleFill } from "react-icons/ri";
-
 // REDUX
 import { fetchEmployees, addEmployee } from '../../redux/actions/employeeAction';
 import { fetchImages } from '../../redux/actions/imageAction';
@@ -261,4 +260,8 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArchieveEmployee);
+
+
+const MemoizedArchieveEmployee = memo(ArchieveEmployee);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MemoizedArchieveEmployee);
