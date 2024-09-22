@@ -14,6 +14,8 @@ import { FaRunning } from "react-icons/fa";
 import { FcDoughnutChart, FcOpenedFolder, FcHome, FcTimeline, FcMenu, FcExpired, FcCurrencyExchange, FcButtingIn, FcStatistics, FcManager, FcElectricalThreshold, FcComboChart, FcList, FcSettings, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcPortraitMode, FcSalesPerformance } from "react-icons/fc";
 //LAYOUTS
 import Content from './components/layouts/Content';
+import NavBar from './components/layouts/NavBar';
+import SideBar from './components/layouts/Sidebar';
 import Footer from './components/layouts/Footer';
 //ADMIN-ROUTES
 import Login from './components/Auth/admin/Login';
@@ -47,7 +49,6 @@ import { fetchEmployees } from './components/redux/actions/employeeAction';
 import { fetchAttendances } from './components/redux/actions/attendanceAction';
 
 function App(props) {
-  console.log("DATA SA props", props);
   //FOR AUTHENTICATION-PURPOSES GAMIT TOKEN UG ID SA USERS
   const [localStorageHasUserIdData, setLocalStorageHasUserId] = useState('');
   const [sessionStorageHasUserIdData, setSessionStorageHasUserId] = useState('');
@@ -112,34 +113,10 @@ function App(props) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="navbar bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 px-4 py-2 md:px-8 md:py-4 border-r-4 border-black">
+      <div className="navbar bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 px-0 py-0 md:px-8 md:py-4 border-r-4 border-black">
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
-            <div className="flex-none">
-              <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost bg-transparent">
-                <div className="drawer-content">
-
-                  <label htmlFor="my-drawer" className="btn drawer-button bg-transparent border-none">
-                  <FcOpenedFolder
-                  style={{
-                    height: "3rem",
-                    width: "3rem",
-                  }}
-                  />
-                  </label>
-
-                </div>
-              </label>
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <span className="btn-ghost text-xl md:text-2xl ml-5 mr-2 text-black">Welcome! 
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <span className='text-2xl' key={index}>
-                    {user.user_email}
-                  </span>
-                ))}
-              </span>
-            </div>
+            <NavBar isAuthenticatedUser={isAuthenticatedUser} />
           </>
         ) : (
           <>
@@ -149,99 +126,95 @@ function App(props) {
           </>
         )}
 
-        {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
-          <>
-            <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                    <img
-                      key={index}
-                      alt="No Upload User Profile"
-                      src={user.user_image}
-                    />
-                  ))}
+        <div className="flex items-center space-x-4">
+          {/* Show dropdown if authenticated */}
+          {(localStorageHasToken?.length ?? 0) > 0 &&
+            (sessionStorageToken?.length ?? 0) !== 0 &&
+            (cookiesData?.length ?? 0) > 0 ? (
+            <>
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    {isAuthenticatedUser &&
+                      isAuthenticatedUser.map((user, index) => (
+                        <img
+                          key={index}
+                          alt="No Upload User Profile"
+                          src={user.user_image}
+                        />
+                      ))}
+                  </div>
                 </div>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-box w-52">
+                  {/* Profile */}
+                  <li>
+                    <span className="justify-between text-black">
+                      <FaUserTie style={{ fontSize: "25px", color: "white" }} />
+                      <span style={{ fontSize: "20px", color: "white" }}>
+                        Profile
+                      </span>
+                      <span className="badge bg-black text-white">
+                        <Link to="/admin/user/profile-details">Open</Link>
+                      </span>
+                    </span>
+                  </li>
+                  {/* Settings */}
+                  <li className="text-black">
+                    <span className="justify-between">
+                      <AiFillSetting
+                        style={{ fontSize: "25px", color: "white" }}
+                      />
+                      <span style={{ fontSize: "20px", color: "white" }}>
+                        Settings
+                      </span>
+                      <span className="badge bg-black text-white">
+                        <Link to="">Open</Link>
+                      </span>
+                    </span>
+                  </li>
+                  {/* Logout */}
+                  <li className="text-black" onClick={destroyAuthentications}>
+                    <span className="flex justify-between items-center">
+                      <FaRunning style={{ fontSize: "25px", color: "white" }} />
+                      <span style={{ fontSize: "20px", color: "white" }}>Logout</span>
+                    </span>
+                  </li>
+                </ul>
               </div>
-              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-box w-52">
-                <li>
-                  <span className="justify-between text-black">
-                    <FaUserTie
-                      style={{ fontSize: "25px", color: "white" }}
-                    />
-                    <span style={{ fontSize: "20px", color: "white", textAlign: "left" }}>
-                      Profile
-                    </span>
-                    <span className="badge bg-black">
-                      <span className='text-white'>
-                        <Link to="/admin/user/profile-details">
-                          Open
-                        </Link>
-                      </span>
-                    </span>
-                  </span>
-                </li>
-                <li className='text-black'>
-                  <span className="justify-between text-black">
-                    <AiFillSetting
-                      style={{ fontSize: "25px", color: "white" }}
-                    />
-                    <span style={{ fontSize: "20px", color: "white", textAlign: "left" }}>
-                      Settings
-                    </span>
-                    <span className="badge bg-black">
-                      <span className='text-white'>
-                        <Link to="">
-                          Open
-                        </Link>
-                      </span>
-                    </span>
-                  </span>
-
-                </li>
-                <li className='text-black' onClick={destroyAuthentications}>
-                  <span className="flex justify-between items-center text-black">
-                    <FaRunning
-                      style={{ fontSize: "25px", color: "white" }}
-                    />
-                    <span style={{ fontSize: "20px", color: "white" }}>
-                      Logout
-                    </span>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </>
-        ) : (
-          <>
-            <div>
-              <ul className="menu menu-horizontal drop-shadow-xl  px-1 text-black bg-transparent border-b-4">
-                <li className='shadow-2xl text-2xl'>
+            </>
+          ) : (
+            <>
+              {/* Show guest links if not authenticated */}
+              <ul className="menu menu-horizontal drop-shadow-xl px-1 text-black bg-transparent border-b-4">
+                <li className="text-2xl">
                   <Link to="/attendance/scan">
                     <BsQrCodeScan />
                   </Link>
                 </li>
-                <li className='shadow-2xl text-2xl'>
+                <li className="text-2xl">
                   <Link to="/admin/login">
                     <FaSignInAlt />
                   </Link>
                 </li>
-                <li className='shadow-2xl text-2xl'>
+                <li className="text-2xl">
                   <Link to="/admin/register">
                     <TiUserAddOutline />
                   </Link>
                 </li>
-                <li className='shadow-2xl text-2xl'>
-                </li>
               </ul>
-            </div>
-          </>
-        )}
+            </>
+          )}
+        </div>
       </div>
 
       <div className="drawer lg:drawer-open flex-1">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center px-4 py-4 md:px-8 md:py-8">
+        <div className="drawer-content flex flex-col items-center justify-center px-0 py-0 md:px-8 md:py-8">
           {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ?
             (
               <>
@@ -279,321 +252,13 @@ function App(props) {
               </Routes>
             )}
         </div>
-
+        {/*** NAAY 3 KA SECURITY VALIDATION GAMIT TOKEN SA SESSION STORAGE / LOCAL STORAGE  UG SESSION COOKIES */}
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
-            <div className="drawer-side border-r-4 bg-white drop-shadow-lg">
-            
-              <div className="menu w-64 md:w-80 min-h-full bg-transparent">
-              <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-              <div className="drawer-side">
-                <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu w-64 md:w-80 min-h-full glass">
-                  <li>
-                    <details close>
-                      <summary className='glass'>
-                        <FcTimeline
-                          style={{
-                            height: "2.5rem",
-                            width: "2.5rem",
-                          }}
-                        />
-                        <span className='text-2xl'>
-                          MAIN
-                        </span>
-                      </summary>
-                      <ul>
-                        <li>
-                          <Link to="/" className='text-2xl glass'>
-                            <FcComboChart
-                              style={{
-                                height: "2rem",
-                                width: "2rem",
-                              }}
-                            />
-                            <span className='text-lg'>
-                              ANALYTICS&MONITORING
-                            </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/employee/attendance" className='text-2xl glass'>
-                            <FcStatistics
-                              style={{
-                                height: "2rem",
-                                width: "2rem",
-                              }}
-                            />
-                            <span className='text-lg'>
-                              ATTENDANCE LIST
-                            </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/employee/dashboard" className='text-2xl glass'>
-                            <FcButtingIn
-                              style={{
-                                height: "2rem",
-                                width: "2rem",
-                              }}
-                            />
-                            <span className='text-lg'>
-                              EMPLOYEES LIST
-                            </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/employee/archieve" className='text-2xl glass'>
-                            <FcReuse
-                              style={{
-                                height: "2rem",
-                                width: "2rem",
-                              }}
-                            />
-                            <span className='text-lg'>
-                              EMPLOYEES ARCHIEVE
-                            </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/admin/departments" className='text-2xl glass'>
-                            <FcDepartment
-                              style={{
-                                height: "2rem",
-                                width: "2rem",
-                              }}
-                            />
-                            <span className='text-lg'>
-                              DEPARTMENTS
-                            </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/admin/payrolls" className='text-2xl glass'>
-                            <FcCurrencyExchange
-                              style={{
-                                height: "2rem",
-                                width: "2rem",
-                              }}
-                            />
-                            <span className='text-lg'>
-                              PAYROLLS
-                            </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/admin/rates" className='text-2xl glass'>
-                            <FcSalesPerformance
-                              style={{
-                                height: "2.5rem",
-                                width: "2.5rem",
-                              }}
-                            />
-                            <span className='text-lg'>
-                              RATES
-                            </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/admin/overtimes" className='text-2xl glass'>
-                            <FcOvertime
-                              style={{
-                                height: "2.5rem",
-                                width: "2.5rem",
-                              }}
-                            />
-                            <span className='text-lg'>
-                              OVERTIMES
-                            </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/admin/deductions" className='text-2xl glass'>
-                            <FcExpired
-                              style={{
-                                height: "2.5rem",
-                                width: "2.5rem",
-                              }}
-                            />
-                            <span className='text-lg'>
-                              DEDUCTIONS
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </details>
-                  </li>
-                  <li>
-                    <Link to="/" className='text-2xl glass'>
-                      <FcDoughnutChart
-                        style={{
-                          height: "2.5rem",
-                          width: "2.5rem",
-                        }}
-                      />
-                      DASHBOARD
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/employee/attendance" className='text-2xl glass'>
-                      <FcElectricalThreshold
-                        style={{
-                          height: "2.5rem",
-                          width: "2.5rem",
-                        }}
-                      />
-                      ATTENDANCE
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/employee/dashboard" className='text-2xl glass'>
-                      <FcConferenceCall
-                        style={{
-                          height: "2.5rem",
-                          width: "2.5rem",
-                        }}
-                      />
-                      EMPLOYEES
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/employee/archieve" className='text-2xl glass'>
-                      <FcReuse
-                        style={{
-                          height: "2.5rem",
-                          width: "2.5rem",
-                        }}
-                      />
-                      EMPLOYEES ARCH.
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/departments" className='text-2xl glass'>
-                      <FcDepartment
-                        style={{
-                          height: "2.5rem",
-                          width: "2.5rem",
-                        }}
-                      />
-                      DEPARTMENTS
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/payrolls" className='text-2xl glass'>
-                      <FcMoneyTransfer
-                        style={{
-                          height: "2.5rem",
-                          width: "2.5rem",
-                        }}
-                      />
-                      PAYROLLS
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/rates" className='text-2xl glass'>
-                      <FcSalesPerformance
-                        style={{
-                          height: "2.5rem",
-                          width: "2.5rem",
-                        }}
-                      />
-                      RATES
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/overtimes" className='text-2xl glass'>
-                      <FcOvertime
-                        style={{
-                          height: "2.5rem",
-                          width: "2.5rem",
-                        }}
-                      />
-                      OVERTIMES
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/deductions" className='text-2xl glass'>
-                      <FcDebt
-                        style={{
-                          height: "2.5rem",
-                          width: "2.5rem",
-                        }}
-                      />
-                      DEDUCTIONS
-                    </Link>
-                  </li>
-                  <li>
-                    <details close>
-                      <summary>
-                        <FcSettings
-                          style={{
-                            height: "2.5rem",
-                            width: "2.5rem",
-                          }}
-                        />
-                        <span className='text-2xl'>
-                          MANAGE USERS
-                        </span>
-                      </summary>
-                      <ul>
-                        <li>
-                          <a>
-                            <FcManager
-                              style={{
-                                height: "2.5rem",
-                                width: "2.5rem",
-                              }}
-                            />
-                            <span className='text-2xl'>
-                              USER
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a>
-                            <FcList
-                              style={{
-                                height: "2.5rem",
-                                width: "2.5rem",
-                              }}
-                            />
-                            <span className='text-2xl'>
-                              USER LIST
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a>
-                            <FcList
-                              style={{
-                                height: "2.5rem",
-                                width: "2.5rem",
-                              }}
-                            />
-                            <span className='text-2xl'>
-                              USERS TYPE
-                            </span>
-                          </a>
-                        </li>
-                      </ul>
-                    </details>
-                  </li>
-                </ul>
-              </div>
-              </div>
-            </div>
-
-
-
-            <div className="drawer">
-          
-            </div>
+            <SideBar isAuthenticatedUser={isAuthenticatedUser} />
           </>
-
         ) : (
           <>
-
-
           </>
         )}
       </div>
