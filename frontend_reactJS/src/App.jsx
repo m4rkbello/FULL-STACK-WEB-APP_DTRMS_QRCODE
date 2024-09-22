@@ -219,7 +219,7 @@ function App(props) {
             (
               <>
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/admin/users" element={<UserDashboard />} />
                   <Route path="/admin/user/profile-details/change-password/:userId" element={<UserChangePassword />} />
