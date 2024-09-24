@@ -181,6 +181,8 @@ const EmployeePersonalDetails = (props) => {
         // Return the array containing all deductions
         return items;
       };
+
+      
       
       // Call the function and get all deductions
       const getAllDeductions = getAllDeductionsCollections(deductionsCollection);

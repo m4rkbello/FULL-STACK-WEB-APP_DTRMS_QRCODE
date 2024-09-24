@@ -20,6 +20,7 @@ const initialState = {
     attendances: [],
     loading: false,
     error: null,
+    lastFetch: null,
 };
 
 const attendanceReducer = (state = initialState, action) => {
@@ -32,14 +33,16 @@ const attendanceReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
-                error: null
+                error: null,
+           
         };
         case FETCH_ATTENDANCES_SUCCESS:
             return {
                 ...state,
                 attendances: action.payload,
                 loading: false,
-                error: null
+                error: null,
+                lastFetch: Date.now(),
             };
         case ADD_ATTENDANCE_SUCCESS:
             return {

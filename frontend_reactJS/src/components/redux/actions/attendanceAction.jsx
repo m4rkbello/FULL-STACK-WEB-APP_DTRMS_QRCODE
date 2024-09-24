@@ -24,8 +24,21 @@ import {
 
 
 //MAG-FETCH UG EMPLOYEE
-export const fetchAttendances = () => async dispatch => {
+export const fetchAttendances = (getState) => async dispatch => {
+    const { attendancesData } = getState(); // Access current state
+
+    // Check if data was fetched within the last 60 seconds (1 minute)
+    const oneMinute = 60000; 
+    const currentTime = Date.now();
+    const lastFetched = attendancesData?.lastFetched;
+  
+    // If the data was fetched within the last 1 minute, don't re-fetch
+    if (lastFetched && currentTime - lastFetched < oneMinute) {
+      return;
+    }
+
     try {
+
         dispatch({ type: FETCH_ATTENDANCES_REQUEST });
         // Perform async operation, e.g., fetch data from an API
         const attendances = await MarkBelloApi.get('/api/attendances/collections/all');

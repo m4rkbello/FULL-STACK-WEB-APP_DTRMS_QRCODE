@@ -24,7 +24,21 @@ import {
 
 
 //MAG-FETCH UG EMPLOYEES DATA
-export const fetchEmployees = () => async dispatch => {
+export const fetchEmployees = (getState) => async dispatch => {
+
+    const { employeesData } = getState(); // Access current state
+
+    // Check if data was fetched within the last 60 seconds (1 minute)
+    const oneMinute = 60000; 
+    const currentTime = Date.now();
+    const lastFetched = employeesData?.lastFetched;
+  
+    // If the data was fetched within the last 1 minute, don't re-fetch
+    if (lastFetched && currentTime - lastFetched < oneMinute) {
+      return;
+    }
+
+
     try {
         dispatch({ type: FETCH_EMPLOYEES_REQUEST });
         // Perform async operation, e.g., fetch data from an API

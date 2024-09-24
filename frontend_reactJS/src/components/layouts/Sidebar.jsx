@@ -164,7 +164,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </details>
             </li>
             <li>
-              <Link to="/" className='text-2xl glass'>
+              <Link to="/dashboard" className='text-2xl glass'>
                 <FcDoughnutChart
                   style={{
                     height: "2.5rem",
