@@ -17,6 +17,7 @@ import {
     images: [],
     loading: false,
     updating: false, // New flag to track update operation
+    lastFetched: null,
     error: null
   };
   
@@ -38,6 +39,7 @@ import {
         return {
           ...state,
           loading: false,
+          lastFetched: Date.now(),
           error: action.payload
         };
       case ADD_IMAGE_REQUEST:
