@@ -23,6 +23,8 @@ const initialState = {
     departments: [],
     loading: false,
     error: null,
+    lastFetched: null,
+
 };
 
 const departmentReducer = (state = initialState, action) => {
@@ -43,6 +45,7 @@ const departmentReducer = (state = initialState, action) => {
                 ...state,
                 departments: action.payload,
                 loading: false,
+                lastFetched: Date.now(),
                 error: null
             };
         case ADD_DEPARTMENT_SUCCESS:
