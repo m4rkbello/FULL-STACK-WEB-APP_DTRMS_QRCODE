@@ -43,7 +43,7 @@ const employeeReducer = (state = initialState, action) => {
                 employees: action.payload,
                 loading: false,
                 error: null,
-                lastFetch: Date.now(),
+                lastFetched: Date.now(),
             };
             case ADD_EMPLOYEE_SUCCESS:
                 return {
