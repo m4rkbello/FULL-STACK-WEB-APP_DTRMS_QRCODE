@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
@@ -42,10 +43,11 @@ const EmployeeDashboard = (props) => {
 
     const employeesCollectionArrays = props.employeesData?.employees?.data;
 
-    const getAllEmployees = (employeesCollectionArrays = []) => {
+    const getAllEmployees = useCallback((employeesCollectionArrays = []) => {
         return [...employeesCollectionArrays];
-    }
+    }, [employeesCollectionArrays]);
 
+    
     const employeesList = getAllEmployees(employeesCollectionArrays);
 
     const imageCollectionArrays = props.imagesData?.images?.data;
