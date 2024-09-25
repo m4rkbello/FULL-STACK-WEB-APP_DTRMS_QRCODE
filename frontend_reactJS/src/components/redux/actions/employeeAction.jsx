@@ -23,38 +23,45 @@ import {
 } from '../types/employeeTypes.jsx';
 
 
-//MAG-FETCH UG EMPLOYEES DATA
-export const fetchEmployees = (getState) => async dispatch => {
-
+//MAG-FETCH UG EMPLOYEES DATAS
+export const fetchEmployees = () => async (dispatch, getState) => {
     const { employeesData } = getState(); // Access current state
 
     // Check if data was fetched within the last 60 seconds (1 minute)
     const oneMinute = 60000; 
     const currentTime = Date.now();
     const lastFetched = employeesData?.lastFetched;
+
+    console.log("Current time:", currentTime);
+    console.log("Last fetched:", lastFetched);
   
     // If the data was fetched within the last 1 minute, don't re-fetch
     if (lastFetched && currentTime - lastFetched < oneMinute) {
-      return;
+        console.log("Data fetched recently. Not refetching.");
+        return;
     }
-
 
     try {
         dispatch({ type: FETCH_EMPLOYEES_REQUEST });
-        // Perform async operation, e.g., fetch data from an API
+
+        // Fetch employees data from the API
         const employees = await MarkBelloApi.get('/api/employees');
-        console.log("DATA SA employees EmployeeAction", employees);
+        console.log("Fetched employees data:", employees);
+
         dispatch({
             type: FETCH_EMPLOYEES_SUCCESS,
             payload: employees
         });
     } catch (error) {
+        console.error("Error fetching employees:", error.message);
+
         dispatch({
             type: FETCH_EMPLOYEES_FAILURE,
             payload: error.message
         });
     }
 };
+
 
 //MAG ADD UG EMPLOYEE 
 export const addEmployee = AddEmployeeData => async dispatch => {
