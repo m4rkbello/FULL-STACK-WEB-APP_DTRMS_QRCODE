@@ -30,8 +30,23 @@ from '../types/departmentTypes.jsx';
 
 
 //MAG-FETCH UG DATA SA DEPARTMENTS
+export const fetchDepartments = () => async (dispatch, getState) => {
+    const { departmentData } = getState(); // Access current state
 
-export const fetchDepartments = () => async dispatch => {
+    // Check if data was fetched within the last 60 seconds (1 minute)
+    const oneMinute = 60000; 
+    const currentTime = Date.now();
+    const lastFetched = departmentData?.lastFetched;
+
+    console.log("Current time:", currentTime);
+    console.log("Last fetched:", lastFetched);
+  
+    // If the data was fetched within the last 1 minute, don't re-fetch
+    if (lastFetched && currentTime - lastFetched < oneMinute) {
+        console.log("Data fetched recently. Not refetching.");
+        return;
+    }
+
     try {
         dispatch({ type: FETCH_DEPARTMENTS_REQUEST });
         // Perform async operation, e.g., fetch data from an API
