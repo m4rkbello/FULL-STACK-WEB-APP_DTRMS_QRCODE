@@ -17,7 +17,23 @@ import {
 
 // Action creators for fetching images
 
-export const fetchImages = () => async dispatch => {
+export const fetchImages = () => async (dispatch, getState) => {
+  const { imageState } = getState(); // Access current state
+
+  // Check if data was fetched within the last 60 seconds (1 minute)
+  const oneMinute = 60000; 
+  const currentTime = Date.now();
+  const lastFetched = imageState?.lastFetched;
+
+  console.log("Current time:", currentTime);
+  console.log("Last fetched:", lastFetched);
+
+  // If the data was fetched within the last 1 minute, don't re-fetch
+  if (lastFetched && currentTime - lastFetched < oneMinute) {
+      console.log("Data fetched recently. Not refetching.");
+      return;
+  }
+
   try {
     dispatch({ type: FETCH_IMAGES_REQUEST });
     // Perform async operation, e.g., fetch data from an API
