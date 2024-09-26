@@ -4,7 +4,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
-
 import { BsQrCodeScan } from "react-icons/bs";
 import { FaSignInAlt } from "react-icons/fa";
 import { TiUserAddOutline } from "react-icons/ti";
