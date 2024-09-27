@@ -12,7 +12,7 @@ import { AiFillSetting } from "react-icons/ai";
 import { FaRunning } from "react-icons/fa";
 import { FcDoughnutChart, FcOpenedFolder, FcHome, FcTimeline, FcMenu, FcExpired, FcCurrencyExchange, FcButtingIn, FcStatistics, FcManager, FcElectricalThreshold, FcComboChart, FcList, FcSettings, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcPortraitMode, FcSalesPerformance } from "react-icons/fc";
 //LAYOUTS
-
+// EDIT MARCO GWAPO
 const SideBar = ({ isAuthenticatedUser }) => {
 
   return (
