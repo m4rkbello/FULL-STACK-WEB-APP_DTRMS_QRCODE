@@ -22,7 +22,7 @@ const EmployeeDashboard = (props) => {
     const defaultImage = '../../../../public/miming.jpg';
 
     const tableRef = useRef(null);
-
+// MARCO GWAPO
     const [formDataAddEmployee, setFormDataEmployeeAddEmployee] = useState({
         employee_fullname: '',
         employee_email: '',
@@ -33,6 +33,7 @@ const EmployeeDashboard = (props) => {
         employee_status_id: ''
     });
 
+    // 
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
