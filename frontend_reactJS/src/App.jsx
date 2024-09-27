@@ -211,7 +211,8 @@ function App(props) {
           )}
         </div>
       </div>
-
+// MARCO GWAPO
+// YEAH!/
       <div className="drawer lg:drawer-open flex-1">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center px-0 py-0 md:px-8 md:py-8">
