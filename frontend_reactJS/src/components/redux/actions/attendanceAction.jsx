@@ -31,7 +31,7 @@ export const fetchAttendances = (getState) => async dispatch => {
     const oneMinute = 60000; 
     const currentTime = Date.now();
     const lastFetched = attendancesData?.lastFetched;
-  
+//   MARCO GWAPO
     // If the data was fetched within the last 1 minute, don't re-fetch
     if (lastFetched && currentTime - lastFetched < oneMinute) {
       return;
