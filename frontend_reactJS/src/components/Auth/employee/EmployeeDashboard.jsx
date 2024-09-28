@@ -20,9 +20,7 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 
 const EmployeeDashboard = (props) => {
     const defaultImage = '../../../../public/miming.jpg';
-
     const tableRef = useRef(null);
-// MARCO GWAPO
     const [formDataAddEmployee, setFormDataEmployeeAddEmployee] = useState({
         employee_fullname: '',
         employee_email: '',
