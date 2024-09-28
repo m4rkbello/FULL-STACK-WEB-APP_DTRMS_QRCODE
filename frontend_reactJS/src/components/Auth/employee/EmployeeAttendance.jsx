@@ -11,7 +11,6 @@ import { fetchAttendances } from '../../redux/actions/attendanceAction';
 // TOASTER
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// MARCO GWAPO
 // ANALYTICS
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, ArcElement, LinearScale, BarElement, Title, Tooltip, Legend, RadialLinearScale } from 'chart.js';
