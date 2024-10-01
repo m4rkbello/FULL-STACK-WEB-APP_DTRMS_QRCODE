@@ -5,19 +5,20 @@ import React, { useEffect, useState, memo } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // ICONS
-import { FcFolder, FcOpenedFolder, FcPrevious, FcCancel } from "react-icons/fc";
+import { FcFolder, FcLeft, FcOpenedFolder, FcPrint, FcDataSheet, FcSearch, FcPlus, FcFile, FcPrevious, FcCancel } from "react-icons/fc";
 // REDUXISM
 import { fetchAttendances } from '../../redux/actions/attendanceAction';
 // TOASTER
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// MARCO GWAPO
 // ANALYTICS
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, ArcElement, LinearScale, BarElement, Title, Tooltip, Legend, RadialLinearScale } from 'chart.js';
 
 import DatePicker from 'react-datepicker'; // You may need to install this package
 import "react-datepicker/dist/react-datepicker.css";
+
+import { DownloadTableExcel } from 'react-export-table-to-excel';
 
 // Register all the necessary components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, RadialLinearScale);
@@ -68,7 +69,6 @@ const getGradient = (ctx) => {
   return gradient;
 };
 
-
   // Bar chart data with gradient background
   const chartDataCollections = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -105,10 +105,129 @@ const getGradient = (ctx) => {
       },
     },
   };
+
+      //PRINT-MODULE EMPLOYEES-ATTENDANCE
+      function printAllEmployeesAttendance() {
+        // Clone the table
+        var printTable = document.getElementById("employeesAttendancesDataList").cloneNode(true);
+    
+        // Remove the last column from the header row
+        var headerRow = printTable.querySelector("thead tr");
+        if (headerRow) {
+            headerRow.removeChild(headerRow.lastElementChild);
+        }
+    
+        // Remove the last column from each data row
+        var dataRows = printTable.querySelectorAll("tbody tr");
+        for (var i = 0; i < dataRows.length; i++) {
+            dataRows[i].removeChild(dataRows[i].lastElementChild);
+        }
+    
+        // Create a new window for printing
+        var printWindow = window.open('', '', 'height=600,width=800');
+        printWindow.document.write('<html><head><title>Print Attendance</title>');
+        printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid black; padding: 8px; text-align: left; } th { background-color: #f2f2f2; }</style>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(printTable.outerHTML);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close(); // Necessary for IE >= 10
+    
+        // Print and close the window after printing
+        printWindow.print();
+        printWindow.close();
+    }
+    
+
+
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-lg'>
-      <div className='flex justify-center'>
-        <div className="grid grid-cols-2 gap-8">
+    <div className="flex flex-wrap">
+    <div>
+        <div className="text-sm breadcrumbs mb-10 bg-transparent">
+            <ul>
+                <li>
+                    <FcLeft
+                        style={{
+                            backgroundColor: "transparent",
+                            color: "black",
+                            height: "35px",
+                            width: "35px",
+                        }}
+                    />
+                    <Link to="/" className='hover:text-white'>Home</Link>
+                </li>
+                <li>
+                    <FcOpenedFolder
+                        style={{
+                            backgroundColor: "transparent",
+                            color: "black",
+                            height: "25px",
+                            width: "25px",
+                        }}
+                    />
+                    <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
+                </li>
+                <li>
+                    <span className="inline-flex gap-2 items-center">
+                        <FcFile
+                            style={{
+                                backgroundColor: "transparent",
+                                color: "black",
+                                height: "25px",
+                                width: "25px",
+                            }}
+                        />
+                        <Link to="" className='hover:text-white'>Employee Data</Link>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div className='glass shadow-slate-900/100'>
+<div className="grid bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+    <div>
+        <span className="inline-grid grid-cols-3 gap-4 py-5">
+            <div className="p-3 flex justify-start">
+                <input
+                    type="text"
+                    placeholder="Search"
+                    className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
+                />
+            </div>
+            <div className="p-3 flex justify-end">
+                <FcSearch style={{ height: "2rem", width: "2rem" }} />
+            </div>
+        </span>
+    </div>
+    <div className="flex justify-center">
+        <h1 className="font-bold text-4xl text-black text-center">EMPLOYEE ATTENDANCES</h1>
+    </div>
+    <div className="p-3 flex justify-end">
+        <DownloadTableExcel
+            filename="ExportEmployee"
+            sheet="users"
+            // currentTableRef={tableRef.current}
+        >
+            <button>
+                <FcDataSheet
+                    style={{ height: "2rem", width: "2rem" }}
+                /></button>
+        </DownloadTableExcel>
+        <button
+         onClick={printAllEmployeesAttendance}
+        >
+            <FcPrint
+                style={{ height: "2rem", width: "2rem" }}
+            />
+        </button>
+    </div>
+</div>
+</div>
+    
+    <div className='flex justify-center bg-black'>
+        <div className="grid grid-cols-2 gap-8 drop-shadow-md">
           <div>     
             <label className="block text-md font-medium text-gray-700">Start Date</label>
             <DatePicker
@@ -116,7 +235,7 @@ const getGradient = (ctx) => {
               onChange={date => setStartDate(date)}
               dateFormat="MM-dd-yyyy"
               maxDate={endDate}
-              className='space-y-4'
+              className='space-y-4 py-2 px-2'
             />
           </div>
           <div>
@@ -126,7 +245,7 @@ const getGradient = (ctx) => {
               onChange={date => setEndDate(date)}
               dateFormat="MM-dd-yyyy"
               minDate={startDate}
-              className='space-y-4'
+              className='space-y-4 px-2 py-2'
             />
           </div>
         </div>
@@ -138,9 +257,7 @@ const getGradient = (ctx) => {
         <ul className="list-disc pl-5"> 
           {filteredAttendanceCounts.map((count, index) => (
             <li key={index} className="text-md font-medium">
-
               {chartDataCollections.labels[index]}: 
-
               <spa className="text-violet-700 text-lg mx-2"> 
               {count} 
               </spa>
@@ -156,10 +273,10 @@ const getGradient = (ctx) => {
       <div className="mb-4">
         <h2 className="text-xl font-bold mb-2">Filtered Attendance Data</h2>
         <div className="overflow-x-auto">
-          <table className="min-w-full glass">
-            <thead className='bg-black text-white'>
-              <tr className=' '>
-              <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">No.</th>
+          <table  id="employeesAttendancesDataList" className="min-w-full glass rounded-b-lg">
+            <thead className='bg-black text-white rounded-b-lg'>
+              <tr className='rounded-b-lg'>
+                <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">No.</th>
                 <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Name</th>
                 <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Date</th>
                 <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Time-in(AM)</th>
@@ -169,15 +286,15 @@ const getGradient = (ctx) => {
                 <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Note</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-gray-200 rounded-b-lg">
               {attendanceDataObjectCollection
                 ?.filter(attendance => {
                   const createdAt = new Date(attendance.created_at);
                   return createdAt >= startDate && createdAt <= endDate;
                 })
                 .map(attendance => (
-                  <tr key={attendance.id}>
-                  <td className="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{}</td>
+                  <tr key={attendance.id} className='rounded-b-lg'>
+                  <td className="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-900"></td>
                     <td className="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.employee_fullname}</td>
                     <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
                     <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_in).toLocaleTimeString()}</td>
@@ -192,9 +309,9 @@ const getGradient = (ctx) => {
                 const createdAt = new Date(attendance.created_at);
                 return createdAt >= startDate && createdAt <= endDate;
               }).length === 0 && (
-                  <tr>
-                    <td colSpan="12" className="px-6 py-4 whitespace-nowrap text-md text-gray-500 text-center">
-                      <div className="flex items-center justify-center space-x-2">
+                  <tr className='rounded-b-lg'>
+                    <td colSpan="12" className="px-6 py-4 whitespace-nowrap text-md text-gray-500 text-center rounded-b-lg">
+                      <div className="flex items-center justify-center space-x-2 rounded-b-lg">
                         <span className='text-2xl'>No data available</span>
                         <FcCancel style={{ height: '3rem', width: '3rem' }} />
                       </div>
