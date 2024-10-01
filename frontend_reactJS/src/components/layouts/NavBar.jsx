@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 
-const NavBar = ({ isAuthenticated, isAuthenticatedUser }) => {
+const NavBar = ({ isAuthenticatedUser }) => {
     return (
         <div>
             <div className="flex-1 text-center md:text-left">
