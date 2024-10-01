@@ -31,7 +31,7 @@ const EmployeeDashboard = (props) => {
         employee_status_id: ''
     });
 
-    // 
+    //useEFFECT PARA SA SIDE-EFFECT 
     useEffect(() => {
         props.fetchEmployees();
         props.fetchImages();
@@ -123,7 +123,6 @@ const EmployeeDashboard = (props) => {
         return [...departmentsCollectionArrays];
     };
     
-
     const departments = fetchDepartments(departmentsCollectionArrays);
 
     //PRINT-MODULE EMPLOYEES-DATA
