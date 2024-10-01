@@ -30,9 +30,10 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
     fetchAttendances();
   }, [fetchAttendances]);
 
+  // Data collection
   const attendanceDataObjectCollection = attendancesData?.attendances?.data?.details;
 
-  // Function to transform data by month within a specific date range
+  // Transform data by month within the date range
   function getMonthlyAttendanceCounts(attendanceData, start, end) {
     const monthlyCounts = Array(12).fill(0); // Initialize an array for 12 months
 
@@ -49,8 +50,11 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
     return monthlyCounts;
   }
 
-  // Ensure dates are valid and filter data
+  // Filter and count attendance based on date range
   const filteredAttendanceCounts = getMonthlyAttendanceCounts(attendanceDataObjectCollection, startDate, endDate);
+
+  // Calculate total attendance across all months
+  const totalAttendanceCount = filteredAttendanceCounts.reduce((acc, count) => acc + count, 0);
 
   const chartDataCollections = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -77,77 +81,68 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
         font: {
           size: 20,
           weight: 'bold',
-          family: 'Arial'
+          family: 'Arial',
         },
-        color: 'black'
-      }
+        color: 'black',
+      },
     },
   };
 
   return (
-    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
-      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100">
-        <div className="flex items-center text-sm breadcrumbs">
-          <ul className="flex space-x-4">
-            <li>
-              <Link to="/" className='flex items-center hover:text-white'>
-                <FcPrevious style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Home</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/employee/dashboard" className='flex items-center hover:text-white'>
-                <FcFolder style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Attendances</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="" className='flex items-center hover:text-white'>
-                <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Data</span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-
+    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-lg'>
       <div className='flex justify-center'>
         <div className="grid grid-cols-2 gap-8">
-          <div>      <label className="block text-md font-medium text-gray-700">Start Date</label>
+          <div>     
+            <label className="block text-md font-medium text-gray-700">Start Date</label>
             <DatePicker
               selected={startDate}
               onChange={date => setStartDate(date)}
               dateFormat="MM-dd-yyyy"
-              maxDate={endDate} // Ensure start date is not after end date
+              maxDate={endDate}
               className='space-y-4'
-            /></div>
-
-          <div>        <label className="block text-md font-medium text-gray-700">End Date</label>
+            />
+          </div>
+          <div>
+            <label className="block text-md font-medium text-gray-700">End Date</label>
             <DatePicker
               selected={endDate}
               onChange={date => setEndDate(date)}
               dateFormat="MM-dd-yyyy"
-              minDate={startDate} // Ensure end date is not before start date
+              minDate={startDate}
               className='space-y-4'
             />
           </div>
         </div>
       </div>
-      
+
+      {/* Display Monthly Totals */}
+      <div className="mb-4">
+        <h2 className="text-xl font-bold mb-2">Monthly Attendance Totals</h2>
+        <ul className="list-disc pl-5">
+          {filteredAttendanceCounts.map((count, index) => (
+            <li key={index} className="text-md font-medium">
+              {chartDataCollections.labels[index]}: {count} attendance(s)
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4">
+          <h3 className="text-lg font-bold">Total Attendance: {totalAttendanceCount}</h3>
+        </div>
+      </div>
+
       <div className="mb-4">
         <h2 className="text-xl font-bold mb-2">Filtered Attendance Data</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full glass">
             <thead className='bg-black text-white'>
               <tr className=' '>
-                <th className="px-3 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Name</th>
-                <th className="px-3 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Date</th>
-                <th className="px-3 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-in(AM)</th>
-                <th className="px-3 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-in Log</th>
-                <th className="px-3 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-out(PM)</th>
-                <th className="px-3 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Time-out Log</th>
-                <th className="px-3 py-3 text-left text-md font-medium text-white uppercase tracking-wider">Note</th>
+                <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Name</th>
+                <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Date</th>
+                <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Time-in(AM)</th>
+                <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Time-in Log</th>
+                <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Time-out(PM)</th>
+                <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Time-out Log</th>
+                <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Note</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -158,13 +153,13 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
                 })
                 .map(attendance => (
                   <tr key={attendance.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.employee_fullname}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_in).toLocaleTimeString()}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_in}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_out).toLocaleTimeString()}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_out}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_note}</td>
+                    <td className="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.employee_fullname}</td>
+                    <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
+                    <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_in).toLocaleTimeString()}</td>
+                    <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_in}</td>
+                    <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_out).toLocaleTimeString()}</td>
+                    <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_time_out}</td>
+                    <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{attendance.attendance_note}</td>
                   </tr>
                 ))
               }
@@ -186,38 +181,25 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
         </div>
       </div>
 
-      <div className="diff aspect-[16/9] shadow-xl">
-        <div className="diff-item-1">
-          <div className="glass text-primary-content grid place-content-center text-9xl font-black shadow-xl">
-            <Bar
-              key={`${startDate}-${endDate}`}
-              options={BarChartOptions}
-              data={chartDataCollections}
-            />
-          </div>
-        </div>
-        <div className="diff-item-2">
-          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-7xl font-black shadow-xl">BAR GRAPH</div>
-        </div>
-        <div className="diff-resizer"></div>
+      {/* Attendance Chart */}
+      <div className="aspect-[16/9] shadow-xl">
+        <Bar
+          key={`${startDate}-${endDate}`}
+          options={BarChartOptions}
+          data={chartDataCollections}
+        />
       </div>
       <ToastContainer />
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    attendancesData: state.attendanceState,
-  }
-};
+const mapStateToProps = (state) => ({
+  attendancesData: state.attendanceState,
+});
 
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchAttendances: () => dispatch(fetchAttendances()),
-  }
-};
-
+const mapDispatchToProps = (dispatch) => ({
+  fetchAttendances: () => dispatch(fetchAttendances()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(EmployeeAttendance));
