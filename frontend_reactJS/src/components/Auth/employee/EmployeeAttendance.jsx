@@ -56,15 +56,33 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
   // Calculate total attendance across all months
   const totalAttendanceCount = filteredAttendanceCounts.reduce((acc, count) => acc + count, 0);
 
+  // Function to create gradient color matching the Tailwind bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500
+const getGradient = (ctx) => {
+  const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height); 
+
+  // Add color stops to match the Tailwind gradient
+  gradient.addColorStop(0.3, 'rgba(99, 102, 241, 1)');  // indigo-500 (from-10%)
+  gradient.addColorStop(0.6, 'rgba(14, 165, 233, 1)');  // sky-500 (via-30%)
+  gradient.addColorStop(0.9, 'rgba(16, 185, 129, 1)');  // emerald-500 (to-90%)
+
+  return gradient;
+};
+
+
+  // Bar chart data with gradient background
   const chartDataCollections = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     datasets: [
       {
         label: 'Total Attendance',
         data: filteredAttendanceCounts,
-        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        backgroundColor: function (context) {
+          const chart = context.chart;
+          const { ctx } = chart;  // Get chart context
+          return getGradient(ctx); // Apply the gradient function
+        },
         borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 2,
+        borderWidth: 3,
       },
     ],
   };
@@ -87,7 +105,6 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
       },
     },
   };
-
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-lg'>
       <div className='flex justify-center'>
@@ -118,10 +135,16 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
       {/* Display Monthly Totals */}
       <div className="mb-4">
         <h2 className="text-xl font-bold mb-2">Monthly Attendance Totals</h2>
-        <ul className="list-disc pl-5">
+        <ul className="list-disc pl-5"> 
           {filteredAttendanceCounts.map((count, index) => (
             <li key={index} className="text-md font-medium">
-              {chartDataCollections.labels[index]}: {count} attendance(s)
+
+              {chartDataCollections.labels[index]}: 
+
+              <spa className="text-violet-700 text-lg mx-2"> 
+              {count} 
+              </spa>
+              attendance(s)
             </li>
           ))}
         </ul>
@@ -136,6 +159,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
           <table className="min-w-full glass">
             <thead className='bg-black text-white'>
               <tr className=' '>
+              <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">No.</th>
                 <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Name</th>
                 <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Date</th>
                 <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">Time-in(AM)</th>
@@ -153,6 +177,7 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
                 })
                 .map(attendance => (
                   <tr key={attendance.id}>
+                  <td className="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{}</td>
                     <td className="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.employee_fullname}</td>
                     <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
                     <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_in).toLocaleTimeString()}</td>
