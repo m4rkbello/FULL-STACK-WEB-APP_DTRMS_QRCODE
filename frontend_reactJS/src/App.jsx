@@ -110,7 +110,6 @@ function App(props) {
   }
 
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
-
   return (
     <div className="flex flex-col h-screen">
       <div className="navbar bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 px-0 py-0 md:px-8 md:py-4 border-r-4 border-black">
