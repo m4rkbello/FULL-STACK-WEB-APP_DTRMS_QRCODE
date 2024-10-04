@@ -46,7 +46,7 @@ const EmployeeDashboard = (props) => {
         return [...employeesCollectionArrays];
     }, [employeesCollectionArrays]);
 
-    
+
     const employeesList = getAllEmployees(employeesCollectionArrays);
 
     const imageCollectionArrays = props.imagesData?.images?.data;
@@ -122,7 +122,7 @@ const EmployeeDashboard = (props) => {
     const fetchDepartments = (departmentsCollectionArrays = []) => {
         return [...departmentsCollectionArrays];
     };
-    
+
     const departments = fetchDepartments(departmentsCollectionArrays);
 
     //PRINT-MODULE EMPLOYEES-DATA
@@ -507,7 +507,6 @@ const mapDispatchToProps = (dispatch) => {
         fetchDepartments: () => dispatch(fetchDepartments()),
     };
 };
-
 
 const MemoizedEmployeeDashboard = memo(EmployeeDashboard);
 
