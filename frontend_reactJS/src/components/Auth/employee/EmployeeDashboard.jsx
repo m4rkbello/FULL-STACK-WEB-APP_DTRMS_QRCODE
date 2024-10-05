@@ -508,6 +508,8 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
+
+
 const MemoizedEmployeeDashboard = memo(EmployeeDashboard);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemoizedEmployeeDashboard);
