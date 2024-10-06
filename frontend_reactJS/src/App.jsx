@@ -112,7 +112,7 @@ function App(props) {
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
   return (
     <div className="flex flex-col h-screen">
-      <div className="navbar bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 px-0 py-0 md:px-8 md:py-4 border-r-4 border-black">
+      <div className="navbar bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 border-r-4 border-black">
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
             <NavBar isAuthenticatedUser={isAuthenticatedUser} />
@@ -132,21 +132,7 @@ function App(props) {
             (cookiesData?.length ?? 0) > 0 ? (
             <>
               <div className="dropdown dropdown-end">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    {isAuthenticatedUser &&
-                      isAuthenticatedUser.map((user, index) => (
-                        <img
-                          key={index}
-                          alt="No Upload User Profile"
-                          src={user.user_image}
-                        />
-                      ))}
-                  </div>
-                </div>
+  
                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-box w-52">
                   {/* Profile */}
                   <li>
