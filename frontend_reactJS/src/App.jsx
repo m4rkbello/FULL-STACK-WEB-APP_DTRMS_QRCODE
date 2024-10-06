@@ -78,17 +78,19 @@ function App(props) {
   }, []);
 
   const destroyAuthentications = () => {
+    // Clear localStorage and sessionStorage
     localStorage.clear();
     sessionStorage.clear();
-    // Remove cookies
+
+    // Remove all cookies
     document.cookie.split(';').forEach((cookie) => {
       document.cookie = cookie
-        .replace(/^ +/, '')
-        .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+        .replace(/^ +/, '') // Remove spaces before the cookie
+        .replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/;`); // Set expiration to delete cookie
     });
 
+    // Navigate to login page after clearing authentication data
     window.location.reload();
-    navigate("/");
   };
 
   // const usersCollection = props && props.users && props.users.data;
@@ -115,7 +117,7 @@ function App(props) {
       <div className="navbar bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 border-r-4 border-black">
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
-            <NavBar isAuthenticatedUser={isAuthenticatedUser} />
+            <NavBar isAuthenticatedUser={isAuthenticatedUser} destroyAuthentications={destroyAuthentications} />
           </>
         ) : (
           <>
