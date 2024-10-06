@@ -92,7 +92,6 @@ class AuthController extends Controller
         }
     }
     
-
     public function login(Request $request){
         $data = $request->validate([
             'user_email' => 'required|string',
@@ -241,7 +240,6 @@ class AuthController extends Controller
     }
 
 
-//USER CHANG
     public function changePassword(Request $request, string $id)
     {
         $user = User::find($id);
@@ -263,6 +261,8 @@ class AuthController extends Controller
             'details' => $user,
         ]);
     }
+
+    
     
 
 
