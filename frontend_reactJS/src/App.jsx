@@ -43,6 +43,7 @@ import EmployeePersonalDetails from './components/Auth/employee/EmployeePersonal
 import ArchiveEmployee from './components/Auth/employee/EmployeeArchieve';
 import EmployeeAttendance from './components/Auth/employee/EmployeeAttendance';
 import EmployeeScanQRCode from './components/Auth/employee/EmployeeScanQRCode';
+import EmployeeLogin from './components/Auth/employee/EmployeeLogin';
 //REDUX-DISPATCH ACTIONS
 import { fetchUsers } from './components/redux/actions/userAction';
 import { fetchEmployees } from './components/redux/actions/employeeAction';
@@ -114,15 +115,21 @@ function App(props) {
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
   return (
     <div className="flex flex-col h-screen">
-      <div className="navbar bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 border-r-4 border-black">
+      <div className="navbar shadow-md bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-r-4 border-black">
         {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
           <>
             <NavBar isAuthenticatedUser={isAuthenticatedUser} destroyAuthentications={destroyAuthentications} />
           </>
         ) : (
           <>
-            <div className="flex-1">
-              <span className="btn btn-ghost text-4xl text-zinc-400 border-b-4 border-black">DTRMS+</span>
+            <div className="flex-1 my-0 mx-0">
+            <img src="https://i.ibb.co/7JHVynR/DTRMS-LOGO-removebg-preview.png" 
+           className="h-20 w-auto object-contain" 
+            
+            alt="DTRMS-LOGO-removebg-preview" border="0" />
+             {/*** 
+             <span className="btn btn-ghost bg-white text-4xl text-zinc-400 border-b-4 border-black">DTRMS+</span>
+              **/}
             </div>
           </>
         )}
@@ -135,7 +142,7 @@ function App(props) {
             <>
               <div className="dropdown dropdown-end">
   
-                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-box w-52">
+                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 rounded-box w-52">
                   {/* Profile */}
                   <li>
                     <span className="justify-between text-black">
@@ -182,12 +189,12 @@ function App(props) {
                   </Link>
                 </li>
                 <li className="text-2xl">
-                  <Link to="/admin/login">
+                  <Link to="/login">
                     <FaSignInAlt />
                   </Link>
                 </li>
                 <li className="text-2xl">
-                  <Link to="/admin/register">
+                  <Link to="/register">
                     <TiUserAddOutline />
                   </Link>
                 </li>
@@ -218,7 +225,9 @@ function App(props) {
                   <Route path="/admin/deduction/edit/:deductionId" element={<EditDeduction />} />
                   <Route path="/admin/departments" element={<Departments />} />
                   <Route path="/admin/department/edit/:departmentId" element={<EditDepartment />} />
-                  <Route path="/employee/register" element={<EmployeeRegister />} />
+                                
+                  <Route path="/login" element={<EmployeeLogin />} />
+                  <Route path="/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
                   <Route path="/employee/details/:employeeId" element={<EmployeePersonalDetails />} />
                   <Route path="/employee/archieve" element={<ArchiveEmployee />} />
@@ -233,6 +242,8 @@ function App(props) {
                 <Route path="/admin/register" element={<Register />} />
                 <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
                 <Route path="/" element={<PageNotFound />} />
+                <Route path="/login" element={<EmployeeLogin />} />
+                <Route path="/register" element={<EmployeeRegister />} />
               </Routes>
             )}
         </div>
