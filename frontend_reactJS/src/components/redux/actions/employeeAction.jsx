@@ -27,7 +27,6 @@ import {
 export const fetchEmployees = () => async (dispatch, getState) => {
     const { employeesData } = getState(); // Access current state
 
-    // Check if data was fetched within the last 60 seconds (1 minute)
     const oneMinute = 60000; 
     const currentTime = Date.now();
     const lastFetched = employeesData?.lastFetched;
@@ -38,7 +37,7 @@ export const fetchEmployees = () => async (dispatch, getState) => {
     // If the data was fetched within the last 1 minute, don't re-fetch
     if (lastFetched && currentTime - lastFetched < oneMinute) {
         console.log("Data fetched recently. Not refetching.");
-        return;
+        return; // Exit early to prevent re-fetch
     }
 
     try {
@@ -61,6 +60,7 @@ export const fetchEmployees = () => async (dispatch, getState) => {
         });
     }
 };
+
 
 
 //MAG ADD UG EMPLOYEE 
