@@ -17,7 +17,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import React, { useRef } from 'react';
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 
-
 const EmployeeDashboard = (props) => {
     const defaultImage = '../../../../public/miming.jpg';
     const tableRef = useRef(null);
@@ -495,6 +494,7 @@ const mapStateToProps = (state) => {
         imagesData: state.imageState,
         departmentsData: state.departmentState,
         loading: state.employeeState.loading,
+        lastFetched: state.employeeState.lastFetched,
     };
 };
 
