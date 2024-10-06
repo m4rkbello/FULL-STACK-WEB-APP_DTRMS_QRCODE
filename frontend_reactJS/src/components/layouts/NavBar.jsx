@@ -7,7 +7,7 @@ import { AiFillSetting } from "react-icons/ai"; // Importing settings icon
 
 const NavBar = ({ isAuthenticatedUser, destroyAuthentications }) => {
     return (
-        <div className="navbar bg-gradient-to-r from-indigo-700 from-10% via-sky-500 via-30% to-emerald-500 to-90% mx-0 my-0 py-0 px-0 bg-base-100">
+        <div className="navbar bg-gradient-to-r from-violet-700 from-10% via-sky-500 via-30% to-emerald-500 to-90% mx-0 my-0 py-0 px-0 bg-base-100">
         <img src="https://i.ibb.co/7JHVynR/DTRMS-LOGO-removebg-preview.png" className="h-16 w-auto object-contain border-4 bg-white"  alt="DTRMS-LOGO-removebg-preview" border="0" />
             <div className="flex-1 flex items-center">
                 {isAuthenticatedUser && isAuthenticatedUser.length > 0 && (
