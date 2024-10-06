@@ -13,9 +13,8 @@ import { FaRunning } from "react-icons/fa";
 import { FcDoughnutChart, FcOpenedFolder, FcHome, FcTimeline, FcMenu, FcExpired, FcCurrencyExchange, FcButtingIn, FcStatistics, FcManager, FcElectricalThreshold, FcComboChart, FcList, FcSettings, FcConferenceCall, FcReuse, FcDepartment, FcMoneyTransfer, FcOvertime, FcDebt, FcPortraitMode, FcSalesPerformance } from "react-icons/fc";
 //LAYOUTS
 const SideBar = ({ isAuthenticatedUser }) => {
-
   return (
-    <div className="drawer-side border-r-4 bg-white drop-shadow-lg">
+    <div className="drawer-side border-r-4 bg-black drop-shadow-lg">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
@@ -29,7 +28,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
           <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-0">
             <li>
               <details close>
-                <summary className='glass'>
+                <summary className='glass hover:bg-violet-800'>
                   <FcTimeline
                     style={{
                       height: "2.5rem",
@@ -42,7 +41,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                 </summary>
                 <ul>
                   <li>
-                    <Link to="/" className='text-2xl glass'>
+                    <Link to="/" className='text-2xl glass hover:bg-violet-800'>
                       <FcComboChart
                         style={{
                           height: "2rem",
@@ -55,7 +54,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/employee/attendance" className='text-2xl glass'>
+                    <Link to="/employee/attendance" className='text-2xl glass hover:bg-violet-800'>
                       <FcStatistics
                         style={{
                           height: "2rem",
@@ -68,7 +67,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/employee/dashboard" className='text-2xl glass'>
+                    <Link to="/employee/dashboard" className='text-2xl glass hover:bg-violet-800'>
                       <FcButtingIn
                         style={{
                           height: "2rem",
@@ -81,7 +80,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/employee/archieve" className='text-2xl glass'>
+                    <Link to="/employee/archieve" className='text-2xl glass hover:bg-violet-800'>
                       <FcReuse
                         style={{
                           height: "2rem",
@@ -94,7 +93,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/admin/departments" className='text-2xl glass'>
+                    <Link to="/admin/departments" className='text-2xl glass hover:bg-violet-800'>
                       <FcDepartment
                         style={{
                           height: "2rem",
@@ -107,7 +106,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/admin/payrolls" className='text-2xl glass'>
+                    <Link to="/admin/payrolls" className='text-2xl glass hover:bg-violet-800'>
                       <FcCurrencyExchange
                         style={{
                           height: "2rem",
@@ -120,7 +119,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/admin/rates" className='text-2xl glass'>
+                    <Link to="/admin/rates" className='text-2xl glass hover:bg-violet-800'>
                       <FcSalesPerformance
                         style={{
                           height: "2.5rem",
@@ -133,7 +132,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/admin/overtimes" className='text-2xl glass'>
+                    <Link to="/admin/overtimes" className='text-2xl glass hover:bg-violet-800'>
                       <FcOvertime
                         style={{
                           height: "2.5rem",
@@ -146,7 +145,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/admin/deductions" className='text-2xl glass'>
+                    <Link to="/admin/deductions" className='text-2xl glass hover:bg-violet-800'>
                       <FcExpired
                         style={{
                           height: "2.5rem",
@@ -162,7 +161,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </details>
             </li>
             <li>
-              <Link to="/dashboard" className='text-2xl glass'>
+              <Link to="/dashboard" className='text-2xl glass hover:bg-violet-800'>
                 <FcDoughnutChart
                   style={{
                     height: "2.5rem",
@@ -173,7 +172,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/employee/attendance" className='text-2xl glass'>
+              <Link to="/employee/attendance" className='text-2xl glass hover:bg-violet-800'>
                 <FcElectricalThreshold
                   style={{
                     height: "2.5rem",
@@ -184,7 +183,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/employee/dashboard" className='text-2xl glass'>
+              <Link to="/employee/dashboard" className='text-2xl glass hover:bg-violet-800'>
                 <FcConferenceCall
                   style={{
                     height: "2.5rem",
@@ -195,7 +194,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/employee/archieve" className='text-2xl glass'>
+              <Link to="/employee/archieve" className='text-2xl glass hover:bg-violet-800'>
                 <FcReuse
                   style={{
                     height: "2.5rem",
@@ -206,7 +205,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/admin/departments" className='text-2xl glass'>
+              <Link to="/admin/departments" className='text-2xl glass hover:bg-violet-800'>
                 <FcDepartment
                   style={{
                     height: "2.5rem",
@@ -217,7 +216,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/admin/payrolls" className='text-2xl glass'>
+              <Link to="/admin/payrolls" className='text-2xl glass hover:bg-violet-800'>
                 <FcMoneyTransfer
                   style={{
                     height: "2.5rem",
@@ -228,7 +227,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/admin/rates" className='text-2xl glass'>
+              <Link to="/admin/rates" className='text-2xl glass hover:bg-violet-800'>
                 <FcSalesPerformance
                   style={{
                     height: "2.5rem",
@@ -239,7 +238,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/admin/overtimes" className='text-2xl glass'>
+              <Link to="/admin/overtimes" className='text-2xl glass hover:bg-violet-800'>
                 <FcOvertime
                   style={{
                     height: "2.5rem",
@@ -250,7 +249,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/admin/deductions" className='text-2xl glass'>
+              <Link to="/admin/deductions" className='text-2xl glass hover:bg-violet-800'>
                 <FcDebt
                   style={{
                     height: "2.5rem",
@@ -263,7 +262,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
             <li>
               <details close>
                 <summary>
-                  <FcSettings
+                  <FcSettings className="text-2xl hover:bg-violet-800"
                     style={{
                       height: "2.5rem",
                       width: "2.5rem",
@@ -274,7 +273,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                   </span>
                 </summary>
                 <ul>
-                  <li>
+                  <li className="glass text-2xl hover:bg-violet-800">
                     <a>
                       <FcManager
                         style={{
@@ -287,7 +286,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                       </span>
                     </a>
                   </li>
-                  <li>
+                  <li className="glass text-2xl hover:bg-violet-800">
                     <a>
                       <FcList
                         style={{
@@ -300,7 +299,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                       </span>
                     </a>
                   </li>
-                  <li>
+                  <li className="glass text-2xl hover:bg-violet-800">
                     <a>
                       <FcList
                         style={{
