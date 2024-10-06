@@ -24,15 +24,6 @@ import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcOvertime, FcSea
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Dashboard = (props) => {
-  const ImageEmployeeGroup = '../../../../public/images/EmployeesGroup.png';
-  const ImageRate = '../../../../public/images/PersonRates.png';
-  const ImageDepartment = '../../../../public/images/department.png';
-  const ImageOvertime = '../../../../public/images/overtime.png';
-  const ImagePayroll = '../../../../public/images/payroll.png';
-  const ImageUser = '../../../../public/images/user.png';
-  const ImageAttendance = '../../../../public/images/attendance.png';
-  console.log("DATA SA DASHBOARD PROPS", props);
-
 
   //PARA SA USERS
   const usersDataObjectCollections = props?.usersData?.data;
@@ -134,6 +125,7 @@ const Dashboard = (props) => {
       count: items.length
     };
   }
+
   const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attendanceDataObjectCollection);
 
   //PARA SA DEDUCTIONS
