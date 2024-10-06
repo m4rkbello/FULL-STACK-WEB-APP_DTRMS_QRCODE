@@ -97,7 +97,7 @@ const Login = ({ loginUser }) => {
           <div className="form-control mt-6">
             <button
               onClick={handleLoginRequestAndResponse}
-              className="btn drop-shadow-2xl bg-gradient-to-r from-zinc-100 to-black-100 hover:from-black hover:to-zinc-400 text-black text-xl sm:text-2xl"
+              className="btn drop-shadow-2xl bg-gradient-to-r from-white to-sky-500 hover:from-white hover:to-violet-800 text-black text-xl sm:text-2xl"
             >
               Login
             </button>
@@ -113,10 +113,10 @@ const Login = ({ loginUser }) => {
         </form>
       </div>
     </div>
-  </div>
-    
+    </div>
+  
   )
-}
+};
 
 
 export default connect(null, { loginUser })(Login);
