@@ -58,16 +58,16 @@ const EmployeeAttendance = ({ fetchAttendances, attendancesData }) => {
   const totalAttendanceCount = filteredAttendanceCounts.reduce((acc, count) => acc + count, 0);
 
   // Function to create gradient color matching the Tailwind bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500
-const getGradient = (ctx) => {
-  const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height); 
+  const getGradient = (ctx) => {
+    const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
 
-  // Add color stops to match the Tailwind gradient
-  gradient.addColorStop(0.3, 'rgba(99, 102, 241, 1)');  // indigo-500 (from-10%)
-  gradient.addColorStop(0.6, 'rgba(14, 165, 233, 1)');  // sky-500 (via-30%)
-  gradient.addColorStop(0.9, 'rgba(16, 185, 129, 1)');  // emerald-500 (to-90%)
+    // Add color stops to match the Tailwind gradient
+    gradient.addColorStop(0.3, 'rgba(99, 102, 241, 1)');  // indigo-500 (from-10%)
+    gradient.addColorStop(0.6, 'rgba(14, 165, 233, 1)');  // sky-500 (via-30%)
+    gradient.addColorStop(0.9, 'rgba(16, 185, 129, 1)');  // emerald-500 (to-90%)
 
-  return gradient;
-};
+    return gradient;
+  };
 
   // Bar chart data with gradient background
   const chartDataCollections = {
@@ -106,136 +106,134 @@ const getGradient = (ctx) => {
     },
   };
 
-      //PRINT-MODULE EMPLOYEES-ATTENDANCE
-      function printAllEmployeesAttendance() {
-        // Clone the table
-        var printTable = document.getElementById("employeesAttendancesDataList").cloneNode(true);
-    
-        // Remove the last column from the header row
-        var headerRow = printTable.querySelector("thead tr");
-        if (headerRow) {
-            headerRow.removeChild(headerRow.lastElementChild);
-        }
-    
-        // Remove the last column from each data row
-        var dataRows = printTable.querySelectorAll("tbody tr");
-        for (var i = 0; i < dataRows.length; i++) {
-            dataRows[i].removeChild(dataRows[i].lastElementChild);
-        }
-    
-        // Create a new window for printing
-        var printWindow = window.open('', '', 'height=600,width=800');
-        printWindow.document.write('<html><head><title>Print Attendance</title>');
-        printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid black; padding: 8px; text-align: left; } th { background-color: #f2f2f2; }</style>');
-        printWindow.document.write('</head><body>');
-        printWindow.document.write(printTable.outerHTML);
-        printWindow.document.write('</body></html>');
-        printWindow.document.close(); // Necessary for IE >= 10
-    
-        // Print and close the window after printing
-        printWindow.print();
-        printWindow.close();
-    }
-    
+  //PRINT-MODULE EMPLOYEES-ATTENDANCE
+  function printAllEmployeesAttendance() {
+    // Clone the table
+    var printTable = document.getElementById("employeesAttendancesDataList").cloneNode(true);
 
+    // Remove the last column from the header row
+    var headerRow = printTable.querySelector("thead tr");
+    if (headerRow) {
+      headerRow.removeChild(headerRow.lastElementChild);
+    }
+
+    // Remove the last column from each data row
+    var dataRows = printTable.querySelectorAll("tbody tr");
+    for (var i = 0; i < dataRows.length; i++) {
+      dataRows[i].removeChild(dataRows[i].lastElementChild);
+    }
+
+    // Create a new window for printing
+    var printWindow = window.open('', '', 'height=600,width=800');
+    printWindow.document.write('<html><head><title>Print Attendance</title>');
+    printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid black; padding: 8px; text-align: left; } th { background-color: #f2f2f2; }</style>');
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(printTable.outerHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close(); // Necessary for IE >= 10
+
+    // Print and close the window after printing
+    printWindow.print();
+    printWindow.close();
+  }
 
   return (
     <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-lg'>
-    <div className="flex flex-wrap">
-    <div>
-        <div className="text-sm breadcrumbs mb-10 bg-transparent">
+      <div className="flex flex-wrap">
+        <div>
+          <div className="text-sm breadcrumbs mb-10 bg-transparent">
             <ul>
-                <li>
-                    <FcLeft
-                        style={{
-                            backgroundColor: "transparent",
-                            color: "black",
-                            height: "35px",
-                            width: "35px",
-                        }}
-                    />
-                    <Link to="/" className='hover:text-white'>Home</Link>
-                </li>
-                <li>
-                    <FcOpenedFolder
-                        style={{
-                            backgroundColor: "transparent",
-                            color: "black",
-                            height: "25px",
-                            width: "25px",
-                        }}
-                    />
-                    <Link to="/employee/dashboard" className='hover:text-white'>Employee Dashboard</Link>
-                </li>
-                <li>
-                    <span className="inline-flex gap-2 items-center">
-                        <FcFile
-                            style={{
-                                backgroundColor: "transparent",
-                                color: "black",
-                                height: "25px",
-                                width: "25px",
-                            }}
-                        />
-                        <Link to="" className='hover:text-white'>Employee Data</Link>
-                    </span>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div className='glass shadow-slate-900/100'>
-<div className="grid bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-    <div>
-        <span className="inline-grid grid-cols-3 gap-4 py-5">
-            <div className="p-3 flex justify-start">
-                <input
-                    type="text"
-                    placeholder="Search"
-                    className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
+              <li>
+                <FcLeft
+                  style={{
+                    backgroundColor: "transparent",
+                    color: "black",
+                    height: "35px",
+                    width: "35px",
+                  }}
                 />
-            </div>
-            <div className="p-3 flex justify-end">
+                <Link to="/" className='hover:text-white'>Home</Link>
+              </li>
+              <li>
+                <FcOpenedFolder
+                  style={{
+                    backgroundColor: "transparent",
+                    color: "black",
+                    height: "25px",
+                    width: "25px",
+                  }}
+                />
+                <Link to="/employee/attendances" className='hover:text-white'>Employee Attendances</Link>
+              </li>
+              <li>
+                <span className="inline-flex gap-2 items-center">
+                  <FcFile
+                    style={{
+                      backgroundColor: "transparent",
+                      color: "black",
+                      height: "25px",
+                      width: "25px",
+                    }}
+                  />
+                  <Link to="" className='hover:text-white'>Employee Data</Link>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className='glass shadow-slate-900/100'>
+        <div className="grid bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+          <div>
+            <span className="inline-grid grid-cols-3 gap-4 py-5">
+              <div className="p-3 flex justify-start">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="border-b-4 bg-transparent text-md rounded text-black custom-placeholder-text-color"
+                />
+              </div>
+              <div className="p-3 flex justify-end">
                 <FcSearch style={{ height: "2rem", width: "2rem" }} />
-            </div>
-        </span>
-    </div>
-    <div className="flex justify-center">
-        <h1 className="font-bold text-4xl text-black text-center">EMPLOYEE ATTENDANCES</h1>
-    </div>
-    <div className="p-3 flex justify-end">
-        <DownloadTableExcel
-            filename="ExportEmployee"
-            sheet="users"
+              </div>
+            </span>
+          </div>
+          <div className="flex justify-center">
+            <h1 className="font-bold text-4xl text-black text-center">ATTENDANCES</h1>
+          </div>
+          <div className="p-3 flex justify-end">
+            <DownloadTableExcel
+              filename="ExportEmployee"
+              sheet="users"
             // currentTableRef={tableRef.current}
-        >
-            <button>
+            >
+              <button>
                 <FcDataSheet
-                    style={{ height: "2rem", width: "2rem" }}
+                  style={{ height: "2rem", width: "2rem" }}
                 /></button>
-        </DownloadTableExcel>
-        <button
-         onClick={printAllEmployeesAttendance}
-        >
-            <FcPrint
+            </DownloadTableExcel>
+            <button
+              onClick={printAllEmployeesAttendance}
+            >
+              <FcPrint
                 style={{ height: "2rem", width: "2rem" }}
-            />
-        </button>
-    </div>
-</div>
-</div>
-    
-    <div className='flex justify-center bg-black'>
-        <div className="grid grid-cols-2 gap-8 drop-shadow-md">
-          <div>     
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className='flex justify-center glass'>
+        <div className="grid grid-cols-2 gap-8 drop-shadow-md my-3">
+          <div>
             <label className="block text-md font-medium text-gray-700">Start Date</label>
             <DatePicker
               selected={startDate}
               onChange={date => setStartDate(date)}
               dateFormat="MM-dd-yyyy"
               maxDate={endDate}
-              className='space-y-4 py-2 px-2'
+              className='space-y-4 py-2 px-2 glass'
             />
           </div>
           <div>
@@ -245,7 +243,7 @@ const getGradient = (ctx) => {
               onChange={date => setEndDate(date)}
               dateFormat="MM-dd-yyyy"
               minDate={startDate}
-              className='space-y-4 px-2 py-2'
+              className='space-y-4 px-2 py-2 glass'
             />
           </div>
         </div>
@@ -254,26 +252,30 @@ const getGradient = (ctx) => {
       {/* Display Monthly Totals */}
       <div className="mb-4">
         <h2 className="text-xl font-bold mb-2">Monthly Attendance Totals</h2>
-        <ul className="list-disc pl-5"> 
+        <ul className="list-disc pl-5">
           {filteredAttendanceCounts.map((count, index) => (
             <li key={index} className="text-md font-medium">
-              {chartDataCollections.labels[index]}: 
-              <spa className="text-violet-700 text-lg mx-2"> 
-              {count} 
+              {chartDataCollections.labels[index]}:
+              <spa className="text-violet-700 text-lg mx-2">
+                {count}
               </spa>
               attendance(s)
             </li>
           ))}
         </ul>
         <div className="mt-4">
-          <h3 className="text-lg font-bold">Total Attendance: {totalAttendanceCount}</h3>
+          <h3 className="text-lg font-bold">Total Attendance:
+            <span className='text-violet-600 text-2xl ml-3'>
+              {totalAttendanceCount}
+            </span>
+          </h3>
         </div>
       </div>
 
       <div className="mb-4">
         <h2 className="text-xl font-bold mb-2">Filtered Attendance Data</h2>
         <div className="overflow-x-auto">
-          <table  id="employeesAttendancesDataList" className="min-w-full glass rounded-b-lg">
+          <table id="employeesAttendancesDataList" className="min-w-full glass rounded-b-lg">
             <thead className='bg-black text-white rounded-b-lg'>
               <tr className='rounded-b-lg'>
                 <th className="px-1 py-1 text-left text-md font-medium text-white uppercase tracking-wider">No.</th>
@@ -294,7 +296,7 @@ const getGradient = (ctx) => {
                 })
                 .map(attendance => (
                   <tr key={attendance.id} className='rounded-b-lg'>
-                  <td className="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-900"></td>
+                    <td className="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-900"></td>
                     <td className="px-1 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.employee_fullname}</td>
                     <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.created_at).toLocaleDateString()}</td>
                     <td className="px-1 py-1 whitespace-nowrap text-sm text-gray-500">{new Date(attendance.attendance_time_in).toLocaleTimeString()}</td>
