@@ -15,7 +15,7 @@ import { FcDoughnutChart, FcOpenedFolder, FcHome, FcTimeline, FcMenu, FcExpired,
 //LAYOUTS
 import Content from './components/layouts/Content';
 import NavBar from './components/layouts/NavBar';
-import SideBar from './components/layouts/Sidebar';
+import SideBar from './components/layouts/SideBar';
 import Footer from './components/layouts/Footer';
 //ADMIN-ROUTES
 import Login from './components/Auth/admin/Login';
