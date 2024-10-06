@@ -36,7 +36,7 @@ const SideBar = ({ isAuthenticatedUser }) => {
                     }}
                   />
                   <span className='text-2xl'>
-                    MAIN
+                    GO TO
                   </span>
                 </summary>
                 <ul>
@@ -259,10 +259,10 @@ const SideBar = ({ isAuthenticatedUser }) => {
                 DEDUCTIONS
               </Link>
             </li>
-            <li>
+            <li className="glass text-2xl hover:bg-violet-800">
               <details close>
-                <summary>
-                  <FcSettings className="text-2xl hover:bg-violet-800"
+                <summary className="glass text-2xl hover:bg-violet-800">
+                  <FcSettings className="glass text-2xl hover:bg-violet-800"
                     style={{
                       height: "2.5rem",
                       width: "2.5rem",
