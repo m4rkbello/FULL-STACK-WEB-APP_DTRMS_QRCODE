@@ -112,25 +112,23 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           resultCountAllDeductionsPopulations.count
         ],
         backgroundColor: [
-          'rgba(99, 102, 241, 0.6)',  // Indigo
-          'rgba(14, 165, 233, 0.6)',  // Sky
+          'rgba(99, 102, 241, 0.6)',  // viole-from-violet-800       'rgba(14, 165, 233, 0.6)',  // Sky
           'rgba(16, 185, 129, 0.6)',  // Emerald
           'rgba(75, 192, 192, 0.6)',  // Green (unchanged)
           'rgba(153, 102, 255, 0.6)', // Purple (unchanged)
           'rgba(255, 159, 64, 0.6)',  // Orange (unchanged)
           'rgba(199, 199, 1, 1)',     // Gold (unchanged)
           'rgba(245, 187, 145, 0.8)',  // Custom light brown
-          'rgba(83, 102, 255, 0.6)',  // Indigo (unchanged)
+          'rgba(83, 102, 255, 0.6)',  // violet-from-violet-800changed)
         ],
         borderColor: [
-          'rgba(99, 102, 241, 1)',  // Indigo
-          'rgba(14, 165, 233, 1)',  // Sky
+          'rgba(99, 102, 241, 1)',  // viole-from-violet-800       'rgba(14, 165, 233, 1)',  // Sky
           'rgba(16, 185, 129, 1)',  // Emerald
           'rgba(75, 192, 192, 1)',  // Green (unchanged)
           'rgba(153, 102, 255, 1)', // Purple (unchanged)
           'rgba(255, 159, 64, 1)',  // Orange (unchanged)
           'rgba(199, 199, 1, 1)',   // Gold (unchanged)
-          'rgba(83, 102, 255, 1)',  // Indigo (unchanged)
+          'rgba(83, 102, 255, 1)',  // violet-from-violet-800changed)
         ],
         borderWidth: 1,
       },
@@ -244,7 +242,7 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
         <div className="diff-item-2">
-        <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">BAR GRAPH</div>
+        <div className="bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">BAR GRAPH</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
@@ -256,7 +254,7 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
         <div className="diff-item-2">
-          <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">DOUGHNUT GRAPH</div>
+          <div className="bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">DOUGHNUT GRAPH</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
@@ -268,14 +266,14 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
         <div className="diff-item-2">
-        <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">POLARIZE DATA</div>
+        <div className="bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">POLARIZE DATA</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
       <br />
 
       <div className="grid mx-auto grid-rows-4 grid-flow-col gap-8 pt-0 mt-0 pb-0 mb-0 shadow-xl rounded-lg">
-        <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
@@ -300,7 +298,7 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
 
-        <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
@@ -325,7 +323,7 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
 
-        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <div className="card card-side bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
@@ -350,7 +348,7 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
 
-        <div className="mx-auto card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <div className="mx-auto card card-side bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
@@ -375,7 +373,7 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
 
-        <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <div className="mx-auto card card-side m-text-center bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               className='h-3/5'
@@ -399,7 +397,7 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
 
-        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <div className="card card-side bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               src="https://i.ibb.co/LgbMBkk/payroll.png"
@@ -425,7 +423,7 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
 
-        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <div className="card card-side bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               src="https://i.ibb.co/4gLfqsd/overtime.png"
@@ -451,7 +449,7 @@ const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deducti
           </div>
         </div>
 
-        <div className="card card-side bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-xl">
+        <div className="card card-side bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% shadow-xl">
           <figure className='px-7 py-2 mx-0 shadow-xl bg-white'>
             <img
               src="https://i.ibb.co/LgbMBkk/payroll.png"
