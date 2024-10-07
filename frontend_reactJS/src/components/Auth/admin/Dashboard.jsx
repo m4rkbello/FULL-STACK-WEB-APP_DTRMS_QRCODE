@@ -24,7 +24,7 @@ import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcOvertime, FcSea
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Dashboard = (props) => {
-
+  console.log("DATA SA PROPS", props);
   //PARA SA USERS
   const {data: {details: usersDataObjectCollections = []} = {}} = props?.usersData?.data || {};
   const countAllUsersPopulations = (usersData = []) => ({
@@ -51,6 +51,7 @@ const Dashboard = (props) => {
     count: ratesData.length
   });
   const resultCountAllRatesPopulations = countAllRatesPopulations(ratesDataObjectCollection);
+  console.log("DATA SA resultCountAllRatesPopulations", resultCountAllRatesPopulations);
 
   //PARA SA DEPARTMENTS - ES6(Arrow Fn/Distructuring/Spread Operator)
   const {data: {details: departmentsDataObjectCollection = [] } = {} } = props?.departmentsData?.departments?.data?.details || {};
