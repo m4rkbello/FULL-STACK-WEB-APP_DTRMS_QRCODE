@@ -25,76 +25,139 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const Dashboard = (props) => {
   console.log("DATA SA PROPS", props);
+
   //PARA SA USERS
-  const {data: {details: usersDataObjectCollections = []} = {}} = props?.usersData?.data || {};
-  const countAllUsersPopulations = (usersData = []) => ({
-    items: [...usersData],
-    count: usersData.length,
-  });
- 
+  const usersDataObjectCollections = props?.usersData?.data;
+  function countAllUsersPopulations(usersDataObjectCollections) {
+    let items = [];
+    if (Array.isArray(usersDataObjectCollections) && usersDataObjectCollections.length > 0) {
+      for (let ez = 0; ez < usersDataObjectCollections.length; ez++) {
+        items.push(usersDataObjectCollections[ez]);
+      }
+    }
+
+    return {
+      items,
+      count: items.length
+    };
+  }
   const resultCountAllUsersPopulation = countAllUsersPopulations(usersDataObjectCollections);
 
-  //PARA SA EMPLOYEES - ES6(Arrow Fn/Distructuring/Spread Operator)
-  const {data: {details: employeeDataObjectCollections = []} = {}} = props?.employeesData?.employees?.data || {};
-  const countAllEmployeesPopulations = (employeesData = []) => ({
-    items: [...employeesData],
-    count: employeesData.length,
-  });
-  
+  //PARA SA EMPLOYEES POPULATIONS!
+  const employeeDataObjectCollections = props?.employeesData?.employees?.data;
+    function countAllEmployeesPopulations(employeeDataObjectCollections) {
+      let items = [];
+      if (Array.isArray(employeeDataObjectCollections) && employeeDataObjectCollections.length > 0) {
+        for (let ez = 0; ez < employeeDataObjectCollections.length; ez++) {
+          items.push(employeeDataObjectCollections[ez]);
+        }
+      }
+      //FOR COUNT PURPOSES
+      return {
+        items,
+        count: items.length
+      };
+    }
+    const resultcountAllEmployeesPopulations = countAllEmployeesPopulations(employeeDataObjectCollections);
 
-  const resultcountAllEmployeesPopulations = countAllEmployeesPopulations(employeeDataObjectCollections);
 
-  //PARA SA RATES - ES6(Arrow Fn/Distructuring/Spread Operator)
-  const {data: {datails: ratesDataObjectCollection = []} = {} } = props?.ratesData?.rates || {};
-  const countAllRatesPopulations = (ratesData = []) => ({
-    items: [...ratesData],
-    count: ratesData.length
-  });
+  //PARA SA RATES
+  const ratesDataObjectCollection = props?.ratesData?.rates;
+  function countAllRatesPopulations(ratesDataObjectCollection) {
+    let items = [];
+    if (Array.isArray(ratesDataObjectCollection) && ratesDataObjectCollection.length != 0) {
+      for (let ez = 0; ez < ratesDataObjectCollection.length; ez++) {
+        items.push(ratesDataObjectCollection[ez]);
+      }
+    }
+    return {
+      items,
+      count: items.length
+    };
+  }
   const resultCountAllRatesPopulations = countAllRatesPopulations(ratesDataObjectCollection);
-  console.log("DATA SA resultCountAllRatesPopulations", resultCountAllRatesPopulations);
 
-  //PARA SA DEPARTMENTS - ES6(Arrow Fn/Distructuring/Spread Operator)
-  const {data: {details: departmentsDataObjectCollection = [] } = {} } = props?.departmentsData?.departments?.data?.details || {};
-  const countAllDepartmentsPopulations = (departmentsData = []) => ({
-    items: [...departmentsData],
-    count: departmentsData.length,
-  });
+  //PARA SA DEPARTMENTS
+  const departmentsDataObjectCollection = props?.departmentsData?.departments?.data?.details;
+  function countAllDepartmentsPopulations(departmentsDataObjectCollection) {
+    let items = [];
+    if (Array.isArray(departmentsDataObjectCollection) && departmentsDataObjectCollection.length !== 0) {
+      for (let i = 0; i < departmentsDataObjectCollection.length; i++) {
+        items.push(departmentsDataObjectCollection[i]);
+      }
+    }
+    return {
+      items,
+      count: items.length
+    };
+  }
   const resultCountAllDepartmentsPopulations = countAllDepartmentsPopulations(departmentsDataObjectCollection);
 
-  //PARA SA PAYROLLS - ES6(Arrow Fn/Distructuring/Spread Operator)
-const { data: { details: payrollsDataObjectCollection = [] } = {} } = props?.payrollsData?.payrolls || {};
-const countAllPayrollsPopulations = (payrollsData = []) => ({
-  items: [...payrollsData],
-  count: payrollsData.length,
-});
+  //PARA SA PAYROLLS
+  const payrollsDataObjectCollection = props?.payrollsData?.payrolls?.data?.details;
+  function countAllPayrollsPopulations(payrollsDataObjectCollection) {
+    let items = [];
+    if (Array.isArray(payrollsDataObjectCollection) && payrollsDataObjectCollection.length != 0) {
+      for (let ez = 0; ez < payrollsDataObjectCollection.length; ez++) {
+        items.push(payrollsDataObjectCollection[ez]);
+      }
+    }
+    return {
+      items,
+      count: items.length
+    };
+  }
 
-// Count All Payrolls Populations
 const resultCountAllPayrollsPopulation = countAllPayrollsPopulations(payrollsDataObjectCollection);
 
-  //PARA SA ATTENDANCES - ES6(Arrow Fn/Distructuring/Spread Operator)
-  const { data: { details: attendanceDataObjectCollection } = {} } = props?.attendancesData?.attendances?.data?.details || {};
-  const countAllAttendancesPopulations = (attendancesData = []) => ({
-      items: [...attendancesData],
-      count: attendancesData.length
-    });
-  const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attendanceDataObjectCollection);
+ //PARA SA ATTENDANCES
+  const attendanceDataObjectCollection = props?.attendancesData?.attendances?.data?.details;
+  function countAllAttendancesPopulations(attendanceDataObjectCollection) {
+    let items = [];
+    if (Array.isArray(attendanceDataObjectCollection) && attendanceDataObjectCollection.length > 0) {
+      for (let ez = 0; ez < attendanceDataObjectCollection.length; ez++) {
+        items.push(attendanceDataObjectCollection[ez]);
+      }
+    }
+    return {
+      items,
+      count: items.length
+    };
+  }
 
+const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attendanceDataObjectCollection);
 
 //PARA SA DEDUCTIONS - ES6(Arrow Fn/Distructuring/Spread Operator)
-const { data: { details: deductionDataObjectCollection } = {} } = props?.deductionsData?.deductions?.data?.details || {};
-const countAllDeductionPopulations = (deductionsData = []) => ({
-    items: [...deductionsData],
-    count: deductionsData.length,
-});
+  //PARA SA DEDUCTIONS
+  const deductionDataObjectCollection = props?.deductionsData?.deductions?.data?.details;
+  function countAllDeductionPopulations(deductionDataObjectCollection) {
+    let items = [];
+    if (Array.isArray(deductionDataObjectCollection) && deductionDataObjectCollection.length > 0) {
+      for (let ez = 0; ez < deductionDataObjectCollection.length; ez++) {
+        items.push(deductionDataObjectCollection[ez]);
+      }
+    }
+    return {
+      items,
+      count: items.length
+    };
+  }
 const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deductionDataObjectCollection);
 
+const overtimeDataObjectCollection = props?.overtimesData?.overtimes?.data?.details;
+function countAllOvertimePopulations(overtimeDataObjectCollection) {
+  let items = [];
+  if (Array.isArray(overtimeDataObjectCollection) && overtimeDataObjectCollection.length > 0) {
+    for (let ez = 0; ez < overtimeDataObjectCollection.length; ez++) {
+      items.push(overtimeDataObjectCollection[ez]);
+    }
+  }
 
-//PARA SA OVERTIMES - ES6(Arrow Fn/Distructuring/Spread Operator)
-  const { data: { details: overtimeDataObjectCollection } = {} } = props?.overtimesData?.overtimes || {};
-  const countAllOvertimePopulations = (overtimeData = []) => ({
-      items: [...overtimeData],
-      count: overtimeData.length,
-  });
+  return {
+    items,
+    count: items.length
+  };
+}
   const resultCountAllOvertimesPopulations = countAllOvertimePopulations(overtimeDataObjectCollection);
 
   const chartDataCollections = {
