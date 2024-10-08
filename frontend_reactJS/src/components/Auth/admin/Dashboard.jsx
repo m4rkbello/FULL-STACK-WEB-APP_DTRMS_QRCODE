@@ -45,20 +45,20 @@ const Dashboard = (props) => {
 
   //PARA SA EMPLOYEES POPULATIONS!
   const employeeDataObjectCollections = props?.employeesData?.employees?.data;
-    function countAllEmployeesPopulations(employeeDataObjectCollections) {
-      let items = [];
-      if (Array.isArray(employeeDataObjectCollections) && employeeDataObjectCollections.length > 0) {
-        for (let ez = 0; ez < employeeDataObjectCollections.length; ez++) {
-          items.push(employeeDataObjectCollections[ez]);
-        }
+  function countAllEmployeesPopulations(employeeDataObjectCollections) {
+    let items = [];
+    if (Array.isArray(employeeDataObjectCollections) && employeeDataObjectCollections.length > 0) {
+      for (let ez = 0; ez < employeeDataObjectCollections.length; ez++) {
+        items.push(employeeDataObjectCollections[ez]);
       }
-      //FOR COUNT PURPOSES
-      return {
-        items,
-        count: items.length
-      };
     }
-    const resultcountAllEmployeesPopulations = countAllEmployeesPopulations(employeeDataObjectCollections);
+    //FOR COUNT PURPOSES
+    return {
+      items,
+      count: items.length
+    };
+  }
+  const resultcountAllEmployeesPopulations = countAllEmployeesPopulations(employeeDataObjectCollections);
 
 
   //PARA SA RATES
@@ -108,9 +108,9 @@ const Dashboard = (props) => {
     };
   }
 
-const resultCountAllPayrollsPopulation = countAllPayrollsPopulations(payrollsDataObjectCollection);
+  const resultCountAllPayrollsPopulation = countAllPayrollsPopulations(payrollsDataObjectCollection);
 
- //PARA SA ATTENDANCES
+  //PARA SA ATTENDANCES
   const attendanceDataObjectCollection = props?.attendancesData?.attendances?.data?.details;
   function countAllAttendancesPopulations(attendanceDataObjectCollection) {
     let items = [];
@@ -125,9 +125,9 @@ const resultCountAllPayrollsPopulation = countAllPayrollsPopulations(payrollsDat
     };
   }
 
-const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attendanceDataObjectCollection);
+  const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attendanceDataObjectCollection);
 
-//PARA SA DEDUCTIONS - ES6(Arrow Fn/Distructuring/Spread Operator)
+  //PARA SA DEDUCTIONS - ES6(Arrow Fn/Distructuring/Spread Operator)
   //PARA SA DEDUCTIONS
   const deductionDataObjectCollection = props?.deductionsData?.deductions?.data?.details;
   function countAllDeductionPopulations(deductionDataObjectCollection) {
@@ -142,22 +142,22 @@ const resultCountAllAttendancePopulation = countAllAttendancesPopulations(attend
       count: items.length
     };
   }
-const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deductionDataObjectCollection);
+  const resultCountAllDeductionsPopulations = countAllDeductionPopulations(deductionDataObjectCollection);
 
-const overtimeDataObjectCollection = props?.overtimesData?.overtimes?.data?.details;
-function countAllOvertimePopulations(overtimeDataObjectCollection) {
-  let items = [];
-  if (Array.isArray(overtimeDataObjectCollection) && overtimeDataObjectCollection.length > 0) {
-    for (let ez = 0; ez < overtimeDataObjectCollection.length; ez++) {
-      items.push(overtimeDataObjectCollection[ez]);
+  const overtimeDataObjectCollection = props?.overtimesData?.overtimes?.data?.details;
+  function countAllOvertimePopulations(overtimeDataObjectCollection) {
+    let items = [];
+    if (Array.isArray(overtimeDataObjectCollection) && overtimeDataObjectCollection.length > 0) {
+      for (let ez = 0; ez < overtimeDataObjectCollection.length; ez++) {
+        items.push(overtimeDataObjectCollection[ez]);
+      }
     }
-  }
 
-  return {
-    items,
-    count: items.length
-  };
-}
+    return {
+      items,
+      count: items.length
+    };
+  }
   const resultCountAllOvertimesPopulations = countAllOvertimePopulations(overtimeDataObjectCollection);
 
   const chartDataCollections = {
@@ -294,7 +294,7 @@ function countAllOvertimePopulations(overtimeDataObjectCollection) {
                 <span className="ml-0">Employees</span>
               </Link>
             </li>
-           
+
           </ul>
         </div>
       </div>
@@ -306,7 +306,7 @@ function countAllOvertimePopulations(overtimeDataObjectCollection) {
           </div>
         </div>
         <div className="diff-item-2">
-        <div className="bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">BAR GRAPH</div>
+          <div className="bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">BAR GRAPH</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
@@ -330,7 +330,7 @@ function countAllOvertimePopulations(overtimeDataObjectCollection) {
           </div>
         </div>
         <div className="diff-item-2">
-        <div className="bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">POLARIZE DATA</div>
+          <div className="bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-violet-800 to-90% grid place-content-center text-center text-9xl font-black shadow-xl">POLARIZE DATA</div>
         </div>
         <div className="diff-resizer"></div>
       </div>
