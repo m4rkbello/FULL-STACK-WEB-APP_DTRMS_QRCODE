@@ -50,8 +50,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
     public function images(){
         return $this->hasMany(Image::class, 'img_user_id');
     }
+
+    public function opensourceintelligence(){
+        return $this->hasMany(Opensourceintelligence::class, 'osint_user_id');
+    }
+
+
 }
