@@ -24,7 +24,6 @@ import { FcFolder, FcOpenedFolder, FcPlus, FcSalesPerformance, FcOvertime, FcSea
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Dashboard = (props) => {
-  console.log("DATA SA PROPS", props);
 
   //PARA SA USERS
   const usersDataObjectCollections = props?.usersData?.data;
