@@ -57,6 +57,7 @@ function App(props) {
   const [sessionStorageToken, setSessionStorageToken] = useState('');
   const [cookiesData, setCookiesData] = useState('');
 
+  //E GAWAS!
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -92,6 +93,7 @@ function App(props) {
 
     // Navigate to login page after clearing authentication data
     window.location.reload();
+    navigate('/')
   };
 
   // const usersCollection = props && props.users && props.users.data;
