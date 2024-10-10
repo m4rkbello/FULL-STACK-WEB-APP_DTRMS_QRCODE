@@ -24,22 +24,7 @@ import {
 
 
 //MAG-FETCH UG EMPLOYEES DATAS
-export const fetchEmployees = () => async (dispatch, getState) => {
-    const { employeesData } = getState(); // Access current state
-
-    const oneMinute = 60000; 
-    const currentTime = Date.now();
-    const lastFetched = employeesData?.lastFetched;
-
-    console.log("Current time:", currentTime);
-    console.log("Last fetched:", lastFetched);
-  
-    // If the data was fetched within the last 1 minute, don't re-fetch
-    if (lastFetched && currentTime - lastFetched < oneMinute) {
-        console.log("Data fetched recently. Not refetching.");
-        return; // Exit early to prevent re-fetch
-    }
-
+export const fetchEmployees = () => async dispatch => {
     try {
         dispatch({ type: FETCH_EMPLOYEES_REQUEST });
 
@@ -52,7 +37,7 @@ export const fetchEmployees = () => async (dispatch, getState) => {
             payload: employees
         });
     } catch (error) {
-        console.error("Error fetching employees:", error.message);
+        // console.error("Error fetching employees:", error.message);
 
         dispatch({
             type: FETCH_EMPLOYEES_FAILURE,
