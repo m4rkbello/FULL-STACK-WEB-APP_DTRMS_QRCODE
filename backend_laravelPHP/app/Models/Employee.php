@@ -32,5 +32,10 @@ class Employee extends Model
         return $this->belongsTo(Department::class, 'employee_department_id');
     }
 
+    public function opensourceintelligence(){
+        return $this->hasMany(Opensourceintelligence::class, 'osint_employee_id');
+    }
+
+
 
 }
