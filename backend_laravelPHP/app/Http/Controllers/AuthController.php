@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Opensourseintelligences;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -95,8 +96,11 @@ class AuthController extends Controller
     public function login(Request $request){
         $data = $request->validate([
             'user_email' => 'required|string',
-            'user_password' => 'required|string'
-            ]);
+            'user_password' => 'required|string',
+            'osint_public_ip' => 'nullable|string', // Change to string if IP is passed as a string
+            'osint_latitude' => 'nullable|numeric', // Use numeric for latitude
+            'osint_longitude' => 'nullable|numeric', // Use numeric for longitude
+        ]);
 
         $user = User::where('user_email', $data['user_email'])->first();
         $user_token_id = $user->id;
@@ -109,6 +113,15 @@ class AuthController extends Controller
         $token_data = $token->token;
 
         $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
+
+       // Create a new user
+       Opensourseintelligences::create([
+            'osint_public_ip' => $data['osint_public_ip'],
+            'osint_latitude' => $data['osint_latitude'],
+            'osint_longitude' => $data['osint_longitude'],
+            'osint_user_id' => $user_token_id,
+            'osint_empployee_id' => null,
+        ]);
 
         if(!$user || !hash::check($data['user_password'], $user->user_password)){
             return response([
