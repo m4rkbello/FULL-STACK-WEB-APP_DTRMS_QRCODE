@@ -20,7 +20,6 @@ const initialState = {
     employees: [],
     loading: false,
     error: null,
-    lastFetched: null,
     uploadAndUpdateImageLoadingEmployee: false,
     uploadAndUpdateImageEmployeeError: null,
 };
@@ -43,7 +42,6 @@ const employeeReducer = (state = initialState, action) => {
                 employees: action.payload,
                 loading: false,
                 error: null,
-                lastFetched: Date.now(),
             };
             case ADD_EMPLOYEE_SUCCESS:
                 return {
