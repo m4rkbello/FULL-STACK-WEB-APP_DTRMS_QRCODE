@@ -144,6 +144,7 @@ export const registerUser = userData => async dispatch => {
     try {
         dispatch({ type: REGISTER_USER_REQUEST });
         const registeredUser = await MarkBelloApi.post('/api/register', userData);
+        console.log("DATA SA userData", userData);
 
         
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
@@ -206,23 +207,24 @@ export const loginUser = userData => async dispatch => {
         const loggedInUser = response.data.token;
         const loggedInUserId = response.data.user_id;
 
+        console.log("DATA SA loginUser", response);
+
         localStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInUser);
         sessionStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInUser);
-        document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUser}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
         document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUser}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
 
         localStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInUserId);
         sessionStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInUserId);
         document.cookie = `DTRMS_BY_M4RKBELLO_USER_ID=${loggedInUserId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
-        document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUserId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
 
         console.log("DATA RESPONSE SA LOGIN NAAY TOKEN", loggedInUser);
         console.log("DATA RESPONSE SA LOGIN", loggedInUserId)
+        
         dispatch({
             type: LOGIN_USER_SUCCESS,
             payload: loggedInUser
         });
-        //Toaster sa login
+
         toast.success('Login successfully!🤭🤗😎', {
             position: 'top-right',
             autoClose: 5000,
