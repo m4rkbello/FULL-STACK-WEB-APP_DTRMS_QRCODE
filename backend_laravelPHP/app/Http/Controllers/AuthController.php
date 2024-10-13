@@ -54,7 +54,7 @@ class AuthController extends Controller
                 'user_firstname' => 'required|string',
                 'user_lastname' => 'required|string',
                 'user_email' => 'required|string|unique:users,user_email',
-                'user_contact_no' => 'required|string|max:11|unique:users,user_contact_no', // Add unique rule for contact number
+                'user_contact_no' => 'required|string|max:11|unique:users,user_contact_no', 
                 'user_password' => 'required|string|min:8'
             ]);
     
