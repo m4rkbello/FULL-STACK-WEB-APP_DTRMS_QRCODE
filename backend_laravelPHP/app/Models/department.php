@@ -16,5 +16,10 @@ class Department extends Model
         'department_employee_id'
     ];
 
+// Define the relationship to the Employee model
+public function employees()
+{
+    return $this->hasMany(Employee::class, 'employee_department_id');
+}
 
 }
