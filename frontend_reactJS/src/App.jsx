@@ -227,7 +227,6 @@ function App(props) {
                   <Route path="/admin/deduction/edit/:deductionId" element={<EditDeduction />} />
                   <Route path="/admin/departments" element={<Departments />} />
                   <Route path="/admin/department/edit/:departmentId" element={<EditDepartment />} />
-                                
                   <Route path="/login" element={<EmployeeLogin />} />
                   <Route path="/register" element={<EmployeeRegister />} />
                   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
