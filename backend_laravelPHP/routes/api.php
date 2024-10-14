@@ -31,7 +31,7 @@ Route::post('/login',[AuthController::class, 'login']);
 
 //EMPLOYEES
 Route::post('/authentication/employee/register',[AuthController::class, 'registerEmployee']);
-Route::post('/authentication/emoloyee/login',[AuthController::class, 'loginEmployee']);
+Route::post('/authentication/employee/login',[AuthController::class, 'loginEmployee']);
 
 
 Route::prefix('attendances')->group(function () {
