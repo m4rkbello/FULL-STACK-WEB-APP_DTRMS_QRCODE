@@ -12,15 +12,30 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'employee_fullname',
+        'employee_firstname',
+        'employee_middlename',
+        'employee_lastname',
+        'employee_extensionname',
+        'employee_username',
+        'employee_password',
         'employee_email',
         'employee_contact_no',
+        'employee_barangay',
+        'employee_municipality',
+        'employee_province',
+        'employee_region',
+        'employee_birthdate',
         'employee_position',
         'employee_role',
-        'employee_department_id',
-        'employee_status_id',
         'employee_image',
-        'employee_qrcode'
+        'employee_qrcode',
+        'employee_sss_no',
+        'employee_pagibig_no',
+        'employee_philhealth_no',
+        'employee_tin_no',
+        'employee_status_id',
+        'employee_civil_status_id',
+        'employee_department_id',
     ];
 
     public function attendances(){
@@ -33,9 +48,12 @@ class Employee extends Model
     }
 
     public function opensourceintelligence(){
-        return $this->hasMany(Opensourceintelligence::class, 'osint_employee_id');
+        return $this->hasMany(Opensourseintelligences::class, 'osint_employee_id');
     }
 
-
+    public function civilstatus()
+    {
+        return $this->belongsTo(Civilstatus::class, 'employee_civil_status_id'); // Correct this line
+    }
 
 }
