@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\User;
 use App\Models\Opensourseintelligences;
 use Illuminate\Http\Request;
@@ -275,12 +276,10 @@ class AuthController extends Controller
         ]);
     }
 
-
     //FOR EMPLOYEE REGISTRATION 
     public function registerEmployee(Request $request)
     {
         try {
-            // Validate incoming request data for employees
             $data = $request->validate([
                 'employee_firstname' => 'required|string',
                 'employee_middlename' => 'nullable|string',
@@ -308,52 +307,23 @@ class AuthController extends Controller
                 'employee_tin_no' => 'nullable|string|max:255'
             ]);
     
-            // Create a new employee
-            $employee = Employee::create([
-                'employee_firstname' => $data['employee_firstname'],
-                'employee_middlename' => $data['employee_middlename'],
-                'employee_lastname' => $data['employee_lastname'],
-                'employee_extensionname' => $data['employee_extensionname'],
-                'employee_username' => $data['employee_username'],
-                'employee_email' => $data['employee_email'],
-                'employee_contact_no' => $data['employee_contact_no'],
-                'employee_password' => bcrypt($data['employee_password']),
-                'employee_barangay' => $data['employee_barangay'],
-                'employee_municipality' => $data['employee_municipality'],
-                'employee_province' => $data['employee_province'],
-                'employee_region' => $data['employee_region'],
-                'employee_birthdate' => $data['employee_birthdate'],
-                'employee_civil_status_id' => $data['employee_civil_status_id'],
-                'employee_position' => $data['employee_position'],
-                'employee_role' => $data['employee_role'],
-                'employee_department_id' => $data['employee_department_id'],
-                'employee_status_id' => $data['employee_status_id'],
-                'employee_image' => $data['employee_image'],
-                'employee_qrcode' => $data['employee_qrcode'],
-                'employee_sss_no' => $data['employee_sss_no'],
-                'employee_pagibig_no' => $data['employee_pagibig_no'],
-                'employee_philhealth_no' => $data['employee_philhealth_no'],
-                'employee_tin_no' => $data['employee_tin_no']
-            ]);
+            $data['employee_password'] = bcrypt($data['employee_password']);
+            $employee = Employee::create($data);
     
-            // Generate an authentication token (optional, if needed)
             $token = $employee->createToken('employee_token')->plainTextToken;
     
-            // Prepare success response
             $response = [
                 'success' => true,
                 'employee' => $employee,
-                'token' => $token // if token creation is part of the process
+                'token' => $token
             ];
     
-            \Log::info("Employee Registration Successful", $response);
+            Log::info("Employee Registration Successful", $response);
             return response()->json($response, 201);
     
         } catch (\Exception $error) {
-            // Log the error message
-            \Log::error('Registration error: ' . $error->getMessage());
+            Log::error('Registration error: ' . $error->getMessage());
     
-            // Prepare error response
             return response()->json([
                 'success' => false,
                 'message' => 'Employee registration failed! ' . $error->getMessage(),
@@ -362,63 +332,59 @@ class AuthController extends Controller
         }
     }
     
-    public function loginEmployee(Request $request){
-        $data = $request->validate([
-            'user_email' => 'required|string',
-            'user_password' => 'required|string',
-            'osint_public_ip' => 'nullable|string', // Change to string if IP is passed as a string
-            'osint_latitude' => 'nullable|numeric', // Use numeric for latitude
-            'osint_longitude' => 'nullable|numeric', // Use numeric for longitude
-        ]);
+    public function loginEmployee(Request $request)
+    {
+        try {
+            $data = $request->validate([
+                'employee_email' => 'required|string|email',
+                'employee_password' => 'required|string',
+                'osint_public_ip' => 'nullable|string',
+                'osint_latitude' => 'nullable|numeric',
+                'osint_longitude' => 'nullable|numeric',
+            ]);
 
-        $user = User::where('user_email', $data['user_email'])->first();
-        $user_token_id = $user->id;
-        $user_id = $user_token_id;
+            $employee = Employee::where('employee_email', $data['employee_email'])->first();
 
-        $token = DB::table('personal_access_tokens')
-        ->where('tokenable_id','=',$user_token_id)
-        ->first();
+            if (!$employee || !Hash::check($data['employee_password'], $employee->employee_password)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Email or password is incorrect!',
+                    'status' => 401
+                ], 401);
+            }
 
-        $token_data = $token->token;
+            $token = $employee->createToken('employee_token')->plainTextToken;
 
-        $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
+            Opensourseintelligences::create([
+                'osint_public_ip' => $data['osint_public_ip'],
+                'osint_latitude' => $data['osint_latitude'],
+                'osint_longitude' => $data['osint_longitude'],
+                'osint_employee_id' => $employee->id,
+            ]);
 
-       // Create a new user
-       Opensourseintelligences::create([
-            'osint_public_ip' => $data['osint_public_ip'],
-            'osint_latitude' => $data['osint_latitude'],
-            'osint_longitude' => $data['osint_longitude'],
-            'osint_user_id' => $user_token_id,
-            'osint_empployee_id' => null,
-        ]);
-
-        if(!$user || !hash::check($data['user_password'], $user->user_password)){
-            return response([
-                'success' => false,
-                'status' => '401',
-                'message' => 'email or password is incorrect!'
-            ], 401);
-            
-        }else{
-            return response([
+            return response()->json([
                 'success' => true,
                 'message' => 'Login successful!',
-                'personal_access_tokens' => $token_data,
-                'user_id' => $user_id,
                 'token' => $token,
-                'user' => [
-                    'user_firstname' => $user->user_firstname,
-                    'user_lastname' => $user->user_lastname,
-                    'user_email' => $user->user_email,
-                    'user_contact_no' => $user->user_contact_no,
-                    'user_password' => $user->user_password
-                ],
+                'employee' => [
+                    'id' => $employee->id,
+                    'employee_firstname' => $employee->employee_firstname,
+                    'employee_lastname' => $employee->employee_lastname,
+                    'employee_email' => $employee->employee_email,
+                    'employee_contact_no' => $employee->employee_contact_no,
+                ]
             ]);
+
+        } catch (\Exception $error) {
+            Log::error('Login error: ' . $error->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Login failed! ' . $error->getMessage(),
+                'status' => 500
+            ], 500);
         }
-
-
     }
-    
     
 
     
