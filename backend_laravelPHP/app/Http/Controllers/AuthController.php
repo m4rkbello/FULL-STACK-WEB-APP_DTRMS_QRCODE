@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 
 class AuthController extends Controller
@@ -280,6 +281,7 @@ class AuthController extends Controller
     public function registerEmployee(Request $request)
     {
         try {
+            // Validate incoming request data
             $data = $request->validate([
                 'employee_firstname' => 'required|string',
                 'employee_middlename' => 'nullable|string',
@@ -287,8 +289,8 @@ class AuthController extends Controller
                 'employee_extensionname' => 'nullable|string',
                 'employee_username' => 'required|string|unique:employees,employee_username',
                 'employee_email' => 'required|string|email|unique:employees,employee_email',
-                'employee_contact_no' => 'required|string|max:11|unique:employees,employee_contact_no',
                 'employee_password' => 'required|string|min:8',
+                'employee_contact_no' => 'required|string|max:11|unique:employees,employee_contact_no',
                 'employee_barangay' => 'nullable|string',
                 'employee_municipality' => 'nullable|string',
                 'employee_province' => 'nullable|string',
@@ -307,11 +309,38 @@ class AuthController extends Controller
                 'employee_tin_no' => 'nullable|string|max:255'
             ]);
     
-            $data['employee_password'] = bcrypt($data['employee_password']);
-            $employee = Employee::create($data);
+            // Create a new employee
+            $employee = Employee::create([
+                'employee_firstname' => $data['employee_firstname'],
+                'employee_middlename' => $data['employee_middlename'] ?? null,
+                'employee_lastname' => $data['employee_lastname'],
+                'employee_extensionname' => $data['employee_extensionname'] ?? null,
+                'employee_username' => $data['employee_username'],
+                'employee_email' => $data['employee_email'],
+                'employee_password' => bcrypt($data['employee_password']),
+                'employee_contact_no' => $data['employee_contact_no'],
+                'employee_barangay' => $data['employee_barangay'] ?? null,
+                'employee_municipality' => $data['employee_municipality'] ?? null,
+                'employee_province' => $data['employee_province'] ?? null,
+                'employee_region' => $data['employee_region'] ?? null,
+                'employee_birthdate' => $data['employee_birthdate'],
+                'employee_civil_status_id' => $data['employee_civil_status_id'],
+                'employee_position' => $data['employee_position'] ?? null,
+                'employee_role' => $data['employee_role'] ?? null,
+                'employee_department_id' => $data['employee_department_id'],
+                'employee_status_id' => $data['employee_status_id'],
+                'employee_image' => $data['employee_image'] ?? null,
+                'employee_qrcode' => $data['employee_qrcode'] ?? null,
+                'employee_sss_no' => $data['employee_sss_no'] ?? null,
+                'employee_pagibig_no' => $data['employee_pagibig_no'] ?? null,
+                'employee_philhealth_no' => $data['employee_philhealth_no'] ?? null,
+                'employee_tin_no' => $data['employee_tin_no'] ?? null
+            ]);
     
-            $token = $employee->createToken('employee_token')->plainTextToken;
+            // Generate an authentication token
+            $token = $employee->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
     
+            // Prepare success response
             $response = [
                 'success' => true,
                 'employee' => $employee,
@@ -321,7 +350,17 @@ class AuthController extends Controller
             Log::info("Employee Registration Successful", $response);
             return response()->json($response, 201);
     
+        } catch (\Illuminate\Validation\ValidationException $validationError) {
+            // Handle validation errors
+            Log::error('Validation error: ' . $validationError->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed! ' . $validationError->getMessage(),
+                'status' => 422
+            ], 422);
+    
         } catch (\Exception $error) {
+            // Log the error message for debugging
             Log::error('Registration error: ' . $error->getMessage());
     
             return response()->json([
@@ -331,6 +370,9 @@ class AuthController extends Controller
             ], 500);
         }
     }
+    
+    
+    
     
     public function loginEmployee(Request $request)
     {
