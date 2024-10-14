@@ -395,7 +395,7 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            $token = $employee->createToken('employee_token')->plainTextToken;
+            $token = $employee->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
 
             Opensourseintelligences::create([
                 'osint_public_ip' => $data['osint_public_ip'],
