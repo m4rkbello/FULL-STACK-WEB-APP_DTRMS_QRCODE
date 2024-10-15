@@ -186,17 +186,17 @@ function App(props) {
               {/* Show guest links if not authenticated */}
               <ul className="menu menu-horizontal drop-shadow-xl px-1 text-black bg-transparent border-b-4">
                 <li className="text-2xl">
-                  <Link to="/attendance/scan">
+                  <Link to="/attendance/scan" style={{ color: 'white'}}>
                     <BsQrCodeScan />
                   </Link>
                 </li>
                 <li className="text-2xl">
-                  <Link to="/login">
+                  <Link to="/login" style={{  color: 'white' }}>
                     <FaSignInAlt />
                   </Link>
                 </li>
                 <li className="text-2xl">
-                  <Link to="/register">
+                  <Link to="/register" style={{ color: 'white', height: '2rem', weight: '2rem' }}>
                     <TiUserAddOutline />
                   </Link>
                 </li>
