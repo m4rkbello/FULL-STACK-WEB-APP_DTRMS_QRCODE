@@ -371,9 +371,6 @@ class AuthController extends Controller
         }
     }
     
-    
-    
-    
     public function loginEmployee(Request $request)
     {
         try {
