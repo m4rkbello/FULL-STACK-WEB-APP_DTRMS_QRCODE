@@ -148,8 +148,6 @@ class AuthController extends Controller
                 ],
             ]);
         }
-
-
     }
     
 
@@ -177,7 +175,6 @@ class AuthController extends Controller
             'details' => $user,
         ]);
     }
-
 
     public function updateImage(Request $request, $id)
     {
@@ -227,8 +224,6 @@ class AuthController extends Controller
         ]);
     }
     
-    
-    
     public function store(Request $request)
     {
         $request->validate([
@@ -244,8 +239,6 @@ class AuthController extends Controller
         
     }
     
-
-
     /**
      * Remove the specified resource from storage.
      */
