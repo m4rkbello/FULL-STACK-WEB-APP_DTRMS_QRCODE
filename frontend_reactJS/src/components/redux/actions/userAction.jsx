@@ -119,8 +119,6 @@ export const updateUser = (userId, updatedUserData) => async dispatch => {
     }
 };
 
-
-
 //MAG DELETE UG USER
 export const deleteUser = userId => async dispatch => {
     try {
