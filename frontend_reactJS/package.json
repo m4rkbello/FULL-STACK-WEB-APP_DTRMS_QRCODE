@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aivangogh/ph-address": "^1.4.2",
     "@dctsph/psgc": "^1.1.0",
     "@dropdowns/psgc": "^1.0.1",
     "axios": "^1.6.8",
     "chart.js": "^4.4.3",
     "lucide-react": "^0.424.0",
+    "phil-reg-prov-mun-brgy": "^1.1.0",
     "qr-scanner": "^1.4.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
@@ -30,6 +32,7 @@
     "react-toastify": "^10.0.5",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
+    "select-philippines-address": "^1.0.6",
     "uuidv7": "^1.0.2"
   },
   "devDependencies": {
