@@ -13,13 +13,21 @@ import {
     DELETE_EMPLOYEE_FAILURE,
     UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST,
     UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS,
-    UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE
+    UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE,
+    REGISTER_EMPLOYEE_REQUEST,
+    REGISTER_EMPLOYEE_SUCCESS,
+    REGISTER_EMPLOYEE_FAILURE,
+    LOGIN_EMPLOYEE_REQUEST,
+    LOGIN_EMPLOYEE_SUCCESS,
+    LOGIN_EMPLOYEE_FAILURE
 } from '../types/employeeTypes.jsx';
 
 const initialState = {
     employees: [],
     loading: false,
     error: null,
+    isAuthenticated: false,
+    loggedInEmployee: null,
     uploadAndUpdateImageLoadingEmployee: false,
     uploadAndUpdateImageEmployeeError: null,
 };
@@ -31,6 +39,8 @@ const employeeReducer = (state = initialState, action) => {
         case UPDATE_EMPLOYEE_REQUEST:
         case DELETE_EMPLOYEE_REQUEST:
         case UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST:
+        case REGISTER_EMPLOYEE_REQUEST:
+        case LOGIN_EMPLOYEE_REQUEST:
             return  {
                 ...state,
                 loading: true,
@@ -72,10 +82,21 @@ const employeeReducer = (state = initialState, action) => {
                 uploadAndUpdateImageEmployeeError: null,
 
             };
+        case REGISTER_EMPLOYEE_SUCCESS:
+        case LOGIN_EMPLOYEE_SUCCESS:
+                return {
+                    ...state,
+                    isAuthenticated: true,
+                    loggedInEmployee: action.payload,
+                    loading: false,
+                    error: null
+                };
         case FETCH_EMPLOYEES_FAILURE:
         case ADD_EMPLOYEE_FAILURE:
         case UPDATE_EMPLOYEE_FAILURE:
         case DELETE_EMPLOYEE_FAILURE:
+        case REGISTER_EMPLOYEE_FAILURE:
+        case LOGIN_EMPLOYEE_FAILURE:
             return {
                 ...state,
                 loading: false,
