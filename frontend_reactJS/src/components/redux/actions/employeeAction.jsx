@@ -20,6 +20,12 @@ import {
     UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST,
     UPLOAD_AND_UPDATE_EMPLOYEE_SUCCESS,
     UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE,
+    REGISTER_EMPLOYEE_REQUEST,
+    REGISTER_EMPLOYEE_SUCCESS,
+    REGISTER_EMPLOYEE_FAILURE,
+    LOGIN_EMPLOYEE_REQUEST,
+    LOGIN_EMPLOYEE_SUCCESS,
+    LOGIN_EMPLOYEE_FAILURE
 } from '../types/employeeTypes.jsx';
 
 
@@ -45,8 +51,6 @@ export const fetchEmployees = () => async dispatch => {
         });
     }
 };
-
-
 
 //MAG ADD UG EMPLOYEE 
 export const addEmployee = AddEmployeeData => async dispatch => {
@@ -266,5 +270,134 @@ export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dis
         });
     }
 };
+
+
+//REGISTER EMPLOYEE DISPATCH-ACTIONS
+export const registerEmployee = employeeData => async dispatch => {
+    try {
+        dispatch({ type: REGISTER_EMPLOYEE_REQUEST });
+        const registeredUser = await MarkBelloApi.post('/api/authentication/employee/register', employeeData);
+        console.log("DATA SA userData", employeeData);
+
+        document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
+        
+        toast.success('Registered successfully!🤭😇🤗', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            style: {
+                background: 'white',
+                color: 'black',
+                fontSize: '15px'
+            }
+        });
+        
+        dispatch({
+            type: REGISTER_EMPLOYEE_SUCCESS,
+            payload: registeredUser
+        });
+        
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message; // Extract message from backend response
+        dispatch({
+            type: REGISTER_EMPLOYEE_FAILURE,
+            payload: errorMessage
+        });
+        
+        toast.error(errorMessage, {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            style: {
+                background: 'black',
+                color: 'red',
+                fontSize: '15px',
+                fontWeight: 'Bold'
+            }
+        });
+    }
+};
+
+
+//FOR EMPLOYEE LOGIN
+export const loginEmployee = employeeData => async dispatch => {
+    try {
+        setTimeout(() => {
+            dispatch({ type: LOGIN_EMPLOYEE_REQUEST });
+        }, 1000);
+
+        document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
+
+        const response = await MarkBelloApi.post('/api/authentication/employee/login', employeeData);
+        const loggedInEmployee = response.data.token;
+        const loggedInEmployeeId = response.data.employee.id;
+
+        console.log("DATA SA loginUser", response);
+
+        localStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInEmployee);
+        sessionStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInEmployee);
+        document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInEmployee}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
+
+        localStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInEmployeeId);
+        sessionStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInEmployeeId);
+        document.cookie = `DTRMS_BY_M4RKBELLO_USER_ID=${loggedInEmployeeId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
+
+        console.log("DATA RESPONSE SA LOGIN NAAY TOKEN", loggedInEmployee);
+        console.log("DATA RESPONSE SA LOGIN", loggedInEmployeeId)
+        
+        dispatch({
+            type: LOGIN_EMPLOYEE_SUCCESS,
+            payload: loggedInEmployee
+        });
+
+        toast.success('Employee Login successfully!🤭🤗😎', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            style: {
+                background: 'white',
+                color: 'green',
+                fontSize: '15px'
+            }
+        });
+
+    } catch (error) {
+        dispatch({
+            type: LOGIN_EMPLOYEE_FAILURE,
+            payload: error.message
+        });
+
+        toast.error('Employee or Password is incorrect! 🥺⚠️👽', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            style: {
+                background: 'black',
+                color: 'red',
+                fontSize: '15px',
+                fontWeight: 'Bold'
+            }
+        });
+    }
+};
+
+
+
 
 
